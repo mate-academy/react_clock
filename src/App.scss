@@ -1,1 +1,43 @@
-// styles go here
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  background: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 5vw;
+  margin: 0 auto;
+  height: 150px;
+  width: 450px;
+  border-radius: 30px;
+  font-size: 3.5em;
+  font-family: Helvetica;
+  color: white;
+}
+
+.strip {
+  position: absolute;
+  background: white;
+  top: 110px;
+  height: 2px;
+  width: 65%;
+  animation: underblime 1s linear;
+  box-shadow: 0 0 20px white;
+}
+
+@keyframes underblime {
+  0%{
+    opacity: 0;
+  }
+  30%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
