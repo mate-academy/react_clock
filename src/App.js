@@ -1,25 +1,31 @@
 import React from 'react';
 
 import './App.scss';
+// import { ReactComponent } from '*.svg';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+class App extends React.Component {
+  state = {
+    date: new Date(),
+  }
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({ date: new Date() });
+    }, 1000);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        <p>
+          Current time:
+          {' '}
+          {this.state.date.toLocaleTimeString()}
+        </p>
+      </div>
+    );
+  }
+}
 
 export default App;
