@@ -3,13 +3,13 @@ import React from 'react';
 import './App.scss';
 
 class App extends React.Component {
-  state = {};
+  state = {
+    date: new Date(),
+  };
 
   render() {
     setTimeout(() => {
-      const date = new Date();
-
-      this.setState({ date: date.toLocaleTimeString() });
+      this.setState({ date: new Date() });
     }, 1000);
 
     return (
@@ -18,7 +18,7 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          {this.state.date}
+          {this.state.date.toLocaleTimeString()}
         </p>
       </div>
     );
