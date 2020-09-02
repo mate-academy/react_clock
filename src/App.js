@@ -34,15 +34,4 @@ class App extends React.Component {
   }
 }
 
-// const App = () => (
-//   <div className="App">
-//     <h1 className="heading">React clock</h1>
-//     <p>
-//       Current time:
-//       {' '}
-//       <Clock />
-//     </p>
-//   </div>
-// );
-
 export default App;
