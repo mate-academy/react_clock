@@ -12,16 +12,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000,
-    );
-  }
-
-  tick() {
-    this.setState({
-      date: new Date(),
-    });
+    this.timerID = setInterval(() => {
+      this.setState({ date: new Date() });
+    }, 1000);
   }
 
   render() {
