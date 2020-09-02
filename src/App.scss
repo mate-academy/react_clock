@@ -1,1 +1,34 @@
-// styles go here
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Roboto, sans-serif;
+}
+
+body,
+h1 {
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+}
+
+.App {
+  text-align: center;
+}
+
+.heading {
+  font-size: 40px;
+}
+
+.time {
+  font-size: 24px;
+  font-weight: bold;
+}
