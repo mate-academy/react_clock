@@ -1,34 +1,13 @@
 import React from 'react';
 
 import './App.scss';
+import Clock from './Clock';
 
-class App extends React.Component {
-  state = {
-    time: new Date().toLocaleTimeString('en-GB'),
-  }
-
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        time: new Date().toLocaleTimeString('en-GB'),
-      });
-    }, 1000);
-  }
-
-  render() {
-    const { time } = this.state;
-
-    return (
-      <div className="App">
-        <h1>React clock</h1>
-        <p>
-          Current time:
-          {' '}
-          {time}
-        </p>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div className="App">
+    <h1>React clock</h1>
+    <Clock />
+  </div>
+);
 
 export default App;
