@@ -1,1 +1,8 @@
-// styles go here
+.box {
+  &__time {
+    display: block;
+    width: fit-content;
+    font-size: 100px;
+    margin: 15% auto;
+  }
+}
