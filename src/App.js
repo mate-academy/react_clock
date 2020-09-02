@@ -7,12 +7,16 @@ class App extends React.Component {
     date: new Date().toLocaleTimeString(),
   }
 
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        date: new Date().toLocaleTimeString(),
+      });
+    }, 1000);
+  }
+
   render() {
     const { date } = this.state;
-
-    setInterval(() => {
-      this.setState({ date: new Date().toLocaleTimeString() });
-    }, 1000);
 
     return (
       <div className="App">
