@@ -7,14 +7,14 @@ class App extends React.Component {
     date: new Date(),
   }
 
-  componentWillMount() {
-    clearInterval(this.timerID);
-  }
-
   componentDidMount() {
     this.timerID = setInterval(() => {
       this.setState({ date: new Date() });
     }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
   }
 
   render() {
