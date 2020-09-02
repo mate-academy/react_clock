@@ -6,7 +6,7 @@ class App extends React.Component {
   state = {};
 
   render() {
-    setInterval(() => {
+    setTimeout(() => {
       const date = new Date();
 
       this.setState({ date: date.toLocaleTimeString() });
