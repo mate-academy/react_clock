@@ -1,1 +1,36 @@
-// styles go here
+body {
+  background-color: #e5e5e5;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  color: #2d4059;
+}
+
+.App {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
+  padding: 20px;
+  width: 300px;
+  border: 5px solid #ea5455;
+  border-radius: 10px;
+  box-shadow: inset 0 0 100px hsla(0,0%,0%,0.2),
+    inset 0 1px 5px #999,
+    inset 0 2px 0 #888,
+    inset 0 3px 0 #777,
+    inset 0 4px 0 #666,
+    inset 0 5px 0 #555,
+    inset 0 6px 0 #444,
+    inset 0 7px 0 #333,
+    inset 0 8px 7px #001135;
+
+  &__title {
+    color: #2d4059;
+    text-transform: uppercase;
+  }
+
+  &__time {
+    font-size: 20px;
+  }
+}
