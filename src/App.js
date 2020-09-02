@@ -3,23 +3,12 @@ import React from 'react';
 import './App.scss';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { date: new Date() };
-  }
+  state = {
+    date: new Date(),
+  };
 
   componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date(),
-    });
+    setInterval(() => this.setState({ date: new Date() }), 1000);
   }
 
   render() {
