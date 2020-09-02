@@ -1,1 +1,29 @@
-// styles go here
+body {
+  background-color: #282a2b;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+  color: rgb(61, 202, 121);
+
+  &__title {
+    color: #d26228;
+  }
+
+  &__time {
+    font-size: 18px;
+  }
+
+  &__time-value {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #484848;
+    font-size: 50px;
+  }
+}
