@@ -17,7 +17,7 @@ export class Clock extends React.Component {
     return (
       <>
         <h1>React clock</h1>
-        <Clock date={date} />
+        <p>{date.toLocaleTimeString()}</p>
       </>
     );
   }
