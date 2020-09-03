@@ -7,11 +7,15 @@ class App extends React.Component {
     date: new Date().toLocaleTimeString(),
   };
 
-  render() {
-    setTimeout(() => {
-      this.setState({ date: new Date().toLocaleTimeString() });
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        date: new Date().toLocaleTimeString(),
+      });
     }, 1000);
+  }
 
+  render() {
     return (
       <div className="box">
         <div className="box__time">
