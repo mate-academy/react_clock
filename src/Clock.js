@@ -3,17 +3,14 @@ import './Clock.scss';
 
 export class Clock extends React.Component {
 state = {
-  time: new Date().toLocaleTimeString(),
+  time: new Date(),
 }
 
 componentDidMount() {
   setInterval(() => {
-    const update = new Date().toLocaleTimeString();
+    const update = new Date();
 
     this.setState({ time: update });
-
-    // eslint-disable-next-line
-      console.log(this.state.time);
   }, 1000);
 }
 
@@ -21,12 +18,12 @@ render() {
   const { time } = this.state;
 
   return (
-    <div className="Clock">
+    <div className="clock">
       <h1>React clock</h1>
       <p>
         Current time:
         {' '}
-        { time }
+        { time.toLocaleTimeString() }
       </p>
     </div>
   );
