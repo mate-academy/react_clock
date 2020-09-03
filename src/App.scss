@@ -1,1 +1,9 @@
-// styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-image: url(./screen-2.jpg);
+  background-size: contain;
+  height: 100vh;
+}
