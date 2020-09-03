@@ -1,1 +1,17 @@
-// styles go here
+.App {
+  position: relative;
+  width:600px;
+  height: 600px;
+  background: url(./images/computer.png) no-repeat center;
+  background-size: contain;
+}
+
+.clock {
+  position: absolute;
+  top: 130px;
+  left: 205px;
+  font-weight: 800;
+  font-size: 50px;
+  color: #7FFFD4;
+  text-shadow: 1px 1px 5px #7FFFD4;
+}
