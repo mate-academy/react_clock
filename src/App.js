@@ -14,13 +14,15 @@ class App extends React.Component {
   }
 
   render() {
+    const { date } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
         <p>
           Current time:
           {' '}
-          {this.state.date.toLocaleTimeString()}
+          {date.toLocaleTimeString()}
         </p>
       </div>
     );
