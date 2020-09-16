@@ -1,1 +1,33 @@
 // styles go here
+
+.App {
+  text-align: center;
+}
+
+.time {
+  position: relative;
+  border-radius: 0.5em;
+  margin: 10px auto;
+  font-family: Open Sans, sans-serif;
+  text-align: center;
+  color: #fff;
+  line-height: 2em;
+  background: rgb(75, 109, 221);
+}
+
+button {
+  position: relative;
+  border-radius: 0.5em;
+  margin: 10px auto;
+}
+
+.message {
+  position: relative;
+  border-radius: 0.5em;
+  margin: 10px auto;
+  font-family: Open Sans, sans-serif;
+  text-align: center;
+  color: #fff;
+  line-height: 2em;
+  background: rgb(54, 202, 195);
+}

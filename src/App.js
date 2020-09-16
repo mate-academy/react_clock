@@ -1,25 +1,43 @@
 import React from 'react';
 
 import './App.scss';
+import { Clock } from './components/Clock';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+export default class App extends React.Component {
+  hadleVisible = (event) => {
+    const time = document.querySelector('.time');
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+    if (time.hidden === true) {
+      time.hidden = false;
+    } else {
+      time.hidden = true;
+    }
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
-
-export default App;
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        <p className="time">
+          Current time:
+          {' '}
+          {/* Print the time here instead of DevTools */}
+          <Clock />
+        </p>
+        <button
+          type="button"
+          className="visible"
+          onClick={this.hadleVisible}
+        >
+          Visible
+        </button>
+        <button
+          type="button"
+          className="new-name"
+        >
+          New Name
+        </button>
+      </div>
+    );
+  }
+}
