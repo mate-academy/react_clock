@@ -15,19 +15,19 @@ export class Clock extends React.Component {
     setInterval(() => {
       const time = new Date();
 
-      this.setState({
+      this.setState(state => ({
         date: time.toLocaleTimeString(),
-        prevName: this.state.name,
+        prevName: state.name,
         name: this.getRandomInt(10000),
-      });
+      }));
     }, 1000);
   }
 
   handleName = () => {
-    this.setState({
-      prevName: this.state.name,
+    this.setState(state => ({
+      prevName: state.name,
       name: this.getRandomInt(10000),
-    });
+    }));
   }
 
   getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
