@@ -1,39 +1,16 @@
 /* eslint-disable react/no-access-state-in-setstate */
 import React from 'react';
+import PropTypes from 'prop-types';
 
+// eslint-disable-next-line react/prefer-stateless-function
 export class Clock extends React.Component {
-  state = {
-    date: new Date(),
-    name: 0,
-    prevName: 0,
+  // eslint-disable-next-line no-useless-constructor
+  constructor(props) {
+    super(props);
   }
-
-  componentDidMount() {
-    const button = document.querySelector('.new-name');
-
-    button.addEventListener('click', this.handleName);
-    setInterval(() => {
-      const time = new Date();
-
-      this.setState(state => ({
-        date: time.toLocaleTimeString(),
-        prevName: state.name,
-        name: this.getRandomInt(10000),
-      }));
-    }, 1000);
-  }
-
-  handleName = () => {
-    this.setState(state => ({
-      prevName: state.name,
-      name: this.getRandomInt(10000),
-    }));
-  }
-
-  getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
 
   render() {
-    const { date, name, prevName } = this.state;
+    const { date, name, prevName } = this.props;
 
     return (
       <>
@@ -54,3 +31,9 @@ export class Clock extends React.Component {
     );
   }
 }
+
+Clock.propTypes = {
+  date: PropTypes.string.isRequired,
+  name: PropTypes.number.isRequired,
+  prevName: PropTypes.number.isRequired,
+};

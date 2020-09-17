@@ -4,14 +4,37 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 export default class App extends React.Component {
-  hadleVisible = (event) => {
+  state = {
+    date: new Date(),
+    name: 0,
+    prevName: 0,
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      const time = new Date();
+
+      this.setState(state => ({
+        date: time.toLocaleTimeString(),
+        prevName: state.name,
+        name: this.getRandomInt(10000),
+      }));
+    }, 1000);
+  }
+
+  getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
+
+  hadleVisible = () => {
     const time = document.querySelector('.time');
 
-    if (time.hidden === true) {
-      time.hidden = false;
-    } else {
-      time.hidden = true;
-    }
+    time.hidden = !time.hidden;
+  }
+
+  handleNewName = () => {
+    this.setState(state => ({
+      prevName: state.name,
+      name: this.getRandomInt(10000),
+    }));
   }
 
   render() {
@@ -22,7 +45,11 @@ export default class App extends React.Component {
           Current time:
           {' '}
           {/* Print the time here instead of DevTools */}
-          <Clock />
+          <Clock
+            date={this.state.date}
+            name={this.state.name}
+            prevName={this.state.prevName}
+          />
         </p>
         <button
           type="button"
@@ -34,6 +61,7 @@ export default class App extends React.Component {
         <button
           type="button"
           className="new-name"
+          onClick={this.handleNewName}
         >
           New Name
         </button>
