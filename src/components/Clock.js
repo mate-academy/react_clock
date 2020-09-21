@@ -9,13 +9,12 @@ export class Clock extends React.Component {
     date: new Date(),
     name: '$',
     visibility: false,
-    previousName: '1',
   };
 
   constructor() {
     super();
-    this.handleClickClock = this.handleClickClock.bind(this);
-    this.handleClickName = this.handleClickName.bind(this);
+    this.toggleClockVisibility = this.toggleClockVisibility.bind(this);
+    this.changeClocksName = this.changeClocksName.bind(this);
   }
 
   componentDidMount() {
@@ -26,22 +25,23 @@ export class Clock extends React.Component {
     }, 1000);
   }
 
-  handleClickClock() {
+  toggleClockVisibility() {
     this.setState(state => ({
       visibility: !state.visibility,
     }));
   }
 
-  handleClickName() {
-    this.setState(state => ({
-      previousName: state.name,
-      name: Math.floor(Math.random() * (Math.floor(100) - Math.ceil(0)))
-       + Math.ceil(0),
-    }));
+  changeClocksName() {
+    this.setState((prevState) => {
+      const newName = Math.floor(Math.random() * Math.floor(100));
 
-    // eslint-disable-next-line no-console
-    console.log(`The Clock was renamed from ${this.state.previousName}
-     to ${this.state.name}`);
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${prevState.name} to ${newName}`);
+
+      return {
+        name: newName,
+      };
+    });
   }
 
   render() {
@@ -57,12 +57,12 @@ export class Clock extends React.Component {
             {this.state.date.toLocaleTimeString()}
           </p>
           <p>
-            <button onClick={this.handleClickClock}>
+            <button onClick={this.toggleClockVisibility}>
               Click here to hide clock!
             </button>
           </p>
           <p>
-            <button onClick={this.handleClickName}>
+            <button onClick={this.changeClocksName}>
               Click here to change the name of clock!
             </button>
           </p>
@@ -78,12 +78,12 @@ export class Clock extends React.Component {
             {this.state.name}
           </h1>
           <p>
-            <button onClick={this.handleClickClock}>
+            <button onClick={this.toggleClockVisibility}>
               Click here to see clock!
             </button>
           </p>
           <p>
-            <button onClick={this.handleClickName}>
+            <button onClick={this.changeClocksName}>
               Click here to change the name of clock!
             </button>
           </p>
