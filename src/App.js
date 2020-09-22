@@ -6,7 +6,7 @@ export default class App extends React.Component {
   state = {
     date: new Date(),
     name: 0,
-    prevName: 0,
+    visibility: false,
   }
 
   componentDidMount() {
@@ -17,22 +17,24 @@ export default class App extends React.Component {
     }, 1000);
   }
 
-  getRandomNum = max => Math.floor(Math.random() * Math.floor(max));
-
   isClockVisible = () => {
-    const visibleClock = document.querySelector('.isClockVisible');
-
-    visibleClock.hidden = !visibleClock.hidden;
+    this.setState(state => ({
+      visibility: !state.visibility,
+    }));
   }
 
   changeNameClock = () => {
-    this.setState(state => ({
-      prevName: state.name,
-      name: this.getRandomNum(10000),
-    }));
-    // eslint-disable-next-line no-console
-    console.log(`The Clock was renamed from
-    ${this.state.prevName} to ${this.state.name}`);
+    this.setState((state) => {
+      const getRandomNum = Math.floor(Math.random() * Math.floor(1000));
+
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from
+      ${state.name} to ${getRandomNum}`);
+
+      return {
+        name: getRandomNum,
+      };
+    });
   }
 
   render() {
@@ -40,7 +42,7 @@ export default class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
         <div>
-          <span className="isClockVisible">
+          <span hidden={this.state.visibility}>
             <Clock
               date={this.state.date}
               prevName={this.state.prevName}
