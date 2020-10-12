@@ -7,19 +7,14 @@ export class Clock extends React.Component {
     visibility: false,
   };
 
-  constructor() {
-    super();
-    this.state = {
-      visibility: false,
-      name: getRandomInt(),
-    };
-  }
-
   componentDidMount() {
     setInterval(() => {
       this.setState({ date: new Date() });
-      console.log(this.state.date.toLocaleTimeString());
     }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.date);
   }
 
   toggleVisibility = () => {
@@ -42,7 +37,6 @@ export class Clock extends React.Component {
   }
 
   render() {
-    if (this.state.visibility) {
       return (
         <>
           <h1>
@@ -51,11 +45,11 @@ export class Clock extends React.Component {
             {this.state.name}
           </h1>
           <p>
-            {visibility ? `Current time:
+            {this.state.visibility ? `Current time:
             ${this.state.date.toLocaleTimeString()}` : ''}
           </p>
           <p>
-            <button onClick={this.toggleVisibility}>{visibility ? 'Hide' : 'Show clock'}</button>
+            <button onClick={this.toggleVisibility}>{this.visibility ? 'Hide' : 'Show clock'}</button>
           </p>
           <p>
             <button onClick={this.changeName}>Change name</button>
@@ -63,7 +57,6 @@ export class Clock extends React.Component {
         </>
       );
     }
-  }
 }
 
 function getRandomInt() {
