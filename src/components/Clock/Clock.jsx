@@ -51,11 +51,11 @@ export class Clock extends React.Component {
             {this.state.name}
           </h1>
           <p>
-            Current time:
-            {this.state.date.toLocaleTimeString()}
+            {visibility ? `Current time:
+            ${this.state.date.toLocaleTimeString()}` : ''}
           </p>
           <p>
-            <button onClick={this.toggleVisibility}>Hide clock</button>
+            <button onClick={this.toggleVisibility}>{visibility ? 'Hide' : 'Show clock'}</button>
           </p>
           <p>
             <button onClick={this.changeName}>Change name</button>
@@ -63,22 +63,6 @@ export class Clock extends React.Component {
         </>
       );
     }
-
-    return (
-      <>
-        <h1>
-          Name -
-          {' '}
-          {this.state.name}
-        </h1>
-        <p>
-          <button onClick={this.toggleVisibility}>Show clock</button>
-        </p>
-        <p>
-          <button onClick={this.changeName}>Change name</button>
-        </p>
-      </>
-    );
   }
 }
 
