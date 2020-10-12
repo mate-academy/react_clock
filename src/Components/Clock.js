@@ -2,7 +2,6 @@ import React from 'react';
 
 export class Clock extends React.Component {
   state = {
-    // eslint-disable-next-line react/no-unused-state
     date: new Date(),
     name: 0,
     prevName: 0,
@@ -12,8 +11,6 @@ export class Clock extends React.Component {
   componentDidMount() {
     setInterval(() => {
       this.setState({ date: new Date() });
-      // eslint-disable-next-line
-      console.log(this.state.date.toLocaleTimeString());
     }, 1000);
   }
 
