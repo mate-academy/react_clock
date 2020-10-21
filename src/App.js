@@ -31,8 +31,10 @@ class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
         <Clock status={this.state.isClockVisible} name={this.state.name} />
-        <Button click={this.click} />
-        <button type="button" onClick={this.changeName}>Name changer</button>
+        <div className="btn-group">
+          <Button click={this.click} text="Clock visibility" />
+          <Button click={this.changeName} text="Name changer" />
+        </div>
       </div>
     );
   }
