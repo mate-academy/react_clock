@@ -1,0 +1,15 @@
+.Clock {
+  font-size: 25px;
+  letter-spacing: 3px;
+  padding-bottom: 40px;
+
+  text-align: center;
+  &__id {
+    margin-bottom: 20px;
+  }
+
+  &__time {
+    font-size: 56px;
+    color: red;
+  }
+}
