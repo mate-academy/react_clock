@@ -24,7 +24,7 @@ class Clock extends React.Component {
         </h1>
         <p>
           {this.props.isClockVisible ? `Current time:
-          ${this.state.time}` : ''}
+          ${this.state.time}` : 'No clock available'}
         </p>
       </div>
     );

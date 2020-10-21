@@ -36,14 +36,14 @@ class App extends React.Component {
       <div className="app">
         <Clock name={name} isClockVisible={isClockVisible} />
         <button
-          className="visibility-button"
+          className="app__button"
           type="button"
           onClick={this.toggleVisible}
         >
-          {isClockVisible ? 'Hide clock' : 'Show clock'}
+          {isClockVisible ? 'Hide  clock' : 'Show clock'}
         </button>
         <button
-          className="name-button"
+          className="app__button"
           type="button"
           onClick={this.changeName}
         >

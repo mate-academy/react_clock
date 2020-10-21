@@ -1,6 +1,37 @@
-.App {
-  background-color: lightcyan;
-  height: 100vh;
-  margin: 0;
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e4e7f8fb;
+  height: 200px;
+  width: 400px;
+  margin: 100px auto;
+  padding: 50px;
+
+  color: #0e194b93;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 50px;
   
+  &__button {
+    background-color: #365afa93;
+    border: 1px solid #365afa93;
+    border-radius: 5px;
+    width: 50%;
+    height: 40px;
+    margin-top: 10px;
+
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+
+    outline: none;
+    transition: color 0.5s, background-color 0.5s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #fff;
+      color: #365afa93;
+    }
+  }
 }
