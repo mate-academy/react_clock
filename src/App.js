@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { isClockVisible, name } = this.state;
+    const { isClockVisible } = this.state;
 
     return (
       <div className="App">
@@ -35,7 +35,7 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          <Clock isVisible={isClockVisible} name={name} />
+          <Clock isVisible={isClockVisible} />
         </p>
 
         <Button click={this.changeVisibility} />
