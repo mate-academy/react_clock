@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 export class Clock extends React.Component {
   state = {
     date: new Date().toLocaleTimeString(),
-    name: this.props.name,
   };
 
   componentDidMount() {
@@ -19,30 +18,20 @@ export class Clock extends React.Component {
   render() {
     const { status, name } = this.props;
 
-    this.state.name = name;
-
-    if (status) {
-      return (
-        <div>
-          <p>
-            Name:
-            {' '}
-            {this.state.name}
-          </p>
-          <p>
-            {`Current time: ${this.state.date}`}
-          </p>
-        </div>
-      );
-    }
-
     return (
-      <p>No clocks! </p>
+      <div>
+        <p>{`Name: ${name}`}</p>
+        {
+          status
+            ? <p>{`Current time: ${this.state.date}`}</p>
+            : <p>No clocks!</p>
+        }
+      </div>
     );
   }
 }
 
 Clock.propTypes = {
   status: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.number.isRequired,
 };
