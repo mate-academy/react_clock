@@ -14,7 +14,7 @@ class App extends React.Component {
   }
 
   changeVisibility = () => {
-    this.setState(state => ({ isClockVisible: !state.isClockVisible }));
+    this.setState(prevState => ({ isClockVisible: !prevState.isClockVisible }));
   }
 
   changeName = () => {
