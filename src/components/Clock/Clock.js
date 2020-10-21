@@ -1,12 +1,10 @@
 import React from 'react';
-import './Clock.scss';
+import PropTypes from 'prop-types';
 
 class Clock extends React.Component {
   state = {
-    time: (new Date()).toLocaleTimeString(),
-    isClockVisible: true,
-    name: 'Nice Clock',
-  };
+    time: new Date().toLocaleTimeString(),
+  }
 
   componentDidMount() {
     setInterval(() => {
@@ -18,56 +16,24 @@ class Clock extends React.Component {
     }, 1000);
   }
 
-  toggleVisible = () => {
-    this.setState(state => ({
-      isClockVisible: !state.isClockVisible,
-    }));
-  };
-
-  changeName = () => (
-    this.setState((prevState) => {
-      const newName = this.randomize();
-
-      // eslint-disable-next-line no-console
-      console.log(`The Clock was renamed from ${prevState.name} to ${newName}`);
-
-      return {
-        name: newName,
-      };
-    })
-  );
-
-  randomize = () => Math.floor(Math.random() * 1000);
-
   render() {
-    const { isClockVisible, name } = this.state;
-
     return (
       <div className="clock">
         <h1>
-          {`Clock named ${name}`}
+          {`Clock named ${this.props.name}`}
         </h1>
         <p>
-          {isClockVisible ? `Current time:
+          {this.props.isClockVisible ? `Current time:
           ${this.state.time}` : ''}
         </p>
-        <button
-          className="visibility-button"
-          type="button"
-          onClick={this.toggleVisible}
-        >
-          {isClockVisible ? 'Hide clock' : 'Show clock'}
-        </button>
-        <button
-          className="name-button"
-          type="button"
-          onClick={this.changeName}
-        >
-          Change name
-        </button>
       </div>
     );
   }
 }
+
+Clock.propTypes = {
+  isClockVisible: PropTypes.bool.isRequired,
+  name: PropTypes.number.isRequired,
+};
 
 export default Clock;
