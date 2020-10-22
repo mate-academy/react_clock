@@ -7,7 +7,7 @@ export class Clock extends React.Component {
   };
 
   componentDidMount() {
-    setInterval(() => {
+    this.timer = setInterval(() => {
       this.setState({ date: new Date().toLocaleTimeString() });
 
       // eslint-disable-next-line no-console
@@ -15,23 +15,22 @@ export class Clock extends React.Component {
     }, 1000);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   render() {
-    const { status, name } = this.props;
+    const { name } = this.props;
 
     return (
       <div>
         <p>{`Name: ${name}`}</p>
-        {
-          status
-            ? <p>{`Current time: ${this.state.date}`}</p>
-            : <p>No clocks!</p>
-        }
+        <p>{`Current time: ${this.state.date}`}</p>
       </div>
     );
   }
 }
 
 Clock.propTypes = {
-  status: PropTypes.bool.isRequired,
   name: PropTypes.number.isRequired,
 };

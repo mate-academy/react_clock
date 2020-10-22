@@ -29,7 +29,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <Clock status={this.state.isClockVisible} name={this.state.name} />
+        {
+          this.state.isClockVisible
+            ? <Clock name={this.state.name} />
+            : <div>No clocks!</div>
+        }
         <div className="btn-group">
           <Button click={this.handleClick} text="Clock visibility" />
           <Button click={this.changeName} text="Name changer" />
