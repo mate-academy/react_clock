@@ -1,9 +1,9 @@
 import React from 'react';
 import { ButtonShape } from '../shapes/ButtonShape';
 
-export const Button = ({ click }) => (
+export const Button = ({ handleClick }) => (
 
-  <button type="button" onClick={click}>
+  <button type="button" onClick={handleClick}>
     Toggle clock
   </button>
 );

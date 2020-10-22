@@ -1,8 +1,8 @@
 import React from 'react';
 import { ButtonSetNameShape } from '../shapes/ButtonSetNameShape';
 
-export const ButtonSetName = ({ click }) => (
-  <button type="button" onClick={click}>
+export const ButtonSetName = ({ handleClick }) => (
+  <button type="button" onClick={handleClick}>
     Set name
   </button>
 );

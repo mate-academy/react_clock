@@ -13,11 +13,11 @@ class App extends React.Component {
     };
   }
 
-  changeVisibility = () => {
+  changeVisibilityOnClick = () => {
     this.setState(prevState => ({ isClockVisible: !prevState.isClockVisible }));
   }
 
-  changeName = () => {
+  changeNameOnClick = () => {
     const newName = Math.floor(Math.random() * 1000);
 
     // eslint-disable-next-line
@@ -38,8 +38,8 @@ class App extends React.Component {
           <Clock isVisible={isClockVisible} />
         </p>
 
-        <Button click={this.changeVisibility} />
-        <ButtonSetName click={this.changeName} />
+        <Button handleClick={this.changeVisibilityOnClick} />
+        <ButtonSetName handleClick={this.changeNameOnClick} />
       </div>
     );
   }
