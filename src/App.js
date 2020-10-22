@@ -9,15 +9,7 @@ class App extends React.Component {
     name: 1604567890123,
   };
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({ date: new Date() });
-      // eslint-disable-next-line
-      console.log(this.state.date.toLocaleTimeString());
-    }, 1000);
-  }
-
-  click = () => {
+  handleClick = () => {
     this.setState(state => ({
       isClockVisible: !state.isClockVisible,
     }));
@@ -35,7 +27,7 @@ class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
         <Clock name={this.state.name} isVisible={this.state.isClockVisible} />
-        <button type="button" onClick={this.click}>
+        <button type="button" onClick={this.handleClick}>
           Hide Clock
         </button>
         {' '}
