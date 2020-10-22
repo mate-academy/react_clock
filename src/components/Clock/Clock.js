@@ -13,15 +13,18 @@ export class Clock extends React.Component {
   }
 
   render() {
+    const { name, isVisible } = this.props;
+    const time = this.state.date.toLocaleTimeString();
+
     return (
       <div>
         {
-          this.props.isVisible
-            ? <p>{`Current time: ${this.state.date.toLocaleTimeString()}`}</p>
+          isVisible
+            ? <p>{`Current time: ${time}`}</p>
             : <p>Hidden clock</p>
         }
         <p>
-          {`Clock name : ${this.props.name}`}
+          {`Clock name : ${name}`}
         </p>
       </div>
     );
