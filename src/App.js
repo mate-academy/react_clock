@@ -6,7 +6,7 @@ import { Clock } from './components/Clock';
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    name: 1604567890123,
+    name: 1603367890123,
   };
 
   handleClick = () => {
