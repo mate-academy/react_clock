@@ -3,6 +3,7 @@ import React from 'react';
 import './App.scss';
 import { Button } from './components/Button';
 import { Clock } from './components/Clock';
+import { generateNumber } from './helper';
 
 class App extends React.Component {
   state = {
@@ -10,16 +11,14 @@ class App extends React.Component {
     name: 100,
   };
 
-  click = () => {
-    this.setState(state => ({
-      isClockVisible: !state.isClockVisible,
+  handleClick = () => {
+    this.setState(prevState => ({
+      isClockVisible: !prevState.isClockVisible,
     }));
   }
 
-  generateNumber = max => Math.floor(Math.random() * Math.floor(max))
-
   changeName = () => {
-    const newName = this.generateNumber(100);
+    const newName = generateNumber(100);
 
     // eslint-disable-next-line no-console
     console.log(`the name has changed from ${this.state.name} to ${newName}`);
@@ -32,7 +31,7 @@ class App extends React.Component {
         <h1>React clock</h1>
         <Clock status={this.state.isClockVisible} name={this.state.name} />
         <div className="btn-group">
-          <Button click={this.click} text="Clock visibility" />
+          <Button click={this.handleClick} text="Clock visibility" />
           <Button click={this.changeName} text="Name changer" />
         </div>
       </div>
