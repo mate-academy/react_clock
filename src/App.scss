@@ -1,1 +1,49 @@
-// styles go here
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(76, 96, 133);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 100px auto;
+  height: 200px;
+  width: 400px;
+  padding: 10px;
+  border-radius: 50px;
+
+  background-color: rgb(19, 196, 163);
+  color: rgb(50, 50, 44);
+  font-weight: 700;
+
+  &__container {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__heading {
+    font-style: italic;
+    font-size: 20px;
+    margin: 15px;
+  }
+
+  &__button {
+    background-color: rgb(76, 96, 133);
+    color: white;
+  }
+}
