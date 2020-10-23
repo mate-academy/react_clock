@@ -1,0 +1,23 @@
+.Button {
+  padding: 4px 7px;
+  width: 150px;
+
+  color: red;
+  text-transform: uppercase;
+
+  border: 2px solid;
+  border-radius: 10px;
+
+  background-color: inherit;
+  font-size: 28px;
+
+  cursor: pointer;
+  outline: none;
+
+  transition: background-color 0.4s, color 0.4s;
+  &:hover {
+    background-color: red;
+
+    color: #221;
+  }
+}

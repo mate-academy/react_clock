@@ -1,1 +1,43 @@
-// styles go here
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Orbitron", sans-serif;
+  color: red;
+}
+
+body,
+p,
+h1,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #221;
+}
+
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    margin-bottom: 60px;
+    letter-spacing: 2px;
+    font-size: 38px;
+  }
+
+  &__button-wrapper {
+    width: 340px;
+
+    display: flex;
+    justify-content: space-between;
+  }
+}
