@@ -6,7 +6,7 @@ import { Clock } from './components/Clock';
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    name: 1603367890123,
+    name: 55,
   };
 
   handleClick = () => {
@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   randomNameAdd = () => {
-    const randomName = Date.now();
+    const randomName = Math.ceil(Math.random() * 100);
     // eslint-disable-next-line
     console.log(`The Clock was renamed from ${this.state.name} to ${randomName}`);
     this.setState({ name: randomName });
