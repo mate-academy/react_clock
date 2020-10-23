@@ -1,0 +1,15 @@
+.clock {
+  width: 400px;
+  height: 200px;
+
+  color: white;
+
+  &__name {
+    font-size: 40px;
+  }
+
+  &__time {
+    margin: 0;
+    font-size: 30px;
+  }
+}
