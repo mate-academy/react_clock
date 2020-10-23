@@ -15,7 +15,7 @@ class App extends React.Component {
     }));
   }
 
-  randomNameAdd = () => {
+  addRandomName = () => {
     const randomName = Math.ceil(Math.random() * 100);
     // eslint-disable-next-line
     console.log(`The Clock was renamed from ${this.state.name} to ${randomName}`);
@@ -31,7 +31,7 @@ class App extends React.Component {
           Hide Clock
         </button>
         {' '}
-        <button type="button" onClick={this.randomNameAdd}>
+        <button type="button" onClick={this.addRandomName}>
           Change Name
         </button>
       </div>
