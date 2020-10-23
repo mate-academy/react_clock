@@ -26,8 +26,7 @@ class App extends Component {
   }
 
   render() {
-    const { isClockVisible } = this.state;
-    const { name } = this.state;
+    const { isClockVisible, name } = this.state;
 
     return (
       <div
