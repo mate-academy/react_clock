@@ -10,9 +10,9 @@ Create a Clock component updating the time every second.
 
 ![demo](./screenshot.png)
 
+## Lifecycle methods tasks
 > Watch [this video](https://youtu.be/87RkHpYMDXI) to solve the next tasks
 
-## Lifecycle methods tasks
 1. Add buttons `Show Clock` and `Hide Clock` in the App changing `isClockVisible` value (`true/false`).
 1. The `Clock` should not be rendered when `isClockVisible` is `false`
 1. Change the `Clock` component to print the time not only on the page but also in the `DevTools` console.
