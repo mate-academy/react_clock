@@ -6,25 +6,35 @@ class Clock extends React.Component {
     time: new Date().toLocaleTimeString(),
   }
 
-  componentDidMount() {
-    setInterval(() => {
+  tick = setInterval(
+    () => {
       this.setState({
         time: (new Date()).toLocaleTimeString(),
       });
       // eslint-disable-next-line no-console
       console.log(new Date().toLocaleTimeString());
-    }, 1000);
+    }, 1000,
+  );
+
+  componentDidMount() {
+    return this.tick;
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.tick);
   }
 
   render() {
+    const { name } = this.props;
+    const { time } = this.state;
+
     return (
       <div className="clock">
         <h1>
-          {`Clock named ${this.props.name}`}
+          {`Clock #${name}`}
         </h1>
         <p>
-          {this.props.isClockVisible ? `Current time:
-          ${this.state.time}` : 'No clock available'}
+          {time}
         </p>
       </div>
     );
@@ -32,7 +42,6 @@ class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  isClockVisible: PropTypes.bool.isRequired,
   name: PropTypes.number.isRequired,
 };
 

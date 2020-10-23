@@ -8,7 +8,7 @@ class App extends React.Component {
     name: 0,
   };
 
-  toggleVisible = () => {
+  toggleVisibility = () => {
     this.setState(state => ({
       isClockVisible: !state.isClockVisible,
     }));
@@ -34,11 +34,14 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        <Clock name={name} isClockVisible={isClockVisible} />
+        {isClockVisible
+          ? <Clock name={name} />
+          : <div className="app__no-clock" />
+        }
         <button
           className="app__button"
           type="button"
-          onClick={this.toggleVisible}
+          onClick={this.toggleVisibility}
         >
           {isClockVisible ? 'Hide  clock' : 'Show clock'}
         </button>
