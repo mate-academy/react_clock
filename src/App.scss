@@ -1,1 +1,24 @@
-// styles go here
+.app {
+  &__button {
+    margin: 10px;
+    padding: 10px;
+
+    color: saddlebrown;
+
+    background-color: gainsboro;
+    border: 0;
+    box-shadow: 0 0 3px 1px grey;
+
+    &:hover {
+      box-shadow: 0 0 3px 0 grey;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.clock {
+  color: saddlebrown;
+}
