@@ -35,7 +35,11 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          <Clock isVisible={isClockVisible} />
+          {isClockVisible
+            ? <Clock />
+            : <span>Empty</span>
+          }
+
         </p>
 
         <Button handleClick={this.changeVisibilityOnClick} />

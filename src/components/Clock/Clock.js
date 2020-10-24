@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
@@ -23,14 +22,12 @@ export class Clock extends React.Component {
   }
 
   render() {
-    const { isVisible } = this.props;
+    const { time } = this.state;
 
-    return isVisible
-      ? <span>{this.state.time.toLocaleTimeString()}</span>
-      : <span>Empty</span>;
+    return (
+      <>
+        <span>{time.toLocaleTimeString()}</span>
+      </>
+    );
   }
 }
-
-Clock.propTypes = {
-  isVisible: PropTypes.bool.isRequired,
-};
