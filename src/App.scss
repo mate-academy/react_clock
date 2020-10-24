@@ -1,1 +1,12 @@
-// styles go here
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 30px;
+}
+
+.App {
+  max-width: 400px;
+  margin: auto;
+}
