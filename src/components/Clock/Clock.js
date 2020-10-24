@@ -25,15 +25,9 @@ export class Clock extends React.Component {
   render() {
     const { isVisible } = this.props;
 
-    if (isVisible) {
-      return (
-        <span>
-          {this.state.time.toLocaleTimeString()}
-        </span>
-      );
-    }
-
-    return <span>Empty</span>;
+    return isVisible
+      ? <span>{this.state.time.toLocaleTimeString()}</span>
+      : <span>Empty</span>;
   }
 }
 
