@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonSetNameShape } from '../shapes/ButtonSetNameShape';
+import PropTypes from 'prop-types';
 
 export const ButtonSetName = ({ handleClick }) => (
   <button type="button" onClick={handleClick}>
@@ -7,4 +7,6 @@ export const ButtonSetName = ({ handleClick }) => (
   </button>
 );
 
-ButtonSetName.propTypes = ButtonSetNameShape;
+ButtonSetName.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+};

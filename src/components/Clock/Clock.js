@@ -1,19 +1,25 @@
 import React from 'react';
-import { ClockShape } from '../shapes/ClockShape';
+import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
     time: new Date(),
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      const date = new Date();
+  timeInterval = setInterval(() => {
+    const date = new Date();
 
-      // eslint-disable-next-line
-      console.log(date.toLocaleTimeString());
-      this.setState({ time: date });
-    }, 1000);
+    // eslint-disable-next-line
+    console.log(date.toLocaleTimeString());
+    this.setState({ time: date });
+  }, 1000);
+
+  componentDidMount() {
+    return this.timeInterval;
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timeInterval);
   }
 
   render() {
@@ -31,4 +37,6 @@ export class Clock extends React.Component {
   }
 }
 
-Clock.propTypes = ClockShape;
+Clock.propTypes = {
+  isVisible: PropTypes.bool.isRequired,
+};

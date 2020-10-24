@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonShape } from '../shapes/ButtonShape';
+import PropTypes from 'prop-types';
 
 export const Button = ({ handleClick }) => (
 
@@ -8,4 +8,6 @@ export const Button = ({ handleClick }) => (
   </button>
 );
 
-Button.propTypes = ButtonShape;
+Button.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+};
