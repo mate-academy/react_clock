@@ -45,8 +45,8 @@ body {
 }
 
 .button {
-  &__show,
-  &__hide {
+  &__magic,
+  &__toggler {
     font-family: Grandstander, cursive;
     height: 40px;
     width: 70px;
@@ -62,14 +62,14 @@ body {
     cursor: pointer;
   }
 
-  &__show:hover {
+  &__magic:hover {
     background-color: transparent;
     border-color: #005;
     color: #005;
     transform: scale(1.1);
   }
 
-  &__hide:hover {
+  &__toggler:hover {
     background-color: transparent;
     border-color: #005;
     color: #005;
