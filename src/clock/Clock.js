@@ -22,16 +22,12 @@ export class Clock extends React.Component {
   }
 
   render() {
-    const { name, isVisible } = this.props;
+    const { name } = this.props;
     const time = this.state.date.toLocaleTimeString();
 
     return (
       <div className="clock">
-        {
-          isVisible
-            ? <p className="clock__face">{`${time}`}</p>
-            : <p className="clock__face">Time to Coffee</p>
-        }
+        <p className="clock__face">{`${time}`}</p>
         <p className="clock__name">
           {`Clock Name : ${name}`}
         </p>
