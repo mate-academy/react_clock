@@ -1,1 +1,58 @@
-// styles go here
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+.clock-container {
+  display: flex;
+  justify-content: center;
+}
+
+.App {
+  width: 70%;
+  padding: 20px 40px;
+  margin: 50px;
+  font-size: 3em;
+  color: #707070;
+  text-align: center;
+  line-height: 100px;
+  border-top: 5px solid #e54b6b;
+  border-bottom: 5px solid #e54b6b;
+  border-radius: 5px;
+  background-image: linear-gradient(#f0f0f0, white);
+}
+
+.button {
+  height: 40px;
+  background: #dfe6e9;
+  border-radius: 20px;
+  padding: 0 20px;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: background 0.5s;
+  outline: none;
+}
+
+.button:hover {
+  background: white;
+}
+
+.hidden {
+  display: none;
+}
