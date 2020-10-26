@@ -27,6 +27,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  &__clock-hidden {
+    font-family: Grandstander, cursive;
+  }
 }
 
 .button {

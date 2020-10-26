@@ -30,15 +30,20 @@ class App extends React.Component {
     return (
       <div className="wrapper">
         <div className="App">
-          <Clock name={name} isVisible={isClockVisible}/>
+
+          {this.state.isClockVisible === 'visible'
+            ? <Clock name={name} />
+            : <p className="App__clock-hidden">the aspect of time is relative:)</p>
+          }
+
           <div className="App__button button">
             <button
               type="button"
               className="button__toggler"
               onClick={() => {
                 isClockVisible === 'hidden'
-                  ? this.setState({ isClockVisible: 'visible'} )
-                  : this.setState({ isClockVisible: 'hidden'} );
+                  ? this.setState({ isClockVisible: 'visible' })
+                  : this.setState({ isClockVisible: 'hidden' });
               }}
             >
               {this.state.isClockVisible === 'visible' ? 'hide' : 'show'}
