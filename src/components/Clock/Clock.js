@@ -5,16 +5,14 @@ export class Clock extends React.Component {
     time: new Date(),
   }
 
-  timeInterval = setInterval(() => {
-    const date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-    this.setState({ time: date });
-  }, 1000);
-
   componentDidMount() {
-    return this.timeInterval;
+    this.timeInterval = setInterval(() => {
+      const date = new Date();
+
+      // eslint-disable-next-line
+      console.log(date.toLocaleTimeString());
+      this.setState({ time: date });
+    }, 1000);
   }
 
   componentWillUnmount() {
@@ -25,9 +23,7 @@ export class Clock extends React.Component {
     const { time } = this.state;
 
     return (
-      <>
-        <span>{time.toLocaleTimeString()}</span>
-      </>
+      <span>{time.toLocaleTimeString()}</span>
     );
   }
 }

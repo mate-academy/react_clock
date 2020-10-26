@@ -32,7 +32,7 @@ class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
 
-        <p>
+        <div>
           Current time:
           {' '}
           {isClockVisible
@@ -40,7 +40,7 @@ class App extends React.Component {
             : <span>Empty</span>
           }
 
-        </p>
+        </div>
 
         <Button handleClick={this.changeVisibilityOnClick} />
         <ButtonSetName handleClick={this.changeNameOnClick} />
