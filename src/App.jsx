@@ -2,44 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './App.scss';
 
+import { Clock } from './Clock';
+
 class App extends React.Component {
   state = {
-    date: new Date(),
     isClockVisible: 'visible',
-    name: 1,
+    name: 24,
   }
 
-  componentDidMount() {
-    this.timer = setInterval(() => {
-      this.setState({ date: new Date() });
-      console.log(this.state.date.toLocaleTimeString());
-    }, 1000);
-  }
+  nameRandomizer = () => (
+    this.setState((prevState) => {
+      const previousName = prevState.name;
+      const currentName = Math.floor(Math.random() * 1000);
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${previousName} to ${currentName}`);
 
-  nameRandomizer() {
-    this.setState({ name: Math.floor(Math.random() * 1000) });
-  }
+      return {
+        name: currentName,
+      };
+    })
+  );
 
   render() {
-    const { date, isClockVisible } = this.state;
+    const { isClockVisible, name } = this.state;
 
     return (
       <div className="wrapper">
         <div className="App">
-          <div className="App__clock">
-          <h1>{`React clock #${this.state.name}`}</h1>
-            <p></p>
-            <p style={{ visibility: `${isClockVisible}` }}>
-              Current time:
-              {' '}
-              {date.toLocaleTimeString()}
-            </p>
-          </div>
-
+          <Clock name={name} isVisible={isClockVisible}/>
           <div className="App__button button">
             <button
               type="button"
@@ -69,8 +60,6 @@ class App extends React.Component {
 
 App.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
-  isClockVisible: PropTypes.string.isRequired,
-  name: PropTypes.number.isRequired,
 }
 
 export default App;

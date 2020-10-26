@@ -27,21 +27,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  &__clock {
-    color: #005;
-    text-align: center;
-  }
-
-  &__clock > h1 {
-    font-size: 38px;
-    text-transform: uppercase;
-  }
-
-  &__clock > p {
-    visibility: visible;
-    font-size: 24px;
-  }
 }
 
 .button {
