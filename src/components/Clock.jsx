@@ -50,6 +50,6 @@ export class Clock extends React.Component {
   }
 }
 
-Clock.propTypes = PropTypes.shape({
+Clock.propTypes = {
   name: PropTypes.number.isRequired,
-}).isRequired;
+};
