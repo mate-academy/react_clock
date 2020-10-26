@@ -23,22 +23,27 @@ class App extends React.Component {
   }
 
   render() {
+    const { isClockVisible, name } = this.state;
+
     return (
       <div className="App">
         <h1 className="App__title">React Clock</h1>
-        <Clock
-          name={this.state.name}
-          isVisible={this.state.isClockVisible}
-        />
+        {isClockVisible ? (
+          <Clock name={name} isVisible={isClockVisible} />
+        ) : (
+          <div className="clock__face">
+            Time to Coffee
+          </div>
+        )}
 
         <button
           className="App__button"
           type="button"
           onClick={this.visibilityClick}
         >
-          Hide Clock
+          {isClockVisible ? 'Hide  Clock' : 'Show Clock'}
         </button>
-        {' '}
+
         <button
           className="App__button"
           type="button"

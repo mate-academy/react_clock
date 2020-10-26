@@ -32,7 +32,6 @@ export class Clock extends React.Component {
             ? <p className="clock__face">{`${time}`}</p>
             : <p className="clock__face">Time to Coffee</p>
         }
-
         <p className="clock__name">
           {`Clock Name : ${name}`}
         </p>
