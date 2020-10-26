@@ -10,9 +10,13 @@ class App extends Component {
   };
 
   randomNum = () => {
+    const newName = (Math.round(1 + Math.random() * (100 - 1)));
+
     this.setState({
-      name: (Math.round(1 + Math.random() * (100 - 1))),
+      name: newName,
     });
+    // eslint-disable-next-line no-console
+    console.log(`The Clock was renamed from ${this.state.name} to ${newName}`);
   }
 
   clear = () => {
@@ -32,19 +36,24 @@ class App extends Component {
       <div className="App">
         {isClockVisible
           ? <Clock />
-          : <div>hidden</div>
+          : <div>{ }</div>
         }
         <button
+          className="button"
           type="button"
           onClick={this.toggleVisibility}
         >
           {isClockVisible ? 'Hide' : 'Show'}
         </button>
-        <button type="button" onClick={this.randomNum}>
-          Get random number
+        <button
+          className="button"
+          type="button"
+          onClick={this.randomNum}
+        >
+          Set random name
         </button>
         <p>
-          Random number
+          Random name
           {' : '}
           {name}
         </p>
