@@ -32,16 +32,15 @@ class App extends Component {
       <div
         className="App p-5 bg-primary container text-center text-light rounded"
       >
-        {isClockVisible
-          ? <Clock name={name} isVisible={isClockVisible} />
-          : (
-            <div
-              className="mb-5 p-3 bg-danger text-light rounded"
-            >
-              Oooooops, it seems like you have just broke our Clock down
-            </div>
-          )
-        }
+        {isClockVisible ? (
+          <Clock name={name} isVisible={isClockVisible} />
+        ) : (
+          <div
+            className="mb-5 p-3 bg-danger text-light rounded"
+          >
+            Oooooops, it seems like you have just broke our Clock down
+          </div>
+        )}
         <div>
           <Button
             className="btn-info m-3"
@@ -51,7 +50,6 @@ class App extends Component {
               ? 'Kill Clock'
               : 'Invoke Clock'
             }
-
           </Button>
           <Button
             className="btn-secondary m-3"

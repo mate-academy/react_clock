@@ -6,7 +6,7 @@ export class Clock extends Component {
     time: new Date().toLocaleTimeString(),
   }
 
-  clockStep = setInterval(() => {
+  tick = setInterval(() => {
     const date = (new Date().toLocaleTimeString());
 
     // eslint-disable-next-line no-console
@@ -14,12 +14,8 @@ export class Clock extends Component {
     this.setState({ time: date });
   }, 1000);
 
-  componentDidMount() {
-    return this.clockStep;
-  }
-
   componentWillUnmount() {
-    clearInterval(this.clockStep);
+    clearInterval(this.tick);
   }
 
   render() {
