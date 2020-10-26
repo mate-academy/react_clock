@@ -51,7 +51,7 @@ class App extends React.Component {
           <button
             type="button"
             className="App__button"
-            onClick={() => this.changeState()}
+            onClick={this.changeState}
           >
             {this.state.isClockVisible
               ? 'Hide Clock'
@@ -62,7 +62,7 @@ class App extends React.Component {
           <button
             type="button"
             className="App__button"
-            onClick={() => this.setRandomName()}
+            onClick={this.setRandomName}
           >
             Change Clock Name
           </button>
