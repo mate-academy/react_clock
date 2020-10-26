@@ -35,25 +35,22 @@ class App extends React.Component {
     const { isClockVisible } = this.state;
 
     return (
-      <div className="App">
-        <div className="App__container">
-          {isClockVisible
-            ? <Clock name={this.state.clockName} />
-            : ''
-          }
+      <div className="app">
+        <div className="app__container">
+          {isClockVisible && <Clock name={this.state.clockName} />}
         </div>
 
         <button
           type="button"
           onClick={this.changeVisibility}
-          className="App__button"
+          className="app__button"
         >
           {isClockVisible ? 'Hide Clock' : 'Show Clock'}
         </button>
         <button
           type="button"
           onClick={this.renameClock}
-          className="App__button"
+          className="app__button"
         >
           Set random name
         </button>
