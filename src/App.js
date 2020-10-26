@@ -25,7 +25,7 @@ class App extends React.Component {
     const newName = Math.floor(Math.random() * 1000);
 
     // eslint-disable-next-line
-    console.log(`The Clock was renamed from ${this.state.name} to ${newName}`);
+    console.log(`The Clock was renamed from ${this.state.clockName} to ${newName}`);
     this.setState({ clockName: newName });
   }
 
