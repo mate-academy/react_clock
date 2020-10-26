@@ -6,22 +6,21 @@ export class Clock extends React.Component {
     time: new Date().toLocaleTimeString(),
   }
 
-  tick = setInterval(
-    () => {
-      this.setState({
-        time: (new Date()).toLocaleTimeString(),
-      });
-      // eslint-disable-next-line no-console
-      console.log(new Date().toLocaleTimeString());
-    }, 1000,
-  );
-
   componentDidMount() {
-    return this.tick;
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000,
+    );
   }
 
   componentWillUnmount() {
-    clearInterval(this.tick);
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      time: (new Date()).toLocaleTimeString(),
+    });
   }
 
   render() {
