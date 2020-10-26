@@ -24,8 +24,9 @@ class App extends React.Component {
   }
 
   toggleClockVisible = () => {
-    // eslint-disable-next-line react/no-access-state-in-setstate
-    this.setState({ isClockVisible: !this.state.isClockVisible });
+    this.setState(({ isClockVisible }) => ({
+      isClockVisible: !isClockVisible,
+    }));
   }
 
   render() {

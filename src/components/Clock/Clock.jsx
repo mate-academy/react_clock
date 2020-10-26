@@ -9,20 +9,18 @@ export class Clock extends React.Component {
   };
 
   componentDidMount() {
-    this.clockTimer = setInterval(() => this.tick(), 1000);
+    this.clockTimer = setInterval(() => {
+      const curDate = currentDate();
+
+      // eslint-disable-next-line no-console
+      console.log(curDate);
+
+      this.setState({ date: curDate });
+    }, 1000);
   }
 
   componentWillUnmount() {
     clearInterval(this.clockTimer);
-  }
-
-  tick() {
-    const curDate = currentDate();
-
-    // eslint-disable-next-line no-console
-    console.log(curDate);
-
-    this.setState({ date: curDate });
   }
 
   render() {
@@ -39,5 +37,9 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  name: propTypes.number.isRequired,
+  name: propTypes.number,
+};
+
+Clock.defaultProps = {
+  name: 0,
 };
