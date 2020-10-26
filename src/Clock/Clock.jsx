@@ -21,13 +21,13 @@ export class Clock extends React.Component {
   }
 
   render() {
-    const { name, isVisible } = this.props;
+    const { name } = this.props;
     const { date } = this.state;
 
     return (
       <div className="App__clock">
         <h1>{`React clock #${name}`}</h1>
-        <p style={{ visibility: `${isVisible}` }}>
+        <p>
           Current time:
           {' '}
           {date.toLocaleTimeString()}
