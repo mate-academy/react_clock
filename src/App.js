@@ -33,13 +33,11 @@ class App extends React.Component {
     } = this;
 
     return (
-      <div className="App card card-body text-center">
-
+      <div>
         {isClockVisible && <Clock name={clockName} />}
 
         <button
           type="button"
-          className=""
           onClick={changeName}
         >
           Change name
@@ -47,7 +45,6 @@ class App extends React.Component {
 
         <button
           type="button"
-          className=""
           onClick={toggleClockVisible}
         >
           {isClockVisible ? 'Hide Clock' : 'Show Clock'}
