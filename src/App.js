@@ -32,15 +32,10 @@ class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
 
-        <div>
-          Current time:
-          {' '}
-          {isClockVisible
-            ? <Clock />
-            : <span>Empty</span>
-          }
-
-        </div>
+        {isClockVisible
+          ? <Clock />
+          : <p>Empty</p>
+        }
 
         <Button handleClick={this.changeVisibilityOnClick} />
         <ButtonSetName handleClick={this.changeNameOnClick} />
