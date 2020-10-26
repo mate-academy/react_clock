@@ -38,6 +38,6 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  isVisible: PropTypes.string.isRequired,
+  isVisible: PropTypes.bool.isRequired,
   name: PropTypes.number.isRequired,
 }
