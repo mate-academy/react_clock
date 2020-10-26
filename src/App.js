@@ -1,25 +1,64 @@
 import React from 'react';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.scss';
+import { Clock } from './components/Clock/Clock';
+import { randomNumber } from './helpers/randomNumber';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+class App extends React.Component {
+  state = {
+    clockName: 0,
+    isClockVisible: true,
+  }
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  changeName = () => {
+    const newName = randomNumber();
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+    // eslint-disable-next-line no-console
+    console.log(
+      `The Clock was renamed from ${this.state.clockName} to ${newName}`,
+    );
+
+    this.setState({ clockName: newName });
+  }
+
+  toggleClockVisible = () => {
+    this.setState(({ isClockVisible }) => ({
+      isClockVisible: !isClockVisible,
+    }));
+  }
+
+  render() {
+    const {
+      changeName,
+      toggleClockVisible,
+      state: { clockName, isClockVisible },
+    } = this;
+
+    return (
+      <div className="App card card-body text-center">
+
+        {isClockVisible && <Clock name={clockName} />}
+
+        <button
+          type="button"
+          className="btn btn-primary mb-1"
+          onClick={changeName}
+        >
+          Change name
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={toggleClockVisible}
+        >
+          {isClockVisible ? 'Hide Clock' : 'Show Clock'}
+        </button>
+      </div>
+    );
+  }
+}
 
 export default App;
