@@ -34,29 +34,21 @@ class App extends Component {
 
     return (
       <div className="App">
-        {isClockVisible
-          ? <Clock />
-          : <div>{ }</div>
-        }
+        {isClockVisible && <Clock name={name} />}
         <button
-          className="button"
+          className="button button--first"
           type="button"
           onClick={this.toggleVisibility}
         >
           {isClockVisible ? 'Hide' : 'Show'}
         </button>
         <button
-          className="button"
+          className="button button--second"
           type="button"
           onClick={this.randomNum}
         >
           Set random name
         </button>
-        <p>
-          Random name
-          {' : '}
-          {name}
-        </p>
       </div>
     );
   }

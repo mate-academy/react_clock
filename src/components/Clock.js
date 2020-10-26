@@ -22,6 +22,11 @@ export class Clock extends Component {
     return (
       <div className="App">
         <p>
+          Clock name
+          {' : '}
+          {this.props.name}
+        </p>
+        <p>
           Current time:
           {' '}
           { this.state.date }
@@ -31,6 +36,6 @@ export class Clock extends Component {
   }
 }
 
-Clock.propType = {
+Clock.propTypes = {
   name: PropTypes.number.isRequired,
 };
