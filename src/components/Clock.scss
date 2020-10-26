@@ -1,0 +1,14 @@
+.clock {
+  padding-top: 30px;
+  font-size: 24px;
+
+  &__text {
+    margin-bottom: 10px;
+    text-transform: none;
+    font-weight: 700;
+  }
+
+  &__span {
+    color: rgb(237, 95, 154);
+  }
+}
