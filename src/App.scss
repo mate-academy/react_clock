@@ -1,1 +1,52 @@
-// styles go here
+html {
+  background-color: #041318;
+}
+
+.App {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 28px;
+  text-shadow: #def8ff 1px 0 10px;
+  color: #def8ff;
+
+  &__timer {
+    font-size: 34px;
+    animation: blink 5s infinite;
+    animation-name: timer;
+  }
+
+  @keyframes timer {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  &__btn {
+    width: 200px;
+    height: 50px;
+    margin-right: 5px;
+
+    font-size: 20px;
+    color: #def8ff;
+    background-color: #041318;
+    border: 2px solid aqua;
+    border-radius: 10px;
+    outline: none;
+
+    &:hover {
+      text-shadow: #def8ff 2px 0 10px;
+      cursor: pointer;
+    }
+
+    &:focus {
+      border: 2px solid #ff9640;
+      border-radius: 10px;
+    }
+  }
+}
