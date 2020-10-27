@@ -35,9 +35,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  name: PropTypes.string,
-};
-
-Clock.defaultProps = {
-  name: `No name`,
+  name: PropTypes.string.isRequired,
 };
