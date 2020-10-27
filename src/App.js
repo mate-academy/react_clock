@@ -1,31 +1,54 @@
 import React from 'react';
-
+import Clock from './Clock';
 import './App.scss';
 
 class App extends React.Component {
   state = {
-    date: new Date().toLocaleTimeString(),
-  }
+    isClockVisible: true,
+    name: 0,
+  };
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        date: new Date().toLocaleTimeString(),
-      });
-    }, 1000);
-  }
+  toggleVisibility = () => {
+    this.setState(state => ({
+      isClockVisible: !state.isClockVisible,
+    }));
+  };
+
+  changeName = () => (
+    this.setState((prevState) => {
+      const newName = this.randomize();
+
+      return {
+        name: newName,
+      };
+    })
+  );
+
+  randomize = () => Math.floor(Math.random() * 1000);
 
   render() {
-    const { date } = this.state;
+    const { isClockVisible, name } = this.state;
 
     return (
-      <div className="App">
-        <h1>React clock</h1>
-        <p>
-          Current time:
-          {' '}
-          {date}
-        </p>
+      <div className="app">
+        {isClockVisible
+          ? <Clock name={name} />
+          : <div className="app__no-clock" />
+        }
+        <button
+          className="app__button"
+          type="button"
+          onClick={this.toggleVisibility}
+        >
+          {isClockVisible ? 'Hide  clock' : 'Show clock'}
+        </button>
+        <button
+          className="app__button"
+          type="button"
+          onClick={this.changeName}
+        >
+          Change name
+        </button>
       </div>
     );
   }
