@@ -1,0 +1,12 @@
+.clock {
+  text-align: center;
+  color: yellow;
+
+  &__name {
+    font-size: 30px;
+  }
+
+  &__time{
+    font-size: 25px;
+  }
+}
