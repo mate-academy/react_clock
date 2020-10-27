@@ -1,1 +1,28 @@
-// styles go here
+.clock {
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 40px;
+  color: #37343c;
+  background-color: #bcbbbb;
+
+  &__button {
+    width: 200px;
+    height: 50px;
+    margin: 15px;
+    border: 1px solid #505e65;
+    border-radius: 27px;
+    outline: none;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 27px;
+    font-weight: bold;
+    background-color: #6894a2;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: #505e65;
+    }
+  }
+}
