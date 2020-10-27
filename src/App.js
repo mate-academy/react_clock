@@ -16,17 +16,17 @@ class App extends React.Component {
   }
 
   randomName = () => {
-    this.setState((prevName) => {
-      const newName = Math.floor(Math.random() * 10000);
+    const { clockName } = this.state;
 
-      // eslint-disable-next-line no-console
-      console.log(`
-        The Clock was renamed from ${prevName.clockName} to ${newName}
-      `);
+    const newName = Math.floor(Math.random() * 10000);
 
-      return {
-        clockName: newName,
-      };
+    // eslint-disable-next-line no-console
+    console.log(`
+      The Clock was renamed from ${clockName} to ${newName}
+    `);
+
+    this.setState({
+      clockName: newName,
     });
   };
 
