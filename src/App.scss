@@ -1,1 +1,25 @@
-// styles go here
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #b8dbf1;
+}
+
+.App {
+  text-align: center;
+  
+  &__time {
+    display: flex;
+    flex-direction: column;
+    
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  &__button {
+    height: 30px;
+    margin: 10px 0 5px;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+}
