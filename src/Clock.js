@@ -9,7 +9,7 @@ class Clock extends React.Component {
   }
 
   componentDidMount() {
-    this.timer = setInterval(() => {
+    this.timerId = setInterval(() => {
       this.setState({
         time: new Date().toLocaleTimeString('en-GB'),
       });
@@ -27,7 +27,7 @@ class Clock extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
+    clearInterval(this.timerId);
   }
 
   render() {
