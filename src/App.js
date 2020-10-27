@@ -14,6 +14,7 @@ class App extends React.Component {
 
     return (
       <div className="clock">
+        <h1>React clock</h1>
         {isClockVisible && <Clock name={name} />}
         <button
           className="clock__button"
