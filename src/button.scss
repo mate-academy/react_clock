@@ -1,0 +1,22 @@
+.button {
+  width: 150px;
+  height: 30px;
+
+  &__show-hide {
+    margin-bottom: 10px;
+    background-color: red;
+  }
+
+  &__random-name {
+    background-color: rgb(107, 107, 255);
+  }
+
+  &__show-hide,
+  &__random-name {
+    color: white;
+    border: transparent 1px solid;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+  }
+}
