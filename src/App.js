@@ -25,9 +25,13 @@ const App = () => {
           type="button"
           className="App__button"
           onClick={() => {
-            setClockName(Math.floor(Math.random() * 100));
+            const newName = Math.floor(Math.random() * 100);
+
             // eslint-disable-next-line no-console
-            console.log('The Clock was renamed from oldName to newName');
+            console.log(
+              `The Clock was renamed from ${clockName} to ${newName}`,
+            );
+            setClockName(newName);
           }}
         >
           Change name
