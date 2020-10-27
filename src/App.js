@@ -37,9 +37,11 @@ class App extends React.Component {
           className="app__button"
           type="button"
           onClick={() => {
-            this.setState({ clockName: getRandomName() });
+            const newName = getRandomName();
+
+            this.setState({ clockName: newName });
             // eslint-disable-next-line
-            console.log('The Clock was renamed from oldName to newName.');
+            console.log(`The Clock was renamed from ${clockName} to ${newName}.`);
           }}
         >
           Rename
