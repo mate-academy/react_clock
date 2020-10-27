@@ -4,16 +4,16 @@ import './Clock.scss';
 
 export class Clock extends React.Component {
   state = {
-    time: '',
+    time: new Date().toLocaleTimeString(),
   }
 
   componentDidMount() {
     this.clock = setInterval(() => {
-      const date = new Date();
+      const date = new Date().toLocaleTimeString();
 
-      this.setState({ time: date.toLocaleTimeString() });
+      this.setState({ time: date });
       // eslint-disable-next-line no-console
-      console.log(new Date().toLocaleTimeString());
+      console.log(date);
     }, 1000);
   }
 
