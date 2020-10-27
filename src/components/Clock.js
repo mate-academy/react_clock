@@ -1,19 +1,31 @@
-const { PureComponent } = require('react');
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
-class Clock extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = { date: new Date() };
+// const { PureComponent } = require('react');
+
+export class Clock extends PureComponent {
+  state = {
+    date: new Date(),
   }
 
   componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000,
-    );
+    this.startClock();
   }
 
   componentWillUnmount() {
+    this.stopClock();
+  }
+
+  startClock = () => {
+    this.timerID = setInterval(() => {
+      this.tick();
+
+      // eslint-disable-next-line no-console
+      console.log(this.state.date.toLocaleTimeString());
+    }, 1000);
+  }
+
+  stopClock = () => {
     clearInterval(this.timerID);
   }
 
@@ -25,9 +37,24 @@ class Clock extends PureComponent {
 
   render() {
     return (
-      this.state.date.toLocaleTimeString()
+      <>
+        <p className="clock__name">
+          {`Clock Name:  #${this.props.name}`}
+        </p>
+        <p>
+          Current time:
+          {' '}
+          <strong>
+            {this.state.date.toLocaleTimeString()}
+          </strong>
+        </p>
+      </>
     );
   }
 }
+
+Clock.propTypes = {
+  name: PropTypes.number.isRequired,
+};
 
 export default Clock;
