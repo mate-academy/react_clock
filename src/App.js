@@ -22,37 +22,35 @@ class App extends React.Component {
     const { clockName, isClockVisible } = this.state;
 
     return (
-      <>
-        <div className="App">
-          <h1>React clock</h1>
-          {isClockVisible && <Clock name={clockName} /> }
-          <button
-            type="button"
-            onClick={() => (
-              this.setState({ isClockVisible: true })
-            )}
-          >
-            Show Clock
-          </button>
-          {' '}
-          <button
-            type="button"
-            onClick={() => (
-              this.setState({ isClockVisible: false })
-            )}
-          >
-            Hide Clock
-          </button>
-          <br />
-          <br />
-          <button
-            type="button"
-            onClick={this.ChangeClockName}
-          >
-            Set random name
-          </button>
-        </div>
-      </>
+      <div className="App">
+        <h1>React clock</h1>
+        {isClockVisible && <Clock name={clockName} /> }
+        <button
+          type="button"
+          onClick={() => (
+            this.setState({ isClockVisible: true })
+          )}
+        >
+          Show Clock
+        </button>
+        {' '}
+        <button
+          type="button"
+          onClick={() => (
+            this.setState({ isClockVisible: false })
+          )}
+        >
+          Hide Clock
+        </button>
+        <br />
+        <br />
+        <button
+          type="button"
+          onClick={this.ChangeClockName}
+        >
+          Set random name
+        </button>
+      </div>
     );
   }
 }
