@@ -1,1 +1,54 @@
-// styles go here
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(190, 46, 46);
+}
+
+.App {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  height: 300px;
+  margin: 80px auto;
+  padding: 30px;
+
+  background-color: #fff;
+  border-radius: 80px;
+  box-shadow: 0 0 15px rgba(75, 74, 74, 0.3);
+
+  &__name {
+    font-size: 36px;
+    color: rgb(190, 46, 46);
+  }
+
+  &__buttons {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    bottom: 40px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 400px;
+
+    & * {
+      width: 130px;
+      padding: 10px;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      background-color: rgb(190, 46, 46);
+      transition: 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(148, 37, 37);
+      }
+    }
+  }
+}
