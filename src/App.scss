@@ -1,1 +1,69 @@
-// styles go here
+* {
+  box-sizing: border-box;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+.App {
+  margin: 100px auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 300px;
+  width: 300px;
+  padding-top: 50px;
+
+  color: #18181b93;
+  background-color: rgba(255, 255, 0, 0.4);
+  text-align: center;
+
+  border: 3px solid #18181b93;
+  border-radius: 20px;
+
+  &__title {
+    color: rgb(109, 99, 99);
+    padding-bottom: 30px;
+  }
+
+  &__clock-text {
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  &__clock-time {
+    padding-bottom: 30px;
+    font-weight: 700;
+    font-size: 44px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__button {
+    width: 45%;
+    height: 40px;
+
+    color: #18181b93;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    background-color: #c9432293;
+    border: 2px solid #18181b93;
+    border-radius: 5px;
+
+    transition: color 0.3s, background-color 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #18181b93;
+      color: rgba(238, 238, 54, 0.8);
+    }
+  }
+}
