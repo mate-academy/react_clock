@@ -34,8 +34,13 @@ class App extends React.Component {
             body="Change name"
             click={
               () => {
+                const newName = Math.floor(Math.random() * 50);
+
+                // eslint-disable-next-line no-console
+                console.log(`was renamed from ${nameOfClock} to ${newName}`);
+
                 this.setState({
-                  nameOfClock: Math.floor(Math.random() * 50),
+                  nameOfClock: newName,
                 });
               }
             }
