@@ -21,11 +21,22 @@ class App extends React.Component {
           type="button"
           onClick={() => {
             this.setState(state => ({
-              isClockVisible: !state.isClockVisible,
+              isClockVisible: true,
             }));
           }}
         >
-          Сlick on me
+          Сlick to show
+        </button>
+        <button
+          className="clock__button"
+          type="button"
+          onClick={() => {
+            this.setState(state => ({
+              isClockVisible: false,
+            }));
+          }}
+        >
+          Сlick to hide
         </button>
         <button
           className="clock__button"
