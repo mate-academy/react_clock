@@ -1,1 +1,28 @@
-// styles go here
+.App {
+  margin: auto;
+  padding: 50px;
+  width: 300px;
+
+  background-color: #ffe4c4;
+  border-radius: 50px;
+  border: 10px solid #4846c2;
+  text-align: center;
+
+  &__text {
+    height: 94px;
+    font-weight: 700;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    padding: 10px;
+    color: #fff;
+    background-color: #00f;
+    border: none;
+    border-radius: 8px;
+  }
+}
