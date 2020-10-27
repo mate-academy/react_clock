@@ -23,6 +23,9 @@ class Clock extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line
+    console.log(this.state.date.toLocaleTimeString());
+
     return (
       <div>
         <h2>
