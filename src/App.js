@@ -55,7 +55,7 @@ class App extends PureComponent {
             onClick={this.setRandomName}
             className="clock__button"
           >
-            Set new mame
+            Set new name
           </button>
         </div>
       </div>
