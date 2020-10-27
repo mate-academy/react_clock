@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Clock extends React.Component {
-  constructor({ name }) {
-    super({ name });
-  }
-
   state = {
     date: new Date().toLocaleTimeString(),
     name: this.props.name,
@@ -16,6 +12,15 @@ class Clock extends React.Component {
       () => this.tick(),
       1000,
     );
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.name !== prevProps.name) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        name: this.props.name,
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -48,7 +53,7 @@ class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.number.isRequired,
 };
 
 export { Clock };
