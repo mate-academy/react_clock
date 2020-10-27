@@ -13,7 +13,7 @@ export class Clock extends React.Component {
       });
       // eslint-disable-next-line no-console
       console.log(
-        this.state.date,
+        this.state.date.toLocaleTimeString(),
       );
     }, 1000);
   }

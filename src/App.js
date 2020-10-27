@@ -25,7 +25,7 @@ class App extends React.Component {
             }));
           }}
         >
-          {isClockVisible ? 'Hide clock' : 'Show clock'}
+          Сlick on me
         </button>
         <button
           className="clock__button"
