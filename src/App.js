@@ -26,7 +26,7 @@ class App extends React.Component {
     })
   );
 
-  changeState = () => {
+  changeClockVisbility = () => {
     this.setState(prevState => ({
       isClockVisible: !prevState.isClockVisible,
     }));
@@ -51,7 +51,7 @@ class App extends React.Component {
           <button
             type="button"
             className="App__button"
-            onClick={this.changeState}
+            onClick={this.changeClockVisbility}
           >
             {this.state.isClockVisible
               ? 'Hide Clock'
