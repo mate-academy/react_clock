@@ -1,1 +1,42 @@
-// styles go here
+body,
+div,
+p {
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  box-sizing: border-box;
+
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+
+  background-image: url("./images/The_Persistence_of_Memory.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.app {
+  margin-top: 70px;
+  text-align: center;
+
+  &__button {
+    margin: 20px;
+    padding: 10px;
+    
+    font-family: "Courier New", Courier, monospace;
+    font-size: 40px;
+
+    cursor: pointer;
+    transition: 300ms;
+
+    &:hover {
+      color: white;
+      background-color: cadetblue;
+    }
+  }
+}
