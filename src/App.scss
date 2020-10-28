@@ -1,1 +1,21 @@
-// styles go here
+html {
+  font-size: 30px;
+
+  background: #03071e;
+}
+
+.my-font {
+  font-family: "Special Elite", cursive;
+  color: #ffba08;
+
+  background: transparent;
+}
+
+.js-buttons {
+  max-width: 12.5em;
+  margin: 0 auto;
+
+  :nth-child(1n) {
+    margin: 5px auto;
+  }
+}
