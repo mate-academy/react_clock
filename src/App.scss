@@ -1,1 +1,53 @@
-// styles go here
+html {
+  font-family: Georgia, serif;
+}
+
+body {
+  margin: 0;
+  background-color: #adda89;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 50px auto;
+  height: 400px;
+  width: 400px;
+  padding: 30px;
+  border-radius: 100%;
+
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  background-color: #0515ec;
+  color: #0cf;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__heading {
+    font-size: 24px;
+    margin: 15px;
+  }
+
+  &__button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    font-size: 20px;
+    background-color: #f38754;
+    transition: transform 0.8s;
+
+    &:hover {
+      background-color: #00f300;
+      transform: scale(1.1);
+    }
+  }
+}
