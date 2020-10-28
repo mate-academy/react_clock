@@ -12,6 +12,19 @@ class App extends React.Component {
   render() {
     const { isClockVisible, name } = this.state;
 
+    const getName = () => {
+      const newName = (Math.round(1 + Math.random() * (100)));
+
+      // eslint-disable-next-line no-console
+      console.log(
+        `The Clock was renamed from ${this.state.name} to ${newName}`,
+      );
+
+      this.setState({
+        name: newName,
+      });
+    };
+
     return (
       <div className="clock">
         <h1>React clock</h1>
@@ -41,21 +54,7 @@ class App extends React.Component {
         <button
           className="clock__button"
           type="button"
-          onClick={() => {
-            const newName = (Math.round(1 + Math.random() * (100)));
-
-            // eslint-disable-next-line no-console
-            console.log(
-              `The Clock was renamed from
-                ${this.state.name}
-                to
-                ${newName}`,
-            );
-
-            this.setState({
-              name: newName,
-            });
-          }}
+          onClick={getName}
         >
           Change name
         </button>
