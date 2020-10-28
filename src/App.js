@@ -9,16 +9,10 @@ class App extends PureComponent {
     clockName: 1,
   }
 
-  hideClock = () => {
-    this.setState({
-      isClockVisible: false,
-    });
-  }
-
-  showClock = () => {
-    this.setState({
-      isClockVisible: true,
-    });
+  displayClock = () => {
+    this.setState(state => ({
+      isClockVisible: !state.isClockVisible,
+    }));
   }
 
   setRandomName = () => {
@@ -38,17 +32,10 @@ class App extends PureComponent {
           {this.state.isClockVisible && (<Clock name={this.state.clockName} />)}
           <button
             type="button"
-            onClick={this.hideClock}
+            onClick={this.displayClock}
             className="clock__button"
           >
-            Hide Clock
-          </button>
-          <button
-            type="button"
-            onClick={this.showClock}
-            className="clock__button"
-          >
-            Show Clock
+            Hide/Show Clock
           </button>
           <button
             type="button"
