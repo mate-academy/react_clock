@@ -1,1 +1,81 @@
-// styles go here
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: rgb(245, 235, 243);
+}
+
+.App {
+  &__container {
+    margin: 100px auto;
+    background-color: rgb(173, 247, 168);
+    color: rgb(245, 235, 243);
+    height: 300px;
+    width: 300px;
+    text-align: center;
+    text-transform: uppercase;
+    border: 3px solid rgb(237, 95, 154);
+    border-radius: 10px;
+  }
+
+  &__title {
+    padding: 15px 0;
+  }
+
+  &__clock {
+    background-color: rgb(245, 235, 243);
+    color: grey;
+    width: 200px;
+    height: 125px;
+    margin: 0 auto 15px;
+    font-size: 20px;
+    border: 3px solid rgb(237, 95, 154);
+    border-radius: 10px;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    text-transform: none;
+    padding-top: 30px;
+  }
+
+  &__span {
+    color: rgb(237, 95, 154);
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.button {
+  width: 125px;
+  height: 30px;
+  margin: 0 auto;
+  background-color: rgb(237, 95, 154);
+  color: rgb(245, 235, 243);
+  font-weight: 400;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  transition: color 0.5s, background-color 0.5s;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(237, 95, 154);
+    background-color: rgb(245, 235, 243);
+  }
+
+  &:focus {
+    outline: none;
+    border: 3px solid grey;
+  }
+}
