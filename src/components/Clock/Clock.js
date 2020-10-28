@@ -17,8 +17,10 @@ class Clock extends React.Component {
   }
 
   render() {
+    const { date } = this.state;
+
     // eslint-disable-next-line
-    console.log(this.state.date.toLocaleTimeString());
+    console.log(date.toLocaleTimeString());
 
     return (
       <>
@@ -28,7 +30,7 @@ class Clock extends React.Component {
         <br />
         Current time:
         {' '}
-        {this.state.date.toLocaleTimeString()}
+        {date.toLocaleTimeString()}
       </>
     );
   }

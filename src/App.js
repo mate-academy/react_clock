@@ -1,8 +1,7 @@
 import React from 'react';
+import Clock from './components/Clock/Clock';
 
 import './App.scss';
-
-import Clock from './components/Clock/Clock';
 
 class App extends React.Component {
   state = {
@@ -11,15 +10,23 @@ class App extends React.Component {
   };
 
   changeName = () => {
-    const oldClockName = this.state.clockName;
+    const { clockName } = this.state;
     const newClockName = Math.floor(Math.random() * 1000);
 
     // eslint-disable-next-line
-    console.log(`The Clock was renamed from ${oldClockName} to ${newClockName}`);
+    console.log(`The Clock was renamed from ${clockName} to ${newClockName}`);
 
     this.setState({
       clockName: newClockName,
     });
+  }
+
+  showTime = () => {
+    this.setState({ isClockVisible: true });
+  }
+
+  hideTime = () => {
+    this.setState({ isClockVisible: false });
   }
 
   render() {
@@ -37,21 +44,21 @@ class App extends React.Component {
 
         <button
           type="button"
-          onClick={() => this.changeName()}
+          onClick={this.changeName}
         >
           Set name
         </button>
 
         <button
           type="button"
-          onClick={() => this.setState({ isClockVisible: true })}
+          onClick={this.showTime}
         >
           Show time
         </button>
 
         <button
           type="button"
-          onClick={() => this.setState({ isClockVisible: false })}
+          onClick={this.hideTime}
         >
           Hide time
         </button>
