@@ -7,42 +7,48 @@ import './App.scss';
 class App extends React.Component {
   state = {
     visible: true,
-    nameOfClock: 1,
+    clockName: 1,
+  }
+
+  toggleClock = () => {
+    this.setState(prevState => ({
+      visible: !prevState.visible,
+    }));
+  }
+
+  changeClockName = () => {
+    const newName = Math.floor(Math.random() * 50);
+
+    // eslint-disable-next-line no-console
+    console.log(`was renamed from ${this.state.clockName} to ${newName}`);
+
+    this.setState({
+      clockName: newName,
+    });
   }
 
   render() {
-    const { visible, nameOfClock } = this.state;
+    const { visible, clockName } = this.state;
 
     return (
       <div className="App">
         <h1 className="App__title">
           React Clock
         </h1>
-        {visible && <Clock name={nameOfClock} />}
+        {visible && <Clock name={clockName} />}
         <div className="App__buttons">
           <Button
             body={
               visible ? 'hideClock' : 'showClock'
             }
-            click={
-              () => {
-                this.setState({ visible: !visible });
-              }
+            clickHandler={
+              this.toggleClock
             }
           />
           <Button
             body="Change name"
-            click={
-              () => {
-                const newName = Math.floor(Math.random() * 50);
-
-                // eslint-disable-next-line no-console
-                console.log(`was renamed from ${nameOfClock} to ${newName}`);
-
-                this.setState({
-                  nameOfClock: newName,
-                });
-              }
+            clickHandler={
+              this.changeClockName
             }
           />
         </div>

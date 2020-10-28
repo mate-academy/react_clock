@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Button.scss';
 
-export const Button = ({ body, click }) => (
+export const Button = ({ body, clickHandler }) => (
   <button
     type="button"
     className="button"
-    onClick={click}
+    onClick={clickHandler}
   >
     {body}
   </button>
@@ -14,5 +14,5 @@ export const Button = ({ body, click }) => (
 
 Button.propTypes = {
   body: PropTypes.string.isRequired,
-  click: PropTypes.func.isRequired,
+  clickHandler: PropTypes.func.isRequired,
 };
