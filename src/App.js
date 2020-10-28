@@ -13,15 +13,20 @@ class App extends React.Component {
     clockName: getRandomName(),
   }
 
+  renameClock(clockName) {
+    const newName = getRandomName();
+
+    this.setState({ clockName: newName });
+    // eslint-disable-next-line
+    console.log(`The Clock was renamed from ${clockName} to ${newName}.`);
+  }
+
   render() {
     const { isClockVisible, clockName } = this.state;
 
     return (
       <div className="app">
-        {isClockVisible
-          ? <Clock name={clockName} />
-          : <></>
-        }
+        {isClockVisible && <Clock name={clockName} />}
 
         <button
           className="app__button"
@@ -36,13 +41,7 @@ class App extends React.Component {
         <button
           className="app__button"
           type="button"
-          onClick={() => {
-            const newName = getRandomName();
-
-            this.setState({ clockName: newName });
-            // eslint-disable-next-line
-            console.log(`The Clock was renamed from ${clockName} to ${newName}.`);
-          }}
+          onClick={() => this.renameClock(clockName)}
         >
           Rename
         </button>
