@@ -6,35 +6,31 @@ import './App.scss';
 
 class App extends Component {
   state = {
-    hidden: false,
+    isClockVisible: true,
     currentName: 0,
-    prevName: 0,
-    max: 1000,
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevState.prevName !== this.state.prevName
-      || prevState.currentName !== this.state.currentName) {
-      // eslint-disable-next-line
-      console.log(`The Clock was renamed from ${this.state.prevName} to ${this.state.currentName}`);
-    }
-  }
-
-  hiddenHandler = () => (
+  hiddenHandler = () => {
     this.setState(prevState => ({
-      hidden: !prevState.hidden,
-    }))
-  );
+      isClockVisible: !prevState.isClockVisible,
+    }));
+  };
 
-  changeNameHandler = () => (
-    this.setState(prevState => ({
-      prevName: prevState.currentName,
-      currentName: Math.floor(Math.random() * Math.floor(prevState.max)),
-    }))
-  );
+  changeNameHandler = () => {
+    const newName = Math.floor(Math.random() * Math.floor(1000));
+
+    // eslint-disable-next-line no-console
+    console.log(`The Clock was renamed from ${
+      this.state.currentName
+    } to ${newName}`);
+
+    this.setState({
+      currentName: newName,
+    });
+  };
 
   render() {
-    const { hidden, currentName } = this.state;
+    const { isClockVisible, currentName } = this.state;
 
     return (
       <div className="App">
@@ -42,19 +38,17 @@ class App extends Component {
         <h3>
           {`Name ${currentName}`}
         </h3>
-        <Clock
-          hidden={hidden}
-        />
+        {isClockVisible && <Clock />}
         <ButtonGroup disableElevation variant="contained">
           <Button
-            color={hidden
+            color={isClockVisible
               ? 'primary'
               : 'secondary'}
             onClick={this.hiddenHandler}
           >
-            {hidden
+            {isClockVisible
               ? 'Show clock'
-              : 'Hidden clock'}
+              : 'Hide clock'}
           </Button>
           <Button
             color=""

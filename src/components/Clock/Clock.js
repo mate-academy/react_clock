@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import PropsTypes from 'prop-types';
 
 class Clock extends Component {
   state = {
-    date: new Date(),
+    date: 0,
   }
 
   componentDidMount() {
@@ -13,28 +12,30 @@ class Clock extends Component {
     );
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   tick() {
+    const date = new Date();
+
     this.setState({
-      date: new Date(),
+      date: date.toLocaleTimeString(),
     });
     // eslint-disable-next-line
-    console.log(this.state.date.toLocaleTimeString());
+    console.log(date.toLocaleTimeString());
   }
 
   render() {
-    const { hidden } = this.props;
+    const { date } = this.state;
 
     return (
-      <p hidden={hidden}>
+      <p>
         Current time:
-        {this.state.date.toLocaleTimeString()}
+        {date}
       </p>
     );
   }
 }
-
-Clock.propTypes = {
-  hidden: PropsTypes.bool.isRequired,
-};
 
 export default Clock;
