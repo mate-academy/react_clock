@@ -1,0 +1,17 @@
+.button {
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid yellow;
+  margin-right: 20px;
+  background-color: green;
+  color:yellow;
+  cursor: pointer;
+  transition:  background-color 0.5s, color 0.5s;
+
+  &:hover {
+    background-color: yellow;
+    color: green;
+    border: 1px solid green;
+  }
+}
