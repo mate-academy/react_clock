@@ -10,7 +10,7 @@ class App extends React.Component {
     clockNumber: '',
   }
 
-  clockRename = () => {
+  renameClock = () => {
     const newNumber = getRandomNumber();
 
     // eslint-disable-next-line
@@ -18,17 +18,23 @@ class App extends React.Component {
     this.setState({ clockNumber: `#${newNumber}` });
   }
 
+  changeVisibility = (value) => {
+    this.setState({ isClockVisible: value });
+  }
+
   render() {
+    const { clockNumber, isClockVisible } = this.state;
+
     return (
       <div className="App my-font">
         <div className="hero-body">
           <div className="container has-text-centered">
             <h1 className="title my-font">
-              {`React clock ${this.state.clockNumber}`}
+              {`React clock ${clockNumber}`}
             </h1>
 
             {
-              this.state.isClockVisible && (
+              isClockVisible && (
                 <h2 className="subtitle my-font">
                   Current time:
                   {' '}
@@ -46,7 +52,7 @@ class App extends React.Component {
               <button
                 type="button"
                 className="button is-small my-font is-rounded"
-                onClick={() => this.setState({ isClockVisible: true })}
+                onClick={() => this.changeVisibility(true)}
               >
                 Show Clock
               </button>
@@ -54,7 +60,7 @@ class App extends React.Component {
               <button
                 type="button"
                 className="button is-small my-font is-rounded"
-                onClick={() => this.setState({ isClockVisible: false })}
+                onClick={() => this.changeVisibility(false)}
               >
                 Hide Clock
               </button>
@@ -63,7 +69,7 @@ class App extends React.Component {
               <button
                 type="button"
                 className="button is-fullwidth is-small my-font is-rounded"
-                onClick={this.clockRename}
+                onClick={this.renameClock}
               >
                 Change clock name
               </button>
