@@ -1,22 +1,22 @@
 import React from 'react';
 import { Clock } from './components/Clock';
-import { randomName } from './functions/randomName';
+import { randomNumber } from './functions/randomNumber';
 
 class App extends React.Component {
   state = {
-    clockName: 1,
+    clockNumber: 1,
     isClockVisible: true,
   }
 
   changeName = () => {
-    const newName = randomName();
+    const newNumber = randomNumber();
 
     // eslint-disable-next-line no-console
     console.log(
-      `The Clock was renamed from ${this.state.clockName} to ${newName}`,
+      `The Clock was renamed from ${this.state.clockNumber} to ${newNumber}`,
     );
 
-    this.setState({ clockName: newName });
+    this.setState({ clockNumber: newNumber });
   }
 
   toggleClockVisible = () => {
@@ -26,26 +26,22 @@ class App extends React.Component {
   }
 
   render() {
-    const {
-      changeName,
-      toggleClockVisible,
-      state: { clockName, isClockVisible },
-    } = this;
+    const { clockNumber, isClockVisible } = this.state;
 
     return (
       <div>
-        {isClockVisible && <Clock name={clockName} />}
+        {isClockVisible && <Clock number={clockNumber} />}
 
         <button
           type="button"
-          onClick={changeName}
+          onClick={this.changeName}
         >
           Change name
         </button>
 
         <button
           type="button"
-          onClick={toggleClockVisible}
+          onClick={this.toggleClockVisible}
         >
           {isClockVisible ? 'Hide Clock' : 'Show Clock'}
         </button>

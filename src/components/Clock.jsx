@@ -1,16 +1,16 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import { currentDate } from '../functions/currentDate';
+import { getCurrentDate } from '../functions/currentDate';
 
 export class Clock extends React.Component {
   state = {
-    date: currentDate(),
+    date: getCurrentDate(),
   };
 
   componentDidMount() {
     this.timerId = setInterval(() => {
-      const dateNow = currentDate();
+      const dateNow = getCurrentDate();
 
       // eslint-disable-next-line no-console
       console.log(dateNow);
@@ -24,12 +24,12 @@ export class Clock extends React.Component {
   }
 
   render() {
-    const { name } = this.props;
+    const { number } = this.props;
     const { date } = this.state;
 
     return (
       <section>
-        <h1>{`React clock №${name}`}</h1>
+        <h1>{`React clock №${number}`}</h1>
         <p>{`Current time: ${date}`}</p>
       </section>
     );
@@ -37,9 +37,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  name: propTypes.number,
-};
-
-Clock.defaultProps = {
-  name: 1,
+  number: propTypes.number.isRequired,
 };
