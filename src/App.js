@@ -31,14 +31,16 @@ class App extends React.Component {
   }
 
   render() {
+    const { title, clockName, isClockVisible } = this.state;
+
     return (
       <div className="App">
         <h1>
-          {this.state.title}
+          {title}
           {' : '}
-          {this.state.clockName}
+          {clockName}
         </h1>
-        {this.state.isClockVisible && (<Clock />)}
+        {isClockVisible && (<Clock />)}
 
         <button
           type="button"
