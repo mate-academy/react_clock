@@ -1,24 +1,10 @@
 import React from 'react';
+import { Clock } from './Components/Clock';
 
-import './App.scss';
-
+// eslint-disable-next-line arrow-body-style
 const App = () => {
-  setInterval(() => {
-    const date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
   return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
+    <Clock />
   );
 };
 
