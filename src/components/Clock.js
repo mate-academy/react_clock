@@ -5,12 +5,12 @@ class Clock extends React.Component {
     state = { date: new Date() }
 
     componentDidMount() {
-      this.timerID = setInterval(
+      this.timerID = setInterval(() => {
         this.setState({
           date: new Date(),
-        }),
-        1000,
-      );
+        });
+      },
+      1000);
     }
 
     componentDidUpdate(prevProps) {
