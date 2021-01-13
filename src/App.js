@@ -6,19 +6,20 @@ class App extends React.Component {
   state = {
     clockName: 0,
     isClockVisiable: true,
-    setRandom: () => {
-      this.setState(
-        {
-          clockName: Math.random(),
-        },
-      );
-
-      // eslint-disable-next-line no-console
-      console.log(
-        `The Clock was renamed from oldName to ${this.state.clockName}`,
-      );
-    },
   };
+
+  setRandom = () => {
+    this.setState(
+      {
+        clockName: Math.random(),
+      },
+    );
+
+    // eslint-disable-next-line no-console
+    console.log(
+      `The Clock was renamed from oldName to ${this.state.clockName}`,
+    );
+  }
 
   render() {
     return (
@@ -55,7 +56,7 @@ class App extends React.Component {
 
         <button
           type="button"
-          onClick={() => this.state.setRandom()}
+          onClick={() => this.setRandom()}
         >
           Set random name
         </button>
