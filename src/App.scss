@@ -1,1 +1,13 @@
-// styles go here
+.App {
+  margin-top: 100px;
+  margin-left: 50vw;
+  transform: translate(-50%);
+}
+
+.columns {
+  display: flex;
+}
+
+.button {
+  margin-right: 15px;
+}
