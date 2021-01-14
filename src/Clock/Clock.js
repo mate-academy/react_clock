@@ -7,8 +7,9 @@ export class Clock extends React.Component {
   };
 
   componentDidMount() {
-    setInterval(this.timer, 1000);
-    this.mounted = true;
+    const k = setInterval(this.timer, 1000);
+
+    this.setState({ timer: k });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -24,8 +25,7 @@ export class Clock extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
-    this.mounted = false;
+    clearInterval(this.state.timer);
   }
 
   timer = () => {
