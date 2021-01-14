@@ -2,17 +2,20 @@ import React from 'react';
 
 import './App.scss';
 
+import Clock from './Clock';
+
 class App extends React.Component {
   state = {
-    date: new Date(),
-  };
+    isClockVisible: true,
+    clockName: 1,
+  }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        date: new Date(),
-      });
-    }, 1000);
+  changeName = () => {
+    this.setState({
+      clockName: Math.random(),
+    });
+    // eslint-disable-next-line no-console,max-len
+    console.log(`The Clock was renamed from oldName to ${this.state.clockName}`);
   }
 
   render() {
@@ -22,8 +25,29 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          {this.state.date.toLocaleTimeString()}
+          {this.state.isClockVisible && (
+            <Clock name={this.state.clockName} />
+          )}
         </p>
+
+        <button
+          type="button"
+          onClick={() => this.setState({ isClockVisible: true })}
+        >
+          Show Clock
+        </button>
+        <button
+          type="button"
+          onClick={() => this.setState({ isClockVisible: false })}
+        >
+          Hide Clock
+        </button>
+        <button
+          type="button"
+          onClick={this.changeName}
+        >
+          RandomName
+        </button>
       </div>
     );
   }
