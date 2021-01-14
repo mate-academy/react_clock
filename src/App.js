@@ -12,14 +12,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <p className="timer">
+        <div className="timer">
           Current time:
           {' '}
           {this.state.isClockVisible && (
             <Clock name={this.state.clockName} />
           )
           }
-        </p>
+        </div>
         <button
           type="button"
           onClick={() => this.setState({ isClockVisible: true })}
