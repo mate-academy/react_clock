@@ -1,0 +1,9 @@
+.clock {
+  text-align: center;
+
+  &__name,
+  &__current {
+    font-weight: bold;
+    font-size: 25px;
+  }
+}
