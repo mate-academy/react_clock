@@ -10,8 +10,6 @@ class Clock extends React.Component {
   componentDidMount() {
     setInterval(() => {
       this.setState({ date: new Date() });
-      // eslint-disable-next-line no-console
-      console.log(this.state.date.toLocaleTimeString());
     }, 1000);
   }
 
@@ -38,11 +36,13 @@ class Clock extends React.Component {
         <h1>Clock</h1>
         <h2>{`Name: ${name}`}</h2>
         <h3>
-          {visibility ? `Current time : ${date.toLocaleTimeString()}` : null}
+          { visibility ? `Current time : ${date.toLocaleTimeString()}` : null}
         </h3>
         <div className="App__buttons">
           <button type="button" onClick={this.isClockVisible}>
             {visibility ? 'Hide Clock!' : 'Show Clock!'}
+            {/* eslint-disable-next-line no-console */}
+            {visibility && console.log(date.toLocaleTimeString())}
           </button>
         </div>
         <button type="button" onClick={this.changeName}>
@@ -52,5 +52,4 @@ class Clock extends React.Component {
     );
   }
 }
-
 export default Clock;
