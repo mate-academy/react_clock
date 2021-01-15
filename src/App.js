@@ -4,21 +4,17 @@ import './App.scss';
 
 class App extends React.Component {
   state = {
-    clockName: 0,
+    clockName: '',
     isClockVisiable: true,
   };
 
   setRandom = () => {
-    this.setState(
-      {
-        clockName: Math.random(),
-      },
-    );
-
-    // eslint-disable-next-line no-console
-    console.log(
-      `The Clock was renamed from oldName to ${this.state.clockName}`,
-    );
+    const randomName = Math.random();
+    // eslint-disable-next-line
+    console.log(`
+    The Clock was renamed from ${this.state.name} to ${randomName}
+    `);
+    this.setState({ name: randomName });
   }
 
   render() {

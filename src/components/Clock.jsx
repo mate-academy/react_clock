@@ -12,14 +12,16 @@ class Clock extends React.Component {
   }
 
   render() {
+    const time = this.state.date.toLocaleTimeString();
+
     return (
       <div>
         <h1>React clock</h1>
         <p>
-          {`Current time: ${this.state.date.toLocaleTimeString()}`}
+          {`Current time: ${time}`}
         </p>
         {/* eslint-disable-next-line no-console */}
-        {console.log(`Current time: ${this.state.date.toLocaleTimeString()}`)}
+        {console.log(`Current time: ${time}`)}
       </div>
     );
   }
