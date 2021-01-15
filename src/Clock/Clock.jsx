@@ -13,8 +13,6 @@ class Clock extends React.Component {
       // eslint-disable-next-line no-console
       console.log(new Date().toLocaleTimeString());
     }, 1000);
-    // eslint-disable-next-line no-console
-    console.log('-componentDidMount-');
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -22,8 +20,6 @@ class Clock extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.timer);
-    // eslint-disable-next-line no-console
-    console.log('---componentWillUnmount---');
   }
 
   render() {
@@ -34,12 +30,18 @@ class Clock extends React.Component {
       <div className="clock clock__watch">
         Current time:
         <p className="clock__time">{date}</p>
-        <div className="clock__title">
-          The Clock was renamed from oldName to:
-          <p className="clock__text">{`${name}`}</p>
-        </div>
+        {name === '00:00:00'
+          ? ''
+          : (
+            <div className="clock__title">
+              The Clock was renamed from oldName to:
+              <p className="clock__text">{`${name}`}</p>
+            </div>
+          )
+        }
       </div>
     );
+
   }
 }
 
