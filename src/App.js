@@ -9,11 +9,6 @@ class App extends React.Component {
     clockName: 0,
   }
 
-  componentDidUpdate(prevProp, prevState) {
-  // eslint-disable-next-line
-  console.log(`Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
-  }
-
   hideClock = () => {
     this.setState({
       isClockVisible: false,
@@ -24,6 +19,8 @@ class App extends React.Component {
     this.setState({
       clockName: Math.round(Math.random() * 10),
     });
+    // eslint-disable-next-line
+    console.log(`Clock was renamed from oldName to ${this.state.clockName}`);
   }
 
   showClock = () => {
@@ -32,44 +29,44 @@ class App extends React.Component {
     });
   }
 
-  render() {
-    return (
-      <div className="state">
-        {this.state.isClockVisible && (
-          <Clock
-            visible={this.state.isClockVisible}
-            name={this.state.clockName}
-            showClock={this.showClock}
-          />
-        )}
+ render() {
+   return (
+     <div className="state">
+       {this.state.isClockVisible && (
+         <Clock
+           visible={this.state.isClockVisible}
+           name={this.state.clockName}
+           showClock={this.showClock}
+         />
+       )}
 
-        <div>
-          <button
-            className="state__button"
-            type="button"
-            onClick={this.showClock}
-          >
-            Show clock
-          </button>
-          <button
-            className="state__button"
-            type="button"
-            onClick={this.hideClock}
-          >
-            Hide clock
-          </button>
-          <button
-            className="state__button"
-            type="button"
-            onClick={this.setName}
-          >
-            Set random name
-          </button>
-        </div>
+       <div className="state__button-set">
+         <button
+           className="state__button"
+           type="button"
+           onClick={this.showClock}
+         >
+           Show clock
+         </button>
+         <button
+           className="state__button"
+           type="button"
+           onClick={this.hideClock}
+         >
+           Hide clock
+         </button>
+         <button
+           className="state__button state__button--name"
+           type="button"
+           onClick={this.setName}
+         >
+           Set random name
+         </button>
+       </div>
 
-      </div>
-    );
-  }
+     </div>
+   );
+ }
 }
 
 export default App;
