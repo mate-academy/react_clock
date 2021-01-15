@@ -1,25 +1,77 @@
+/* eslint-disable no-console */
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Clock } from './components/Clock';
 
 import './App.scss';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+class App extends React.Component {
+  state = {
+    isClockVisible: false,
+    clockName: 0,
+  }
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.clockName !== this.state.clockName) {
+      console.log(`The Clock was renamed from `
+    + `${prevState.clockName} to ${this.state.clockName}`);
+    }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
+    return false;
+  }
+
+  setClockName = () => {
+    const randomNumber = Math.floor(Math.random() * 1001);
+
+    this.setState(prevState => ({
+      clockName: randomNumber,
+    }));
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        <div className="buttons">
+          <button
+            type="button"
+            className="buttons__showClock"
+            onClick={() => {
+              this.setState(prevState => ({ isClockVisible: true }));
+            }}
+          >
+            Show Clock
+          </button>
+          <button
+            type="button"
+            className="buttons__hideClock"
+            onClick={() => {
+              this.setState(prevState => ({ isClockVisible: false }));
+            }}
+          >
+            Hide Clock
+          </button>
+          <button
+            type="button"
+            onClick={this.setClockName}
+            className="buttons__setRandomName"
+          >
+            Set random name
+          </button>
+        </div>
+        <div className="currentTime">
+          {'Current time: '}
+          {this.state.isClockVisible
+            ? <Clock clockName={this.state.clockName} />
+            : 'Push Show Button'}
+        </div>
+      </div>
+    );
+  }
+}
+
+Clock.propTypes = {
+  clockName: PropTypes.number.isRequired,
 };
 
 export default App;
