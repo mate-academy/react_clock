@@ -1,5 +1,4 @@
 import React from 'react';
-import { AppTypes } from './types';
 import './App.scss';
 import { Clock } from './Clock';
 
@@ -65,5 +64,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-App.propTypes = AppTypes.isRequired;
