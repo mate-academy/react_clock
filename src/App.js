@@ -1,25 +1,66 @@
 import React from 'react';
-
 import './App.scss';
+import { Button } from '@material-ui/core';
+import Clock from './Clock/Clock';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+class App extends React.Component {
+  state = {
+    isClockVisible: true,
+    clockName: '00:00:00',
+  }
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  showHandler = () => {
+    this.setState({ isClockVisible: true });
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  hideHandler = () => {
+    this.setState({ isClockVisible: false });
+  }
+
+  setRandomName = () => {
+    this.setState({ clockName: new Date().toLocaleTimeString() });
+    // eslint-disable-next-line no-console
+    console.log(`
+      The Clock was renamed from oddName to
+      ${this.state.clockName}
+    `);
+  }
+
+  render() {
+    const { isClockVisible } = this.state;
+    const { showHandler, hideHandler, setRandomName } = this;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {isClockVisible ? (<Clock name={this.state.clockName} />)
+          : <p className="App_offer">cookies?</p>}
+        <div className="button-container">
+          <Button
+            type="button"
+            className="button button__show"
+            onClick={showHandler}
+          >
+            Show Clock
+          </Button>
+          <Button
+            type="button"
+            className="button button__hide"
+            onClick={hideHandler}
+          >
+            Hide Clock
+          </Button>
+          <Button
+            type="button"
+            className="button button__stop"
+            onClick={setRandomName}
+          >
+            New Name
+          </Button>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default App;

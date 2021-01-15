@@ -1,1 +1,38 @@
-// styles go here
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap");
+
+$mainShadow: 0 3px 5px 2px rgba(66,220,219,0.2);
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1rem;
+  font-family: "Dosis", sans-serif;
+  height: 100vh;
+  background-color: black;
+}
+
+.App {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  width: 100%;
+  padding: 20px;
+
+  &__offer {
+    padding: 20px 0;
+  }
+}
+
+.button {
+  background: linear-gradient(45deg, #7750d9 30%, #53ddff 90%);
+  box-shadow: $mainShadow;
+  height: 48px;
+  color: #fff !important;
+  width: 160px;
+}
