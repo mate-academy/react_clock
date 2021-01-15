@@ -1,1 +1,5 @@
-// styles go here
+.App {
+  &__clock-hidden {
+    visibility: hidden;
+  }
+}
