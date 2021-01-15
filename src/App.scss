@@ -1,1 +1,23 @@
-// styles go here
+.App {
+  display: flex;
+  justify-content: center;
+}
+
+.clock {
+  background: radial-gradient(circle, #66bfbf, #056674);
+  width: 800px;
+  height: 300px;
+  font-size: 200px;
+  line-height: 300px;
+  text-align: center;
+
+  border: 10px solid black;
+  border-radius: 20%;
+}
+
+.numbers {
+  margin: 0;
+  background: radial-gradient(#ff4b5c, #e0ece4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
