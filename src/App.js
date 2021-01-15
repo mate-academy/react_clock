@@ -1,11 +1,12 @@
 import React from 'react';
+import classNames from 'classnames';
 import Clock from './components/Clock';
 
 import './App.scss';
 
 class App extends React.Component {
   state = {
-    isClockVisible: 'visible',
+    isClockVisible: true,
     clockName: Math.floor(Math.random() * 10),
   };
 
@@ -13,7 +14,7 @@ class App extends React.Component {
     setInterval(() => {
       const date = new Date();
 
-      if (this.state.isClockVisible === 'visible') {
+      if (this.state.isClockVisible) {
       // eslint-disable-next-line
       console.log(date.toLocaleTimeString());
       }
@@ -21,11 +22,11 @@ class App extends React.Component {
   }
 
   hideClock = () => {
-    this.setState({ isClockVisible: 'hidden' });
+    this.setState({ isClockVisible: false });
   }
 
   showClock = () => {
-    this.setState({ isClockVisible: 'visible' });
+    this.setState({ isClockVisible: true });
   }
 
   render() {
@@ -36,7 +37,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <p style={{ visibility }}>
+        <p
+          className={classNames({ 'App__clock-hidden': !visibility })}
+        >
           Current time:
           {' '}
           <span><Clock name={this.state.clockName} /></span>
