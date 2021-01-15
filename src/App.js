@@ -1,25 +1,76 @@
 import React from 'react';
 
 import './App.scss';
+import { Clock } from './components/Clock/Clock';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+export default class App extends React.Component {
+  state = {
+    isVisible: true,
+    timerId: Math.floor(Math.random() * 1000),
+  }
+
+  changeId = () => {
+    this.setState({
+      timerId: Math.floor(Math.random() * 1000),
+    });
+  }
+
+  hideTimer = () => {
+    this.setState(() => (
+      { isVisible: false }
+    ));
+  }
+
+  showTimer = () => {
+    this.setState(() => (
+      { isVisible: true }
+    ));
 
     // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+    console.log('Started');
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  render() {
+    const { timerId, isVisible } = this.state;
 
-export default App;
+    return (
+      <div className="App">
+        <p className="App__timer-name">
+          {`#${timerId}`}
+        </p>
+
+        <div className="App__time-string">
+          Current time:
+          {' '}
+          {isVisible && <Clock timerId={this.state.timerId} />}
+        </div>
+
+        <div className="App__buttons">
+          <button
+            className="App__button"
+            onClick={this.showTimer}
+            type="button"
+          >
+            Start
+          </button>
+          {' / '}
+          <button
+            className="App__button"
+            onClick={this.hideTimer}
+            type="button"
+          >
+            Stop
+          </button>
+          {' / '}
+          <button
+            className="App__button"
+            onClick={this.changeId}
+            type="button"
+          >
+            Change number
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
