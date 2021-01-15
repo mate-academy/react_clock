@@ -7,9 +7,8 @@ class Clock extends React.Component {
   }
 
   timer = setInterval(() => {
-    const { date } = this.state;
-
     this.setState({ date: new Date() });
+    const { date } = this.state;
     // eslint-disable-next-line
     console.log(date.toLocaleTimeString());
   }, 1000);
