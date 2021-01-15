@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Clock } from './components/Clock';
 
 import './App.scss';
@@ -68,5 +69,9 @@ class App extends React.Component {
     );
   }
 }
+
+Clock.propTypes = {
+  clockName: PropTypes.number.isRequired,
+};
 
 export default App;
