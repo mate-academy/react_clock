@@ -10,7 +10,7 @@ class App extends React.Component {
     clockName: 1,
   }
 
-  visibleClock = ({ target }) => {
+  toggleClockVisibility = ({ target }) => {
     if (target.innerText === 'Show Clock') {
       this.setState({ isClockVisible: true });
     } else if (target.innerText === 'Hide Clock') {
@@ -31,13 +31,13 @@ class App extends React.Component {
         {isClockVisible && <Clock name={this.state.clockName} />}
         <Button
           variant="primary"
-          onClick={this.visibleClock}
+          onClick={this.toggleClockVisibility}
         >
           Show Clock
         </Button>
         <Button
           variant="secondary"
-          onClick={this.visibleClock}
+          onClick={this.toggleClockVisibility}
         >
           Hide Clock
         </Button>
