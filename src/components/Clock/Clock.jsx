@@ -49,7 +49,7 @@ Clock.propTypes = {
 };
 
 Clock.defaultProps = {
-  name: 123,
+  name: 1,
 };
 
 export default Clock;
