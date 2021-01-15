@@ -5,7 +5,7 @@ import './App.scss';
 class App extends React.Component {
   state = {
     time: new Date().toLocaleTimeString(),
-    isClockVisible: true,
+    isClockVisible: false,
     clockName: null,
   }
 

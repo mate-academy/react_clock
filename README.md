@@ -1,6 +1,6 @@
 # React Clock
 - Replace `<your_account>` with your Github username in the
- n
+ [DEMO LINK](https://dima-bond.github.io/react_clock/)
 - Follow the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
 
 ## Task
