@@ -1,1 +1,29 @@
-// styles go here
+h1,
+.buttons,
+.currentTime {
+  text-align: center;
+}
+
+.buttons > button {
+  font-size: 20px;
+  width: 250px;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+}
+
+.buttons__showClock {
+  background: lightblue;
+}
+
+.buttons__hideClock {
+  background: rgb(230, 120, 120);
+}
+
+.buttons__setRandomName {
+  background-color: lightseagreen;
+}
+
+.currentTime {
+  font-size: 26px;
+}
