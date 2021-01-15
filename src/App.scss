@@ -1,1 +1,35 @@
-// styles go here
+.app {
+  box-sizing: border-box;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  width: 500px;
+  height: 500px;
+  padding: 20px;
+
+  background-color: rgba(142, 208, 247, 0.25);
+  border-radius: 50%;
+  box-shadow: 0 0 350px 0 rgba(0,0,0,0.75);
+
+  &__btnBlock {
+    display: flex;
+    justify-content: center;
+
+    // margin-bottom: 50px;
+  }
+
+  &__button {
+    background-color: rgba(194, 227, 247, 0.75);
+    margin: 5px;
+    height: 50px;
+
+    border: 1px solid #000;
+  }
+}
+
+h1 {
+  text-align: center;
+}
