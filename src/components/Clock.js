@@ -7,6 +7,9 @@ export default class Clock extends Component {
   }
 
   timer = setInterval(() => {
+    // eslint-disable-next-line
+    console.log(this.state.date.toLocaleTimeString())
+
     this.setState({
       date: new Date(),
     });
@@ -17,10 +20,13 @@ export default class Clock extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const prevName = prevProps.name;
+    const currName = this.props.name;
+
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line
       console.log(
-        'The Clock was renamed from oldName to newName', this.props.name,
+        `The Clock was renamed from ${prevName} to ${currName}`,
       );
     }
   }
@@ -31,8 +37,6 @@ export default class Clock extends Component {
 
   render() {
     const currDate = this.state.date;
-    // eslint-disable-next-line
-    console.log(currDate.toLocaleTimeString())
 
     return (
       <>{currDate.toLocaleTimeString()}</>

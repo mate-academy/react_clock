@@ -9,15 +9,6 @@ class App extends Component {
     clockName: 1,
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      const date = new Date();
-
-      // eslint-disable-next-line
-      console.log(date.toLocaleTimeString());
-    }, 1000);
-  }
-
   hideClock = () => {
     this.setState({
       isClockVisible: false,
@@ -37,7 +28,7 @@ class App extends Component {
   }
 
   render() {
-    const currClockName = this.state.clockName;
+    const { clockName, isClockVisible } = this.state;
 
     return (
       <div className="app">
@@ -46,8 +37,8 @@ class App extends Component {
           Current time:
           {' '}
           {
-            this.state.isClockVisible
-              ? <Clock name={currClockName} />
+            isClockVisible
+              ? <Clock name={clockName} />
               : null
           }
         </p>
