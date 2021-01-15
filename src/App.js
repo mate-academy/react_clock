@@ -5,7 +5,7 @@ import './App.scss';
 
 class App extends React.Component {
   state = {
-    show: true,
+    isClockVisible: true,
     clockName: Math.random(),
   }
 
@@ -16,7 +16,7 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          {this.state.show && <Clock {...this.state} />}
+          {this.state.isClockVisible && <Clock {...this.state} />}
         </p>
 
         <button
