@@ -18,10 +18,12 @@ class App extends React.Component {
   }
 
   render() {
+    const { clockName, isClockVisiable } = this.state;
+
     return (
       <>
-        {this.state.isClockVisiable
-          ? <Clock name={this.state.clockName} />
+        {isClockVisiable
+          ? <Clock name={clockName} />
           : ''
         }
         <button
