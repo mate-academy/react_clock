@@ -5,17 +5,9 @@ import './App.scss';
 
 class App extends React.Component {
   state = {
-    time: new Date(),
     isClockVisible: true,
     clockName: 0,
   };
-
-  componentDidMount() {
-    this.interval = setInterval(
-      () => this.setState({ time: new Date() }),
-      1000,
-    );
-  }
 
   componentWillUnmount() {
     clearInterval(this.interval);
@@ -39,7 +31,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { time, isClockVisible, clockName } = this.state;
+    const { isClockVisible, clockName } = this.state;
 
     return (
       <div className="App">
@@ -59,7 +51,6 @@ class App extends React.Component {
           Set random name
         </button>
         <Clock
-          time={time}
           isClockVisible={isClockVisible}
           clockName={clockName}
         />

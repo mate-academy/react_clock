@@ -3,8 +3,20 @@ import PropTypes from 'prop-types';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export class Clock extends React.Component {
+  state = {
+    time: new Date(),
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(
+      () => this.setState({ time: new Date() }),
+      1000,
+    );
+  }
+
   render() {
-    const { time, isClockVisible } = this.props;
+    const { isClockVisible } = this.props;
+    const { time } = this.state;
 
     if (isClockVisible) {
       // eslint-disable-next-line no-console
@@ -15,7 +27,7 @@ export class Clock extends React.Component {
       <>
         <p>
           Current time:
-          {isClockVisible}
+          {isClockVisible && time.toLocaleTimeString()}
         </p>
       </>
     );
@@ -23,6 +35,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  time: PropTypes.string.isRequired,
   isClockVisible: PropTypes.bool.isRequired,
 };
