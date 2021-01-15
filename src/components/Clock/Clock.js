@@ -18,7 +18,9 @@ export class Clock extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.timerId !== prevProps.timerId) {
       // eslint-disable-next-line
-      console.log(`The timer was renamed to ${this.props.timerId}`);
+      console.log(`
+        The timer was renamed from ${prevProps.timerId} to ${this.props.timerId}
+      `);
     }
   }
 
