@@ -1,1 +1,15 @@
 // styles go here
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 110px);
+  gap: 10px;
+}
+
+.button {
+  cursor: pointer;
+}
