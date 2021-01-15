@@ -1,1 +1,12 @@
-// styles go here
+.App {
+  display: grid;
+  grid-template: max-content 70px min-content min-content / auto;
+  justify-content: start;
+  gap: 10px;
+
+  font-family: "Courier New", Courier, monospace;
+}
+
+button {
+  height: 30px;
+}
