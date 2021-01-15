@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClockTypes } from './types';
+import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
@@ -41,4 +41,6 @@ export class Clock extends React.Component {
   }
 }
 
-Clock.propTypes = ClockTypes.isRequired;
+Clock.propTypes = {
+  name: PropTypes.string.isRequired,
+};
