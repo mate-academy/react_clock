@@ -33,12 +33,11 @@ class App extends React.Component {
         >
           Hide clock
         </button>
+
         <button
           type="button"
           onClick={() => {
             this.setState({ clockName: Math.random() });
-            // eslint-disable-next-line
-            console.log(`The Clock was renamed from oldName to newName`)
           }}
         >
           Set random name
