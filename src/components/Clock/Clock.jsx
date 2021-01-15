@@ -18,11 +18,6 @@ export class Clock extends React.Component {
     }, 1000);
   }
 
-  componentDidUpdate(prevProp) {
-    // eslint-disable-next-line
-    console.log(`Clock was renamed from ${prevProp.name} to ${this.props.name}`);
-  }
-
   componentWillUnmount() {
     clearInterval(this.stopInterval);
   }

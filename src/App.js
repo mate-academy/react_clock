@@ -9,10 +9,9 @@ class App extends React.Component {
     clockName: 0,
   }
 
-  showClock = () => {
-    this.setState({
-      isClockVisible: true,
-    });
+  componentDidUpdate(prevProp, prevState) {
+  // eslint-disable-next-line
+  console.log(`Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
   }
 
   hideClock = () => {
@@ -27,6 +26,12 @@ class App extends React.Component {
     });
   }
 
+  showClock = () => {
+    this.setState({
+      isClockVisible: true,
+    });
+  }
+
   render() {
     return (
       <div className="state">
@@ -34,6 +39,7 @@ class App extends React.Component {
           <Clock
             visible={this.state.isClockVisible}
             name={this.state.clockName}
+            showClock={this.showClock}
           />
         )}
 
