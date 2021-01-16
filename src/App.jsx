@@ -8,9 +8,9 @@ class App extends React.Component {
     name: 1,
   };
 
-  visibilityClick = () => {
-    this.setState(state => ({
-      isClockVisible: !state.isClockVisible,
+  toggleVisibility = () => {
+    this.setState(prevState => ({
+      isClockVisible: !prevState.isClockVisible,
     }));
   }
 
@@ -30,7 +30,7 @@ class App extends React.Component {
       <div className="app">
         <h1 className="app__title">React Clock</h1>
         {isClockVisible ? (
-          <Clock name={name} isVisible={isClockVisible} />
+          <Clock name={name} />
         ) : (
           <div className="clock__break">
             Time to Coffee
@@ -40,7 +40,7 @@ class App extends React.Component {
         <button
           className="app__button"
           type="button"
-          onClick={this.visibilityClick}
+          onClick={this.toogleVisibility}
         >
           {isClockVisible ? 'Hide' : 'Show Clock'}
         </button>
