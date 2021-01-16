@@ -1,55 +1,44 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class Clock extends React.Component {
+export class Clock extends React.Component {
   state = {
-    date: new Date(),
-    name: 0,
-    visibility: false,
-  };
+    time: new Date(),
+  }
+
+  timerId = 0;
 
   componentDidMount() {
-    setInterval(() => {
-      this.setState({ date: new Date() });
+    this.timerId = setInterval(() => {
+      this.setState({ time: new Date() });
+      /* eslint-disable-next-line */
+      console.log(`Current time is: ${new Date().toLocaleTimeString()}`)
     }, 1000);
   }
 
-  changeName = () => {
-    this.setState((state) => {
-      const random = Math.floor(Math.random() * Math.floor(1000));
-
-      // eslint-disable-next-line no-console
-      console.log(`The Clock has been renamed from ${state.name} to ${random}`);
-
-      return { name: random };
-    });
+  componentWillUnmount() {
+    clearInterval(this.timerId);
   }
 
-  isClockVisible = () => {
-    this.setState(state => ({ visibility: !state.visibility }));
-  };
-
   render() {
-    const { date, name, visibility } = this.state;
+    const { time } = this.state;
+    const { name } = this.props;
 
     return (
-      <div>
-        <h1>Clock</h1>
-        <h2>{`Name: ${name}`}</h2>
-        <h3>
-          { visibility ? `Current time : ${date.toLocaleTimeString()}` : null}
-        </h3>
-        <div className="App__buttons">
-          <button type="button" onClick={this.isClockVisible}>
-            {visibility ? 'Hide Clock!' : 'Show Clock!'}
-            {/* eslint-disable-next-line no-console */}
-            {visibility && console.log(date.toLocaleTimeString())}
-          </button>
-        </div>
-        <button type="button" onClick={this.changeName}>
-          Try to change the name!
-        </button>
+      <div className="Clock">
+        <p>
+          Name:
+          { name }
+        </p>
+        <p>
+          Current time:
+          {time.toLocaleTimeString()}
+        </p>
       </div>
     );
   }
 }
-export default Clock;
+
+Clock.propTypes = {
+  name: PropTypes.number.isRequired,
+};
