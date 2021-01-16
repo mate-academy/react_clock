@@ -6,17 +6,15 @@ export default class Clock extends Component {
     date: new Date(),
   }
 
-  timer = setInterval(() => {
-    // eslint-disable-next-line
-    console.log(this.state.date.toLocaleTimeString())
-
-    this.setState({
-      date: new Date(),
-    });
-  }, 1000)
-
   componentDidMount() {
-    return this.timer;
+    this.timer = setInterval(() => {
+      this.setState({
+        date: new Date(),
+      });
+
+      // eslint-disable-next-line
+      console.log(this.state.date.toLocaleTimeString())
+    }, 1000);
   }
 
   componentDidUpdate(prevProps) {

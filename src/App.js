@@ -36,11 +36,7 @@ class App extends Component {
         <p>
           Current time:
           {' '}
-          {
-            isClockVisible
-              ? <Clock name={clockName} />
-              : null
-          }
+          { isClockVisible && <Clock name={clockName} /> }
         </p>
         <button
           type="button"
