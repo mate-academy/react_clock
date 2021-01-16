@@ -14,6 +14,10 @@ export class Clock extends React.Component {
     );
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
   render() {
     const { isClockVisible } = this.props;
     const { time } = this.state;
@@ -27,6 +31,7 @@ export class Clock extends React.Component {
       <>
         <p>
           Current time:
+          {' '}
           {isClockVisible && time.toLocaleTimeString()}
         </p>
       </>

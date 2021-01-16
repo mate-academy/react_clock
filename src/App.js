@@ -6,27 +6,22 @@ import './App.scss';
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    clockName: 0,
+    clockName: 777,
   };
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
   toggleVisible = () => {
-    this.setState({ isClockVisible: false });
+    this.setState({ isClockVisible: true });
   }
 
   toggleHidden = () => {
-    this.setState({ isClockVisible: true });
+    this.setState({ isClockVisible: false });
   }
 
   clockNewName = () => {
     this.setState({ clockName: Math.floor(Math.random() * 1000) });
     // eslint-disable-next-line no-console
     console.log(
-      `The clock was renamed from oldName to newName
-    ${this.state.clockName}`,
+      `The clock was renamed from oldName to newName ${this.state.clockName}`,
     );
   }
 
@@ -41,10 +36,10 @@ class App extends React.Component {
           {clockName}
         </h1>
 
-        <button type="button" onClick={this.toggleHidden}>
+        <button type="button" onClick={this.toggleVisible}>
           Show Clock
         </button>
-        <button type="button" onClick={this.toggleVisible}>
+        <button type="button" onClick={this.toggleHidden}>
           Hide Clock
         </button>
         <button type="button" onClick={this.clockNewName}>
