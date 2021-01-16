@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Clock = ({ time }) => (
+export const Clock = ({ time, name }) => (
   <div className="clock">
     <h1>React clock</h1>
+    <p>Name: {name}</p>
     <p>
       Current time:
       {' '}

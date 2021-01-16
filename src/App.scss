@@ -1,1 +1,55 @@
-// styles go here
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  border: 5px solid #ffcc29;
+  border-top-left-radius: 50px;
+  background-color: #eff8ff;
+}
+
+.button {
+  border: 2px solid transparent;
+  outline: none;
+  padding: 10px;
+  background-color: #ffcc29;
+  text-transform: uppercase;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 16px;
+  color: #1a508b;
+  transition-duration: 0.3s;
+
+  &:first-child {
+    border-top-left-radius: 50px;
+    transition-duration: 0ms;
+  }
+
+  &:hover {
+    background-color: white;
+    border: 2px solid #1a508b;
+  };
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+h1 {
+  text-transform: uppercase;
+  font-family: monospace;
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 380px;
+  color: #214151;
+}
+
+p {
+  text-transform: uppercase;
+  font-family: monospace;
+  font-size: 20px;
+}
