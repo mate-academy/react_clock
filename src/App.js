@@ -4,15 +4,16 @@ import './App.scss';
 
 class App extends React.Component {
   state = {
-    clockName: Math.floor(Math.random() * 1000),
-    time: new Date(),
     isClockVisible: true,
+    clockName: Math.floor(Math.random() * 1000),
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({ time: new Date() });
-    }, 1000);
+  getShow() {
+    this.setState({ isClockVisible: true });
+  }
+
+  getHide() {
+    this.setState({ isClockVisible: false });
   }
 
   randomName() {
@@ -25,22 +26,15 @@ class App extends React.Component {
   }
 
   render() {
-    const { time, isClockVisible, clockName } = this.state;
-
-    const getShow = () => (
-      this.setState({ isClockVisible: true })
-    );
-    const getHide = () => (
-      this.setState({ isClockVisible: false })
-    );
+    const { isClockVisible, clockName } = this.state;
 
     return (
       <div className="container">
-        {isClockVisible ? <Clock time={time} name={clockName} /> : ''}
+        {isClockVisible && <Clock name={clockName} />}
 
         <button
           type="button"
-          onClick={getShow}
+          onClick={() => this.getShow()}
           className="button"
         >
           Show Clock
@@ -48,7 +42,7 @@ class App extends React.Component {
 
         <button
           type="button"
-          onClick={getHide}
+          onClick={() => this.getHide()}
           className="button"
         >
           Hide Clock
