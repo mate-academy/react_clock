@@ -21,10 +21,9 @@ class App extends React.Component {
       this.setState({
         isClockVisible: false,
       });
-      clearInterval();
     };
 
-    const ramdomNumber = () => {
+    const randomNumber = () => {
       this.setState({
         clockName: Math.round(Math.random() * 100),
       });
@@ -47,7 +46,7 @@ class App extends React.Component {
           Hide Clock
         </button>
 
-        <button type="button" onClick={ramdomNumber}>
+        <button type="button" onClick={randomNumber}>
           Set random name
         </button>
       </div>
