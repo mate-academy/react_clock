@@ -9,6 +9,17 @@ export class App extends React.Component {
     oldClockName: 'old name',
   }
 
+  componentDidMount() {
+    setInterval(() => {
+      const time = new Date();
+
+      if (this.state.isClockVisible) {
+        // eslint-disable-next-line
+          console.log(time.toLocaleTimeString());
+      }
+    }, 1000);
+  }
+
   hideClock = () => {
     this.setState({
       isClockVisible: false,
@@ -36,6 +47,8 @@ export class App extends React.Component {
   }
 
   render() {
+    const { isClockVisible } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
@@ -44,9 +57,8 @@ export class App extends React.Component {
           Current time:
           {' '}
 
-          <Clock
-            isClockVisible={this.state.isClockVisible}
-          />
+          {isClockVisible && <Clock />}
+
         </p>
         <button
           type="button"
