@@ -1,1 +1,47 @@
-// styles go here
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
+
+.App {
+  display: flex;
+  
+  flex-direction: column;
+  align-items: center;
+  font-family: "Black Ops One", cursive;
+  color: rgb(22, 26, 24);
+
+  &__clockface {
+    box-sizing: border-box;
+    padding: 20px;
+    max-width: 400px;
+    font-size: 36px;
+    color: rgb(255, 174, 0);
+    background-color: rgb(22, 26, 24);
+    border: 4px solid rgb(255, 174, 0);
+    border-radius: 10px;
+  }
+
+  &__buttons {
+    margin-top: 10px;
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__button {
+    width: 80px;
+    padding: 10px;
+    box-shadow: 1px 1px 4px rgb(63, 63, 63);
+    border-radius: 10px;
+    background-color: rgb(22, 26, 24);
+    color: rgb(255, 174, 0);
+    border-color: rgb(255, 174, 0);
+    cursor: pointer;
+    transition: background-color 0.3s box-shadow 0.3;
+    &:hover {
+      background-color: rgb(37, 43, 40);
+    }
+    &:focus {
+      box-shadow: inset 1px 1px 5px rgb(255, 174, 0);
+    }
+  }
+}
