@@ -19,7 +19,7 @@ class App extends React.Component {
       <div className="App">
         <h1>
           React clock №
-          {clockName}
+          {isClockVisible && (clockName)}
         </h1>
 
         <p>
@@ -46,7 +46,9 @@ class App extends React.Component {
           >
             Hide Clock
           </button>
+        </p>
 
+        <p>
           <button
             className="button"
             type="button"
@@ -70,7 +72,7 @@ export class Clock extends React.Component {
   componentDidMount() {
     this.interval = setInterval(() => {
       // eslint-disable-next-line
-      console.log(new Date().toLocaleTimeString());
+      console.log(this.state.date);
       this.setState({ date: new Date().toLocaleTimeString() });
     }, 1000);
   }
