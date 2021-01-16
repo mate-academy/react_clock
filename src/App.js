@@ -6,7 +6,7 @@ import Clock from './Clock/Clock';
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    clockName: '00:00:00',
+    clockName: null,
   }
 
   showHandler = () => {
@@ -21,7 +21,7 @@ class App extends React.Component {
     this.setState({ clockName: new Date().toLocaleTimeString() });
     // eslint-disable-next-line no-console
     console.log(`
-      The Clock was renamed from oddName to
+      The Clock was renamed from oldName to
       ${this.state.clockName}
     `);
   }
@@ -33,8 +33,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {isClockVisible ? (<Clock name={this.state.clockName} />)
-          : <p className="App_offer">cookies?</p>}
+        {isClockVisible ? (
+          <Clock name={this.state.clockName} />
+        ) : (
+          <p className="App_offer">cookies?</p>
+        )}
         <div className="button-container">
           <Button
             type="button"

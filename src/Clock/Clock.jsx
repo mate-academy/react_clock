@@ -15,9 +15,6 @@ class Clock extends React.Component {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-  }
-
   componentWillUnmount() {
     clearInterval(this.timer);
   }
@@ -30,7 +27,7 @@ class Clock extends React.Component {
       <div className="clock clock__watch">
         Current time:
         <p className="clock__time">{date}</p>
-        {name === '00:00:00'
+        {name === null
           ? ''
           : (
             <div className="clock__title">
