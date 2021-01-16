@@ -9,6 +9,8 @@ class App extends React.Component {
   }
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+
     const showClock = () => {
       this.setState({
         isClockVisible: true,
@@ -34,7 +36,7 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          {this.state.isClockVisible && <Clock name={this.state.clockName} />}
+          {isClockVisible && <Clock name={clockName} />}
         </p>
 
         <button type="button" onClick={showClock}>
