@@ -8,26 +8,39 @@ class App extends React.Component {
     time: new Date().toLocaleTimeString(),
     isClockVisible: true,
     clockName: 0,
+    timerId: null,
   }
 
   componentDidMount() {
-    setInterval(() => {
-      if (!this.state.isClockVisible) {
-        return;
-      }
+    this.startClock();
+  }
 
+  componentWillUnmount() {
+    this.stopClock();
+  }
+
+  startClock = () => {
+    const timerId = setInterval(() => {
       this.setState({ time: new Date().toLocaleTimeString() });
       // eslint-disable-next-line
       console.log(this.state.time);
     }, 1000);
+
+    this.setState({ timerId });
+  }
+
+  stopClock = () => {
+    clearInterval(this.state.timerId);
   }
 
   showClock = () => {
     this.setState({ isClockVisible: true });
+    this.startClock();
   }
 
   hideClock = () => {
     this.setState({ isClockVisible: false });
+    this.stopClock();
   }
 
   render() {

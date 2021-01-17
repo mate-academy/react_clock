@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-/* eslint-disable react/prefer-stateless-function */
 
 export class Clock extends React.Component {
   static propTypes = {
