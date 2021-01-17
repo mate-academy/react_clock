@@ -9,19 +9,20 @@ class App extends React.Component {
     clockName: null,
   };
 
-  nameGenerator = () => {
+  generateRandomName = () => {
     this.setState({ clockName: Math.random() });
-    this.state.isClockVisible && (
+
+    if (this.state.isClockVisible) {
       // eslint-disable-next-line no-console
-      console.log(`The Clock was renamed from oldName to newName`)
-    );
+      console.log(`The Clock was renamed from oldName to newName`);
+    }
   }
 
-  visible = () => {
+  showClock = () => {
     this.setState({ isClockVisible: true });
   }
 
-  invisible = () => {
+  hideClock = () => {
     this.setState({ isClockVisible: false });
   }
 
@@ -30,15 +31,15 @@ class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
 
-        <button type="button" onClick={this.visible}>
+        <button type="button" onClick={this.showClock}>
           Show Clock
         </button>
 
-        <button type="button" onClick={this.invisible}>
+        <button type="button" onClick={this.hideClock}>
           Hide Clock
         </button>
 
-        <button type="button" onClick={this.nameGenerator}>
+        <button type="button" onClick={this.generateRandomName}>
           Random name
         </button>
 

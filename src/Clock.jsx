@@ -6,12 +6,13 @@ class Clock extends React.Component {
     date: new Date(),
   }
 
-  time = setInterval(() => {
-    this.setState({ date: new Date() });
-
-    // eslint-disable-next-line no-console
-    console.log(this.state.date.toLocaleTimeString());
-  }, 1000);
+  componentDidMount() {
+    this.time = setInterval(() => {
+      this.setState({ date: new Date() });
+      // eslint-disable-next-line no-console
+      console.log(this.state.date.toLocaleTimeString());
+    }, 1000);
+  }
 
   componentWillUnmount() {
     clearInterval(this.time);
