@@ -1,1 +1,34 @@
-// styles go here
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 28px;
+  color: rgb(176, 207, 35);
+}
+
+body {
+  margin: 100px 0;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main {
+  width: 50%;
+  height: 300px;
+  background-color: rgb(71, 4, 71);
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    margin: 0;
+  }
+}
