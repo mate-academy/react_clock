@@ -2,7 +2,7 @@ import React from 'react';
 import { Clock } from './Clock';
 import './App.scss';
 
-function randomInteger(min, max) {
+function getRandomInteger(min, max) {
   const rand = min + Math.random() * (max + 1 - min);
 
   return Math.floor(rand);
@@ -18,8 +18,8 @@ class App extends React.Component {
     return (
       <>
         { this.state.isClockVisible
-          ? <Clock name={this.state.clockName} />
-          : '' }
+          && <Clock name={this.state.clockName} />
+        }
 
         <button
           type="button"
@@ -43,7 +43,7 @@ class App extends React.Component {
           type="button"
           onClick={() => {
             const oldName = this.state.clockName;
-            const randomPartOfName = randomInteger(1, 1000);
+            const randomPartOfName = getRandomInteger(1, 1000);
 
             this.setState({ clockName: `ГОДИННИК${randomPartOfName}` });
             if (this.state.isClockVisible === false) {
