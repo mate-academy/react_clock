@@ -14,25 +14,31 @@ export class Clock extends React.Component {
     );
   }
 
+  componentDidUpdate(prevProps) {
+    const oldName = prevProps.clockName;
+    const curName = this.props.clockName;
+
+    if (oldName !== curName) {
+      console.log(curName);
+    }
+  }
+
   componentWillUnmount() {
-    clearInterval(this.interval)
+    clearInterval(this.interval);
   }
 
   render() {
-    const { isClockVisible } = this.props;
     const { time } = this.state;
 
-    if (isClockVisible) {
-      // eslint-disable-next-line no-console
-      console.log(time.toLocaleTimeString());
-    }
+    // eslint-disable-next-line no-console
+    console.log(time.toLocaleTimeString());
 
     return (
       <>
         <p>
           Current time:
           {' '}
-          {isClockVisible && time.toLocaleTimeString()}
+          {time.toLocaleTimeString()}
         </p>
       </>
     );
@@ -40,5 +46,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  isClockVisible: PropTypes.bool.isRequired,
-};
+  clockName: PropTypes.number.isRequired,
+}

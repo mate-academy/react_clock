@@ -45,10 +45,7 @@ class App extends React.Component {
         <button type="button" onClick={this.clockNewName}>
           Set random name
         </button>
-        <Clock
-          isClockVisible={isClockVisible}
-          clockName={clockName}
-        />
+        {isClockVisible && <Clock clockName={clockName} />}
       </div>
     );
   }
