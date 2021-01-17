@@ -1,0 +1,33 @@
+.clock {
+  text-align: center;
+
+  &__info {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+
+  &__button {
+    font-size: 16px;
+    margin-right: 10px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+
+    &:hover {
+      opacity: 0.75;
+    }
+
+    &--show {
+      background-color: #90ee90;
+    }
+
+    &--hide {
+      background-color: #ffb6c1;
+    }
+
+    &--set {
+      background-color: #b0c4de;
+    }
+  }
+}
