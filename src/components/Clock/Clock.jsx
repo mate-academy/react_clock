@@ -21,7 +21,7 @@ class Clock extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.name !== this.props.name) {
       console.log(
-        `The Clock was renamed from oldName to newName = ${this.props.name}`,
+        `The Clock was renamed from oldName = ${prevProps.name} to newName = ${this.props.name}`,
       );
     }
   }
