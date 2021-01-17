@@ -36,12 +36,12 @@ class App extends React.Component {
     this.setState({ clockName: newName });
   }
 
-  hiddenClock = () => {
-    this.setState({ isClockVisible: false });
-  }
-
   showClock = () => {
     this.setState({ isClockVisible: true });
+  }
+
+  hiddenClock = () => {
+    this.setState({ isClockVisible: false });
   }
 
   tick() {
