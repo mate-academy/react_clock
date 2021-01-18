@@ -1,1 +1,14 @@
-// styles go here
+html {
+  background-color: mistyrose;
+}
+
+.App {
+  text-align: center;
+  margin: 0 auto;
+  width: 300px;
+  padding: 30px;
+
+  &__button {
+    margin: 10px;
+  }
+}
