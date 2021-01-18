@@ -36,7 +36,7 @@ class App extends React.Component {
         {isClockVisible ? (
           <Clock name={this.state.clockName} />
         ) : (
-          <p className="App_offer">cookies?</p>
+          <p className="App__offer">cookies?</p>
         )}
         <div className="button-container">
           <Button

@@ -27,18 +27,15 @@ class Clock extends React.Component {
       <div className="clock clock__watch">
         Current time:
         <p className="clock__time">{date}</p>
-        {name === null
-          ? ''
-          : (
-            <div className="clock__title">
-              The Clock was renamed from oldName to:
-              <p className="clock__text">{`${name}`}</p>
-            </div>
-          )
+        {name && (
+          <div className="clock__title">
+            The Clock was renamed from oldName to:
+            <p className="clock__text">{`${name}`}</p>
+          </div>
+        )
         }
       </div>
     );
-
   }
 }
 
