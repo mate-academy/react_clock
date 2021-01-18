@@ -5,9 +5,27 @@ import './App.scss';
 
 export class App extends React.Component {
   state = {
-    clockName: 0,
+    clockName: Math.floor(Math.random() * 1000),
     isClockVisible: true,
   };
+
+  showClock() {
+    this.setState({ isClockVisible: true });
+  }
+
+  hideClock() {
+    this.setState({ isClockVisible: false });
+  }
+
+  randomName() {
+    const randomName = Math.floor(Math.random() * 1000);
+    // eslint-disable-next-line
+    console.log(
+      // eslint-disable-next-line max-len
+      `The Clock has been renamed from ${this.state.clockName} to ${randomName}`,
+    );
+    this.setState({ clockName: randomName });
+  }
 
   render() {
     const { isClockVisible, clockName } = this.state;
@@ -21,7 +39,7 @@ export class App extends React.Component {
             className="App__button"
             type="button"
             onClick={() => {
-              this.setState({ isClockVisible: true });
+              this.showClock();
             }}
           >
             Show clock
@@ -31,7 +49,7 @@ export class App extends React.Component {
             className="App__button"
             type="button"
             onClick={() => {
-              this.setState({ isClockVisible: false });
+              this.hideClock();
             }}
           >
             Hide clock
@@ -40,13 +58,7 @@ export class App extends React.Component {
           <button
             className="App__button"
             type="button"
-            onClick={() => {
-              if (isClockVisible) {
-                this.setState({
-                  clockName: Math.round(Math.random() * 1000),
-                });
-              }
-            }}
+            onClick={() => this.randomName()}
           >
             Set random name
           </button>
