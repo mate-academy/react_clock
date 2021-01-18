@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.scss';
 import { Clock } from './Clock';
 
 class App extends React.Component {
