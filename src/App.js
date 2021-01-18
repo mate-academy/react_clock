@@ -10,11 +10,12 @@ class App extends React.Component {
 
   setRandom = () => {
     const randomName = Math.random();
+
+    this.setState({ name: randomName });
     // eslint-disable-next-line
     console.log(`
-    The Clock was renamed from ${this.state.name} to ${randomName}
+      The Clock was renamed from ${this.state.name} to ${randomName}
     `);
-    this.setState({ name: randomName });
   }
 
   render() {
@@ -22,10 +23,7 @@ class App extends React.Component {
 
     return (
       <>
-        {isClockVisiable
-          ? <Clock name={clockName} />
-          : ''
-        }
+        {isClockVisiable && <Clock name={clockName} />}
         <button
           type="button"
           onClick={() => {

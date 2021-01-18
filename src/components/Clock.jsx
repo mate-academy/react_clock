@@ -7,6 +7,8 @@ class Clock extends React.Component {
 
   componentDidMount() {
     this.timerID = setInterval(() => {
+      // eslint-disable-next-line no-console
+      console.log(`Current time: ${this.state.date.toLocaleTimeString()}`);
       this.setState({ date: new Date() });
     }, 1000);
   }
@@ -24,8 +26,6 @@ class Clock extends React.Component {
         <p>
           {`Current time: ${time}`}
         </p>
-        {/* eslint-disable-next-line no-console */}
-        {console.log(`Current time: ${time}`)}
       </div>
     );
   }
