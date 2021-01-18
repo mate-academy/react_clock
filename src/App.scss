@@ -1,1 +1,26 @@
 // styles go here
+.app{
+  width: 300px;
+  margin: auto;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    margin: 0;
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+  &__buttons-wrapper {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__button {
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+  }
+}
+
