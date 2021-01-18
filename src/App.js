@@ -4,23 +4,15 @@ import './App.scss';
 
 class App extends React.Component {
   state = {
-    vueClock: true,
+    isClockVisible: true,
     data: (new Date()).toLocaleTimeString(),
     number: 0,
   };
 
-  changeTime = () => {
-    this.setState({
-      data: (new Date()).toLocaleTimeString(),
-    });
-  }
-
-  setRandomNumber = () => {
+  setRandomNumber = (prevState) => {
     this.setState({
       number: Math.random(),
     });
-    // eslint-disable-next-line no-console,max-len
-    console.log(this.state.number);
   }
 
   render() {
@@ -31,20 +23,20 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          {this.state.vueClock && (
-            <Clock />
+          {this.state.isClockVisible && (
+            <Clock name={this.state.number} />
           )}
         </p>
 
         <button
           type="button"
-          onClick={() => this.setState({ vueClock: false })}
+          onClick={() => this.setState({ isClockVisible: false })}
         >
           Hide Clock
         </button>
         <button
           type="button"
-          onClick={() => this.setState({ vueClock: true })}
+          onClick={() => this.setState({ isClockVisible: true })}
         >
           Show Clock
         </button>
