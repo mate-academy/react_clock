@@ -3,24 +3,33 @@ import { Clock } from './component/Clock';
 
 import './App.scss';
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
-
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    clockName: 0,
+    clockName: 1,
+    oldClockName: 0,
+  }
+
+  getRandomInt() {
+    const { clockName, oldClockName } = this.state;
+
+    this.setState(prevState => (
+      {
+        oldClockName: prevState.clockName,
+        clockName: Math.floor(Math.random() * Math.floor(10)),
+      }
+    ));
+    // eslint-disable-next-line
+    console.log(`The Clock was renamed from ${oldClockName} to ${clockName}`)
   }
 
   render() {
-    const { isClockVisible, clockName } = this.state;
+    const { isClockVisible } = this.state;
 
     return (
       <div className="App">
         <h1>
-          React clock №
-          {isClockVisible && (clockName)}
+          React clock
         </h1>
 
         <p>
@@ -28,7 +37,6 @@ class App extends React.Component {
           {isClockVisible && (
             <Clock
               isClockVisible={isClockVisible}
-              name={clockName}
             />
           )}
 
@@ -53,7 +61,7 @@ class App extends React.Component {
           <button
             className="button"
             type="button"
-            onClick={() => this.setState({ clockName: getRandomInt(10) })}
+            onClick={() => this.getRandomInt()}
           >
             Set random name
           </button>
