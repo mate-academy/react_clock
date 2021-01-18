@@ -13,6 +13,9 @@ export default class App extends React.Component {
     this.setState({
       timerId: Math.floor(Math.random() * 1000),
     });
+
+    // eslint-disable-next-line no-console
+    console.log(`The Clock was renamed from oldName to newName`);
   }
 
   hideTimer = () => {
@@ -26,7 +29,7 @@ export default class App extends React.Component {
       { isVisible: true }
     ));
 
-    // eslint-disable-next-line
+    // eslint-disable-next-line no-console
     console.log('Started');
   }
 

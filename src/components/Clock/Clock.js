@@ -1,33 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
     time: new Date(),
   };
 
-  timer = setInterval(() => {
-    this.setState({
-      time: new Date(),
-    });
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      this.setState({
+        time: new Date(),
+      });
 
-    // eslint-disable-next-line
-    console.log(new Date().toLocaleTimeString());
-  }, 1000);
-
-  componentDidUpdate(prevProps) {
-    if (this.props.timerId !== prevProps.timerId) {
-      // eslint-disable-next-line
-      console.log(`
-        The timer was renamed from ${prevProps.timerId} to ${this.props.timerId}
-      `);
-    }
+      // eslint-disable-next-line no-console
+      console.log(new Date().toLocaleTimeString());
+    }, 1000);
   }
 
   componentWillUnmount() {
     clearInterval(this.timer);
 
-    // eslint-disable-next-line
+    // eslint-disable-next-line no-console
     console.log('Stopped');
   }
 
@@ -39,7 +31,3 @@ export class Clock extends React.Component {
     );
   }
 }
-
-Clock.propTypes = {
-  timerId: PropTypes.number.isRequired,
-};
