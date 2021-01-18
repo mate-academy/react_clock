@@ -3,12 +3,19 @@ $randomButtonSize: 200px;
 $buttonGap: 20px;
 
 .button-block {
+  position: absolute;
+  top: 125px;
+  display: flex;
+  flex-direction: column;
+  gap: $buttonGap;
+}
+
+.visablity-buttons {
   display: flex;
   gap: $buttonGap;
 }
 
 .random-button {
-  margin-top: $buttonGap;
   width: $randomButtonSize;
 }
 

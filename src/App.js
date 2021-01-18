@@ -16,55 +16,58 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <h1>React clock</h1>
+
         <Clock
           isClockVisible={this.state.isClockVisible}
           name={this.state.clockName}
         />
 
         <div className="button-block">
-          <button
-            type="button"
-            className="changer"
-            onClick={
-              () => {
-                this.setState(
-                  { isClockVisible: true },
-                );
+          <div className="visablity-buttons">
+            <button
+              type="button"
+              className="changer"
+              onClick={
+                () => {
+                  this.setState(
+                    { isClockVisible: true },
+                  );
+                }
               }
-            }
-          >
-            Show Clock
-          </button>
+            >
+              Show Clock
+            </button>
+
+            <button
+              type="button"
+              className="changer"
+              onClick={
+                () => {
+                  this.setState(
+                    { isClockVisible: false },
+                  );
+                }
+              }
+            >
+              Hide Clock
+            </button>
+          </div>
 
           <button
             type="button"
-            className="changer"
+            className="random-button"
             onClick={
               () => {
                 this.setState(
-                  { isClockVisible: false },
+                  { clockName: letRandomName() },
                 );
               }
             }
           >
-            Hide Clock
+            Random name
           </button>
         </div>
-
-        <button
-          type="button"
-          className="random-button"
-          onClick={
-            () => {
-              this.setState(
-                { clockName: letRandomName() },
-              );
-            }
-          }
-        >
-          Random name
-        </button>
-
       </div>
     );
   }
