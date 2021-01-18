@@ -1,0 +1,51 @@
+$easeInOutQuad: cubic-bezier(0.45, 0.03, 0.51, 0.95);
+
+.clock {
+  &__watch {
+    padding: 10px 0;
+    font-size: 24px;
+  }
+
+  &__time {
+    color: white;
+    font-size: 3em;
+    text-align: center;
+    animation: neonGlow 2s infinite alternate $easeInOutQuad;
+
+    @media (max-width: 500px) {
+      font-size: 2.5em;
+    }
+  }
+
+  &__title {
+    font-size: 14px;
+  }
+
+  &__text {
+    font-size: 20px;
+  }
+}
+
+@keyframes neonGlow {
+  0% {
+    text-shadow: 0 0 10px rgba(255,255,255,0.8),
+      0 0 20px rgba(255,255,255,0.8),
+      0 0 22px  rgba(255,255,255,0.8),
+      0 0 40px  rgba(66,220,219,0.8),
+      0 0 60px  rgba(66,220,219,0.8),
+      0 0 80px  rgba(66,220,219,0.5),
+      0 0 100px rgba(66,220,219,0.5),
+      0 0 140px rgba(66,220,219,0.5),
+      0 0 200px rgba(66,220,219,0.5);
+  }
+  100% {
+    text-shadow: 0 0 2px rgba(255,255,255,0.8),
+      0 0 8px rgba(255,255,255,0.8),
+      0 0 10px rgba(255,255,255,0.8),
+      0 0 20px rgba(66,220,219,0.8),
+      0 0 30px rgba(66,220,219,0.8),
+      0 0 40px rgba(66,220,219,0.8),
+      0 0 50px rgba(66,220,219,0.5),
+      0 0 80px rgba(66,220,219,0.5);
+  }
+}
