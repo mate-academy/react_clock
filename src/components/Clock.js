@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 export default class Clock extends Component {
   state = {
@@ -17,18 +16,6 @@ export default class Clock extends Component {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps) {
-    const prevName = prevProps.name;
-    const currName = this.props.name;
-
-    if (prevProps.name !== this.props.name) {
-      // eslint-disable-next-line
-      console.log(
-        `The Clock was renamed from ${prevName} to ${currName}`,
-      );
-    }
-  }
-
   componentWillUnmount() {
     clearInterval(this.timer);
   }
@@ -37,11 +24,7 @@ export default class Clock extends Component {
     const currDate = this.state.date;
 
     return (
-      <>{currDate.toLocaleTimeString()}</>
+      <p>{currDate.toLocaleTimeString()}</p>
     );
   }
 }
-
-Clock.propTypes = {
-  name: PropTypes.number.isRequired,
-};

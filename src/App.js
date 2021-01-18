@@ -25,10 +25,15 @@ class App extends Component {
     this.setState({
       clockName: Math.random(),
     });
+
+    // eslint-disable-next-line
+    console.log(
+      `The Clock was renamed to ${this.state.clockName}`,
+    );
   }
 
   render() {
-    const { clockName, isClockVisible } = this.state;
+    const { isClockVisible } = this.state;
 
     return (
       <div className="app">
@@ -36,7 +41,7 @@ class App extends Component {
         <p>
           Current time:
           {' '}
-          { isClockVisible && <Clock name={clockName} /> }
+          { isClockVisible && <Clock /> }
         </p>
         <button
           type="button"
