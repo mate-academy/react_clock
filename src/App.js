@@ -9,6 +9,12 @@ class App extends React.Component {
     clockName: 1,
   }
 
+  rename = () => this.setState({ clockName: Math.random() });
+
+  showClock = () => this.setState({ clockVisible: true });
+
+  hideClock = () => this.setState({ clockVisible: false });
+
   render() {
     return (
       <>
@@ -22,13 +28,13 @@ class App extends React.Component {
           </p>
           <button
             type="button"
-            onClick={() => this.setState({ clockVisible: false })}
+            onClick={this.hideClock}
           >
             Hide Clock
           </button>
           <button
             type="button"
-            onClick={() => this.setState({ clockVisible: true })}
+            onClick={this.showClock}
           >
             Show Clock
           </button>
@@ -36,7 +42,7 @@ class App extends React.Component {
           <button
             type="button"
             onClick={() => {
-              this.setState({ clockName: Math.random() });
+              this.setState(this.rename);
             }}
           >
             Set rundom name
