@@ -17,16 +17,6 @@ class Clock extends React.Component {
     return this.timer;
   }
 
-  componentDidUpdate(prevProps) {
-    const oldName = prevProps.name;
-    const newName = this.props.name;
-
-    if (oldName !== newName) {
-      // eslint-disable-next-line
-      console.log(`The Clock was renamed from ${oldName} to ${newName}`);
-    }
-  }
-
   componentWillUnmount() {
     clearInterval(this.timer);
   }
