@@ -1,10 +1,15 @@
 .App {
   display: grid;
-  grid-template: max-content 70px min-content min-content / auto;
+  grid-template: repeat(3, 70px) / auto;
   justify-content: start;
   gap: 10px;
 
   font-family: "Courier New", Courier, monospace;
+
+  &__buttons {
+    grid-row-start: 3;
+
+  }
 }
 
 button {
