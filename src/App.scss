@@ -1,1 +1,27 @@
-// styles go here
+.app {
+  width: 400px;
+  background-color: rgb(197, 209, 243);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  border: 3px solid rgb(129, 129, 224);
+}
+
+.button-clock {
+  box-sizing: border-box;
+  height: 35px;
+  border-radius: 10px;
+  padding: 10px;
+  line-height: 5px;
+  font-family: monospace, sans-serif;
+  margin: 10px;
+  border: 2px solid black;
+  background: rgb(129, 129, 224);
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 1px 1px 1px 1px black;
+  }
+}
