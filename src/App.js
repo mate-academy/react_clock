@@ -5,12 +5,12 @@ import './App.scss';
 
 class App extends React.Component {
   state = {
-    isClockVisible: 1,
+    isClockVisible: true,
     clockName: 3.14,
   };
 
   switchClock = (buttonName) => {
-    this.setState({ isClockVisible: buttonName === 'Show Clock' ? 1 : false });
+    this.setState({ isClockVisible: buttonName === 'Show Clock' });
   }
 
   getRandomName = () => {
