@@ -9,22 +9,11 @@ export class App extends React.Component {
     clockName: 0,
   };
 
-  lastState = this.state;
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    this.lastState = prevState;
-  }
-
   changeName = () => {
-    const lastName = this.lastState.clockName;
-    const newName = this.state.clockName;
-
     if (this.state.isClockVisible) {
       this.setState({
         clockName: Math.round(Math.random() * 10),
       });
-      // eslint-disable-next-line no-console,max-len
-      console.log(`The Clock was renamed from ${lastName}  to ${newName}`);
     }
   }
 
