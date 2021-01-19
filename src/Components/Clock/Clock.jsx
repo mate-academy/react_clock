@@ -22,9 +22,7 @@ class Clock extends React.Component {
     const { date } = this.state;
 
     return (
-      <>
-        <span>{date.toLocaleTimeString()}</span>
-      </>
+      <span>{date.toLocaleTimeString()}</span>
     );
   }
 }

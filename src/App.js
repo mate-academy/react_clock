@@ -7,7 +7,7 @@ class App extends React.Component {
   state = {
     isClockVisible: true,
     clockName: Math.random(),
-    clockNewName: Math.random(),
+    clockNewName: null,
   };
 
   generateRandomName = () => {
