@@ -21,26 +21,22 @@ export class Clock extends React.Component {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps) {
-    const { name } = this.props;
-
-    if (name === prevProps.name) {
-      return;
-    }
-
-    // eslint-disable-next-line
-    console.log(`The Clock was renamed from ${prevProps.name} to ${name}`);
-  }
-
   componentWillUnmount() {
     clearInterval(this.timeId);
   }
 
   render() {
     const { time } = this.state;
+    const { name } = this.props;
 
     return (
-      <span>{time.toLocaleTimeString()}</span>
+      <>
+        <span>{time.toLocaleTimeString()}</span>
+        <div>
+          Current clock name:
+          {` ${name}`}
+        </div>
+      </>
     );
   }
 }
