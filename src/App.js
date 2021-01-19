@@ -11,6 +11,19 @@ export class App extends React.Component {
   state = {
     isClockVisible: true,
     clockName: null,
+    time: new Date().toLocaleTimeString(),
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState(
+        { time: new Date().toLocaleTimeString() },
+      );
+      if (this.state.isClockVisible) {
+        // eslint-disable-next-line
+        console.log(this.state.time);
+      }
+    }, 1000);
   }
 
   render() {
@@ -18,10 +31,13 @@ export class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
 
-        <Clock
-          isClockVisible={this.state.isClockVisible}
-          name={this.state.clockName}
-        />
+        {this.state.isClockVisible && (
+          <Clock
+            isClockVisible={this.state.isClockVisible}
+            name={this.state.clockName}
+            time={this.state.time}
+          />
+        )}
 
         <div className="button-block">
           <div className="visablity-buttons">
