@@ -7,15 +7,20 @@ class App extends React.Component {
   state = {
     isClockVisible: true,
     clockName: Math.random(),
+    clockNewName: Math.random(),
   };
 
   generateRandomName = () => {
-    this.setState({ clockName: Math.random() });
+    this.setState({ clockNewName: Math.random() });
 
     if (this.state.isClockVisible) {
       // eslint-disable-next-line no-console
-      console.log(`The Clock was renamed from oldName to newName`);
+      console.log(`The Clock was renamed from ${this.state.clockName} to
+                    ${this.state.clockNewName}`);
     }
+
+    // eslint-disable-next-line react/no-access-state-in-setstate
+    this.setState({ clockName: this.state.clockNewName });
   }
 
   showClock = () => {
