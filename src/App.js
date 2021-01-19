@@ -19,19 +19,15 @@ class App extends React.Component {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line
-      console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
-
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
 
-  randomName = () => {
+  makeNewRandomName = () => {
     const newName = Math.floor(Math.random() * (10 - 1)) + 1;
+
+    // eslint-disable-next-line
+    console.log(`The Clock was renamed from ${this.state.clockName} to ${newName}`);
 
     this.setState({ clockName: newName });
   }
@@ -53,7 +49,7 @@ class App extends React.Component {
   render() {
     const hidden = this.hiddenClock;
     const show = this.showClock;
-    const changeName = this.randomName;
+    const changeName = this.makeNewRandomName;
 
     return (
       <div className="App">
