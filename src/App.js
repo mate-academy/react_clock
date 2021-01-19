@@ -15,15 +15,23 @@ export class App extends React.Component {
   }
 
   componentDidMount() {
-    setInterval(() => {
-      this.setState(
-        { time: new Date().toLocaleTimeString() },
-      );
-      if (this.state.isClockVisible) {
-        // eslint-disable-next-line
+    this.setState(
+      { timer: setInterval(this.changeAndLogTime, 1000) },
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.timer);
+  }
+
+  changeAndLogTime = () => {
+    this.setState(
+      { time: new Date().toLocaleTimeString() },
+    );
+    if (this.state.isClockVisible) {
+      // eslint-disable-next-line
         console.log(this.state.time);
-      }
-    }, 1000);
+    }
   }
 
   render() {
