@@ -1,1 +1,24 @@
 // styles go here
+$randomButtonSize: 200px;
+$buttonGap: 20px;
+
+.button-block {
+  position: absolute;
+  top: 125px;
+  display: flex;
+  flex-direction: column;
+  gap: $buttonGap;
+}
+
+.visablity-buttons {
+  display: flex;
+  gap: $buttonGap;
+}
+
+.random-button {
+  width: $randomButtonSize;
+}
+
+.changer {
+  width: calc(#{($randomButtonSize - $buttonGap) / 2});
+}
