@@ -12,7 +12,7 @@ export default class Clock extends Component {
       });
 
       // eslint-disable-next-line
-      console.log(this.state.date.toLocaleTimeString())
+      console.log(this.state.date.toLocaleTimeString());
     }, 1000);
   }
 
