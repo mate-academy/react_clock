@@ -6,14 +6,10 @@ export class App extends React.Component {
   state = {
     isClockVisible: true,
     clockName: Math.random(),
-    clockNewName: Math.random(),
+    clockNewName: null,
   }
 
   genereteRandomName = () => {
-    this.setState({ clockNewName: Math.random() });
-    // eslint-disable-next-line react/no-access-state-in-setstate
-    this.setState({ clockName: this.state.clockNewName });
-
     if (this.state.isClockVisible) {
       // eslint-disable-next-line no-console
       console.log(
@@ -21,6 +17,9 @@ export class App extends React.Component {
         ${this.state.clockNewName}`,
       );
     }
+
+    this.setState(state => ({ clockName: state.clockNewName }));
+    this.setState({ clockNewName: Math.random() });
   }
 
   showClock = () => {
