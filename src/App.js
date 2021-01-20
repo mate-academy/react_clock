@@ -37,7 +37,7 @@ class App extends React.Component {
               );
             }}
           >
-            ShowClock
+            Show Clock
           </button>
 
           <button

@@ -21,13 +21,13 @@ body {
   width: 113px;
   height: 42px;
   border-radius: 8px;
-  color: rgb(235, 235, 235);
-  background-color: rgb(161, 161, 161);
+  color: rgb(245, 245, 245);
+  background-color: rgb(122, 122, 122);
   transition: 0.4s;
   margin: 0 10px;
 
   &:hover {
-    color: rgb(161, 161, 161);
+    color: rgb(99, 99, 99);
     background-color: rgb(235, 235, 235);
     cursor: pointer;
   }
