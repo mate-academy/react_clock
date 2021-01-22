@@ -15,11 +15,12 @@ h1 {
 // Theme styles
 .timer {
   margin: 20px auto;
-  max-width: 300px;
+  max-width: 500px;
   text-align: center;
 
   &-btn {
     margin-right: 10px;
+    margin-bottom: 10px;
     padding: 10px 15px;
   
     border: none;
