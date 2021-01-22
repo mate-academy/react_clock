@@ -35,7 +35,7 @@ class Clock extends React.Component {
         {this.props.name && (
           <h4>
             Clock name is
-            {this.props.name}
+            {` ${this.props.name}`}
           </h4>
         )}
         <p>
