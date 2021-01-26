@@ -1,1 +1,38 @@
-// styles go here
+// Variables
+$darksalmon: #de6238;
+$white: #fff;
+
+// General styles
+* {
+  font-family: "Courier New", Courier, monospace;
+  color: $darksalmon;
+}
+
+h1 {
+  color: lightnen($darksalmon, 15%);
+}
+
+// Theme styles
+.timer {
+  margin: 20px auto;
+  max-width: 500px;
+  text-align: center;
+
+  &-btn {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+  
+    border: none;
+    color: $white;
+    background-color: $darksalmon;
+    
+    cursor: pointer;
+    font-size: 16px;
+  
+    &,
+    &:focus {
+      outline: none;
+    }
+  }
+}
