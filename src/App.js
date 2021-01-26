@@ -37,22 +37,25 @@ class App extends React.Component {
       <div className="App timer">
         <h1>React clock</h1>
 
-        <button
-          type="button"
-          className="timer-btn"
-          value="Show"
-          onClick={this.showClock}
-        >
-          Show Clock
-        </button>
-        <button
-          type="button"
-          className="timer-btn"
-          value="Hide"
-          onClick={this.hideClock}
-        >
-          Hide Clock
-        </button>
+        {this.state.isClockVisible ? (
+          <button
+            type="button"
+            className="timer-btn"
+            value="Hide"
+            onClick={this.hideClock}
+          >
+            Hide Clock
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="timer-btn"
+            value="Show"
+            onClick={this.showClock}
+          >
+            Show Clock
+          </button>
+        )}
         <button
           type="button"
           className="timer-btn btn-special"
