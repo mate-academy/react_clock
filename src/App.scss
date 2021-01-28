@@ -1,1 +1,61 @@
-// styles go here
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(ellipse at center,  #0a2e38  0%, #000 70%);
+  background-size: 100%;
+  font-family: "Share Tech Mono", monospace;
+}
+
+.title {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  padding: 20px ;
+  position: relative;
+  max-width: 625px;
+  font-size: 80px;
+  color: #daf6ff;
+  text-shadow: 0 0 20px rgba(10, 175, 230, 1), 0 0 20px rgba(10, 175, 230, 0);
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.app_clock {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  width: 600px;
+}
+
+.app_buttons {
+  margin: 50px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+button {
+  margin: 20px;
+  width: 180px;
+  height: 70px;
+
+  border: 1px solid white;
+  border-radius: 40px;
+  background: transparent;
+
+  font-size: 20px;
+  color: #daf6ff;
+  text-shadow: 0 0 20px rgba(10, 175, 230, 1), 0 0 20px rgba(10, 175, 230, 0);
+  transition: color 0.3s, background-color 0.3s;
+
+  &:hover {
+    background-color: white;
+    color: rgba(12,29,33,1);
+  }
+}
