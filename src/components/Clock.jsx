@@ -9,14 +9,18 @@ export class Clock extends React.Component {
   componentDidMount() {
     this.timerID = setInterval(() => {
       const newDate = new Date();
-      // eslint-disable-next-line
-      this.setState({date: newDate });
+
+      this.setState({ date: newDate });
     }, 1000);
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (this.props.name === prevProps.name) {
+      return;
+    }
+
     // eslint-disable-next-line no-console
-    console.log(`The Clock was renamed 
+    console.log(`The Clock was renamed
     from ${prevProps.name} to ${this.props.name}`);
   }
 
