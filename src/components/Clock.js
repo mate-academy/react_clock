@@ -9,6 +9,8 @@ export class Clock extends React.Component {
   componentDidMount() {
     this.timerId = setInterval(() => {
       this.setState({ time: new Date().toLocaleTimeString() });
+      // eslint-disable-next-line no-console
+      console.log(this.state.time);
     }, 1000);
   }
 
@@ -26,11 +28,6 @@ export class Clock extends React.Component {
           Current time:
           {' '}
           { time }
-
-          {
-          // eslint-disable-next-line no-console
-          console.log(time)
-          }
         </p>
 
         <p className="text">
