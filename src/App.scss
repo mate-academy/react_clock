@@ -1,1 +1,41 @@
 // styles go here
+body {
+  background-color: #ccc;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.header {
+  font-size: 40px;
+  padding: 50px;
+}
+
+.container {
+  margin: 0 auto;
+  border-radius: 50%;
+  height: 400px;
+  line-height: 20px;
+  border: 1px solid #a7a7a7;
+  background-color: #dcdcdc;
+  padding: 10px;
+  width: 450px;
+  text-align: center;
+  
+}
+
+.text {
+  font-size: 18px;
+  text-align: center;
+}
+
+.button {
+  background-color: #dcdcdc;
+  margin: 20px 5px;
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid  #a7a7a7;
+  outline: #a7a7a7;
+}
+
+.button:active {
+  background: #a7a7a7;
+}
