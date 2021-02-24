@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable no-console */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -30,7 +30,9 @@ export class Clock extends React.Component {
   }
 
   render() {
-    console.log(this.state.date.toLocaleTimeString());
+    const { date } = this.state;
+
+    console.log(date.toLocaleTimeString());
 
     return (
       <p>

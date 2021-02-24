@@ -5,7 +5,7 @@ import { Clock } from './components/Clock';
 
 class App extends React.Component {
   state = {
-    isClockVisible: true,
+    isClockVisible: false,
     clockName: 0,
   }
 
@@ -34,8 +34,23 @@ class App extends React.Component {
             {isClockVisible ? <Clock name={clockName} /> : null}
           </div>
           <div className="show_button">
-            <button type="button" onClick={this.showClock}>Show Clock</button>
-            <button type="button" onClick={this.hideClock}>Hide Clock</button>
+
+            <button
+              type="button"
+              onClick={this.showClock}
+              disabled={isClockVisible}
+            >
+              Show Clock
+            </button>
+
+            <button
+              type="button"
+              onClick={this.hideClock}
+              disabled={!isClockVisible}
+            >
+              Hide Clock
+            </button>
+
             <button
               type="button"
               onClick={this.setRandomNumber}
