@@ -1,1 +1,42 @@
-// styles go here
+body {
+  background-color: #87ceeb;
+}
+
+.App {
+  text-align: center;
+  margin-top: 15%;
+}
+
+.App h1 {
+  font-size: 5rem;
+  color: #1e90ff;
+}
+
+.clock {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #5f9ea0;
+  margin-top: -2rem;
+}
+
+.show_button {
+  width: 40%;
+  display: inline-flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-top: -2rem;
+}
+
+.show_button button {
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  color: grey;
+  background-color: #e0ffff;
+}
+
+  .show_button button:hover {
+    color: black;
+    background-color: white;
+    cursor: pointer;
+  }
