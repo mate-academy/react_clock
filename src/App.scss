@@ -1,55 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap");
+
 html {
   background-color: rgb(213, 241, 227);
 }
 
+.App {
+  font-family: "Akaya Telivigala", cursive;
+  text-align: center;
+  margin-top: 15%;
+}
+
 .clock {
-  font-family: "Orbitron", sans-serif;
   color: #7f79bb;
   font-size: 56px;
-  text-align: center;
-  padding-top: 240px;
-  padding-bottom: 40px;
 }
 
-#hideClock {
+.button {
+  font-family: "Akaya Telivigala", cursive;
   background-color: #92f88e;
-  border: none;
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
   cursor: pointer;
-  position: absolute;
-  text-align: center;
-  left: 697px;
-  top: 325px;
-  font-size: 28px;
-  color: rgb(65, 112, 153);
-}
-
-#showClock {
-  background-color: #92f88e;
-  border: none;
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  position: absolute;
-  left: 697px;
-  top: 325px;
-  font-size: 28px;
-  color: rgb(65, 112, 153);
-}
-
-#setRandomName {
-  background-color: #92f88e;
-  border: none;
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  position: absolute;
-  left: 900px;
-  top: 265px;
   font-size: 28px;
   color: rgb(65, 112, 153);
 }
@@ -57,17 +26,4 @@ html {
 .reactClock {
   font-family: "Bradley" Hand, cursive;
   font-size: 36px;
-  text-align: center;
-  position: absolute;
-  left: 690px;
-  top: 170px;
-}
-
-.currentTime {
-  font-family: "Bradley" Hand, cursive;
-  font-size: 36px;
-  text-align: center;
-  position: absolute;
-  left: 450px;
-  top: 225px;
 }
