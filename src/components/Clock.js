@@ -13,9 +13,9 @@ export class Clock extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.state.date.toLocaleTimeString());
-
     if (prevProps.name === this.props.name) {
+      console.log(this.state.date.toLocaleTimeString());
+
       return;
     }
 
