@@ -1,1 +1,29 @@
-// styles go here
+@import url("https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap");
+
+html {
+  background-color: rgb(213, 241, 227);
+}
+
+.App {
+  font-family: "Akaya Telivigala", cursive;
+  text-align: center;
+  margin-top: 15%;
+}
+
+.clock {
+  color: #7f79bb;
+  font-size: 56px;
+}
+
+.button {
+  font-family: "Akaya Telivigala", cursive;
+  background-color: #92f88e;
+  cursor: pointer;
+  font-size: 28px;
+  color: rgb(65, 112, 153);
+}
+
+.reactClock {
+  font-family: "Bradley" Hand, cursive;
+  font-size: 36px;
+}
