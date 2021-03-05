@@ -1,8 +1,6 @@
 import React from 'react';
 
-import './Clock.scss';
-
-class Clock extends React.Component {
+export class Clock extends React.Component {
   state = {
     date: new Date(),
   }
@@ -23,17 +21,13 @@ class Clock extends React.Component {
   render() {
     const { date } = this.state;
 
+    // eslint-disable-next-line no-console
+    console.log(date.toLocaleTimeString());
+
     return (
-      <div>
-        <h1>
-          React clock
-        </h1>
-        <p>
-          {`Current time: ${date.toLocaleTimeString()}`}
-        </p>
-      </div>
+      <p>
+        {`Current time: ${date.toLocaleTimeString()}`}
+      </p>
     );
   }
 }
-
-export default Clock;
