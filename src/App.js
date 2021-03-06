@@ -39,13 +39,13 @@ class App extends Component {
       <div className="App">
         <h1>React clock</h1>
         {isClockVisible
-        && (
-        <Clock
-          initialValue={initialValue}
-          clockName={clockName}
-        />
-        )
-      }
+          && (
+            <Clock
+              initialValue={initialValue}
+              clockName={clockName}
+            />
+          )
+        }
         <button
           type="button"
           onClick={show}
