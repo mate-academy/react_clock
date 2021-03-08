@@ -9,16 +9,6 @@ class App extends React.Component {
     clockName: 0,
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.log(
-        `The Clock was renamed `
-        + `from ${prevState.clockName} to ${this.state.clockName}.`,
-      );
-    }
-  }
-
   handleToVisible = () => {
     this.setState({
       isClockVisible: true,
