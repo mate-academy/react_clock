@@ -2,12 +2,25 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class Clock extends Component {
-  static propTypes = {
-    clockName: PropTypes.number.isRequired,
-    initialValue: PropTypes.string.isRequired,
+  state = {
+    timer: new Date(),
   }
 
-  componentDidUpdate(prevProps, _) {
+  static propTypes = {
+    clockName: PropTypes.number.isRequired,
+  }
+
+  componentDidMount() {
+    this.timeID = setInterval(() => {
+      const time = new Date();
+
+      // eslint-disable-next-line
+      console.log(time.toLocaleTimeString());
+      this.setState({ timer: time });
+    }, 1000);
+  }
+
+  componentDidUpdate(prevProps) {
     const { clockName: prev } = this.props;
     const { clockName: current } = prevProps;
 
@@ -17,12 +30,16 @@ class Clock extends Component {
     }
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timeID);
+  }
+
   render() {
-    const { initialValue } = this.props;
+    const { timer } = this.state;
 
     return (
       <p>
-        {`Current time: ${initialValue}`}
+        {`Current time: ${timer.toLocaleTimeString()}`}
       </p>
     );
   }

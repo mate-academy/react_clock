@@ -6,24 +6,18 @@ import './App.scss';
 class App extends Component {
   state = {
     isClockVisible: false,
-    initialValue: '00:00:00 AM',
     clockName: 0,
-  }
-
-  componentDidMount() {
-    setInterval(() => {
-      const date = new Date();
-      const humanResult = date.toLocaleTimeString();
-
-      // eslint-disable-next-line
-      console.log(humanResult);
-      this.setState({ initialValue: humanResult });
-    }, 1000);
+    clickedHidden: 0,
   }
 
   show = () => this.setState({ isClockVisible: true })
 
-  hide = () => this.setState({ isClockVisible: false })
+  hide = () => {
+    if (this.state.clickedHidden !== 5) {
+      this.setState(prevState => ({ clicked: prevState.clicked + 1 }));
+      this.setState({ isClockVisible: false });
+    }
+  }
 
   randomNumber = () => {
     const digit = Math.round(Math.random() * 100);
@@ -33,7 +27,7 @@ class App extends Component {
 
   render() {
     const { show, hide, randomNumber } = this;
-    const { isClockVisible, initialValue, clockName } = this.state;
+    const { isClockVisible, clockName } = this.state;
 
     return (
       <div className="App">
@@ -41,7 +35,6 @@ class App extends Component {
         {isClockVisible
           && (
             <Clock
-              initialValue={initialValue}
               clockName={clockName}
             />
           )
@@ -49,6 +42,7 @@ class App extends Component {
         <button
           type="button"
           onClick={show}
+          ch={this.timeID}
         >
           Show Clock
         </button>
