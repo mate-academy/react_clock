@@ -33,7 +33,7 @@ export class Clock extends React.Component {
     const { date } = this.state;
 
     // eslint-disable-next-line no-console
-    console.log(date.toLocaleTimeString());
+    console.log(this.state.date.toLocaleTimeString());
 
     return (
       <p>
@@ -44,5 +44,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.number.isRequired,
 };
