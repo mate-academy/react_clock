@@ -1,5 +1,5 @@
 import React from 'react';
-import CurrentTime from './CurrentTime';
+import Clock from './Clock';
 
 import './App.scss';
 
@@ -28,6 +28,10 @@ class App extends React.Component {
   };
 
   changeName = () => {
+    if (!this.state.isClockVisible) {
+      return;
+    }
+
     this.setState({ name: (Math.random() * 10).toFixed(0) });
   }
 
@@ -38,7 +42,7 @@ class App extends React.Component {
           {`React clock ${this.state.name}`}
         </h1>
         {this.state.isClockVisible && (
-          <CurrentTime />
+          <Clock />
         )}
         <button type="button" onClick={this.showClock}>Show Clock</button>
         <button type="button" onClick={this.hideClock}>Hide Clock</button>
