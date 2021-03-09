@@ -1,15 +1,15 @@
 import React from 'react';
 
 class Clock extends React.Component {
-  state = {}
+  state = {
+    date: new Date(),
+  }
 
   componentDidMount() {
     this.timer = setInterval(() => {
-      const date = new Date();
-
-      this.setState({ time: date.toLocaleTimeString() });
+      this.setState({ date: new Date() });
       // eslint-disable-next-line
-      console.log(date.toLocaleTimeString());
+      console.log(this.state.date.toLocaleTimeString());
     }, 1000);
   }
 
@@ -20,9 +20,7 @@ class Clock extends React.Component {
   render() {
     return (
       <p>
-        Current Time:
-        {' '}
-        {this.state.time}
+        { `React clock ${this.state.date.toLocaleTimeString()}` }
       </p>
     );
   }

@@ -28,9 +28,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>
-          React clock
-          {' '}
-          {this.state.name}
+          {`React clock ${this.state.name}`}
         </h1>
         {this.state.isClockVisible && (
         <Clock />
