@@ -20,9 +20,7 @@ class CurrentTime extends React.Component {
   render() {
     return (
       <p>
-        Current time:
-        {' '}
-        {this.state.time}
+        {`Current time: ${this.state.time}`}
       </p>
     );
   }
