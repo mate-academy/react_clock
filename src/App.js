@@ -16,9 +16,9 @@ class App extends React.Component {
     console.log(`The Clock was renamed from oldName to newName ${this.state.prevName} to ${this.state.name}`)
   }
 
-  show = () => this.setState({ isClockVisible: true })
+  showClock = () => this.setState({ isClockVisible: true })
 
-  hide = () => this.setState({ isClockVisible: false })
+  hideClock = () => this.setState({ isClockVisible: false })
 
   changeName = () => {
     this.setState({ name: Math.trunc((Math.random() * 10)) });
@@ -35,8 +35,8 @@ class App extends React.Component {
         {this.state.isClockVisible && (
         <Clock />
         )}
-        <button type="button" onClick={this.show}>Show</button>
-        <button type="button" onClick={this.hide}>Hide</button>
+        <button type="button" onClick={this.showClock}>Show</button>
+        <button type="button" onClick={this.hideClock}>Hide</button>
         <button type="button" onClick={this.changeName}>Random name</button>
       </div>
     );
