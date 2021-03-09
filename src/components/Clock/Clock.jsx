@@ -1,13 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-class Clock extends Component {
+export class Clock extends Component {
   state = {
     timer: new Date(),
-  }
-
-  static propTypes = {
-    clockName: PropTypes.number.isRequired,
   }
 
   componentDidMount() {
@@ -39,10 +35,14 @@ class Clock extends Component {
 
     return (
       <p>
-        {`Current time: ${timer.toLocaleTimeString()}`}
+        {
+          `Current time: ${timer.toLocaleTimeString()}`
+        }
       </p>
     );
   }
 }
 
-export default Clock;
+Clock.propTypes = {
+  clockName: PropTypes.number.isRequired,
+};
