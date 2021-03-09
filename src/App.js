@@ -6,18 +6,9 @@ import './App.scss';
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    name: '0',
+    previousName: '0',
+    name: '1',
   };
-
-  componentDidUpdate(prevProps, prevState) {
-    this.state.previousName = prevState.name;
-
-    // eslint-disable-next-line
-    console.log(
-      `The clock was renamed from
-        ${this.state.previousName} to ${this.state.name}`,
-    );
-  }
 
   showClock = () => {
     this.setState({ isClockVisible: true });
@@ -32,7 +23,14 @@ class App extends React.Component {
       return;
     }
 
+    this.setState(prevState => ({ previousName: prevState.name }));
     this.setState({ name: (Math.random() * 10).toFixed(0) });
+
+    // eslint-disable-next-line
+    console.log(
+      `The clock was renamed from
+        ${this.state.previousName} to ${this.state.name}`,
+    );
   }
 
   render() {
