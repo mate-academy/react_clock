@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-class Clock extends React.Component {
+export class Clock extends React.Component {
   state = {
     date: new Date(),
   }
@@ -28,13 +28,13 @@ class Clock extends React.Component {
   render() {
     return (
       <p>
-        { `React clock ${this.state.date.toLocaleTimeString()}` }
+        {
+        `React clock ${this.state.date.toLocaleTimeString()}`
+        }
       </p>
     );
   }
 }
-
-export default Clock;
 
 Clock.propTypes = {
   name: PropTypes.number.isRequired,

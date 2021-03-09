@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.scss';
-import Clock from './Components/Clock/CLock';
+import { Clock } from './Components/Clock/CLock';
 
 class App extends React.Component {
   state = {
@@ -21,7 +21,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>
-          {`React clock ${this.state.clockName}`}
+          {
+          `React clock ${this.state.clockName}`
+          }
         </h1>
         {this.state.isClockVisible && (
         <Clock name={this.state.clockName} />
