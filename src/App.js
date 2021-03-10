@@ -6,7 +6,6 @@ import './App.scss';
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    previousName: '0',
     name: '1',
   };
 
@@ -23,24 +22,17 @@ class App extends React.Component {
       return;
     }
 
-    this.setState(prevState => ({ previousName: prevState.name }));
     this.setState({ name: (Math.random() * 10).toFixed(0) });
-
-    // eslint-disable-next-line
-    console.log(
-      `The clock was renamed from
-        ${this.state.previousName} to ${this.state.name}`,
-    );
   }
 
   render() {
     return (
       <div className="App">
         <h1>
-          {`React clock ${this.state.name}`}
+          React clock
         </h1>
         {this.state.isClockVisible && (
-          <Clock />
+          <Clock name={this.state.name} />
         )}
         <button type="button" onClick={this.showClock}>Show Clock</button>
         <button type="button" onClick={this.hideClock}>Hide Clock</button>
