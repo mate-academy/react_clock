@@ -7,6 +7,7 @@ class App extends React.Component {
   state = {
     date: new Date(),
     isClockVisible: true,
+    clockName: 33,
   }
 
   componentDidMount() {
@@ -19,8 +20,12 @@ class App extends React.Component {
     clearInterval(this.timerID);
   }
 
+  clockHandler = () => (
+    this.setState({ isClockVisible: !this.state.isClockVisible })
+  )
+
   render() {
-    const { date, isClockVisible } = this.state;
+    const { date, isClockVisible, clockName } = this.state;
 
     return (
       <div className="App">
@@ -29,22 +34,26 @@ class App extends React.Component {
           Current time:
           <button
             type="button"
-            onClick={() => (
-              this.setState({ isClockVisible: true })
-            )}
+            onClick={this.clockHandler}
           >
             Show Clock
           </button>
           <button
             type="button"
-            onClick={() => (
-              this.setState({ isClockVisible: false })
-            )}
+            onClick={this.clockHandler}
           >
             Hide Clock
           </button>
+          <button
+            type="button"
+            onClick={() => (
+              this.setState({ clockName: Math.ceil(Math.random() * 100) })
+            )}
+          >
+            Set random name
+          </button>
         </p>
-        {isClockVisible && <Clock date={date} />}
+        {isClockVisible && <Clock date={date} clockName={clockName} />}
       </div>
     );
   }
