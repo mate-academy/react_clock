@@ -5,27 +5,18 @@ import './App.scss';
 
 class App extends React.Component {
   state = {
-    date: new Date(),
     isClockVisible: true,
     clockName: 33,
   }
 
-  componentDidMount() {
-    this.timerID = setInterval(() => {
-      this.setState({ date: new Date() });
-    }, 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
   clockHandler = () => (
-    this.setState({ isClockVisible: !this.state.isClockVisible })
+    this.setState(prevState => ({
+      isClockVisible: !prevState.isClockVisible,
+    }))
   )
 
   render() {
-    const { date, isClockVisible, clockName } = this.state;
+    const { isClockVisible, clockName } = this.state;
 
     return (
       <div className="App">
@@ -53,7 +44,7 @@ class App extends React.Component {
             Set random name
           </button>
         </p>
-        {isClockVisible && <Clock date={date} clockName={clockName} />}
+        {isClockVisible && <Clock clockName={clockName} />}
       </div>
     );
   }

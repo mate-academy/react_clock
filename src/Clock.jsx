@@ -1,22 +1,43 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
-  componentDidUpdate(prevProps, prevState) {
+  state = {
+    date: new Date(),
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(() => {
+      this.setState({ date: new Date() });
+    }, 1000);
+  }
+
+  componentDidUpdate(prevProps) {
     if (prevProps.clockName !== this.props.clockName) {
+      /* eslint-disable-next-line no-console */
       console.log(
-        `The Clock was renamed from ${prevProps.clockName} to ${this.props.clockName}.`
+        `The Clock was renamed from \
+        ${prevProps.clockName} to ${this.props.clockName}.`,
       );
     }
   }
 
-  render() {
-    const { date } = this.props;
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
 
-    // eslint-disable-next-line;
+  render() {
+    const { date } = this.state;
+
+    /* eslint-disable-next-line no-console */
     console.log(date.toLocaleTimeString());
 
-    return(
+    return (
       <p>{date.toLocaleTimeString()}</p>
-    )
+    );
   }
+}
+
+Clock.propTypes = {
+  clockName: PropTypes.number.isRequired,
 };
