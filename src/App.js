@@ -9,11 +9,9 @@ class App extends React.Component {
     clockName: 33,
   }
 
-  clockHandler = () => (
-    this.setState(prevState => ({
-      isClockVisible: !prevState.isClockVisible,
-    }))
-  )
+  showClock = () => this.setState({ isClockVisible: true });
+
+  hideClock = () => this.setState({ isClockVisible: false });
 
   render() {
     const { isClockVisible, clockName } = this.state;
@@ -25,13 +23,13 @@ class App extends React.Component {
           Current time:
           <button
             type="button"
-            onClick={this.clockHandler}
+            onClick={this.showClock}
           >
             Show Clock
           </button>
           <button
             type="button"
-            onClick={this.clockHandler}
+            onClick={this.hideClock}
           >
             Hide Clock
           </button>
