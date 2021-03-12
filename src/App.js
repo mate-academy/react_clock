@@ -13,35 +13,34 @@ class App extends React.Component {
 
   hideClock = () => this.setState({ isClockVisible: false });
 
+  generateName = () => this.setState(
+    { clockName: Math.ceil(Math.random() * 100) },
+  );
+
   render() {
     const { isClockVisible, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-        <p>
-          Current time:
-          <button
-            type="button"
-            onClick={this.showClock}
-          >
-            Show Clock
-          </button>
-          <button
-            type="button"
-            onClick={this.hideClock}
-          >
-            Hide Clock
-          </button>
-          <button
-            type="button"
-            onClick={() => (
-              this.setState({ clockName: Math.ceil(Math.random() * 100) })
-            )}
-          >
-            Set random name
-          </button>
-        </p>
+        <button
+          type="button"
+          onClick={this.showClock}
+        >
+          Show Clock
+        </button>
+        <button
+          type="button"
+          onClick={this.hideClock}
+        >
+          Hide Clock
+        </button>
+        <button
+          type="button"
+          onClick={this.generateName}
+        >
+          Set random name
+        </button>
         {isClockVisible && <Clock clockName={clockName} />}
       </div>
     );
