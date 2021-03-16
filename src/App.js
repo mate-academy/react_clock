@@ -6,6 +6,13 @@ import './App.scss';
 class App extends React.Component {
   state = {
     isClockVisible: true,
+    clockName: Math.floor(Math.random() * 100) + 1,
+  }
+
+  setRandomName = () => {
+    this.setState({
+      clockName: Math.floor(Math.random() * 100) + 1,
+    });
   }
 
   showClock = () => {
@@ -27,7 +34,14 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          {this.state.isClockVisible ? <Clock /> : <></>}
+          {this.state.isClockVisible
+            ? <Clock name={this.state.clockName} />
+            : <></>}
+        </p>
+        <p>
+          Current random number:
+          {' '}
+          {this.state.clockName}
         </p>
 
         <button type="button" onClick={this.showClock}>
@@ -35,6 +49,9 @@ class App extends React.Component {
         </button>
         <button type="button" onClick={this.hideClock}>
           Hide Clock
+        </button>
+        <button type="button" onClick={this.setRandomName}>
+          Set random name
         </button>
       </div>
     );
