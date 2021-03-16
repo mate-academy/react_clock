@@ -34,7 +34,7 @@ class App extends React.Component {
       <div className="App">
         <p>
           Current time:
-          {isClockVisible ? <Clock name={clockName} /> : ''}
+          {isClockVisible && <Clock name={clockName} />}
         </p>
         <div className="buttonsBlock">
           <button
