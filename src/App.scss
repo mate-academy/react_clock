@@ -1,1 +1,7 @@
-// styles go here
+.buttonsBlock {
+  display: flex;
+  flex-direction: column;
+  & > &__button {
+    width: 200px;
+  }
+}
