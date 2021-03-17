@@ -5,16 +5,8 @@ import { Clock } from './components/Clock';
 
 class App extends React.Component {
   state = {
-    name: 'Alica',
+    clockName: 0,
     isClockVisible: true,
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.name !== this.state.name) {
-      // eslint-disable-next-line no-console
-      console.log(`The Clock was renamed from `
-        + `${prevState.name} to ${this.state.name}`);
-    }
   }
 
   showClock = (event) => {
@@ -26,7 +18,7 @@ class App extends React.Component {
   };
 
   changedName = (event) => {
-    this.setState({ name: Math.random() });
+    this.setState({ clockName: Math.ceil(Math.random() * 100) });
   };
 
   render() {
@@ -57,7 +49,7 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          { this.state.isClockVisible && <Clock /> }
+          { this.state.isClockVisible && <Clock name={this.state.clockName} /> }
         </p>
       </div>
     );
