@@ -6,7 +6,7 @@ export class Clock extends React.Component {
   }
 
   componentDidMount() {
-    this.bob = setInterval(() => {
+    this.timeInterval = setInterval(() => {
       const date = new Date().toLocaleTimeString();
 
       this.setState({ time: date });
@@ -16,7 +16,7 @@ export class Clock extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.bob);
+    clearInterval(this.timeInterval);
   }
 
   render() {
