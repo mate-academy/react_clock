@@ -1,25 +1,62 @@
 import React from 'react';
+import { Clock } from './Clock';
 
 import './App.scss';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+export class App extends React.Component {
+  state = {
+    isClockVisible: false,
+    clockName: 0,
+  }
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  hideClock = () => {
+    this.setState({
+      isClockVisible: false,
+    });
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  showClock = () => {
+    this.setState({
+      isClockVisible: true,
+    });
+  }
 
-export default App;
+  randomName = () => {
+    this.setState({
+      clockName: Math.floor(Math.random() * 100 + 1),
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        <p>
+          Current time:
+          {' '}
+          {this.state.isClockVisible && (
+            <Clock clockName={this.state.clockName} />
+          )}
+        </p>
+        <button
+          type="button"
+          onClick={this.showClock}
+        >
+          Show Clock
+        </button>
+        <button
+          type="button"
+          onClick={this.hideClock}
+        >
+          Hide Clock
+        </button>
+        <button
+          type="button"
+          onClick={this.randomName}
+        >
+          Set random name
+        </button>
+      </div>
+    );
+  }
+}
