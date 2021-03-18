@@ -2,24 +2,68 @@ import React from 'react';
 
 import './App.scss';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+import { Clock } from './components/Clock/Clock';
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+class App extends React.Component {
+  state = {
+    isClockVisible: true,
+    clockName: 0,
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
+  setRandomName = () => (
+    this.setState((prevState) => {
+      const oldName = prevState.clockName;
+      const newName = Math.floor(Math.random() * 1000);
+
+      // eslint-disable-next-line no-console
+      console.log(
+        `The Clock was renamed from ${oldName} to ${newName}`,
+      );
+
+      return {
+        clockName: newName,
+      };
+    })
   );
-};
+
+  changeClockVisbility = () => {
+    this.setState(prevState => ({
+      isClockVisible: !prevState.isClockVisible,
+    }));
+  }
+
+  render() {
+    const { isClockVisible } = this.state;
+
+    return (
+      <>
+        <h1>React clock</h1>
+        {isClockVisible
+          ? <Clock />
+          : null
+        }
+
+        <>
+          <button
+            type="button"
+            onClick={this.changeClockVisbility}
+          >
+            {this.state.isClockVisible
+              ? 'Hide Clock'
+              : 'Show Clock'
+            }
+          </button>
+
+          <button
+            type="button"
+            onClick={this.setRandomName}
+          >
+            Set random name
+          </button>
+        </>
+      </>
+    );
+  }
+}
 
 export default App;
