@@ -1,10 +1,4 @@
 .App {
-  &__text {
-    color: purple;
-    font-weight: 900;
-    text-transform: uppercase;
-  }
-
   &__buttons {
     display: flex;
     gap: 15px;

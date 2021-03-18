@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Clock.scss';
+
 export class Clock extends React.Component {
   state = {
     currentTime: new Date(),
