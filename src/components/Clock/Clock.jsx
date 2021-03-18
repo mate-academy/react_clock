@@ -7,18 +7,24 @@ export class Clock extends React.Component {
   };
 
   componentDidMount() {
-    setInterval(() => {
+    this.time = setInterval(() => {
       this.setState({
         currentTime: new Date().toLocaleTimeString(),
       });
-    });
+      // eslint-disable-next-line no-console
+      console.log(new Date().toLocaleTimeString());
+    }, 1000);
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.name !== this.props.name ) {
+    if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.log(`Clock renamed from ${prevProps.name} to ${this.props.name}`);
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.time);
   }
 
   render() {
@@ -35,5 +41,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.number.isRequired,
 };
