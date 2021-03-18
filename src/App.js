@@ -2,9 +2,10 @@ import React from 'react';
 import { Clock } from './components/Clock';
 import './App.scss';
 
-class App extends React.Component {
+export class App extends React.Component {
   state = {
     isClockVisible: false,
+    clockName: 0,
   }
 
   handleToVisible = () => {
@@ -16,6 +17,12 @@ class App extends React.Component {
   handleToHidden = () => {
     this.setState({
       isClockVisible: false,
+    });
+  }
+
+  handleName = () => {
+    this.setState({
+      clockName: Math.floor(Math.random() * 777),
     });
   }
 
@@ -31,6 +38,9 @@ class App extends React.Component {
         </button>
         <button type="button" onClick={this.handleToHidden}>
           Hide Clock
+        </button>
+        <button type="submit" onClick={this.handleName}>
+          Set random name
         </button>
       </div>
     );
