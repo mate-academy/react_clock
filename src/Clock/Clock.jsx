@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
-    date: new Date(),
+    currentTime: new Date(),
   }
 
   componentDidMount() {
     this.time = setInterval(() => {
       this.setState({
-        date: new Date(),
+        currentTime: new Date(),
       });
 
       // eslint-disable-next-line
-      console.log(this.state.date.toLocaleTimeString());
+      console.log(this.state.currentTime.toLocaleTimeString());
     }, 1000);
   }
 
@@ -31,12 +31,14 @@ export class Clock extends React.Component {
   }
 
   render() {
-    const { date } = this.state;
+    const { currentTime } = this.state;
 
     return (
-      <>
-        {date.toLocaleTimeString()}
-      </>
+      <p className="App__text">
+        Current time:
+        {' '}
+        {currentTime.toLocaleTimeString()}
+      </p>
     );
   }
 }
