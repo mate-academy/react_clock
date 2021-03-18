@@ -36,7 +36,7 @@ export class App extends React.Component {
         <p className="App__text">
           Current time:
           {' '}
-          {isClockVisible && <Clock name={clockName} />}
+          {isClockVisible ? <Clock name={clockName} /> : 'none'}
         </p>
         <div className="App__buttons">
           <button onClick={this.showClock} type="button">
