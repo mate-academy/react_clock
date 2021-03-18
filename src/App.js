@@ -23,7 +23,7 @@ export class App extends React.Component {
 
   setRandomName = () => {
     this.setState({
-      clockName: Math.round(Math.random() * 100),
+      clockName: Math.trunc(Math.random() * 100),
     });
   };
 
