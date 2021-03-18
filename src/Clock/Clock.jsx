@@ -22,7 +22,7 @@ export class Clock extends React.Component {
 
     if (prevProps.name !== name) {
       // eslint-disable-next-line
-      console.log(`The Clock was renamed from ${prevProps.name} to ${name}`)
+      console.log(`The Clock was renamed from ${prevProps.name} to ${name}`);
     }
   }
 
@@ -34,7 +34,9 @@ export class Clock extends React.Component {
     const { date } = this.state;
 
     return (
-      <span>{date.toLocaleTimeString()}</span>
+      <>
+        {date.toLocaleTimeString()}
+      </>
     );
   }
 }
