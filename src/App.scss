@@ -1,1 +1,6 @@
-// styles go here
+.App {
+  &__buttons {
+    display: flex;
+    gap: 15px;
+  }
+}
