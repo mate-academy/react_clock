@@ -43,14 +43,26 @@ class App extends React.Component {
             ? <Clock name={this.state.name} />
             : 'Clock is hidden'}
         </p>
-        <div>
-          <button type="button" onClick={() => this.showClock()}>
+        <div className="buttons">
+          <button
+            type="button"
+            onClick={() => this.showClock()}
+            className="show"
+          >
             Show Clock
           </button>
-          <button type="button" onClick={() => this.hideClock()}>
+          <button
+            type="button"
+            onClick={() => this.hideClock()}
+            className="hide"
+          >
             Hide Clock
           </button>
-          <button type="button" onClick={this.setRandomName}>
+          <button
+            type="button"
+            onClick={this.setRandomName}
+            className="randomName"
+          >
             Set random name
           </button>
         </div>
