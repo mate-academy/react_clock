@@ -5,7 +5,11 @@ body {
 button {
   border: none;
   padding: 5px 30px;
-  box-shadow: inset 0 5px 10px rgba(0, 119, 255, 0.49), 0 1px 1px green;
+  box-shadow: inset 0 5px 10px rgba(0, 119, 255, 0.49), 0 4px 1px green;
+  &:focus {
+    transform: translateY(2px);
+    box-shadow: inset 0 5px 10px rgba(0, 119, 255, 0.49), 0 2px 1px green;
+  }
 }
 
 .show,
