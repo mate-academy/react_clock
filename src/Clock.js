@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Clock extends React.Component {
-  constructor({ name }) {
-    super(name);
+  constructor(props) {
+    super(props);
     this.state = { time: new Date() };
   }
 
@@ -16,9 +16,11 @@ class Clock extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.name !== prevProps.name) {
+    const { name } = this.props;
+
+    if (name !== prevProps.name) {
       // eslint-disable-next-line
-      console.log(`The Clock was renamed from ${prevProps.name} to ${this.name}`);
+      console.log(`The Clock was renamed from ${prevProps.name} to ${name}`);
     }
   }
 
