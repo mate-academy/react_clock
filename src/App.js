@@ -4,25 +4,25 @@ import './App.scss';
 
 export class App extends React.Component {
   state = {
-    isVisible: false,
-    name: 1,
+    isClockVisible: false,
+    clockName: 1,
   };
 
   showTime = () => {
     this.setState({
-      isVisible: true,
+      isClockVisible: true,
     });
   };
 
-  hide = () => {
+  hideTime = () => {
     this.setState({
-      isVisible: false,
+      isClockVisible: false,
     });
   };
 
   generateRandomNumber = () => {
     this.setState({
-      name: (Math.random() * 10).toFixed(0),
+      clockName: (Math.random() * 10).toFixed(0),
     });
   }
 
@@ -30,7 +30,8 @@ export class App extends React.Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-        { this.state.isVisible ? <Clock name={this.state.name} /> : null}
+        { this.state.isClockVisible
+          ? <Clock name={this.state.clockName} /> : null}
         <div className="App__buttons">
           <button
             type="submit"
@@ -40,9 +41,9 @@ export class App extends React.Component {
           </button>
           <button
             type="submit"
-            onClick={this.hide}
+            onClick={this.hideTime}
           >
-            Hide Time
+            hide Time
           </button>
           <button
             type="submit"
