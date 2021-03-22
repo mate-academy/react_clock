@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './App.scss';
-
 import { Clock } from './components/Clock/Clock';
 
 class App extends React.Component {
@@ -10,21 +8,11 @@ class App extends React.Component {
     clockName: 0,
   }
 
-  setRandomName = () => (
-    this.setState((prevState) => {
-      const oldName = prevState.clockName;
-      const newName = Math.floor(Math.random() * 1000);
-
-      // eslint-disable-next-line no-console
-      console.log(
-        `The Clock was renamed from ${oldName} to ${newName}`,
-      );
-
-      return {
-        clockName: newName,
-      };
-    })
-  );
+  setRandomName = () => {
+    this.setState({
+      clockName: Math.floor(Math.random() * 1000),
+    });
+  }
 
   changeClockVisbility = () => {
     this.setState(prevState => ({
@@ -33,12 +21,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { isClockVisible } = this.state;
+    const { isClockVisible, clockName } = this.state;
 
     return (
       <>
         <h1>React clock</h1>
-        {isClockVisible && <Clock />}
+        {isClockVisible && <Clock name={clockName} />}
 
         <>
           <button
