@@ -10,23 +10,20 @@ class App extends React.Component {
   };
 
   setRandomName = () => {
-    const oldName = this.state.name;
     const random = Math.floor(Math.random() * 100);
 
     this.setState({
       name: random,
     });
-    // eslint-disable-next-line
-    console.log(`The Clock was renamed from ${oldName} to ${random}`);
   }
 
-  showClock() {
+  showClock = () => {
     this.setState({
       isClockVisible: true,
     });
   }
 
-  hideClock() {
+  hideClock = () => {
     this.setState({
       isClockVisible: false,
     });
@@ -46,14 +43,14 @@ class App extends React.Component {
         <div className="buttons">
           <button
             type="button"
-            onClick={() => this.showClock()}
+            onClick={this.showClock}
             className="show"
           >
             Show Clock
           </button>
           <button
             type="button"
-            onClick={() => this.hideClock()}
+            onClick={this.hideClock}
             className="hide"
           >
             Hide Clock

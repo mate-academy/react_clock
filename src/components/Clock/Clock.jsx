@@ -19,6 +19,13 @@ export class Clock extends React.Component {
     );
   }
 
+  componentDidUpdate(oldProps) {
+    if (oldProps.name !== this.props.name) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${oldProps.name} to ${this.props.name}`);
+    }
+  }
+
   componentWillUnmount() {
     clearInterval(this.timerID);
     clearInterval(this.consoleTime);
