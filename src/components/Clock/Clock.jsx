@@ -1,16 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
     date: new Date(),
   }
-
-  consoleTime = setInterval(() => {
-    const date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
 
   componentDidMount() {
     this.timerID = setInterval(
@@ -28,13 +22,14 @@ export class Clock extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.timerID);
-    clearInterval(this.consoleTime);
   }
 
   tick() {
     this.setState({
       date: new Date(),
     });
+    // eslint-disable-next-line
+    console.log(this.state.date.toLocaleTimeString());
   }
 
   render() {
@@ -43,3 +38,7 @@ export class Clock extends React.Component {
     );
   }
 }
+
+Clock.propTypes = {
+  name: PropTypes.number.isRequired,
+};

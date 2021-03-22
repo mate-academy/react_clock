@@ -10,10 +10,10 @@ class App extends React.Component {
   };
 
   setRandomName = () => {
-    const random = Math.floor(Math.random() * 100);
+    const randomName = Math.floor(Math.random() * 100);
 
     this.setState({
-      name: random,
+      name: randomName,
     });
   }
 
@@ -36,9 +36,11 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          {this.state.isClockVisible
-            ? <Clock name={this.state.name} />
-            : 'Clock is hidden'}
+          {
+            this.state.isClockVisible
+              ? <Clock name={this.state.name} />
+              : 'Clock is hidden'
+          }
         </p>
         <div className="buttons">
           <button
