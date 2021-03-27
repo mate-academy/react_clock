@@ -24,8 +24,11 @@
   }
 
   &__subtitle {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 50px;
     font-size: 24px;
+    width: 310px;
     height: 29px;
   }
 }
