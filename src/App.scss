@@ -1,1 +1,53 @@
-// styles go here
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  padding-top: 30px;
+}
+
+.text {
+  font-family: Montserrat, sans-serif;
+  text-align: center;
+  color: hsl(135, 92%, 20%);
+
+  &__title {
+    margin-bottom: 30px;
+    font-size: 44px;
+  }
+
+  &__subtitle {
+    margin-bottom: 50px;
+    font-size: 24px;
+  }
+}
+
+.btn {
+  display: flex;
+  gap: 15px;
+  font-family: Montserrat, sans-serif;
+
+  &__clock {
+    height: 40px;
+    width: 120px;
+    border-radius: 8px;
+    background-color: hsl(0, 59%, 41%);
+    color: hsl(48, 100%, 93%);
+    transition: all 0.4s;
+
+    &:hover {
+      background-color: cornsilk;
+      color: hsl(0, 59%, 41%);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+      transform: scale(1.1);
+    }
+  }
+}
