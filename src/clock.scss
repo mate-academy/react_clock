@@ -1,0 +1,12 @@
+.clock {
+  background-color: coral;
+  width: fit-content;
+  padding: 15px;
+  font-weight: 700;
+  margin: 0;
+  border-radius: 5px;
+
+  &__timer {
+    font-size: 1.5em;
+  }
+}
