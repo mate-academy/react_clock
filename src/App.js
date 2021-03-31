@@ -1,25 +1,78 @@
 import React from 'react';
 
 import './App.scss';
+import Clock from './components/Clock/Clock';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+class App extends React.Component {
+  state = {
+    clockVisible: true,
+    date: new Date().toLocaleTimeString(),
+    clockName: Math.ceil(Math.random() * 100),
+  }
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        date: new Date().toLocaleTimeString(),
+      });
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+      if (this.state.clockVisible) {
+        // eslint-disable-next-line
+        console.log(this.state.date);
+      }
+    }, 1000);
+  }
+
+  render() {
+    const { clockVisible, clockName, date } = this.state;
+
+    return (
+      <>
+        <div className="app">
+          <h1 className="app__title">React clock</h1>
+          <p className="app__description">
+            { clockVisible && <Clock name={clockName} time={date} />}
+          </p>
+
+          <div className="app__buttons">
+            <button
+              type="button"
+              className="app__button"
+              onClick={() => {
+                this.setState({
+                  clockVisible: true,
+                });
+              }}
+            >
+              Show Clock
+            </button>
+            <button
+              type="button"
+              className="app__button"
+              onClick={() => {
+                this.setState({
+                  clockVisible: false,
+                });
+              }}
+            >
+              Hide Clock
+            </button>
+            <button
+              type="button"
+              className="app__button"
+              onClick={() => {
+                this.setState({
+                  clockName: Math.ceil(Math.random() * 100),
+                });
+              }}
+            >
+              Random Name
+            </button>
+          </div>
+        </div>
+      </>
+    );
+  }
+}
 
 export default App;
