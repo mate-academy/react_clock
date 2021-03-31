@@ -1,1 +1,32 @@
-// styles go here
+.app {
+  width: 35%;
+  margin: 0 auto;
+  border: 2px solid black;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+
+  &__title {
+    margin: 0;
+  }
+
+  &__buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__button {
+    width: 25%;
+    border: none;
+    border-radius: 5px;
+    background-color: coral;
+    padding: 10px 0;
+    cursor: pointer;
+    font-weight: 700;
+  }
+}
