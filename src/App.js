@@ -48,14 +48,14 @@ export class App extends React.Component {
             type="button"
             onClick={this.hideClock}
           >
-            Hide
+            Hide clock
           </button>
           <button
             className="app__button"
             type="button"
             onClick={this.showClock}
           >
-            Show
+            Show clock
           </button>
           <button
             className="app__button"
