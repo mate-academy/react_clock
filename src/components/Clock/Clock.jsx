@@ -8,11 +8,17 @@ class Clock extends React.Component {
   }
 
   componentDidMount() {
-    setInterval(() => {
+    this.timer = setInterval(() => {
       this.setState({
         time: new Date().toLocaleTimeString(),
       });
+      // eslint-disable-next-line
+      console.log(this.state.time);
     }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   render() {

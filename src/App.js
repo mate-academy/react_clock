@@ -6,21 +6,16 @@ import Clock from './components/Clock/Clock';
 class App extends React.Component {
   state = {
     clockVisible: true,
-    date: new Date().toLocaleTimeString(),
     clockName: Math.ceil(Math.random() * 100),
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        date: new Date().toLocaleTimeString(),
-      });
-
-      if (this.state.clockVisible) {
-        // eslint-disable-next-line
-        console.log(this.state.date);
-      }
-    }, 1000);
+  componentDidUpdate(_, prevState) {
+    if (prevState.name !== this.state.name) {
+      // eslint-disable-next-line
+      console.log(
+        `The Clock was renamed from ${prevState.name} to ${this.state.name}`,
+      );
+    }
   }
 
   render() {
