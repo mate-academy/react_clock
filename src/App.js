@@ -13,20 +13,35 @@ class App extends React.Component {
   componentDidMount() {
     setInterval(() => {
       this.setState({ date: new Date() });
-      // eslint-disable-next-line
-      this.state.isClockVisible && console.log(this.state.date.toLocaleTimeString());
+      if (this.state.isClockVisible) {
+        // eslint-disable-next-line
+        console.log(this.state.date.toLocaleTimeString());
+      }
     }, 1000);
   }
 
+  hide = () => {
+    const oldName = this.state.clockName;
+    const newName = Math.floor(Math.random() * 100);
+
+    this.setState({
+      clockName: newName,
+    });
+    // eslint-disable-next-line
+    console.log(`The Clock was renamed from ${oldName} to ${newName}`);
+  }
+
   render() {
+    const { isClockVisible, clockName, date } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.isClockVisible
+        {isClockVisible
           && (
             <Clock
-              name={this.state.clockName}
-              date={this.state.date}
+              name={clockName}
+              date={date}
             />
           )}
         <button
@@ -43,16 +58,7 @@ class App extends React.Component {
         </button>
         <button
           type="button"
-          onClick={() => {
-            const oldName = this.state.clockName;
-            const newName = Math.floor(Math.random() * 100);
-
-            this.setState({
-              clockName: newName,
-            });
-            // eslint-disable-next-line
-            console.log(`The Clock was renamed from ${oldName} to ${newName}`)
-          }}
+          onClick={this.hide}
         >
           Set random name
         </button>
