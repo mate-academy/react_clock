@@ -13,7 +13,7 @@ export class Clock extends React.Component {
     );
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line
       console.log(`The Clock was renamed from ${prevProps.name} to ${this.props.name}`);
@@ -32,7 +32,10 @@ export class Clock extends React.Component {
     const { time } = this.state;
 
     return (
-      <span className="clock">{time.toLocaleTimeString()}</span>
+      <div className="card-content clock">
+        <p>{`Current time: ${time.toLocaleTimeString()}`}</p>
+        <span>{`Currenet name: ${this.props.name}`}</span>
+      </div>
     );
   }
 }

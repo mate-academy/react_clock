@@ -34,11 +34,7 @@ class App extends React.Component {
     return (
       <div className="App card">
         <h1 className="card-header">React clock</h1>
-        <p className="card-content">
-          Current time:
-          {' '}
-          {this.state.isClockVisible && <Clock name={this.state.clockName} />}
-        </p>
+        {this.state.isClockVisible && <Clock name={this.state.clockName} />}
         <div className="card-footer">
           <button
             className="button card-footer-item"
