@@ -10,6 +10,10 @@ export class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (prevState.clockName === this.state.clockName) {
+      return;
+    }
+
     // eslint-disable-next-line
     console.log(
       'The Clock was renamed from '

@@ -37,7 +37,7 @@ export class Clock extends React.Component {
           </p>
         </div>
         <div className="panel-block pl-5">
-          <p class="is-size-7">
+          <p className="is-size-7">
             Name:
             {' '}
             {this.props.name}
