@@ -22,24 +22,26 @@ export class App extends React.Component {
   }
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+
     return (
       <div className="App column is-one-third container">
         <div className="panel">
           <div className="panel-block">
             <button
               type="button"
-              onClick={
-                () => this.setState({ isClockVisible: true })
-              }
+              onClick={() => {
+                this.setState({ isClockVisible: true });
+              }}
               className="button is-small is-light is-fullwidth mr-3"
             >
               Show Clock
             </button>
             <button
               type="button"
-              onClick={
-                () => this.setState({ isClockVisible: false })
-              }
+              onClick={() => {
+                this.setState({ isClockVisible: false });
+              }}
               className="button is-small is-light is-fullwidth mr-3"
             >
               Hide Clock
@@ -55,7 +57,7 @@ export class App extends React.Component {
             </button>
           </div>
         </div>
-        {this.state.isClockVisible && <Clock name={this.state.clockName} />}
+        {isClockVisible && <Clock name={clockName} />}
       </div>
     );
   }
