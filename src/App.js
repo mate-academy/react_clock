@@ -21,19 +21,20 @@ class App extends React.Component {
     });
   }
 
-  randomName = () => {
+  setRandomName = () => {
     this.setState({
       clockName: Math.trunc(Math.random() * 1000),
     });
   }
 
   render() {
+    const {clockName, isClockVisible, } = this.state
     return (
       <>
         <div className="App">
           <h1>React clock</h1>
-          <h2>{`Clock name: ${this.state.clockName}`}</h2>
-          {this.state.isClockVisible && <Clock name={this.state.clockName} />}
+          <h2>{`Clock name: ${clockName}`}</h2>
+          {isClockVisible && <Clock name={clockName} />}
           <button
             type="button"
             className="button"
@@ -51,7 +52,7 @@ class App extends React.Component {
           <button
             type="button"
             className="button"
-            onClick={this.randomName}
+            onClick={this.setRandomName}
           >
             Set random name
           </button>
