@@ -48,9 +48,9 @@ export class App extends React.Component {
             </button>
             <button
               type="button"
-              onClick={
-                () => this.setState({ clockName: Math.random() })
-              }
+              onClick={() => {
+                this.setState({ clockName: Math.random() });
+              }}
               className="button is-small is-light is-fullwidth"
             >
               Set random name
