@@ -1,1 +1,10 @@
-// styles go here
+.card-header {
+  display: flex;
+  justify-content: center;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
