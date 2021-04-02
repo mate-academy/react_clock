@@ -31,10 +31,12 @@ class App extends React.Component {
   }
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+
     return (
       <div className="App card">
         <h1 className="card-header">React clock</h1>
-        {this.state.isClockVisible && <Clock name={this.state.clockName} />}
+        {isClockVisible && <Clock name={clockName} />}
         <div className="card-footer">
           <button
             className="button card-footer-item"

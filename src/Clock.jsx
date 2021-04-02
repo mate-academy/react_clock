@@ -30,11 +30,12 @@ export class Clock extends React.Component {
 
   render() {
     const { time } = this.state;
+    const { name } = this.props;
 
     return (
       <div className="card-content clock">
         <p>{`Current time: ${time.toLocaleTimeString()}`}</p>
-        <span>{`Currenet name: ${this.props.name}`}</span>
+        <span>{`Current name: ${name}`}</span>
       </div>
     );
   }
