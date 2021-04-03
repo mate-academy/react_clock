@@ -1,6 +1,7 @@
 import React from 'react';
 import { Clock } from './Component/Clock';
 
+import 'bulma';
 import './app.scss';
 
 class App extends React.Component {
@@ -44,28 +45,28 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        <h1>React clock</h1>
-        <p>
+        <h1 className="title is-1">React clock</h1>
+        <p className="tag is-light is-large block">
           {isClockVisible && <Clock clockName={clockName} />}
         </p>
 
-        <div className="button">
+        <div className="button-block">
           <button
-            className="button__clock"
+            className="button is-info is-outlined"
             type="button"
             onClick={this.showClock}
           >
             Show clock
           </button>
           <button
-            className="button__clock"
+            className="button is-info is-outlined"
             type="button"
             onClick={this.hideClock}
           >
             Hide clock
           </button>
           <button
-            className="button__clock"
+            className="button is-info is-outlined"
             type="button"
             onClick={this.setRandomName}
           >

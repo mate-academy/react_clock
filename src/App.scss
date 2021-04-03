@@ -5,3 +5,9 @@
   align-items: center;
   margin: 0 auto;
 }
+
+.button-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
