@@ -1,1 +1,15 @@
-// styles go here
+.App {
+  position: relative;
+  top: 100px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.centered {
+  text-align: center;
+}
