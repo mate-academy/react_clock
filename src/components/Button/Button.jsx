@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Button = props => (
+export const Button = ({ name, event }) => (
   <button
     type="button"
     className="button m-5"
-    onClick={props.event}
+    onClick={event}
   >
-    {props.name}
+    {name}
   </button>
 );
 

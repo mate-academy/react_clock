@@ -2,7 +2,7 @@ import React from 'react';
 import { Clock } from './components/Clock';
 import { Button } from './components/Button';
 
-import '../node_modules/bulma/css/bulma.css';
+import 'bulma/css/bulma.css';
 
 export class App extends React.Component {
   state = {
@@ -29,13 +29,15 @@ export class App extends React.Component {
   }
 
   render() {
+    const { clockName, isClockVisible } = this.state;
+
     return (
       <section className="section columns is-centered">
         <div className="column is-narrow">
           <div className="box has-text-centered is-size-1">
-            <div className="m-5">{this.state.clockName}</div>
+            <div className="m-5">{clockName}</div>
 
-            {this.state.isClockVisible
+            {isClockVisible
               ? <Clock />
               : 'The clock has been hidden'
             }
