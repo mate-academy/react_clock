@@ -15,7 +15,7 @@ class App extends React.Component {
         <button
           type="button"
           onClick={
-          () => this.setState({ clockName: Math.random() })
+          () => this.setState({ clockName: Math.random().toString() })
         }
         >
           Set Random Name
