@@ -1,1 +1,16 @@
-// styles go here
+.app {
+  width: 50%;
+  margin: 50px auto;
+  padding: 10px;
+  text-align: center;
+  background-color: cadetblue;
+  box-shadow: 1px 1px 20px cadetblue;
+  border-radius: 5px;
+
+  .button {
+    background-color: rgb(147, 64, 43);
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px;
+  }
+}
