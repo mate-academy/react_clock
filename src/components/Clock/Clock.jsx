@@ -23,6 +23,6 @@ export class Clock extends React.Component {
 
     return(
       <p>Current time: {time}</p>
-      )
+    )
   }
 }

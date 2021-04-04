@@ -17,54 +17,56 @@ export class App extends React.Component {
     }
   }
 
-  hide = () => {
+  hideClock = () => {
     this.setState({
       visible: false,
     });
   }
 
-  show =() => {
+  showClock = () => {
     this.setState({
       visible: true,
     });
   }
 
-  change =() => {
+  changeName =() => {
     this.setState({
       name: Math.ceil(Math.random() * 100),
     });
   }
 
   render() {
+    const { visible, name } = this.state;
+
     return (
       <div className="app">
         <div className="text">
           <h1>React clock</h1>
-          {this.state.visible && <Clock name={this.state.name} />}
+          {visible && <Clock name={name} />}
           <p>
             Name:
-            {this.state.name}
+            {name}
           </p>
         </div>
         <div className="buttons">
           <button
             className="button"
             type="button"
-            onClick={this.hide}
+            onClick={this.hideClock}
           >
             Hide
           </button>
           <button
             className="button"
             type="button"
-            onClick={this.show}
+            onClick={this.showClock}
           >
             Show
           </button>
           <button
             className="button"
             type="button"
-            onClick={this.change}
+            onClick={this.changeName}
           >
             Change name
           </button>
