@@ -35,25 +35,26 @@ class App extends React.Component {
           <h1 className="app__title">
             React clock
           </h1>
-          {
-        isClockVisible && (<Clock number={number} />)
-        }
-
+          {isClockVisible && (<Clock number={number} />)}
           <div className="app__buttons">
-            <button
-              onClick={this.hideClock}
-              className="app__button clock-button"
-              type="button"
-            >
-              Hide clock
-            </button>
-            <button
-              onClick={this.showClock}
-              className="app__button clock-button"
-              type="button"
-            >
-              Show clock
-            </button>
+            {isClockVisible ? (
+              <button
+                onClick={this.hideClock}
+                className="app__button clock-button"
+                type="button"
+              >
+                Hide clock
+              </button>
+            ) : (
+              <button
+                onClick={this.showClock}
+                className="app__button clock-button"
+                type="button"
+              >
+                Show clock
+              </button>
+            )
+            }
             <button
               onClick={this.showRandomName}
               className="app__button clock-button"
