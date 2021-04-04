@@ -20,6 +20,8 @@ class Clock extends React.Component {
     this.setState({
       time: new Date(),
     });
+    // eslint-disable-next-line
+    console.log(this.state.time.toLocaleTimeString());
   }
 
   render() {

@@ -8,17 +8,23 @@ class App extends React.Component {
     number: Math.trunc(Math.random() * 100),
   }
 
-  hideClock = () => {
-    this.setState({
-      isClockVisible: false,
-    });
+  componentDidUpdate(prevProps, prevState) {
+    // eslint-disable-next-line
+    console.log(`The Clock was renamed from 
+      ${prevState.number} to ${this.state.number}`);
   }
 
-  showClock = () => {
-    this.setState({
-      isClockVisible: true,
-    });
-  }
+   hideClock = () => {
+     this.setState({
+       isClockVisible: false,
+     });
+   }
+
+   showClock = () => {
+     this.setState({
+       isClockVisible: true,
+     });
+   }
 
   showRandomName = () => {
     this.setState({
@@ -38,13 +44,22 @@ class App extends React.Component {
           {isClockVisible && (<Clock number={number} />)}
           <div className="app__buttons">
             {isClockVisible ? (
-              <button
-                onClick={this.hideClock}
-                className="app__button clock-button"
-                type="button"
-              >
-                Hide clock
-              </button>
+              <>
+                <button
+                  onClick={this.hideClock}
+                  className="app__button clock-button"
+                  type="button"
+                >
+                  Hide clock
+                </button>
+                <button
+                  onClick={this.showRandomName}
+                  className="app__button clock-button"
+                  type="button"
+                >
+                  Set random number
+                </button>
+              </>
             ) : (
               <button
                 onClick={this.showClock}
@@ -55,13 +70,7 @@ class App extends React.Component {
               </button>
             )
             }
-            <button
-              onClick={this.showRandomName}
-              className="app__button clock-button"
-              type="button"
-            >
-              Set random number
-            </button>
+
           </div>
         </div>
       </div>

@@ -4,7 +4,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   width: 500px;
   height: 500px;
   text-align: center;
@@ -25,11 +24,12 @@
   &__buttons {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   &__button {
-    width: 40%;
+    width: 100px;
+    margin: 0 20px;
     border-radius: 15px;
     background-color: #fff;
     border: 3px solid green;
