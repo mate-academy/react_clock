@@ -12,10 +12,10 @@ export class App extends React.Component {
   }
 
   componentDidUpdate(_, oldName) {
-    const message = `The Clock was renamed from ${oldName.name}
-    to ${this.state.name}`;
+    const message = `The Clock was renamed from ${oldName.clockName}
+    to ${this.state.clockName}`;
 
-    if (oldName.name === this.state.name) {
+    if (oldName.clockName === this.state.clockName) {
       return;
     }
     // eslint-disable-next-line
