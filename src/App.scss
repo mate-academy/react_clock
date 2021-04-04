@@ -1,1 +1,49 @@
 // styles go here
+.app {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  text-align: center;
+  background-color: rgb(159, 228, 205);
+  border-radius: 50%;
+  display: flex;
+  font-size: 18px;
+
+  &__title {
+    margin-bottom: 25px;
+    color: rgb(56, 19, 221);
+  }
+
+  &__wrapper {
+    margin: auto;
+  }
+
+  &__buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    width: 100px;
+    margin: 0 20px;
+    border-radius: 15px;
+    background-color: #fff;
+    border: 3px solid green;
+    color: rgb(56, 19, 221);
+    font-size: 20px;
+    transition: background-color 300ms, color 300ms;
+
+    &:hover {
+      background-color: rgb(41, 129, 212);
+      color: #fff;
+    }
+  }
+
+  &__clock {
+    margin-bottom: 25px;
+  }
+}
