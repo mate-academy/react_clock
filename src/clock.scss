@@ -1,0 +1,11 @@
+.clock {
+  background-color: darkgray;
+  padding: 10px;
+  font-weight: 700;
+  border: 2px solid black;
+  border-radius: 5px;
+
+  &__timer {
+    font-size: 24px;
+  }
+}
