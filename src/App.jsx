@@ -20,6 +20,18 @@ export class App extends React.Component {
     }, 1000);
   }
 
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  }
+
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
+  }
+
+  setRandomName = () => {
+    this.setState({ clockName: Math.ceil(Math.random() * 100) });
+  }
+
   render() {
     const { isClockVisible, clockName } = this.state;
 
@@ -38,9 +50,7 @@ export class App extends React.Component {
               <button
                 type="button"
                 className="btn btn-outline-danger"
-                onClick={() => {
-                  this.setState({ isClockVisible: false });
-                }}
+                onClick={this.hideClock}
               >
                 Hide Clock
               </button>
@@ -48,9 +58,7 @@ export class App extends React.Component {
               <button
                 type="button"
                 className="btn btn-outline-success"
-                onClick={() => {
-                  this.setState({ isClockVisible: true });
-                }}
+                onClick={this.showClock}
               >
                 Show Clock
               </button>
@@ -59,9 +67,7 @@ export class App extends React.Component {
           <button
             type="button"
             className="btn btn-outline-info"
-            onClick={() => {
-              this.setState({ clockName: Math.ceil(Math.random() * 100) });
-            }}
+            onClick={this.setRandomName}
           >
             Set random name
           </button>
