@@ -1,1 +1,10 @@
-// styles go here
+.App {
+  text-align: center;
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    gap: 10px;
+  }
+}

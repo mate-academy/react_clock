@@ -6,6 +6,8 @@
   "author": "Mate Academy",
   "license": "GPL-3.0",
   "dependencies": {
+    "bootstrap": "^5.0.0-beta3",
+    "bootstrap-icons": "^1.4.1",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
