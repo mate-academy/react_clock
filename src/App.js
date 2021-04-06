@@ -5,14 +5,16 @@ import { Clock } from './Clock';
 export class App extends React.Component {
   state = {
     clockVisible: true,
-    name: Math.floor(Math.random() * 100),
+    clockName: Math.floor(Math.random() * 100),
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.name !== this.state.name) {
+    if (prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line
       console.log(
-        `The Clock was renamed from ${prevState.name} to ${this.state.name}`,
+        `The Clock was renamed from
+          ${prevState.clockName} to ${this.state.clockName}
+        `,
       );
     }
   }
@@ -31,15 +33,17 @@ export class App extends React.Component {
 
   changeName = () => {
     this.setState({
-      name: Math.floor(Math.random() * 100),
+      clockName: Math.floor(Math.random() * 100),
     });
   }
 
   render() {
+    const { clockName, clockVisible } = this.state;
+
     return (
       <div className="app">
         <h1>React clock</h1>
-        {this.state.clockVisible && <Clock name={this.state.name} />}
+        {clockVisible && <Clock name={clockName} />}
         <div className="app__buttons">
           <button
             className="app__button"
