@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 
 export const App = () => (
-  <div>
+  <div className="starter">
     React starter pack
   </div>
 );
