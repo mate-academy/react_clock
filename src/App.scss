@@ -1,1 +1,20 @@
 // styles go here
+.App {
+  background-color: grey;
+  text-align: center;
+
+}
+
+.button {
+  width: 150px;
+  border-radius: 20px;
+  &__show {
+    background-color: rgb(4, 202, 4);
+  }
+  &__hide {
+    background-color: rgb(255, 1, 1);
+  }
+  &__change {
+    background-color: royalblue;
+  }
+}
