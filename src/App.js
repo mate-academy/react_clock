@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unused-state */
-/* eslint-disable no-plusplus */
 import React from 'react';
 
 import './App.scss';
@@ -7,16 +6,20 @@ import Clock from './Clock';
 
 class App extends React.Component {
   state = {
-    timerId: null,
+    timerId: 'null',
     isClockVisible: true,
     date: '',
     clockName: '',
-    randomPack:
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
   }
 
   componentDidMount() {
     this.start();
+  }
+
+  randomGen = () => {
+    this.setState(state => (
+      { clockName: Math.random() * String(state.timerId) }
+    ));
   }
 
   start = () => {
@@ -34,24 +37,14 @@ class App extends React.Component {
   };
 
   render() {
-    const { isClockVisible, randomPack } = this.state;
+    const { isClockVisible } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
         <button
           type="button"
-          onClick={() => {
-            let randomText = '';
-
-            for (let i = 0; i < 5; i++) {
-              randomText += randomPack.charAt(Math.floor(
-                Math.random() * randomPack.length,
-              ));
-            }
-
-            this.setState({ clockName: randomText });
-          }}
+          onClick={this.randomGen}
         >
           Set random name
         </button>
