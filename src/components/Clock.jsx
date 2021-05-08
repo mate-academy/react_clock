@@ -2,13 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      time: new Date().toLocaleTimeString(),
-    };
-  }
+  state = {
+    time: new Date().toLocaleTimeString(),
+    intervalId: null,
+  };
 
   componentDidMount() {
     this.setState({
@@ -20,6 +17,10 @@ export class Clock extends React.Component {
 
   componentDidUpdate(props, state) {
     const { name } = this.props;
+    const { time } = this.state;
+
+    // eslint-disable-next-line
+    console.log(time);
 
     if (name !== props.name) {
       // eslint-disable-next-line
@@ -36,8 +37,6 @@ export class Clock extends React.Component {
   updateTime = () => {
     const time = new Date().toLocaleTimeString();
 
-    // eslint-disable-next-line
-    console.log(time);
     this.setState({ time });
   }
 

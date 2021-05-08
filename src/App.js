@@ -5,16 +5,17 @@ import { Clock } from './components/Clock';
 
 class App extends React.Component {
   state = {
+    clockName: 'clock',
     isClockVisible: false,
   };
 
-  showBtnHandler = () => {
+  showClock = () => {
     this.setState({
       isClockVisible: true,
     });
   };
 
-  hideBtnHandler = () => {
+  hideClock = () => {
     this.setState({
       isClockVisible: false,
     });
@@ -39,27 +40,27 @@ class App extends React.Component {
         <h1>React clock</h1>
         { isClockVisible
           && (
-          <p>
-            Current time:
-            {' '}
-            <Clock
-              name={clockName}
-              visible={isClockVisible}
-            />
-          </p>
+            <p>
+              Current time:
+              {' '}
+              <Clock
+                name={clockName}
+                visible={isClockVisible}
+              />
+            </p>
           )
         }
         <button
           type="button"
           className="btn-show-clock"
-          onClick={this.showBtnHandler}
+          onClick={this.showClock}
         >
           Show Clock
         </button>
         <button
           type="button"
           className="btn-hide-clock"
-          onClick={this.hideBtnHandler}
+          onClick={this.hideClock}
         >
           Hide Clock
         </button>
