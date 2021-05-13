@@ -9,15 +9,9 @@ class App extends React.Component {
     clockName: Math.round(Math.random() * 10),
   }
 
-  setVisibleStatusTrue = () => {
+  setVisibleStatus = (status) => {
     this.setState({
-      isClockVisible: true,
-    });
-  }
-
-  setVisibleStatusFalse = () => {
-    this.setState({
-      isClockVisible: false,
+      isClockVisible: status,
     });
   }
 
@@ -40,7 +34,7 @@ class App extends React.Component {
             <button
               type="button"
               className="button"
-              onClick={this.setVisibleStatusTrue}
+              onClick={() => this.setVisibleStatus(true)}
             >
               show clock
             </button>
@@ -49,7 +43,7 @@ class App extends React.Component {
             <button
               type="button"
               className="button"
-              onClick={this.setVisibleStatusFalse}
+              onClick={() => this.setVisibleStatus(false)}
             >
               hide clock
             </button>

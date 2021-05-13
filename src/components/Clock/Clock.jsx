@@ -15,7 +15,7 @@ export class Clock extends React.Component {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line
       console.log(
