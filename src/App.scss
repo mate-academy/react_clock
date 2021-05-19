@@ -1,1 +1,36 @@
 // styles go here
+.App {
+  font-family: Arial, Helvetica, sans-serif;
+
+  &__title {
+    text-align: center;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  &__content {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+  }
+
+  &__buttons {
+    max-width: 50%;
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__button {
+    display: block;
+    padding: 10px;
+    text-transform: uppercase;
+    background-color: #3f9df5;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+  }
+}
