@@ -24,9 +24,7 @@ class App extends React.Component {
     const { isClockVisible, clockName } = this.state;
 
     const showClock = () => {
-      this.setState({
-        isClockVisible: true,
-      });
+      this.setState({ isClockVisible: true });
     };
 
     const hideClock = () => {
