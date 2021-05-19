@@ -1,1 +1,13 @@
-// styles go here
+.App__button {
+  color: #fff;
+  font-size: 20px;
+  background-color: #0075ff;
+  border: none;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: #1900ff;
+  }
+}
