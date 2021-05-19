@@ -1,35 +1,16 @@
 import React from 'react';
+import { Clock } from './components/Clock';
 
 import './App.scss';
 
 class App extends React.Component {
   state = {
-    date: new Date(),
     isClockVisible: true,
     clockName: null,
-    getInterval() {
-      return setInterval(() => {
-        this.setState({ date: new Date() });
-        // eslint-disable-next-line
-        console.log(this.state.date.toLocaleTimeString());
-      }, 1000);
-    },
   };
 
-  componentDidMount() {
-    this.interval = this.state.getInterval.call(this);
-  }
-
   componentDidUpdate(prevProps, prevState) {
-    const { isClockVisible, clockName } = prevState;
-
-    if (!this.state.isClockVisible) {
-      clearTimeout(this.interval);
-    }
-
-    if (this.state.isClockVisible && !isClockVisible) {
-      this.interval = this.state.getInterval.call(this);
-    }
+    const { clockName } = prevState;
 
     if (this.state.clockName !== clockName) {
       // eslint-disable-next-line
@@ -40,16 +21,11 @@ class App extends React.Component {
   }
 
   render() {
-    const {
-      date,
-      isClockVisible,
-      clockName,
-    } = this.state;
+    const { isClockVisible, clockName } = this.state;
 
     const showClock = () => {
       this.setState({
         isClockVisible: true,
-        date: new Date(),
       });
     };
 
@@ -72,7 +48,7 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          {isClockVisible && date.toLocaleTimeString()}
+          {isClockVisible && (<Clock />)}
         </p>
 
         <button
