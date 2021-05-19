@@ -10,8 +10,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { isClockVisible, clockName } = this.state;
-    const oldClockName = clockName;
+    const { isClockVisible } = this.state;
     const newClockName = Math.floor(Math.random() * 101);
 
     return (
@@ -40,8 +39,6 @@ class App extends React.Component {
           className="App__button"
           onClick={() => {
             this.setState({ clockName: newClockName });
-            // eslint-disable-next-line
-            console.log(`The Clock was renamed from ${oldClockName} to ${newClockName}`);
           }}
         >
           Set random name
