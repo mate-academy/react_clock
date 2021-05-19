@@ -7,9 +7,9 @@ export class Clock extends React.Component {
   };
 
   componentDidMount() {
+    this.interval = setInterval(() => {
     // eslint-disable-next-line
     console.log(this.state.time);
-    this.interval = setInterval(() => {
       this.setState({
         time: new Date().toLocaleTimeString(),
       });
@@ -17,8 +17,6 @@ export class Clock extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // eslint-disable-next-line
-    console.log(this.state.time);
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line
       console.log(

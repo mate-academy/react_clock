@@ -28,11 +28,13 @@ export class App extends Component {
   }
 
   render() {
+    const { clockName } = this.state;
+
     return (
       <div className="clock">
         <div className="clock__timer">
           {this.state.isClockVisible
-            ? <Clock name={this.state.clockName} />
+            ? <Clock name={clockName} />
             : 'Clock is hidden'}
         </div>
         <div className="buttons-container">
