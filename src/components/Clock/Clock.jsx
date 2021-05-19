@@ -5,25 +5,23 @@ import './Clock.scss';
 export class Clock extends React.Component {
   state = {
     date: new Date(),
-
-    getInterval() {
-      return setInterval(() => {
-        this.setState({ date: new Date() });
-        // eslint-disable-next-line
-        console.log(this.state.date.toLocaleTimeString());
-      }, 1000);
-    },
   };
 
   componentDidMount() {
-    this.setState({ date: new Date() });
     // eslint-disable-next-line
     console.log(this.state.date.toLocaleTimeString());
-    this.interval = this.state.getInterval.call(this);
+
+    this.setState({
+      interval: setInterval(() => {
+        this.setState({ date: new Date() });
+        // eslint-disable-next-line
+        console.log(this.state.date.toLocaleTimeString());
+      }, 1000),
+    });
   }
 
   componentWillUnmount() {
-    clearTimeout(this.interval);
+    clearTimeout(this.state.interval);
   }
 
   render() {
