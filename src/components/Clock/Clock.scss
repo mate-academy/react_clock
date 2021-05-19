@@ -1,0 +1,13 @@
+.clock {
+  background-color: #eee;
+
+  &__title {
+    font-size: 60px;
+    color: #333;
+  }
+
+  &__time {
+    font-size: 30px;
+    color: #333;
+  }
+}
