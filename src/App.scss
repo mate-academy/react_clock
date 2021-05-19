@@ -1,1 +1,16 @@
-// styles go here
+.button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: rgb(140, 243, 126);
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 5px;
+
+  &_hide {
+    background-color: rgb(236, 116, 95);
+  }
+
+  &_set {
+    background-color: rgb(248, 246, 140);
+  }
+}
