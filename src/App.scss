@@ -1,1 +1,51 @@
-// styles go here
+.App {
+  position: relative;
+}
+
+.App__button1 {
+  position: absolute;
+  border: 1px solid white;
+  border-radius: 8px;
+  height: 30px;
+  width: 110px;
+
+  cursor: pointer;
+
+  left: 10px;
+  top: 120%;
+
+  background-color: lightgreen;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.App__button2 {
+  position: absolute;
+  border: 1px solid white;
+  border-radius: 8px;
+  height: 30px;
+  width: 110px;
+  top: 120%;
+  left: 120px;
+
+  cursor: pointer;
+
+  background-color: lightgreen;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.App__button3 {
+  position: absolute;
+  border: 1px solid white;
+  border-radius: 8px;
+  height: 30px;
+  width: 160px;
+  left: 230px;
+  top: 120%;
+  cursor: pointer;
+
+  background-color: lightgreen;
+  font-size: 16px;
+  margin-right: 10px;
+}
