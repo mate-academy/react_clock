@@ -8,9 +8,7 @@ class Clock extends React.Component {
 
   componentDidMount() {
     this.intervalId = setInterval(() => {
-      this.setState({
-        clockName: this.props.name, date: new Date().toLocaleTimeString()
-      });
+      this.setState({ date: new Date().toLocaleTimeString() });
       // eslint-disable-next-line
       console.log(this.state.date);
     }, 1000);
@@ -23,7 +21,7 @@ class Clock extends React.Component {
   render() {
     return (
       <span>
-        {` for ${this.state.clockName}:
+        {` for ${this.props.name}:
         ${this.state.date}`}
       </span>
     );

@@ -51,9 +51,12 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          {this.state.isClockVisible ? <Clock name={this.state.clockName} /> : (
-            'clock is hidden'
-          )}
+          {this.state.isClockVisible ? (
+            <Clock name={this.state.clockName} />
+          )
+            : (
+              'clock is hidden'
+            )}
         </p>
         <button type="button" onClick={this.setRandomName}>
           Set random name:
