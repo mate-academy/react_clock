@@ -1,25 +1,34 @@
 import React from 'react';
 
+import { Clock } from './components/Clock/Clock';
 import './App.scss';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+class App extends React.Component {
+  state = {
+    clockName: -1,
+  }
 
+  componentDidUpdate() {
     // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+    console.log('The Clock was renamed from oldName to newName');
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="App">
+        <Clock name={this.state.clockName} />
+        <button
+          type="button"
+          className="btn set-name"
+          onClick={() => {
+            this.setState({ clockName: Math.round(Math.random() * 100) });
+          }}
+        >
+          Set random name
+        </button>
+      </div>
+    );
+  }
+}
 
 export default App;
