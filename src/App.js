@@ -6,53 +6,39 @@ import './App.scss';
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    clockName: null,
+    clockName: 0,
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    const { clockName } = prevState;
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  };
 
-    if (this.state.clockName !== clockName) {
-      // eslint-disable-next-line
-      console.log(
-        `The Clock was renamed from ${clockName} to ${this.state.clockName}`,
-      );
-    }
-  }
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
+  };
+
+  setRandomName = () => {
+    this.setState({ clockName: Math.ceil(Math.random() * 100) });
+  };
 
   render() {
     const { isClockVisible, clockName } = this.state;
 
-    const showClock = () => {
-      this.setState({ isClockVisible: true });
-    };
-
-    const hideClock = () => {
-      this.setState({ isClockVisible: false });
-    };
-
-    const setRandomName = () => {
-      this.setState({ clockName: Math.floor(Math.random() * 100) });
-    };
-
     return (
       <div className="App">
         <h1>
-          React clock
-          {' '}
-          {clockName}
+          {`React clock ${clockName || ''}`}
         </h1>
 
         <p>
-          Current time:
-          {' '}
-          {isClockVisible && (<Clock />)}
+          {'Current time: '}
+          {isClockVisible && (<Clock name={clockName} />)}
         </p>
 
         <button
           className="button"
           type="button"
-          onClick={showClock}
+          onClick={this.showClock}
         >
           Show Clock
         </button>
@@ -60,7 +46,7 @@ class App extends React.Component {
         <button
           className="button button_hide"
           type="button"
-          onClick={hideClock}
+          onClick={this.hideClock}
         >
           Hide Clock
         </button>
@@ -68,7 +54,7 @@ class App extends React.Component {
         <button
           className="button button_set"
           type="button"
-          onClick={setRandomName}
+          onClick={this.setRandomName}
         >
           Set random name
         </button>
