@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 class Clock extends React.Component {
   state = {
     clockName: this.props.name,
-    date: new Date(),
+    date: new Date().toLocaleTimeString(),
   }
 
   componentDidMount() {
     this.intervalId = setInterval(() => {
-      // eslint-disable-next-line
       this.setState({ clockName: this.props.name });
-      this.setState({ date: new Date() });
+      this.setState({ date: new Date().toLocaleTimeString() });
       // eslint-disable-next-line
       console.log(this.state.date);
     }, 1000);
@@ -25,7 +24,7 @@ class Clock extends React.Component {
     return (
       <span>
         {`for ${this.state.clockName}:
-        ${this.state.date.toLocaleTimeString()}`}
+        ${this.state.date}`}
       </span>
     );
   }
