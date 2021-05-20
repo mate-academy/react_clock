@@ -1,0 +1,36 @@
+body {
+  font-family: sans-serif;
+  background-color: #ff9;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+}
+
+.buttons__container {
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.button {
+  height: 70px;
+  width: 150px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #076;
+
+  &:hover {
+    transition-duration: 400ms;
+    background-color: #065;
+  }
+}

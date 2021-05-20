@@ -1,0 +1,36 @@
+.clock {
+  width: 35%;
+  height: 25%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  margin: auto;
+  padding: 25px 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  text-align: center;
+
+  border: 5px solid #076;
+  border-radius: 70px;
+  background-color: #ffd;
+
+  &__title {
+    margin: 0 0 15px;
+    font-size: 22px;
+  }
+
+  &__time {
+    margin: 0;
+    color: transparent;
+    -webkit-text-stroke: 1px #000;
+
+    font-size: 36px;
+  }
+}
