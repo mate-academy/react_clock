@@ -56,7 +56,7 @@ class App extends React.Component {
           )}
         </p>
         <button type="button" onClick={this.setRandomName}>
-          {'Set random name: '}
+          Set random name:
         </button>
       </div>
     );

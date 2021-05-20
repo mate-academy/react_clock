@@ -23,7 +23,7 @@ class Clock extends React.Component {
   render() {
     return (
       <span>
-        {`for ${this.state.clockName}:
+        {` for ${this.state.clockName}:
         ${this.state.date}`}
       </span>
     );
