@@ -7,11 +7,13 @@ export class Clock extends React.Component {
   }
 
   componentDidMount() {
-    this.state.timer = setInterval(() => {
-      this.setState({ time: new Date().toLocaleTimeString('en-GB') });
-      //  eslint-disable-next-line
-      console.log(this.state.time);
-    }, 1000);
+    this.setState({
+      timer: setInterval(() => {
+        this.setState({ time: new Date().toLocaleTimeString('en-GB') });
+        //  eslint-disable-next-line
+        console.log(this.state.time);
+      }, 1000),
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -37,5 +39,9 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
+};
+
+Clock.defaultProps = {
+  name: null,
 };

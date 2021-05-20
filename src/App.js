@@ -6,7 +6,25 @@ import { Clock } from './components/Clock';
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    name: (Math.random() * 100).toFixed(0),
+    name: null,
+  }
+
+  showClockHandeler = () => {
+    this.setState({
+      isClockVisible: true,
+    });
+  }
+
+  hideClockHandeler = () => {
+    this.setState({
+      isClockVisible: false,
+    });
+  }
+
+  changeNameHandeler = () => {
+    this.setState({
+      name: (Math.random() * 100).toFixed(0),
+    });
   }
 
   render() {
@@ -18,15 +36,13 @@ class App extends React.Component {
         <div className="App__content">
           Current time:
           {' '}
-          {this.state.isClockVisible ? <Clock name={name} /> : null}
+          {this.state.isClockVisible && <Clock name={name} />}
 
           <div className="App__buttons">
             <button
               type="button"
               className="App__button"
-              onClick={() => {
-                this.setState({ isClockVisible: true });
-              }}
+              onClick={this.showClockHandeler}
             >
               Show
             </button>
@@ -34,9 +50,7 @@ class App extends React.Component {
             <button
               type="button"
               className="App__button"
-              onClick={() => {
-                this.setState({ isClockVisible: false });
-              }}
+              onClick={this.hideClockHandeler}
             >
               Hide
             </button>
@@ -44,9 +58,7 @@ class App extends React.Component {
             <button
               type="button"
               className="App__button"
-              onClick={() => {
-                this.setState({ name: (Math.random() * 100).toFixed(0) });
-              }}
+              onClick={this.changeNameHandeler}
             >
               Set random name
             </button>
