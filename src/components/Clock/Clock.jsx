@@ -16,10 +16,10 @@ export class Clock extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.newName !== this.props.newName) {
+    if (this.props.newName !== prevProps.newName) {
       // eslint-disable-next-line
       console.log(`The Clock was renamed from
-      +  ${prevProps.newName} to ${this.props.newName}`);
+        ${prevProps.newName} to ${this.props.newName}`);
     }
   }
 
@@ -28,8 +28,14 @@ export class Clock extends React.Component {
   }
 
   render() {
+    const { date } = this.state;
+
     return (
-      <span>{this.state.date.toLocaleTimeString()}</span>
+      <p>
+        Current time:
+        {' '}
+        {date.toLocaleTimeString()}
+      </p>
     );
   }
 }
@@ -37,5 +43,3 @@ export class Clock extends React.Component {
 Clock.propTypes = {
   newName: PropTypes.number.isRequired,
 };
-
-
