@@ -8,6 +8,14 @@ class App extends React.Component {
     name: 1,
   }
 
+  renameClock = () => {
+    if (this.state.isClockVisible) {
+      this.setState({
+        name: Math.floor(Math.random() * 1000),
+      });
+    }
+  }
+
   render() {
     const { isClockVisible, name } = this.state;
 
@@ -43,11 +51,7 @@ class App extends React.Component {
         </button>
         <button
           type="button"
-          onClick={() => {
-            this.setState({
-              name: Math.floor(Math.random() * 1000),
-            });
-          }}
+          onClick={this.renameClock}
         >
           Set random name
         </button>
