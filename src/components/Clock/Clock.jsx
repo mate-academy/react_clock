@@ -1,16 +1,26 @@
 import React from 'react';
 import './Clock.scss';
+import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
     date: '',
+    clockName: this.props.name,
     intervalId: undefined,
-    isClockVisible: true,
-    clockName: 0,
   }
 
   componentDidMount() {
     this.runTimer();
+  }
+
+  shouldComponentUpdate() {
+    const { clockName } = this.state;
+
+    if (clockName !== this.props.name) {
+      this.setState({ clockName: this.props.name });
+    }
+
+    return true;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -24,12 +34,8 @@ export class Clock extends React.Component {
     }
   }
 
-  setRandomName = () => {
-    const min = 1;
-    const max = 1000;
-    const num = Math.floor(Math.random() * (max - min + 1)) + min;
-
-    this.setState({ clockName: num });
+  componentWillUnmount() {
+    this.clearTimer();
   }
 
   runTimer = () => {
@@ -46,38 +52,20 @@ export class Clock extends React.Component {
     clearInterval(intervalId);
   }
 
-  showTimer = () => {
-    this.setState({ isClockVisible: true });
-    this.runTimer();
-  }
-
-  hideTimer = () => {
-    this.setState({ isClockVisible: false });
-    this.clearTimer();
-  }
-
   render() {
-    const { date, isClockVisible } = this.state;
+    const { date } = this.state;
+
     // eslint-disable-next-line
     console.log(date ? `time is ${date}` : 'timer isn\'t set up yet');
 
     return (
-      <>
-        <div className="control">
-          <button type="button" onClick={this.showTimer}>
-            Show Clock
-          </button>
-          <button type="button" onClick={this.hideTimer}>
-            Hide Clock
-          </button>
-          <button type="button" onClick={this.setRandomName}>
-            Set random name
-          </button>
-        </div>
-        <p className={isClockVisible ? ' time show' : 'time hide'}>
-          {`Current time: ${date}`}
-        </p>
-      </>
+      <p className="text">
+        {`Current time: ${date}`}
+      </p>
     );
   }
 }
+
+Clock.propTypes = {
+  name: PropTypes.number.isRequired,
+};
