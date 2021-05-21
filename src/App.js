@@ -8,9 +8,9 @@ class App extends React.Component {
     clockName: -1,
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     // eslint-disable-next-line
-    console.log('The Clock was renamed from oldName to newName');
+    console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
   }
 
   render() {
