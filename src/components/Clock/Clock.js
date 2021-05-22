@@ -1,36 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Clock.scss';
+
 export class Clock extends React.Component {
   state = {
     time: new Date().toLocaleTimeString(),
-  };
-
-  componentDidMount() {
-    this.setState({
-      interval: setInterval(() => {
-        this.setState({ date: new Date() });
-        // eslint-disable-next-line
-        console.log(this.state.date.toLocaleTimeString());
-      }, 1000),
-    });
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.newClockName !== this.props.newClockName) {
+  componentDidMount() {
+    this.interval = setInterval(() => {
+      this.setState({
+        time: new Date().toLocaleTimeString(),
+      });
+    }, 1000);
+  }
+
+  componentDidUpdate(prevProp) {
+    if (prevProp.name !== this.props.name) {
       // eslint-disable-next-line
-      console.log(`The Clock was renamed from`
-      + ` ${prevProps.newClockName} to ${this.props.newClockName}`);
+      console.log(`The Clock was renamed from ${prevProp.name} to ${this.props.name}`);
     }
+
+    // eslint-disable-next-line
+    console.log(this.state.time);
   }
 
   componentWillUnmount() {
-    clearTimeout(this.state.interval);
+    clearTimeout(this.interval);
   }
 
   render() {
     return (
-      <span>
+      <span className="App__clock">
         {this.state.time}
       </span>
     );
@@ -38,5 +40,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  newClockName: PropTypes.string.isRequired,
+  name: PropTypes.number.isRequired,
 };
