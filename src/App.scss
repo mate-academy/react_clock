@@ -1,1 +1,19 @@
-// styles go here
+.App {
+  font-size: 2em;
+  text-align: center;
+  &__btns {
+    .App__btn {
+      background-color: #04DD6D; 
+      border: 1px solid green;
+      border-radius: 8px;
+      color: white;
+      padding: 15px 30px;
+      margin: 10px;
+      cursor: pointer;
+      &:hover {
+        background-color: #3e8e90;
+      }
+    }
+  }
+}
+
