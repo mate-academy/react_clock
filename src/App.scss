@@ -1,1 +1,6 @@
-// styles go here
+.Clock {
+  &__buttons {
+    display: flex;
+    gap: 10px;
+  }
+}
