@@ -1,6 +1,6 @@
 # React Clock
 - Replace `<your_account>` with your Github username in the
- [DEMO LINK](https://<your_account>.github.io/react_clock/)
+ [DEMO LINK](https://vova-myronenko.github.io/react_clock/)
 - Follow the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
 
 ## Task
@@ -24,5 +24,5 @@ Create a Clock component updating the time every second.
 ## Prop update task
 1. Add `Set random name` button to the `App` to set a random number as a `clockName` variable in the `App` state.
 1. Pass the name to the `<Clock name={this.state.clockName} />`
-1. Every time the `name` changes print a message in the console `The Clock was renamed from oldName to newName`.
+1. Every time the `name` is changed print a message in the console `The Clock was renamed from oldName to newName`.
     - Check if the message appears in the console between clock ticks
