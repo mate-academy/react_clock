@@ -22,6 +22,10 @@ export class Clock extends React.Component {
     );
   }
 
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+
   render() {
     return (
       <span>
