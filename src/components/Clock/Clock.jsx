@@ -3,10 +3,11 @@ import './Clock.scss';
 import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
+  intervalId = null;
+
   state = {
-    date: '',
+    date: new Date().toLocaleTimeString(),
     clockName: this.props.name,
-    intervalId: undefined,
   }
 
   componentDidMount() {
@@ -43,13 +44,11 @@ export class Clock extends React.Component {
       this.setState({ date: new Date().toLocaleTimeString() });
     }, 1000);
 
-    this.setState({ intervalId: id });
+    this.intervalId = id;
   }
 
   clearTimer = () => {
-    const { intervalId } = this.state;
-
-    clearInterval(intervalId);
+    clearInterval(this.intervalId);
   }
 
   render() {
