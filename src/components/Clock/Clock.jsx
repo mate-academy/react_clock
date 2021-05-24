@@ -6,22 +6,28 @@ export class Clock extends React.Component {
     isClockVisible: true,
     clockName: 'React clock',
     time: new Date(),
+    clockNum: -1,
   }
 
   componentDidMount() {
-    if (this.state.isClockVisible) {
-      this.timer();
-    }
-  }
-
-  timer() {
-    setInterval(() => {
+    this.timer = setInterval(() => {
       if (this.state.isClockVisible) {
         this.setState({ time: new Date() });
         // eslint-disable-next-line
         console.log(this.state.time.toLocaleTimeString());
       }
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.clockNum !== this.state.clockNum) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${prevState.clockNum} to ${this.state.clockNum}`);
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   render() {
@@ -53,6 +59,15 @@ export class Clock extends React.Component {
           onClick={() => this.setState({ isClockVisible: false })}
         >
           Hide Clock
+        </button>
+        <button
+          type="button"
+          className="btn set-name"
+          onClick={() => {
+            this.setState({ clockNum: Math.round(Math.random() * 100) });
+          }}
+        >
+          Set random name
         </button>
       </>
     );
