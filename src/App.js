@@ -9,15 +9,6 @@ class App extends React.Component {
     isClockVisible: true,
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.clockName !== this.state.clockName) {
-      window.console.log(
-        // eslint-disable-next-line
-        `The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}.`,
-      );
-    }
-  }
-
   setRandomName() {
     this.setState({
       clockName: `Clock name: ${Math.floor(Math.random() * 100)}`,

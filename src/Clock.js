@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Clock extends React.Component {
   state = {
@@ -7,6 +8,15 @@ class Clock extends React.Component {
 
   componentDidMount() {
     this.startClock();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.name !== this.props.name) {
+      window.console.log(
+        // eslint-disable-next-line
+        `The Clock was renamed from ${prevState.name} to ${this.props.clockName}.`,
+      );
+    }
   }
 
   componentWillUnmount() {
@@ -36,5 +46,9 @@ class Clock extends React.Component {
     return this.state.time;
   }
 }
+
+Clock.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 export default Clock;
