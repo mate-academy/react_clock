@@ -24,7 +24,6 @@ class App extends React.Component {
   randomName = () => {
     this.setState({
       clockName: `${Math.ceil(Math.random() * 100)}`,
-
     });
   }
 
@@ -35,7 +34,9 @@ class App extends React.Component {
         <div>
           Current time:
           {' '}
-          {this.state.isClockVisible && <Clock name={this.state.clockName} />}
+          {this.state.isClockVisible && (
+          <Clock name={this.state.clockName} />
+          )}
 
           <div>
             <button
