@@ -27,11 +27,11 @@ export class App extends React.Component {
 
         {' '}
 
-        {this.state.isClockVisible ? (
+        {this.state.isClockVisible && (
           <span className="App__clock">
             <Clock name={this.state.clockName} />
           </span>
-        ) : (null)}
+        )}
 
         <br />
         <br />
@@ -52,7 +52,7 @@ export class App extends React.Component {
           className="App__clock-button"
           onClick={this.setButtonName}
         >
-          Set button random name
+          Set random name button
         </button>
       </div>
     );
