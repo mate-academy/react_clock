@@ -28,7 +28,7 @@ class App extends React.Component {
         <h1>React clock</h1>
         <div className="app__timer">
           Current time:
-          {isClockVisible ? <Clock name={clockName} /> : ''}
+          { isClockVisible && <Clock name={clockName} /> }
         </div>
         <div className="app__buttons">
           <button
