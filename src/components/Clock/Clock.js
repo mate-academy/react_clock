@@ -4,14 +4,17 @@ import PropTypes from 'prop-types';
 export class Clock extends React.Component {
   state = {
     time: new Date(),
+    intervalID: null,
   }
 
   componentDidMount() {
-    setInterval(() => {
-      this.setState({ time: new Date() });
-      //  eslint-disable-next-line
-      console.log(this.state.time.toLocaleTimeString());
-    }, 1000);
+    this.setState({
+      intervalID: setInterval(() => {
+        this.setState({ time: new Date()});
+        // eslint-disable-next-line
+        console.log(this.state.time.toLocaleTimeString())
+      }, 1000)
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -19,6 +22,10 @@ export class Clock extends React.Component {
       //  eslint-disable-next-line
       console.log(`The Clock was renamed from ${prevProps.name} to ${this.props.name}`)
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalID)
   }
 
   render() {
@@ -31,5 +38,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.number.isRequired,
 };

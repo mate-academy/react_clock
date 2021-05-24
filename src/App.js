@@ -6,7 +6,7 @@ import './App.scss';
 export class App extends React.Component {
   state = {
     isClockVisible: true,
-    name: '',
+    name: 0,
   }
 
   hideClock = () => {
