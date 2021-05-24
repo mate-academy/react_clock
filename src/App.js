@@ -9,19 +9,19 @@ class App extends React.Component {
     isClockVisible: true,
   };
 
-  setRandomName() {
+  setRandomName = () => {
     this.setState({
       clockName: `Clock name: ${Math.floor(Math.random() * 100)}`,
     });
   }
 
-  showClock() {
+  showClock = () => {
     this.setState({
       isClockVisible: true,
     });
   }
 
-  hideClock() {
+  hideClock = () => {
     this.setState({
       isClockVisible: false,
     });
@@ -43,21 +43,21 @@ class App extends React.Component {
         <button
           type="button"
           className="showClock"
-          onClick={this.showClock.bind(this)}
+          onClick={this.showClock}
         >
           Show Clock
         </button>
         <button
           type="button"
           className="hideClock"
-          onClick={this.hideClock.bind(this)}
+          onClick={this.hideClock}
         >
           Hide Clock
         </button>
         <button
           type="button"
           className="setRandomName"
-          onClick={this.setRandomName.bind(this)}
+          onClick={this.setRandomName}
         >
           Set random name
         </button>

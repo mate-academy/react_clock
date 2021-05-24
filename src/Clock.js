@@ -10,11 +10,11 @@ class Clock extends React.Component {
     this.startClock();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.name !== this.props.name) {
-      window.console.log(
-        // eslint-disable-next-line
-        `The Clock was renamed from ${prevState.name} to ${this.props.clockName}.`,
+  componentDidUpdate(prevProps) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line
+      console.log(
+        `The Clock was renamed from ${prevProps.name} to ${this.props.name}.`,
       );
     }
   }
@@ -25,20 +25,13 @@ class Clock extends React.Component {
     }
   }
 
-  getClock() {
-    if (this.state.isClockVisible) {
-      return this.state.time;
-    }
-
-    return null;
-  }
-
   startClock() {
     this.timer = setInterval(() => {
       this.setState({
         time: new Date().toLocaleTimeString(),
       });
-      window.console.log(this.state.time);
+      // eslint-disable-next-line
+      console.log(this.state.time);
     }, 1000);
   }
 
