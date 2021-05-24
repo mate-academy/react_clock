@@ -6,7 +6,7 @@ import { Clock } from './components/Clock';
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    clockName: null,
+    clockName: '',
   };
 
   render() {
@@ -18,7 +18,9 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          {isClockVisible && <Clock name={clockName} />}
+          {isClockVisible && (
+            <Clock name={clockName} />
+          )}
         </p>
         <button
           type="button"
