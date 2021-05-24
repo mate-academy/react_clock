@@ -7,7 +7,7 @@ import './App.scss';
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    clockName: null,
+    clockName: 'Vitalii',
   };
 
   setRandomName = () => {
