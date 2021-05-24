@@ -1,1 +1,54 @@
 // styles go here
+
+body {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.button {
+  margin: 5px;
+  width: 450px;
+  outline: none;
+}
+
+.container {
+  width: 600px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
+
+
+  &__title {
+    margin: 0;
+    font-size: 30px;
+  }
+
+  &__show {
+    transition:  background-color 1s;
+
+    &:hover {
+      background-color: aqua;
+    }
+  }
+
+  &__hide {
+    transition:  background-color 1s;
+
+    &:hover {
+      background-color: aqua;
+    }
+  }
+
+  &__random {
+    transition:  background-color 1s;
+
+    &:hover {
+      background-color: aqua;
+    }
+  }
+}
