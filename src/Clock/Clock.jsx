@@ -1,5 +1,6 @@
 import React from 'react';
 import './Clock.scss';
+import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
@@ -20,10 +21,11 @@ export class Clock extends React.Component {
 
   render() {
     const { date } = this.state;
+    const { name } = this.props;
 
     return (
       <div className="Clock">
-        <h1>React clock</h1>
+        <h1>{`React clock ${name}`}</h1>
         <p className="Clock__show-time">
           Current time:
           {' '}
@@ -33,3 +35,7 @@ export class Clock extends React.Component {
     );
   }
 }
+
+Clock.propTypes = {
+  name: PropTypes.number.isRequired,
+};
