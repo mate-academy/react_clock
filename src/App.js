@@ -24,8 +24,7 @@ class App extends React.Component {
             type="button"
             onClick={() => {
               this.setState({ isClockVisible: true });
-            }
-            }
+            }}
           >
             Show Clock
           </button>
