@@ -10,10 +10,10 @@ export class Clock extends React.Component {
   componentDidMount() {
     this.setState({
       intervalID: setInterval(() => {
-        this.setState({ time: new Date()});
+        this.setState({ time: new Date() });
         // eslint-disable-next-line
         console.log(this.state.time.toLocaleTimeString())
-      }, 1000)
+      }, 1000),
     });
   }
 
@@ -25,7 +25,7 @@ export class Clock extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.intervalID)
+    clearInterval(this.state.intervalID);
   }
 
   render() {
@@ -38,5 +38,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  name: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
 };
