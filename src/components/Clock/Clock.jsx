@@ -41,7 +41,7 @@ class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  name: PropTypes.number,
+  name: PropTypes.string,
 };
 
 Clock.defaultProps = {
