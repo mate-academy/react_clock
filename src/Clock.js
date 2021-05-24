@@ -26,7 +26,7 @@ class Clock extends React.Component {
   startClock() {
     this.timer = setInterval(() => {
       this.setState({
-        time: new Date().toLocaleTimeString('en-GB'),
+        time: new Date().toLocaleTimeString(),
       });
       window.console.log(this.state.time);
     }, 1000);
