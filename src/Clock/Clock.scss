@@ -1,6 +1,9 @@
 .Clock {
+  font-family: "Sharp-Sans-No2", sans-serif;
+  box-sizing: border-box;
+  height: 170px;
+
   &__show-time {
-    font-family: "Sharp-Sans-No2", sans-serif;
     font-size: 30px;
     color: brown;
   }

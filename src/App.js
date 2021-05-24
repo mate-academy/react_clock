@@ -1,6 +1,14 @@
 import React from 'react';
 import './App.scss';
+import styled from 'styled-components';
 import { Clock } from './Clock';
+
+const Title = styled.h1`
+  height: 127px;
+  text-align: center;
+  font-family: "Sharp-Sans-No2", sans-serif;
+  color: brown;
+`;
 
 class App extends React.Component {
   state = {
@@ -16,7 +24,7 @@ class App extends React.Component {
       <div className="App">
         {isClockVisible
           ? <Clock name={clockName} />
-          : <h1>App without clock</h1>
+          : <Title>App without clock</Title>
         }
 
         <button
