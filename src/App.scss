@@ -1,1 +1,23 @@
-// styles go here
+.App {
+  background-color: #f3f3f3;
+  padding: 50px;
+}
+
+.h1 {
+  font-size: 48px;
+}
+
+.control {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 50px;
+
+  & > * {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    border-radius: 50%;
+    background: rgb(134, 211, 247);
+    border: 2px solid rgb(35, 113, 150);
+  }
+}
