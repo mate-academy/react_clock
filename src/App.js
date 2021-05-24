@@ -6,7 +6,7 @@ import './App.scss';
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    clockName: 'null',
+    clockName: `${Math.ceil(Math.random() * 100)}`,
   };
 
   showClock = () => {
