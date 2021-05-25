@@ -1,71 +1,30 @@
 import React from 'react';
 
 import './App.scss';
+import Clock from './Clock';
 
 class App extends React.Component {
-  timerID = null;
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: new Date(),
-      isClockVisible: true,
-      clockName: 'clock',
-    };
-  }
-
-  componentDidMount() {
-    this.startClock();
-  }
-
-  componentWillUnmount() {
-    this.stopClock();
-  }
-
-  startClock = () => {
-    if (this.timerID === null) {
-      this.timerID = setInterval(() => {
-        this.tick();
-
-        // eslint-disable-next-line
-        console.log(this.state.date.toLocaleTimeString());
-      }, 1000);
-    }
-  }
-
-  stopClock = () => {
-    clearInterval(this.timerID);
-    this.timerID = null;
-  }
-
-  tick = () => {
-    this.setState({
-      date: new Date(),
-    });
-  }
+  state = {
+    isClockVisible: true,
+    clockName: 'clock',
+  };
 
   showClock = () => {
-    this.startClock();
     this.setState({
       isClockVisible: true,
     });
   }
 
   hideClock = () => {
-    this.stopClock();
     this.setState({
       isClockVisible: false,
     });
   }
 
   setRandomName = () => {
-    const oldName = this.state.clockName;
-
     this.setState({
       clockName: `${Math.random()}`,
-    },
-    // eslint-disable-next-line
-    () => console.log(`The Clock was renamed from ${oldName} to ${this.state.clockName}`));
+    });
   }
 
   render() {
@@ -76,7 +35,7 @@ class App extends React.Component {
           <p>
             Current time:
             {' '}
-            {this.state.isClockVisible && this.state.date.toLocaleTimeString()}
+            {this.state.isClockVisible && <Clock name={this.state.clockName} />}
           </p>
           <div>
             <button onClick={this.showClock} type="button">
