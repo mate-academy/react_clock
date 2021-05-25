@@ -26,7 +26,7 @@ class App extends React.Component {
       <>
         <div className="current-time">
           {`Current time: `}
-          {isClockVisible ? <Clock /> : 'hide clock'}
+          {isClockVisible ? <Clock /> : 'hidden'}
         </div>
         <p>
           Random name is
