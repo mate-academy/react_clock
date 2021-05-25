@@ -1,1 +1,21 @@
-// styles go here
+body {
+  padding: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+
+  &__button {
+    width: 150px;
+    height: 30px;
+    background-color: rgb(201, 220, 245);
+    border: 1px solid blue;
+    border-radius: 10px;
+  }
+}
+
+.current-time {
+  display: flex;
+  gap: 5px;
+}
