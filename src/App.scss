@@ -1,1 +1,17 @@
-// styles go here
+ .App {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .btn {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  p {
+    position: relative;
+  }
+ }
