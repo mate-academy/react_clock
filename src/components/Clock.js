@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './Clock.scss';
 
 class Clock extends Component {
   state = {
-    date: new Date(),
+    date: new Date().toLocaleTimeString(),
   }
 
-  timerLog = setInterval(() => {
-    this.setState({ date: new Date() });
-    const { date } = this.state;
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000)
-
   componentDidMount() {
-    return this.timerLog;
+    this.timerLog = setInterval(() => {
+      this.setState({ date: new Date().toLocaleTimeString() });
+
+      // eslint-disable-next-line
+      console.log(this.state.date);
+    }, 1000);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${prevProps.name} to ${
+        this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
@@ -28,10 +34,14 @@ class Clock extends Component {
 
     return (
       <span className="Clock">
-        { date.toLocaleTimeString()}
+        { date }
       </span>
     );
   }
 }
+
+Clock.propTypes = {
+  name: PropTypes.number.isRequired,
+};
 
 export default Clock;

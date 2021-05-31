@@ -10,23 +10,16 @@ class App extends Component {
     clockName: 0,
   };
 
-  handleShow = () => {
+  showClock = () => {
     this.setState({ isClockVisible: true });
   };
 
-  handleHide = () => {
+  hideClock = () => {
     this.setState({ isClockVisible: false });
   };
 
   makeRandomName = () => {
-    const oldName = this.state.clockName;
-
     this.setState({ clockName: Date.now() });
-
-    setTimeout(() => {
-      // eslint-disable-next-line
-      console.log(`The Clock was renamed from ${oldName} to ${this.state.clockName}`);
-    }, 0);
   };
 
   render() {
@@ -35,21 +28,21 @@ class App extends Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <p>
+        <p className="time">
           Current time:
           {isClockVisible && <Clock name={clockName} />}
         </p>
         <button
           type="button"
           className="btn btn-show"
-          onClick={this.handleShow}
+          onClick={this.showClock}
         >
           Show
         </button>
         <button
           type="button"
           className="btn btn-hide"
-          onClick={this.handleHide}
+          onClick={this.hideClock}
         >
           Hide
         </button>
