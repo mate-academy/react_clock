@@ -8,12 +8,19 @@ class App extends React.Component {
   state = {
     isClockVisible: false,
     time: new Date().toLocaleTimeString(),
+    clockName: 0,
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(_, prevState) {
     clearInterval(interval);
+    const { isClockVisible, clockName } = this.state;
 
-    if (this.state.isClockVisible) {
+    if (clockName !== prevState.clockName) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${prevState.clockName} to ${clockName}`)
+    }
+
+    if (isClockVisible) {
       interval = setInterval(() => {
         const date = new Date().toLocaleTimeString();
 
@@ -25,11 +32,17 @@ class App extends React.Component {
   }
 
   render() {
-    const { isClockVisible, time } = this.state;
+    const { isClockVisible, time, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
+        <button
+          type="button"
+          onClick={() => this.setState({ clockName: Math.random() })}
+        >
+          Set random name
+        </button>
         <button
           type="button"
           onClick={() => this.setState({ isClockVisible: true })}
@@ -42,7 +55,14 @@ class App extends React.Component {
         >
           Hide clock
         </button>
-        {isClockVisible && <Clock currentTime={time} />}
+
+        {isClockVisible
+          && (
+          <Clock
+            currentTime={time}
+            name={clockName}
+          />
+          )}
       </div>
     );
   }
