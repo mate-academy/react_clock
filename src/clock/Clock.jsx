@@ -9,6 +9,7 @@ export class Clock extends React.Component {
   }
 
   componentDidMount() {
+
     interval = setInterval(() => {
       const date = new Date().toLocaleTimeString();
 
@@ -21,7 +22,7 @@ export class Clock extends React.Component {
   componentDidUpdate(prevProps) {
     const { name } = this.props;
 
-    if (name === prevProps.name) {
+    if (name !== prevProps.name) {
       // eslint-disable-next-line
       console.log(`The Clock was renamed from ${prevProps.name} to ${name}`)
     }
