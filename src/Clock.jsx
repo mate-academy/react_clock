@@ -5,20 +5,36 @@ import PropTypes from 'prop-types';
 export class Clock extends React.Component {
   state = {
     time: new Date().toLocaleTimeString(),
+    timerId: null,
   };
 
   componentDidMount() {
-    setInterval(() => {
-      if (this.props.isClockVisible) {
-        const newDate = new Date().toLocaleTimeString();
+    const timer = setInterval(() => {
+      const newDate = new Date().toLocaleTimeString();
 
-        this.setState({
-          time: newDate,
-        });
+      this.setState({
+        time: newDate,
+      });
 
-        console.log(newDate);
-      }
+      console.log(newDate);
     }, 1000);
+
+    this.setState({
+      timerId: timer,
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.name !== prevProps.name) {
+      // eslint-disable-next-line max-len
+      console.log(`The Clock was renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
+  componentWillUnmount() {
+    const { timerId } = this.state;
+
+    clearInterval(timerId);
   }
 
   render() {
@@ -31,5 +47,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  isClockVisible: PropTypes.bool.isRequired,
+  name: PropTypes.number.isRequired,
 };

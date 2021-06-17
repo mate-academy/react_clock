@@ -6,12 +6,12 @@ import { Clock } from './Clock';
 
 class App extends React.Component {
   state = {
-    isClockVisible: true,
+    isClockVisible: false,
     clockName: 1,
   }
 
   render() {
-    const { isClockVisible } = this.state;
+    const { isClockVisible, clockName } = this.state;
 
     return (
       <div className="App">
@@ -20,21 +20,21 @@ class App extends React.Component {
           Current time:
           {' '}
           <span className="clock">
-            <Clock isClockVisible={isClockVisible} />
+            {isClockVisible && (
+            <Clock
+              isClockVisible={isClockVisible}
+              name={clockName}
+            />
+            )}
           </span>
         </p>
 
         <button
           type="button"
           onClick={() => {
-            if (!isClockVisible) {
-              const clock = document.querySelector('.clock');
-
-              clock.hidden = false;
-              this.setState({
-                isClockVisible: true,
-              });
-            }
+            this.setState({
+              isClockVisible: true,
+            });
           }}
         >
           Show Clock
@@ -43,14 +43,9 @@ class App extends React.Component {
         <button
           type="button"
           onClick={() => {
-            if (isClockVisible) {
-              const clock = document.querySelector('.clock');
-
-              clock.hidden = true;
-              this.setState({
-                isClockVisible: false,
-              });
-            }
+            this.setState({
+              isClockVisible: false,
+            });
           }}
         >
           Hide Clock
@@ -59,15 +54,8 @@ class App extends React.Component {
         <button
           type="button"
           onClick={() => {
-            this.setState((prevState) => {
-              const newClockName = Math.round(Math.random() * 100);
-
-              // eslint-disable-next-line max-len
-              console.log(`The Clock was renamed from ${prevState.clockName} to ${newClockName}`);
-
-              return {
-                clockName: newClockName,
-              };
+            this.setState({
+              clockName: Math.round(Math.random() * 100),
             });
           }}
         >
