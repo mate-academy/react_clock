@@ -1,1 +1,27 @@
-// styles go here
+html {
+  background-color: #e5e5e5;
+}
+
+.App {
+  display: block;
+  width: 300px;
+  border: 0 solid #ea5455;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 25px;
+  text-align: center;
+  background-color: #fff;
+  transition: transform 1s;
+
+  &__heading {
+    color: #2d4059;
+  }
+
+  &__time {
+    color: #ea5455;
+  }
+
+  &:hover {
+    transform: translate(50px, 20px);
+  }
+}
