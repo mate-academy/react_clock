@@ -1,30 +1,13 @@
 import React from 'react';
+import { Clock } from './Components/Clock';
 
 import './App.scss';
 
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    time: new Date().toLocaleTimeString(),
     clockName: 0,
   };
-
-  componentDidMount() {
-    setInterval(() => {
-      if (this.state.isClockVisible
-      && new Date().toLocaleTimeString() !== this.state.time) {
-        this.setState({ time: new Date().toLocaleTimeString() });
-        console.log(this.state.time);
-      }
-    }, 1000);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    prevState.clockName !== this.state.clockName
-    && console.log(`
-    The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}
-    `);
-  }
 
   render() {
     return (
@@ -34,16 +17,17 @@ class App extends React.Component {
         && <h1>React clock</h1>}
         <p>
           Current time:
-          {this.state.time}
+          {this.state.isClockVisible
+            ? <Clock {...this.state} />
+            : 'timer stopped'}
         </p>
         <div>
           <button
             type="button"
             onClick={() => (
-              this.state.isClockVisible
-            || this.setState({
-              isClockVisible: true, time: new Date().toLocaleTimeString(),
-            })
+              this.setState({
+                isClockVisible: true,
+              })
             )}
           >
             Show Clock
@@ -51,14 +35,18 @@ class App extends React.Component {
 
           <button
             type="button"
-            onClick={() => this.setState({ isClockVisible: false })}
+            onClick={() => this.setState({
+              isClockVisible: false,
+            })}
           >
             Hide Clock
           </button>
 
           <button
             type="button"
-            onClick={() => this.setState({ clockName: Math.random() })}
+            onClick={() => this.setState({
+              clockName: Math.floor(Math.random() * 100),
+            })}
           >
             Set random name
           </button>
