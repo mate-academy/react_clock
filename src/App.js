@@ -8,7 +8,7 @@ class App extends React.Component {
     clockName: 1,
   }
 
-  clockNaming() {
+  clockNaming = () => {
     const oldName = this.state.clockName;
     const randomNewName = Math.round(Math.random() * 100);
 
@@ -17,36 +17,39 @@ class App extends React.Component {
     this.setState({ clockName: randomNewName });
   }
 
-  visibilityClock() {
-    if (this.state.isVisible) {
-      return (<Clock name={this.state.clockName} />);
-    }
+  showClock = () => {
+    this.setState({ isVisible: true });
+  }
 
-    return <></>;
+  hideClock = () => {
+    this.setState({ isVisible: false });
   }
 
   render() {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.visibilityClock()}
+
+        {this.state.isVisible && (
+          <Clock name={this.state.clockName} />
+        )}
 
         <button
           type="button"
-          onClick={() => this.setState({ isVisible: true })}
+          onClick={this.showClock}
         >
           Show Clock
         </button>
         <button
           type="button"
-          onClick={() => this.setState({ isVisible: false })}
+          onClick={this.hideClock}
         >
           Hide Clock
         </button>
         <p>
           <button
             type="button"
-            onClick={() => this.clockNaming()}
+            onClick={this.clockNaming}
           >
             New name
           </button>

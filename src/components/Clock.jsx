@@ -15,10 +15,6 @@ export class Clock extends React.Component {
      }, 1000);
    }
 
-   componentDidUpdate() {
-
-   }
-
    componentWillUnmount() {
      clearInterval(this.interval);
    }
