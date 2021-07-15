@@ -16,26 +16,30 @@ class App extends React.Component {
       <div className="App">
         <div className="App__button-container">
           <button
+            type="button"
             className="App__button"
             onClick={() => {
-              this.setState({ isClockVisible: true })
+              this.setState({ isClockVisible: true });
             }}
           >
             Show Clock
           </button>
           <button
+            type="button"
             className="App__button"
             onClick={() => {
-              this.setState({ isClockVisible: false })
+              this.setState({ isClockVisible: false });
             }}
           >
             Hide Clock
           </button>
           <button
+            type="button"
             className="App__button"
             onClick={() => {
               const randomNumber = Math.ceil(Math.random() * 10);
-              this.setState({ clockName: randomNumber })
+
+              this.setState({ clockName: randomNumber });
             }}
           >
             Set random name
@@ -47,7 +51,6 @@ class App extends React.Component {
       </div>
     );
   }
-
-};
+}
 
 export default App;

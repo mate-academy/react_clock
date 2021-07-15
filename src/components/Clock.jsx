@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
@@ -8,14 +9,15 @@ export class Clock extends React.Component {
   componentDidMount() {
     this.interval = setInterval(() => {
       const date = new Date();
+
       this.setState({ date: date.toLocaleTimeString() });
       // eslint-disable-next-line
       console.log(this.state.date);
     }, 1000);
   }
 
-  componentDidUpdate(prevName) {
-    if(this.props.name !== prevName.name) {
+  componentDidUpdate(prevProps) {
+    if (this.props.name !== prevProps.name) {
       // eslint-disable-next-line
       console.log('The Clock was renamed from oldName to newName!!!!')
     }
@@ -26,7 +28,7 @@ export class Clock extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <>
         <h1>React clock</h1>
         <p>
@@ -39,3 +41,7 @@ export class Clock extends React.Component {
     );
   }
 }
+
+Clock.propTypes = {
+  name: PropTypes.string.isRequired,
+};
