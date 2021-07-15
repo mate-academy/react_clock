@@ -43,5 +43,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.number.isRequired,
 };
