@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 export const Clock = ({ date }) => (
   <p>
     Current time:
@@ -10,6 +9,5 @@ export const Clock = ({ date }) => (
 );
 
 Clock.propTypes = {
-  // eslint-disable-next-line react/no-typos
   date: PropTypes.instanceOf(Date).isRequired,
 };
