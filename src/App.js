@@ -50,7 +50,7 @@ class App extends React.Component {
           // eslint-disable-next-line
             , () => console.log(
               `The Clock was renamed from ${oldName} 
-                to ${this.state.clockName}`,
+              to ${this.state.clockName}`,
             ));
         }
       }
