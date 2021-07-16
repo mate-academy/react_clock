@@ -9,6 +9,7 @@ class Clock extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({ isClockVisible: true });
     this.timer = setInterval(() => {
       if (this.props.isClockVisible) {
         this.setState({ date: new Date().toLocaleTimeString() });
@@ -53,7 +54,7 @@ class Clock extends React.Component {
         <p>
           Current time:
           {' '}
-          {this.state.date}
+          {this.state.isClockVisible && this.state.date}
         </p>
         <Button
           messege={this.messege}
@@ -68,7 +69,7 @@ class Clock extends React.Component {
 
 Clock.propTypes = {
   isClockVisible: PropTypes.bool.isRequired,
-  clockName: PropTypes.string.isRequired,
+  clockName: PropTypes.number.isRequired,
 };
 
 export default Clock;
