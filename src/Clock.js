@@ -32,7 +32,7 @@ export class Clock extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="Clock">
         <h1>React Clock</h1>
         <p>
           Current time:
@@ -45,5 +45,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  clockName: PropTypes.string.isRequired,
+  clockName: PropTypes.number.isRequired,
 };

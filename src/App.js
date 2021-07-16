@@ -2,6 +2,7 @@ import React from 'react';
 import { Clock } from './Clock';
 
 import './App.scss';
+import { ClockControls } from './ClockControls';
 
 class App extends React.Component {
   state = {
@@ -9,39 +10,37 @@ class App extends React.Component {
     clockName: 0,
   }
 
+  hideClock = () => {
+    this.setState({
+      isClockVisible: false,
+    });
+  }
+
+  showClock = () => {
+    this.setState({
+      isClockVisible: true,
+    });
+  }
+
+  changeName = () => {
+    const name = Math.floor(Math.random() * 1000);
+
+    this.setState({ clockName: name });
+  }
+
   render() {
     return (
-      <div>
+      <div className="App">
         {this.state.isClockVisible
           ? <Clock {...this.state} />
-          : <p>Clock is stoped</p>
-        }
-        <button
-          type="button"
-          onClick={() => {
-            this.setState({ isClockVisible: true });
-          }}
-        >
-          Show Clock
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            this.setState({ isClockVisible: false });
-          }}
-        >
-          Hide Clock
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            const name = Math.floor(Math.random() * 1000);
-
-            this.setState({ clockName: name });
-          }}
-        >
-          Set random name
-        </button>
+          : 'Clock is hidden'}
+        <ClockControls
+          {...this.state}
+          hideClock={this.hideClock}
+          showClock={this.showClock}
+          changeName={this.changeName}
+          app={this}
+        />
       </div>
     );
   }
