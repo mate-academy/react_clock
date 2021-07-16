@@ -36,9 +36,6 @@ class App extends React.Component {
           : 'Clock is hidden'}
         <ClockControls
           {...this.state}
-          hideClock={this.hideClock}
-          showClock={this.showClock}
-          changeName={this.changeName}
           app={this}
         />
       </div>

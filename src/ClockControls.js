@@ -5,19 +5,25 @@ export const ClockControls = props => (
   <>
     <button
       type="button"
-      onClick={props.showClock.bind(props.app)}
+      onClick={() => {
+        props.app.showClock();
+      }}
     >
       Show Clock
     </button>
     <button
       type="button"
-      onClick={props.hideClock.bind(props.app)}
+      onClick={() => {
+        props.app.hideClock();
+      }}
     >
       Hide Clock
     </button>
     <button
       type="button"
-      onClick={props.changeName.bind(props.app)}
+      onClick={() => {
+        props.app.changeName();
+      }}
     >
       Set random name
     </button>
@@ -26,10 +32,8 @@ export const ClockControls = props => (
 
 ClockControls.propTypes = {
   app: PropTypes.shape({
-    isClockVisible: PropTypes.bool.isRequired,
-    clockName: PropTypes.number.isRequired,
+    hideClock: PropTypes.func.isRequired,
+    showClock: PropTypes.func.isRequired,
+    changeName: PropTypes.func.isRequired,
   }).isRequired,
-  hideClock: PropTypes.func.isRequired,
-  showClock: PropTypes.func.isRequired,
-  changeName: PropTypes.func.isRequired,
 };
