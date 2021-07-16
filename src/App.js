@@ -1,65 +1,50 @@
 import React from 'react';
-import { Clock } from './components/Clock/Clock';
-
+import Clock from './components/Clock/Clock';
+import Button from './components/Button/Button';
 import './App.scss';
 
 class App extends React.Component {
   state = {
+    clockName: 123,
     isClockVisible: true,
-    date: new Date(),
-    name: 1,
-  }
-
-  componentDidMount() {
-    setInterval(() => {
-      if (this.state.isClockVisible === true) {
-        this.setState({ date: new Date() });
-
-        // eslint-disable-next-line no-console
-        console.log(this.state.date.toLocaleTimeString());
-      }
-    }, 1000);
   }
 
   messege = () => {
-    const oldName = this.state.name;
+    const oldName = this.state.clockName;
     const newName = Math.floor(Math.random() * 1000);
 
     this.setState({
-      name: newName,
+      clockName: newName,
     });
     // eslint-disable-next-line
     console.log(`The Clock was renamed from ${oldName} to ${newName}`);
   }
 
+  hide = () => {
+    this.setState({ isClockVisible: true });
+  }
+
+  show = () => {
+    this.setState({ isClockVisible: false });
+  }
+
   render() {
+    const { clockName } = this.state;
+
     return (
       <div className="App">
         <h1>
           React clock
           {' '}
-          {this.state.name}
+          {clockName}
         </h1>
-        {this.state.isClockVisible
-        && <Clock date={this.state.date} />}
-        <button
-          type="button"
-          onClick={() => this.setState({ isClockVisible: true })}
-        >
-          Show Clock
-        </button>
-        <button
-          type="button"
-          onClick={() => this.setState({ isClockVisible: false })}
-        >
-          Hide Clock
-        </button>
-        <button
-          type="button"
-          onClick={this.messege}
-        >
-          Set random name
-        </button>
+        {this.state.isClockVisible && <Clock {...this.state} />}
+        <Button
+          messege={this.messege}
+          hide={this.hide}
+          show={this.show}
+          {...this.state}
+        />
       </div>
     );
   }
