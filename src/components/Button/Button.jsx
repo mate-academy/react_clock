@@ -2,37 +2,26 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export class Button extends Component {
-  handleClickOn = () => {
-    this.props.parentClickOn();
-  }
-
-   handleClickOff = () => {
-     this.props.parentClickOff();
-   }
-
-  getRandomName = () => {
-    this.props.parentGetRandomName();
-  }
 
   render() {
     return (
       <>
         <button
-          onClick={this.handleClickOn}
+          onClick={this.props.parentClickOn}
           className="post-button"
           type="button"
         >
           Show Clock
         </button>
         <button
-          onClick={this.handleClickOff}
+          onClick={this.props.parentClickOff}
           className="post-button"
           type="button"
         >
           Hide Clock
         </button>
         <button
-          onClick={this.getRandomName}
+          onClick={this.props.parentGetRandomName}
           className="post-button"
           type="button"
         >
