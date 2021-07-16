@@ -1,1 +1,36 @@
-// styles go here
+.App {
+  margin: 100px auto;
+  padding: 20px;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+
+  font-size: 1.5rem;
+
+  background-color: blueviolet;
+  color: white;
+
+  &__button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    width: 120px;
+    height: 60px;
+    transition: transform 0.3s;
+
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    border-radius: 20px;
+    background-color: yellowgreen;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+}
