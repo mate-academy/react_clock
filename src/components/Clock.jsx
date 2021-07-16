@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
+
 class Clock extends React.Component {
   state = {
     time: new Date().toLocaleTimeString(),
@@ -16,9 +18,9 @@ class Clock extends React.Component {
 
   goClock = () => {
     this.setState(
-      { time: new Date().toLocaleTimeString() },
-      () => console.log(this.state.time),
-    );
+      { time: new Date().toLocaleTimeString() });
+
+      console.log(this.state.time)
   }
 
   render() {
@@ -28,7 +30,7 @@ class Clock extends React.Component {
         {' '}
         { this.state.time }
       </p>
-    );
+    )
   }
 }
 
