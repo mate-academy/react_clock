@@ -24,13 +24,15 @@ class App extends React.Component {
   }
 
   render() {
+    const { time, isClockVisible, clockName } = this.state;
+
     const changeName = () => {
       const max = 100000;
 
       if (this.state.isClockVisible) {
         const randomName = Math.floor(Math.random() * max);
         // eslint-disable-next-line
-        console.log(`The Clock was renamed from ${this.state.clockName} `+
+        console.log(`The Clock was renamed from ${clockName} `+
           `to ${randomName}`);
         this.setState({ clockName: randomName });
       }
@@ -40,13 +42,13 @@ class App extends React.Component {
       <div className="App">
         <h1>React Clock</h1>
         {
-        this.state.isClockVisible
+        isClockVisible
 
           ? (
             <>
               <p>
                 Current time:
-                {` ${this.state.time}`}
+                {` ${time}`}
               </p>
             </>
           )
