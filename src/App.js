@@ -46,7 +46,7 @@ class App extends React.Component {
 
           ? (
             <>
-              <p>
+              <p className="App__current-time">
                 Current time:
                 {` ${time}`}
               </p>
