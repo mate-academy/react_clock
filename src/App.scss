@@ -1,1 +1,25 @@
 // styles go here
+$main_color:rgb(214, 214, 214);
+
+.App {
+    display: inline-block;
+    background: linear-gradient(#9198e5, #f87f7f);
+    padding: 5%;
+    border-radius: 10px;
+    border: 1px solid black;
+
+    &__button-container {
+      display: flex;
+      gap: 10px;
+    }
+
+    &__button {
+        width: 100px;
+        transition: 0.3s;
+        &:hover {
+          transition: 0.3s;
+          background-color: rgb(255, 0, 0);
+          border-color: $main_color;
+        }
+    }
+}
