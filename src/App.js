@@ -1,75 +1,26 @@
 import React from 'react';
 import './App.scss';
-import Button from './Components/Button/Button';
+import { Clock } from './Components/Clock/Clock';
 
 class App extends React.Component {
   state = {
-    time: new Date().toLocaleTimeString(),
-    isClockVisible: true,
-    clockName: 10000,
+    clockName: 0,
   }
 
-  componentDidMount() {
-    this.interval = setInterval(() => {
-      if (this.state.isClockVisible) {
-        // eslint-disable-next-line
-        console.log(this.state.time);
-      }
-
-      this.setState({ time: new Date().toLocaleTimeString() });
-    }, 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
+  changeName = () => {
+    this.setState({ clockName: Math.floor(Math.random() * 100000) });
   }
 
   render() {
-    const { time, isClockVisible, clockName } = this.state;
-
-    const changeName = () => {
-      const max = 100000;
-
-      if (this.state.isClockVisible) {
-        const randomName = Math.floor(Math.random() * max);
-        // eslint-disable-next-line
-        console.log(`The Clock was renamed from ${clockName} `+
-          `to ${randomName}`);
-        this.setState({ clockName: randomName });
-      }
-    };
-
-    const hide = () => {
-      this.setState({ isClockVisible: false });
-    };
-
-    const show = () => this.setState({ isClockVisible: true });
-
     return (
       <div className="App">
-        <h1>React Clock</h1>
-        {
-        isClockVisible
-
-          ? (
-            <>
-              <p className="App__current-time">
-                Current time:
-                {` ${time}`}
-              </p>
-            </>
-          )
-          : <p className="destroyed">Time was stopped</p>}
-        <div className="App__button-container">
-          <Button
-            hide={hide}
-            changeName={changeName}
-            show={show}
-          />
-        </div>
+        <h1>React clock</h1>
+        <Clock
+          clockName={this.state.clockName}
+          changeName={this.changeName}
+        />
       </div>
     );
   }
 }
-
 export default App;

@@ -1,27 +1,32 @@
 import React from 'react';
-import { testPropTypes } from '../PropTypes/testPropTypes';
-import './Button';
+import testPropTypes from '../PropTypes/buttonPropTypes';
 
 const Button = ({ hide, show, changeName }) => (
   <>
     <button
       className="App__button"
-      onClick={hide}
-      type="submit"
+      type="button"
+      onClick={() => {
+        show();
+      }}
     >
-      Stop Time
+      Show time
     </button>
     <button
       className="App__button"
-      onClick={show}
-      type="submit"
+      type="button"
+      onClick={() => {
+        hide();
+      }}
     >
-      Start Time
+      Stop time
     </button>
     <button
       className="App__button"
-      onClick={changeName}
-      type="submit"
+      type="button"
+      onClick={() => {
+        changeName();
+      }}
     >
       Change name
     </button>
