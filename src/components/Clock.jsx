@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
+import propTypes from 'prop-types';
 
 class Clock extends React.Component {
   state = {
