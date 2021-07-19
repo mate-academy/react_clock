@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../Button/Button';
-import { clockPropTypes } from '../PropTypes/clockPropTypes';
+import Time from '../Time/Time';
 
 export class Clock extends React.Component {
   state = {
@@ -11,38 +11,25 @@ export class Clock extends React.Component {
   componentDidMount() {
     this.timer = setInterval(() => {
       if (this.state.isVisible) {
-        this.setDate();
+        this.setState({ date: new Date().toLocaleTimeString() });
         // eslint-disable-next-line
         console.log(this.state.date);
       }
     }, 1000);
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.clockName !== prevProps.clockName) {
-      // eslint-disable-next-line
-      console.log(`The Clock was renamed from ${prevProps.clockName} to ${this.props.clockName}`);
-    }
-  }
-
   componentWillUnmount() {
     clearInterval(this.timer);
   }
 
-  setDate = () => {
-    this.setState({ date: new Date().toLocaleTimeString() });
-  }
-
-  hide = () => {
-    this.setState({ isVisible: false });
-  }
-
-  show = () => {
-    this.setState({ isVisible: true });
-  }
-
   render() {
-    const { changeName } = this.props;
+    const hide = () => {
+      this.setState({ isVisible: false });
+    };
+
+    const show = () => {
+      this.setState({ isVisible: true });
+    };
 
     return (
       <>
@@ -54,10 +41,9 @@ export class Clock extends React.Component {
           </p>
         )
           : (<p className="destroyed">Time was stopped</p>) }
-        <Button hide={this.hide} show={this.show} changeName={changeName} />
+        <Time isVisible={this.state.isVisible} />
+        <Button hide={hide} show={show} />
       </>
     );
   }
 }
-
-Clock.propTypes = clockPropTypes;

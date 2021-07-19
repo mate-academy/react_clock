@@ -1,38 +1,28 @@
 import React from 'react';
-import testPropTypes from '../PropTypes/buttonPropTypes';
+import PropTypes from 'prop-types';
 
-const Button = ({ hide, show, changeName }) => (
-  <div className="App__button-container">
+const Button = ({ show, hide }) => (
+  <>
     <button
       className="App__button"
       type="button"
-      onClick={() => {
-        show();
-      }}
+      onClick={show}
     >
       Show time
     </button>
     <button
       className="App__button"
       type="button"
-      onClick={() => {
-        hide();
-      }}
+      onClick={hide}
     >
       Stop time
     </button>
-    <button
-      className="App__button"
-      type="button"
-      onClick={() => {
-        changeName();
-      }}
-    >
-      Change name
-    </button>
-  </div>
+  </>
 );
 
-Button.propTypes = testPropTypes;
+Button.propTypes = {
+  show: PropTypes.func.isRequired,
+  hide: PropTypes.func.isRequired,
+};
 
 export default Button;
