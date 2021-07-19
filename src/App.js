@@ -1,25 +1,55 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import { Clock } from './Components/Clock';
 
 import './App.scss';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+class App extends React.Component {
+  state = {
+    clockName: Math.random(),
+  }
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  render() {
+    const { clockVisibility } = this.state;
+    const show = () => this.setState({ clockVisibility: true });
+    const hide = () => this.setState({ clockVisibility: false });
+    const random = () => this.setState({ clockName: Math.random() });
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+    return (
+      <div className="app">
+        <div className="timer-block">
+          <p className="timer-block__title">Current time:</p>
+          {clockVisibility && <Clock name={this.state.clockName} />}
+        </div>
+        <div className="control-buttons">
+          <Button
+            type="button"
+            onClick={show}
+            variant="contained"
+            color="primary"
+          >
+            Show Clock
+          </Button>
+          <Button
+            type="button"
+            onClick={hide}
+            variant="contained"
+            color="secondary"
+          >
+            Hide Clock
+          </Button>
+          <Button
+            type="button"
+            onClick={random}
+            variant="outlined"
+            color="secondary"
+          >
+            Set random name
+          </Button>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default App;
