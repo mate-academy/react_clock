@@ -6,12 +6,12 @@ import { clockProps } from './propstypes';
 export class Clock extends React.Component {
   state = {
     date: new Date().toLocaleTimeString(),
-    isVisible: true,
+    isClockVisible: true,
   };
 
   componentDidMount() {
     this.timer = setInterval(() => {
-      if (this.state.isVisible) {
+      if (this.state.isClockVisible) {
         this.setDate();
         // eslint-disable-next-line
         console.log(this.state.date);
@@ -34,25 +34,30 @@ export class Clock extends React.Component {
     this.setState({ date: new Date().toLocaleTimeString() });
   }
 
-  hide = () => {
-    this.setState({ isVisible: false });
+  changeClockVisability = () => {
+    if (this.state.isClockVisible) {
+      this.setState({ isClockVisible: false });
+    } else {
+      this.setState({ isClockVisible: true });
+    }
   }
 
-  show = () => {
-    this.setState({ isVisible: true });
+  getRandomClockName = () => {
+    this.props.app.setState({ clockName: Math.floor(Math.random() * 1000) });
   }
 
   render() {
-    const { random } = this.props;
-
     return (
       <>
-        {this.state.isVisible && (
+        {this.state.isClockVisible && (
           <p>
             {`Current time: ${this.state.date}`}
           </p>
         )}
-        <ButtonsControl hide={this.hide} show={this.show} random={random} />
+        <ButtonsControl
+          visible={this.changeClockVisability}
+          random={this.getRandomClockName}
+        />
       </>
     );
   }

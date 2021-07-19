@@ -1,12 +1,12 @@
 import React from 'react';
-import { clockProps } from './propstypes';
+import { buttonControlProps } from './propstypes';
 
-export const ButtonsControl = ({ hide, show, random }) => (
+export const ButtonsControl = ({ visible, random }) => (
   <>
     <button
       type="button"
       onClick={() => {
-        show();
+        visible();
       }}
     >
       Show time
@@ -14,7 +14,7 @@ export const ButtonsControl = ({ hide, show, random }) => (
     <button
       type="button"
       onClick={() => {
-        hide();
+        visible();
       }}
     >
       Hide time
@@ -30,4 +30,4 @@ export const ButtonsControl = ({ hide, show, random }) => (
   </>
 );
 
-ButtonsControl.propTypes = clockProps;
+ButtonsControl.propTypes = buttonControlProps;
