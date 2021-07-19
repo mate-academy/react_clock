@@ -1,0 +1,10 @@
+
+.App__button {
+    width: 100px;
+    transition: 0.3s;
+    &:hover {
+      transition: 0.3s;
+      background-color: rgb(255, 138, 138);
+      border-color: $main_color;
+    }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import Button from './Components/Button/Button';
 
 class App extends React.Component {
   state = {
@@ -38,6 +39,12 @@ class App extends React.Component {
       }
     };
 
+    const hide = () => {
+      this.setState({ isClockVisible: false });
+    };
+
+    const show = () => this.setState({ isClockVisible: true });
+
     return (
       <div className="App">
         <h1>React Clock</h1>
@@ -54,27 +61,11 @@ class App extends React.Component {
           )
           : <p className="destroyed">Time was stopped</p>}
         <div className="App__button-container">
-          <button
-            className="App__button"
-            onClick={() => this.setState({ isClockVisible: false })}
-            type="submit"
-          >
-            Stop Time
-          </button>
-          <button
-            className="App__button"
-            onClick={() => this.setState({ isClockVisible: true })}
-            type="submit"
-          >
-            Start Time
-          </button>
-          <button
-            className="App__button"
-            onClick={changeName}
-            type="submit"
-          >
-            Change name
-          </button>
+          <Button
+            hide={hide}
+            changeName={changeName}
+            show={show}
+          />
         </div>
       </div>
     );
