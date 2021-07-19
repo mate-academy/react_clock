@@ -2,7 +2,7 @@ import React from 'react';
 import testPropTypes from '../PropTypes/buttonPropTypes';
 
 const Button = ({ hide, show, changeName }) => (
-  <>
+  <div className="App__button-container">
     <button
       className="App__button"
       type="button"
@@ -30,7 +30,7 @@ const Button = ({ hide, show, changeName }) => (
     >
       Change name
     </button>
-  </>
+  </div>
 );
 
 Button.propTypes = testPropTypes;
