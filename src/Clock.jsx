@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from './Button';
+import { ButtonsControl } from './ButtonsControl';
 
 import { clockProps } from './propstypes';
 
@@ -52,7 +52,7 @@ export class Clock extends React.Component {
             {`Current time: ${this.state.date}`}
           </p>
         )}
-        <Button hide={this.hide} show={this.show} random={random} />
+        <ButtonsControl hide={this.hide} show={this.show} random={random} />
       </>
     );
   }
