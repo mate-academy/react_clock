@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Clock } from './components/Clock';
 import './App.scss';
-// import { render } from 'node-sass';
+import { Button } from './components/Button';
 
 export class App extends React.Component {
   state = {
@@ -19,32 +19,26 @@ export class App extends React.Component {
           {' '}
           {this.state.isClockVisible && (<Clock name={this.state.clockName} />)}
         </p>
-        <button
-          type="button"
-          onClick={() => {
+        <Button
+          actionName="Show Clock"
+          callback={() => {
             this.setState({ isClockVisible: true });
           }}
-        >
-          Show Clock
-        </button>
-        <button
-          type="button"
-          onClick={() => {
+        />
+        <Button
+          actionName="Hide Clock"
+          callback={() => {
             this.setState({ isClockVisible: false });
           }}
-        >
-          Hide Clock
-        </button>
-        <button
-          type="button"
-          onClick={() => {
+        />
+        <Button
+          actionName="Set random name"
+          callback={() => {
             this.setState({
               clockName: `Clock#${Math.floor(Math.random() * (1000 - 1) + 1)}`,
             });
           }}
-        >
-          Set random name
-        </button>
+        />
       </div>
     );
   }
