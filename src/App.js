@@ -1,20 +1,36 @@
 import React from 'react';
 import { Clock } from './Clock';
+import { ButtonsControl } from './ButtonsControl';
 
 import './App.scss';
 
 class App extends React.Component {
   state = {
     clockName: 0,
+    isClockVisible: true,
+  }
+
+  changeClockVisability = (value) => {
+    this.setState({ isClockVisible: value });
+  }
+
+  getRandomClockName = () => {
+    this.setState({ clockName: Math.floor(Math.random() * 1000) });
   }
 
   render() {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <Clock
-          clockName={this.state.clockName}
-          app={this}
+        { this.state.isClockVisible && (
+          <Clock
+            clockName={this.state.clockName}
+            app={this}
+          />
+        )}
+        <ButtonsControl
+          changeClockVisability={this.changeClockVisability}
+          getRandomClockName={this.getRandomClockName}
         />
       </div>
     );

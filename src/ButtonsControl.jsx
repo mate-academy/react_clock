@@ -1,12 +1,13 @@
 import React from 'react';
 import { buttonControlProps } from './propstypes';
 
-export const ButtonsControl = ({ visible, random }) => (
+export const ButtonsControl
+= ({ changeClockVisability, getRandomClockName }) => (
   <>
     <button
       type="button"
       onClick={() => {
-        visible();
+        changeClockVisability(true);
       }}
     >
       Show time
@@ -14,7 +15,7 @@ export const ButtonsControl = ({ visible, random }) => (
     <button
       type="button"
       onClick={() => {
-        visible();
+        changeClockVisability(false);
       }}
     >
       Hide time
@@ -22,7 +23,7 @@ export const ButtonsControl = ({ visible, random }) => (
     <button
       type="button"
       onClick={() => {
-        random();
+        getRandomClockName();
       }}
     >
       Random name
