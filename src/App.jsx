@@ -12,15 +12,6 @@ class App extends React.Component {
     clockName: 0,
   };
 
-  componentDidUpdate(_, prevState) {
-    const { clockName } = this.state;
-
-    if (prevState.clockName !== clockName) {
-      console.log(`The Clock was renamed from ${prevState.clockName}
-      to ${clockName}.`);
-    }
-  }
-
   setName = () => {
     this.setState({ clockName: Math.floor(Math.random() * 1000) });
   }
@@ -45,9 +36,9 @@ class App extends React.Component {
           {isClockVisible ? <Clock name={clockName} /> : 'Clock is hidden'}
         </p>
 
-        <Button action={this.showClock} text="Show Clock" />
-        <Button action={this.hideClock} text="Hide Clock" />
-        <Button action={this.setName} text="Set new name" />
+        <Button onClick={this.showClock} text="Show Clock" />
+        <Button onClick={this.hideClock} text="Hide Clock" />
+        <Button onClick={this.setName} text="Set new name" />
       </div>
     );
   }

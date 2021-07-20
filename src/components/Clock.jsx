@@ -17,6 +17,15 @@ class Clock extends React.Component {
     }, 1000);
   }
 
+  componentDidUpdate(prevProps, _) {
+    const { name } = this.props;
+
+    if (prevProps.name !== name) {
+      console.log(`The Clock was renamed from ${prevProps.name}
+      to ${name}.`);
+    }
+  }
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -31,5 +40,9 @@ class Clock extends React.Component {
     );
   }
 }
+
+Clock.propTypes = {
+  name: propTypes.number.isRequired,
+};
 
 export default Clock;
