@@ -21,7 +21,9 @@
   margin: 0 auto;
   max-width: 450px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  row-gap: 10px;
 }
 
 .console {
