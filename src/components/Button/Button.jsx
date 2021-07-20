@@ -1,16 +1,17 @@
 import React from 'react';
 import PropType from 'prop-types';
 
-export const Button = ({ action, state }) => (
+export const Button = ({ onClick, isClockVisible }) => (
   <button
     type="button"
-    onClick={action}
+    onClick={onClick}
+    className="button has-text-warning-dark is-rounded"
   >
-    {state ? 'Hide clock' : 'Show clock'}
+    {isClockVisible ? 'Hide clock' : 'Show clock'}
   </button>
 );
 
 Button.propTypes = {
-  action: PropType.func.isRequired,
-  state: PropType.bool.isRequired,
+  onClick: PropType.func.isRequired,
+  isClockVisible: PropType.bool.isRequired,
 };

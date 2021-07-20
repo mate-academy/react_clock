@@ -20,7 +20,9 @@ class App extends React.Component {
 
   changeClockName = () => {
     const oldName = this.state.currentClockName;
-    const newName = Math.random().toString(36).substring(7);
+    const startStringIndex = 7;
+    const radix = 36;
+    const newName = Math.random().toString(radix).substring(startStringIndex);
 
     this.setState({ currentClockName: newName });
     // eslint-disable-next-line
@@ -29,19 +31,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>React clock</h1>
+      <div className="App has-text-centered pt-6">
+        <h1 className="title has-text-primary">React clock</h1>
         <div className="clock">
           {this.state.isClockVisible
             && <Clock clockName={this.state.currentClockName} />}
         </div>
         <Button
-          action={this.changeVisibility}
-          state={this.state.isClockVisible}
+          onClick={this.changeVisibility}
+          isClockVisible={this.state.isClockVisible}
         />
         <button
           type="button"
           onClick={this.changeClockName}
+          className="button has-text-danger is-rounded"
         >
           Change name
         </button>
