@@ -1,1 +1,34 @@
 // styles go here
+.app {
+  margin: 0 auto;
+  padding: 50px 30px;
+  max-width: 80%;
+  text-align: center;
+}
+
+.timer-block {
+  margin-bottom: 100px;
+
+  &__title {
+    margin: 0;
+    font-family: courier, monospace;
+    font-size: 30px;
+    color: whitesmoke;
+  }
+}
+
+.control-buttons {
+  margin: 0 auto;
+  max-width: 450px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+
+.console {
+  margin-top: 100px;
+  font-family: courier, monospace;
+  font-size: 20px;
+  color: whitesmoke;
+}
