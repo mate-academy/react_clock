@@ -7,19 +7,20 @@ import './App.scss';
 class App extends React.Component {
   state = {
     clockName: Math.random(),
+    isClockVisible: false,
   }
 
   render() {
-    const { clockVisibility } = this.state;
-    const show = () => this.setState({ clockVisibility: true });
-    const hide = () => this.setState({ clockVisibility: false });
+    const { isClockVisible } = this.state;
+    const show = () => this.setState({ isClockVisible: true });
+    const hide = () => this.setState({ isClockVisible: false });
     const random = () => this.setState({ clockName: Math.random() });
 
     return (
       <div className="app">
         <div className="timer-block">
           <p className="timer-block__title">Current time:</p>
-          {clockVisibility && <Clock name={this.state.clockName} />}
+          {isClockVisible && <Clock name={this.state.clockName} />}
         </div>
         <div className="control-buttons">
           <Button
