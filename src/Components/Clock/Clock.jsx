@@ -1,16 +1,15 @@
 import React from 'react';
-import Button from '../Button/Button';
-import Time from '../Time/Time';
+import PropTypes from 'prop-types';
+import './Clock.scss';
 
 export class Clock extends React.Component {
   state = {
     date: new Date().toLocaleTimeString(),
-    isVisible: true,
   };
 
   componentDidMount() {
     this.timer = setInterval(() => {
-      if (this.state.isVisible) {
+      if (this.props.isVisible) {
         this.setState({ date: new Date().toLocaleTimeString() });
         // eslint-disable-next-line
         console.log(this.state.date);
@@ -23,27 +22,19 @@ export class Clock extends React.Component {
   }
 
   render() {
-    const hide = () => {
-      this.setState({ isVisible: false });
-    };
-
-    const show = () => {
-      this.setState({ isVisible: true });
-    };
-
     return (
-      <>
-        {this.state.isVisible ? (
-          <p
-            className="App__current-time"
-          >
-            {`Current time: ${this.state.date}`}
-          </p>
-        )
-          : (<p className="destroyed">Time was stopped</p>) }
-        <Time isVisible={this.state.isVisible} />
-        <Button hide={hide} show={show} />
-      </>
+      <div className="clock">
+        <h1 className="clock__title">React Clock</h1>
+        <p>
+          Current time:
+          {' '}
+          {this.state.date}
+        </p>
+      </div>
     );
   }
 }
+
+Clock.propTypes = {
+  isVisible: PropTypes.bool.isRequired,
+};
