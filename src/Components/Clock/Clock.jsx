@@ -11,19 +11,19 @@ export class Clock extends React.Component {
     clockName: 0,
   }
 
-  show = () => {
+  showClock = () => {
     this.setState({
       isClockVisible: true,
     });
   }
 
-  hide = () => {
+  hideClock = () => {
     this.setState({
       isClockVisible: false,
     });
   }
 
-  getRandomName = () => {
+  getRandomNameClock = () => {
     this.setState({
       clockName: Math.floor(Math.random() * 100),
     });
@@ -43,9 +43,9 @@ export class Clock extends React.Component {
         </p>
         <div>
           <Button
-            clockShow={this.show}
-            clockHide={this.hide}
-            clockGetRandomName={this.getRandomName}
+            clockShow={this.showClock}
+            clockHide={this.hideClock}
+            clockGetRandomName={this.getRandomNameClock}
           />
         </div>
       </>
