@@ -4,7 +4,7 @@ import './App.scss';
 
 class App extends React.Component {
   state = {
-    isOnClick: true,
+    isClockVisible: true,
     clockName: Math.round(Math.random() * 100),
   };
 
@@ -26,22 +26,20 @@ class App extends React.Component {
         >
           Set random name
         </button>
-        {' '}
         <button
           type="button"
           className="btn btn-outline-danger"
           onClick={() => {
-            this.setState({ isOnClick: false });
+            this.setState({ isClockVisible: false });
           }}
         >
           Hide Clock
         </button>
-        {' '}
         <button
           type="button"
           className="btn btn-outline-success"
           onClick={() => {
-            this.setState({ isOnClick: true });
+            this.setState({ isClockVisible: true });
           }}
         >
           Show Clock
@@ -49,7 +47,7 @@ class App extends React.Component {
         <h1 className="text-center bi bi-alarm">
           {this.state.clockName}
         </h1>
-        { this.state.isOnClick && <Clock name={this.state.clockName} /> }
+        { this.state.isClockVisible && <Clock name={this.state.clockName} /> }
 
       </div>
     );

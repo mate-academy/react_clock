@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
-    time: '00:00:00',
+    time: new Date().toLocaleTimeString(),
   };
 
   componentDidMount() {
@@ -31,9 +31,7 @@ export class Clock extends React.Component {
     return (
       <>
         <h2 className="text-center">
-          Current time:
-          {' '}
-          {this.state.time}
+          {`Current time: ${this.state.time}`}
         </h2>
       </>
     );
