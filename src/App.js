@@ -10,9 +10,9 @@ class App extends React.Component {
     isClockVisible: true,
   }
 
-  changeClockVisability = (value) => {
-    this.setState({ isClockVisible: value });
-  }
+  changeClockVisability = () => {
+    this.setState(prevState => ({ isClockVisible: !prevState.isClockVisible }));
+  };
 
   getRandomClockName = () => {
     this.setState({ clockName: Math.floor(Math.random() * 1000) });
@@ -25,7 +25,6 @@ class App extends React.Component {
         { this.state.isClockVisible && (
           <Clock
             clockName={this.state.clockName}
-            app={this}
           />
         )}
         <ButtonsControl
