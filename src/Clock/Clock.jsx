@@ -7,11 +7,7 @@ class Clock extends React.Component {
     };
 
     componentDidMount() {
-      setInterval(() => {
-        const date = new Date().toLocaleTimeString();
-
-        this.setState({ currentTime: date });
-      }, 1000);
+        this.interval = setInterval(this.info, 1000)
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -23,11 +19,20 @@ class Clock extends React.Component {
       }
     }
 
+    componentWillUnmount () {
+        clearInterval(this.interval);
+    }
+
+    info = () => {
+        this.setState({
+            currentTime: new Date().toLocaleTimeString() 
+        });
+        // eslint-disable-next-line
+        console.log(this.state.currentTime);
+    }
+
     render() {
       const { currentTime } = this.state;
-      // eslint-disable-next-line
-        console.log(currentTime);
-
       return <span>{` ${currentTime}`}</span>;
     }
 }
