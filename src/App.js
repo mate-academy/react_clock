@@ -27,8 +27,11 @@ export class App extends React.Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {isClockVisible ? <CLock name={clockName} />
-          : <p>The clock is stopped</p>}
+        {
+          isClockVisible
+            ? <CLock name={clockName} />
+            : <p>The clock is stopped</p>
+        }
         <button
           type="button"
           onClick={this.showCLock}
