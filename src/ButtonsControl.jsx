@@ -6,25 +6,19 @@ export const ButtonsControl
   <>
     <button
       type="button"
-      onClick={() => {
-        changeClockVisability(true);
-      }}
+      onClick={changeClockVisability}
     >
       Show time
     </button>
     <button
       type="button"
-      onClick={() => {
-        changeClockVisability(false);
-      }}
+      onClick={changeClockVisability}
     >
       Hide time
     </button>
     <button
       type="button"
-      onClick={() => {
-        getRandomClockName();
-      }}
+      onClick={getRandomClockName}
     >
       Random name
     </button>
