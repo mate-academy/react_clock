@@ -1,0 +1,15 @@
+.clock {
+    height: 80px;
+    padding-top: 20px;
+    padding: 10px;
+    &__title {
+        margin: 0;
+        font-size: 25px;
+    }
+    
+}
+
+.App__container-button {
+    display: flex;
+    gap: 20px;
+}
