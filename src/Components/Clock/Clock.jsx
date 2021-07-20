@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './Clock.scss';
 
 export class Clock extends React.Component {
@@ -9,11 +8,9 @@ export class Clock extends React.Component {
 
   componentDidMount() {
     this.timer = setInterval(() => {
-      if (this.props.isVisible) {
-        this.setState({ date: new Date().toLocaleTimeString() });
-        // eslint-disable-next-line
-        console.log(this.state.date);
-      }
+      this.setState({ date: new Date().toLocaleTimeString() });
+      // eslint-disable-next-line
+      console.log(this.state.date);
     }, 1000);
   }
 
@@ -34,7 +31,3 @@ export class Clock extends React.Component {
     );
   }
 }
-
-Clock.propTypes = {
-  isVisible: PropTypes.bool.isRequired,
-};

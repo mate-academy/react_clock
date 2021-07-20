@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.scss';
-import Button from './Components/Button/Button';
+import ButtonHideTime from './Components/ButtonHideTime/ButtonHideTime';
+import ButtonShowTime from './Components/ButtonShowTime/ButtonShowTime';
+import ButtonChangeName from './Components/ButtonChangeName/ButtonChangeName';
+
 import { Clock } from './Components/Clock/Clock';
 
 class App extends React.Component {
@@ -19,11 +22,11 @@ class App extends React.Component {
     }
   };
 
-  hide = () => {
+  hideTime = () => {
     this.setState({ isVisible: false });
   };
 
-  show = () => {
+  showTime = () => {
     this.setState({ isVisible: true });
   };
 
@@ -32,14 +35,14 @@ class App extends React.Component {
       <div className="App">
         {this.state.isVisible ? (
 
-          <Clock isVisible={this.state.isVisible} />
+          <Clock />
         )
           : (<p className="destroyed">Time was stopped</p>) }
-        <Button
-          hide={this.hide}
-          show={this.show}
-          changeName={this.changeName}
-        />
+        <div className="App__container-button">
+          <ButtonHideTime show={this.showTime} />
+          <ButtonShowTime hide={this.hideTime} />
+          <ButtonChangeName changeName={this.changeName} />
+        </div>
       </div>
     );
   }
