@@ -9,14 +9,12 @@ export class App extends React.Component {
     isClockVisible: true,
   };
 
-  changeVisibility = () => {
-    const { isClockVisible } = this.state;
+  showCLock = () => {
+    this.setState({ isClockVisible: true });
+  }
 
-    if (isClockVisible === true) {
-      this.setState({ isClockVisible: false });
-    } else {
-      this.setState({ isClockVisible: true });
-    }
+  hideCLock = () => {
+    this.setState({ isClockVisible: false });
   }
 
   changeName = () => {
@@ -33,26 +31,20 @@ export class App extends React.Component {
           : <p>The clock is stopped</p>}
         <button
           type="button"
-          onClick={() => {
-            this.changeVisibility();
-          }}
+          onClick={this.showCLock}
         >
           Show Clock
         </button>
         <button
           type="button"
-          onClick={() => {
-            this.changeVisibility();
-          }}
+          onClick={this.hideCLock}
         >
           Hide clock
         </button>
         <button
           className="button"
           type="button"
-          onClick={() => {
-            this.changeName();
-          }}
+          onClick={this.changeName}
         >
           Set random name
         </button>
