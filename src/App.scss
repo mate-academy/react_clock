@@ -1,1 +1,36 @@
-// styles go here
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Roboto, sans-serif;
+  background-color: #eee;
+}
+
+.button {
+  width: 240px;
+  height: 60px;
+  border: none;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: transform 0.5s;
+  
+  &:hover {
+    transform: scale(1.15);
+  }
+
+  &:first-of-type {
+    background-color: #ff6347;
+  }
+
+  &:nth-of-type(2) {
+    background-color: #7fff00;
+  }
+
+  &:last-of-type {
+    background-color: #0ff;
+  }
+}
