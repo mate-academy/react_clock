@@ -1,24 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ClassNames from 'classnames';
+import сlassNames from 'classnames';
 import './buttons.scss';
 
-export const Buttons = ({ clickFunc, buttonClass, buttonText }) => {
-  const classes = ClassNames('button', buttonClass);
+export const Button = ({ callback, buttonClass, text }) => {
+  const classes = сlassNames('button', buttonClass);
 
   return (
     <button
+      onClick={callback}
       type="button"
       className={classes}
-      onClick={clickFunc}
     >
-      {buttonText}
+      {text}
     </button>
   );
 };
 
-Buttons.propTypes = {
-  clickFunc: PropTypes.func.isRequired,
+Button.propTypes = {
+  callback: PropTypes.func.isRequired,
   buttonClass: PropTypes.string.isRequired,
-  buttonText: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };

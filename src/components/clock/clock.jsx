@@ -8,7 +8,7 @@ export class Clock extends React.Component {
   }
 
   componentDidMount() {
-    this.timerInterval = setInterval(this.timer, 1000);
+    this.timerInterval = setInterval(this.setTimer, 1000);
   }
 
   componentDidUpdate(prevState) {
@@ -24,7 +24,7 @@ export class Clock extends React.Component {
     clearInterval(this.timerInterval);
   }
 
-  timer = () => {
+  setTimer = () => {
     this.setState({ time: new Date().toLocaleTimeString() });
 
     // eslint-disable-next-line
@@ -33,7 +33,13 @@ export class Clock extends React.Component {
 
   render() {
     return (
-      this.state.time
+      <>
+        Current time:
+        {' '}
+        <span className="time">
+          { this.state.time }
+        </span>
+      </>
     );
   }
 }

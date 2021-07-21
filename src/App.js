@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { Clock } from './components/clock/clock';
-import { Buttons } from './components/buttons/buttons';
+import { Button } from './components/buttons/buttons';
 
 class App extends React.Component {
   state = {
@@ -9,52 +9,41 @@ class App extends React.Component {
     clockName: 0,
   }
 
-  hideClock = () => {
-    this.setState({
-      isClockVisible: false,
-    });
-  }
-
-  showClock = () => {
-    this.setState({
-      isClockVisible: true,
-    });
-  }
-
-  randomName = () => {
+  getRandomName = () => {
     this.setState({
       clockName: Math.floor(Math.random() * 100),
     });
   }
 
   render() {
-    const handle = this.state.isClockVisible
-      ? <Clock name={this.state.clockName} /> : '';
+    const gettingClock = this.state.isClockVisible
+      ? <Clock name={this.state.clockName} />
+      : 'SECRET';
 
     return (
       <div className="clock">
         <h1 className="clock__title">
-          Current time:
-          {' '}
-          <span className="time">
-            { handle }
-          </span>
+          { gettingClock }
         </h1>
         <div className="clock__buttons">
-          <Buttons
-            clickFunc={this.hideClock}
+          <Button
+            callback={() => {
+              this.setState({ isClockVisible: false });
+            }}
             buttonClass="hideClock"
-            buttonText="hide"
+            text="hide"
           />
-          <Buttons
-            clickFunc={this.showClock}
+          <Button
+            callback={() => {
+              this.setState({ isClockVisible: true });
+            }}
             buttonClass="showClock"
-            buttonText="show"
+            text="show"
           />
-          <Buttons
-            clickFunc={this.randomName}
+          <Button
+            callback={this.getRandomName}
             buttonClass="randomName"
-            buttonText="random name"
+            text="random name"
           />
         </div>
       </div>
