@@ -1,0 +1,13 @@
+.state-button {
+  background-color: transparent;
+  border: 2px solid #000;
+  cursor: pointer;
+  font-size: 22px;
+  margin: 10px;
+  padding: 20px;
+  text-transform: uppercase;
+
+  &:hover {
+    border-style: dashed;
+  }
+}
