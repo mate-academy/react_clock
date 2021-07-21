@@ -8,14 +8,12 @@ export class Clock extends React.Component {
   }
 
   componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000,
-    );
-    this.consoleMessageID = setInterval(() => 
-    // eslint-disable-next-line
-    console.log(this.state.date),
-    1000);
+    const timer = () => this.tick();
+    const showMessage = ()=> console.log(this.state.date)
+    this.timerID = setInterval (function(){
+      timer();
+      showMessage();
+    },1000)
   }
 
   componentDidUpdate(prevProps) {
@@ -30,7 +28,6 @@ export class Clock extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.timerID);
-    clearInterval(this.consoleMessageID);
   }
 
   tick() {
