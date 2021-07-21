@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { Clock } from './components/clock/clock';
+import { Buttons } from './components/buttons/buttons';
 
 class App extends React.Component {
   state = {
@@ -39,32 +40,11 @@ class App extends React.Component {
             { handle }
           </span>
         </h1>
-
-        <div className="clock__buttons">
-          <button
-            type="button"
-            className="button buttonHide"
-            onClick={this.hideClock}
-          >
-            hide
-          </button>
-
-          <button
-            type="button"
-            className="button buttonShow"
-            onClick={this.showClock}
-          >
-            show
-          </button>
-
-          <button
-            type="button"
-            className="button randomName"
-            onClick={this.randomName}
-          >
-            random name
-          </button>
-        </div>
+        <Buttons
+          hideClock={this.hideClock}
+          showClock={this.showClock}
+          randomName={this.randomName}
+        />
       </div>
     );
   }
