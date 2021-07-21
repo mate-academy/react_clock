@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Button.scss';
 
-export const Button = ({ name, callback }) => (
+export const Button = ({ name, onClick }) => (
   <>
     <button
-      onClick={callback}
+      onClick={onClick}
       className="button"
       type="button"
     >
@@ -16,5 +16,5 @@ export const Button = ({ name, callback }) => (
 
 Button.propTypes = {
   name: PropTypes.string.isRequired,
-  callback: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
