@@ -1,39 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ClassNames from 'classnames';
 import './buttons.scss';
 
-export const Buttons = props => (
-  <div className="clock__buttons">
-    <button
-      type="button"
-      className="button buttonHide"
-      onClick={props.app.hideClock}
-    >
-      hide
-    </button>
+export const Buttons = ({ clickFunc, buttonClass, buttonText }) => {
+  const classes = ClassNames('button', buttonClass);
 
+  return (
     <button
       type="button"
-      className="button buttonShow"
-      onClick={props.app.showClock}
+      className={classes}
+      onClick={clickFunc}
     >
-      show
+      {buttonText}
     </button>
-
-    <button
-      type="button"
-      className="button randomName"
-      onClick={props.app.randomName}
-    >
-      random name
-    </button>
-  </div>
-);
+  );
+};
 
 Buttons.propTypes = {
-  app: PropTypes.shape({
-    hideClock: PropTypes.func.isRequired,
-    showClock: PropTypes.func.isRequired,
-    randomName: PropTypes.func.isRequired,
-  }).isRequired,
+  clickFunc: PropTypes.func.isRequired,
+  buttonClass: PropTypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
 };

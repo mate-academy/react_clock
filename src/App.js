@@ -40,7 +40,23 @@ class App extends React.Component {
             { handle }
           </span>
         </h1>
-        <Buttons app={this} />
+        <div className="clock__buttons">
+          <Buttons
+            clickFunc={this.hideClock}
+            buttonClass="hideClock"
+            buttonText="hide"
+          />
+          <Buttons
+            clickFunc={this.showClock}
+            buttonClass="showClock"
+            buttonText="show"
+          />
+          <Buttons
+            clickFunc={this.randomName}
+            buttonClass="randomName"
+            buttonText="random name"
+          />
+        </div>
       </div>
     );
   }
