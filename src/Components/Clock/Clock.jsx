@@ -11,26 +11,8 @@ export class Clock extends React.Component {
     clockName: 0,
   }
 
-  showClock = () => {
-    this.setState({
-      isClockVisible: true,
-    });
-  }
-
-  hideClock = () => {
-    this.setState({
-      isClockVisible: false,
-    });
-  }
-
-  getRandomNameClock = () => {
-    this.setState({
-      clockName: Math.floor(Math.random() * 100),
-    });
-  }
-
   render() {
-    const getClock = this.state.isClockVisible
+    const сlockСomponent = this.state.isClockVisible
       ? <ConsoleClock name={this.state.clockName} />
       : <img src={where} alt="where" />;
 
@@ -39,13 +21,32 @@ export class Clock extends React.Component {
         <p>
           Current time:
           {' '}
-          <span className="info">{getClock}</span>
+          <span className="info">{сlockСomponent}</span>
         </p>
         <div>
           <Button
-            clockShow={this.showClock}
-            clockHide={this.hideClock}
-            clockGetRandomName={this.getRandomNameClock}
+            name="Show Clock"
+            callback={() => {
+              this.setState({
+                isClockVisible: true,
+              });
+            }}
+          />
+          <Button
+            name="Hide Clock"
+            callback={() => {
+              this.setState({
+                isClockVisible: false,
+              });
+            }}
+          />
+          <Button
+            name="Say my name"
+            callback={() => {
+              this.setState({
+                clockName: Math.floor(Math.random() * 100),
+              });
+            }}
           />
         </div>
       </>

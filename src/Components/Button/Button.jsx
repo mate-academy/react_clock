@@ -2,40 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Button.scss';
 
-export const Button = ({ clockShow, clockHide, clockGetRandomName }) => (
+export const Button = ({ name, callback }) => (
   <>
     <button
-      onClick={() => {
-        clockShow();
-      }}
+      onClick={callback}
       className="button"
       type="button"
     >
-      Show Clock
-    </button>
-    <button
-      onClick={() => {
-        clockHide();
-      }}
-      className="button"
-      type="button"
-    >
-      Hide Clock
-    </button>
-    <button
-      onClick={() => {
-        clockGetRandomName();
-      }}
-      className="button"
-      type="button"
-    >
-      Say my name
+      {name}
     </button>
   </>
 );
 
 Button.propTypes = {
-  clockShow: PropTypes.func.isRequired,
-  clockHide: PropTypes.func.isRequired,
-  clockGetRandomName: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  callback: PropTypes.func.isRequired,
 };
