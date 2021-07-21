@@ -2,7 +2,7 @@ import React from 'react';
 import { Clock } from './Clock';
 
 import './App.scss';
-import { ClockControls } from './ClockControls';
+import { ClockControl } from './ClockControl';
 
 class App extends React.Component {
   state = {
@@ -34,9 +34,17 @@ class App extends React.Component {
         {this.state.isClockVisible
           ? <Clock {...this.state} />
           : 'Clock is hidden'}
-        <ClockControls
-          {...this.state}
-          app={this}
+        <ClockControl
+          text="Show Clock"
+          action={this.showClock}
+        />
+        <ClockControl
+          text="Hide Clock"
+          action={this.hideClock}
+        />
+        <ClockControl
+          text="Set random name"
+          action={this.changeName}
         />
       </div>
     );
