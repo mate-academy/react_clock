@@ -1,0 +1,24 @@
+.button {
+  position: relative;
+  width: 240px;
+  height: 60px;
+  border: none;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: transform 0.5s;
+  
+  &:hover {
+    transform: scale(1.15);
+  }
+
+  &:first-of-type {
+    background-color: #ff6347;
+  }
+
+  &:last-of-type {
+    background-color: #0ff;
+  }
+}
