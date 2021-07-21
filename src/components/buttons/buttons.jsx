@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import сlassNames from 'classnames';
 import './buttons.scss';
 
-export const Button = ({ callback, buttonClass, text }) => {
-  const classes = сlassNames('button', buttonClass);
+export const Button = ({ callback, className, text }) => {
+  const classes = сlassNames('button', className);
 
   return (
     <button
@@ -19,6 +19,6 @@ export const Button = ({ callback, buttonClass, text }) => {
 
 Button.propTypes = {
   callback: PropTypes.func.isRequired,
-  buttonClass: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 };

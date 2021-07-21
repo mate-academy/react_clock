@@ -15,30 +15,27 @@ class App extends React.Component {
     });
   }
 
+  changeVisibility = () => {
+    this.setState(state => ({
+      isClockVisible: !state.isClockVisible,
+    }));
+  };
+
   render() {
-    const gettingClock = this.state.isClockVisible
+    const clockComponent = this.state.isClockVisible
       ? <Clock name={this.state.clockName} />
       : 'SECRET';
 
     return (
       <div className="clock">
         <h1 className="clock__title">
-          { gettingClock }
+          { clockComponent }
         </h1>
         <div className="clock__buttons">
           <Button
-            callback={() => {
-              this.setState({ isClockVisible: false });
-            }}
+            callback={this.changeVisibility}
             buttonClass="hideClock"
-            text="hide"
-          />
-          <Button
-            callback={() => {
-              this.setState({ isClockVisible: true });
-            }}
-            buttonClass="showClock"
-            text="show"
+            text="change visibility"
           />
           <Button
             callback={this.getRandomName}
