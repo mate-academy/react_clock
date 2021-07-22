@@ -28,11 +28,10 @@ export class App extends React.Component {
     return (
       <div className="App">
         <h1 className="App__title">App Time</h1>
-        {isClockVisible ? (
-          <Clock name={clockName} />
-        ) : (
-          <p className="App__message">Try to find this Clock</p>
-        )}
+        {isClockVisible
+          ? <Clock name={clockName} />
+          : <p className="App__message">Try to find this Clock</p>
+        }
         <div className="App__buttons">
           <Button
             props={this.hideClock}
