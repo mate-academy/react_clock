@@ -20,7 +20,7 @@ class App extends React.Component {
           <div className="card-body">
             <div className="card-text">
               {this.state.isClockVisible
-               && <Clock name={this.state.clockName} />
+                && <Clock name={this.state.clockName} />
               }
             </div>
             <div
