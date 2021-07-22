@@ -1,0 +1,17 @@
+.App__clock {
+  justify-self: center;
+  font-size: 100px;
+  margin: 20px;
+  color: rgb(100, 13, 61);
+}
+
+.App__clock::before {
+  content: " ";
+  display: block;
+  background-image: url("../../images/kisspng-vomiting-unicorn-rainbow-nausea-disease-unicorn-5ab613ed687ff0.6862365115218820934281.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 250px;
+  width: 355px;
+}
