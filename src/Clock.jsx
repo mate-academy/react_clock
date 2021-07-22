@@ -10,7 +10,7 @@ export class Clock extends React.Component {
     this.TimerId = setInterval(() => this.tick(), 1000);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.log(`The Clock was renamed`

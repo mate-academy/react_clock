@@ -9,11 +9,11 @@ class App extends React.Component {
     clockName: 0,
   }
 
-  clockIsVisible = () => {
+  makeClockVisible = () => {
     this.setState({ isClockVisible: true });
   }
 
-  clockIsNotVisible = () => {
+  makeClockNotVisible = () => {
     this.setState({ isClockVisible: false });
   }
 
@@ -25,14 +25,14 @@ class App extends React.Component {
         <h1>React clock</h1>
         <button
           type="button"
-          onClick={this.clockIsVisible}
+          onClick={this.makeClockVisible}
         >
           Show Clock
         </button>
 
         <button
           type="button"
-          onClick={this.clockIsNotVisible}
+          onClick={this.makeClockNotVisible}
         >
           Hide Clock
         </button>
