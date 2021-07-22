@@ -1,1 +1,15 @@
-// styles go here
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  background: cornsilk;
+  margin: 0 auto;
+  padding: 15px;
+  max-width: 350px;
+  gap: 5px;
+}
+
+.current {
+  color: blue;
+}
