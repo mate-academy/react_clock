@@ -1,1 +1,41 @@
-// styles go here
+.Container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.App {
+  margin: 20px auto;
+  padding: 15px;
+  width: 400px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  
+  font-size: 1.5rem;
+  
+  background-color: black;
+  color: white;
+  
+  &__button-wrapper {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+  }
+  
+  &__button {
+    width: 130px;
+    height: 60px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+  
+    &:hover {
+      cursor: pointer;
+      color: black;
+    }
+  }
+}
