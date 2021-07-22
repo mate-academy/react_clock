@@ -1,25 +1,31 @@
 import React from 'react';
-
+import { Clock } from './Components/Clock';
 import './App.scss';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+class App extends React.Component {
+  state = {
+    clockWisible: true,
+  }
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  wisibility = () => {
+    this.setState(prevState => ({
+      clockWisible: !prevState.clockWisible,
+    }));
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  render() {
+    return (
+      <>
+        <button
+          type="button"
+          onClick={this.wisibility}
+        >
+          clock
+        </button>
+        { this.state.clockWisible && <Clock name={this.state} />}
+      </>
+    );
+  }
+}
 
 export default App;
