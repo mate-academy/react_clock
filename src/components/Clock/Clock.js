@@ -31,6 +31,18 @@ export class Clock extends React.Component {
     clearInterval(this.timer);
   }
 
+  showClock = () => this.setState({
+    isClockVisible: true,
+  })
+
+  hideClock = () => this.setState({
+    isClockVisible: false,
+  })
+
+  changeName = () => this.setState({
+    clockName: Math.floor(Math.random() * 100),
+  })
+
   render() {
     return (
       <>
@@ -47,28 +59,16 @@ export class Clock extends React.Component {
           </span>
         </p>
         <Button
-          nameButton="Show clock"
-          action={
-            () => this.setState({
-              isClockVisible: true,
-            })
-          }
+          buttonName="Show clock"
+          onClick={this.showClock}
         />
         <Button
-          nameButton="Hide clock"
-          action={
-            () => this.setState({
-              isClockVisible: false,
-            })
-          }
+          buttonName="Hide clock"
+          onClick={this.hideClock}
         />
         <Button
-          nameButton="Set random name"
-          action={
-            () => this.setState({
-              clockName: Math.floor(Math.random() * 100),
-            })
-          }
+          buttonName="Set random name"
+          onClick={this.changeName}
         />
       </>
     );
