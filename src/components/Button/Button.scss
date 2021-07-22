@@ -1,0 +1,16 @@
+.button {
+  min-width: 50px;
+  height: 50px;
+  background-color: tomato;
+  border: 1px solid #000;
+  border-radius: 10px;
+  color: #eee;
+  cursor: pointer;
+  transition: background-color 0.4s, color 0.4s;
+
+  &:hover,
+  &:focus {
+    background-color: #eee;
+    color: tomato;
+  }
+}
