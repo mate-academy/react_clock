@@ -1,1 +1,36 @@
-// styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__title {
+    font-size: 50px;
+    color: purple;
+  }
+  &__buttons {
+    position: static;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  &__message {
+    position: relative;
+    display: block;
+    font-size: 50px;
+    font-weight: bold;
+    color: rgb(64,199,129);
+    padding-bottom: 20px;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      border: solid red;
+      border-width: 0 5px 5px 0;
+      display: inline-block;
+      padding: 5px;
+      transform: rotate(45deg) ;
+      -webkit-transform: rotate(45deg);
+    }
+  }
+}
