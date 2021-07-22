@@ -8,10 +8,10 @@ export class Clock extends React.Component {
   }
 
   componentDidMount() {
-    const timer = () => this.tick();
-    const showMessage = ()=> console.log(this.state.date)
+    const showCurrentTime = () => this.tick();
+    const showMessage = ()=> console.log(this.state.date);
     this.timerID = setInterval (function(){
-      timer();
+      showCurrentTime();
       showMessage();
     },1000)
   }
@@ -39,9 +39,7 @@ export class Clock extends React.Component {
   render() {
     return (
       <p>
-        Current time:
-        {' '}
-        {this.state.date.toLocaleTimeString()}
+        {`Current time: ${this.state.date.toLocaleTimeString()}`}
       </p>
     );
   }
