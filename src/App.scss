@@ -1,1 +1,29 @@
-// styles go here
+.Clock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -80px 0 0 -280px;
+  display: flex;
+  align-items: center;
+  border: 2px solid goldenrod;
+  border-radius: 10px;
+  width: 500px;
+  padding: 20px;
+  flex-direction: column;
+
+  &__message {
+    text-align: center;
+    color: rgba(255, 0, 0, 0.664);
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  &__wrap {
+    text-align: center;
+  }
+}
+
+
+.button {
+  margin-right: 10px;
+}

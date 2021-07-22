@@ -1,6 +1,6 @@
 # React Clock
 - Replace `<your_account>` with your Github username in the
- [DEMO LINK](https://<your_account>.github.io/react_clock/)
+ [DEMO LINK](https://Oleh-Pidverbetskyi.github.io/react_clock/)
 - Follow the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
 
 ## Task
@@ -17,7 +17,7 @@ Create a Clock component updating the time every second.
 1. The `Clock` should not be rendered when `isClockVisible` is `false`.
 1. Change the `Clock` component to print the time not only on the page but also in the `DevTools` console.
     - Stop the timer when the `Clock` is hidden.
-1. Check if it works correctly:
+1. Check if it works correctly: 
     - Hide and show the `Clock` several times and leave it visible
     - The time in the console should be printed only once each second
 
