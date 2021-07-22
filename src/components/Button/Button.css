@@ -1,0 +1,9 @@
+.App__button {
+  color: rgb(143, 21, 88);
+  background-color: pink;
+  border: 2px solid rgb(143, 21, 88);
+  height: 70px;
+  width: 150px;
+  margin-left: 20px;
+  font-size: 20px;
+}
