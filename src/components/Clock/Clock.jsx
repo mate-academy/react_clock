@@ -16,7 +16,7 @@ export class Clock extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.name !== this.props.clockName) {
+    if (prevProps.clockName !== this.props.clockName) {
       const oldName = prevProps.clockName;
       const newName = this.props.clockName;
 

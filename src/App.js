@@ -45,7 +45,7 @@ class App extends React.Component {
             type="button"
             className="ui inverted button"
             title="Set Random Name"
-            onClick={this.clockName}
+            onClick={() => this.clockName()}
           >
             {`Button Name: ${this.state.clockName}`}
           </button>
