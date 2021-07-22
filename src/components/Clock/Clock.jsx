@@ -9,7 +9,7 @@ export class Clock extends React.Component {
   timeInterval = 0;
 
   componentDidMount() {
-    this.tick();
+    this.startClock();
   }
 
   componentDidUpdate(prevProps) {
@@ -28,7 +28,7 @@ export class Clock extends React.Component {
     }
   }
 
-  tick() {
+  startClock() {
     this.timeInterval = setInterval(() => {
       this.setState({
         time: new Date().toLocaleTimeString(),

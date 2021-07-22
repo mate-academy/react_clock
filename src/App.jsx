@@ -36,17 +36,17 @@ class App extends React.Component {
         </h1>
         <Button
           text="Show Clock"
-          method={() => this.showClock()}
+          onClick={() => this.showClock()}
           className="button is-primary is-light"
         />
         <Button
           text="Hide Clock"
-          method={() => this.hideClock()}
+          onClick={() => this.hideClock()}
           className="button is-danger is-light mx-3"
         />
         <Button
           text="Set random name"
-          method={() => this.randomName()}
+          onClick={() => this.randomName()}
           className="button is-warning is-light"
         />
         {this.state.isClockVisible
