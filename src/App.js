@@ -1,25 +1,65 @@
 import React from 'react';
+import { Clock } from './components/Clock';
+import giphy from './image/giphy.gif';
 
 import './App.scss';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+class App extends React.Component {
+  state = {
+    clockName: 1,
+    isClockVisible: true,
+  };
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
+  }
+
+  changeName = () => {
+    this.setState({ clockName: Math.round(Math.random() * 100) });
+  }
+
+  render() {
+    const { clockName, isClockVisible } = this.state;
+
+    return (
+      <div className="App card">
+        <h1 className="title">REACT CLOCK</h1>
+        {
+          isClockVisible
+            ? <Clock name={clockName} />
+            : <img className="img" src={giphy} alt="no time" />
+        }
+
+        <button
+          className="button"
+          type="button"
+          onClick={this.showClock}
+        >
+          Show Clock
+        </button>
+
+        <button
+          className="button"
+          type="button"
+          onClick={this.hideClock}
+        >
+          Hide Clock
+        </button>
+
+        <button
+          className="button"
+          type="button"
+          onClick={this.changeName}
+        >
+          Change my name
+        </button>
+      </div>
+    );
+  }
+}
 
 export default App;
