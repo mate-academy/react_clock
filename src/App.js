@@ -11,7 +11,7 @@ class App extends React.Component {
 
   changeName = () => {
     this.setState({
-      clockName: Math.ceil(Math.random() * (10 - 1)),
+      clockName: Math.ceil(Math.random() * 10),
     });
   }
 
@@ -41,15 +41,15 @@ class App extends React.Component {
           {clockVisibility}
         </div>
         <Button
-          callback={this.visibilityOn}
+          onClick={this.visibilityOn}
           name="Show Clock"
         />
         <Button
-          callback={this.visibilityOff}
+          onClick={this.visibilityOff}
           name="Hide Clock"
         />
         <Button
-          callback={this.changeName}
+          onClick={this.changeName}
           name="Set random name"
         />
       </>
