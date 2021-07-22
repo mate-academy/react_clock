@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const Button = ({ nameButton, action }) => (
   <button
     type="button"
-    onClick={action}
+    onClick={onClick}
   >
     {nameButton}
   </button>
