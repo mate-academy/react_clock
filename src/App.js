@@ -33,7 +33,7 @@ class App extends React.Component {
           {this.state.isClockVisible ? (
             <Clock clockName={this.state.name} />
           ) : (
-            <p className="Clock__state">The timer is stopped</p>
+            <p className="App__clock">The timer is stopped</p>
           )}
         </div>
         <div>
