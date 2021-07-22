@@ -37,9 +37,7 @@ class App extends React.Component {
         <button
           className="button"
           type="button"
-          onClick={() => {
-            this.showClock();
-          }}
+          onClick={this.showClock()}
         >
           Show Clock
         </button>
@@ -47,9 +45,7 @@ class App extends React.Component {
         <button
           className="button"
           type="button"
-          onClick={() => {
-            this.hideClock();
-          }}
+          onClick={this.hideClock()}
         >
           Hide Clock
         </button>
@@ -57,9 +53,7 @@ class App extends React.Component {
         <button
           className="button"
           type="button"
-          onClick={() => {
-            this.changeName();
-          }}
+          onClick={this.changeName()}
         >
           Change my name
         </button>
