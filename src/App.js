@@ -15,13 +15,13 @@ class App extends React.Component {
     });
   }
 
-  visibilityOn = () => {
+  makeVisible = () => {
     this.setState(state => ({
       isClockVisible: true,
     }));
   };
 
-  visibilityOff = () => {
+  makeUnvisible = () => {
     this.setState(state => ({
       isClockVisible: false,
     }));
@@ -41,16 +41,16 @@ class App extends React.Component {
           {clockVisibility}
         </div>
         <Button
-          onClick={this.visibilityOn}
-          name="Show Clock"
+          onClick={this.makeVisible}
+          text="Show Clock"
         />
         <Button
-          onClick={this.visibilityOff}
-          name="Hide Clock"
+          onClick={this.makeUnvisible}
+          text="Hide Clock"
         />
         <Button
           onClick={this.changeName}
-          name="Set random name"
+          text="Set random name"
         />
       </>
     );
