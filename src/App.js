@@ -34,19 +34,19 @@ export class App extends React.Component {
         }
         <div className="App__buttons">
           <Button
-            props={this.hideClock}
+            onClick={this.hideClock}
             text="Hide Clock"
-            styles="button__hide"
+            className="button__hide"
           />
           <Button
-            props={this.showClock}
+            onClick={this.showClock}
             text="Show Clock"
-            styles="button__show"
+            className="button__show"
           />
           <Button
-            props={this.randomClockName}
+            onClick={this.randomClockName}
             text="Change Name"
-            styles="button__name"
+            className="button__name"
           />
         </div>
       </div>
