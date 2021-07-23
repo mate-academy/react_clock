@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.scss';
 import Clock from './components/Clock';
 
-class App extends React.Component {
+class App extends Component {
   state = {
     clockVisible: true,
     clockName: 0,

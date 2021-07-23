@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Clock extends Component {
   state = {
-    date: null,
+    date: new Date().toLocaleTimeString(),
   };
 
   componentDidMount() {
