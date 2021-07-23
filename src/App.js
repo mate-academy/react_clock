@@ -9,11 +9,13 @@ class App extends React.Component {
     isVisible: false,
   }
 
-  isClockVisible = () => {
-    this.setState(state => ({
-      isVisible: !state.isVisible,
-    }));
-  };
+  showClock = () => {
+    this.setState({ isVisible: true });
+  }
+
+  hideClock = () => {
+    this.setState({ isVisible: false });
+  }
 
   changeName = () => {
     if (this.state.isVisible) {
@@ -32,8 +34,8 @@ class App extends React.Component {
           <p className="Clock__message">The clock is hide</p>
         )}
         <div className="Clock__wrap">
-          <Button onClick={this.isClockVisible} name="Show Clock" />
-          <Button onClick={this.isClockVisible} name="Hide Clock" />
+          <Button onClick={this.showClock} name="Show Clock" />
+          <Button onClick={this.hideClock} name="Hide Clock" />
           <Button onClick={this.changeName} name="Change Name" />
         </div>
       </div>

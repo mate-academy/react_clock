@@ -8,7 +8,7 @@ export class Clock extends React.Component {
   }
 
   componentDidMount() {
-    this.intervalID = setInterval(() => this.tick(), 1000);
+    this.intervalID = setInterval(() => this.clockRunning(), 1000);
   }
 
   componentDidUpdate(prevProps) {
@@ -22,7 +22,7 @@ export class Clock extends React.Component {
     clearInterval(this.intervalID);
   }
 
-  tick() {
+  clockRunning() {
     this.setState({
       time: new Date().toLocaleTimeString(),
     });
