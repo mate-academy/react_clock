@@ -18,11 +18,11 @@ export class Clock extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { clockName } = this.props;
+    const { name } = this.props;
 
-    if (clockName !== prevProps.clockName) {
+    if (name !== prevProps.name) {
       // eslint-disable-next-line
-      console.log(`The Clock was renamed from ${prevProps.clockName} to ${clockName}`);
+      console.log(`The Clock was renamed from ${prevProps.name} to ${name}`);
     }
   }
 
@@ -42,5 +42,5 @@ export class Clock extends React.Component {
 }
 
 Clock.propTypes = {
-  clockName: PropTypes.number.isRequired,
+  name: PropTypes.number.isRequired,
 };
