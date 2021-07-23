@@ -35,7 +35,6 @@ class App extends React.Component {
 
         <p className="current">
           Current time:
-          {' '}
           {isClockVisible && <Clock name={clockName} />}
         </p>
 
