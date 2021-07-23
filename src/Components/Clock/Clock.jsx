@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
@@ -15,10 +16,12 @@ export class Clock extends React.Component {
   }
 
   componentDidUpdate(prevState) {
-    if (this.props.name.clockName !== prevState.name.clockName) {
+    const { clockName } = this.props;
+
+    if (clockName !== prevState.clockName) {
       // eslint-disable-next-line no-console
-      console.log(`The Clock was renamed from ${prevState.name.clockName}
-      to ${this.props.name.clockName}`);
+      console.log(`The Clock was renamed from ${prevState.clockName}
+      to ${clockName}`);
     }
   }
 
@@ -40,3 +43,7 @@ export class Clock extends React.Component {
     );
   }
 }
+
+Clock.propTypes = {
+  clockName: PropTypes.number.isRequired,
+};

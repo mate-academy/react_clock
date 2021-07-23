@@ -5,7 +5,6 @@ import './App.scss';
 class App extends React.Component {
   state = {
     clockVisible: true,
-    // eslint-disable-next-line react/no-unused-state
     clockName: 'clock',
   }
 
@@ -25,7 +24,6 @@ class App extends React.Component {
     const name = Math.ceil(Math.random() * 10);
 
     this.setState(() => ({
-      // eslint-disable-next-line react/no-unused-state
       clockName: name,
     }));
   }
@@ -52,7 +50,7 @@ class App extends React.Component {
         >
           Set random name
         </button>
-        { this.state.clockVisible && <Clock name={this.state} />}
+        { this.state.clockVisible && <Clock clockName={this.state.clockName} />}
       </>
     );
   }
