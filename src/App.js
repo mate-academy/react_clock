@@ -6,12 +6,18 @@ import './App.scss';
 class App extends React.Component {
   state = {
     isClockVisible: true,
+    clockName: 0,
   }
 
   render() {
     return (
-      <div className="app">
-        {this.state.isClockVisible && <Clock {...this.state} />}
+      <div className="App">
+        {this.state.isClockVisible && (
+        <Clock
+          isClockVisible={this.state.isClockVisible}
+          clockName={this.state.clockName}
+        />
+        )}
       </div>
     );
   }

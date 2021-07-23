@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './button.scss';
 
-const Button = ({ name, hide, show }) => (
+const Buttons = ({ name, hide, show }) => (
   <div className="container">
     <button
       className="button"
@@ -34,10 +34,10 @@ const Button = ({ name, hide, show }) => (
   </div>
 );
 
-Button.propTypes = {
+Buttons.propTypes = {
   name: PropTypes.func.isRequired,
   show: PropTypes.func.isRequired,
   hide: PropTypes.func.isRequired,
 };
 
-export default Button;
+export default Buttons;
