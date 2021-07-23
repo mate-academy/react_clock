@@ -1,0 +1,53 @@
+.button {
+  &__hide {
+    display: block;
+
+    color: #fff;
+    text-decoration: none;
+    user-select: none;
+    background: rgb(212,75,56);
+    padding: 15px 30px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s linear;
+    &:hover {
+      background: rgb(232,95,76);
+    }
+  }
+  &__show {
+    display: block;
+
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 3px;
+    background: rgb(64,199,129);
+    border: none;
+    box-shadow: 0 -3px rgb(53,167,110) inset;
+    cursor: pointer;
+    transition: background 0.3s linear;
+    &:hover {
+      background: rgb(33,147,90);
+    }
+  }
+  &__name {
+    display: block;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 3px;
+    background: rgb(89,106,114);
+
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s linear;
+    &:hover {
+      background: linear-gradient(#d2dfea, #71828c);
+    }
+  }
+
+}
