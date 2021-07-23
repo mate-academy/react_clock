@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 export class Clock extends React.Component {
   state = {
     date: undefined,
-    interval: undefined,
   }
 
   componentDidMount() {
-    this.state.interval = setInterval(() => {
+    this.interval = setInterval(() => {
       this.setState({ date: new Date().toLocaleTimeString() });
       // eslint-disable-next-line no-console
       console.log(this.state.date);

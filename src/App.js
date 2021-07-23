@@ -9,23 +9,23 @@ class App extends React.Component {
   }
 
   visibilityOn = () => {
-    this.setState(() => ({
+    this.setState({
       clockVisible: true,
-    }));
+    });
   }
 
   visibilityOff = () => {
-    this.setState(() => ({
+    this.setState({
       clockVisible: false,
-    }));
+    });
   }
 
   randomNameForClock = () => {
     const name = Math.ceil(Math.random() * 10);
 
-    this.setState(() => ({
+    this.setState({
       clockName: name,
-    }));
+    });
   }
 
   render() {
