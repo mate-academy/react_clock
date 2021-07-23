@@ -45,15 +45,14 @@ class App extends React.Component {
             type="button"
             className="ui inverted button"
             title="Set Random Name"
-            onClick={() => this.clockName()}
+            onClick={this.clockName}
           >
             {`Button Name: ${this.state.clockName}`}
           </button>
         </p>
 
         <p>
-          Current time:
-          {' '}
+          {`Current time: `}
           <h2 className="clock">
             {this.state.isClockVisible
             && (<Clock clockName={this.state.clockName} />)}

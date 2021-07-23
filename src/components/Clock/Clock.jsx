@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 export class Clock extends React.Component {
@@ -11,7 +12,7 @@ export class Clock extends React.Component {
   componentDidMount() {
     this.myTimer = setInterval(
       () => (this.doStep()),
-      1000
+      1000,
     );
   }
 
@@ -20,6 +21,7 @@ export class Clock extends React.Component {
       const oldName = prevProps.clockName;
       const newName = this.props.clockName;
 
+      // eslint-disable-next-line no-console
       console.log(`The Clock was renamed from ${oldName} to ${newName}`);
     }
   }
@@ -32,6 +34,7 @@ export class Clock extends React.Component {
     this.setState({
       date: new Date().toLocaleTimeString(),
     });
+    // eslint-disable-next-line no-console
     console.log(this.state.date);
   }
 
@@ -40,5 +43,4 @@ export class Clock extends React.Component {
       `${this.state.date}`
     );
   }
-
 }
