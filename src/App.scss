@@ -1,1 +1,20 @@
 // styles go here
+@font-face {
+  font-family: "digital";
+  src: url(font/digital-7.italic.ttf);
+}
+
+html {
+  font-family: "digital", sans-serif;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #ddd;
+}
+
+.title {
+  text-align: center;
+}
