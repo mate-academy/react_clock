@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import './Button.scss';
 
-export function Button({ text, action }) {
+export function Button({ text, onClick }) {
   return (
     <button
       type="button"
-      onClick={action}
+      onClick={onClick}
       className="button"
     >
       {text}
@@ -17,5 +17,5 @@ export function Button({ text, action }) {
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
-  action: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

@@ -35,9 +35,9 @@ class App extends React.Component {
             : <span className="clock__text">Clock is hidden</span>
           }
           <div className="clock__buttons">
-            <Button text="Show clock" action={this.showClock} />
-            <Button text="Hide clock" action={this.hideClock} />
-            <Button text="Change name" action={this.changeName} />
+            <Button text="Show clock" onClick={this.showClock} />
+            <Button text="Hide clock" onClick={this.hideClock} />
+            <Button text="Change name" onClick={this.changeName} />
           </div>
         </div>
       </div>
