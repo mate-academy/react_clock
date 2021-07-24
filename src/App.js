@@ -1,25 +1,25 @@
 import React from 'react';
-
+import { Clock } from './components/Clock';
 import './App.scss';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
+class App extends React.Component {
+  state = {
+    isClockVisible: true,
+    clockName: 100,
+  };
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="App">
+        {this.state.isClockVisible && (
+          <Clock
+            isClockVisible={this.state.isClockVisible}
+            clockName={this.state.clockName}
+          />
+        )}
+      </div>
+    );
+  }
+}
 
 export default App;
