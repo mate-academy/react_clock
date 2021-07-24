@@ -59,15 +59,15 @@ export class Clock extends React.Component {
           </span>
         </p>
         <Button
-          buttonName="Show clock"
+          text="Show clock"
           onClick={this.showClock}
         />
         <Button
-          buttonName="Hide clock"
+          text="Hide clock"
           onClick={this.hideClock}
         />
         <Button
-          buttonName="Set random name"
+          text="Set random name"
           onClick={this.changeName}
         />
       </>
