@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
@@ -15,6 +16,15 @@ export class Clock extends React.Component {
     }, 1000);
   }
 
+  componentDidUpdate(prevProps) {
+    const { clockName } = this.props;
+
+    if (clockName !== prevProps.clockName) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${prevProps.clockName} to ${clockName}`);
+    }
+  }
+
   componentWillUnmount() {
     clearInterval(this.time);
   }
@@ -24,10 +34,13 @@ export class Clock extends React.Component {
 
     return (
       <p>
-        Current time:
-        {' '}
+        {'Current time: '}
         {time}
       </p>
     );
   }
 }
+
+Clock.propTypes = {
+  clockName: PropTypes.number.isRequired,
+};
