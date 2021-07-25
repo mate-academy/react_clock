@@ -49,6 +49,7 @@ class App extends React.Component {
           Hide clock
         </button>
         <button
+          className="btn btn-outline-info"
           type="button"
           onClick={() => {
             this.setState({ clockName: Math.trunc(Math.random() * 100) });
