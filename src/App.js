@@ -1,25 +1,14 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Card } from 'react-bootstrap';
 
+import Clock from './components/Clock/Clock';
 import './App.scss';
 
-const App = () => {
-  setInterval(() => {
-    const date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
+export default function App() {
   return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
+    <Card className="App">
+      <Clock />
+    </Card>
   );
-};
-
-export default App;
+}
