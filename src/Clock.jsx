@@ -31,9 +31,7 @@ class Clock extends React.Component {
   render() {
     return (
       <p>
-        Current time:
-        {' '}
-        {this.state.date}
+        {`Current time: ${this.state.date}`}
       </p>
     );
   }
