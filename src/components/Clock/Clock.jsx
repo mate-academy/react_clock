@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export class Clock extends React.Component {
   state = {
-    date: undefined,
+    date: new Date().toLocaleString(),
   };
 
   componentDidMount() {
