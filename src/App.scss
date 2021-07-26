@@ -1,1 +1,17 @@
-// styles go here
+button {
+  width: 270px;
+  height: 60px;
+  &__wrapper {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+  }
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
