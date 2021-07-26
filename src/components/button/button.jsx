@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './button.scss';
 
-const Buttons = ({ name, hide, show }) => (
+const Buttons = ({ setClockName, hide, show }) => (
   <div className="container">
     <button
       className="button"
@@ -25,7 +25,7 @@ const Buttons = ({ name, hide, show }) => (
     <button
       className="random"
       type="button"
-      onClick={name}
+      onClick={setClockName}
     >
       <span className="random-span">
         Set random name
@@ -35,7 +35,7 @@ const Buttons = ({ name, hide, show }) => (
 );
 
 Buttons.propTypes = {
-  name: PropTypes.func.isRequired,
+  setClockName: PropTypes.func.isRequired,
   show: PropTypes.func.isRequired,
   hide: PropTypes.func.isRequired,
 };

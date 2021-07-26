@@ -10,12 +10,14 @@ class App extends React.Component {
   }
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+
     return (
       <div className="App">
         {this.state.isClockVisible && (
         <Clock
-          isClockVisible={this.state.isClockVisible}
-          clockName={this.state.clockName}
+          isClockVisible={isClockVisible}
+          clockName={clockName}
         />
         )}
       </div>

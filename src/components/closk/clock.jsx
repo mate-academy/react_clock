@@ -54,7 +54,7 @@ class Clock extends React.Component {
           {this.state.isClockVisible && this.state.date}
         </p>
         <Buttons
-          name={this.setClockName}
+          setClockName={this.setClockName}
           hide={this.hide}
           show={this.show}
         />
