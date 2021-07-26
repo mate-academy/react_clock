@@ -1,1 +1,14 @@
-// styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+
+  font-size: 3em;
+  font-weight: bold;
+
+  &__button {
+    display: flex;
+    gap: 4px;
+  }
+}
