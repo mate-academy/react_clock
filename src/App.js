@@ -9,7 +9,7 @@ class App extends React.Component {
     name: 0,
   };
 
-  isClockVisibility = () => {
+  clockVisibility = () => {
     this.setState(state => ({ isClockVisible: !state.isClockVisible }));
   }
 
@@ -22,12 +22,24 @@ class App extends React.Component {
   }
 
   render() {
+    const { clockVisibility, nameChanging } = this;
+
     return (
       <div className="app">
         <div>
-          <Button onClick={this.isClockVisibility} title="Show Clock" />
-          <Button onClick={this.isClockVisibility} title="Hide Clock" />
-          <Button onClick={this.nameChanging} title="Change name" />
+          <Button
+            onClick={clockVisibility}
+            title="Show Clock"
+            othertitle="Hide Clock"
+          />
+          <Button
+            onClick={clockVisibility}
+            title="Hide Clock"
+          />
+          <Button
+            onClick={nameChanging}
+            title="Change name"
+          />
         </div>
         {this.state.isClockVisible ? (
           <Clock ClockName={this.state.name} />
