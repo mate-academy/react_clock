@@ -1,1 +1,33 @@
-// styles go here
+.body,
+h1 {
+  margin: 0;
+}
+
+.title {
+  padding-top: 20vh;
+  margin-left: 15vw;
+  margin-bottom: 12vh;
+}
+
+.App {
+  background-color: gainsboro;
+  background-image: url(../src/image/clock.jpg);
+  background-size: cover;
+  height: 100vh;
+
+}
+
+.current-time {
+  color: #0dcaf0;
+  margin-left: 15vw;
+  margin-bottom: 100px;
+  font-size: 48px;
+  font-family: monospace;
+}
+
+.button-container {
+  margin-left: 15vw;
+  width: 50vw;
+  display: flex;
+  justify-content: space-between;
+}
