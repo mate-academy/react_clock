@@ -1,5 +1,5 @@
 import React from 'react';
-import Clock from './components/closk/clock';
+import Clock from './components/Closk/Clock';
 
 import './App.scss';
 

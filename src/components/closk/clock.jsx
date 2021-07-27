@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Buttons from '../button/button';
+import Buttons from '../Button/Button';
 import './clock.scss';
 
 class Clock extends React.Component {
@@ -53,11 +53,23 @@ class Clock extends React.Component {
           {' '}
           {this.state.isClockVisible && this.state.date}
         </p>
-        <Buttons
-          setClockName={this.setClockName}
-          hide={this.hide}
-          show={this.show}
-        />
+        <div className="container">
+          <Buttons
+            className="button button-hide"
+            onClick={this.show}
+            text="Show Clock"
+          />
+          <Buttons
+            className="button"
+            onClick={this.hide}
+            text="Hide Clock"
+          />
+          <Buttons
+            className="random"
+            onClick={this.setClockName}
+            text="Set random name"
+          />
+        </div>
       </div>
     );
   }
