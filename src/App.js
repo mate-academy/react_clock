@@ -10,15 +10,16 @@ class App extends React.Component {
   };
 
   render() {
+    const { clockName } = this.state;
+
     return (
       <div className="App">
         <h1 className="title">React clock</h1>
 
         <div className="current-time">
-          Current time:
-          {' '}
+          {`Current time: `}
           {this.state.isClockVisible
-          && (<Clock name={this.state.clockName} />)}
+          && (<Clock name={clockName} />)}
         </div>
 
         <div className="button-container">
@@ -46,7 +47,7 @@ class App extends React.Component {
             className="btn btn-light"
             type="button"
             onClick={() => {
-              this.setState({ clockName: Math.random() });
+              this.setState({ clockName: Math.floor(Math.random() * 101) });
             }}
           >
             Set random name
