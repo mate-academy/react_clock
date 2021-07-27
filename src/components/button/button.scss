@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  margin-left: 33%;
+}
+
+.button {
+  background-image: linear-gradient(to right, #006175 0%, #00a950 100%);
+  border-radius: 40px;
+  box-sizing: border-box;
+  color: #fff;
+  display: block;
+  height: 50px;
+  font-size: 1.1em;
+  padding: 4px;
+  position: relative;
+  text-decoration: none;
+  width: 7em;
+  z-index: 2;
+  transition: background 0.5s ease;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.button:hover {
+  color: #a80000;
+}
