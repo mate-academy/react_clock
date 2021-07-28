@@ -28,27 +28,30 @@ export class App extends React.Component {
   }
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+    const { showClock, randomName, hideClock } = this;
+
     return (
       <div className="App">
         <div className="card is-flex-direction-column has-text-centered">
           <h1 className="title ">React clock</h1>
-          {this.state.isClockVisible
-          && <Clock clockName={this.state.clockName} />}
+          {isClockVisible
+          && <Clock clockName={clockName} />}
           <div className="clock__buttons">
             <Button
               text="Show time"
               styles="button is-ligth is-rounded"
-              onclick={this.showClock}
+              onclick={showClock}
             />
             <Button
               text="Hide time"
               styles="button is-dark is-rounded"
-              onclick={this.hideClock}
+              onclick={hideClock}
             />
             <Button
               text="Set random name"
               styles="button is-black is-rounded"
-              onclick={this.randomName}
+              onclick={randomName}
             />
           </div>
         </div>

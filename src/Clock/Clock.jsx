@@ -22,11 +22,19 @@ export class Clock extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    if (this.timeInterval) {
+      clearInterval(this.timeInterval);
+    }
+  }
+
   timeUpdater() {
     this.timeInterval = setInterval(() => {
       this.setState({
         time: new Date().toLocaleTimeString(),
       });
+      // eslint-disable-next-line
+      console.log(this.state.time);
     }, 1000);
   }
 
