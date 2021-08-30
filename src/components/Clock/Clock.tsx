@@ -1,24 +1,25 @@
 import React from 'react';
 import './Clock.scss';
 
-type Props = {
+interface Props {
   name: number;
-};
+}
 
-type State = {
+interface State {
   date: Date;
-};
+}
 
 export class Clock extends React.Component<Props, State> {
-  state = {
+  state: State = {
     date: new Date(),
   };
 
   timer = setInterval(() => {
     const { date } = this.state;
+
+    this.setState({ date: new Date() });
     // eslint-disable-next-line
     console.log(date.toLocaleTimeString());
-    this.setState({ date: new Date() });
   }, 1000);
 
   componentDidMount() {
