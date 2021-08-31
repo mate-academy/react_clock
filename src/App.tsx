@@ -40,7 +40,7 @@ export class App extends React.Component<{}, State> {
 
         <div className="clock">
 
-          {isClockVisible ? <Clock name={this.state.clockName} /> : null}
+          {isClockVisible && <Clock name={this.state.clockName} />}
 
           <button
             type="button"
