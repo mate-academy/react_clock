@@ -2,13 +2,13 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
-interface State {
+type State = {
   isVisible: boolean,
   clockName: number,
-}
+};
 
-class App extends React.Component {
-  state: State = {
+class App extends React.Component<{}, State> {
+  state = {
     isVisible: true,
     clockName: 0,
   };
