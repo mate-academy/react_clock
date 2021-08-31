@@ -1,1 +1,44 @@
-// styles go here
+body,
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fffefe;
+
+  &__title {
+    color: #1b312d;
+  }
+
+  &__hint {
+    margin: 25px;
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  &__button {
+    padding: 10px;
+    background-color: #51867b;
+    border: 0;
+    border-radius: 5px;
+    color: #fffefe;
+    transition: background-color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #2e554d;
+    }
+  }
+}
