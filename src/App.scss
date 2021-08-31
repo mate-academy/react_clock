@@ -1,1 +1,8 @@
-// styles go here
+.App {
+  text-align: center;
+
+  &__button {
+    padding: 10px;
+    margin: 5px;
+  }
+}
