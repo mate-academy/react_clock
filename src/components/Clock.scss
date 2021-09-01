@@ -1,0 +1,34 @@
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__button {
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+    background-color: transparent;
+    border-radius: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #a39e9e;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+
+  &__time {
+    margin-bottom: 15px;
+  }
+}
