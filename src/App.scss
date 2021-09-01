@@ -1,1 +1,17 @@
-// styles go here
+html {
+  font-family: Tahoma, Verdana, sans-serif;
+}
+
+.container {
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__button {
+    margin-bottom: 15px;
+    width: 150px;
+    height: 50px;
+  }
+}
