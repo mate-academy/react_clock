@@ -25,6 +25,7 @@ export class App extends React.Component<Props, State> {
 
   render() {
     const { clockName, isClockVisible } = this.state;
+    const { listOfNames } = this.props;
 
     return (
       <div className="App">
@@ -48,7 +49,7 @@ export class App extends React.Component<Props, State> {
               type="button"
               onClick={() => {
                 // eslint-disable-next-line
-                this.setState({ clockName: this.getRandomName(this.props.listOfNames) });
+                this.setState({ clockName: this.getRandomName(listOfNames) });
               }}
             >
               Set random name
