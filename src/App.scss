@@ -1,1 +1,30 @@
 // styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  color: #000047;
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__button {
+    margin: 10px;
+    padding: 20px;
+    background-color: #c7e7e8;
+    border: 2px solid #c7d6e8;
+    border-radius: 6%;
+    color: #494a65;
+    cursor: pointer;
+    transition: 300ms;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
