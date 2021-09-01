@@ -10,7 +10,7 @@ type State = {
 };
 
 class App extends React.Component<{}, State> {
-  state = {
+  state: State = {
     isClockVisible: true,
     clockName: 1,
   };
@@ -27,21 +27,23 @@ class App extends React.Component<{}, State> {
     });
   };
 
-  randomName = () => {
+  setRandomName = () => {
     this.setState({
       clockName: Math.ceil(Math.random() * 100),
     });
   };
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.isClockVisible && <Clock name={this.state.clockName} />}
+        {isClockVisible && <Clock name={clockName} />}
         <div>
           <Button buttonName="Show Clock" action={this.showClock} />
           <Button buttonName="Hide Clock" action={this.hideClock} />
-          <Button buttonName="Set random name" action={this.randomName} />
+          <Button buttonName="Set random name" action={this.setRandomName} />
         </div>
       </div>
     );
