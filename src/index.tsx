@@ -1,7 +1,8 @@
 import ReactDOM from 'react-dom';
-import App from './App';
+import { App } from './App';
+import { names } from './api/clockNames';
 
 ReactDOM.render(
-  <App />,
+  <App listOfNames={names} />,
   document.getElementById('root'),
 );
