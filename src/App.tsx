@@ -8,7 +8,7 @@ interface State {
 }
 
 class App extends React.Component<{}, State> {
-  state = {
+  state: State = {
     isClockVisible: true,
     clockName: 0,
   };
@@ -21,11 +21,7 @@ class App extends React.Component<{}, State> {
       clockName: randomName,
     });
     // eslint-disable-next-line
-    console.log(`The Clock was renamed from ${oldName} to ${this.state.clockName}`);
-  };
-
-  showRandomName = () => {
-    setTimeout(this.setRandomName, 0);
+    setTimeout(() => console.log(`The Clock was renamed from ${oldName} to ${this.state.clockName}`), 0);
   };
 
   hideClock = () => {
@@ -41,19 +37,19 @@ class App extends React.Component<{}, State> {
   };
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        {
-          this.state.isClockVisible
+        {isClockVisible
         && (
           <p>
             Current time:
             {' '}
-            <Clock name={this.state.clockName} />
+            <Clock name={clockName} />
           </p>
-        )
-        }
+        )}
         <button
           className="App__button"
           type="submit"
@@ -71,7 +67,7 @@ class App extends React.Component<{}, State> {
         <button
           className="App__button"
           type="submit"
-          onClick={this.showRandomName}
+          onClick={this.setRandomName}
         >
           Set random name
         </button>
