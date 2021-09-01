@@ -23,25 +23,30 @@ export class App extends React.Component<{}, State> {
 
   setRandomName = () => {
     if (this.state.isClockVisible) {
-      const oldName = this.state.name;
+      this.setState((oldName) => {
+        const newName = Math.ceil(Math.random() * 1000);
 
-      this.setState({ name: Math.ceil(Math.random() * 1000) });
-      setTimeout(() => {
-        // eslint-disable-next-line
-        console.log(`The Clock was renamed from ${oldName} to ${this.state.name}`);
+        // eslint-disable-next-line no-console
+        console.log(`The Clock was renamed from ${oldName.name} to ${newName}`);
+
+        return {
+          name: newName,
+        };
       });
     }
   };
 
   render() {
+    const { isClockVisible, name } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
 
         <div className="clock">
-          <div>{`Random name: ${this.state.name}`}</div>
+          <div>{`Random name: ${name}`}</div>
 
-          {this.state.isClockVisible && <Clock name={this.state.name} /> }
+          {isClockVisible && <Clock name={name} /> }
 
           <button
             type="button"
