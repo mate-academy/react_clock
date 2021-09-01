@@ -1,1 +1,15 @@
-// styles go here
+.App {
+  padding: 20px;
+  text-align: center;
+
+  &__clock {
+    height: 100px;
+  }
+
+  &__buttons {
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+  }
+}
