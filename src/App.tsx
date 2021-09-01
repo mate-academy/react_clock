@@ -7,13 +7,13 @@ type Props = {
 };
 
 type State = {
-  clockName?: string;
+  clockName: string | null;
   isClockVisible: boolean;
 };
 
 export class App extends React.Component<Props, State> {
   state = {
-    clockName: undefined,
+    clockName: null,
     isClockVisible: true,
   };
 
