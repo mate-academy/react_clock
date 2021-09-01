@@ -9,13 +9,9 @@ type State = {
 
 class App extends React.Component<Props<State>, State> {
   state = {
-    isClockVisible: false,
+    isClockVisible: true,
     clockName: 0,
   };
-
-  componentDidMount() {
-    this.setState({ isClockVisible: true });
-  }
 
   setRandomName = () => {
     if (this.state.isClockVisible) {
