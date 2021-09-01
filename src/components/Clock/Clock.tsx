@@ -1,15 +1,15 @@
 import React from 'react';
 
 type State = {
-  time: string,
+  time: string;
 };
 
 type Props = {
-  clockName: number,
+  clockName: number;
 };
 
 export class Clock extends React.Component<Props, State> {
-  state = {
+  state: State = {
     time: new Date().toLocaleTimeString(),
   };
 
@@ -29,12 +29,14 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
+    const { time } = this.state;
+
     return (
       <>
         <p>
           Current time:
           {' '}
-          {this.state.time}
+          {time}
         </p>
       </>
     );

@@ -3,25 +3,25 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 type State = {
-  isVisible: boolean,
-  clockName: number,
+  isVisible: boolean;
+  clockName: number;
 };
 
 class App extends React.Component<{}, State> {
-  state = {
+  state: State = {
     isVisible: true,
     clockName: 0,
   };
 
-  clockHide = () => {
+  hideClock = () => {
     this.setState({ isVisible: false });
   };
 
-  clockShow = () => {
+  showClock = () => {
     this.setState({ isVisible: true });
   };
 
-  ClockName = () => {
+  changeClockName = () => {
     const oldName = this.state.clockName;
 
     this.setState({ clockName: Math.round(Math.random() * 1000) });
@@ -33,17 +33,19 @@ class App extends React.Component<{}, State> {
   };
 
   render() {
+    const { clockName, isVisible } = this.state;
+
     return (
       <div className="container">
         <div className="App">
           <h1>React clock</h1>
-          {this.state.isVisible && <Clock clockName={this.state.clockName} />}
+          {isVisible && <Clock clockName={clockName} />}
         </div>
 
         <button
           className="container__button"
           type="button"
-          onClick={this.clockHide}
+          onClick={this.hideClock}
         >
           Hide Clock
         </button>
@@ -51,7 +53,7 @@ class App extends React.Component<{}, State> {
         <button
           className="container__button"
           type="button"
-          onClick={this.clockShow}
+          onClick={this.showClock}
         >
           Show Clock
         </button>
@@ -59,7 +61,7 @@ class App extends React.Component<{}, State> {
         <button
           className="container__button"
           type="button"
-          onClick={this.ClockName}
+          onClick={this.changeClockName}
         >
           Set random name
         </button>
