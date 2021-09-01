@@ -1,24 +1,35 @@
 import React from 'react';
 import './App.scss';
 
-const App: React.FC = () => {
-  setInterval(() => {
-    const date = new Date();
+class App extends React.Component {
+  state = {
+    date: new Date().toLocaleTimeString(),
+  };
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ date: new Date().toLocaleTimeString() });
+    }, 1000);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  componentDidUpdate() {
+    setTimeout(() => {
+      this.setState({ date: new Date().toLocaleTimeString() });
+    }, 1000);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        <p>
+          Current time:
+          {' '}
+          {this.state.date}
+        </p>
+      </div>
+    );
+  }
+}
 
 export default App;
