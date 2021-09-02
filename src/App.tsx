@@ -3,8 +3,8 @@ import { Clock } from './components/Clock';
 import './App.scss';
 
 interface State {
-  isClockVisible: boolean,
-  clockName: number,
+  isClockVisible: boolean;
+  clockName: number;
 }
 
 class App extends React.Component<{}, State> {
