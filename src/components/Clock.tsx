@@ -10,7 +10,7 @@ type Props = {
 
 export class Clock extends React.Component<Props, State> {
   state: State = {
-    time: '',
+    time: new Date().toLocaleTimeString(),
   };
 
   timingFunction = setInterval(() => {
