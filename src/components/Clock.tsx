@@ -55,7 +55,7 @@ class Clock extends React.Component<Props, State> {
         <p className="clock__content">
           Current time:
           {' '}
-          {time.toLocaleDateString()}
+          {time.toLocaleTimeString()}
           {// eslint-disable-next-line no-console
             console.log(time.toLocaleTimeString())
           }
