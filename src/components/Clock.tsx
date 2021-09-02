@@ -3,11 +3,11 @@ import '../App.scss';
 import './Clock.scss';
 
 interface Props {
-  clockName: string,
+  clockName: string;
 }
 
 type State = {
-  time: Date,
+  time: Date;
 };
 
 class Clock extends React.Component<Props, State> {
@@ -16,16 +16,15 @@ class Clock extends React.Component<Props, State> {
   };
 
   timer = setInterval(() => {
-    this.state.time.toLocaleTimeString();
-    this.setState({ time: new Date() });
+    this.setTime();
   }, 1000);
 
   componentDidMount() {
     return this.timer;
   }
 
-  componentDidUpdate(prevState: Props) {
-    const { clockName: oldName } = prevState;
+  componentDidUpdate(prevProp: Props) {
+    const { clockName: oldName } = prevProp;
     const { clockName: newName } = this.props;
 
     if (oldName !== newName) {
@@ -40,6 +39,12 @@ class Clock extends React.Component<Props, State> {
     clearInterval(this.timer);
   }
 
+  setTime = () => {
+    this.setState({
+      time: new Date(),
+    });
+  };
+
   render() {
     const { clockName } = this.props;
     const { time } = this.state;
@@ -50,7 +55,7 @@ class Clock extends React.Component<Props, State> {
         <p className="clock__content">
           Current time:
           {' '}
-          {time.toLocaleTimeString()}
+          {time.toLocaleDateString()}
           {// eslint-disable-next-line no-console
             console.log(time.toLocaleTimeString())
           }

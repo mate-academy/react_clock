@@ -3,8 +3,8 @@ import './App.scss';
 import Clock from './components/Clock';
 
 type State = {
-  isClockVisible: boolean,
-  name: string,
+  isClockVisible: boolean;
+  name: string;
 };
 
 class App extends React.Component<{}, State> {
@@ -13,15 +13,15 @@ class App extends React.Component<{}, State> {
     name: 'React clock',
   };
 
-  ShowClock = () => {
+  showClock = () => {
     this.setState({ isClockVisible: true });
   };
 
-  HideClock = () => {
+  hideClock = () => {
     this.setState({ isClockVisible: false });
   };
 
-  randomName = () => {
+  randomNameForTitle = () => {
     const nameOfClock = ['React clock 1', 'React clock 2', 'React clock 3', 'React clock 4'];
     const randomElement = nameOfClock[Math.floor(Math.random() * nameOfClock.length)];
 
@@ -30,35 +30,35 @@ class App extends React.Component<{}, State> {
 
   render() {
     const { isClockVisible, name } = this.state;
-    const { ShowClock, HideClock, randomName } = this;
+    const { showClock, hideClock, randomNameForTitle } = this;
 
     return (
       <div className="App">
         <div className="clock App__clock">
-          <p className="clock__time">
+          <div className="clock__time">
             {isClockVisible
               ? (<Clock clockName={name} />)
               : ('Press Show Clock button to see Clock')}
-          </p>
+          </div>
           <div className="clock__buttons-wrap">
             <button
               type="button"
               className="clock__button"
-              onClick={ShowClock}
+              onClick={showClock}
             >
               Show clock
             </button>
             <button
               type="button"
               className="clock__button"
-              onClick={HideClock}
+              onClick={hideClock}
             >
               Hide clock
             </button>
             <button
               type="button"
               className="clock__button"
-              onClick={randomName}
+              onClick={randomNameForTitle}
             >
               Change name
             </button>
