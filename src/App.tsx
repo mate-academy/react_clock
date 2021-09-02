@@ -1,32 +1,75 @@
 import React from 'react';
 import './App.scss';
+/* eslint-disable no-console */
 
-class App extends React.Component {
+import { Clock } from './components/Clock';
+
+type State = {
+  clockName: number,
+  isClockVisible: boolean,
+};
+
+class App extends React.Component<{}, State> {
   state = {
-    date: new Date().toLocaleTimeString(),
+    clockName: 0,
+    isClockVisible: true,
   };
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ date: new Date().toLocaleTimeString() });
-    }, 1000);
-  }
+  handleClick = (isTrue: boolean) => {
+    this.setState({
+      isClockVisible: isTrue,
+    });
+  };
 
-  componentDidUpdate() {
-    setTimeout(() => {
-      this.setState({ date: new Date().toLocaleTimeString() });
-    }, 1000);
-  }
+  setRandomNumber = (integer: number) => {
+    this.setState({
+      clockName: Math.floor(integer * 10),
+    });
+
+    console.log(
+      `The clock was renamed from ${this.state.clockName} to ${Math.floor((integer * 10))}`,
+    );
+  };
 
   render() {
     return (
       <div className="App">
-        <h1>React clock</h1>
-        <p>
-          Current time:
-          {' '}
-          {this.state.date}
-        </p>
+
+        {this.state.isClockVisible
+          ? (
+            <Clock name={this.state.clockName} />
+          )
+          : null}
+
+        <div className="buttonBox">
+          <button
+            type="button"
+            onClick={this.handleClick.bind(this, true)}
+            className="buttonBox__button"
+          >
+            Show Clock
+          </button>
+
+          <button
+            type="button"
+            onClick={this.handleClick.bind(this, false)}
+            className="buttonBox__button"
+          >
+            Hide Clock
+          </button>
+
+          <button
+            type="button"
+            onClick={
+              this.setRandomNumber.bind(
+                this, Math.random(),
+              )
+            }
+            className="buttonBox__button"
+          >
+            Set Name
+          </button>
+        </div>
       </div>
     );
   }
