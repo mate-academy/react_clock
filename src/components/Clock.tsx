@@ -11,7 +11,7 @@ type State = {
 };
 
 class Clock extends React.Component<Props, State> {
-  state = {
+  state: State = {
     time: new Date(),
   };
 
