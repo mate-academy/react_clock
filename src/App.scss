@@ -1,1 +1,30 @@
-// styles go here
+.App {
+  text-align: center;
+}
+
+.buttonBox {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(3, minmax(100px, 200px));
+  gap: 20px;
+
+  &__button {
+    height: 100px;
+
+    background-color: transparent;
+    border: 1px solid grey;
+    border-radius: 8px;
+
+    color: grey;
+    font-size: 18px;
+    font-weight: bold;
+
+    transition: background-color 0.2s;
+
+    &:hover {
+      pointer-events: visible;
+      background-color: grey;
+      color: #fff;
+    }
+  }
+}
