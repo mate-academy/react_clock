@@ -1,31 +1,35 @@
 import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
-
-type Props = {
-  listOfNames: string[];
-};
+import { names } from './api/clockNames';
 
 type State = {
-  clockName: string | null;
+  clockName: string;
   isClockVisible: boolean;
 };
 
-export class App extends React.Component<Props, State> {
+export class App extends React.Component<{}, State> {
   state = {
-    clockName: null,
+    clockName: names[0],
     isClockVisible: true,
   };
 
-  getRandomName = (names: string[]) => {
-    const randomIndex = Math.floor(Math.random() * names.length);
+  getRandomName = (clockNames: string[]) => {
+    const randomIndex = Math.floor(Math.random() * clockNames.length);
 
-    return names[randomIndex];
+    return clockNames[randomIndex];
+  };
+
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
   };
 
   render() {
     const { clockName, isClockVisible } = this.state;
-    const { listOfNames } = this.props;
 
     return (
       <div className="App">
@@ -38,9 +42,7 @@ export class App extends React.Component<Props, State> {
             <button
               className="App__button"
               type="button"
-              onClick={() => {
-                this.setState({ isClockVisible: true });
-              }}
+              onClick={this.showClock}
             >
               Show clock
             </button>
@@ -48,8 +50,7 @@ export class App extends React.Component<Props, State> {
               className="App__button"
               type="button"
               onClick={() => {
-                // eslint-disable-next-line
-                this.setState({ clockName: this.getRandomName(listOfNames) });
+                this.setState({ clockName: this.getRandomName(names) });
               }}
             >
               Set random name
@@ -57,9 +58,7 @@ export class App extends React.Component<Props, State> {
             <button
               className="App__button"
               type="button"
-              onClick={() => {
-                this.setState({ isClockVisible: false });
-              }}
+              onClick={this.hideClock}
             >
               Hide clock
             </button>

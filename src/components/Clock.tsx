@@ -2,7 +2,7 @@ import React from 'react';
 import './Clock.scss';
 
 type Props = {
-  name: string | null;
+  name: string;
 };
 
 type State = {
@@ -24,11 +24,12 @@ export class Clock extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     const { name: newName } = this.props;
+    const { name: oldName } = prevProps;
 
-    if (newName !== prevProps.name) {
+    if (newName !== oldName) {
       // eslint-disable-next-line
       console.log(
-        `The clock was renamed from ${prevProps.name} to ${newName}`,
+        `The clock was renamed from ${oldName} to ${newName}`,
       );
     }
   }
@@ -38,14 +39,16 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
+    const { date } = this.state;
+    const { name } = this.props;
     // eslint-disable-next-line
-    console.log(this.state.date.toLocaleTimeString());
+    console.log(date.toLocaleTimeString());
 
     return (
       <>
-        {this.props.name && (
+        {name && (
           <h2>
-            {`"${this.props.name}"`}
+            {`"${name}"`}
           </h2>
         )}
 
@@ -54,7 +57,7 @@ export class Clock extends React.Component<Props, State> {
             Current time:
           </p>
 
-          {this.state.date.toLocaleTimeString()}
+          {date.toLocaleTimeString()}
         </div>
       </>
     );
