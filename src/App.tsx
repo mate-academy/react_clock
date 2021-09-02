@@ -25,10 +25,6 @@ class App extends React.Component<{}, State> {
     this.setState({
       clockName: Math.floor(integer * 10),
     });
-
-    console.log(
-      `The clock was renamed from ${this.state.clockName} to ${Math.floor((integer * 10))}`,
-    );
   };
 
   render() {
