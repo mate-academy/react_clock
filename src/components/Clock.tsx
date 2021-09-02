@@ -10,7 +10,7 @@ type State = {
 };
 
 export class Clock extends React.Component<Props, State> {
-  state = {
+  state: State = {
     date: new Date(),
   };
 

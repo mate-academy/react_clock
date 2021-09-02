@@ -9,7 +9,7 @@ type State = {
 };
 
 export class App extends React.Component<{}, State> {
-  state = {
+  state: State = {
     clockName: names[0],
     isClockVisible: true,
   };
