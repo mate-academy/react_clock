@@ -23,13 +23,13 @@ export class Clock extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     const oldName = prevProps.name;
-    const newName = this.state.date.toLocaleTimeString();
+    const time = this.state.date.toLocaleTimeString();
 
     return oldName !== this.props.name
     // eslint-disable-next-line
     ? console.log(`Clock was renamed from ${oldName} to ${this.props.name}`)
     // eslint-disable-next-line
-    : console.log(newName);
+    : console.log(time);
   }
 
   componentWillUnmount() {
