@@ -34,7 +34,7 @@ class App extends React.Component<{}, State> {
         </p>
         <div className="App__button-set">
           <button type="button" className="App__button" onClick={this.changeClockVisibility}>{isClockVisible ? 'Hide clock' : 'Show clock'}</button>
-          <button type="button" className="App__button" onClick={this.changeName}>Set random name</button>
+          {isClockVisible && <button type="button" className="App__button" onClick={this.changeName}>Set random name</button>}
         </div>
       </div>
     );
