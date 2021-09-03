@@ -16,14 +16,6 @@ class App extends React.Component {
     this.setState({ isClockVisible: false });
   };
 
-  setName = () => {
-    const newName = Math.random();
-
-    this.setState({ clockName: newName });
-    // eslint-disable-next-line
-    <Clock name={this.state.clockName} />;  // ?? where? 
-  };
-
   render() {
     return (
       <div className="App">
@@ -45,7 +37,7 @@ class App extends React.Component {
         <button
           type="button"
           id="SetName"
-          onClick={this.setName}
+          onClick={() => this.setState({ clockName: Math.random() })}
         >
           Set random name
         </button>
