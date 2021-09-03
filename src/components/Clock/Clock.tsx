@@ -1,8 +1,8 @@
 import React from 'react';
+/* eslint-disable no-console */
 
 type State = {
   time: string;
-  intervalId?: NodeJS.Timeout | number;
 };
 
 type Props = {
@@ -12,29 +12,26 @@ type Props = {
 export class Clock extends React.Component<Props, State> {
   state = {
     time: new Date().toLocaleTimeString(),
-    intervalId: 0,
   };
 
-  componentDidMount() {
-    const intervalId = setInterval(() => {
-      this.setState({ time: new Date().toLocaleTimeString() });
-    }, 1000);
+  interval = setInterval(() => {
+    this.setState({ time: new Date().toLocaleTimeString() });
+  }, 1000);
 
-    this.setState({ intervalId });
+  componentDidMount() {
+    return this.interval;
   }
 
   componentDidUpdate(prevProps: Props) {
     const oldName = prevProps.clockName;
 
     return oldName !== this.props.clockName
-    // eslint-disable-next-line
-    ? console.log(`Clock was renamed from ${oldName} to ${this.props.clockName}`)
-    // eslint-disable-next-line
-    : console.log(this.state.time);
+      ? console.log(`Clock was renamed from ${oldName} to ${this.props.clockName}`)
+      : console.log(this.state.time);
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.intervalId);
+    clearInterval(this.interval);
   }
 
   render() {

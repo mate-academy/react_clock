@@ -4,13 +4,13 @@ import { Clock } from './components/Clock/Clock';
 
 type State = {
   isClockVisible: boolean;
-  clockName: number | string;
+  clockName: number;
 };
 
 class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
-    clockName: 'Try to set my name!',
+    clockName: 0,
   };
 
   changeVisibility = () => this.setState(prevState => (
@@ -27,7 +27,7 @@ class App extends React.Component<{}, State> {
           <h1>React clock</h1>
 
           <button
-            className="button App__button"
+            className="App__button"
             type="button"
             onClick={this.changeVisibility}
           >
@@ -37,7 +37,7 @@ class App extends React.Component<{}, State> {
           {isClockVisible && <Clock clockName={clockName} />}
 
           <button
-            className="button App__button"
+            className="App__button"
             type="button"
             onClick={this.setName}
           >
