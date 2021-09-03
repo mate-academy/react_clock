@@ -1,1 +1,25 @@
-// styles go here
+.App {
+  width: 300px;
+  text-align: center;
+  margin: 0 auto;
+
+  &__title {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  &__button {
+    width: 45%;
+    height: 30px;
+    margin: 5px;
+
+    cursor: pointer;
+  }
+
+  &__clockName {
+    font-size: 20px;
+  }
+
+  &__clockTime {
+    font-size: 18px;
+  }
+}
