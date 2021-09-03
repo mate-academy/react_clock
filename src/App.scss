@@ -1,1 +1,27 @@
-// styles go here
+.App {
+  height: 90vh;
+  
+  
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    height: 200px;
+  }
+
+  &__button {
+    height: 50px;
+    width: 200px;
+    background-color: #800080;
+  }
+}
