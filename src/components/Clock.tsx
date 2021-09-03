@@ -2,7 +2,7 @@ import React from 'react';
 import './Clock.scss';
 
 interface Props {
-  name: string;
+  name: number;
 }
 
 type State = {

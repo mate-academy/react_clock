@@ -1,25 +1,22 @@
 import React from 'react';
 import './App.scss';
 import { Clock } from './components';
-import { string } from './string.json';
 
 type State = {
   isClockVisible: boolean;
-  clockName: string;
+  clockName: number;
 };
 
 class App extends React.Component<React.FC<State>, State> {
   state: State = {
     isClockVisible: true,
-    clockName: 'robot',
+    clockName: 0,
   };
 
   setRandomName = () => {
     if (this.state.isClockVisible) {
-      const names: string[] = string.split(' ');
-
       this.setState({
-        clockName: names[Math.floor(Math.random() * (names.length - 0) + 0)],
+        clockName: Math.floor(Math.random() * (100 - 0) + 0),
       });
     }
   };
