@@ -1,24 +1,77 @@
 import React from 'react';
+import { Clock } from './Clock';
+
 import './App.scss';
 
-const App: React.FC = () => {
-  setInterval(() => {
-    const date = new Date();
+function getRandomNumber() {
+  const min = Math.ceil(1);
+  const max = Math.floor(9);
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
+type State = {
+  isClockVisible: boolean;
+  clockName: number;
 };
 
-export default App;
+export class App extends React.Component<{}, State> {
+  state: State = {
+    isClockVisible: true,
+    clockName: 0,
+  };
+
+  setRandomName = () => {
+    const oldClockName = this.state.clockName;
+
+    this.setState({ clockName: getRandomNumber() });
+
+    // eslint-disable-next-line no-console
+    setTimeout(() => console.log(`The Clock was renamed from ${oldClockName} to ${this.state.clockName}`), 0);
+  };
+
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
+  };
+
+  render() {
+    const { isClockVisible, clockName } = this.state;
+    const { showClock, hideClock, setRandomName } = this;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        <div className="buttons">
+          <button
+            type="button"
+            className="button button-show"
+            onClick={showClock}
+          >
+            Show Clock
+          </button>
+
+          <button
+            type="button"
+            className=" button button-hide"
+            onClick={hideClock}
+          >
+            Hide Clock
+          </button>
+
+          <button
+            type="button"
+            className="button-name"
+            onClick={setRandomName}
+          >
+            Set random name
+          </button>
+        </div>
+        {isClockVisible && <Clock name={clockName} />}
+      </div>
+    );
+  }
+}
