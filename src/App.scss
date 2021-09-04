@@ -1,1 +1,16 @@
-// styles go here
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  border: 1px solid brown;
+  background-color: beige;
+  border-radius: 5px;
+  height: 30px;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: -1px 7px 5px -5px rgba(34, 60, 80, 0.5);
+  }
+}
