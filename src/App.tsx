@@ -49,6 +49,12 @@ class App extends React.Component<{}, State> {
         >
           Show Clock
         </button>
+        <button
+          type="button"
+          onClick={this.changeClockName}
+        >
+          Set random name
+        </button>
       </div>
     );
   }
