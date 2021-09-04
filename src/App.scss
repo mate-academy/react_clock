@@ -1,1 +1,24 @@
-// styles go here
+.App {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  background-color: palegoldenrod;
+  border: 1px solid black;
+  padding: 5px;
+
+  &__hidden,
+  &__visible,
+  &__random-name {
+    margin-bottom: 5px;
+    background-color: papayawhip;
+    cursor: pointer;
+    &:hover {
+      background-color: peachpuff;
+    }
+    &:focus {
+      background-color: peru;
+    }
+  }
+}
