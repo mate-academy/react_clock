@@ -1,1 +1,23 @@
-// styles go here
+h1,
+p {
+  margin: 0;
+}
+
+.App {
+  padding: 50px;
+  text-align: center;
+
+  &__clock {
+    font-size: 25px;
+  
+    margin-bottom: 10px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+
+    width: 400px;
+    margin: 0 auto;
+  }
+}
