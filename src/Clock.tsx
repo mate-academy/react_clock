@@ -16,7 +16,7 @@ export class Clock extends React.Component<Props, State> {
   setTime = setInterval(() => {
     this.setState({ date: new Date() });
     // eslint-disable-next-line
-    console.log(this.state.date.toLocaleTimeString);
+    console.log(this.state.date);
   }, 1000);
 
   componentDidMount() {
