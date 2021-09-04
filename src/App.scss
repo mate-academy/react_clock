@@ -1,1 +1,44 @@
-// styles go here
+.App {
+  text-align: center;
+  width: max-content;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  height: 40px;
+  margin-bottom: 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition-duration: 300ms;
+
+  &:hover {
+    transform: translateX(10px);
+  }
+}
+
+.button-show {
+  background-color: greenyellow;
+}
+
+.button-hide {
+  background-color: crimson;
+}
+
+.button-name {
+  height: 30px;
+  cursor: pointer;
+  background-color: white;
+
+  transition-duration: 300ms;
+
+  &:hover {
+    color: white;
+    background-color: gray;
+  }
+}
