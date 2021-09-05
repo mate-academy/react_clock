@@ -43,8 +43,9 @@ class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {isClockVisible
-          && (<Clock name={clockName} />)}
+        {isClockVisible && (
+          <Clock name={clockName} />
+        )}
         <div>
           <button
             type="button"

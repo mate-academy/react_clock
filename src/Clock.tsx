@@ -14,11 +14,19 @@ class Clock extends React.Component<Props, State> {
     time: new Date(),
   };
 
+  setInterval = setInterval(() => {
+    this.state.time.toLocaleTimeString();
+    // eslint-disable-next-line no-console
+    console.log(this.state.time.toLocaleTimeString());
+    this.setState({ time: new Date() });
+  }, 1000);
+
   componentDidMount() {
-    setInterval(() => {
-      this.state.time.toLocaleTimeString();
-      this.setState({ time: new Date() });
-    }, 1000);
+    return this.setInterval;
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.setInterval);
   }
 
   render() {
@@ -36,9 +44,6 @@ class Clock extends React.Component<Props, State> {
             Current time:
             {' '}
             {time.toLocaleTimeString()}
-            {// eslint-disable-next-line no-console
-              console.log(time.toLocaleTimeString())
-            }
           </p>
         </div>
       </>
