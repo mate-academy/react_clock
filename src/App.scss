@@ -1,1 +1,19 @@
-// styles go here
+.App {
+  padding-bottom: 20px;
+
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Courier New", Courier, monospace;
+
+  background-color: bisque;
+}
+
+.button {
+  margin-right: 20px;
+  color: brown;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
