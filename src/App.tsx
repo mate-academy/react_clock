@@ -1,61 +1,41 @@
 import React from 'react';
 import './App.scss';
 
-type Props = {
-
-};
+import { Clock } from './components/Clock/Clock';
 
 type State = {
   isClockVisible: boolean,
-  clock: string,
+  name: string,
 };
 
-class App extends React.Component<Props, State> {
+class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
-    clock: '',
+    name: 'Clock 0',
   };
 
-  componentDidMount() {
-    setInterval(() => {
-      if (this.state.isClockVisible) {
-        this.Clock();
-      } else {
-        this.hideClock();
-      }
-    }, 1000);
-  }
-
   hideClock = () => {
-    this.state.isClockVisible = false;
-    this.setState({ clock: ' ' });
+    this.setState({ isClockVisible: false });
   };
 
   showClock = () => {
-    this.state.isClockVisible = true;
+    this.setState({ isClockVisible: true });
   };
 
-  Clock = () => {
-    const date = new Date();
+  setRandomName = () => {
+    const newRandomName = `Clock ${Math.ceil(Math.random() * 10)}`;
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
+    this.setState((prevState) => {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${prevState.name} to ${newRandomName}`);
 
-    this.setState({ clock: date.toLocaleTimeString() });
+      return { name: newRandomName };
+    });
   };
 
   render() {
-    const { clock } = this.state;
-
     return (
       <div className="App">
-        <h1>React clock</h1>
-        <p>
-          Current time:
-          {' '}
-          {clock}
-        </p>
-
         <button type="button" onClick={this.showClock}>
           Show clock
         </button>
@@ -63,6 +43,11 @@ class App extends React.Component<Props, State> {
         <button type="button" onClick={this.hideClock}>
           Hide clock
         </button>
+
+        <button type="button" onClick={this.setRandomName}>
+          Set random name
+        </button>
+        {(this.state.isClockVisible) && <Clock name={this.state.name} />}
       </div>
     );
   }
