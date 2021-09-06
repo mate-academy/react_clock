@@ -1,1 +1,12 @@
-// styles go here
+.clock {
+  display: flex;
+  flex-direction: column;
+
+  &__button {
+    margin: 5px 0;
+    width: 150px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
