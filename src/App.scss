@@ -1,6 +1,17 @@
-.App {
+.app {
+  margin: 10% auto 0;
   text-align: center;
+  width: 420px;
+  border: 3px solid rgb(89, 135, 138);
+  border-radius: 10px;
+  padding: 40px 0;
+  box-shadow: -2px 2px 4px rgb(89, 135, 138);
+  color: rgb(54, 77, 78);
+
+  &__title {
+    color: rgb(86, 122, 126);
+  }
 }
-.button {
+.btn {
   margin-left: 3px;
 }

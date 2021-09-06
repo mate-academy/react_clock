@@ -29,8 +29,8 @@ export class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>React clock</h1>
+      <div className="app">
+        <h1 className="app__title">React clock</h1>
 
         <div className="clock">
           <p>{`Random name: ${this.state.clockName}`}</p>
@@ -38,21 +38,21 @@ export class App extends React.Component {
           {this.state.visibleClock && <Clock clockName={this.state.clockName} /> }
 
           <button
-            className="button"
+            className="btn btn-outline-success"
             type="button"
             onClick={() => this.showClock()}
           >
             Show сlock
           </button>
           <button
-            className="button"
+            className="btn btn-outline-success"
             type="button"
             onClick={() => this.hideClock()}
           >
             Hide сlock
           </button>
           <button
-            className="button"
+            className="btn btn-outline-secondary"
             type="button"
             onClick={() => this.setRandomName()}
           >
