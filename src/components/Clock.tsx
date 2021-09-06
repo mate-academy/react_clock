@@ -4,8 +4,12 @@ type Props = {
   clockName: number;
 };
 
+type State = {
+  date: Date;
+};
+
 export class Clock extends React.Component<Props> {
-  state = {
+  state: State = {
     date: new Date(),
   };
 
