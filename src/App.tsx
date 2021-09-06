@@ -21,14 +21,9 @@ class App extends React.Component<{}, State> {
   };
 
   changeClockName = () => {
-    const usedName = this.state.clockName;
-
-    this.setState({ clockName: Math.round(Math.random() * 1000) });
-
-    setTimeout(() => {
-      // eslint-disable-next-line no-console
-      console.log(`The Clock was renamed from ${usedName} to ${this.state.clockName}`);
-    }, 0);
+    if (this.state.isClockVisible) {
+      this.setState({ clockName: Math.round(Math.random() * 100) });
+    }
   };
 
   render() {
@@ -37,6 +32,7 @@ class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
+        <p>{`Random name: ${this.state.clockName}`}</p>
         {isClockVisible && <Clock clockName={clockName} />}
         <button
           type="button"
