@@ -38,7 +38,7 @@ export class App extends React.Component<{}, State> {
     const { showClock, hideClock, setRandomName } = this;
 
     return (
-      <div className="App text-center mt-5">
+      <div className="App text-center mt-4">
         <h1>React clock</h1>
         <div>
           {isClockVisible
