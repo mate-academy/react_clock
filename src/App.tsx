@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 
 const App: React.FC = () => {
-  setInterval(() => {
+  window.setInterval(() => {
     const date = new Date();
 
     // eslint-disable-next-line
