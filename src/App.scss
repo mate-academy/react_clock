@@ -1,1 +1,37 @@
-// styles go here
+body,
+h1,
+h2 {
+  margin: 0;
+}
+
+.App {
+  font-family: sans-serif;
+  width: 350px;
+  margin: 0 auto;
+  border-radius: 8px;
+  background-color: green;
+  border: 1px solid black;
+
+  &__title {
+    padding: 20px;
+    background-color: silver;
+    border-radius: 8px;
+  }
+
+  &__buttons {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+  }
+
+  &__button {
+    border: 1px solid black;
+    border-radius: 4px;
+  }
+
+  &__clock {
+    padding: 10px;
+    background-color: silver;
+    border-radius: 8px;
+  }
+}
