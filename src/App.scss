@@ -1,1 +1,13 @@
 // styles go here
+.App {
+  font-family: Arial, Helvetica, sans-serif;
+
+  &__title {
+    font-weight: 600;
+    color: #0b5ed7;
+  }
+
+  &__time {
+    font-size: 20px;
+  }
+}
