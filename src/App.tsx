@@ -38,38 +38,36 @@ export class App extends React.Component<{}, State> {
     const { showClock, hideClock, setRandomName } = this;
 
     return (
-      <div className="App">
+      <div className="App text-center mt-5">
         <h1>React clock</h1>
         <div>
-          <div>
-            {isClockVisible
-              && <Clock clockName={clockName} />}
-          </div>
-          <div className="buttons">
-            <button
-              type="button"
-              className="button__show"
-              onClick={showClock}
-            >
-              Show Clock
-            </button>
+          {isClockVisible
+            && <Clock clockName={clockName} />}
+        </div>
+        <div className="">
+          <button
+            type="button"
+            className="btn btn-secondary mr-2"
+            onClick={showClock}
+          >
+            Show Clock
+          </button>
 
-            <button
-              type="button"
-              className="button__hide"
-              onClick={hideClock}
-            >
-              Hide Clock
-            </button>
+          <button
+            type="button"
+            className="btn btn-secondary mr-2"
+            onClick={hideClock}
+          >
+            Hide Clock
+          </button>
 
-            <button
-              type="button"
-              className="button__name"
-              onClick={setRandomName}
-            >
-              Random Name
-            </button>
-          </div>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={setRandomName}
+          >
+            Random Name
+          </button>
         </div>
       </div>
     );
