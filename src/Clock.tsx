@@ -7,7 +7,7 @@ type State = {
 
 type Props = {
   time: string;
-  name: string | null;
+  name: number | null;
 };
 
 export class Clock extends React.Component<Props, State> {

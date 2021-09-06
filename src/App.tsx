@@ -3,19 +3,12 @@ import './App.scss';
 import { Clock } from './Clock';
 
 function randomName() {
-  const num = Math.floor(Math.random() * 5 + 5);
-  let randomString = '';
-
-  for (let i = 0; i <= num; i += 1) {
-    randomString += String.fromCodePoint(Math.floor(26 * Math.random() + 97));
-  }
-
-  return randomString;
+  return Math.ceil(Math.random() * 5);
 }
 
 type State = {
   isClockVisible: boolean;
-  clockName: string | null;
+  clockName: number | null;
 };
 
 class App extends React.Component<{}, State> {
