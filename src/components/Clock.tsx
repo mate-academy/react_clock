@@ -15,7 +15,10 @@ export class Clock extends React.Component<Props, State> {
     time: new Date(),
   };
 
-  timer = setInterval(() => this.tick(), 1000);
+  timer = setInterval(() => {
+    this.tick();
+    console.log(this.state.time.toLocaleTimeString());
+  }, 1000);
 
   componentDidMount() {
     return this.timer;
@@ -24,9 +27,9 @@ export class Clock extends React.Component<Props, State> {
   componentDidUpdate(prevProps: Props) {
     const oldName = prevProps.name;
 
-    return oldName !== this.props.name
-      ? console.log(`Clock was renamed from ${oldName} to ${this.props.name}`)
-      : console.log(this.state.time.toLocaleTimeString());
+    if (oldName !== this.props.name) {
+      console.log(`Clock was renamed from ${oldName} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
