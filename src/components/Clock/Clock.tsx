@@ -19,10 +19,6 @@ export class Clock extends React.Component<Props, State> {
     console.log(this.state.time.toLocaleTimeString());
   }, 1000);
 
-  componentDidMount() {
-    return this.interval;
-  }
-
   componentDidUpdate(currentProps: Props) {
     const oldName = currentProps.clockName;
 
