@@ -16,6 +16,8 @@ export class Clock extends React.PureComponent<Props, State> {
 
   clockTypeName = '0';
 
+  check = new Date().toLocaleTimeString();
+
   state = {
     clockName: 'React Clock:',
     time: new Date().toLocaleTimeString(),
@@ -33,8 +35,13 @@ export class Clock extends React.PureComponent<Props, State> {
   }
 
   componentDidUpdate(prev:Props) {
-    if (!prev.isClockVisible) {
-      this.componentDidMount();
+    if (prev.isClockVisible !== this.props.isClockVisible) {
+      this.clock = window.setInterval(() => {
+        this.setState({ time: new Date().toLocaleTimeString() });
+        if (this.props.isClockVisible) {
+          console.log(this.state.time);
+        }
+      }, 1000);
     }
   }
 
