@@ -27,19 +27,12 @@ export class App extends React.Component<{}, State> {
 
   render() {
     const { isClockVisible } = this.state;
+    const clock = isClockVisible && <Clock name={this.state.clockName} />;
 
     return (
       <div className="App">
-        <h1>
-          React clock
-          {' '}
-          {this.state.clockName}
-        </h1>
-        <div>
-          Current time:
-          {' '}
-          {isClockVisible && <Clock name={this.state.clockName} /> }
-        </div>
+        {`React clock ${this.state.clockName}`}
+        {clock}
 
         <button
           type="button"

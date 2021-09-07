@@ -17,18 +17,16 @@ export class Clock extends React.Component<Props, State> {
     this.setState({ date: new Date() });
   }, 1000);
 
-  componentDidMount() {
-    return this.timer;
-  }
-
   componentDidUpdate(prev: Props) {
     const oldName = prev.name;
 
-    return (oldName === this.props.name
     // eslint-disable-next-line
-    ? console.log(this.state.date.toLocaleTimeString())
-    // eslint-disable-next-line
-    : console.log(`The Clock was renamed from ${oldName} to ${this.props.name}`))
+    console.log(this.state.date.toLocaleTimeString())
+
+    if (oldName !== this.props.name) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${oldName} to ${this.props.name}`)
+    }
   }
 
   componentWillUnmount() {
@@ -39,9 +37,10 @@ export class Clock extends React.Component<Props, State> {
     const { date } = this.state;
 
     return (
-      <div>
+      <p>
+        {'Current time: '}
         <span>{date.toLocaleTimeString()}</span>
-      </div>
+      </p>
     );
   }
 }
