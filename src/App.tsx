@@ -2,14 +2,12 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './Clock';
 
-type Props = {};
-
 type State = {
   clockVisible: boolean;
   nameOfClock: string;
 };
 
-class App extends React.Component<Props, State> {
+class App extends React.Component<{}, State> {
   state: State = {
     clockVisible: true,
     nameOfClock: 'React clock',
@@ -17,11 +15,11 @@ class App extends React.Component<Props, State> {
 
   randomClockNames = ['React 1 clock', 'React 2 clock', 'React 3 clock', 'React 5 clock'];
 
-  makeVisibleClock = () => {
+  makeClockVisible = () => {
     this.setState({ clockVisible: true });
   };
 
-  makeHiddenClock = () => {
+  makeClockHidden = () => {
     this.setState({ clockVisible: false });
   };
 
@@ -48,7 +46,7 @@ class App extends React.Component<Props, State> {
           <button
             className="App__button"
             type="button"
-            onClick={this.makeVisibleClock}
+            onClick={this.makeClockVisible}
           >
             Show Clock
           </button>
@@ -64,17 +62,15 @@ class App extends React.Component<Props, State> {
           <button
             className="App__button"
             type="button"
-            onClick={this.makeHiddenClock}
+            onClick={this.makeClockHidden}
           >
             Hide Clock
           </button>
         </div>
 
-        <>
-          {clockVisible && (
-            <Clock name={nameOfClock} />
-          )}
-        </>
+        {clockVisible && (
+          <Clock name={nameOfClock} />
+        )}
       </div>
     );
   }
