@@ -13,17 +13,15 @@ export class Clock extends React.Component<Props, State> {
     date: new Date(),
   };
 
-  setTime = setInterval(() => {
-    this.setState({ date: new Date() });
-
-    const date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  setTime: number | undefined;
 
   componentDidMount() {
-    return this.setTime;
+    this.setTime = window.setInterval(() => {
+      this.setState({ date: new Date() });
+
+      // eslint-disable-next-line
+      console.log(this.state.date.toLocaleTimeString());
+    }, 1000);
   }
 
   componentWillUnmount() {
