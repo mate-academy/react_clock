@@ -1,14 +1,13 @@
-import React, { Props } from 'react';
-
-import Clock from './components/Clock';
+import React from 'react';
+import { Clock } from './components/Clock';
 
 type State = {
   isClockVisible: boolean;
   clockName: number;
 };
 
-class App extends React.Component<Props<State>, State> {
-  state = {
+export class App extends React.Component<{}, State> {
+  state: State = {
     isClockVisible: true,
     clockName: 0,
   };
@@ -83,5 +82,3 @@ class App extends React.Component<Props<State>, State> {
     );
   }
 }
-
-export default App;

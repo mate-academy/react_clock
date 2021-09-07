@@ -1,21 +1,24 @@
 import React from 'react';
 
-interface Props {
+type Props = {
   name: number,
-}
+};
 
 type State = {
   time: Date;
 };
 
-class Clock extends React.Component<Props, State> {
-  state = {
+export class Clock extends React.Component<Props, State> {
+  state: State = {
     time: new Date(),
   };
 
   timer = setInterval(() => {
-    this.state.time.toLocaleTimeString();
+    const { time } = this.state;
+
     this.setState({ time: new Date() });
+    // eslint-disable-next-line
+    console.log(time.toLocaleTimeString());
   }, 1000);
 
   componentDidMount() {
@@ -27,27 +30,14 @@ class Clock extends React.Component<Props, State> {
   }
 
   render() {
-    const { name } = this.props;
     const { time } = this.state;
 
     return (
-      <>
-        <div className="Clock">
-          <h2 className="Clock__name">
-            {name}
-          </h2>
-          <p className="Clock__time">
-            Current time:
-            {' '}
-            {time.toLocaleTimeString()}
-            {// eslint-disable-next-line no-console
-              console.log(time.toLocaleTimeString())
-            }
-          </p>
-        </div>
-      </>
+      <p className="clock">
+        Current time:
+        {' '}
+        <span className="clock__figures">{time.toLocaleTimeString()}</span>
+      </p>
     );
   }
 }
-
-export default Clock;
