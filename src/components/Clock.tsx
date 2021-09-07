@@ -43,14 +43,10 @@ export class Clock extends React.Component<Props, State> {
     return (
       <div className="clock">
         <p className="clock__name">
-          Clock name:
-          {' '}
-          {this.props.name}
+          {`Clock name: ${this.props.name}`}
         </p>
         <p className="clock__watch">
-          Current time:
-          {' '}
-          {this.state.time.toLocaleTimeString()}
+          {`Current time: ${this.state.time.toLocaleTimeString()}`}
         </p>
       </div>
     );
