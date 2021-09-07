@@ -16,8 +16,8 @@ export class Clock extends React.Component<Props, State> {
   };
 
   interval = setInterval(() => {
-    this.state.time.toLocaleTimeString();
     this.setState({ time: new Date() });
+    console.log(this.state.time.toLocaleTimeString());
   }, 1000);
 
   componentDidMount() {
@@ -40,7 +40,6 @@ export class Clock extends React.Component<Props, State> {
           </h3>
           <p className="display-2 text-primary text-center">
             {time.toLocaleTimeString()}
-            {console.log(time.toLocaleTimeString())}
           </p>
         </div>
       </>
