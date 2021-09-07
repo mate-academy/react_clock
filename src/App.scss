@@ -1,1 +1,28 @@
-// styles go here
+.App {
+  display: block;
+  background-color: aqua;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 30px;
+  color: brown;
+  text-align: center;
+}
+
+.paragraph {
+  color: rgb(205, 156, 50);
+}
+
+.button {
+  width: max-content;
+  height: 40px;
+  font-size: large;
+  border: black solid 1px;
+  border-radius: 5px;
+  background-color: coral;
+  margin: 0 20px;
+  transition: transform 1s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+}
