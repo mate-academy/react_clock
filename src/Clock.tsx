@@ -14,14 +14,10 @@ export class Clock extends React.Component<Props, State> {
   };
 
   timer = setInterval(() => {
+    this.setState({ time: new Date().toLocaleTimeString() });
     // eslint-disable-next-line no-console
     console.log(this.state.time);
-    this.setState({ time: new Date().toLocaleTimeString() });
   }, 1000);
-
-  componentDidMount() {
-    return this.timer;
-  }
 
   componentWillUnmount() {
     clearInterval(this.timer);

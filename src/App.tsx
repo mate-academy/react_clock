@@ -13,7 +13,7 @@ class App extends React.Component<{}, State> {
     nameOfClock: 'React clock',
   };
 
-  randomClockNames = ['React 1 clock', 'React 2 clock', 'React 3 clock', 'React 5 clock'];
+  randomClockNames = ['React 1 clock', 'React 2 clock', 'React 3 clock', 'React 5 clock', 'JoJo time', 'Time to cook pizza'];
 
   makeClockVisible = () => {
     this.setState({ clockVisible: true });
