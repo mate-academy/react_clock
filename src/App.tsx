@@ -15,10 +15,18 @@ class App extends React.Component<{}, State> {
     isClockVisible: true,
   };
 
-  handleClick = (isTrue: boolean) => {
-    this.setState({
-      isClockVisible: isTrue,
-    });
+  // handleClick = (isTrue: boolean) => {
+  //   this.setState({
+  //     isClockVisible: isTrue,
+  //   });
+  // };
+
+  showClick = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hideClick = () => {
+    this.setState({ isClockVisible: false });
   };
 
   setRandomNumber = (integer: number) => {
@@ -40,7 +48,7 @@ class App extends React.Component<{}, State> {
         <div className="buttonBox">
           <button
             type="button"
-            onClick={this.handleClick.bind(this, true)}
+            onClick={this.showClick}
             className="buttonBox__button"
           >
             Show Clock
@@ -48,7 +56,7 @@ class App extends React.Component<{}, State> {
 
           <button
             type="button"
-            onClick={this.handleClick.bind(this, false)}
+            onClick={this.hideClick}
             className="buttonBox__button"
           >
             Hide Clock

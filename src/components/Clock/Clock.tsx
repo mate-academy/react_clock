@@ -16,10 +16,10 @@ export class Clock extends React.Component<Props, State> {
     date: new Date(),
   };
 
-  interval: NodeJS.Timeout | undefined;
+  interval: number | undefined;
 
   componentDidMount() {
-    this.interval = setInterval(() => {
+    this.interval = window.setInterval(() => {
       this.setState({ date: new Date() });
       console.log(this.state.date.toLocaleTimeString());
     }, 1000);
@@ -46,13 +46,11 @@ export class Clock extends React.Component<Props, State> {
     return (
       <div className="clock">
         <h1 className="clock__title">
-          React clock
-          {' '}
+          {'React clock: '}
           {name}
         </h1>
         <p className="clock__time">
-          Current time:
-          {' '}
+          {'Current time: '}
           <strong>
             {time}
           </strong>
