@@ -15,13 +15,13 @@ export class Clock extends React.Component<Props, State> {
     time: new Date(),
   };
 
-  timer = setInterval(() => {
-    this.tick();
-    console.log(this.state.time.toLocaleTimeString());
-  }, 1000);
+  timer: number | undefined;
 
   componentDidMount() {
-    return this.timer;
+    this.timer = window.setInterval(() => {
+      this.tick();
+      console.log(this.state.time.toLocaleTimeString());
+    }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
