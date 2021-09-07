@@ -15,13 +15,12 @@ export class Clock extends React.Component<Props, State> {
 
   timer = setInterval(() => {
     this.setState({ date: new Date() });
+    // eslint-disable-next-line
+    console.log(this.state.date.toLocaleTimeString())
   }, 1000);
 
   componentDidUpdate(prev: Props) {
     const oldName = prev.name;
-
-    // eslint-disable-next-line
-    console.log(this.state.date.toLocaleTimeString())
 
     if (oldName !== this.props.name) {
       // eslint-disable-next-line
