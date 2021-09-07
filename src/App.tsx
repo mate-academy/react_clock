@@ -1,5 +1,5 @@
-import React, { Props } from 'react';
-import Clock from './components/Clock/Clock';
+import React from 'react';
+import { Clock } from './components/Clock';
 import './App.scss';
 
 type State = {
@@ -7,7 +7,7 @@ type State = {
   clockName: number;
 };
 
-class App extends React.Component<Props<State>, State> {
+class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
     clockName: 0,
@@ -38,7 +38,11 @@ class App extends React.Component<Props<State>, State> {
 
   render() {
     const { isClockVisible, clockName } = this.state;
-    const { setRandomName, hideClock, showClock } = this;
+    const {
+      setRandomName,
+      hideClock,
+      showClock,
+    } = this;
 
     return (
       <div className="App">

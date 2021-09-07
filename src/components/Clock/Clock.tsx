@@ -8,7 +8,7 @@ type Props = {
   name: number;
 };
 
-class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<Props, State> {
   state = {
     time: new Date(),
   };
@@ -31,23 +31,19 @@ class Clock extends React.Component<Props, State> {
     const { time } = this.state;
 
     return (
-      <>
-        <div className="Clock">
-          <h2 className="Clock__name">
-            {name}
-          </h2>
-          <p className="Clock__time">
-            Current time:
-            {' '}
-            {time.toLocaleTimeString()}
-            {// eslint-disable-next-line no-console
-              console.log(time.toLocaleTimeString())
-            }
-          </p>
-        </div>
-      </>
+      <div className="Clock">
+        <h2 className="Clock__name">
+          {name}
+        </h2>
+        <p className="Clock__time">
+          Current time:
+          {' '}
+          {time.toLocaleTimeString()}
+          {// eslint-disable-next-line no-console
+            console.log(time.toLocaleTimeString())
+          }
+        </p>
+      </div>
     );
   }
 }
-
-export default Clock;
