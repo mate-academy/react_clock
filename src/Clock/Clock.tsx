@@ -3,7 +3,6 @@ import React from 'react';
 
 type Props = {
   name: string,
-  isClockVisible: boolean,
 };
 
 type State = {
@@ -11,10 +10,10 @@ type State = {
   time: string,
 };
 
+let clockTypeName = '0';
+
 export class Clock extends React.PureComponent<Props, State> {
   newClockName = '';
-
-  clockTypeName = '0';
 
   check = new Date().toLocaleTimeString();
 
@@ -34,45 +33,32 @@ export class Clock extends React.PureComponent<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(prev:Props) {
-    if (prev.isClockVisible !== this.props.isClockVisible) {
-      this.clock = window.setInterval(() => {
-        this.setState({ time: new Date().toLocaleTimeString() });
-        if (this.props.isClockVisible) {
-          console.log(this.state.time);
-        }
-      }, 1000);
-    }
+  componentWillUnmount() {
+    clearInterval(this.clock);
   }
 
   render() {
-    const clockNamePrev = `${this.clockTypeName}`;
-    const { name, isClockVisible } = this.props;
+    const clockNamePrev = `${clockTypeName}`;
+    const { name } = this.props;
 
-    this.clockTypeName = name;
+    clockTypeName = name;
 
-    if (this.clockTypeName !== clockNamePrev) {
-      console.log(`The Clock was renamed from ${clockNamePrev} to ${this.clockTypeName}`);
-    }
-
-    if (!isClockVisible) {
-      clearInterval(this.clock);
+    if (clockTypeName !== clockNamePrev) {
+      console.log(`The Clock was renamed from ${clockNamePrev} to ${clockTypeName}`);
     }
 
     this.newClockName = `${this.state.clockName} ${name}`;
 
     return (
       <>
-        {isClockVisible && (
-          <>
-            <h1>
-              {this.newClockName}
-            </h1>
-            <p>
-              {`Current time: ${this.state.time}`}
-            </p>
-          </>
-        )}
+        <>
+          <h1>
+            {this.newClockName}
+          </h1>
+          <p>
+            {`Current time: ${this.state.time}`}
+          </p>
+        </>
       </>
     );
   }

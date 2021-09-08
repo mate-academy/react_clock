@@ -18,8 +18,7 @@ export class App extends React.PureComponent {
     return (
       <>
         <div className="App">
-          <Clock name={clockName} isClockVisible={isClockVisible} />
-
+          {isClockVisible && <Clock name={clockName} /> }
           <button
             type="button"
             className="App__visible"
