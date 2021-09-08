@@ -18,17 +18,9 @@ class App extends React.Component<{}, State> {
   };
 
   setRandomName = () => {
-    if (this.state.isClockVisible) {
-      this.setState((previousState) => {
-        const newName = Math.ceil(Math.random() * 100);
-
-        console.log(`The Clock was renamed from ${previousState.clockName} to ${newName}`);
-
-        return {
-          clockName: newName,
-        };
-      });
-    }
+    this.setState({
+      clockName: Math.ceil(Math.random() * 100),
+    });
   };
 
   showClock = () => {
