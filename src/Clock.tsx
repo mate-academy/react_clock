@@ -9,23 +9,26 @@ export class Clock extends React.Component<Props> {
     time: new Date(),
   };
 
+  setInterval = setInterval(() => {
+    this.state.time.toLocaleTimeString();
+
+    // eslint-disable-next-line no-console
+    console.log(this.state.time.toLocaleTimeString());
+
+    this.setState({ time: new Date() });
+  }, 1000);
+
   componentDidMount() {
-    setInterval(() => {
-      this.state.time.toLocaleTimeString();
-      this.setState({ time: new Date() });
-    }, 1000);
+    return this.setInterval;
   }
 
   componentWillUnmount() {
-    this.setState({ time: 0 });
+    clearInterval(this.setInterval);
   }
 
   render() {
     const { name } = this.props;
     const { time } = this.state;
-
-    // eslint-disable-next-line no-console
-    console.log(time.toLocaleTimeString());
 
     return (
       <>

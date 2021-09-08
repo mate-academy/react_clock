@@ -3,13 +3,6 @@ import { Clock } from './Clock';
 
 import './App.scss';
 
-function getRandomNumber() {
-  const min = Math.ceil(1);
-  const max = Math.floor(9);
-
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 type State = {
   isClockVisible: boolean;
   clockName: number;
@@ -24,7 +17,7 @@ export class App extends React.Component<{}, State> {
   setRandomName = () => {
     const oldClockName = this.state.clockName;
 
-    this.setState({ clockName: getRandomNumber() });
+    this.setState({ clockName: Math.ceil(Math.random() * 10) });
 
     // eslint-disable-next-line no-console
     setTimeout(() => console.log(`The Clock was renamed from ${oldClockName} to ${this.state.clockName}`), 0);
