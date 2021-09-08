@@ -13,6 +13,11 @@ class App extends React.Component<React.FC<State>, State> {
     clockName: 0,
   };
 
+  componentDidUpdate() {
+    // eslint-disable-next-line no-console
+    console.log(`Now clock name it ${this.state.clockName}`);
+  }
+
   setRandomName = () => {
     if (this.state.isClockVisible) {
       this.setState({
