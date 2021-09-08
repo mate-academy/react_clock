@@ -13,10 +13,6 @@ class App extends React.Component {
     clockName: 0,
   };
 
-  componentDidUpdate() {
-    this.render();
-  }
-
   logNewName() {
     const oldName = this.state.clockName;
     const newName = Math.floor(Math.random() * 10);
@@ -27,7 +23,6 @@ class App extends React.Component {
 
     // eslint-disable-next-line
     console.log(`The Clock was renamed from ${oldName} to ${newName}`);
-    this.render();
   }
 
   render() {
