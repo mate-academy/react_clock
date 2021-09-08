@@ -5,19 +5,21 @@ type Props = {
 };
 
 type State = {
-  time: string;
+  time: Date;
 };
 
 export class Clock extends React.Component<Props, State> {
   state: State = {
-    time: new Date().toLocaleTimeString(),
+    time: new Date(),
   };
 
   update = setInterval(() => {
-    this.setState({ time: new Date().toLocaleTimeString() });
+    const { time } = this.state;
+
+    this.setState({ time: new Date() });
 
     // eslint-disable-next-line no-console
-    console.log(this.state.time);
+    console.log(time.toLocaleTimeString());
   }, 1000);
 
   componentDidMount() {
@@ -36,7 +38,7 @@ export class Clock extends React.Component<Props, State> {
         <p>
           Current time:
           {' '}
-          {time}
+          {time.toLocaleTimeString()}
         </p>
       </>
     );

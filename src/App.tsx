@@ -32,7 +32,13 @@ class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <p>{`Random name: ${this.state.clockName}`}</p>
+        <p>
+          {`Random name: ${this.state.clockName}`}
+
+          {// eslint-disable-next-line no-console
+            console.log(this.state.clockName)
+          }
+        </p>
         {isClockVisible && <Clock clockName={clockName} />}
         <button
           type="button"
