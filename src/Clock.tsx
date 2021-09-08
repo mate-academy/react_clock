@@ -4,14 +4,16 @@ type Props = {
   name: number,
 };
 
+type LastName = {
+  name: number,
+};
+
 export class Clock extends React.Component<Props> {
   state = {
     time: new Date(),
   };
 
-  setInterval = setInterval(() => {
-    this.state.time.toLocaleTimeString();
-
+  timer = setInterval(() => {
     // eslint-disable-next-line no-console
     console.log(this.state.time.toLocaleTimeString());
 
@@ -19,11 +21,18 @@ export class Clock extends React.Component<Props> {
   }, 1000);
 
   componentDidMount() {
-    return this.setInterval;
+    return this.timer;
+  }
+
+  componentDidUpdate(lastProps: LastName): void {
+    if (lastProps.name !== this.props.name) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${lastProps.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
-    clearInterval(this.setInterval);
+    clearInterval(this.timer);
   }
 
   render() {

@@ -15,12 +15,7 @@ export class App extends React.Component<{}, State> {
   };
 
   setRandomName = () => {
-    const oldClockName = this.state.clockName;
-
     this.setState({ clockName: Math.ceil(Math.random() * 10) });
-
-    // eslint-disable-next-line no-console
-    setTimeout(() => console.log(`The Clock was renamed from ${oldClockName} to ${this.state.clockName}`), 0);
   };
 
   showClock = () => {
