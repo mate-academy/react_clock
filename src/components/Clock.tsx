@@ -3,6 +3,7 @@ import './Clock.scss';
 
 interface Props {
   name: number;
+  clockName: number;
 }
 
 type State = {
@@ -19,6 +20,13 @@ export class Clock extends React.Component<Props, State> {
     // eslint-disable-next-line no-console
     console.log(this.state.time.toLocaleTimeString());
   }, 1000);
+
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.clockName !== prevProps.clockName) {
+      // eslint-disable-next-line no-console
+      console.log(`Now clock name it ${this.props.clockName}`);
+    }
+  }
 
   componentWillUnmount() {
     clearInterval(this.timer);
