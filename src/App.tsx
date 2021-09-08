@@ -22,9 +22,9 @@ class App extends React.Component<{}, State> {
     this.setState({ isClockVisible: false });
   };
 
-  setRandomNumber = (integer: number) => {
+  setRandomNumber = () => {
     this.setState({
-      clockName: Math.floor(integer * 10),
+      clockName: Math.floor(Math.random() * 10),
     });
   };
 
@@ -57,7 +57,7 @@ class App extends React.Component<{}, State> {
             type="button"
             onClick={
               this.setRandomNumber.bind(
-                this, Math.random(),
+                this,
               )
             }
             className="buttonBox__button"
