@@ -2,53 +2,71 @@ import React from 'react';
 import Clock from './Clock';
 import './App.scss';
 
-class App extends React.Component {
-  state = {
+type State = {
+  randomNum: number | string;
+  isClockVisible: boolean;
+};
+
+export default class App extends React.Component<{}, State> {
+  state: State = {
+    randomNum: '',
     isClockVisible: true,
   };
 
   showClock = () => {
-    this.setState({ isClockVisible: true });
+    this.setState(({ isClockVisible }) => ({
+      isClockVisible: !isClockVisible,
+    }));
   };
 
   hideClock = () => {
-    this.setState({ isClockVisible: false });
+    this.setState(({ isClockVisible }) => ({
+      isClockVisible: !isClockVisible,
+    }));
+  };
+
+  setRandomNumber = () => {
+    const number = Math.floor(Math.random() * 1000);
+
+    this.setState({
+      randomNum: number,
+    });
   };
 
   render() {
     const { isClockVisible } = this.state;
 
     return (
-      <div>
-        <h1>React clock</h1>
+      <>
+        <h1>
+          React clock
+          {' '}
+          {this.state.randomNum}
+        </h1>
 
-        <div>
+        {isClockVisible && <Clock date={new Date()} />}
 
-          {isClockVisible && <Clock date={new Date()} />}
+        <button
+          type="button"
+          onClick={this.showClock}
+        >
+          Show Clock
+        </button>
 
-          <button
-            type="button"
-            onClick={this.showClock}
-          >
-            Show
-          </button>
+        <button
+          type="button"
+          onClick={this.hideClock}
+        >
+          Hide Clock
+        </button>
 
-          <button
-            type="button"
-            onClick={this.hideClock}
-          >
-            Hide
-          </button>
-
-          <button
-            type="button"
-          >
-            Set random name
-          </button>
-        </div>
-      </div>
+        <button
+          type="button"
+          onClick={this.setRandomNumber}
+        >
+          Set random number
+        </button>
+      </>
     );
   }
 }
-
-export default App;

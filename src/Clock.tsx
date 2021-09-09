@@ -1,12 +1,16 @@
 import React from 'react';
 
+type Props = {
+  date: Date;
+};
+
 type State = {
   date: Date;
 };
 
-class Clock extends React.Component<State> {
+export default class Clock extends React.Component<Props, State> {
   state = {
-    date: new Date(),
+    date: this.props.date,
   };
 
   timer = setInterval(() => {
@@ -16,14 +20,6 @@ class Clock extends React.Component<State> {
     this.setState({ date: new Date() });
   }, 1000);
 
-  componentDidMount() {
-    return this.timer;
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
   render() {
     const { date } = this.state;
 
@@ -31,10 +27,8 @@ class Clock extends React.Component<State> {
       <p>
         Current time:
         {' '}
-        <span>{date.toLocaleTimeString()}</span>
+        {date.toLocaleTimeString()}
       </p>
     );
   }
 }
-
-export default Clock;
