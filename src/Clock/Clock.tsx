@@ -25,8 +25,6 @@ export class Clock extends React.PureComponent<Props, State> {
   clock = 0;
 
   componentDidMount() {
-    this.setState({ time: new Date().toLocaleTimeString() });
-
     this.clock = window.setInterval(() => {
       this.setState({ time: new Date().toLocaleTimeString() });
       console.log(this.state.time);
@@ -51,14 +49,12 @@ export class Clock extends React.PureComponent<Props, State> {
 
     return (
       <>
-        <>
-          <h1>
-            {this.newClockName}
-          </h1>
-          <p>
-            {`Current time: ${this.state.time}`}
-          </p>
-        </>
+        <h1>
+          {this.newClockName}
+        </h1>
+        <p>
+          {`Current time: ${this.state.time}`}
+        </p>
       </>
     );
   }

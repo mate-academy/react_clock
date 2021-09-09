@@ -8,9 +8,9 @@ export class App extends React.PureComponent {
     clockName: '0',
   };
 
-  setName() {
+  setName = () => {
     this.setState({ clockName: Math.floor(Math.random() * 100).toString() });
-  }
+  };
 
   render() {
     const { clockName, isClockVisible } = this.state;
@@ -36,7 +36,7 @@ export class App extends React.PureComponent {
           <button
             type="button"
             className="App__random-name"
-            onClick={() => this.setName()}
+            onClick={this.setName}
           >
             Random name
           </button>
