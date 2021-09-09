@@ -19,7 +19,7 @@ class Clock extends React.Component<Props, State> {
     date: getDate(),
   };
 
-  timer: ReturnType<typeof setInterval> = setInterval(() => (true), 1000);
+  timer?: ReturnType<typeof setInterval>;
 
   componentDidMount() {
     this.timer = setInterval(() => {
@@ -39,7 +39,9 @@ class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
   }
 
   render() {
