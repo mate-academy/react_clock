@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './App.scss';
+
 type Props = {
   date: Date;
 };
@@ -24,7 +26,7 @@ export default class Clock extends React.Component<Props, State> {
     const { date } = this.state;
 
     return (
-      <p>
+      <p className="time">
         Current time:
         {' '}
         {date.toLocaleTimeString()}

@@ -37,8 +37,8 @@ export default class App extends React.Component<{}, State> {
     const { isClockVisible } = this.state;
 
     return (
-      <>
-        <h1>
+      <div className="main">
+        <h1 className="title">
           React clock
           {' '}
           {this.state.randomNum}
@@ -48,6 +48,7 @@ export default class App extends React.Component<{}, State> {
 
         <button
           type="button"
+          className="button btn btn-outline-info"
           onClick={this.showClock}
         >
           Show Clock
@@ -55,6 +56,7 @@ export default class App extends React.Component<{}, State> {
 
         <button
           type="button"
+          className="button btn btn-outline-info"
           onClick={this.hideClock}
         >
           Hide Clock
@@ -62,11 +64,12 @@ export default class App extends React.Component<{}, State> {
 
         <button
           type="button"
+          className="button btn btn-outline-info"
           onClick={this.setRandomNumber}
         >
           Set random number
         </button>
-      </>
+      </div>
     );
   }
 }
