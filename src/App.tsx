@@ -1,29 +1,34 @@
 import React from 'react';
+import './App.scss';
 import { Clock } from './component/Clock';
 
-type State = {
-  isClockVisible: boolean;
-  clockName: number;
-};
+interface State {
+  isClockVisible: boolean,
+  clockName: number,
+}
 
 class App extends React.Component<{}, State> {
-  state = {
+  state: State = {
     isClockVisible: true,
     clockName: 0,
   };
 
-  hideClock = () => {
-    this.setState({ isClockVisible: false });
-  };
-
   showClock = () => {
-    this.setState({ isClockVisible: true });
+    this.setState({
+      isClockVisible: true,
+    });
   };
 
-  changeClockName = () => {
-    if (this.state.isClockVisible) {
-      this.setState({ clockName: Math.round(Math.random() * 100) });
-    }
+  hideClock = () => {
+    this.setState({
+      isClockVisible: false,
+    });
+  };
+
+  setRandomName = () => {
+    this.setState({
+      clockName: Math.ceil(Math.random() * 10),
+    });
   };
 
   render() {
@@ -31,33 +36,37 @@ class App extends React.Component<{}, State> {
 
     return (
       <div className="App">
-        <h1>React clock</h1>
-        <p>
-          {`Random name: ${this.state.clockName}`}
+        <h1>{`React clock ${clockName}`}</h1>
 
-          {// eslint-disable-next-line no-console
-            console.log(this.state.clockName)
-          }
-        </p>
-        {isClockVisible && <Clock clockName={clockName} />}
         <button
           type="button"
-          onClick={this.hideClock}
+          onClick={this.setRandomName}
         >
-          Hide Clock
+          set random name
         </button>
+
         <button
           type="button"
           onClick={this.showClock}
         >
-          Show Clock
+          show clock
         </button>
+
         <button
           type="button"
-          onClick={this.changeClockName}
+          onClick={this.hideClock}
         >
-          Set random name
+          hide clock
         </button>
+
+        <p>
+          Current time:
+          {' '}
+        </p>
+
+        {isClockVisible && (
+          <Clock name={clockName} />
+        )}
       </div>
     );
   }
