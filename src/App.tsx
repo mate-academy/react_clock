@@ -1,58 +1,74 @@
 import React from 'react';
 import './App.scss';
-
 import { Clock } from './components/Clock/Clock';
 
-type State = {
+interface State {
   isClockVisible: boolean,
-  name: string,
-};
+  clockName: number,
+}
 
 class App extends React.Component<{}, State> {
-  state = {
+  state: State = {
     isClockVisible: true,
-    name: 'React clock 0',
-  };
-
-  hideClock = () => {
-    this.setState({ isClockVisible: false });
+    clockName: 0,
   };
 
   showClock = () => {
-    this.setState({ isClockVisible: true });
+    this.setState({
+      isClockVisible: true,
+    });
+  };
+
+  hideClock = () => {
+    this.setState({
+      isClockVisible: false,
+    });
   };
 
   setRandomName = () => {
-    const newName = `React clock ${Math.round(Math.random() * 10)}`;
-
-    this.setState((prevState) => {
-      // eslint-disable-next-line
-      console.log(`The Clock was renamed from ${prevState.name} to ${newName}`);
-
-      return { name: newName };
+    this.setState({
+      clockName: Math.ceil(Math.random() * 10),
     });
   };
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+
     return (
       <div className="App">
-        {(this.state.isClockVisible) && <Clock name={this.state.name} />}
+        <h1>{`React clock ${clockName}`}</h1>
 
-        <div>
-          <div className="btn-group-vertical">
-            <button type="button" className="btn btn-success" onClick={this.showClock}>
-              Show clock
-            </button>
+        <button
+          type="button"
+          onClick={this.showClock}
+          className="btn btn-secondary"
+        >
+          show clock
+        </button>
 
-            <button type="button" className="btn btn-danger" onClick={this.hideClock}>
-              Hide clock
-            </button>
+        <button
+          type="button"
+          onClick={this.hideClock}
+          className="btn btn-secondary"
+        >
+          hide clock
+        </button>
 
-            <button type="button" className="btn btn-secondary" onClick={this.setRandomName}>
-              Set random name
-            </button>
-          </div>
-        </div>
+        <button
+          type="button"
+          onClick={this.setRandomName}
+          className="btn btn-secondary"
+        >
+          set random name
+        </button>
+
+        <p>
+          Current time:
+          {' '}
+          {isClockVisible && (
+            <Clock name={clockName} />
+          )}
+        </p>
       </div>
     );
   }
