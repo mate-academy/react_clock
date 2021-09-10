@@ -14,27 +14,32 @@ class App extends React.Component<{}, State> {
   };
 
   hideClock = () => {
-    this.setState({ isClockVisible: false });
+    this.setState({
+      isClockVisible: false,
+    });
   };
 
   showClock = () => {
-    this.setState({ isClockVisible: true });
+    this.setState({
+      isClockVisible: true,
+    });
   };
 
   setRandomName = () => {
     const currentName = this.state.clockName;
 
-    const randomName = Math.floor(Math.random() * 1001);
+    const randomName = Math.ceil(Math.random() * 100);
 
     this.setState({ clockName: randomName });
     // eslint-disable-next-line
-    console.log(`The Clock was renamed from ${currentName} to ${this.state.clockName}`);
+    console.log(`The Clock was renamed from ${currentName} to ${randomName}`);
   };
 
   render() {
     return (
       <div className="App">
         <h1>React clock</h1>
+        <h2>{`Name: ${this.state.clockName}`}</h2>
         <p className="paragraph">
           Current time:
           {' '}
