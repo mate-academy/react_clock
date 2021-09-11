@@ -19,16 +19,15 @@ export class Clock extends React.Component<Props> {
     console.log(this.state.date.toLocaleTimeString());
   }, 1000);
 
-  componentDidMount() {
-    return this.watch;
-  }
+  update = setInterval(() => {
+    this.setState({ date: new Date() });
+  }, 1000);
 
   render() {
     return (
       <>
         <p>
-          {'Current time: '}
-          {this.state.date.toLocaleTimeString()}
+          {`Current time: ${this.state.date.toLocaleTimeString()}`}
         </p>
       </>
     );
