@@ -1,43 +1,64 @@
 import React from 'react';
 
-type Props = {
-  name: number,
-};
+interface Props {
+  name: number;
+}
 
-type State = {
-  time: Date;
-};
+interface State {
+  date: string;
+}
 
 export class Clock extends React.Component<Props, State> {
+  timer: number;
+
+  constructor(props: Props) {
+    super(props);
+
+    this.timer = 0;
+  }
+
   state: State = {
-    time: new Date(),
+    date: new Date().toLocaleTimeString(),
   };
 
-  timer = setInterval(() => {
-    const { time } = this.state;
-
-    this.setState({ time: new Date() });
-    // eslint-disable-next-line
-    console.log(time.toLocaleTimeString());
-  }, 1000);
-
   componentDidMount() {
-    return this.timer;
+    // eslint-disable-next-line no-console
+    console.log('mounted');
+
+    this.timer = window.setInterval(() => {
+      this.setState({
+        date: new Date().toLocaleTimeString(),
+      }, () => {
+        // eslint-disable-next-line no-console
+        console.log(this.state.date);
+      });
+    }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>) {
+    const oldName = prevProps.name;
+    const newName = this.props.name;
+
+    if (oldName !== newName) {
+      // eslint-disable-next-line no-console
+      console.log(`Clock was renamed from ${oldName} to ${newName}`);
+    }
   }
 
   componentWillUnmount() {
+    // eslint-disable-next-line no-console
+    console.log('ummounted');
+
     clearInterval(this.timer);
   }
 
   render() {
-    const { time } = this.state;
+    const { date } = this.state;
 
     return (
-      <p className="clock">
-        Current time:
-        {' '}
-        <span className="clock__figures">{time.toLocaleTimeString()}</span>
-      </p>
+      <div>
+        {`time: ${date}`}
+      </div>
     );
   }
 }
