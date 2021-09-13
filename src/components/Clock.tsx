@@ -9,13 +9,14 @@ interface State {
 }
 
 export class Clock extends React.Component<Props, State> {
-  timer: number;
-
-  constructor(props: Props) {
-    super(props);
-
-    this.timer = 0;
-  }
+  timer = window.setInterval(() => {
+    this.setState({
+      date: new Date().toLocaleTimeString(),
+    }, () => {
+      // eslint-disable-next-line no-console
+      console.log(this.state.date);
+    });
+  }, 1000);
 
   state: State = {
     date: new Date().toLocaleTimeString(),
@@ -25,14 +26,7 @@ export class Clock extends React.Component<Props, State> {
     // eslint-disable-next-line no-console
     console.log('mounted');
 
-    this.timer = window.setInterval(() => {
-      this.setState({
-        date: new Date().toLocaleTimeString(),
-      }, () => {
-        // eslint-disable-next-line no-console
-        console.log(this.state.date);
-      });
-    }, 1000);
+    return this.timer;
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {

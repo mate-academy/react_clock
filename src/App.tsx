@@ -59,15 +59,13 @@ class App extends React.Component<{}, State> {
           hide clock
         </button>
 
-        <p>
+        <div>
           Current time:
           {' '}
           {isClockVisible && (
-            <div>
-              <Clock name={clockName} />
-            </div>
+            <Clock name={clockName} />
           )}
-        </p>
+        </div>
       </div>
     );
   }
