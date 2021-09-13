@@ -40,21 +40,21 @@ export class App extends React.Component {
           <button
             className="btn btn-outline-success"
             type="button"
-            onClick={() => this.showClock()}
+            onClick={this.showClock}
           >
             Show сlock
           </button>
           <button
             className="btn btn-outline-success"
             type="button"
-            onClick={() => this.hideClock()}
+            onClick={this.hideClock}
           >
             Hide сlock
           </button>
           <button
             className="btn btn-outline-secondary"
             type="button"
-            onClick={() => this.setRandomName()}
+            onClick={this.setRandomName}
           >
             Set random name
           </button>
