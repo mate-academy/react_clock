@@ -15,12 +15,19 @@ export class Clock extends React.Component<Props> {
 
   watch = setInterval(() => {
     this.setState({ date: new Date() });
-  }, 1000);
-
-  render() {
     // eslint-disable-next-line
     console.log(this.state.date.toLocaleTimeString());
+  }, 1000);
 
+  componentDidMount() {
+    return this.watch;
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.watch);
+  }
+
+  render() {
     return (
       <>
         <p>
