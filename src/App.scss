@@ -1,1 +1,30 @@
-// styles go here
+body {
+  background-color: rgba(39, 187, 224, 0.57);
+}
+
+.App {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clockStyle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.buttonsWrap {
+  border: 3px solid rgb(58, 242, 255);
+  border-radius: 5px;
+  padding: 4px;
+}
+
+.buttonStyle {
+  border-radius: 6px;
+  margin: 2px;
+  width: 110px;
+  height: 40px;
+  background-color: rgb(46, 46, 46);
+  color: aqua;
+}
