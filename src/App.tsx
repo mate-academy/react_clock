@@ -8,11 +8,11 @@ type Props = {};
 
 interface State {
   isClockVisible: boolean,
-  clockName?: number,
+  clockName: number,
 }
 
 class App extends React.Component<Props, State> {
-  state = {
+  state: State = {
     isClockVisible: true,
     clockName: 0,
   };

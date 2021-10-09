@@ -4,10 +4,14 @@ type Props = {
   name: number,
 };
 
-export class Clock extends React.Component<Props> {
+interface State {
+  date: Date,
+}
+
+export class Clock extends React.Component<Props, State> {
   private clockTimer?: number;
 
-  state = {
+  state: State = {
     date: new Date(),
   };
 
