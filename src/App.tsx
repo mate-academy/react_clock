@@ -4,14 +4,12 @@ import { Clock } from './components';
 
 import './App.scss';
 
-type Props = {};
-
 interface State {
   isClockVisible: boolean,
   clockName: number,
 }
 
-class App extends React.Component<Props, State> {
+class App extends React.Component<{}, State> {
   state: State = {
     isClockVisible: true,
     clockName: 0,
