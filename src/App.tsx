@@ -1,24 +1,59 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Components/Сlock/Clock';
 
-const App: React.FC = () => {
-  window.setInterval(() => {
-    const date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
+type State = {
+  name: number;
+  isVisible: boolean;
 };
+
+type Props = {};
+
+class App extends React.Component<Props, State> {
+  state = {
+    name: 0,
+    isVisible: true,
+  };
+
+  componentDidUpdate(_prevProps: Readonly<Props>, prevState: Readonly<State>) {
+    // eslint-disable-next-line no-console
+    console.log(`The Clock was renamed from ${prevState.name} to ${this.state.name}`);
+  }
+
+  random() {
+    this.setState({ name: Math.floor(Math.random() * 100) });
+  }
+
+  render() {
+    const content = this.state.isVisible ? 'Hide' : 'Show';
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        <h2>{`Name: ${this.state.name}`}</h2>
+        <h4>Double click to change name</h4>
+        <button
+          type="button"
+          onClick={() => {
+            const { isVisible } = this.state;
+
+            this.setState({ isVisible: !isVisible });
+          }}
+          onDoubleClick={() => {
+            this.random();
+          }}
+        >
+          {content}
+        </button>
+
+        <p>
+          Current time:
+          {' '}
+          {this.state.isVisible && <Clock name={this.state.name} />}
+        </p>
+      </div>
+    );
+  }
+}
 
 export default App;
