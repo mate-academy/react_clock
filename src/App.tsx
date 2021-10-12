@@ -10,8 +10,15 @@ type State = {
 export class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
-    clockName: 0,
+    clockName: 51, // my fav number
   };
+
+  componentDidUpdate(_prevProps: Readonly<{}>, prevState: Readonly<State>) {
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
+  }
 
   showClock = () => {
     this.setState({ isClockVisible: true });
@@ -22,7 +29,7 @@ export class App extends React.Component<{}, State> {
   };
 
   setRandomName = () => {
-    this.setState({ clockName: Math.floor(Math.random() * 10) });
+    this.setState({ clockName: Math.floor(Math.random() * 1000) });
   };
 
   render() {
