@@ -10,7 +10,7 @@ type State = {
 export class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
-    clockName: 51, // my fav number
+    clockName: 51,
   };
 
   componentDidUpdate(_prevProps: Readonly<{}>, prevState: Readonly<State>) {
