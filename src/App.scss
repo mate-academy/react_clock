@@ -11,6 +11,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-shadow: rgb(75, 15, 90) 0 5px 5px;
+
 }
 
 .button {
@@ -26,5 +28,5 @@ body {
 }
 
 .clock-time {
-  font-size: 30px;
+  font-size: 50px;
 }

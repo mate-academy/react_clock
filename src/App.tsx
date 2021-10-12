@@ -11,6 +11,7 @@ class App extends React.Component<{}, State> {
   state = {
     clockName: 0,
     isClockVisible: true,
+    textButt: 'Show',
   };
 
   componentDidUpdate(_prevProps: Readonly<State>, prevState: Readonly<State>) {
@@ -27,6 +28,12 @@ class App extends React.Component<{}, State> {
   showClock() {
     const status = this.state.isClockVisible;
 
+    if (status === true) {
+      this.state.textButt = 'Hide';
+    } else {
+      this.state.textButt = 'Show';
+    }
+
     this.setState({
       isClockVisible: !status,
     });
@@ -42,7 +49,7 @@ class App extends React.Component<{}, State> {
         </p>
         <div className="button">
           <button className="button-show" onClick={() => this.showClock()} type="button">
-            Show
+            {this.state.textButt}
           </button>
           <button className="button-set-name" onClick={() => this.randomName()} type="button">
             Set name
