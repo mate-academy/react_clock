@@ -44,7 +44,7 @@ export class Clock extends React.Component<Props, State> {
     const { time } = this.state;
 
     return (
-      <span style={{ color: 'blue' }}>
+      <span style={{ color: 'green' }}>
         { time }
       </span>
     );
