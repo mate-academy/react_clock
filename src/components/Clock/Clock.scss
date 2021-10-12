@@ -1,0 +1,12 @@
+.clockField {
+  font-family: sans-serif;
+  text-align: center;
+  color: #daf6ff;
+  text-shadow: 0 0 20px #0aafe6, 0 0 20px rgba(10, 175, 230, 0);
+  
+  &__clock {
+    letter-spacing: 0.05em;
+    font-size: 80px;
+    padding: 5px 0;
+  }
+}

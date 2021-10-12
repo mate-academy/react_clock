@@ -1,1 +1,54 @@
-// styles go here
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  left: 42%;
+
+  &__title {
+    font-family: sans-serif;
+    font-size: 48px;
+    color: #daf6ff;
+  }
+
+  &__timeText {
+    font-family: sans-serif;
+    font-size: 36px;
+    color: #daf6ff;
+  }
+
+  &__show-button {
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5%;
+    background-color: #daf6ff;
+    font-size: 16px;
+  }
+
+  &__hide-button {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5%;
+    background-color: #daf6ff;
+    font-size: 16px;
+  }
+
+  &__randomName-button {
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5%;
+    background-color: #daf6ff;
+    font-size: 16px;
+  }
+}
