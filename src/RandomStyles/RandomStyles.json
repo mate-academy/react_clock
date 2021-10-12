@@ -9,7 +9,7 @@
       "fontFamily": "'Roboto', sans-serif",
       "fontSize": "8.5vh",
       "color": "#fff",
-      "backgroundImage": "url(../../../static/media/theme0.d9529567.jpg)"
+      "backgroundImage": "url(../../static/media/theme0.d9529567.jpg)"
     }
   },
   {
@@ -22,7 +22,7 @@
       "fontFamily": "'Roboto', sans-serif",
       "fontSize": "6.5vh",
       "color": "#bbb",
-      "backgroundImage": "url(../../../static/media/theme1.a9122e42.jpg)"
+      "backgroundImage": "url(../../static/media/theme1.a9122e42.jpg)"
     }
   },
   {
@@ -35,7 +35,7 @@
       "fontFamily": "'Bebas Neue', cursive",
       "fontSize": "11.5vh",
       "color": "#b00",
-      "backgroundImage": "url(../../../static/media/theme2.c82134be.jpg)"
+      "backgroundImage": "url(../../static/media/theme2.c82134be.jpg)"
     }
   },
   {
@@ -48,7 +48,7 @@
       "fontFamily": "'Kumbh Sans', sans-serif",
       "fontSize": "8.5vh",
       "color": "#fff",
-      "backgroundImage": "url(../../../static/media/theme3.acc9d90c.jpg)"
+      "backgroundImage": "url(../../static/media/theme3.acc9d90c.jpg)"
     }
   },
   {
@@ -61,7 +61,7 @@
       "fontFamily": "'Kumbh Sans', sans-serif",
       "fontSize": "10vh",
       "color": "#4f4f4f",
-      "backgroundImage": "url(../../../static/media/theme4.e1480752.jpg)"
+      "backgroundImage": "url(../../static/media/theme4.e1480752.jpg)"
     }
   }
 ]
