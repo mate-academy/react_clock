@@ -1,1 +1,30 @@
-// styles go here
+* {
+  margin: 0;
+}
+
+.App {
+  margin-top: 30px;
+text-align: center;
+  &__clock {
+    margin-top: 15px;
+  }
+}
+
+.Buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;}
+
+.Button {
+  padding: 3px;
+  border: cornflowerblue solid 1px;
+  border-radius: 5px;
+  background-color: rgb(177, 186, 245);
+  transition: .3s;
+
+  &:hover {
+    background-color: rgb(140, 190, 248);
+    transition: .3s;
+  }
+}
