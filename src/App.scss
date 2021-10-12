@@ -1,1 +1,36 @@
-// styles go here
+.App {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #888;
+  border-radius: 10px;
+  font-family: "Big Shoulders Stencil Display", cursive;
+}
+
+.title {
+  letter-spacing: 0.6em;
+  text-transform: uppercase;
+}
+
+.clock-font {
+  color: rgba(143, 3, 3, 0.56);
+  margin: 0;
+  padding: 0;
+  font-size: 80px;
+  text-shadow: -3px 7px 10px rgba(143, 3, 3, 0.4);
+}
+
+.button-block {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.ClockButton {
+  margin: 8px;
+  width: 150px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 24px;
+}
