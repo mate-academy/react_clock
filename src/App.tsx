@@ -3,30 +3,29 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/clock';
 
-const App: React.FC = () => {
-  let isClockVisible= true;
-  const showClock = () => {
-    isClockVisible = true;
+class App extends React.Component  {
+  state = {
+    isClockVisible: true,
   }
-  const hideClock = () => {
-    isClockVisible = false;
-  }
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {isClockVisible && <Clock />}
-      </p>
-      <button type="button" onClick={showClock}>
-        Show
-      </button>
-      <button type="button" onClick={hideClock}>
-        Hide
-      </button>
-    </div>
-  );
+
+  render() {
+    return(
+      <div className="App">
+        <h1>React clock</h1>
+        <p>
+          Current time:
+          {' '}
+          {this.state.isClockVisible&&<Clock />}
+        </p>
+        <button type="button" onClick={() => this.setState({isClockVisible: true})}>
+          Show
+        </button>
+        <button type="button" onClick={() => this.setState({isClockVisible: false})}>
+          Hide
+        </button>
+      </div>
+    )
+  };
 };
 
 export default App;

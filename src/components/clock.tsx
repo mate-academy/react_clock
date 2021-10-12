@@ -1,28 +1,28 @@
-import React from 'react'
+import React from 'react';
 
 export class Clock extends React.Component {
   state = {
     date: new Date(),
-  }
+  };
 
   componentDidMount() {
     setInterval(
       () => this.tick(),
-      1000
+      1000,
     );
   }
 
   tick() {
     this.setState({
-      date: new Date()
+      date: new Date(),
     });
   }
 
   render() {
-    return(
-      <div className="timer">
+    return (
+      <>
         {this.state.date.toLocaleTimeString()}
-      </div>
-    )
+      </>
+    );
   }
 }
