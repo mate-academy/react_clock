@@ -1,1 +1,30 @@
-// styles go here
+body {
+  margin: 0;
+  background-color: #eaf0ce;
+  color: #3f334d;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.button {
+  padding: 10px;
+  width: 200px;
+  color: #3f334d;
+  border: 2px solid #3f334d;
+  border-radius: 10px;
+
+  &:hover {
+    color: #eaf0ce;
+    background-color: #7d8491;
+  }
+}
+
+.time {
+  font-size: 24px;
+}
