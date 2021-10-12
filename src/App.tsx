@@ -55,19 +55,4 @@ class App extends React.Component<{}, State> {
   }
 }
 
-// const App: React.FC = () => {
-//   return (
-//     <div className="App">
-//       <h1>React clock</h1>
-//       <p>
-//         Current time:
-//         {' '}
-//         <Clock />
-//       </p>
-//       <button type="button">Show Clock</button>
-//       <button type="button">Hide Clock</button>
-//     </div>
-//   );
-// };
-
 export default App;
