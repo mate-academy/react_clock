@@ -9,30 +9,36 @@ type Props = {
 };
 
 export class Clock extends React.Component<Props, State> {
+  private clock?: number;
+
   state = {
     date: new Date(),
   };
 
-  timer = setInterval(() => {
-    this.setState({ date: new Date() });
-  }, 1000);
-
   componentDidMount() {
-    return this.timer;
+    this.clock = window.setInterval(() => {
+      this.setState({ date: new Date() });
+
+      // eslint-disable-next-line
+      console.log(this.state.date.toLocaleTimeString());
+    }, 1000);
+  }
+
+  componentDidUpdate({ name }: Props) {
+    if (this.props.name !== name) {
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
+    clearInterval(this.clock);
   }
 
   render() {
     return (
       <>
-        <p>
-          Current time:
-          {' '}
-          {this.state.date.toLocaleTimeString()}
-        </p>
+        {this.state.date.toLocaleTimeString()}
       </>
     );
   }

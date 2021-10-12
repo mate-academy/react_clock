@@ -3,20 +3,15 @@ import './App.scss';
 import { Clock } from './Clock';
 
 type State = {
-  clockName: number,
+  name: number,
   isClockVisible: boolean,
 };
 
 class App extends React.Component<{}, State> {
   state = {
-    clockName: 0,
+    name: 0,
     isClockVisible: true,
   };
-
-  componentDidUpdate(_prevProps: Readonly<State>, prevState: Readonly<State>) {
-    // eslint-disable-next-line no-console
-    console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
-  }
 
   showClock = () => {
     this.setState({ isClockVisible: true });
@@ -28,7 +23,7 @@ class App extends React.Component<{}, State> {
 
   randomName = () => {
     this.setState({
-      clockName: Math.ceil(Math.random() * 10),
+      name: Math.ceil(Math.random() * 10),
     });
   };
 
@@ -36,11 +31,12 @@ class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.isClockVisible && (
-          <p>
-            <Clock name={this.state.clockName} />
-          </p>
-        )}
+        <p>
+          Current time:
+          {this.state.isClockVisible && (
+            <Clock name={this.state.name} />
+          )}
+        </p>
         <button
           onClick={() => this.hideClock()}
           type="button"
@@ -48,7 +44,7 @@ class App extends React.Component<{}, State> {
           Hide Clock
         </button>
         <button
-          onClick={() => this.showClock()}
+          onClick={this.showClock}
           type="button"
         >
           Show Clock
