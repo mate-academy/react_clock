@@ -4,18 +4,16 @@ import './App.scss';
 
 interface State {
   isClockVisible: boolean,
-  number: number,
-  clockName: string
+  clockName: number
 }
 
 export class App extends React.Component<{}, State> {
   state: State = {
     isClockVisible: false,
-    number: 0,
-    clockName: '',
+    clockName: 0,
   };
 
-  active = () => {
+  viewClockHandler = () => {
     const { isClockVisible } = this.state;
 
     this.setState({
@@ -23,33 +21,27 @@ export class App extends React.Component<{}, State> {
     });
   };
 
-  random = () => {
+  setName = () => {
     const randomNumber = Math.round(Math.random() * 100);
-    const { number } = this.state;
 
-    this.setState({ number: randomNumber });
-
-    this.setState({ clockName: `The Clock was renamed from ${number} to ${randomNumber}.` });
-
-    // eslint-disable-next-line no-console
-    console.log(this.state.clockName);
+    this.setState({ clockName: randomNumber });
   };
 
   render() {
-    const { isClockVisible } = this.state;
+    const { isClockVisible, clockName } = this.state;
     const nameButton = isClockVisible ? 'Show' : 'Hide';
 
     return (
       <div className="App">
         <h1>React clock</h1>
-        <button type="button" onClick={this.active}>
+        <button type="button" onClick={this.viewClockHandler}>
           {nameButton}
         </button>
-        <button type="button" onClick={this.random}>
+        <button type="button" onClick={this.setName}>
           Set random name
         </button>
         {(!isClockVisible)
-          && <Clock name={this.state.clockName} isClockVisible={this.state.isClockVisible} />}
+          && <Clock name={clockName} />}
       </div>
     );
   }

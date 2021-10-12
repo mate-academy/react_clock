@@ -5,8 +5,7 @@ interface State {
 }
 
 interface Props {
-  name: string
-  isClockVisible: boolean
+  name: number
 }
 
 export class Clock extends React.Component<Props, State> {
@@ -16,21 +15,24 @@ export class Clock extends React.Component<Props, State> {
 
   componentDidMount() {
     setInterval(
-      () => this.tick(), 1000,
+      () => {
+        this.setState(() => {
+          const date = new Date();
+
+          // eslint-disable-next-line no-console
+          console.log(date.toLocaleTimeString());
+
+          return { date: new Date() };
+        });
+      }, 1000,
     );
   }
 
-  tick() {
-    this.setState(() => {
-      const date = new Date();
-
-      if (!(this.props.isClockVisible)) {
-      // eslint-disable-next-line no-console
-        console.log(date.toLocaleTimeString());
-      }
-
-      return { date: new Date() };
-    });
+  componentDidUpdate({ name }: Props) {
+    if (this.props.name !== name) {
+    // eslint-disable-next-line
+  console.log(`The Clock was renamed from ${name} to ${this.props.name}`);
+    }
   }
 
   render() {
