@@ -1,1 +1,9 @@
-// styles go here
+.hidden {
+  //visibility: hidden;
+  display: none;
+}
+
+.visible {
+  //visibility: visible;
+  display: block;
+}
