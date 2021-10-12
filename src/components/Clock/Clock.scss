@@ -1,0 +1,28 @@
+.Clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  &-Time {
+    height: 56px;
+  }
+
+  &-Buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  &-Button {
+    width: 200px;
+    font-size: 32px;
+    box-shadow: 4px 2px 2px #444;
+    transition-duration: 0.3s;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 8px 4px 4px #444;
+    }
+  }
+}
