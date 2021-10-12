@@ -33,10 +33,13 @@ body {
     width: 140px;
 
     color: $text-light;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: bold;
 
     background-color: #557;
     border: none;
     border-radius: 8px;
+
+    cursor: pointer;
   }
 }
