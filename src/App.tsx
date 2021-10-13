@@ -2,8 +2,8 @@ import React from 'react';
 import './App.scss';
 
 const App: React.FC = () => {
-  window.setInterval(() => {
-    const date = new Date();
+  const timerId: NodeJS.Timer = setInterval(() => {
+    const date: Date = new Date();
 
     // eslint-disable-next-line
     console.log(date.toLocaleTimeString());
