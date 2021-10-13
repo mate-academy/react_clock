@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
