@@ -10,12 +10,14 @@ type State = {
 };
 
 export class Timer extends React.Component<Props, State> {
+  timerId?: NodeJS.Timeout;
+
   state = {
     date: new Date(),
   };
 
   componentDidMount() {
-    setInterval(() => {
+    this.timerId = setInterval(() => {
       this.setState({ date: new Date() });
       // eslint-disable-next-line
       this.props.isClockVisible &&
@@ -31,6 +33,12 @@ export class Timer extends React.Component<Props, State> {
         `The Clock was renamed from ${prev.clockName} `
         + `to ${this.props.clockName}`,
       );
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.timerId) {
+      clearInterval(this.timerId);
     }
   }
 
