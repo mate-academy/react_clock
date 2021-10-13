@@ -1,1 +1,46 @@
-// styles go here
+$text-light: #eef;
+
+body {
+  color: $text-light;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  width: max-content;
+  padding: 20px;
+
+  background-color: #003;
+  border-radius: 30px;
+
+  &__heading {
+    margin: 0;
+
+    text-shadow: px 2px 2px #fff;
+    text-align: center;
+  }
+
+  &__timer {
+    align-self: flex-start;
+    margin: 0;
+  }
+
+  &__button {
+    height: 26px;
+    width: 160px;
+
+    color: $text-light;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: #557;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+  }
+}
