@@ -1,0 +1,10 @@
+.clock {
+  padding: 5px;
+
+  font-size: 50px;
+  text-align: center;
+
+  &__value {
+    color: #666;
+  }
+}
