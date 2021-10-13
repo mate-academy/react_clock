@@ -16,6 +16,7 @@ export class App extends React.Component<{}, State> {
 
   render() {
     const { isClockVisible } = this.state;
+    const { clockName } = this.state;
 
     return (
       <>
@@ -57,7 +58,7 @@ export class App extends React.Component<{}, State> {
           Current time:
           {' '}
           {isClockVisible && (
-            <Clock name={this.state.clockName} />) }
+            <Clock name={clockName} />) }
         </p>
       </>
     );

@@ -13,18 +13,20 @@ export class Clock extends React.Component<Props, State> {
     date: new Date(),
   };
 
-  counter = setInterval(() => {
-    const { date } = this.state;
-
-    this.setState({
-      date: new Date(),
-    });
-
-    // eslint-disable-next-line no-console
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  counter: NodeJS.Timeout | undefined;
 
   componentDidMount() {
+    this.counter = setInterval(() => {
+      const { date } = this.state;
+
+      this.setState({
+        date: new Date(),
+      });
+
+      // eslint-disable-next-line no-console
+      console.log(date.toLocaleTimeString());
+    }, 1000);
+
     return this.counter;
   }
 
@@ -40,7 +42,6 @@ export class Clock extends React.Component<Props, State> {
   componentWillUnmount() {
     if (this.counter) {
       clearInterval(this.counter);
-      // eslint-disable-next-line no-console
     }
   }
 
