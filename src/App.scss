@@ -1,1 +1,20 @@
-// styles go here
+.app {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  max-width: 300px;
+  margin: 0 auto;
+  background: linear-gradient(rgb(255, 206, 239), rgb(255, 255, 255));
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  &__item {
+    align-items: center;
+    text-align: center;
+  }
+
+  &__button {
+    width: 140px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(160, 255, 211, 0.5);
+  }
+}
