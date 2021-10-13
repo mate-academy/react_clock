@@ -5,6 +5,7 @@ import { Clock } from './components/Clock';
 
 type AppState = {
   isClockVisible: boolean;
+  clockName: number;
 };
 
 class App extends React.Component<{}, AppState> {
@@ -12,11 +13,16 @@ class App extends React.Component<{}, AppState> {
 
   state: AppState = {
     isClockVisible: true,
+    clockName: Math.round(Math.random() * 10),
   };
 
   setClock = (isClockVisible: boolean) => {
     this.setState({ isClockVisible });
     this.buttonName = isClockVisible ? 'Show' : 'Hide';
+  };
+
+  setClockName = (clockName: number) => {
+    this.setState({ clockName });
   };
 
   render() {
@@ -29,8 +35,14 @@ class App extends React.Component<{}, AppState> {
           >
             {this.buttonName}
           </button>
+          <button
+            type="button"
+            onClick={() => this.setClockName(Math.round(Math.random() * 10))}
+          >
+            Set random name
+          </button>
           {this.state.isClockVisible
-          && <Clock />}
+          && <Clock name={this.state.clockName} />}
         </>
       </div>
     );
