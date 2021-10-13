@@ -48,7 +48,7 @@ class App extends React.Component<Props, State> {
       <div className="watch">
         <button
           type="button"
-          className="watch__display display"
+          className={`watch__display display display--${isClockVisible && randomIndex}`}
           style={isClockVisible ? watch.styles : { backgroundColor: 'black' }}
         >
           {

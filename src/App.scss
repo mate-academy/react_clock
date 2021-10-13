@@ -44,6 +44,12 @@ body {
   background-size: contain;
   padding: 0;
 
+  @for $i from 0 to 5 {
+    &--#{$i} {
+      background-image: url(./Img/theme#{$i}.jpg);
+    }
+  }
+
   &__time {
     position: absolute;
   }

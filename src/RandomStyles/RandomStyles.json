@@ -8,8 +8,7 @@
     "styles": {
       "fontFamily": "'Roboto', sans-serif",
       "fontSize": "8.5vh",
-      "color": "#fff",
-      "backgroundImage": "url(../../static/media/theme0.d9529567.jpg)"
+      "color": "#fff"
     }
   },
   {
@@ -21,8 +20,7 @@
     "styles": {
       "fontFamily": "'Roboto', sans-serif",
       "fontSize": "6.5vh",
-      "color": "#bbb",
-      "backgroundImage": "url(../../static/media/theme1.a9122e42.jpg)"
+      "color": "#bbb"
     }
   },
   {
@@ -34,8 +32,7 @@
     "styles": {
       "fontFamily": "'Bebas Neue', cursive",
       "fontSize": "11.5vh",
-      "color": "#b00",
-      "backgroundImage": "url(../../static/media/theme2.c82134be.jpg)"
+      "color": "#b00"
     }
   },
   {
@@ -47,8 +44,7 @@
     "styles": {
       "fontFamily": "'Kumbh Sans', sans-serif",
       "fontSize": "8.5vh",
-      "color": "#fff",
-      "backgroundImage": "url(../../static/media/theme3.acc9d90c.jpg)"
+      "color": "#fff"
     }
   },
   {
@@ -60,8 +56,7 @@
     "styles": {
       "fontFamily": "'Kumbh Sans', sans-serif",
       "fontSize": "10vh",
-      "color": "#4f4f4f",
-      "backgroundImage": "url(../../static/media/theme4.e1480752.jpg)"
+      "color": "#4f4f4f"
     }
   }
 ]
