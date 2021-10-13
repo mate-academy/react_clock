@@ -3,37 +3,37 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 type State = {
-  visibleClock: boolean;
-  clock: number;
+  isClockVisible: boolean;
+  clockName: number;
 };
 
 export class App extends React.Component<{}, State> {
   state: State = {
-    visibleClock: true,
-    clock: 0,
+    isClockVisible: true,
+    clockName: 0,
   };
 
   showClock = () => {
-    this.setState({ visibleClock: true });
+    this.setState({ isClockVisible: true });
   };
 
   hideClock = () => {
-    this.setState({ visibleClock: false });
+    this.setState({ isClockVisible: false });
   };
 
   setRandomName = () => {
-    this.setState({ clock: Math.round(Math.random() * 100) });
+    this.setState({ clockName: Math.round(Math.random() * 100) });
   };
 
   render() {
-    const { visibleClock, clock } = this.state;
+    const { isClockVisible, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
         <div>
           <div>
-            {visibleClock && <Clock name={clock} />}
+            {isClockVisible && <Clock name={clockName} />}
           </div>
           <div className="buttons">
             <button
