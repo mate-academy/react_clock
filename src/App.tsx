@@ -36,13 +36,25 @@ export class App extends React.Component<{}, State> {
             {visibleClock && <Clock name={clock} />}
           </div>
           <div className="buttons">
-            <button type="button" className="buttonChange" onClick={this.showClock}>
+            <button
+              type="button"
+              className="buttonChange"
+              onClick={this.showClock}
+            >
               Show clock
             </button>
-            <button type="button" className="buttonChange" onClick={this.hideClock}>
+            <button
+              type="button"
+              className="buttonChange"
+              onClick={this.hideClock}
+            >
               Hide clock
             </button>
-            <button type="button" className="buttonRandom" onClick={this.setRandomName}>
+            <button
+              type="button"
+              className="buttonRandom"
+              onClick={this.setRandomName}
+            >
               Random Name
             </button>
           </div>
