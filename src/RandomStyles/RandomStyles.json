@@ -1,0 +1,62 @@
+[
+  {
+    "theme": 0,
+    "position": {
+      "top": "35%",
+      "left": "15%"
+    },
+    "styles": {
+      "fontFamily": "'Roboto', sans-serif",
+      "fontSize": "8.5vh",
+      "color": "#fff"
+    }
+  },
+  {
+    "theme": 1,
+    "position": {
+      "top": "36%",
+      "left": "21%"
+    },
+    "styles": {
+      "fontFamily": "'Roboto', sans-serif",
+      "fontSize": "6.5vh",
+      "color": "#bbb"
+    }
+  },
+  {
+    "theme": 2,
+    "position": {
+      "top": "24%",
+      "left": "18%"
+    },
+    "styles": {
+      "fontFamily": "'Bebas Neue', cursive",
+      "fontSize": "11.5vh",
+      "color": "#b00"
+    }
+  },
+  {
+    "theme": 3,
+    "position": {
+      "top": "32%",
+      "left": "14%"
+    },
+    "styles": {
+      "fontFamily": "'Kumbh Sans', sans-serif",
+      "fontSize": "8.5vh",
+      "color": "#fff"
+    }
+  },
+  {
+    "theme": 4,
+    "position": {
+      "top": "32%",
+      "left": "9%"
+    },
+    "styles": {
+      "fontFamily": "'Kumbh Sans', sans-serif",
+      "fontSize": "10vh",
+      "color": "#4f4f4f"
+    }
+  }
+]
