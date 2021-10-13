@@ -1,1 +1,56 @@
-// styles go here
+* {
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+}
+
+.main {
+  &__container {
+    width: 500px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: lightskyblue;
+    border: 15px solid orangered;
+    border-radius: 30px;
+  }
+
+  &__clockbox {
+    width: 390px;
+    height: 155px;
+    padding: 20px 0;
+    background-color: #222;
+    border: 10px solid orangered;
+    border-radius: 20px;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+
+  &__button {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: orangered;
+    border: none;
+    border-radius: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #222;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      color: lightskyblue;
+    }
+
+    &:active {
+      background-color: orange;
+    }
+  }
+}
