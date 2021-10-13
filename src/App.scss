@@ -1,19 +1,17 @@
 * {
   background-color: #282c34;
   overflow-y: hidden;
-}
+  .App {
+    text-align: center;
+    .clock {
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
 
-.App {
-  text-align: center;
-}
-
-.clock {
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-
-  .clockButton {
-    cursor: pointer;
-    background-color: #fff;
+      &Button {
+        cursor: pointer;
+        background-color: #fff;
+      }
+    }
   }
 }
