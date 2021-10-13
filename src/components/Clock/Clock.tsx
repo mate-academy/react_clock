@@ -4,8 +4,12 @@ type Props = {
   name: number;
 };
 
-export class Clock extends React.Component<Props> {
-  state = {
+type State = {
+  curTime: string;
+};
+
+export class Clock extends React.Component<Props, State> {
+  state: State = {
     curTime: new Date().toLocaleTimeString(),
   };
 
