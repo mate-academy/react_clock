@@ -8,7 +8,7 @@ class App extends React.Component<{}, AppState> {
     isClockVisible: true,
   };
 
-  setPage = (isClockVisible: boolean) => {
+  setClockStatus = (isClockVisible: boolean) => {
     this.setState({ isClockVisible });
   };
 
@@ -25,7 +25,7 @@ class App extends React.Component<{}, AppState> {
           <button
             type="button"
             onClick={() => {
-              this.setPage(false);
+              this.setClockStatus(false);
             }}
           >
             Hide Clock
@@ -33,7 +33,7 @@ class App extends React.Component<{}, AppState> {
           <button
             type="button"
             onClick={() => {
-              this.setPage(true);
+              this.setClockStatus(true);
             }}
           >
             Show Clock
