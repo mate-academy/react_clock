@@ -28,11 +28,19 @@ class App extends React.Component<Props, State> {
         >
           {!isClockVisible ? 'Show Clock' : 'Hide Clock'}
         </button>
-        <Timer
-          isClockVisible={isClockVisible}
-          clockName={clockName}
-        />
+        <p>
+          Current time:
+          {isClockVisible && (
+            <Timer
+              isClockVisible={isClockVisible}
+              clockName={clockName}
+            />
+          )}
+        </p>
         <div>
+          <p>
+            {`Clock name is: ${clockName}`}
+          </p>
           <button
             type="button"
             onClick={() => {

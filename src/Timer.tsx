@@ -43,18 +43,13 @@ export class Timer extends React.Component<Props, State> {
   }
 
   render() {
-    const { isClockVisible, clockName } = this.props;
     const { date } = this.state;
 
     return (
       <>
-        <p>
-          Current time:
-          {isClockVisible && date.toLocaleTimeString()}
-        </p>
-        <p>
-          {`Clock name is: ${clockName}`}
-        </p>
+        <span>
+          {date.toLocaleTimeString()}
+        </span>
       </>
     );
   }
