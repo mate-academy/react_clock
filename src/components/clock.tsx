@@ -1,21 +1,34 @@
 import React from 'react';
 
+interface ClockState{
+  date: Date,
+  timeId?: NodeJS.Timeout
+}
+
 export class Clock extends React.Component {
-  state = {
+  timeId?: number;
+
+  state:ClockState = {
     date: new Date(),
+
   };
 
   componentDidMount() {
-    setInterval(
-      () => this.tick(),
+    this.timeId = window.setInterval(
+      () => this.setState({
+        date: new Date(),
+      }),
       1000,
     );
   }
 
-  tick() {
-    this.setState({
-      date: new Date(),
-    });
+  componentDidUpdate() {
+    // eslint-disable-next-line
+    console.log(this.state.date)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timeId);
   }
 
   render() {

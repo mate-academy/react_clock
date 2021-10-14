@@ -3,29 +3,33 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/clock';
 
-class App extends React.Component  {
+class App extends React.Component {
   state = {
     isClockVisible: true,
-  }
+  };
 
   render() {
-    return(
+    const { isClockVisible } = this.state;
+
+    return (
       <div className="App">
         <h1>React clock</h1>
         <p>
           Current time:
           {' '}
-          {this.state.isClockVisible&&<Clock />}
+          {isClockVisible && (
+            <Clock />
+          )}
         </p>
-        <button type="button" onClick={() => this.setState({isClockVisible: true})}>
+        <button type="button" onClick={() => this.setState({ isClockVisible: true })}>
           Show
         </button>
-        <button type="button" onClick={() => this.setState({isClockVisible: false})}>
+        <button type="button" onClick={() => this.setState({ isClockVisible: false })}>
           Hide
         </button>
       </div>
-    )
-  };
-};
+    );
+  }
+}
 
 export default App;
