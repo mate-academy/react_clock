@@ -29,7 +29,7 @@ export default class App extends React.Component<{}, State> {
           <p className="app__item">
             Current time:
             {' '}
-            {isClockVisible && <Clock name={name} />}
+            {isClockVisible && <Clock />}
           </p>
           <button
             type="button"

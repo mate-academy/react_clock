@@ -1,14 +1,10 @@
 import React from 'react';
 
-type Props = {
-  name: number;
-};
-
 interface State {
   data: string,
 }
 
-export class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<{}, State> {
   clockInterval: number | undefined;
 
   state:State = {
