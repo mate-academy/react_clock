@@ -15,12 +15,12 @@ class App extends React.Component<Props, State> {
     isVisible: true,
   };
 
-  componentDidUpdate(_prevProps: Readonly<Props>, prevState: Readonly<State>) {
+  componentDidUpdate(prevState: Readonly<State>) {
     // eslint-disable-next-line no-console
     console.log(`The Clock was renamed from ${prevState.name} to ${this.state.name}`);
   }
 
-  random() {
+  setRandomName() {
     this.setState({ name: Math.floor(Math.random() * 100) });
   }
 
@@ -40,7 +40,7 @@ class App extends React.Component<Props, State> {
             this.setState({ isVisible: !isVisible });
           }}
           onDoubleClick={() => {
-            this.random();
+            this.setRandomName();
           }}
         >
           {content}
