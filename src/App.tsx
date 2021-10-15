@@ -21,7 +21,7 @@ class App extends React.Component<Props, State> {
     this.setState({ clockName: newName });
   };
 
-  showClock = () => {
+  switchClock = () => {
     const { isClockVisible } = this.state;
 
     this.setState({ isClockVisible: !isClockVisible });
@@ -38,7 +38,7 @@ class App extends React.Component<Props, State> {
           className="button"
           type="button"
           onClick={() => {
-            this.showClock();
+            this.switchClock();
           }}
         >
           {buttonText}
