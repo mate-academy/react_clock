@@ -1,1 +1,47 @@
-// styles go here
+* {
+  background-color: bisque;
+  box-sizing: border-box;
+  color: rgb(5, 72, 50);
+}
+
+body {
+  margin: 0, auto;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__wrap {
+    border: solid 2px white;
+    border-radius: 15px;
+  }
+
+  &__info {
+    width: 450px;
+    padding: 20px;
+    font-size: 32px;
+  }
+}
+
+.button-section {
+  display: flex;
+  gap: 20px;
+}
+
+.button {
+  height: 40px;
+  width: 60px;
+  margin-top: 20px;
+  padding: 15px, 20px;
+  border: solid 2px goldenrod;
+  border-radius: 50%;
+}
