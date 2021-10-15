@@ -18,7 +18,7 @@ class App extends React.Component<{}, AppState> {
 
   setClock = (isClockVisible: boolean) => {
     this.setState({ isClockVisible });
-    this.buttonName = isClockVisible ? 'Show' : 'Hide';
+    this.buttonName = this.state.isClockVisible ? 'Show' : 'Hide';
   };
 
   setClockName = (clockName: number) => {
