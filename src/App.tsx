@@ -36,16 +36,7 @@ class App extends React.Component<{}, State> {
             this.changeStatus();
           }}
         >
-          Show Clock
-        </button>
-
-        <button
-          type="button"
-          onClick={() => {
-            this.changeStatus();
-          }}
-        >
-          Hide Clock
+          Show / Hide
         </button>
       </div>
     );
