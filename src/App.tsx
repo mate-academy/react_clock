@@ -24,10 +24,3 @@ export default class App extends React.Component {
   }
 }
 
-// const App: React.FC = () => {
-//   const timerId: NodeJS.Timer = setInterval(() => {
-//     const date: Date = new Date();
-
-//     // eslint-disable-next-line
-//     console.log(date.toLocaleTimeString());
-//   }, 1000);
