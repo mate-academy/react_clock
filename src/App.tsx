@@ -30,7 +30,7 @@ class App extends Component<{}, State> {
           {isClockVisible ? 'hide' : 'show'}
         </button>
         <div>{`Clock status is ${status}`}</div>
-        {isClockVisible && <Clock changeStatus={this.updateStatus} />}
+        {isClockVisible && <Clock updateStatus={this.updateStatus} />}
       </div>
     );
   }

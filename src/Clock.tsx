@@ -5,7 +5,7 @@ type State = {
 };
 
 type Props = {
-  changeStatus: () => void
+  updateStatus: () => void
 };
 
 class Clock extends React.Component<Props, State> {
@@ -16,15 +16,17 @@ class Clock extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    this.props.changeStatus();
+    this.props.updateStatus();
     this.timerId = window.setInterval(() => {
       this.setState({ time: new Date().toLocaleTimeString() });
+      // eslint-disable-next-line no-console
+      console.log(this.state.time);
     }, 1000);
   }
 
   componentWillUnmount() {
     clearInterval(this.timerId);
-    this.props.changeStatus();
+    this.props.updateStatus();
   }
 
   render() {
