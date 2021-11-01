@@ -3,7 +3,7 @@ import './App.scss';
 
 import { Clock } from './components/Clock/Clock';
 
-export default class App extends React.Component {
+export class App extends React.Component {
   state = {
     isClockVisible: true,
   };
