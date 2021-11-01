@@ -8,15 +8,20 @@ export class Clock extends React.Component {
   timerID?: number;
 
   componentDidMount() {
-    this.timerID = window.setInterval(() => {
-      // eslint-disable-next-line no-console
-      console.log(new Date().toLocaleTimeString());
+    this.timerID = window.setInterval(
+      () => {
+        // eslint-disable-next-line no-console
+        console.log(new Date().toLocaleTimeString());
 
-      this.setState({ date: new Date().toLocaleTimeString() });
-    }, 1000);
+        this.setState({
+          date: new Date().toLocaleTimeString(),
+        });
+      },
+      1000,
+    );
   }
 
-  componentDidUpdate() {
+  componentWillUnmount() {
     clearInterval(this.timerID);
   }
 
