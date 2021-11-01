@@ -4,7 +4,11 @@ type State = {
   date: Date;
 };
 
-class Clock extends React.Component<{}, State> {
+type Props = {
+  name: string
+};
+
+class Clock extends React.Component<Props, State> {
   state: State = {
     date: new Date(),
   };
@@ -18,6 +22,13 @@ class Clock extends React.Component<{}, State> {
       // eslint-disable-next-line
       console.log(this.state.date.toLocaleTimeString());
     }, 1000);
+  }
+
+  componentDidUpdate(_prevProps: Props) {
+    if (_prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${_prevProps.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
