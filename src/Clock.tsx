@@ -1,5 +1,4 @@
 import React from 'react';
-import Timeout = NodeJS.Timeout;
 
 type Props = {
   name: number,
@@ -10,7 +9,7 @@ type State = {
 };
 
 export class Clock extends React.Component<Props, State> {
-  timerId: Timeout | null = null;
+  timerId: NodeJS.Timeout | null = null;
 
   state = {
     currentTime: '00:00:00',
