@@ -1,22 +1,23 @@
 import React from 'react';
+import Timeout = NodeJS.Timeout;
 
 type Props = {
   name: number,
 };
 
 type State = {
-  timerId: NodeJS.Timeout,
   currentTime: string
 };
 
 export class Clock extends React.Component<Props, State> {
+  timerId: Timeout | null = null;
+
   state = {
-    timerId: {} as NodeJS.Timeout,
     currentTime: '00:00:00',
   };
 
   componentDidMount() {
-    this.state.timerId = setInterval(() => {
+    this.timerId = setInterval(() => {
       const date: Date = new Date();
 
       // eslint-disable-next-line no-console
@@ -31,7 +32,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
