@@ -5,7 +5,7 @@ import { Clock } from './components/Clock/Clock';
 
 import { State } from './type/StateForApp';
 
-class App extends React.Component {
+class App extends React.Component<{}, State> {
   state: State = {
     isClockVisible: false,
     clockName: 0,
@@ -14,6 +14,12 @@ class App extends React.Component {
   componentDidMount() {
     this.setState({ isClockVisible: true });
   }
+
+  rename = () => {
+    const newName = Math.floor(Math.random() * 5);
+
+    this.setState({ clockName: newName });
+  };
 
   render() {
     return (
@@ -36,11 +42,7 @@ class App extends React.Component {
         </button>
         <button
           type="button"
-          onClick={() => {
-            const newName = Math.floor(Math.random() * 5);
-
-            this.setState({ clockName: newName });
-          }}
+          onClick={this.rename}
         >
           Set rundom name
         </button>
