@@ -1,0 +1,14 @@
+.Clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__body {
+    font-family: "digital-7", sans-serif;
+    user-select: none;
+    text-align: center;
+    font-size: 56px;
+    color: #05c2df;
+    letter-spacing: 5px;
+  }
+}
