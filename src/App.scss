@@ -9,9 +9,10 @@ body {
 
 .App {
   &__title {
-    font-size: 46px;
+    font-size: 52px;
     text-align: center;
-    color: #05c2df;
+    color: #002330;
+    user-select: none;
   }
 
   &__image-container {
@@ -23,6 +24,7 @@ body {
   &__logo {
     margin: 0 auto;
     border-radius: 50%;
+    user-select: none;
     animation: spin 10s infinite linear, pulse 3s infinite linear;
   }
 
