@@ -11,7 +11,6 @@ type State = {
 
 export class Clock extends React.Component<Props, State> {
   // timer: NodeJS.Timer = setInterval(() => this.tick(), 1000);
-  // timer: NodeJS.Timer = setInterval(() => this.tick(), 1000);
   timer!: NodeJS.Timer;
 
   state = {
@@ -35,13 +34,14 @@ export class Clock extends React.Component<Props, State> {
     this.setState({
       date: new Date(),
     });
+    // eslint-disable-next-line
+    console.log(this.state.date.toLocaleTimeString())
   }
 
   render() {
     return (
       <div className="clock">
         {this.state.date.toLocaleTimeString()}
-        {/* {console.log(this.state.date.toLocaleTimeString())} */}
       </div>
     );
   }

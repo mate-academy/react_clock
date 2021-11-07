@@ -9,12 +9,6 @@ type AppState = {
 };
 
 class App extends React.Component<AppProp, AppState> {
-  // const timerId: NodeJS.Timer = setInterval(() => {
-  //   const date: Date = new Date();
-
-  //   // eslint-disable-next-line
-  //   console.log(date.toLocaleTimeString());
-  // }, 1000);
   state = {
     isClockVisible: true,
   };
@@ -31,12 +25,14 @@ class App extends React.Component<AppProp, AppState> {
             : null}
           <div className="buttons-container">
             <button
+              className="buttons-container__button--show button"
               type="button"
               onClick={() => this.setState({ isClockVisible: true })}
             >
               Show Clock
             </button>
             <button
+              className="buttons-container__button--hide button"
               type="button"
               onClick={() => this.setState({ isClockVisible: false })}
             >
