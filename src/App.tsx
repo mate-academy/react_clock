@@ -30,7 +30,7 @@ export default class App extends React.Component<{}, AppState> {
   };
 
   render() {
-    const { clockName } = this.state;
+    const { clockName, isClockVisible } = this.state;
 
     return (
       <div className="App">
@@ -67,7 +67,7 @@ export default class App extends React.Component<{}, AppState> {
             Set random name
           </button>
         </div>
-        {this.state.isClockVisible && <Clock name={clockName} />}
+        {isClockVisible && <Clock name={clockName} />}
       </div>
     );
   }
