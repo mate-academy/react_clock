@@ -1,1 +1,80 @@
-// styles go here
+@font-face {
+  font-family: "digital-7";
+  src: url("./fonts/digital_7mono.ttf");
+}
+
+body {
+  background-color: #05040b;
+  overflow: hidden;
+}
+
+.App {
+  &__title {
+    font-size: 52px;
+    text-align: center;
+    color: #002330;
+    user-select: none;
+  }
+
+  &__image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  &__logo {
+    margin: 0 auto;
+    border-radius: 50%;
+    user-select: none;
+    animation: spin 10s infinite linear, pulse 3s infinite linear;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(67, 174, 204, 0.4);
+    }
+    30% {
+      box-shadow: 0 0 0 25px rgba(17, 45, 52, 0);
+    }
+    70% {
+      box-shadow: 0 0 0 0 rgba(21, 186, 231, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(19, 196, 245, 0);
+    }
+  }
+
+  &__button-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    color: #666;
+    background-color: #002147;
+    font-size: 14px;
+    border: none;
+    margin: 20px 50px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    outline: 0;
+
+    &:hover {
+      background-color: #4fa5d8;
+      color: #3e3e3e;
+      transform: scale(1.1);
+    }
+  }
+}

@@ -1,24 +1,74 @@
 import React from 'react';
 import './App.scss';
+import logo from './logo.svg';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+import { Clock } from './components/Clock';
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+interface State {
+  clockName: number,
+  isClockVisible: boolean,
+}
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+export default class App extends React.Component<{}, State> {
+  state = {
+    isClockVisible: true,
+    clockName: 42,
+  };
 
-export default App;
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
+  };
+
+  setRandomName = () => {
+    this.setState({
+      clockName: Math.round(Math.random() * 42),
+    });
+  };
+
+  render() {
+    const { clockName, isClockVisible } = this.state;
+
+    return (
+      <div className="App">
+        <h1 className="App__title">React Clock</h1>
+        <div className="App__image-container">
+          <img
+            src={logo}
+            alt="React Logo"
+            className="App__logo"
+          />
+        </div>
+        <div className="App__button-container">
+          <button
+            className="App__button"
+            type="button"
+            onClick={this.showClock}
+          >
+            Show Clock
+          </button>
+
+          <button
+            className="App__button"
+            type="button"
+            onClick={this.hideClock}
+          >
+            Hide Clock
+          </button>
+
+          <button
+            className="App__button"
+            type="button"
+            onClick={this.setRandomName}
+          >
+            Set random name
+          </button>
+        </div>
+        {isClockVisible && <Clock name={clockName} />}
+      </div>
+    );
+  }
+}
