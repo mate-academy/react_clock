@@ -33,6 +33,12 @@ html {
   color: white;
   text-transform: uppercase;
   border: solid 1px black;
+  cursor: pointer;
+
+  &:active {
+    background-color: rgb(66, 66, 66);
+    border-color: rgb(66, 66, 66);
+  }
 }
 
 .visible {
