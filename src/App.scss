@@ -1,1 +1,47 @@
-// styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  &__buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__button {
+    width: 100px;
+    height: 50px;
+
+    border-radius: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--show {
+      transition: background-color 0.5s;
+
+      &:hover {
+        background-color: rgb(150, 218, 150);
+      }
+    }
+
+    &--hide {
+      transition: background-color 0.5s;
+
+      &:hover {
+        background-color: rgb(228, 131, 131);
+      }
+    }
+
+    &--changeName {
+      transition: background-color 0.5s;
+
+      &:hover {
+        background-color: plum;
+      }
+    }
+  }
+}
