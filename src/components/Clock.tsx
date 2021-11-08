@@ -1,15 +1,11 @@
 import React from 'react';
 
-interface Props {
-  isOn: boolean,
-}
-
 type State = {
   date: Date,
 };
 
-export class Clock extends React.Component<Props, State> {
-  timer: NodeJS.Timer = setInterval(() => {}, 1000)
+export class Clock extends React.Component<{}, State> {
+  timer: NodeJS.Timer = setInterval(() => {}, 1000);
 
   state = {
     date: new Date(),

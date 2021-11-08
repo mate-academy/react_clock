@@ -28,7 +28,7 @@ class App extends React.Component<Propы, State> {
           Current time:
           {' '}
           {this.state.isClockVisible
-            ? (<Clock isOn={this.state.isClockVisible} />)
+            ? (<Clock />)
             : null}
           <div className="buttons-container">
             <button
