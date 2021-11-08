@@ -1,14 +1,14 @@
 import React from 'react';
 
-type Props = {
+interface Props {
   clockName: number
-};
+}
 
-type ClockState = {
+interface State {
   date: Date
-};
+}
 
-export class Clock extends React.Component<Props, ClockState> {
+export class Clock extends React.Component<Props, State> {
   timerId: NodeJS.Timeout | undefined;
 
   state = {

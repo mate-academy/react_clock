@@ -2,24 +2,16 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock/Clock';
 
-type AppState = {
+interface State {
   isClockVisible: boolean,
   clockName: number,
-};
+}
 
-class App extends React.Component<{}, AppState> {
+class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
     clockName: 120,
   };
-
-  // showClock() {
-  //   this.setState({ isClockVisible: true });
-  // }
-
-  // hideClock() {
-  //   this.setState({ isClockVisible: false });
-  // }
 
   showClock = () => {
     this.setState({ isClockVisible: true });
