@@ -1,1 +1,14 @@
-// styles go here
+.App {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  transform: translateY(50%);
+}
+
+.visible {
+  visibility: visible;
+}
+
+.invisible {
+  visibility: hidden;
+}
