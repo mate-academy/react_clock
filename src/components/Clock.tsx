@@ -1,11 +1,14 @@
 import React from 'react';
 
-export class Clock extends React.Component {
+type Props = {
+  name: number
+};
+
+export class Clock extends React.Component<Props> {
   state = {
     date: new Date(),
   };
 
-  // timerId!: NodeJS.Timeout;
   timerId: NodeJS.Timer = setInterval(() => {}, 1000);
 
   componentDidMount() {
@@ -13,6 +16,15 @@ export class Clock extends React.Component {
       () => this.tick(),
       1000,
     );
+  }
+
+  componentDidUpdate(previousProps: Props) {
+    const oldName = previousProps.name;
+
+    if (oldName !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${oldName} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
