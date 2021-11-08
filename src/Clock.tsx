@@ -1,14 +1,13 @@
-import React from "react";
-
+import React from 'react';
 
 export class Clock extends React.Component {
   state = {
     time: new Date().toLocaleTimeString(),
-  }
+  };
 
   componentDidMount() {
     setInterval(() => {
-      this.setState({time: new Date().toLocaleTimeString()})
+      this.setState({ time: new Date().toLocaleTimeString() });
     }, 1000);
   }
 
@@ -19,4 +18,4 @@ export class Clock extends React.Component {
       </div>
     );
   }
-};
+}

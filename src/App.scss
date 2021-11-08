@@ -1,8 +1,38 @@
+@font-face {
+  font-family: DS-DIGII;
+  src: url(./DS-DIGII.TTF);
+}
+
+html {
+  font-family: DS-DIGII, sans-serif;
+  margin: 0;
+  height: 100vh;
+}
+
 .App {
   display: grid;
   gap: 10px;
   justify-content: center;
-  transform: translateY(50%);
+  transform: translateY(30vh);
+}
+
+.Clock {
+  font-size: 30px;
+  margin: 10px auto;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button {
+  padding: 10px;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  border: solid 1px black;
 }
 
 .visible {
