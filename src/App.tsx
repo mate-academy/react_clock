@@ -1,16 +1,23 @@
 import React from 'react';
 import Clock from './components';
-// import { isPropertySignature } from 'typescript';
 import './App.scss';
 
-type AppProp = {};
-type AppState = {
-  isClockVisible:boolean,
+type Propы = {};
+type State = {
+  isClockVisible: boolean,
 };
 
-class App extends React.Component<AppProp, AppState> {
+class App extends React.Component<Propы, State> {
   state = {
     isClockVisible: true,
+  };
+
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
   };
 
   render() {
@@ -27,14 +34,14 @@ class App extends React.Component<AppProp, AppState> {
             <button
               className="buttons-container__button--show button"
               type="button"
-              onClick={() => this.setState({ isClockVisible: true })}
+              onClick={this.showClock}
             >
               Show Clock
             </button>
             <button
               className="buttons-container__button--hide button"
               type="button"
-              onClick={() => this.setState({ isClockVisible: false })}
+              onClick={this.hideClock}
             >
               Hide Clock
             </button>

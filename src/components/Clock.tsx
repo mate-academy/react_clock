@@ -6,28 +6,21 @@ interface Props {
 
 type State = {
   date: Date,
-  isOn: boolean,
 };
 
 export class Clock extends React.Component<Props, State> {
-  // timer: NodeJS.Timer = setInterval(() => this.tick(), 1000);
-  timer!: NodeJS.Timer;
+  timer: NodeJS.Timer = setInterval(() => {}, 1000)
 
   state = {
     date: new Date(),
-    isOn: this.props.isOn,
   };
 
   componentDidMount() {
-    if (this.state.isOn) {
-      this.timer = setInterval(() => this.tick(), 1000);
-    }
+    this.timer = setInterval(() => this.tick(), 1000);
   }
 
   componentWillUnmount() {
-    if (!this.state.isOn) {
-      clearInterval(this.timer);
-    }
+    clearInterval(this.timer);
   }
 
   tick() {
