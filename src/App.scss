@@ -1,1 +1,24 @@
 // styles go here
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.buttons-container {
+
+  &__button--show {
+    background-color: green;
+  }
+
+  &__button--hide {
+    background-color: red;
+  }
+}
+
+.button {
+  color: white;
+}
