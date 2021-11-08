@@ -4,10 +4,10 @@ import logo from './logo.svg';
 
 import { Clock } from './components/Clock';
 
-type AppState = {
+interface AppState {
   clockName: number,
   isClockVisible: boolean,
-};
+}
 
 export default class App extends React.Component<{}, AppState> {
   state = {

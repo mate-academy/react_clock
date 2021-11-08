@@ -1,15 +1,15 @@
 import React from 'react';
 import './Clock.scss';
 
-type ClockState = {
+interface ClockState {
   time: Date;
-};
+}
 
-type Props = {
+interface ClockProps {
   name: number;
-};
+}
 
-export class Clock extends React.Component<Props, ClockState> {
+export class Clock extends React.Component<ClockProps, ClockState> {
   timerId: NodeJS.Timeout | undefined;
 
   state = {
@@ -20,7 +20,7 @@ export class Clock extends React.Component<Props, ClockState> {
     this.tick();
   }
 
-  componentDidUpdate(previousProps: Props) {
+  componentDidUpdate(previousProps: ClockProps) {
     const oldName = previousProps.name;
 
     if (oldName !== this.props.name) {
