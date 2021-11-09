@@ -1,1 +1,17 @@
-// styles go here
+.App {
+  text-align: center;
+
+  &__title {
+    font-size: 60px;
+  }
+
+  &__clock {
+    font-size: 70px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0 10px;
+  }
+}
