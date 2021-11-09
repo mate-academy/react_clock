@@ -1,1 +1,23 @@
-// styles go here
+.App {
+  text-align: center;
+  // background-color: aqua;
+
+  &__button {
+    font-size: 20px;
+    margin: 0 20px;
+
+    background-color: rgb(255, 152, 152);
+    border-radius: 50px;
+
+    transition: 500ms;
+
+    &:hover {
+      background-color: lightgreen;
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: greenyellow;
+    }
+  }
+}
