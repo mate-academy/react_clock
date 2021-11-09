@@ -9,7 +9,7 @@ interface State {
 }
 
 export class Clock extends React.Component<Props, State> {
-  timerId?: NodeJS.Timeout | undefined;
+  timerId?: NodeJS.Timeout;
 
   state: State = {
     currentDate: new Date(),
