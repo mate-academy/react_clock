@@ -1,1 +1,48 @@
-// styles go here
+@font-face {
+  font-family: DS-DIGII;
+  src: url(./DS-DIGII.TTF);
+}
+
+html {
+  font-family: DS-DIGII, sans-serif;
+  margin: 0;
+  height: 100vh;
+}
+
+.App {
+  gap: 10px;
+  justify-content: center;
+  transform: translateY(30vh);
+}
+
+.Clock {
+  display: block;
+  font-size: 26px;
+  line-height: 36px;
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+
+}
+
+.button {
+  padding: 10px;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  border: solid 1px black;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:active {
+    background-color: rgb(66, 66, 66);
+    border-color: rgb(66, 66, 66);
+  }
+}
