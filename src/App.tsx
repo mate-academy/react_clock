@@ -1,43 +1,45 @@
 import React from 'react';
 import './App.scss';
+import { Clock, StateApp } from './Clock';
 
 type Props = {};
-interface State {
-  time: string;
-}
 
-class App extends React.Component<Props, State> {
+export class App extends React.Component<Props, StateApp> {
   state = {
-    time: new Date().toLocaleTimeString(),
+    isClockVisible: true,
   };
 
-  timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+  showClock = () => this.setState({ isClockVisible: true });
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({ time: new Date().toLocaleTimeString() });
-    }, 1000);
-  }
+  hideClock = () => this.setState({ isClockVisible: false });
 
   render() {
-    const { time } = this.state;
+    const { isClockVisible } = this.state;
 
     return (
       <div className="App">
-        <h1>React clock</h1>
-        <p>
-          Current time:
-          {' '}
-          {time}
-        </p>
+        {isClockVisible && <div><Clock state={this.state} /></div>}
+        <button
+          type="button"
+          className="button button__show-clock"
+          onClick={this.showClock}
+        >
+          Show Clock
+        </button>
+
+        <button
+          type="button"
+          className="button button__hide-clock"
+          onClick={this.hideClock}
+        >
+          Hide Clock
+        </button>
       </div>
     );
   }
 }
+<<<<<<< HEAD
 
 export default App;
+=======
+>>>>>>> eba7a9e (show and hide buttons added)
