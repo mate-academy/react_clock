@@ -2,10 +2,9 @@ import React from 'react';
 import { clearInterval } from 'timers';
 import './App.scss';
 
-type Props = {
-};
+type Props = {};
 
-type State = {
+interface State {
   date: Date;
   timerId: ReturnType<typeof setInterval>;
   isClockVisible: boolean;
