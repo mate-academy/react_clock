@@ -10,21 +10,26 @@ html {
 }
 
 .App {
-  display: grid;
   gap: 10px;
   justify-content: center;
   transform: translateY(30vh);
 }
 
 .Clock {
-  font-size: 30px;
-  margin: 10px auto;
+  display: block;
+  font-size: 26px;
+  line-height: 36px;
+  text-align: center;
+  background-color: black;
+  color: white;
 }
 
 .buttons {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 10px;
+
 }
 
 .button {
@@ -34,17 +39,10 @@ html {
   text-transform: uppercase;
   border: solid 1px black;
   cursor: pointer;
+  font-size: 16px;
 
   &:active {
     background-color: rgb(66, 66, 66);
     border-color: rgb(66, 66, 66);
   }
-}
-
-.visible {
-  visibility: visible;
-}
-
-.invisible {
-  visibility: hidden;
 }

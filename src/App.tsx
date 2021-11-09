@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import './App.scss';
 
 import { Clock } from './Clock';
@@ -20,12 +19,22 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <p className={classNames('Clock', { visible: this.state.isVisible === true }, { invisible: this.state.isVisible === false })}>
-          <Clock />
-        </p>
         <div className="buttons">
-          <button type="button" className="button button--show" onClick={this.showClock}>show</button>
-          <button type="button" className="button button--hide" onClick={this.hideClock}>hide</button>
+          { this.state.isVisible && <Clock /> }
+          <button
+            type="button"
+            className="button button--show"
+            onClick={this.showClock}
+          >
+            show
+          </button>
+          <button
+            type="button"
+            className="button button--hide"
+            onClick={this.hideClock}
+          >
+            hide
+          </button>
         </div>
       </div>
     );
