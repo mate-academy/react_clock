@@ -11,32 +11,34 @@ export class App extends React.Component<{}, State> {
     isClockVisible: true,
   };
 
-  hider = () => {
+  hideClock = () => {
     this.setState({ isClockVisible: false });
   };
 
-  shower = () => {
+  showClock = () => {
     this.setState({ isClockVisible: true });
   };
 
   render() {
+    const { isClockVisible } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
         <button
           type="button"
-          onClick={this.hider}
+          onClick={this.hideClock}
         >
           Hide Clock
         </button>
         {' '}
         <button
           type="button"
-          onClick={this.shower}
+          onClick={this.showClock}
         >
           Show Clock
         </button>
-        {this.state.isClockVisible && <Clock />}
+        {isClockVisible && <Clock />}
       </div>
     );
   }

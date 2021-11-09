@@ -1,36 +1,39 @@
 import React from 'react';
 
-export class Clock extends React.Component {
-  timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+interface State {
+  time: Date;
+}
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+export class Clock extends React.Component<{}, State > {
+  timerId?: NodeJS.Timer;
 
-  state = {
-    date: new Date(),
+  state:State = {
+    time: new Date(),
   };
 
   componentDidMount() {
-    setInterval(() => {
-      this.setState({ date: new Date() });
+    this.timerId = setInterval(() => {
+      this.setState({ time: new Date() });
+      // eslint-disable-next-line no-console
+      console.log(this.state.time.toLocaleTimeString());
     }, 1000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
-    const { date } = this.state;
+    const { time } = this.state;
 
     return (
       <>
         <p>
           Current time:
           {' '}
-          {date.toLocaleTimeString()}
+          {time.toLocaleTimeString()}
         </p>
       </>
     );
