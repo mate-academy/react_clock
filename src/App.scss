@@ -1,1 +1,26 @@
 // styles go here
+.app {
+  text-align: center;
+}
+
+.clock {
+  &__title {
+    text-transform: uppercase;
+    color: cadetblue;
+  }
+
+  &__button {
+    background-color: aquamarine;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 0 15px;
+    font-size: 15px;
+    text-transform: uppercase;
+
+  }
+
+  &__show {
+    text-transform: uppercase;
+    color: cadetblue;
+  }
+}
