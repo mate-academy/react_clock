@@ -4,28 +4,30 @@ import { Clock } from './components/Clock';
 
 type Props = {};
 type State = {
-  clockShow: boolean;
+  isClockVisible: boolean;
   clockName: number;
 };
 
 class App extends React.Component <Props, State> {
   state: State = {
-    clockShow: true,
+    isClockVisible: true,
     clockName: 0,
   };
 
-  clockShowON = () => this.setState({ clockShow: true });
+  clockShowON = () => this.setState({ isClockVisible: true });
 
-  clockShowOFF = () => this.setState({ clockShow: false });
+  clockShowOFF = () => this.setState({ isClockVisible: false });
 
-  changeClockName = () => this.setState({ clockName: (Math.floor(Math.random() * 1000)) });
+  changeClockName = () => this.setState({
+    clockName: (Math.floor(Math.random() * 1000)),
+  });
 
   render() {
     return (
       <div className="App">
         <div className="App__watch">
           <h1>React watch</h1>
-          { this.state.clockShow
+          { this.state.isClockVisible
             ? <Clock name={this.state.clockName} />
             : <p></p> }
           <div>

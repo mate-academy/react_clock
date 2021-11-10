@@ -1,5 +1,4 @@
 import React from 'react';
-import { clearInterval } from 'timers';
 
 type Props = {
   name: number;
@@ -7,11 +6,10 @@ type Props = {
 
 type State = {
   currentDate: Date;
-  clockId?: NodeJS.Timeout | undefined;
 };
 
 export class Clock extends React.Component <Props, State> {
-  clockId: NodeJS.Timeout | undefined;
+  clockId?: NodeJS.Timeout;
 
   state: State = {
     currentDate: new Date(),
@@ -31,8 +29,8 @@ export class Clock extends React.Component <Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.state.clockId) {
-      clearInterval(this.state.clockId);
+    if (this.clockId) {
+      clearInterval(this.clockId);
     }
   }
 
