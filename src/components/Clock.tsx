@@ -7,7 +7,7 @@ interface State {
 }
 
 export class Clock extends React.Component<Props, State> {
-  timerId: NodeJS.Timer = setInterval(() => {}, 1000);
+  timerId?: NodeJS.Timer;
 
   state = {
     date: new Date(),
@@ -21,7 +21,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   tick() {
