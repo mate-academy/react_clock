@@ -1,1 +1,21 @@
-// styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  &__title {
+    color: rgb(54, 124, 141);
+  }
+}
+
+.buttons {
+  padding-top: 20px;
+
+  &__button {
+    margin-right: 10px;
+    border-color: rgb(54, 124, 141);
+    background-color: rgb(54, 124, 141);
+    color: white;
+  }
+}
