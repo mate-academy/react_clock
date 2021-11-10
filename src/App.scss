@@ -1,1 +1,29 @@
-// styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.Heading {
+  background-color: lightblue;
+  border-radius: 4px;
+}
+
+.Button {
+  border-radius: 4px;
+  background-color: lightblue;
+
+  
+  &--show {
+    &:active {
+      background-color: green;
+    }
+  }
+
+  &--hide {
+    &:active {
+      background-color: red;
+    }
+  }
+}
