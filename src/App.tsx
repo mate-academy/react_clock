@@ -28,6 +28,18 @@ export class App extends React.Component<Props, State> {
     clearInterval(this.state.timerId);
   }
 
+  showClock = () => {
+    this.setState({
+      isClockVisible: true,
+    });
+  };
+
+  hideClock = () => {
+    this.setState({
+      isClockVisible: false,
+    });
+  };
+
   tick() {
     this.setState({
       date: new Date(),
@@ -35,18 +47,6 @@ export class App extends React.Component<Props, State> {
 
     // eslint-disable-next-line no-console
     console.log(this.state.date.toLocaleTimeString());
-  }
-
-  showClock() {
-    this.setState({
-      isClockVisible: true,
-    });
-  }
-
-  hideClock() {
-    this.setState({
-      isClockVisible: false,
-    });
   }
 
   render() {
@@ -76,21 +76,3 @@ export class App extends React.Component<Props, State> {
     );
   }
 }
-
-// export const App: React.FC = () => {
-//   const timerId: NodeJS.Timer = setInterval(() => {
-//     const date: Date = new Date();
-
-//     // eslint-disable-next-line
-//     console.log(date.toLocaleTimeString());
-//   }, 1000);
-
-//   return (
-//     <div className="App">
-//       <h1>React clock</h1>
-//       <p>
-//         Current time:
-//       </p>
-//     </div>
-//   );
-// };
