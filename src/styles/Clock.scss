@@ -1,0 +1,43 @@
+.clock {
+  &__title {
+    text-align: center;
+    font-family: sans-serif;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    padding: 20px;
+    margin: 20px 20px;
+
+    background-color: blanchedalmond;
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+    font-family: sans-serif;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 3px 3px rgb(14, 100, 100);
+    }
+  }
+
+  &__timer {
+    margin: auto;
+    width: max-content;
+    padding: 10px;
+
+    font-family: sans-serif;
+    background-color: blanchedalmond;
+    border: 1px solid darkcyan;
+    border-radius: 5px;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 3px 3px rgb(14, 100, 100);
+    }
+  }
+}
