@@ -4,24 +4,24 @@ type Props = {};
 
 interface State {
   date: Date;
-  timerId: ReturnType<typeof setInterval>;
 }
 
 export class Clock extends React.Component<Props, State> {
+  timerId: NodeJS.Timer = setInterval(() => {}, 1000);
+
   state = {
     date: new Date(),
-    timerId: setInterval(() => {}, 0),
   };
 
   componentDidMount() {
-    this.state.timerId = setInterval(
+    this.timerId = setInterval(
       () => this.tick(),
       1000,
     );
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.timerId);
+    clearInterval(this.timerId);
   }
 
   tick() {
