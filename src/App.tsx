@@ -13,11 +13,11 @@ class App extends React.Component<Props, State> {
     isClockVisible: false,
   };
 
-  handleClockClick = () => {
+  showClock = () => {
     this.setState({ isClockVisible: true });
   };
 
-  handlePageClick = () => {
+  hideClock = () => {
     this.setState({ isClockVisible: false });
   };
 
@@ -33,14 +33,14 @@ class App extends React.Component<Props, State> {
           <button
             className="Button Button--show"
             type="button"
-            onClick={() => this.handleClockClick()}
+            onClick={() => this.showClock()}
           >
             Show Clock
           </button>
           <button
             className="Button Button--hide"
             type="button"
-            onClick={() => this.handlePageClick()}
+            onClick={() => this.hideClock()}
           >
             Hide Clock
           </button>
