@@ -1,1 +1,56 @@
-// styles go here
+body {
+  color: rgba(241, 241, 241, 0.7);
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family:'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.App {
+  &__watch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 36px;
+
+    height: 90vh;
+    min-height: 420px;
+    min-width: 364px;
+
+    font-size: 38px;
+
+    background-image: url(./Watch-img.png);
+    background-position-y: center;
+    background-position-x: 49%;
+    background-repeat: no-repeat;
+  }
+
+  &__button {
+    margin: 16px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &--show {
+      background-color: rgba(0, 161, 81, 0.6);
+    }
+
+    &--hide {
+      background-color: rgba(165, 64, 46, 0.6);
+    }
+
+    &--name {
+      background-color: rgba(116, 116, 116, 0.6);
+    }
+  }
+}
