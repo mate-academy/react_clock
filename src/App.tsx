@@ -32,6 +32,9 @@ export class App extends React.Component<Props, State> {
     this.setState({
       date: new Date(),
     });
+
+    // eslint-disable-next-line no-console
+    console.log(this.state.date.toLocaleTimeString());
   }
 
   showClock() {
