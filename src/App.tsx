@@ -8,7 +8,7 @@ interface State {
   date: Date;
   timerId: ReturnType<typeof setInterval>;
   isClockVisible: boolean;
-};
+}
 
 export class App extends React.Component<Props, State> {
   state = {
@@ -34,6 +34,18 @@ export class App extends React.Component<Props, State> {
     });
   }
 
+  showClock() {
+    this.setState({
+      isClockVisible: true,
+    });
+  }
+
+  hideClock() {
+    this.setState({
+      isClockVisible: false,
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -43,23 +55,17 @@ export class App extends React.Component<Props, State> {
             {`Current time: ${this.state.date.toLocaleTimeString()}`}
           </p>
         )}
+
         <button
           type="button"
-          onClick={() => {
-            this.setState(
-              { isClockVisible: true },
-            );
-          }}
+          onClick={this.showClock}
         >
           Show clock
         </button>
+
         <button
           type="button"
-          onClick={() => {
-            this.setState(
-              { isClockVisible: false },
-            );
-          }}
+          onClick={this.hideClock}
         >
           Hide clock
         </button>
