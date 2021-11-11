@@ -27,7 +27,8 @@ export class Clock extends React.Component<Props> {
     const newName = this.props.name;
 
     if (oldName !== newName) {
-      // console.log(`The Clock was renamed from ${oldName} to ${newName}`);
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${oldName} to ${newName}`);
     }
   }
 
@@ -39,7 +40,8 @@ export class Clock extends React.Component<Props> {
     return (
       <span>
         { this.state.date.toLocaleTimeString() }
-        {/* { console.log(this.state.date.toLocaleTimeString())} */}
+        { // eslint-disable-next-line no-console
+          console.log(this.state.date.toLocaleTimeString())}
       </span>
     );
   }
