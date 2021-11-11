@@ -38,8 +38,3 @@ export class App extends React.Component<Props, StateApp> {
     );
   }
 }
-<<<<<<< HEAD
-
-export default App;
-=======
->>>>>>> eba7a9e (show and hide buttons added)
