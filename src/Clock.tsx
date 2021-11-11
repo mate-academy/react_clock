@@ -4,15 +4,11 @@ export interface StateApp {
   isClockVisible: boolean;
 }
 
-interface Props {
-  state: StateApp;
-}
-
 interface State {
   time: string;
 }
 
-export class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<{}, State> {
   state = {
     time: new Date().toLocaleTimeString(),
   };
@@ -26,18 +22,8 @@ export class Clock extends React.Component<Props, State> {
     console.log(date.toLocaleTimeString());
   }, 1000);
 
-  componentDidMount() {
-    return setInterval;
-  }
-
   componentWillUnmount() {
-    const { state } = this.props;
-
-    if (state.isClockVisible) {
-      return clearInterval(this.timerId);
-    }
-
-    return null;
+    return clearInterval(this.timerId);
   }
 
   render() {

@@ -18,7 +18,7 @@ export class App extends React.Component<Props, StateApp> {
 
     return (
       <div className="App">
-        {isClockVisible && <div><Clock state={this.state} /></div>}
+        {isClockVisible && <Clock />}
         <button
           type="button"
           className="button button__show-clock"
