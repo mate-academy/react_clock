@@ -10,7 +10,7 @@ export class Clock extends React.Component<Props> {
     date: new Date(),
   };
 
-  timerId: NodeJS.Timer = setInterval(() => { }, 1000);
+  timerId: NodeJS.Timer | undefined;
 
   componentDidMount() {
     this.timerId = setInterval(
@@ -32,7 +32,9 @@ export class Clock extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId !== undefined) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
