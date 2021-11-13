@@ -1,0 +1,7 @@
+.app {
+  &__button {
+    &-disabled {
+      pointer-events: none;
+    }
+  }
+}
