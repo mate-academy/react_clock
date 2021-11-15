@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/no-did-update-set-state */
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 
 type Props = {
@@ -22,7 +19,7 @@ export class Clock extends React.Component<Props> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: { name: any; }) {
+  componentDidUpdate(prevProps: { name: number; }) {
     const oldName = prevProps.name;
     const newName = this.props.name;
 
@@ -41,7 +38,8 @@ export class Clock extends React.Component<Props> {
       <span>
         { this.state.date.toLocaleTimeString() }
         { // eslint-disable-next-line no-console
-          console.log(this.state.date.toLocaleTimeString())}
+          console.log(this.state.date.toLocaleTimeString())
+        }
       </span>
     );
   }

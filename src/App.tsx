@@ -1,6 +1,3 @@
-/* eslint-disable react/no-did-update-set-state */
-/* eslint-disable no-return-assign */
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock/Clock';
