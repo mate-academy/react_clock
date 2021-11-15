@@ -25,9 +25,13 @@ export class Clock extends React.Component {
   }
 
   render() {
+    const { date } = this.state;
+
     return (
       <div>
-        {this.state.date.toLocaleTimeString()}
+        {/* eslint-disable-next-line */}
+        {console.log(date.toLocaleTimeString())}
+        {date.toLocaleTimeString()}
       </div>
     );
   }
