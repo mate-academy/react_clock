@@ -1,1 +1,26 @@
-// styles go here
+.App {
+  &__clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Gill Sans", sans-serif;
+    font-size: 50px;
+  }
+  
+  &__button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+
+    &--show {
+      width: 95px;
+      height: 50px;
+    }
+
+    &--hide {
+      width: 95px;
+      height: 50px;
+    }
+  }
+}
