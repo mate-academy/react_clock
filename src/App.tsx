@@ -5,15 +5,15 @@ import { Clock } from './components';
 
 class App extends React.Component {
   state = {
-    isClockVisibility: true,
+    isClockVisible: true,
   };
 
   show = () => {
-    this.setState({ isClockVisibility: true });
+    this.setState({ isClockVisible: true });
   };
 
   hide = () => {
-    this.setState({ isClockVisibility: false });
+    this.setState({ isClockVisible: false });
   };
 
   render() {
@@ -23,12 +23,11 @@ class App extends React.Component {
         <div className="App">
 
           <div className="App__clock">
-            {this.state.isClockVisibility && <Clock />}
-            {!this.state.isClockVisibility && (
-              <>
-                Здесь были часы
-              </>
-            )}
+            {
+              this.state.isClockVisible
+                ? <Clock />
+                : 'Здесь были часы'
+            }
           </div>
 
           <div className="App__button">
