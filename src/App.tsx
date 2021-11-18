@@ -11,7 +11,7 @@ type State = {
 
 export class App extends React.Component<Props, State> {
   state = {
-    isClockVisible: false,
+    isClockVisible: true,
     clockName: Math.floor(Math.random() * 100),
   };
 
