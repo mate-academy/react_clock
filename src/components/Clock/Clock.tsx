@@ -15,12 +15,14 @@ export class Clock extends React.Component<Props> {
   componentDidMount() {
     this.timerId = setInterval(() => {
       this.setState({ currentTime: new Date() });
+      // console.log(this.state.currentTime.toLocaleTimeString());
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
     const oldName = prevProps.clockName;
     const newName = this.props.clockName;
+    // console.clear();
 
     if (oldName !== newName) {
       // console.log(`The Clock was renamed from ${oldName} to ${newName}`)
@@ -39,7 +41,6 @@ export class Clock extends React.Component<Props> {
           <p>
             {'Current time: '}
             <strong>{this.state.currentTime.toLocaleTimeString()}</strong>
-            {/* {console.log(this.state.currentTime.toLocaleTimeString())} */}
           </p>
         </div>
       </>
