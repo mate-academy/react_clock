@@ -1,1 +1,14 @@
-// styles go here
+button {
+  border-width: 1px;
+  padding: 10px;
+  border-color: rgb(163, 163, 163);
+  border-radius: 3px;
+  background-color: #fff;
+  margin-right: 10px;
+
+  &:hover {
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0.5px 0.5px 3px 0.25px rgb(163, 163, 163);
+  }
+}
