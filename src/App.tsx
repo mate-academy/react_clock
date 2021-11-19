@@ -11,9 +11,7 @@ export class App extends React.Component {
   render() {
     return (
       <>
-        {this.state.isClockVisible === true
-          ? <Clock clockName={this.state.name} />
-          : null}
+        {this.state.isClockVisible && <Clock clockName={this.state.name} />}
         <div className="App">
           <button
             type="button"

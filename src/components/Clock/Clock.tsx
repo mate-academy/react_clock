@@ -15,17 +15,20 @@ export class Clock extends React.Component<Props> {
   componentDidMount() {
     this.timerId = setInterval(() => {
       this.setState({ currentTime: new Date() });
-      // console.log(this.state.currentTime.toLocaleTimeString());
+      // eslint-disable-next-line
+      console.log(this.state.currentTime.toLocaleTimeString());
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
     const oldName = prevProps.clockName;
     const newName = this.props.clockName;
+    // eslint-disable-next-line
     // console.clear();
 
     if (oldName !== newName) {
-      // console.log(`The Clock was renamed from ${oldName} to ${newName}`)
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${oldName} to ${newName}`)
     }
   }
 
