@@ -1,0 +1,15 @@
+.Clock {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  justify-content: center;
+  align-items: space-around;
+  border: 1px solid black;
+  border-radius: 20%;
+  padding: 10px;
+}
+
+h1,
+p {
+  text-align: center;
+}

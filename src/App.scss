@@ -1,1 +1,18 @@
-// styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  position: absolute;
+  top: 160px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: darkgrey;
+}
