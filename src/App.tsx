@@ -8,12 +8,6 @@ class App extends React.Component {
     clockName: Math.random(),
   };
 
-  // componentDidMount() {
-  //   setInterval(() => {
-  //     this.setState({ clockName: Math.random() });
-  //   }, 1000);
-  // }
-
   changeShowClock = (value: boolean): void => {
     this.setState({ isClockVisible: value });
   };
