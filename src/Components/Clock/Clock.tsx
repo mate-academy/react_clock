@@ -46,9 +46,8 @@ export class Clock extends React.Component<Props, State> {
     return (
       <>
         {date.toLocaleTimeString()}
-        <div>
-          {clockName}
-        </div>
+        {'  '}
+        {clockName}
       </>
     );
   }
