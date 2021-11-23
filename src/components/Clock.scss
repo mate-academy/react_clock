@@ -1,0 +1,18 @@
+.current-time {
+  width: fit-content;
+  padding: 40px 100px;
+  border-radius: 10px;
+
+  background: linear-gradient(
+    126.55deg,
+    #fcf3f4 25.1%,
+    #e6f6ff 126.53%,
+    #46c8ff 126.54%
+  );
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+
+  user-select: none;
+}
