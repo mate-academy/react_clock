@@ -41,10 +41,10 @@ class App extends React.Component<{}, State> {
         {isClockVisible && <Clock clockName={clockName} />}
 
         <div className="buttons">
-          <button type="button" onClick={this.showClock}>
+          <button type="button" disabled={isClockVisible} onClick={this.showClock}>
             Show Clock
           </button>
-          <button type="button" onClick={this.hideClock}>
+          <button type="button" disabled={!isClockVisible} onClick={this.hideClock}>
             Hide Clock
           </button>
           <button type="button" onClick={this.renameClock}>
