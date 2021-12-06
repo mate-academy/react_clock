@@ -1,1 +1,45 @@
-// styles go here
+.App {
+  text-align: center;
+}
+
+button {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  margin-right: 20px;
+
+  &:disabled {
+    background-color: gray;
+    border: none;
+    cursor: not-allowed;
+  }
+}
+
+.clock {
+  width: 300px;
+  text-align: center;
+  background-color: black;
+  margin: 0 auto;
+  border-radius: 30px;
+  margin-bottom: 40px;
+  border: 1px solid black;
+
+
+  &__time {
+    font-size: 40px;
+    color: #fff;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px rgb(228, 12, 48),
+    0 0 82px rgb(228, 12, 48),
+    0 0 92px rgb(228, 12, 48),
+    0 0 102px rgb(228, 12, 48),
+    0 0 151px rgb(228, 12, 48);
+  }
+}
