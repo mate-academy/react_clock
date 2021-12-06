@@ -5,15 +5,15 @@
 button {
   font-size: 20px;
   cursor: pointer;
-  background-color: black;
-  color: white;
-  border: 1px solid black;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #000;
   border-radius: 5px;
   padding: 20px;
   margin-right: 20px;
 
   &:disabled {
-    background-color: gray;
+    background-color: #ccc;
     border: none;
     cursor: not-allowed;
   }
@@ -22,11 +22,11 @@ button {
 .clock {
   width: 300px;
   text-align: center;
-  background-color: black;
   margin: 0 auto;
   border-radius: 30px;
   margin-bottom: 40px;
-  border: 1px solid black;
+  background-color: #000;
+  border: 1px solid #000;
 
 
   &__time {
@@ -36,10 +36,10 @@ button {
     0 0 7px #fff,
     0 0 10px #fff,
     0 0 21px #fff,
-    0 0 42px rgb(228, 12, 48),
-    0 0 82px rgb(228, 12, 48),
-    0 0 92px rgb(228, 12, 48),
-    0 0 102px rgb(228, 12, 48),
-    0 0 151px rgb(228, 12, 48);
+    0 0 42px #e40c30,
+    0 0 82px #e40c30,
+    0 0 92px #e40c30,
+    0 0 102px #e40c30,
+    0 0 151px #e40c30;
   }
 }
