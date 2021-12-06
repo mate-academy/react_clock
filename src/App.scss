@@ -1,1 +1,66 @@
-// styles go here
+@import './utils/variables';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $bodyBgColor;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__title {
+    font-size: 2rem;
+  }
+
+  &__clock {
+    height: 50px;
+  }
+}
+
+.buttonArea {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+}
+
+.button {
+  padding: 10px;
+  border: none;
+  background-color: $showButtonBgColor;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: $basicShadow;
+
+
+  transition: opacity 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+}
+
+.button:nth-child(2) {
+  background-color: $hideButtonBgColor;
+}
+
+.button:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.button:last-child {
+  background-color: $setButtonBgColor;
+}
