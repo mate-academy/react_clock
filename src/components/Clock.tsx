@@ -18,6 +18,7 @@ export class Clock extends React.Component<Props, State> {
   componentDidMount() {
     this.timerId = setInterval(() => {
       this.setState({ currentTime: new Date().toLocaleTimeString() });
+      // eslint-disable-next-line no-console
       console.log(this.state.currentTime);
     }, 1000);
   }
@@ -26,6 +27,7 @@ export class Clock extends React.Component<Props, State> {
     const newName = this.props;
 
     if (prevName !== newName) {
+    // eslint-disable-next-line no-console
       console.log(newName);
     }
   }
