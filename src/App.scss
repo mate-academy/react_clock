@@ -1,1 +1,57 @@
-// styles go here
+@import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Fuzzy bubbles", sans-serif;
+}
+
+body,
+h1 {
+  margin: 0;
+}
+
+.app {
+  background-color: rgba(27, 27, 29, 0.31);
+  height: 100vh;
+  padding: 40px;
+
+  &__title {
+    margin: 0 auto;
+    border: rgb(0, 0, 0) solid 1px;
+    width: 660px;
+    padding: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+  }
+
+  &__box {
+    margin: 0 auto;
+    height: 640px;
+    width: 660px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+  }
+
+  &__button {
+    padding: 10px;
+    width: 150px;
+    background-color: rgba(237, 196, 33, 0.79);
+    border: black solid 1px;
+    box-shadow: 1px 1px 10px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  &__button--disable:target {
+    transform: translateX(-100%);
+  }
+}
