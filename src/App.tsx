@@ -18,7 +18,7 @@ export class App extends Component {
 
   setRandomName = () => {
     this.setState({
-      clockName: (Math.floor(Math.random() * (100 - 0 + 1)) + 0),
+      clockName: (Math.floor(Math.random() * 100)),
     });
   };
 
@@ -38,6 +38,7 @@ export class App extends Component {
             className="button"
             type="button"
             onClick={this.showClock}
+            disabled={isClockVisible}
           >
             Show clock
           </button>
@@ -46,6 +47,7 @@ export class App extends Component {
             className="button"
             type="button"
             onClick={this.hideClock}
+            disabled={!isClockVisible}
           >
             Hide clock
           </button>
