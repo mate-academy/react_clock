@@ -1,1 +1,34 @@
-// styles go here
+.app {
+  margin: 0 auto;
+  width: 600px;
+  border: 1px solid #07f8f8;
+  background-color: #81c1da;
+
+  &__title {
+    text-align: center;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.button {
+  padding: 10px;
+  width: 150px;
+  cursor: pointer;
+  border: 3px solid #07f8f8;
+  border-radius: 10px;
+  background-color: #81c1da;
+
+  &:hover {
+    background-color: #a9def2;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #589ab2;
+  }
+}
