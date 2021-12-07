@@ -28,7 +28,7 @@ export class Clock extends React.Component<Props, State> {
 
     if (prevName !== newName) {
     // eslint-disable-next-line no-console
-      console.log(newName);
+      console.log(`The Clock was renamed from ${prevName} to ${newName}`);
     }
   }
 
@@ -42,11 +42,9 @@ export class Clock extends React.Component<Props, State> {
     const { currentTime } = this.state;
 
     return (
-      <>
-        <div className="clock">
-          <p className="clock__time">{currentTime}</p>
-        </div>
-      </>
+      <div className="clock">
+        <p className="clock__time">{currentTime}</p>
+      </div>
     );
   }
 }
