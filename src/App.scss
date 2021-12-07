@@ -1,1 +1,54 @@
-// styles go here
+.clocks {
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    position: absolute;
+    top: 350px;
+    width: 700px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 2em;
+    background-color: rgb(239, 248, 247);
+    box-shadow: 10px 8px 8px rgb(238, 226, 224);
+    text-align: center;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    color: rgb(40, 160, 216);
+    text-shadow: 1px 1px 2px rgb(63, 4, 60);
+  }
+
+  &__time {
+    color: rgb(40, 204, 149);
+    text-shadow: 1px 1px 2px rgb(141, 206, 226);
+    font-size: 30px;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__button {
+    width: 170px;
+
+    font-size: 20px;
+    color: rgb(12, 111, 129);
+    border: none;
+    border-radius: 2em;
+    box-shadow: 8px 5px 5px rgb(106, 213, 228);
+    text-shadow: 1px 1px 2px rgb(145, 218, 240);
+
+    transition: background-color 1s;
+  }
+
+  &__button:hover {
+    cursor: pointer;
+  }
+}
