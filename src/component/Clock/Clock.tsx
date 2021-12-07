@@ -45,6 +45,7 @@ export class Clock extends React.Component<Props, State> {
 
   render() {
     const { time } = this.state;
+
     return (
       <>
         {time}
