@@ -2,14 +2,14 @@ import { Component } from 'react';
 
 import './Clock.scss';
 
-type UserName = number | string;
+type ClockName = number | string;
 
 interface Props {
-  name: UserName;
+  name: ClockName;
 }
 
 interface State {
-  clockName: UserName;
+  clockName: ClockName;
   date: Date;
 }
 
@@ -32,7 +32,7 @@ export class Clock extends Component<Props, State> {
   componentDidUpdate(prevProps: Props, prevState: State) {
     this.state.clockName = this.props.name;
 
-    if (prevProps.name !== prevState.clockName) {
+    if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.log(`The Clock was renamed from ${prevProps.name}`
         + ` to ${prevState.clockName}`);
