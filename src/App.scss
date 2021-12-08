@@ -1,1 +1,52 @@
-// styles go here
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: rgb(209, 147, 96);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  margin: 100px auto;
+  background-color: rgb(150, 150, 150);
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: honeydew;
+  }
+
+  &__title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    margin: 20px;
+  }
+
+  &__button {
+    background-color: greenyellow;
+    margin: 5px;
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(219, 123, 44);
+      color: ivory;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: grey;
+      background-color: greenyellow;
+    }
+  }
+}
