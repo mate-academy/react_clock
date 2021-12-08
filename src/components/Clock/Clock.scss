@@ -1,0 +1,21 @@
+.clock {
+  font-size: 40px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+
+  &__name {
+    text-align: center;
+    font-style: italic;
+  }
+
+  &__time {
+    text-align: center;
+    font-size: 50px;
+    font-family: monospace;
+    background-color: ivory;
+    border-radius: 20px;
+
+    &:hover {
+      background-color: grey;
+    }
+  }
+}
