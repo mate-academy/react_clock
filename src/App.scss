@@ -1,1 +1,18 @@
-// styles go here
+.App {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+
+  &__button {
+    padding: 10px;
+    margin: 20px;
+    cursor: pointer;
+
+  }
+}
+
+.clock {
+
+  &__time {
+    font-size: 30px;
+  }
+}
