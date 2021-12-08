@@ -13,7 +13,12 @@ class App extends React.Component<{}, State> {
     nameOfClock: 'Time to approve my task',
   };
 
-  randomClockNames = ['Time to study JS', 'Time to relax', 'Time to study React', 'Time to think about where to celebrate the New Year'];
+  randomClockNames = [
+    'Time to study JS',
+    'Time to relax',
+    'Time to study React',
+    'Time to think about where to celebrate the New Year',
+  ];
 
   makeClockVisible = () => {
     this.setState({ clockVisible: true });
@@ -47,6 +52,7 @@ class App extends React.Component<{}, State> {
             className="App__button"
             type="button"
             onClick={this.makeClockVisible}
+            disabled={clockVisible}
           >
             Show Clock
           </button>
@@ -55,6 +61,7 @@ class App extends React.Component<{}, State> {
             className="App__button"
             type="button"
             onClick={this.changeName}
+            disabled={!clockVisible}
           >
             Rename Clock
           </button>
@@ -63,6 +70,7 @@ class App extends React.Component<{}, State> {
             className="App__button"
             type="button"
             onClick={this.makeClockHidden}
+            disabled={!clockVisible}
           >
             Hide Clock
           </button>

@@ -13,11 +13,15 @@ export class Clock extends React.Component<Props, State> {
     time: new Date().toLocaleTimeString(),
   };
 
-  timerId = setInterval(() => {
-    this.setState({ time: new Date().toLocaleTimeString() });
-    // eslint-disable-next-line no-console
-    console.log(this.state.time);
-  }, 1000);
+  timerId: NodeJS.Timer = setInterval(() => {}, 0);
+
+  componentDidMount() {
+    this.timerId = setInterval(() => {
+      this.setState({ time: new Date().toLocaleTimeString() });
+      // eslint-disable-next-line no-console
+      console.log(this.state.time);
+    }, 1000);
+  }
 
   componentWillUnmount() {
     clearInterval(this.timerId);
@@ -29,13 +33,9 @@ export class Clock extends React.Component<Props, State> {
 
     return (
       <div className="clock App__clock">
-        <h2 className="clock__name">
-          {name}
-        </h2>
+        <h2 className="clock__name">{name}</h2>
 
-        <div className="clock__time">
-          {`Current time: ${time}`}
-        </div>
+        <div className="clock__time">{`Current time: ${time}`}</div>
       </div>
     );
   }
