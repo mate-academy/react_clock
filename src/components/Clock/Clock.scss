@@ -1,0 +1,14 @@
+@import '../../utils/variables';
+
+.clock {
+  font-size: 1.2rem;
+  padding: 10px;
+
+  border: $clockBorder;
+  box-shadow: 6px -6px 8px 0 rgba(34, 60, 80, 0.2);
+  border-radius: 5px;
+
+  &__title {
+    font-size: 1.5rem;
+  }
+}

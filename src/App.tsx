@@ -1,24 +1,71 @@
-import React from 'react';
+import { Component } from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
+type State = {
+  clockName: string | number;
+  isClockVisible: boolean;
 };
 
-export default App;
+export class App extends Component<{}, State> {
+  state = {
+    clockName: 'Current time',
+    isClockVisible: true,
+  };
+
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
+  };
+
+  setRandomName = () => {
+    this.setState({
+      clockName: (Math.floor(Math.random() * 100)),
+    });
+  };
+
+  render() {
+    const { isClockVisible, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1 className="App__title">React clock</h1>
+
+        <div className="App__clock">
+          {isClockVisible && <Clock name={clockName} />}
+        </div>
+
+        <div className="buttonArea">
+          <button
+            className="button"
+            type="button"
+            onClick={this.showClock}
+            disabled={isClockVisible}
+          >
+            Show clock
+          </button>
+
+          <button
+            className="button"
+            type="button"
+            onClick={this.hideClock}
+            disabled={!isClockVisible}
+          >
+            Hide clock
+          </button>
+
+          <button
+            className="button"
+            type="button"
+            onClick={this.setRandomName}
+          >
+            Set random name
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
