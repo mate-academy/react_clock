@@ -1,1 +1,40 @@
-// styles go here
+@import "./utils/variables";
+@import "./utils/reset";
+
+html {
+  font-family: sans-serif;
+}
+
+.App {
+  width: 500px;
+  margin: 100px auto;
+  background-color: $c-black;
+  text-align: center;
+
+  &__title {
+    padding: $padding;
+    background-color: $c-white;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: $padding;
+  }
+
+  &__button {
+    padding: $padding;
+    border: 1px solid $c-black;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: rgb(173, 180, 178);
+      color: $c-white;
+    }
+  }
+
+  &__clock {
+    padding: 10px;
+    background-color: $c-white;
+  }
+}
