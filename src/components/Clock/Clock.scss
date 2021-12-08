@@ -1,0 +1,16 @@
+.clock {
+  margin-bottom: 40px;
+  height: 460px;
+  width: 460px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: rgba(237, 196, 33, 0.79) double 15px;
+  border-radius: 50%;
+  box-shadow: inset 185px 10px 0 15px rgba(0, 0, 0, 0.18);
+
+  &__name {
+    width: 160px;
+    text-align: center;
+  }
+}
