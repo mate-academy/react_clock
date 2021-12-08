@@ -1,5 +1,3 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
-import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 

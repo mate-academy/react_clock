@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.scss';
 
 import { Clock } from './components/Clock/Clock';
@@ -8,16 +8,11 @@ type State = {
   clockName: string | number,
 };
 
-class App extends Component<{}, State> {
+class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
     clockName: 'Magic clock',
   };
-
-  componentDidUpdate(_prevState: {}, prevProps: State) {
-    // eslint-disable-next-line
-    console.log(`The Clock was renamed from ${prevProps.clockName} to ${this.state.clockName}`);
-  }
 
   getChangedFalse = () => {
     this.setState({ isClockVisible: false });
@@ -31,8 +26,6 @@ class App extends Component<{}, State> {
     const newName = Math.floor(Math.random() * 100);
 
     this.setState({ clockName: newName });
-    // eslint-disable-next-line
-    console.log(this.state.clockName)
   };
 
   render() {
@@ -46,13 +39,27 @@ class App extends Component<{}, State> {
             <Clock name={clockName} />
           )}
           <div className="app__buttons">
-            <button className="app__button" type="button" onClick={this.getChangedTrue}>
+            <button
+              className="app__button"
+              disabled={isClockVisible}
+              type="button"
+              onClick={this.getChangedTrue}
+            >
               Show clock
             </button>
-            <button className="app__button app__button--disable" type="button" onClick={this.getChangedFalse}>
+            <button
+              className="app__button"
+              disabled={!isClockVisible}
+              type="button"
+              onClick={this.getChangedFalse}
+            >
               Hide clock
             </button>
-            <button className="app__button" type="button" onClick={this.getRandomName}>
+            <button
+              className="app__button"
+              type="button"
+              onClick={this.getRandomName}
+            >
               Set random name
             </button>
           </div>
