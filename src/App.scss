@@ -1,1 +1,50 @@
-// styles go here
+html {
+  font-family: Open Sans, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: whitesmoke;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.clock {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 20px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+  }
+
+  &__time {
+    font-size: 100px;
+  }
+
+  &__button-wrapper {
+    display: flex;
+    gap: 20px;
+  }
+}
+
+button {
+  padding: 16px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+
+  background-color: #fff;
+
+  cursor: pointer;
+}
