@@ -4,14 +4,26 @@ import { Clock } from './Components/Clock';
 import './App.scss';
 
 type State = {
-  isClockVisible: boolean,
-  clockName: number,
+  isClockVisible: boolean;
+  clockName: number;
 };
 
 class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
     clockName: 0,
+  };
+
+  clockVisibilityHandler = (isVisivle: boolean): void => {
+    this.setState({ isClockVisible: isVisivle });
+  };
+
+  createRandomName = () => {
+    if (this.state.isClockVisible) {
+      this.setState({
+        clockName: Math.round(Math.random() * 1000),
+      });
+    }
   };
 
   render() {
@@ -26,36 +38,30 @@ class App extends React.Component<{}, State> {
         <button
           className="App__button"
           type="button"
-          onClick={() => {
-            this.setState({ isClockVisible: true });
-          }}
+          onClick={() => this.clockVisibilityHandler(true)}
         >
           Show
         </button>
 
-        <button
-          className="App__button"
-          type="button"
-          onClick={() => {
-            this.setState({ isClockVisible: false });
-          }}
-        >
-          Hide
-        </button>
+        {isClockVisible && (
+          <button
+            className="App__button"
+            type="button"
+            onClick={() => this.clockVisibilityHandler(false)}
+          >
+            Hide
+          </button>
+        )}
 
-        <button
-          className="App__button"
-          type="button"
-          onClick={() => {
-            if (isClockVisible) {
-              this.setState({
-                clockName: Math.round(Math.random() * 1000),
-              });
-            }
-          }}
-        >
-          Set random name
-        </button>
+        {isClockVisible && (
+          <button
+            className="App__button"
+            type="button"
+            onClick={() => this.createRandomName()}
+          >
+            Set random name
+          </button>
+        )}
       </div>
     );
   }
