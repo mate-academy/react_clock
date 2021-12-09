@@ -1,0 +1,50 @@
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  border-radius: 20px;
+  background-color: #f4f4f4;
+
+  &__title {
+    color: #726997;
+  }
+
+  &__body {
+    font-size: 60px;
+  }
+
+  &__name {
+    font-weight: 700;
+    color: #726997;
+    margin-bottom: 10px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+  }
+
+  &__button {
+    background-color: #7131ff;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #9b67e6;
+    }
+
+    &:active {
+      background-color: #ff4b59;
+    }
+  }
+}
