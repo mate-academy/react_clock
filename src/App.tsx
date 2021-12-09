@@ -43,6 +43,7 @@ class App extends React.Component {
           <div className="App__buttons">
             <button
               type="button"
+              disabled={this.state.isClockVisible}
               onClick={this.showClock}
               className="App__button"
             >
@@ -50,6 +51,7 @@ class App extends React.Component {
             </button>
             <button
               type="button"
+              disabled={!this.state.isClockVisible}
               onClick={this.hideClock}
               className="App__button"
             >
@@ -57,6 +59,7 @@ class App extends React.Component {
             </button>
             <button
               type="button"
+              disabled={!this.state.isClockVisible}
               onClick={this.renameClock}
               className="App__button"
             >

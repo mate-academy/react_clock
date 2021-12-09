@@ -34,5 +34,10 @@ h2 {
     &:last-child {
       margin-right: 0;
     }
+
+    &:disabled {
+      opacity: 0.2;
+      cursor: auto;
+    }
   }
 }
