@@ -17,28 +17,17 @@ export class Clock extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    let { name }: Props = this.props;
-
     this.timerId = setInterval(() => {
-      const newName = this.props.name;
-
-      if (name !== newName) {
-        console.log(`The Clock was renamed from ${name} to ${newName}`);
-        name = newName;
-      }
-
       console.log(this.state.time);
       this.setState({ time: new Date().toLocaleTimeString() });
     }, 1000);
   }
 
-  // it could also be implemented in this way:
-  //
-  // componentDidUpdate({ name } : Props) {
-  //   if (name !== this.props.name) {
-  //     console.log(`The Clock was renamed from ${name} to ${this.props.name}`);
-  //   }
-  // }
+  componentDidUpdate({ name } : Props) {
+    if (name !== this.props.name) {
+      console.log(`The Clock was renamed from ${name} to ${this.props.name}`);
+    }
+  }
 
   componentWillUnmount() {
     console.log(`the time was hidden at ${this.state.time}`);
