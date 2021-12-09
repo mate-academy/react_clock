@@ -1,1 +1,52 @@
-// styles go here
+@import "./normalized.scss";
+
+body {
+  background-color: #626367;
+  color: #626367;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 800px;
+  height: 400px;
+  margin: 100px auto;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+
+  &__title {
+    padding: 20px;
+    font-size: 56px;
+    color: #a5acbd;
+  }
+
+  &__button {
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    border: 1px solid #ebebeb;
+
+    background-color: #fff;
+    color: #0d6b6f;
+    box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.1);
+
+    font-family: inherit;
+
+    cursor: pointer;
+    
+    &--show {
+      color: #839d83;
+    }
+
+    &--hide {
+      color: #cf3f34;
+    }
+
+    &:hover {
+      border-color: #a5acbd;
+    }
+  }
+}
