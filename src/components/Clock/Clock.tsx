@@ -38,12 +38,6 @@ export class Clock extends React.Component<Props, State> {
     clearInterval(this.timerId);
   }
 
-  updateCurrentTime() {
-    this.setState({
-      currentTime: new Date().toLocaleTimeString(),
-    });
-  }
-
   render() {
     const { currentTime } = this.state;
     const { clockName } = this.props;
