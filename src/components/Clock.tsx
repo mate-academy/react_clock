@@ -32,7 +32,7 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
-  // I know about this function
+  // it could also be implemented in this way:
   //
   // componentDidUpdate({ name } : Props) {
   //   if (name !== this.props.name) {
