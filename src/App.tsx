@@ -35,19 +35,17 @@ export class App extends React.Component<{}, State> {
         <button
           type="button"
           onClick={this.hideClock}
+          disabled={!isClockVisible}
         >
           Hide Clock
         </button>
-        {' '}
-
         <button
           type="button"
           onClick={this.showClock}
+          disabled={isClockVisible}
         >
           Show Clock
         </button>
-        {' '}
-
         <button
           type="button"
           onClick={this.renameClock}
