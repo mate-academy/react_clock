@@ -1,1 +1,149 @@
-// styles go here
+body,
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Corinthia', cursive;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  padding: 30px;
+  height: 100vh;
+
+  background-image: url(./newYear.jpg);
+  background-size:cover ;
+  background-repeat: no-repeat;
+
+  &__title {
+    color: white;
+    font-size: 100px;
+    letter-spacing: 6px;
+    text-shadow: 5px 5px 30px white;
+
+    @media (min-width:1700px) {
+      font-size: 150px;
+    }
+
+    @media (max-width:1000px) {
+      font-size: 75px;
+    }
+
+    @media (max-width:800px) {
+      font-size: 50px;
+    }
+
+    @media (max-width:600px) {
+      text-align: center;
+    }
+  }
+
+  &__clock {
+    color: white;
+    font-size: 150px;
+    letter-spacing: 20px;
+    text-shadow: 0 0 20px white;
+
+    @media (min-width:1700px) {
+      font-size: 250px;
+    }
+
+    @media (max-width:600px) {
+      font-size: 120px;
+    }
+
+    @media (max-width:500px) {
+      font-size: 80px;
+    }
+
+    @media (max-width:400px) {
+      font-size: 55px;
+    }
+  }
+
+  &__buttons {
+    position: relative;
+    display: flex;
+    gap: 25px;
+
+    transform: translatey(20px);
+  }
+
+  &__button {
+    width: 120px;
+    height: 120px;
+    font-weight: bold;
+    border-radius: 50%;
+
+    @media (min-width:1700px) {
+      width: 180px;
+      height: 180px;
+      font-size: 20px;
+    }
+
+    @media (max-width:1000px) {
+      width: 100px;
+      height: 100px;
+    }
+
+    @media (max-width:550px) {
+      width: 90px;
+      height: 90px;
+    }
+
+    @media (max-width:450px) {
+      width: 80px;
+      height: 80px;
+      border: 1px solid;
+    }
+
+    &:nth-child(1) {
+      color: #b31217;
+      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      box-shadow: 0 0 12px #83a4d4;
+      border-color:#b73438;
+
+      &:active {
+        box-shadow: 0 0 50px #f6f6f6;
+      }
+    }
+
+    &:nth-child(2) {
+      color: #176095;
+      background: linear-gradient(to right, #d3cce3, #e9e4f0);
+      box-shadow: 0 0 12px #d3cce3;
+      border-color:#176095;
+
+      &:active {
+        box-shadow: 0 0 50px #195cce;
+      }
+    }
+
+    &:nth-child(3) {
+      color: #e2e4e4;
+      background: linear-gradient(to right, #870000, #b31217);
+      box-shadow: 0 0 12px #890b0f;
+      border-color:#95a3b7;
+
+      &:active {
+        box-shadow: 0 0 50px #ff0000;
+      }
+
+      @media (max-width:550px) {
+        position:absolute;
+        bottom: -105%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}
