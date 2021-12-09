@@ -32,6 +32,14 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
+  // I know about this function
+  //
+  // componentDidUpdate({ name } : Props) {
+  //   if (name !== this.props.name) {
+  //     console.log(`The Clock was renamed from ${name} to ${this.props.name}`);
+  //   }
+  // }
+
   componentWillUnmount() {
     console.log(`the time was hidden at ${this.state.time}`);
     if (this.timerId) {
