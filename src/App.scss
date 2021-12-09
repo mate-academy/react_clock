@@ -1,1 +1,51 @@
-// styles go here
+@import url("https://fonts.googleapis.com/css2?family=Barlow&display=swap");
+
+body {
+  font-family: "Barlow", sans-serif;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+
+  background: linear-gradient(to left, #4b79a1, #283e51);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card {
+  margin: 10px auto;
+  padding: 20px;
+
+  max-width: 800px;
+
+  border-radius: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+  background: white;
+
+  transition: transform 0.3s;
+}
+
+.clock {
+  font-size: 35px;
+
+  text-align: center;
+
+  margin-bottom: 20px;
+}
+
+button {
+  font-family: "Barlow", sans-serif;
+
+  min-width: 130px;
+
+  padding: 10px;
+  margin: 0 5px;
+}
+
+button:last-child {
+  display: block;
+  margin: 10px auto 0;
+}
