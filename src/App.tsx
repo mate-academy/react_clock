@@ -8,6 +8,14 @@ export default class App extends React.Component {
     isClockVisible: true,
   };
 
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
+  };
+
   render() {
     return (
       <div className="App">
@@ -15,14 +23,14 @@ export default class App extends React.Component {
         <button
           type="button"
           className="App__button"
-          onClick={() => this.setState({ isClockVisible: true })}
+          onClick={this.showClock}
         >
           Show clock
         </button>
         <button
           type="button"
           className="App__button"
-          onClick={() => this.setState({ isClockVisible: false })}
+          onClick={this.hideClock}
         >
           Hide clock
         </button>
