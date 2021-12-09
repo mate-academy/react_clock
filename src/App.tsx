@@ -18,6 +18,7 @@ export default class App extends React.Component {
 
   render() {
     const { isClockVisible } = this.state;
+
     return (
       <div className="App">
         <h1 className="App__title">React clock</h1>
