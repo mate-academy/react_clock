@@ -14,6 +14,8 @@ export class Clock extends React.Component {
   componentDidUpdate() {
     setTimeout(() => {
       this.setState({ currentTime: new Date().toLocaleTimeString() });
+      // eslint-disable-next-line
+      console.log(this.state.currentTime);
     }, 1000);
   }
 
