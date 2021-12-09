@@ -5,34 +5,26 @@ type State = {
 };
 
 export class Clock extends React.Component<{}, State> {
+  timerId: NodeJS.Timer | null = null;
+
   state = {
-    currentTime: null,
+    currentTime: new Date().toLocaleTimeString(),
   };
 
   componentDidMount() {
-    this.setState({ currentTime: new Date().toLocaleTimeString() });
-  }
-
-  componentDidUpdate() {
-    setInterval(() => {
+    this.timerId = setInterval(() => {
       this.setState({ currentTime: new Date().toLocaleTimeString() });
+      // eslint-disable-next-line no-console
+      console.log(this.state.currentTime);
     }, 1000);
   }
 
-  // componentWillUnmount() {
-  //   this.setState({
-  //     clear
-  //   });
-  // }
+  componentWillUnmount() {
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
+  }
 
-  // timerId: NodeJS.Timer = setInterval(() => {
-  //   const date: Date = new Date();
-
-  //   // eslint-disable-next-line
-  //   console.log(date.toLocaleTimeString());
-
-  //   return date.toLocaleTimeString();
-  // }, 1000);
   render() {
     return (
       <>
