@@ -83,8 +83,12 @@ html {
     height: 120px;
     font-weight: bold;
     border-radius: 50%;
+    font-size: 26px;
+    font-family: "Corinthia",cursive;
+    font-weight: 700;
 
     @media (min-width:1700px) {
+      font-size: 36px;
       width: 180px;
       height: 180px;
       font-size: 20px;
@@ -98,6 +102,7 @@ html {
     @media (max-width:550px) {
       width: 90px;
       height: 90px;
+      font-size: 18px;
     }
 
     @media (max-width:450px) {
