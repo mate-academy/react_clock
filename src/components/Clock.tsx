@@ -19,6 +19,12 @@ export class Clock extends React.Component<{}, State> {
     }, 1000);
   }
 
+  // componentWillUnmount() {
+  //   this.setState({
+  //     clear
+  //   });
+  // }
+
   // timerId: NodeJS.Timer = setInterval(() => {
   //   const date: Date = new Date();
 
