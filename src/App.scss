@@ -1,1 +1,72 @@
-// styles go here
+$primary-color: rgb(93, 204, 152);
+$secondary-color: rgb(238, 242, 245);
+$disabled-color: rgb(217, 248, 233);
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+  font-size: 24px;
+}
+
+body {
+  margin: 0;
+}
+
+.App {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: $primary-color;
+
+  &__title {
+    color: $secondary-color;
+  }
+
+  &__clock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    border-radius: 5px;
+    height: 200px;
+    width: 300px;
+    background-color: $secondary-color;
+    color: $primary-color;
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  &__btn {
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    color: $primary-color;
+    border-radius: 5px;
+    border: 0;
+    transition: transform 0.3s, letter-spacing 0.3s;
+
+    &:disabled {
+      color: $disabled-color;
+    }
+
+    &:hover {
+      cursor: pointer;
+      letter-spacing: 1px;
+      transform: scale(1.1)
+    }
+  }
+
+}
