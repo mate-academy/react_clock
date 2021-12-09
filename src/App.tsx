@@ -15,11 +15,23 @@ class App extends React.Component<Props, State> {
     clockName: Math.floor(Math.random() * 100),
   };
 
-  showClock = () => this.setState({ isClockVisible: true });
+  showClock = () => {
+    this.setState({
+      isClockVisible: true,
+    });
+  };
 
-  hideClock = () => this.setState({ isClockVisible: false });
+  hideClock = () => {
+    this.setState({
+      isClockVisible: false,
+    });
+  };
 
-  renameClock = () => this.setState({ clockName: Math.floor(Math.random() * 100) });
+  renameClock = () => {
+    this.setState({
+      clockName: Math.floor(Math.random() * 100),
+    });
+  };
 
   render() {
     const { isClockVisible, clockName } = this.state;
@@ -31,13 +43,27 @@ class App extends React.Component<Props, State> {
         {isClockVisible && <Clock clockName={clockName} />}
 
         <div className="buttons">
-          <button className="buttons__btn" type="button" onClick={this.showClock}>
+          <button
+            className="buttons__btn"
+            type="button"
+            disabled={isClockVisible}
+            onClick={this.showClock}
+          >
             Show Clock
           </button>
-          <button className="buttons__btn" type="button" onClick={this.hideClock}>
+          <button
+            className="buttons__btn"
+            type="button"
+            disabled={!isClockVisible}
+            onClick={this.hideClock}
+          >
             Hide Clock
           </button>
-          <button className="buttons__btn" type="button" onClick={this.renameClock}>
+          <button
+            className="buttons__btn"
+            type="button"
+            onClick={this.renameClock}
+          >
             Rename Clock
           </button>
         </div>
