@@ -1,1 +1,15 @@
-// styles go here
+h1 {
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+
+  &__btn {
+    margin-right: 5px;
+    padding: 5px;
+    width: 100px;
+  }
+}
