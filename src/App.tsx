@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.scss';
 
-import { Clock } from './components/Clock';
+import { Clock } from './components/Clock/Clock';
 
 interface State {
   isClockVisible: boolean;
+  clockName: number;
 }
 
 export class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
+    clockName: Math.round(Math.random() * 1000),
   };
 
   showClock = () => {
@@ -18,6 +20,10 @@ export class App extends React.Component<{}, State> {
 
   hideClock = () => {
     this.setState({ isClockVisible: false });
+  };
+
+  renameClock = () => {
+    this.setState({ clockName: Math.round(Math.random() * 1000) });
   };
 
   render() {
@@ -33,13 +39,22 @@ export class App extends React.Component<{}, State> {
           Hide Clock
         </button>
         {' '}
+
         <button
           type="button"
           onClick={this.showClock}
         >
           Show Clock
         </button>
-        {isClockVisible && <Clock />}
+        {' '}
+
+        <button
+          type="button"
+          onClick={this.renameClock}
+        >
+          Set random name
+        </button>
+        {isClockVisible && <Clock clockName={this.state.clockName} />}
       </div>
     );
   }

@@ -4,7 +4,11 @@ interface State {
   time: Date;
 }
 
-export class Clock extends React.Component<{}, State> {
+interface Props {
+  clockName: number
+}
+
+export class Clock extends React.Component<Props> {
   timerId?: NodeJS.Timer;
 
   state:State = {
@@ -14,7 +18,18 @@ export class Clock extends React.Component<{}, State> {
   componentDidMount() {
     this.timerId = setInterval(() => {
       this.setState({ time: new Date() });
+      // eslint-disable-next-line no-console
+      console.log(this.state.time.toLocaleTimeString());
     }, 1000);
+  }
+
+  componentDidUpdate({ clockName: oldName }: Props) {
+    const { clockName: newName } = this.props;
+
+    if (newName !== oldName) {
+      // eslint-disable-next-line
+      console.log(`Clock  now is  ${newName}`);
+    }
   }
 
   componentWillUnmount() {
