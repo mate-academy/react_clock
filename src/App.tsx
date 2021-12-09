@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { Clock } from './components/Clock';
+import { Clock } from './components/Clock/Clock';
 
 type State = {
   clockName: number;
@@ -37,16 +37,34 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <div className="clock clock__wrapper">
-          <div className="clock__time">{isClockVisible && <Clock clockName={clockName} />}</div>
-          <div className="clock__title-false">{isClockVisible || 'Show me the watch 😠'}</div>
+          <div className="clock__time">
+            {isClockVisible && <Clock clockName={clockName} />}
+          </div>
+          <div className="clock__title-false">
+            {isClockVisible || 'Show me the watch 😠'}
+          </div>
           <div className="clock__button-wrapper">
-            <button type="button" className="clock__button" disabled={isClockVisible} onClick={this.showClock}>
+            <button
+              type="button"
+              className="clock__button"
+              disabled={isClockVisible}
+              onClick={this.showClock}
+            >
               Show Clock
             </button>
-            <button type="button" className="clock__button" disabled={!isClockVisible} onClick={this.hideClock}>
+            <button
+              type="button"
+              className="clock__button"
+              disabled={!isClockVisible}
+              onClick={this.hideClock}
+            >
               Hide Clock
             </button>
-            <button type="button" className="clock__button" onClick={this.renameClock}>
+            <button
+              type="button"
+              className="clock__button"
+              onClick={this.renameClock}
+            >
               Set Random Name
             </button>
           </div>
