@@ -6,13 +6,12 @@
     padding: 10px;
     margin: 20px;
     cursor: pointer;
-
   }
 }
 
 .clock {
-
   &__time {
     font-size: 30px;
+    font-weight: bold;
   }
 }
