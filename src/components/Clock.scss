@@ -1,0 +1,22 @@
+.Clock {
+  padding: 10px;
+
+  font-size: 80px;
+  text-align: center;
+  color:#f5f5f5;
+  text-shadow:0px 0px 3px #000;-webkit-animation:color 1s infinite;animation:color 7s infinite;
+
+  &__name {
+    font-size: 40px;
+    color: #fff;
+  }
+}
+
+@keyframes color{
+  0%{color:#f5f5f5;text-shadow:0px 0px 3px #000;}
+  50%{color:#8343cc;text-shadow:0px 0px 3px #7700ff;}
+}
+@-webkit-keyframes color{
+  0%{color:#29ff94;text-shadow:0px 0px 3px #000;}
+  50%{color:#7acc43;text-shadow:0px 0px 3px #93169e;}
+}
