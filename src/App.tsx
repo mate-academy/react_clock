@@ -43,9 +43,7 @@ class App extends React.Component<{}, State> {
             Current time:
           </h3>
 
-          <div className="time">
-            { this.state.isClockVisible && <Clock name={this.state.clockName} /> }
-          </div>
+          { this.state.isClockVisible && <Clock name={this.state.clockName} /> }
 
           <button
             className="button"
