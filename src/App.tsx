@@ -34,34 +34,41 @@ class App extends React.Component<{}, State> {
 
     return (
       <div className="App">
-        <h1>React clock</h1>
-        <p>
-          Current time:
-          {' '}
-          {visibility && (
-            <Clock clockName={clockName} />
-          )}
-        </p>
-        <button
-          type="button"
-          onClick={this.showClock}
-          disabled={visibility}
-        >
-          Show Clock
-        </button>
-        <button
-          type="button"
-          onClick={this.hideClock}
-          disabled={!visibility}
-        >
-          Hide Clock
-        </button>
-        <button
-          type="button"
-          onClick={this.changeName}
-        >
-          Random Name
-        </button>
+        <div className="App__container">
+          <h1 className="App__title">React clock</h1>
+          <p className="App_clock">
+            Random name:
+            {' '}
+            {visibility && (
+              <Clock clockName={clockName} />
+            )}
+          </p>
+          <div className="App__buttons">
+            <button
+              type="button"
+              onClick={this.showClock}
+              disabled={visibility}
+              className="App__button"
+            >
+              Show Clock
+            </button>
+            <button
+              type="button"
+              onClick={this.hideClock}
+              disabled={!visibility}
+              className="App__button"
+            >
+              Hide Clock
+            </button>
+            <button
+              type="button"
+              onClick={this.changeName}
+              className="App__button"
+            >
+              Random Name
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

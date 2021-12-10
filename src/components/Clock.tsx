@@ -1,4 +1,5 @@
 import React from 'react';
+import './Clock.scss';
 
 type State = {
   time: string;
@@ -41,9 +42,9 @@ export class Clock extends React.Component<Props, State> {
     const { clockName } = this.props;
 
     return (
-      <div>
-        <div>{clockName}</div>
-        <div>{time}</div>
+      <div className="Clock">
+        <div className="Clock__name">{clockName}</div>
+        <div className="Clock__time">{time}</div>
       </div>
     );
   }
