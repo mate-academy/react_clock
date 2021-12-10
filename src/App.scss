@@ -1,1 +1,20 @@
-// styles go here
+.App {
+  text-align: center;
+
+  &__button {
+    padding: 12px;
+    margin: 16px;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1) ;
+    }
+  }
+}
+
+.clock {
+  &__time {
+    font-size: 28px;
+    font-weight: bold;
+  }
+}
