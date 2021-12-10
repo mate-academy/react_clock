@@ -11,18 +11,20 @@ type Props = {
 };
 
 export class Clock extends React.Component<Props, State> {
+  timerId: NodeJS.Timer | null = null;
+
   state = {
     currentTime: null,
   };
 
-  timerId: NodeJS.Timer = setInterval(() => {
-    this.setState({ currentTime: new Date().toLocaleTimeString() });
-    // eslint-disable-next-line
-    console.log(this.state.currentTime);
-  }, 1000);
-
   componentDidMount() {
     this.setState({ currentTime: new Date().toLocaleTimeString() });
+
+    this.timerId = setInterval(() => {
+      this.setState({ currentTime: new Date().toLocaleTimeString() });
+      // eslint-disable-next-line
+      console.log(this.state.currentTime);
+    }, 1000);
   }
 
   componentDidUpdate({ nameId: prevNameId }: Props) {
@@ -35,7 +37,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {

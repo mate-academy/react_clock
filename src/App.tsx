@@ -15,8 +15,8 @@ export const names = [
   'Happy New Year',
   'Merry Christmas',
   'Christmas is in the Air',
-  'O Christmas Tree',
-  'Good luck',
+  'Christmas Tree',
+  'Good luck to You',
   'Christmas is Coming',
   'Ding dong',
   'Santa’s Little Helper',
@@ -29,16 +29,12 @@ export class App extends React.Component<{}, State> {
     nameId: 0,
   };
 
-  hideClock = () => {
-    this.setState({ isClockVisible: false });
-  };
-
-  showClock = () => {
-    this.setState({ isClockVisible: true });
+  toggleClock = () => {
+    this.setState(prevState => ({ isClockVisible: !prevState.isClockVisible }));
   };
 
   changeName = () => {
-    const randomizer = Math.ceil(Math.random() * 10);
+    const randomizer = Math.floor(Math.random() * names.length);
 
     this.setState({ nameId: randomizer });
   };
@@ -49,15 +45,10 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="app">
         <h1 className="app__title">
-          {
-            nameId
-              ? names[nameId]
-              : 'Christmas Clock'
-          }
+          {names[nameId]}
         </h1>
         {
-          isClockVisible
-          && (
+          isClockVisible && (
             <p className="app__clock">
               <Clock nameId={this.state.nameId} />
             </p>
@@ -68,7 +59,7 @@ export class App extends React.Component<{}, State> {
             className="app__button"
             type="button"
             disabled={!isClockVisible}
-            onClick={this.hideClock}
+            onClick={this.toggleClock}
           >
             Hide Clock
           </button>
@@ -77,7 +68,7 @@ export class App extends React.Component<{}, State> {
             className="app__button"
             type="button"
             disabled={isClockVisible}
-            onClick={this.showClock}
+            onClick={this.toggleClock}
           >
             Show Clock
           </button>
@@ -90,7 +81,6 @@ export class App extends React.Component<{}, State> {
             Magic Button
           </button>
         </div>
-
       </div>
     );
   }
