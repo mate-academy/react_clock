@@ -3,18 +3,19 @@ import './App.scss';
 
 import Clock from './Clock';
 
-class App extends React.Component {
+type State = {
+  isClockVisible: boolean,
+  clockName: number,
+};
+
+class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
     clockName: Math.trunc(Math.random() * 1000),
   };
 
-  showClock = () => {
-    this.setState({ isClockVisible: true });
-  };
-
-  hideClock = () => {
-    this.setState({ isClockVisible: false });
+  changeVisibility = () => {
+    this.setState(prevState => ({ isClockVisible: !prevState.isClockVisible }));
   };
 
   changeName = () => {
@@ -28,11 +29,11 @@ class App extends React.Component {
       <div className="card">
         {isClockVisible && <Clock name={clockName} />}
 
-        <button type="button" disabled={isClockVisible} onClick={this.showClock}>
+        <button type="button" disabled={isClockVisible} onClick={this.changeVisibility}>
           Show Clock
         </button>
 
-        <button type="button" disabled={!isClockVisible} onClick={this.hideClock}>
+        <button type="button" disabled={!isClockVisible} onClick={this.changeVisibility}>
           Hide Clock
         </button>
 
