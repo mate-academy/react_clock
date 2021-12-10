@@ -87,7 +87,7 @@ export class App extends React.Component<{}, State> {
             type="button"
             onClick={this.changeName}
           >
-            Secret Button
+            Magic Button
           </button>
         </div>
 
