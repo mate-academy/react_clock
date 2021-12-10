@@ -1,24 +1,48 @@
 import React from 'react';
 import './App.scss';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+import Clock from './Clock';
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
+type State = {
+  isClockVisible: boolean,
+  clockName: number,
 };
+
+class App extends React.Component<{}, State> {
+  state = {
+    isClockVisible: true,
+    clockName: Math.trunc(Math.random() * 1000),
+  };
+
+  changeVisibility = () => {
+    this.setState(prevState => ({ isClockVisible: !prevState.isClockVisible }));
+  };
+
+  changeName = () => {
+    this.setState({ clockName: Math.trunc(Math.random() * 1000) });
+  };
+
+  render() {
+    const { isClockVisible, clockName } = this.state;
+
+    return (
+      <div className="card">
+        {isClockVisible && <Clock name={clockName} />}
+
+        <button type="button" disabled={isClockVisible} onClick={this.changeVisibility}>
+          Show Clock
+        </button>
+
+        <button type="button" disabled={!isClockVisible} onClick={this.changeVisibility}>
+          Hide Clock
+        </button>
+
+        <button type="button" onClick={this.changeName}>
+          Set random name
+        </button>
+      </div>
+    );
+  }
+}
 
 export default App;
