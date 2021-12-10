@@ -4,20 +4,20 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 type State = {
-  isClock: boolean;
+  isClockVisible: boolean;
 };
 
 class App extends React.Component<{}, State> {
   state: State = {
-    isClock: true,
+    isClockVisible: true,
   };
 
   isClockSet(isVisible: boolean): void {
-    this.setState({ isClock: isVisible });
+    this.setState({ isClockVisible: isVisible });
   }
 
   render() {
-    const { isClock } = this.state;
+    const { isClockVisible } = this.state;
 
     return (
       <div className="App">
@@ -27,6 +27,7 @@ class App extends React.Component<{}, State> {
           className="App__button"
           type="button"
           onClick={() => this.isClockSet(true)}
+          disabled={isClockVisible}
         >
           Show Clock
         </button>
@@ -35,11 +36,12 @@ class App extends React.Component<{}, State> {
           className="App__button"
           type="button"
           onClick={() => this.isClockSet(false)}
+          disabled={!isClockVisible}
         >
           Hide Clock
         </button>
 
-        {isClock && (
+        {isClockVisible && (
           <div>
             Current time:
             {' '}
