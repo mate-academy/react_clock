@@ -15,13 +15,13 @@ class App extends React.Component<Props, State> {
     clockName: Math.floor(Math.random() * 100),
   };
 
-  visibleClock = () => {
+  makeClockVisible = () => {
     this.setState({
       isClockVisible: true,
     });
   };
 
-  hiddenClock = () => {
+  makeClockHidden = () => {
     this.setState({
       isClockVisible: false,
     });
@@ -48,7 +48,7 @@ class App extends React.Component<Props, State> {
             className="buttons__button"
             type="button"
             disabled={isClockVisible}
-            onClick={this.visibleClock}
+            onClick={this.makeClockVisible}
           >
             Show Clock
           </button>
@@ -56,8 +56,8 @@ class App extends React.Component<Props, State> {
           <button
             className="buttons__button"
             type="button"
-            disabled={isClockVisible === false}
-            onClick={this.hiddenClock}
+            disabled={!isClockVisible}
+            onClick={this.makeClockHidden}
           >
             Hide Clock
           </button>

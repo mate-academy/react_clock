@@ -25,8 +25,8 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(prev: Props) {
-    const { name } = prev;
+  componentDidUpdate(prevProps: Props) {
+    const { name } = prevProps;
 
     if (name !== this.props.name) {
       // eslint-disable-next-line
@@ -45,8 +45,7 @@ export class Clock extends React.Component<Props, State> {
 
     return (
       <div className="clock__time">
-        {'Current time: '}
-        {date.toLocaleTimeString()}
+        {`Current time: ${date.toLocaleTimeString()}`}
       </div>
     );
   }
