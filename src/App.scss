@@ -1,1 +1,48 @@
-// styles go here
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;1,500&family=Josefin+Sans:wght@400;600&family=Kanit:wght@300;400;700&display=swap");
+
+html {
+  font-family: "Kanit", sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+  width: 60%;
+
+  &__title {
+    font-size: 40px;
+  }
+  
+  &__new-name {
+    font-size: 20px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+    &__button {
+      padding: 12px;
+      width: 160px;
+      cursor: pointer;
+      
+      background-color: khaki;
+      border-radius: 8px;
+    
+      &:hover {
+        background-color: rgb(55, 165, 88);
+        border: khaki;
+        color: khaki;
+      }
+    
+      &:disabled {
+        background-color: #b8b8b8;
+        color: whitesmoke;
+        cursor: none;
+      }
+    }
+  }
+}
