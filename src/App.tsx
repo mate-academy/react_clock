@@ -1,24 +1,84 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+class App extends React.Component {
+  state = {
+    timerId: undefined,
+    currentTime: new Date().toLocaleTimeString(),
+    isClockVisible: true,
+  };
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  componentDidMount() {
+    const id = setInterval(() => {
+      const time = new Date().toLocaleTimeString();
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+      // eslint-disable-next-line
+      console.log(time);
+
+      this.setState({
+        timerId: id,
+        currentTime: time,
+      });
+    }, 1000);
+  }
+
+  componentDidUpdate() {
+    if (this.state.isClockVisible && !this.state.timerId) {
+      const id = setInterval(() => {
+        const time = new Date().toLocaleTimeString();
+
+        // eslint-disable-next-line
+        console.log(time);
+
+        this.setState({
+          timerId: id,
+          currentTime: time,
+        });
+      }, 1000);
+    }
+  }
+
+  render(): React.ReactNode {
+    const {
+      currentTime,
+    } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {this.state.isClockVisible
+        && (
+          <Clock
+            time={currentTime}
+            id={this.state.timerId}
+          />
+        )}
+
+        <div className="app-buttons">
+          <button
+            type="button"
+            onClick={() => this.setState({ isClockVisible: true })}
+            className="app-buttons__show-clock"
+          >
+            Show Clock
+          </button>
+
+          <button
+            type="button"
+            onClick={() => this.setState({
+              isClockVisible: false,
+              timerId: undefined,
+            })}
+          >
+            Hide Clock
+          </button>
+        </div>
+
+      </div>
+    );
+  }
+}
 
 export default App;
