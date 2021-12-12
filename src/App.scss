@@ -1,1 +1,7 @@
-// styles go here
+.App {
+  text-align: center;
+
+  &__show-clock {
+    margin-right: 10px;
+  }
+}
