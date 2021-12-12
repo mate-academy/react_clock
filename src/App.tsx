@@ -10,6 +10,16 @@ class App extends React.Component {
   };
 
   componentDidMount() {
+    this.startClockTimer();
+  }
+
+  componentDidUpdate() {
+    if (this.state.isClockVisible && !this.state.timerId) {
+      this.startClockTimer();
+    }
+  }
+
+  startClockTimer = () => {
     const id = setInterval(() => {
       const time = new Date().toLocaleTimeString();
 
@@ -21,23 +31,7 @@ class App extends React.Component {
         currentTime: time,
       });
     }, 1000);
-  }
-
-  componentDidUpdate() {
-    if (this.state.isClockVisible && !this.state.timerId) {
-      const id = setInterval(() => {
-        const time = new Date().toLocaleTimeString();
-
-        // eslint-disable-next-line
-        console.log(time);
-
-        this.setState({
-          timerId: id,
-          currentTime: time,
-        });
-      }, 1000);
-    }
-  }
+  };
 
   render(): React.ReactNode {
     const {
@@ -56,11 +50,11 @@ class App extends React.Component {
           />
         )}
 
-        <div className="app-buttons">
+        <div className="App__buttons">
           <button
             type="button"
             onClick={() => this.setState({ isClockVisible: true })}
-            className="app-buttons__show-clock"
+            className="App__show-clock"
           >
             Show Clock
           </button>

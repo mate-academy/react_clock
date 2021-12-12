@@ -9,8 +9,6 @@ interface Props {
 export class Clock extends React.Component<Props> {
 
   componentWillUnmount() {
-    // eslint-disable-next-line
-    console.log('clock\'ve been stoped by componentWillUnmount()');
     clearInterval(this.props.id);
   }
 
