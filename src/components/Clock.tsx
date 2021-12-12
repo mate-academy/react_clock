@@ -43,8 +43,9 @@ export class Clock extends React.Component<Props, State> {
 
     return (
       <div className="Clock">
-        <div className="Clock__name">{clockName}</div>
-        <div className="Clock__time">{time}</div>
+        <p className="Clock__random">Random name</p>
+        <p className="Clock__name">{clockName}</p>
+        <p className="Clock__time">{time}</p>
       </div>
     );
   }

@@ -26,7 +26,9 @@ class App extends React.Component<{}, State> {
   };
 
   changeName = () => {
-    this.setState({ clockName: Math.floor(Math.random() * 100) });
+    this.setState({
+      clockName: Math.floor(Math.random() * 100),
+    });
   };
 
   render() {
@@ -36,13 +38,9 @@ class App extends React.Component<{}, State> {
       <div className="App">
         <div className="App__container">
           <h1 className="App__title">React clock</h1>
-          <p className="App_clock">
-            Random name:
-            {' '}
-            {visibility && (
-              <Clock clockName={clockName} />
-            )}
-          </p>
+          {visibility && (
+            <Clock clockName={clockName} />
+          )}
           <div className="App__buttons">
             <button
               type="button"
