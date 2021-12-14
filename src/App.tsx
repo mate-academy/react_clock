@@ -1,12 +1,10 @@
 /* eslint-disable no-console */
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import Clock from './Clock';
 import './App.scss';
 
-// type Timer = ReturnType<typeof setTimeout>;
 export default class App extends React.Component {
-  timerId = 0;
+  private timerId = 0;
 
   state = {
     date: new Date(),
@@ -18,9 +16,15 @@ export default class App extends React.Component {
     this.timerId = window.setInterval(() => this.tick(), 1000);
   }
 
-  componentDidUpdate(_prevProps: unknown, prevState: { clockName: number; }) {
-    if (this.state.isClockVisible && this.state.clockName !== prevState.clockName) {
-      console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
+  componentDidUpdate(_prevProps: unknown, prevState: { date: Date, clockName: number; }) {
+    if (this.state.isClockVisible) {
+      if (this.state.clockName !== prevState.clockName) {
+        console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
+      }
+
+      if (this.state.date !== prevState.date) {
+        console.log(this.state.date.toLocaleTimeString());
+      }
     }
   }
 
@@ -37,17 +41,7 @@ export default class App extends React.Component {
     ); // The maximum is inclusive and the minimum is inclusive
   }
 
-  handleShowClock = () => {
-    this.setState({ isClockVisible: true });
-  };
-
-  handleHideClock = () => {
-    this.setState({ isClockVisible: false });
-  };
-
   handleRandomName = () => {
-    // const name = Math.random();
-
     this.setState({ clockName: App.getRandomIntInclusive(0, 100) });
   };
 
@@ -62,14 +56,14 @@ export default class App extends React.Component {
       <div className="App">
         <button
           type="button"
-          onClick={this.handleShowClock}
+          onClick={() => this.setState({ isClockVisible: true })}
         >
           Show clock
         </button>
         {' '}
         <button
           type="button"
-          onClick={this.handleHideClock}
+          onClick={() => this.setState({ isClockVisible: false })}
         >
           Hide clock
         </button>
@@ -86,5 +80,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-// export default App;

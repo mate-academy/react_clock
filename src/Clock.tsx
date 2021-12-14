@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 
@@ -20,7 +19,6 @@ export default class Clock extends React.Component<Props> {
           Current time:
           {' '}
           {this.props.value.toLocaleTimeString()}
-          {console.log(this.props.value.toLocaleTimeString())}
         </p>
       </>
     );
