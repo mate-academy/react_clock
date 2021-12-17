@@ -14,6 +14,8 @@ export class Clock extends React.Component<{}, State> {
   componentDidMount() {
     this.timerId = setInterval(() => {
       this.setState({ time: new Date() });
+
+      console.log(this.state.time.toLocaleTimeString());
     }, 1000);
   }
 
@@ -28,9 +30,7 @@ export class Clock extends React.Component<{}, State> {
 
     return (
       <time>
-        Current time:
-        {' '}
-        {time.toLocaleTimeString()}
+        {`Current time: ${time.toLocaleTimeString()}`}
       </time>
     );
   }

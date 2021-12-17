@@ -4,16 +4,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   text-align: center;
   font-family: "Georgia", "Times New Roman", "Times", serif;
 }
 
 .btn {
-  margin: 0 20px;
+  margin: 0 20px 20px;
   cursor: pointer;
   padding: 10px;
   background-color: #fff;
   border: 1px solid yellow;
-  font-family: "Georgia", "Times New Roman", "Times", serif;
+  font-family: inherit;
 }
