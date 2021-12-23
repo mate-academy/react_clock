@@ -1,1 +1,34 @@
 // styles go here
+$size: 16px;
+
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: $size;
+}
+
+.clock__block {
+  text-align: center;
+}
+
+.buttons {
+  margin-bottom: $size;
+}
+
+.button {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  padding: $size $size * 2;
+  outline: none;
+  border: 2px solid transparent;
+  background-color: #96200b;
+  color: #fff;
+
+  &:hover {
+    color: #96200b;
+    background-color: transparent;
+    border-color: #96200b;
+  }
+
+  &:not(:last-child) {
+    margin-right: $size;
+  }
+}
