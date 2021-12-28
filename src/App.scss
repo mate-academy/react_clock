@@ -1,1 +1,56 @@
-// styles go here
+body {
+  background: #0f3854;
+  background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
+}
+
+.clock-container{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .clock {
+    font-family: 'Share Tech Mono', monospace;
+    color: #daf6ff;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+
+    &__subtitle {
+      margin-bottom: 0;
+    }
+
+    .time {
+      display: block;
+      height: 90px;
+      letter-spacing: 5px;
+      font-size: 80px;
+      padding: 5px 0;
+    }
+
+    .button {
+      padding: 5px;
+      margin-right: 30px;
+      margin-top: 20px;
+
+      font: inherit;
+      color: inherit;
+      font-size: 15px;
+      text-shadow: inherit;
+
+      background-color: transparent;
+      border: 1px solid #daf6ff;
+      cursor: pointer;
+    
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        transform: scale(0.9);
+
+      }
+    }
+    
+  }
+}
