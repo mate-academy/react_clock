@@ -2,16 +2,20 @@ import React from 'react';
 import { Clock } from './Clock';
 import './App.scss';
 
-class App extends React.Component {
-  state = {
+type State = {
+  isVisible: boolean;
+};
+
+class App extends React.Component<{}, State> {
+  state: State = {
     isVisible: true,
   };
 
-  hider() {
+  hideClock = () => {
     this.setState({ isVisible: false });
   }
 
-  shower() {
+  showClock = () => {
     this.setState({ isVisible: true });
   }
 
@@ -24,8 +28,19 @@ class App extends React.Component {
         <p>
           Current time:
           {' '}
-          <button type="button" onClick={this.shower.bind(this)}>Show Clock</button>
-          <button type="button" onClick={this.hider.bind(this)}>Hide Clock</button>
+          <button
+            type="button"
+            onClick={this.showClock}
+          >
+            Show Clock
+          </button>
+
+          <button
+            type="button"
+            onClick={this.hideClock}
+          >
+            Hide Clock
+          </button>
           {isVisible && <Clock />}
         </p>
       </div>
