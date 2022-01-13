@@ -18,10 +18,10 @@ class Clock extends React.Component<Props, State> {
 
   componentDidMount() {
     this.timerId = setInterval(() => {
-      const date: Date = new Date();
+      this.setState({ date: new Date() });
 
       // eslint-disable-next-line
-      console.log(date.toLocaleTimeString());
+      console.log(this.state.date.toLocaleTimeString());
     }, 1000);
   }
 
