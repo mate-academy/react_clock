@@ -16,16 +16,15 @@ export class Clock extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    const timer: NodeJS.Timer = setInterval(() => {
-      this.setState({
-        date: new Date(),
-      });
-      // eslint-disable-next-line
-      console.log(this.state.date.toLocaleTimeString());
-    }, 1000);
-
     this.setState({
-      timerId: timer,
+      timerId: setInterval(() => {
+        this.setState({
+          date: new Date(),
+        });
+
+        // eslint-disable-next-line
+        console.log(this.state.date.toLocaleTimeString());
+      }, 1000),
     });
   }
 
