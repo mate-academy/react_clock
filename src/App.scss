@@ -1,1 +1,30 @@
-// styles go here
+.App {
+  display: flex;
+  padding: 24px 12px;
+
+}
+
+.clock {
+  width: 600px;
+  margin: auto;
+  padding: 4px;
+
+  &__time {
+    font-size: 28px;
+  }
+}
+
+.ui.icon.header {
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: center;
+
+  &::before {
+    visibility: hidden;
+  }
+}
+
+.ui.green.tag.label {
+  font-size: 16px;
+  width: max-content;
+}
