@@ -20,16 +20,14 @@ export class Clock extends React.Component<{}, State> {
     });
   }
 
-  componentDidUpdate() {
-    // eslint-disable-next-line
-    console.log(this.state.time.toLocaleTimeString());
-  }
-
   componentWillUnmount() {
     clearInterval(this.state.timerId);
   }
 
   tick() {
+    // eslint-disable-next-line
+    console.log(this.state.time.toLocaleTimeString());
+
     this.setState({
       time: new Date(),
     });
