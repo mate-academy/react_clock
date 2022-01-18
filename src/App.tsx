@@ -4,23 +4,24 @@ import { Clock } from './components/Clock';
 
 type State = {
   isVisible: boolean;
+  hideClock(): void;
+  showClock(): void;
 };
 
 class App extends React.Component<{}, State> {
   state: State = {
     isVisible: true,
-  };
+    hideClock: () => {
+      this.setState({ isVisible: false });
+    },
 
-  hideClock = () => {
-    this.setState({ isVisible: false });
-  };
-
-  showClock = () => {
-    this.setState({ isVisible: true });
+    showClock: () => {
+      this.setState({ isVisible: true });
+    },
   };
 
   render(): React.ReactNode {
-    const { isVisible } = this.state;
+    const { isVisible, hideClock, showClock } = this.state;
 
     return (
       <>
@@ -31,7 +32,7 @@ class App extends React.Component<{}, State> {
             <button
               className="App__button-on"
               type="button"
-              onClick={this.showClock}
+              onClick={showClock}
             >
               <svg width="180px" height="60px" viewBox="0 0 180 60" className="border">
                 <polyline points="179,1 179,59 1,59 1,1 179,1" className="bg-line" />
@@ -48,7 +49,7 @@ class App extends React.Component<{}, State> {
             <button
               className="App__button-off"
               type="button"
-              onClick={this.hideClock}
+              onClick={hideClock}
             >
               <svg width="180px" height="60px" viewBox="0 0 180 60" className="border">
                 <polyline points="179,1 179,59 1,59 1,1 179,1" className="bg-line" />
