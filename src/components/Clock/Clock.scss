@@ -1,0 +1,18 @@
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  background-color: rgb(245, 222, 179);
+  border: 5px solid black;
+  font-family: monospace;
+
+  &__title {
+    color: rgb(148, 127, 89);
+  }
+
+  &__time {
+    color: rgb(92, 74, 42);
+    font-weight: 700;
+  }
+}
