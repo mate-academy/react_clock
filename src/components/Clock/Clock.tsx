@@ -1,4 +1,5 @@
 import React from 'react';
+import './Clock.scss';
 
 interface State {
   data: string,
