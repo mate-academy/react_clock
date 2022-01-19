@@ -6,11 +6,11 @@ type Props = {
 
 type State = {
   date: Date;
-  timerId: NodeJS.Timer | undefined;
+  timerId?: NodeJS.Timer;
 };
 
 export class Clock extends React.Component<Props, State> {
-  state = {
+  state: State = {
     date: new Date(),
     timerId: undefined,
   };
@@ -27,7 +27,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.timerId);
+    if (this.state.timerId) {
+      clearInterval(this.state.timerId);
+    }
   }
 
   addSecond = () => {
