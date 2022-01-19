@@ -27,7 +27,7 @@ export class Clock extends React.Component<Props, State> {
   componentDidUpdate(prevProps: Props) {
     if (prevProps.title !== this.props.title) {
       // eslint-disable-next-line
-      console.log('The Clock was renamed from oldName to newName');
+      console.log(`The Clock was renamed from ${prevProps.title} to ${this.props.title}`);
     }
   }
 
