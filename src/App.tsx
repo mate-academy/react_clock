@@ -43,16 +43,19 @@ class App extends React.Component<{}, State> {
           >
             {this.state.isClockVisible ? 'Hide Clock' : 'Show Clock'}
           </Button>
-          <Button
-            className="btn btn-secondary"
-            type="button"
-            onClick={() => this.randomNameClickHadler()}
-          >
-            Set random name
-          </Button>
-
           {this.state.isClockVisible
-            ? <Clock title={this.state.clockName} />
+            ? (
+              <>
+                <Button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={() => this.randomNameClickHadler()}
+                >
+                  Set random name
+                </Button>
+                <Clock title={this.state.clockName} />
+              </>
+            )
             : (
               <Card.Title
                 className="title"
