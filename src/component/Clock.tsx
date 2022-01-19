@@ -4,8 +4,9 @@ type State = {
   date: string,
   timerId: NodeJS.Timer | undefined;
 };
+
 export class Clock extends React.Component<{}, State> {
-  state = {
+  state: State = {
     date: new Date().toLocaleTimeString(),
     timerId: undefined,
   };

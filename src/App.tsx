@@ -2,8 +2,12 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './component/Clock';
 
-class App extends React.Component {
-  state: StateVisible = {
+type State = {
+  isVisible: boolean
+};
+
+class App extends React.Component<{}, State> {
+  state: State = {
     isVisible: true,
   };
 
@@ -15,7 +19,7 @@ class App extends React.Component {
     this.setState({ isVisible: false });
   };
 
-  render(): React.ReactNode {
+  render() {
     return (
       <>
         <h1>React clock</h1>
