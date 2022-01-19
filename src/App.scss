@@ -1,1 +1,41 @@
-// styles go here
+.app {
+  margin: 50px;
+  background-color: rgb(187, 250, 224);
+  width: 300px;
+  height: 300px;
+  padding: 50px;
+  border: 3px solid #000;
+  border-radius: 50%;
+
+  &__container {
+    width: max-content;
+    margin: 30px auto 0;
+  }
+
+  &__button {
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__button--show {
+    background-color: darkgreen;
+    color: rgb(90, 252, 90);
+  }
+
+  &__button--hide {
+    background-color: rgb(100, 28, 0);
+    color: rgb(255, 146, 146);
+  }
+
+  &__button--set-name {
+    display: block;
+    background-color: rgb(134, 110, 0);
+    color: rgb(247, 237, 110);
+    margin: 0 auto;
+  }
+}
