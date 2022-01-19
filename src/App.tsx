@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { Clock } from './components/Clock';
+import { Clock } from './components/Clock/clock';
 
 type State = {
   isClockVisible: boolean,
