@@ -41,7 +41,6 @@ export class App extends React.Component<{}, State> {
                 Current time:
                 {' '}
                 <Clock />
-                {/* Print the time here instead of DevTools */}
               </>
             )
             : <></>}
