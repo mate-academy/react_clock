@@ -1,15 +1,14 @@
 # React Clock
-- Replace `<your_account>` with your Github username in the
- [DEMO LINK](https://<your_account>.github.io/react_clock/)
-- Follow the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
-- Use [React TypeScript cheat sheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript)
+
+ [DEMO LINK](https://andrii-koptiev.github.io/react_clock/)
+
 
 ## Task
 Create a `Clock` component updating the time every second.
 - Use class component
 - Start the timer only when the component is added to the page (`componentDidMount`)
 - Update the `state` every second using `setInterval`
-- Save timerId to stop it later 
+- Save timerId to stop it later
     ```js
     this.timerId = setInterval(your code here);
     ```
@@ -23,7 +22,7 @@ Create a `Clock` component updating the time every second.
 1. Change the `Clock` component to print the time not only on the page but also in the `DevTools` console.
     - Stop the timer when the `Clock` is hidden (`componentWillUnmount`)
         ```js
-        // use previously saved timerId 
+        // use previously saved timerId
         clearInterval(this.timerId);
         ```
 1. Check if it works correctly:
