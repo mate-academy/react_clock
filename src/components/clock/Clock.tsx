@@ -1,17 +1,20 @@
 import React from 'react';
 
-class Clock extends React.Component {
-  state = {
+type State = {
+  currentTime: Date,
+};
+
+class Clock extends React.Component<{}, State> {
+  state: State = {
     currentTime: new Date(),
-    timerId: undefined,
   };
 
+  timerId?: NodeJS.Timeout;
+
   componentDidMount() {
-    const time: NodeJS.Timer = setInterval(() => {
+    this.timerId = setInterval(() => {
       this.setState({ currentTime: new Date() });
     }, 1000);
-
-    this.setState({ timerId: time });
   }
 
   componentDidUpdate() {
@@ -20,7 +23,9 @@ class Clock extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
