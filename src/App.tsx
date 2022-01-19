@@ -8,7 +8,7 @@ type State = {
 };
 
 class App extends React.Component<{}, State> {
-  state = {
+  state: State = {
     isClockVisible: false,
     clockName: 0,
   };

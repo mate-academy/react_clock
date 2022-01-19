@@ -2,7 +2,6 @@ import React from 'react';
 
 type State = {
   date: Date;
-  timerId: NodeJS.Timer | undefined;
 };
 
 type Props = {
@@ -10,22 +9,21 @@ type Props = {
 };
 
 export class Clock extends React.Component<Props, State> {
-  state = {
+  state: State = {
     date: new Date(),
-    timerId: undefined,
   };
 
-  componentDidMount() {
-    this.setState({
-      timerId: setInterval(() => {
-        this.setState({
-          date: new Date(),
-        });
+  timerId?: NodeJS.Timer;
 
-        // eslint-disable-next-line
-        console.log(this.state.date.toLocaleTimeString());
-      }, 1000),
-    });
+  componentDidMount() {
+    this.timerId = setInterval(() => {
+      this.setState({
+        date: new Date(),
+      });
+
+      // eslint-disable-next-line
+      console.log(this.state.date.toLocaleTimeString());
+    }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -39,7 +37,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
