@@ -36,6 +36,12 @@ export class Clock extends React.Component<Props, State> {
     clearInterval(this.timerId);
   }
 
+  cancel = () => {
+    clearInterval(this.timerId);
+    // eslint-disable-next-line no-console
+    console.log('cancelled');
+  };
+
   render() {
     return (
       <div className="App">
@@ -45,6 +51,7 @@ export class Clock extends React.Component<Props, State> {
           {' '}
           {this.state.date.toLocaleTimeString()}
         </p>
+        <button type="button" onClick={this.cancel}>Cancel</button>
       </div>
     );
   }
