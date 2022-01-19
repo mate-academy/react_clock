@@ -1,1 +1,46 @@
-// styles go here
+@import url("https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap");
+
+body {
+  height: 100vh;
+}
+
+.button {
+  font-family: "Metal Mania", cursive;
+  background-color: burlywood;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+  width: 100px;
+
+  &:hover {
+    background-color: rgb(189, 181, 171);
+    border: 3px solid rgb(95, 95, 95);
+    padding: 7px 17px;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.allClock {
+  font-family: "Metal Mania", cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock {
+  text-align: center;
+
+  &__name {
+    color: rgb(134, 1, 1);
+  }
+}
