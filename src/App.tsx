@@ -17,7 +17,7 @@ const config: Config = {
 class App extends React.Component<{}, State> {
   state: State = {
     isClockVisible: true,
-    clockName: '',
+    clockName: 'black',
   };
 
   showClockHandler = () => {
