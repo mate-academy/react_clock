@@ -1,1 +1,100 @@
-// styles go here
+@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
+
+body, html {
+  background: #5CA4EA;
+  overflow: hidden;
+  font-family: 'Lato', sans-serif;
+}
+
+.App {
+  position: relative;
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+&__title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+  &__button-on {
+    width: 180px;
+    height: 60px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #91C9FF;
+    outline: none;
+    transition: 1s ease-in-out;
+
+    &:hover {
+      transition: 1s ease-in-out;
+      background: #4F95DA;
+    }
+    &:hover svg {
+      stroke-dashoffset: -480;
+    }
+    &  span {
+      color: white;
+      font-size: 18px;
+      font-weight: 100;
+    }
+  }
+
+  &__button-off {
+    width: 180px;
+    height: 60px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #91C9FF;
+    outline: none;
+    transition: 1s ease-in-out;
+    margin-bottom: 30px;
+
+    &:hover {
+      transition: 1s ease-in-out;
+      background: #4F95DA;
+    }
+    &:hover svg {
+      stroke-dashoffset: -480;
+    }
+  }
+}
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 1s ease-in-out;
+}
+
+.center {
+  width: 180px;
+  height: 60px;
+  position: absolute;
+}
+
+span {
+  color: white;
+  font-size: 18px;
+  font-weight: 100;
+}
+.app2 {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+}
+
