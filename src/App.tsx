@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { Clock } from './components/Clock/clock';
+import { Clock } from './components/Clock/Clock';
 
 type State = {
   isClockVisible: boolean,
@@ -35,15 +35,9 @@ export class App extends React.Component<{}, State> {
         </button>
 
         <div>
-          {this.state.isClockVisible
-            ? (
-              <>
-                Current time:
-                {' '}
-                <Clock />
-              </>
-            )
-            : <></>}
+          {this.state.isClockVisible && (
+            <Clock />
+          )}
         </div>
       </div>
     );
