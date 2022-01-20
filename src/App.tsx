@@ -33,14 +33,14 @@ class App extends React.Component<{}, State> {
 
   render(): React.ReactNode {
     return (
-      <>
+      <div className="container">
         {this.state.isClockVisible && (
           <Clock name={this.state.clockName} />
         ) }
-        <button type="button" onClick={this.showTime}>Show Clock</button>
-        <button type="button" onClick={this.hideTime}>Hide Clock</button>
-        <button type="button" onClick={this.changeName}>Set random name</button>
-      </>
+        <button type="button" className="btn btn-outline-success" onClick={this.showTime}>Show Clock</button>
+        <button type="button" className="btn btn-outline-info" onClick={this.hideTime}>Hide Clock</button>
+        <button type="button" className="btn btn-outline-primary" onClick={this.changeName}>Set random name</button>
+      </div>
     );
   }
 }

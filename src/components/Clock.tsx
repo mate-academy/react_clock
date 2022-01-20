@@ -39,7 +39,8 @@ export class Clock extends React.Component<Props, State> {
   render() {
     return (
       <div className="App">
-        <h1>React clock</h1>
+        <h1>React Clock</h1>
+
         <p>
           Current time:
           {' '}
