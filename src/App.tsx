@@ -1,24 +1,66 @@
+/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import './App.scss';
+import Clock from './components/Clock';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
+type State = {
+  page: string,
 };
+
+class App extends React.Component<{}, State> {
+  state: State = {
+    page: 'clock',
+  };
+
+  componentDidMount() {
+    // eslint-disable-next-line no-console
+    console.log('App mounted');
+  }
+
+  changePage = (page: string) => {
+    this.setState({
+      page,
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <h1 className="clock__title">Clock</h1>
+        <div>
+          <button
+            type="button"
+            onClick={() => {
+              this.changePage('home');
+            }}
+          >
+            Hide Clock
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              this.changePage('clock');
+            }}
+          >
+            Show Clock
+          </button>
+        </div>
+
+        <div>
+          {
+            this.state.page === 'home'
+              ? (
+                <p>Press Show Clock</p>
+              )
+              : (
+                <Clock />
+              )
+          }
+        </div>
+      </div>
+    );
+  }
+}
 
 export default App;
