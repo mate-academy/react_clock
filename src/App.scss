@@ -1,1 +1,12 @@
-// styles go here
+.App {
+  margin: 100px 100px;
+  width: 500px;
+}
+
+.btn-group {
+  padding-top: 20px;
+
+  &-hidden {
+    padding-left: 50px;
+  }
+}
