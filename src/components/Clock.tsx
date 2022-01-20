@@ -13,11 +13,7 @@ export class Clock extends React.Component<{}, State> {
 
   componentDidMount() {
     this.setState({
-      timerId: setInterval(() => {
-        this.setState({ date: new Date() });
-        // eslint-disable-next-line
-        console.log(this.state.date.toLocaleTimeString());
-      }, 1000),
+      timerId: setInterval(this.addTimer, 1000),
     });
   }
 
@@ -26,6 +22,12 @@ export class Clock extends React.Component<{}, State> {
       clearInterval(this.state.timerId);
     }
   }
+
+  addTimer = () => {
+    this.setState({ date: new Date() });
+    // eslint-disable-next-line
+    console.log(this.state.date.toLocaleTimeString());
+  };
 
   render() {
     return this.state.date.toLocaleTimeString();
