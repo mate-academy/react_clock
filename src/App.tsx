@@ -4,19 +4,28 @@ import './App.scss';
 
 type State = {
   isClockVisible: boolean;
-  name: number
+  name: number;
 };
 
 class App extends React.Component<{}, State> {
-  state = {
+  state: State = {
     isClockVisible: true,
     name: Math.floor(Math.random() * 100),
+  };
+
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
   };
 
   render() {
     return (
       <div className="App">
         <h1>React clock</h1>
+        <h3>{`Clock name: ${this.state.name}`}</h3>
         <p>
           Current time:
           {' '}
@@ -25,18 +34,14 @@ class App extends React.Component<{}, State> {
 
         <button
           type="button"
-          onClick={() => {
-            this.setState({ isClockVisible: true });
-          }}
+          onClick={this.showClock}
         >
           Show Clock
         </button>
 
         <button
           type="button"
-          onClick={() => {
-            this.setState({ isClockVisible: false });
-          }}
+          onClick={this.hideClock}
         >
           Hide Clock
         </button>
