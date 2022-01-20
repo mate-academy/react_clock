@@ -24,9 +24,6 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    // eslint-disable-next-line no-console
-    console.log('Test');
-
     if (this.timerId) {
       clearInterval(this.timerId);
     }
@@ -51,7 +48,12 @@ export class Clock extends React.Component<Props, State> {
       <div className="">
         {time}
         <button
-          className="button ml-6 mt-4 is-black is-inverted"
+          className="
+            button
+            ml-6
+            mt-4
+            is-black
+            is-inverted"
           type="button"
           onClick={() => {
             if (this.timerId) {

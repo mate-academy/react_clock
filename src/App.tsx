@@ -47,10 +47,18 @@ class App extends React.Component<Props, State> {
       <div className="App">
         <h1 className="title has-text-centered">React clock</h1>
 
-        <div className="App has-shadow is-flex is-justify-content-space-evenly">
+        <div className="
+          App
+          has-shadow
+          is-flex
+          is-justify-content-space-evenly"
+        >
 
           <button
-            className="button navbar-item is-light"
+            className="
+              button
+              navbar-item
+              is-light"
             type="button"
             onClick={
               () => this.changePage(true)
@@ -60,7 +68,10 @@ class App extends React.Component<Props, State> {
           </button>
 
           <button
-            className="button navbar-item is-light"
+            className="
+              button
+              navbar-item
+              is-light"
             type="button"
             onClick={
               () => this.changePage(false)
@@ -70,7 +81,10 @@ class App extends React.Component<Props, State> {
           </button>
 
           <button
-            className="button navbar-item is-light"
+            className="
+              button
+              navbar-item
+              is-light"
             type="button"
             onClick={() => (
               this.changeName(this.generateRandomName())
@@ -80,7 +94,11 @@ class App extends React.Component<Props, State> {
           </button>
         </div>
         {isClockVisible && (
-          <div className="subtitle is-flex is-justify-content-space-evenly">
+          <div className="
+            subtitle
+            is-flex
+            is-justify-content-space-evenly"
+          >
             <span className="">
               Current time:
               {' '}
