@@ -11,7 +11,7 @@ interface Props {
 export class Clock extends React.Component<Props, State > {
   timerId?: NodeJS.Timer;
 
-  state:State = {
+  state: State = {
     time: new Date(),
   };
 

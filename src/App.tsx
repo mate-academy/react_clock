@@ -9,7 +9,7 @@ interface State {
 }
 
 export class App extends React.Component<{}, State> {
-  state = {
+  state: State = {
     isClockVisible: true,
     clockName: 1000,
   };
@@ -38,14 +38,12 @@ export class App extends React.Component<{}, State> {
         >
           Hide Clock
         </button>
-        {' '}
         <button
           type="button"
           onClick={this.showClock}
         >
           Show Clock
         </button>
-        {' '}
         <button
           type="button"
           onClick={this.setRandomName}
