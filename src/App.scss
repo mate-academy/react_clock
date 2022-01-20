@@ -1,1 +1,22 @@
 // styles go here
+.App {
+  width: max-content;
+  border-bottom: 1px solid grey;
+}
+
+.title {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.clock {
+  text-align: center;
+  font-size: 22px;
+}
+
+.button {
+  height: 30px;
+  width: max-content;
+
+  margin: 5px;
+}
