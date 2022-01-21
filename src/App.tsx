@@ -26,8 +26,19 @@ class App extends React.Component<{}, State> {
           {' '}
           {this.state.isClockVisible && <Clock />}
         </p>
-        <button type="button" onClick={() => this.changeClockVisibility(true)}>Show clock</button>
-        <button type="button" onClick={() => this.changeClockVisibility(false)}>Hide clock</button>
+        <button
+          type="button"
+          onClick={() => this.changeClockVisibility(true)}
+        >
+          Show clock
+        </button>
+
+        <button
+          type="button"
+          onClick={() => this.changeClockVisibility(false)}
+        >
+          Hide clock
+        </button>
       </div>
     );
   }

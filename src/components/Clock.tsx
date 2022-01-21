@@ -4,10 +4,7 @@ type State = {
   time: Date,
 };
 
-type Props = {
-};
-
-export class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<{}, State> {
   state: State = {
     time: new Date(),
   };
