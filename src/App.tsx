@@ -1,24 +1,60 @@
 import React from 'react';
 import './App.scss';
+import Clock from './components/Clock';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
+type State = {
+  page: string;
 };
+
+class App extends React.Component<{}, State> {
+  state: State = {
+    page: 'home',
+  };
+
+  changePage = (page: string) => {
+    this.setState({
+      page,
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <div>
+          <button
+            type="button"
+            className="button"
+            onClick={() => {
+              this.changePage('home');
+            }}
+          >
+            Hide
+          </button>
+          <span> </span>
+          <button
+            type="button"
+            className="button"
+            onClick={() => {
+              this.changePage('clock');
+            }}
+          >
+            Show
+          </button>
+        </div>
+        <div>
+          {
+            this.state.page === 'home'
+              ? (
+                <h1 className="title">React Clock</h1>
+              )
+              : (
+                <Clock />
+              )
+          }
+        </div>
+      </div>
+    );
+  }
+}
 
 export default App;

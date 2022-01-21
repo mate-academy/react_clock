@@ -1,1 +1,27 @@
-// styles go here
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: palegoldenrod;
+}
+
+.title {
+  text-align: center;
+  font-size: 54px;
+  color: #1abc9c;
+}
+
+.button {
+  font-size: 20px;
+  font-weight: bold;
+  height: 40px;
+  width: 100px;
+  background-color: #1abc9c;
+  color: aliceblue;
+  border-radius: 10px;
+}
+
+.time {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #535353;
+}
