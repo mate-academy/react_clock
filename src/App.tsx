@@ -14,25 +14,27 @@ class App extends React.Component<{}, State> {
     clockName: 0,
   };
 
-  setClockNameHandler() {
-    this.setState({ clockName: Math.floor(Math.random() * 10) });
-  }
+  setClockNameHandler = () => {
+    this.setState({
+      clockName: Math.floor(Math.random() * 100),
+    });
+  };
 
-  showClockHandler() {
+  showClockHandler = () => {
     this.setState({ isClockVisible: true });
-  }
+  };
 
-  hideClockHandler() {
+  hideClockHandler = () => {
     this.setState({ isClockVisible: false });
-  }
+  };
 
   render() {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <button type="button" onClick={() => this.showClockHandler()}>Show Clock</button>
-        <button type="button" onClick={() => this.hideClockHandler()}>Hide Clock</button>
-        <button type="button" onClick={() => this.setClockNameHandler()}>Set random name</button>
+        <button type="button" onClick={this.showClockHandler}>Show Clock</button>
+        <button type="button" onClick={this.hideClockHandler}>Hide Clock</button>
+        <button type="button" onClick={this.setClockNameHandler}>Set random name</button>
         <p>
           Current time:
         </p>
