@@ -1,1 +1,42 @@
 // styles go here
+.clockButton {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: rgb(255, 240, 179);
+  padding: 10px;
+  margin: 15px;
+
+  font-size: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  &:active {
+    background-color: rgb(243, 213, 95);
+  }
+}
+
+.App {
+  background-color: rgb(198, 235, 235);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.clockButton-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.clock {
+  font-family:'Courier New', Courier, monospace;
+  margin-top: 10px;
+  font-size:80px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.clockName {
+  text-align: center;
+}

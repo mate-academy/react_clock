@@ -29,31 +29,35 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>React clock</h1>
-        <button
-          type="button"
-          onClick={() => {
-            this.showClockHandler();
-          }}
-        >
-          Show clock
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            this.hideClockHandler();
-          }}
-        >
-          Hide clock
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            this.setRandomNameHandler();
-          }}
-        >
-          Set random name
-        </button>
+        <div className="clockButton-container">
+          <button
+            className="clockButton"
+            type="button"
+            onClick={() => {
+              this.showClockHandler();
+            }}
+          >
+            Show clock
+          </button>
+          <button
+            className="clockButton"
+            type="button"
+            onClick={() => {
+              this.hideClockHandler();
+            }}
+          >
+            Hide clock
+          </button>
+          <button
+            className="clockButton"
+            type="button"
+            onClick={() => {
+              this.setRandomNameHandler();
+            }}
+          >
+            Set random name
+          </button>
+        </div>
         {this.state.isClockVisible && <Clock name={this.state.clockName} /> }
       </div>
     );
