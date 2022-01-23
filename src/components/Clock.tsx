@@ -24,6 +24,9 @@ class Clock extends React.Component<{}, State> {
   syncData = () => {
     const value: string = new Date().toLocaleTimeString('en-GB');
 
+    // eslint-disable-next-line no-console
+    console.log(value);
+
     this.setState({
       date: value,
     });
