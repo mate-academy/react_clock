@@ -1,24 +1,60 @@
 import React from 'react';
 import './App.scss';
+import Clock from './components/Clock';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
+type State = {
+  isClockVisible: boolean;
 };
+
+class App extends React.Component<{}, State> {
+  state: State = {
+    isClockVisible: false,
+  };
+
+  changeClockVisibility = (isClockVisible: boolean) => {
+    this.setState({
+      isClockVisible,
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <div>
+          <button
+            type="button"
+            className="button"
+            onClick={() => {
+              this.changeClockVisibility(false);
+            }}
+          >
+            Hide Clock
+          </button>
+          <span> </span>
+          <button
+            type="button"
+            className="button"
+            onClick={() => {
+              this.changeClockVisibility(true);
+            }}
+          >
+            Show Clock
+          </button>
+        </div>
+        <div>
+          {
+            this.state.isClockVisible === false
+              ? (
+                <h1 className="title">React Clock</h1>
+              )
+              : (
+                <Clock />
+              )
+          }
+        </div>
+      </div>
+    );
+  }
+}
 
 export default App;
