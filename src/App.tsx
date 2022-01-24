@@ -16,17 +16,6 @@ class App extends React.Component<Props, State> {
     clockName: Math.trunc(Math.random() * 500),
   };
 
-  componentDidUpdate(_: Props, prevState: State) {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
-
-  generateRandomName = () => {
-    return Math.trunc(Math.random() * 500);
-  };
-
   changePage = (isClockVisible: boolean) => {
     this.setState({
       isClockVisible,
@@ -38,6 +27,10 @@ class App extends React.Component<Props, State> {
     this.setState({
       clockName: name,
     });
+  };
+
+  generateRandomName = () => {
+    return Math.trunc(Math.random() * 500);
   };
 
   render() {
