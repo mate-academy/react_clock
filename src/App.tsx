@@ -4,21 +4,21 @@ import { Clock } from './component/Clock';
 
 type State = {
   isClockVisible: boolean,
-  clockName: number,
+  clockName: string,
 };
 
-// enum Name {
-//   red,
-//   blue,
-//   green,
-//   black,
-//   orange,
-// }
+enum Name {
+  red,
+  blue,
+  green,
+  black,
+  orange,
+}
 
 class App extends React.Component<{}, State> {
   state: State = {
     isClockVisible: true,
-    clockName: 8,
+    clockName: 'start',
   };
 
   showClock = () => {
@@ -30,7 +30,7 @@ class App extends React.Component<{}, State> {
   };
 
   getRandomName = () => {
-    this.setState({ clockName: Math.floor(Math.random() * 5) });
+    this.setState({ clockName: Name[Math.floor(Math.random() * 5)] });
   };
 
   render() {
@@ -39,7 +39,7 @@ class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <p>
+        <p style={{ color: clockName }}>
           {'name: '}
           {clockName}
         </p>
