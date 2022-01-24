@@ -4,12 +4,12 @@ import './App.scss';
 import Clock from './components/Clock';
 
 type State = {
-  page: string,
+  isClockVisible: boolean,
 };
 
 class App extends React.Component<{}, State> {
   state: State = {
-    page: 'clock',
+    isClockVisible: true,
   };
 
   componentDidMount() {
@@ -17,10 +17,12 @@ class App extends React.Component<{}, State> {
     console.log('App mounted');
   }
 
-  changePage = (page: string) => {
-    this.setState({
-      page,
-    });
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
   };
 
   render() {
@@ -31,7 +33,7 @@ class App extends React.Component<{}, State> {
           <button
             type="button"
             onClick={() => {
-              this.changePage('home');
+              this.hideClock();
             }}
           >
             Hide Clock
@@ -40,7 +42,7 @@ class App extends React.Component<{}, State> {
           <button
             type="button"
             onClick={() => {
-              this.changePage('clock');
+              this.showClock();
             }}
           >
             Show Clock
@@ -49,7 +51,7 @@ class App extends React.Component<{}, State> {
 
         <div>
           {
-            this.state.page === 'home'
+            this.state.isClockVisible === false
               ? (
                 <p>Press Show Clock</p>
               )
