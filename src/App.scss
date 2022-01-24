@@ -1,1 +1,40 @@
-// styles go here
+body {
+  background-color: #333;
+  color: #eee;
+  font-family: Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+.App {
+  margin: 3%;
+
+  &__button--show {
+    background-color: #5dade2;
+  }
+  &__button--hide {
+    background-color: #85929e;
+  }
+
+  &__button {
+    width: 150px;
+    height: 50px;
+    margin: 0px 10px 5px 0;
+    border: none;
+    outline: none;
+    color: #eee;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 3px;
+
+    &:active {
+      color: #000
+    }
+  }
+
+  &__time {
+    font-size: 24px;
+  }
+}
