@@ -33,6 +33,8 @@ class App extends React.Component<{}, State> {
   };
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+
     return (
       <Card className="card">
         <Card.Body>
@@ -41,9 +43,9 @@ class App extends React.Component<{}, State> {
             type="button"
             onClick={() => this.showClockHandler()}
           >
-            {this.state.isClockVisible ? 'Hide Clock' : 'Show Clock'}
+            {isClockVisible ? 'Hide Clock' : 'Show Clock'}
           </Button>
-          {this.state.isClockVisible
+          {isClockVisible
             ? (
               <>
                 <Button
@@ -53,7 +55,7 @@ class App extends React.Component<{}, State> {
                 >
                   Set random name
                 </Button>
-                <Clock title={this.state.clockName} />
+                <Clock title={clockName} />
               </>
             )
             : (
