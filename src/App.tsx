@@ -14,21 +14,15 @@ class App extends React.Component<{}, State> {
   };
 
   showTime = () => {
-    this.setState({
-      isClockVisible: true,
-    });
+    this.setState({ isClockVisible: true });
   };
 
   hideTime = () => {
-    this.setState({
-      isClockVisible: false,
-    });
+    this.setState({ isClockVisible: false });
   };
 
   changeName = () => {
-    this.setState({
-      clockName: Math.random(),
-    });
+    this.setState({ clockName: Math.random() });
   };
 
   render(): React.ReactNode {
@@ -37,9 +31,29 @@ class App extends React.Component<{}, State> {
         {this.state.isClockVisible && (
           <Clock name={this.state.clockName} />
         ) }
-        <button type="button" className="btn btn-outline-success" onClick={this.showTime}>Show Clock</button>
-        <button type="button" className="btn btn-outline-info" onClick={this.hideTime}>Hide Clock</button>
-        <button type="button" className="btn btn-outline-primary" onClick={this.changeName}>Set random name</button>
+        <button
+          type="button"
+          className="btn btn-outline-success"
+          onClick={this.showTime}
+        >
+          Show Clock
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-outline-info"
+          onClick={this.hideTime}
+        >
+          Hide Clock
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-outline-primary"
+          onClick={this.changeName}
+        >
+          Set random name
+        </button>
       </div>
     );
   }
