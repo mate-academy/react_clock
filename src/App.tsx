@@ -22,11 +22,19 @@ class App extends React.Component<{}, State> {
   render() {
     return (
       <div className="App">
-        <button type="button" onClick={this.ShowButton}>
+        <button
+          className="button is-black"
+          type="button"
+          onClick={this.ShowButton}
+        >
           Show Clock
         </button>
 
-        <button type="button" onClick={this.HideButton}>
+        <button
+          className="button"
+          type="button"
+          onClick={this.HideButton}
+        >
           Hide Clock
         </button>
 

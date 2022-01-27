@@ -28,14 +28,11 @@ export class Clock extends React.Component<{}, State> {
 
   render() {
     return (
-      <>
-        <h1>React clock</h1>
-        <p>
-          Current time:
-          {' '}
-          {this.state.date.toLocaleTimeString()}
-        </p>
-      </>
+      <p>
+        Current time:
+        {' '}
+        {this.state.date.toLocaleTimeString()}
+      </p>
     );
   }
 }
