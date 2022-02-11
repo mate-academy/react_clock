@@ -18,8 +18,10 @@ class App extends React.Component {
   };
 
   componentDidUpdate(_oldProps: Props, oldState: State) {
-    // eslint-disable-next-line no-console
-    console.log(`The Clock was renamed from ${oldState.clockName} to ${this.state.clockName}`);
+    if (oldState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${oldState.clockName} to ${this.state.clockName}`);
+    }
   }
 
   render() {
