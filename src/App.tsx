@@ -1,56 +1,23 @@
-/* eslint-disable max-classes-per-file */
-/* eslint-disable no-console */
 import React from 'react';
 import './App.scss';
-
-type ClockProps = {
-  name: string | number;
-};
-
-type ClockStates = {
-  date: string;
-};
-
-class Clock extends React.Component<ClockProps, ClockStates> {
-  state = {
-    date: (new Date()).toLocaleTimeString(),
-  };
-
-  timerId: NodeJS.Timeout;
-
-  constructor(props: any) {
-    super(props);
-    this.timerId = setInterval(() => {
-      this.setState({ date: (new Date()).toLocaleTimeString() });
-      console.log(this.state.date);
-    }, 1000);
-  }
-
-  componentDidMount() {
-    return this.timerId;
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerId);
-  }
-
-  render(): React.ReactNode {
-    return (
-      <span>
-        {this.state.date}
-      </span>
-    );
-  }
-}
+import { Clock } from './components/Clock/Clock';
 
 class App extends React.Component {
   state = {
     isClockVisible: true,
-    clockName: 0,
+    shouldChangeName: false,
+  };
+
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
+  };
+
+  showClock = () => {
+    this.setState({ isClockVisible: true });
   };
 
   render(): React.ReactNode {
-    const { isClockVisible } = this.state;
+    const { isClockVisible, shouldChangeName } = this.state;
 
     return (
       <div className="App">
@@ -59,31 +26,13 @@ class App extends React.Component {
           Current time:
           {' '}
           {isClockVisible
-            && <Clock name={this.state.clockName} />}
+            && <Clock shouldChangeName={shouldChangeName} />}
         </p>
-        <button
-          type="button"
-          onClick={() => {
-            this.setState({ isClockVisible: true});
-          }}
-        >
+        <button type="button" onClick={this.showClock}>
           Show Clock
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            this.setState({ isClockVisible: false});
-          }}
-        >
+        <button type="button" onClick={this.hideClock}>
           Hide Clock
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            this.setState({ isClockVisible: false});
-          }}
-        >
-          Set random name
         </button>
       </div>
     );
