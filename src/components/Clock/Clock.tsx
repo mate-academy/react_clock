@@ -2,22 +2,19 @@
 import React from 'react';
 import { User } from '../../types';
 
-type ClockProps = {
-  shouldChangeName: boolean;
-};
-
-type ClockStates = {
-  date: string;
+type Props = {
   user: User | undefined;
 };
 
-export class Clock extends React.Component<ClockProps, ClockStates> {
+type States = {
+  date: string;
+};
+
+export class Clock extends React.Component<Props, States> {
   state: {
     date: string,
-    user: User | undefined,
   } = {
     date: (new Date()).toLocaleTimeString(),
-    user: undefined,
   };
 
   timerId: NodeJS.Timeout = setInterval(() => {
@@ -26,8 +23,6 @@ export class Clock extends React.Component<ClockProps, ClockStates> {
   }, 1000);
 
   componentDidMount() {
-    this.getUser();
-
     return this.timerId;
   }
 
@@ -35,21 +30,11 @@ export class Clock extends React.Component<ClockProps, ClockStates> {
     clearInterval(this.timerId);
   }
 
-  getUser = async (): Promise<any> => {
-    await fetch('https://randomuser.me/api')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setState({
-          user: resp.results[0],
-        });
-      });
-  };
-
   render(): React.ReactNode {
     let userFullName = 'Loading...';
 
-    if (this.state.user) {
-      const { title, first, last } = this.state.user.name;
+    if (this.props.user) {
+      const { title, first, last } = this.props.user.name;
 
       userFullName = `${title}. ${first} ${last}`;
     }
