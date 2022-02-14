@@ -7,9 +7,7 @@ type State = {
   clockName: number,
 };
 
-type Props = {
-
-};
+type Props = {};
 
 class App extends React.Component {
   state = {
