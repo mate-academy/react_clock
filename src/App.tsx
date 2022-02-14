@@ -33,19 +33,19 @@ class App extends React.Component<Props, State> {
 
     return (
       <div className="App clock">
-        <h1>React clock</h1>
+        <h1 className="clock__title">React clock</h1>
         <h2 className="clock__block">
           {clockVisible && <Clock name={clockName} />}
         </h2>
 
         <div className="clock__controls">
-          <button type="button" id="show">Show Clock</button>
-          <button type="button" id="hide">Hide Clock</button>
+          <button className="clock__controls__button" type="button" id="show">Show Clock</button>
+          <button className="clock__controls__button" type="button" id="hide">Hide Clock</button>
         </div>
 
         <div className="clock__input">
-          <input type="text" id="inputName" placeholder="Clock name" />
-          <button type="button" id="setName">Set new Clocks name</button>
+          <input className="clock__input__in" type="text" id="inputName" placeholder="Clock name" />
+          <button className="clock__input__button" type="button" id="setName">Set new Clocks name</button>
         </div>
       </div>
     );

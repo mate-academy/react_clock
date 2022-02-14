@@ -2,19 +2,52 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Redressed', cursive;
 }
+
 .clock {
   display: flex;
   flex-direction: column;
   text-align: center;
 
-  font-family: 'Redressed', cursive;
+  &__title {
+    margin: 32px;
+  }
 
   &__block {
-    margin-top: 20px;
+    font-size: 2em;
   }
 
   &__controls {
   margin: 20px;
+  
+  
+  &__button {
+    padding: 5px;
+    font-size: 1.2em;
+    color: #333;
+    background-color: #eee;
+    border-radius: 20px;
+    
+
+  }
+    :first-child {
+      margin-right: 10px;
+    }
+  }
+
+  &__input {
+    &__in {
+      margin-right: 10px;
+      padding: 5px;
+      font-size: 1.5em;
+      border-radius: 20px;
+    }
+    
+    &__button {
+      padding: 5px;
+      font-size: 1.5em;
+      border-radius: 20px;
+    }
   }
 }

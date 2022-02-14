@@ -35,7 +35,7 @@ class Clock extends React.Component<Props, State> {
 
     return (
       <>
-        <h2>{`Clock name: ${name}`}</h2>
+        <p>{`Clock name: ${name}`}</p>
         <p>{`Current time: ${currentTime}`}</p>
       </>
     );
