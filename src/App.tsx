@@ -34,8 +34,8 @@ class App extends React.Component<{}, State> {
           <Clock
             name={this.state.clockName}
           />
-        )
-        }
+        )}
+
         <Button
           name="Hide clock"
           onClick={this.hiding}
