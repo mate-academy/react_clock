@@ -1,1 +1,20 @@
 // styles go here
+* {
+  margin: 0;
+  padding: 0;
+}
+.clock {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  font-family: 'Redressed', cursive;
+
+  &__block {
+    margin-top: 20px;
+  }
+
+  &__controls {
+  margin: 20px;
+  }
+}
