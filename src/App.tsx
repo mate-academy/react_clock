@@ -17,35 +17,31 @@ class App extends React.Component<Props, State> {
     clockName: generateName(),
   };
 
-  componentDidMount() {
-    const show = document.getElementById('show') as HTMLElement;
-    const hide = document.getElementById('hide') as HTMLElement;
-    const setName = document.getElementById('setName') as HTMLElement;
-
-    show.addEventListener('click', () => {
-      this.setState({ isClockVisible: true });
-    });
-
-    hide.addEventListener('click', () => {
-      this.setState({ isClockVisible: false });
-    });
-
-    setName.addEventListener('click', () => {
-      this.setState({ clockName: generateName() });
-    });
-  }
-
   render() {
+    const { isClockVisible, clockName } = this.state;
+
+    const showClock = () => {
+      this.setState({ isClockVisible: true });
+    };
+
+    const hideClock = () => {
+      this.setState({ isClockVisible: false });
+    };
+
+    const setName = () => {
+      this.setState({ clockName: generateName() });
+    };
+
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.isClockVisible && <Clock name={this.state.clockName} />}
+        {isClockVisible && <Clock name={clockName} />}
 
         <div className="controls">
-          <button type="button" id="show">Show Clock</button>
-          <button type="button" id="hide">Hide Clock</button>
-          <button type="button" id="setName">Set random name</button>
+          <button type="button" onClick={showClock}>Show Clock</button>
+          <button type="button" onClick={hideClock}>Hide Clock</button>
+          <button type="button" onClick={setName}>Set random name</button>
         </div>
       </div>
     );
