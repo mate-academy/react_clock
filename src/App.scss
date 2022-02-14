@@ -6,9 +6,16 @@
 }
 
 .clock {
+  box-sizing: border-box;
+  margin: 50px;
+  padding: 20px;
   display: flex;
+  width: 280px;
   flex-direction: column;
   text-align: center;
+  border: #333 solid 2px;
+  background-color: #ccc;
+  border-radius: 32px;
 
   &__title {
     margin: 32px;
@@ -38,13 +45,13 @@
 
   &__input {
     &__in {
-      margin-right: 10px;
       padding: 5px;
       font-size: 1.5em;
       border-radius: 20px;
     }
     
     &__button {
+      margin-top: 5px;
       padding: 5px;
       font-size: 1.5em;
       border-radius: 20px;
