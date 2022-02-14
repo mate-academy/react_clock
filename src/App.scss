@@ -1,1 +1,17 @@
 // styles go here
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 160px;
+  margin: 0 auto;
+
+  &__button {
+    width: 100%;
+    font-weight: bold;
+  }
+
+  &__clock {
+    font-weight: bold;
+  }
+}
