@@ -34,7 +34,7 @@ class App extends React.Component<Props, State> {
 
     return (
       <div className="App">
-        <h1>React clock</h1>
+        <h1>{`Clock ${clockName}`}</h1>
 
         {isClockVisible && <Clock name={clockName} />}
 
