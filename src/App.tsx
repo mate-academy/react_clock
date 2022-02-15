@@ -27,8 +27,6 @@ class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
         <div>
-          Current time:
-          {' '}
           {(isVisible) && <Clock name={this.state.clockName} />}
           <div>
             <button

@@ -5,8 +5,12 @@ body {
 }
 .App {
   width: 300px;
+  height: 350px;
   margin: 0 auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 button {
   width: 170px;

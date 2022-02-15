@@ -29,14 +29,8 @@ export class Clock extends React.Component<Props> {
     const oldName = prevProps.name;
 
     if (prevProps.name !== this.props.name) {
-      // this.setState({
-      //   clockName: prevProps.name,
-      // });
-
       // eslint-disable-next-line no-console
       console.log(`The Clock was renamed from ${oldName} to ${this.props.name} `);
-
-      this.render();
     }
   }
 
@@ -49,6 +43,8 @@ export class Clock extends React.Component<Props> {
   render(): React.ReactNode {
     return (
       <>
+        Current time:
+        {' '}
         {this.state.date.toLocaleTimeString()}
         <p>
           Clock name:
