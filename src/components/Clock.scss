@@ -1,0 +1,27 @@
+.clock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__name {
+    background-color: rgb(141, 141, 141);
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    border-radius: 10px;
+    color: aquamarine;
+    font-size: 20pt;
+  }
+
+  &__time {
+    margin-top: 0;
+    display: inline-block;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(141, 141, 141);
+    color: aquamarine;
+    font-size: 20pt;
+    border-radius: 10px;
+  }
+}
+
