@@ -1,1 +1,49 @@
-// styles go here
+.app {
+  min-width: 768px;
+  padding-left: 44px;
+}
+
+.clock {
+  position: relative;
+  left: 35%;
+  width: 400px;
+  height: 400px;
+  background-image: url(./Img/Clock.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__time {
+    position: absolute;
+    text-align: center;
+    left: 40%;
+    top: 42%;
+    color: rgb(0, 255, 34);
+  }
+
+  &__name {
+    font-size: 48px;
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+
+    box-shadow: 23px 29px 10px -8px rgba(34, 60, 80, 0.31);
+  }
+
+  &__button-name {
+    margin-left: 20px;
+  }
+
+  &__motto{
+    padding-right: 44px;
+    text-align: end;
+    font-style: italic;
+  }
+
+  &__motto-author{
+    padding-right: 88px;
+    text-align: end;
+    font-style: italic;
+  }
+}
