@@ -13,28 +13,29 @@ class App extends React.Component<{}, State> {
     clockName: 0,
   };
 
+  setRandomNumber = () => {
+    const randomNumber = Math.floor(Math.random() * 10);
+
+    this.setState({
+      clockName: randomNumber,
+    });
+  };
+
+  showClock = () => {
+    this.setState({
+      isClockVisible: true,
+    });
+  };
+
+  hideClock = () => {
+    this.setState({
+      isClockVisible: false,
+    });
+  };
+
   render() {
     const { isClockVisible, clockName } = this.state;
-
-    const showClock = () => {
-      this.setState({
-        isClockVisible: true,
-      });
-    };
-
-    const hideClock = () => {
-      this.setState({
-        isClockVisible: false,
-      });
-    };
-
-    const setRandomNumber = () => {
-      const randomNumber = Math.floor(Math.random() * 10);
-
-      this.setState({
-        clockName: randomNumber,
-      });
-    };
+    const { showClock, hideClock, setRandomNumber } = this;
 
     return (
       <div className="App">
