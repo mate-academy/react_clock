@@ -6,7 +6,7 @@ type Props = {
 
 type State = {
   currentTime: string,
-  // timerId: ??
+  timerId: NodeJS.Timer;
 };
 
 class Clock extends React.Component<Props, State> {
@@ -25,18 +25,22 @@ class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
   componentWillUnmount() {
     clearInterval(this.state.timerId);
   }
 
-  render(): React.ReactNode {
-    const { currentTime } = this.state;
-    const { name } = this.props;
-
+  render() {
     return (
       <>
-        <p>{`Clock name: ${name}`}</p>
-        <p>{ currentTime }</p>
+        <p>{`Clock name: ${this.props.name}`}</p>
+        <p>{ this.state.currentTime }</p>
       </>
     );
   }
