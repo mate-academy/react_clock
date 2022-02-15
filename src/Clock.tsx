@@ -1,6 +1,9 @@
 import React from 'react';
 
-export class Clock extends React.Component {
+type Props = {
+  name: number;
+};
+export class Clock extends React.Component<Props> {
   state = {
     date: new Date(),
     timerId: null,
@@ -22,6 +25,21 @@ export class Clock extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps: Props) {
+    const oldName = prevProps.name;
+
+    if (prevProps.name !== this.props.name) {
+      // this.setState({
+      //   clockName: prevProps.name,
+      // });
+
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${oldName} to ${this.props.name} `);
+
+      this.render();
+    }
+  }
+
   componentWillUnmount() {
     if (this.state.timerId !== null) {
       clearInterval(this.state.timerId);
@@ -32,6 +50,11 @@ export class Clock extends React.Component {
     return (
       <>
         {this.state.date.toLocaleTimeString()}
+        <p>
+          Clock name:
+          {' '}
+          {this.props.name}
+        </p>
       </>
     );
   }
