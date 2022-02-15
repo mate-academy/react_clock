@@ -25,12 +25,6 @@ class App extends React.Component<Props, State> {
     this.setState({ clockVisible: false });
   };
 
-  // changeName = () => {
-  //   const result = (document.getElementById('myinput').value).toString() | '!!!';
-
-  //   this.setState({ clockName: result });
-  // };
-
   changeName = () => {
     const randomChars = '0123456789';
     let result = '';
@@ -56,10 +50,9 @@ class App extends React.Component<Props, State> {
           <button className="clock__controls__button" type="button" onClick={this.hideClock}>Hide Clock</button>
         </div>
 
-        <form className="clock__input" id="setNameFromForm">
-          <input className="clock__input__in" type="text" value="" id="myinput" placeholder="Clock name" />
+        <div className="clock__input" id="setNameFromForm">
           <button className="clock__input__button" type="button" onClick={this.changeName}>Set new Clocks name</button>
-        </form>
+        </div>
       </div>
     );
   }
