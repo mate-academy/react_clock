@@ -1,1 +1,12 @@
 // styles go here
+.App {
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 10px;
+  background-color: aqua;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
