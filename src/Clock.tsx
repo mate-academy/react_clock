@@ -1,9 +1,14 @@
 import React from 'react';
 
-export class Clock extends React.Component {
+type State = {
+  timerId:NodeJS.Timeout,
+  time:string,
+};
+
+export class Clock extends React.Component<{}, State> {
   state = {
-    time: new Date().toLocaleTimeString(),
-    timerId: setInterval(() => { }, 0),
+    time: '',
+    timerId: setTimeout(() => { }, 0),
   };
 
   componentDidMount() {
