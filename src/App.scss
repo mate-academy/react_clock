@@ -1,1 +1,7 @@
-// styles go here
+.app {
+  font-size: 40px;
+
+  &__button {
+    font-size: 30px;
+  }
+}
