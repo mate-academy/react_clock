@@ -17,12 +17,14 @@ export class Clock extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    this.state.timerId = setInterval(() => {
-      this.setState({ date: new Date().toLocaleTimeString() });
+    this.setState({
+      timerId: setInterval(() => {
+        this.setState({ date: new Date().toLocaleTimeString() });
 
-      // eslint-disable-next-line
-      console.log('Clock: ' + this.state.date);
-    }, 1000);
+        // eslint-disable-next-line
+        console.log('Clock: ' + this.state.date);
+      }, 1000),
+    });
   }
 
   componentDidUpdate(prevProps: Props) {

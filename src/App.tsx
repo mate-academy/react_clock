@@ -28,18 +28,38 @@ class App extends React.Component {
   };
 
   render(): React.ReactNode {
+    const { isClockVisible, clockName } = this.state;
+
     return (
       <div className="app">
         <h1>React clock</h1>
         <p>
           Current time:
           {' '}
-          {this.state.isClockVisible && <Clock name={this.state.clockName} />}
+          {isClockVisible && <Clock name={clockName} />}
         </p>
 
-        <button type="button" className="app__button" onClick={this.showClock}>Show Clock</button>
-        <button type="button" className="app__button" onClick={this.hideClock}>Hide Clock</button>
-        <button type="button" className="app__button" onClick={this.changeName}>Set random name</button>
+        <button
+          type="button"
+          className="app__button"
+          onClick={this.showClock}
+        >
+          Show Clock
+        </button>
+        <button
+          type="button"
+          className="app__button"
+          onClick={this.hideClock}
+        >
+          Hide Clock
+        </button>
+        <button
+          type="button"
+          className="app__button"
+          onClick={this.changeName}
+        >
+          Set random name
+        </button>
       </div>
     );
   }
