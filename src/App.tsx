@@ -13,15 +13,17 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>
+        <h1 className="clock">
           React clock
           {' '}
-          {this.state.name[this.state.i]}
+          <div className="name">
+            {this.state.name[this.state.i]}
+          </div>
         </h1>
-        {this.state.hideShow && <Clock />}
         <button type="button" onClick={() => this.setState({ hideShow: true })}>Show Clock</button>
         <button type="button" onClick={() => this.setState({ hideShow: false })}>Hide Clock</button>
         <button type="button" onClick={() => this.setState({ i: Math.floor(Math.random() * 10) })}>Set random name</button>
+        {this.state.hideShow && <Clock />}
       </div>
     );
   }
