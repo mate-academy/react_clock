@@ -1,1 +1,44 @@
 // styles go here
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.App {
+  background-color: #005555;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  margin-top: 30px;
+  color: #A0D8B9;
+  &__time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px;
+    background-color: #1C2B34;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    &-clock {
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 5px;
+    padding: 20px 0;
+
+    & > button {
+      border: 2px solid #2CEC96;
+      border-radius: 5px;
+      color: #2B453A;
+    }
+  }
+}
