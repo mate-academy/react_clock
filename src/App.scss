@@ -1,1 +1,43 @@
-// styles go here
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.App {
+  background-color: lightskyblue;
+  border-radius: 10px;
+  width: 400px;
+  padding: 25px;
+  box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+
+.countrie {
+  color: rgb(52, 87, 240);
+  font-weight: bold;
+}
+
+.clock {
+  font-weight: bold;
+}
+
+.buttons {
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.button {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+  }
+}
