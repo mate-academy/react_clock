@@ -1,1 +1,19 @@
-// styles go here
+.app {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+  &__title {
+    font-size: xx-large;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  &__timer {
+    font-size: 36px;
+  }
+}
