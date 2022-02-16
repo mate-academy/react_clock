@@ -1,13 +1,13 @@
 import React from 'react';
 
 type State = {
-  timerId:NodeJS.Timeout,
-  time:string,
+  timerId: NodeJS.Timeout,
+  time: string,
 };
 
 export class Clock extends React.Component<{}, State> {
   state = {
-    time: '',
+    time: new Date().toLocaleTimeString(),
     timerId: setTimeout(() => { }, 0),
   };
 

@@ -30,13 +30,15 @@ class App extends React.Component {
   };
 
   render(): React.ReactNode {
+    const { isVisible, name } = this.state;
+
     return (
       <div className="app">
 
         <h1>React clock</h1>
 
         <div className="rolex">
-          {this.state.isVisible && <Clock />}
+          {isVisible && <Clock />}
         </div>
 
         <div className="clock">
@@ -56,7 +58,7 @@ class App extends React.Component {
           </button>
 
           <p className="clock__name-name">
-            {this.state.name}
+            {name}
           </p>
           <button
             className="clock__button button"
