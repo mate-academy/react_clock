@@ -1,1 +1,24 @@
-// styles go here
+.App {
+  margin: 200px auto;
+  position: relative;
+  width: 400px;
+  height: 200px;
+  background-color: beige;
+  border-radius: 10px;
+
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+
+  &__buttons {
+    position: absolute;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    bottom: 20px;
+  }
+
+  &__button {
+    border-radius: 5px;
+  }
+}
