@@ -26,12 +26,7 @@ class App extends React.Component<Props, State> {
   };
 
   changeName = () => {
-    const randomChars = '0123456789';
-    let result = '';
-
-    for (let i = 0; i < 4; i += 1) {
-      result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-    }
+    const result = Math.floor(Math.random() * 999).toString();
 
     this.setState({ clockName: result });
   };
@@ -46,12 +41,31 @@ class App extends React.Component<Props, State> {
         </h2>
 
         <div className="clock__controls">
-          <button className="clock__controls__button" type="button" onClick={this.showClock}>Show Clock</button>
-          <button className="clock__controls__button" type="button" onClick={this.hideClock}>Hide Clock</button>
+          <button
+            className="clock__controls__button"
+            type="button"
+            onClick={this.showClock}
+          >
+            Show Clock
+          </button>
+
+          <button
+            className="clock__controls__button"
+            type="button"
+            onClick={this.hideClock}
+          >
+            Hide Clock
+          </button>
         </div>
 
         <div className="clock__input" id="setNameFromForm">
-          <button className="clock__input__button" type="button" onClick={this.changeName}>Set new Clocks name</button>
+          <button
+            className="clock__input__button"
+            type="button"
+            onClick={this.changeName}
+          >
+            Set new Clocks name
+          </button>
         </div>
       </div>
     );
