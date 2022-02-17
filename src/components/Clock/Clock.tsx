@@ -11,9 +11,7 @@ type States = {
 };
 
 export class Clock extends React.Component<Props, States> {
-  state: {
-    date: string,
-  } = {
+  state = {
     date: (new Date()).toLocaleTimeString(),
   };
 
@@ -33,8 +31,10 @@ export class Clock extends React.Component<Props, States> {
   render(): React.ReactNode {
     let userFullName = 'Loading...';
 
-    if (this.props.user) {
-      const { title, first, last } = this.props.user.name;
+    const { user } = this.props;
+
+    if (user) {
+      const { title, first, last } = user.name;
 
       userFullName = `${title}. ${first} ${last}`;
     }

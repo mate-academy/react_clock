@@ -6,7 +6,7 @@ export interface User {
   }
 }
 
-interface Name {
+export interface Name {
   title: string;
   first: string;
   last: string;
