@@ -14,16 +14,6 @@ class App extends React.Component<{}, State> {
     clockName: 0,
   };
 
-  componentDidUpdate(_pervProps: {}, prevState: State) {
-    const prev = prevState.clockName;
-    const now = this.state.clockName;
-
-    if (prev !== now) {
-      // eslint-disable-next-line no-console
-      console.log(`The Clock was renamed from ${prev} to ${now}`);
-    }
-  }
-
   setRandom = () => {
     this.setState({
       clockName: Math.random(),

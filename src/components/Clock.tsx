@@ -23,6 +23,16 @@ export class Clock extends React.Component<Props, State> {
     this.setState({ timerId });
   }
 
+  componentDidUpdate(pervProps: Props) {
+    const prev = pervProps.name;
+    const now = this.props.name;
+
+    if (prev !== now) {
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${prev} to ${now}`);
+    }
+  }
+
   componentWillUnmount() {
     if (this.state.timerId !== null) {
       clearInterval(this.state.timerId);
