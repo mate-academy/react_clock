@@ -1,7 +1,6 @@
 import React from 'react';
 
 interface State {
-  timerId: NodeJS.Timeout | null,
   date: Date,
 }
 
@@ -11,16 +10,15 @@ interface Props {
 
 export class Clock extends React.Component<Props, State> {
   state = {
-    timerId: null,
     date: new Date(),
   };
 
+  timerId: NodeJS.Timeout | null = null;
+
   componentDidMount() {
-    const timerId = setInterval(() => {
+    this.timerId = setInterval(() => {
       this.setState({ date: new Date() });
     }, 1000);
-
-    this.setState({ timerId });
   }
 
   componentDidUpdate(pervProps: Props) {
@@ -34,8 +32,8 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.state.timerId !== null) {
-      clearInterval(this.state.timerId);
+    if (this.timerId !== null) {
+      clearInterval(this.timerId);
     }
   }
 
