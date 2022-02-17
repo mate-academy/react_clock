@@ -1,36 +1,47 @@
 import React from 'react';
 
-type State = {
-  time: string;
-  timerId: NodeJS.Timeout | null;
+type Props = {
+  name: string;
 };
 
-export class Clock extends React.Component<{}, State> {
+type State = {
+  time: string;
+  timeId: NodeJS.Timeout | null;
+};
+
+export class Clock extends React.Component<Props, State> {
   state = {
     time: new Date().toLocaleTimeString(),
-    timerId: null,
+    timeId: null,
   };
 
   componentDidMount() {
     this.setState({
-      timerId: setInterval(() => {
+      timeId: setInterval(() => {
         this.setState({ time: new Date().toLocaleTimeString() });
       }, 1000),
     });
   }
 
-  componentWillUnmount() {
-    const { timerId } = this.state;
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.log(`The name of clock was renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
 
-    if (timerId) {
-      clearInterval(timerId);
+  componentWillUnmount() {
+    const { timeId } = this.state;
+
+    if (timeId) {
+      clearInterval(timeId);
     }
   }
 
   render() {
     return (
       <div className="App">
-        <h1>React clock</h1>
+        <h1>{`${this.props.name}`}</h1>
         <p>{`Current time: ${this.state.time}`}</p>
       </div>
     );

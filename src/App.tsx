@@ -3,51 +3,47 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 type State = {
-  visible: boolean,
-  nameClock: number,
+  visible: boolean;
+  nameClock: string;
 };
 
 class App extends React.Component<{}, State> {
   state = {
     visible: true,
-    nameClock: 0,
+    nameClock: '',
   };
 
-  componentDidUpdate(prevProps: {}, prevState: State) {
-    if (prevState.nameClock !== this.state.nameClock && prevProps) {
-      // eslint-disable-next-line no-console
-      console.log(`new name is ${this.state.nameClock}`);
-    }
-  }
-
   render() {
+    const { visible, nameClock } = this.state;
+
+    const showClock = () => {
+      this.setState({ visible: true });
+    };
+
+    const hideClock = () => {
+      this.setState({ visible: false });
+    };
+
+    const clockName = () => {
+      const names = ['Longines', 'Harry Winston', 'Piaget', 'Cartier', 'Jaeger-LeCoultre'];
+      const newName = names[Math.floor(Math.random() * names.length)];
+
+      this.setState({ nameClock: newName });
+    };
+
     return (
       <div className="App">
-        {this.state.visible && <Clock />}
-        <button
-          type="button"
-          onClick={() => {
-            this.setState({ visible: true });
-          }}
-        >
+        {visible && <Clock name={nameClock} />}
+        <button type="button" onClick={showClock}>
           Show clock
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            this.setState({ visible: false });
-          }}
-        >
+
+        <button type="button" onClick={hideClock}>
           Hide clock
         </button>
 
-        <button
-          type="button"
-          onClick={() => {
-            this.setState({ nameClock: Math.random() });
-          }}
-        >
-          rename clock
+        <button type="button" onClick={clockName}>
+          Rename clock
         </button>
       </div>
     );
