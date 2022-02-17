@@ -10,7 +10,7 @@ type Props = {};
 export class Clock extends React.Component<Props, State> {
   state = {
     timerId: setTimeout(() => {}, 0),
-    currTime: '',
+    currTime: new Date().toLocaleTimeString(),
   };
 
   componentDidMount() {
