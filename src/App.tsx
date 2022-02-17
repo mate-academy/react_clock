@@ -10,7 +10,7 @@ type State = {
 };
 
 class App extends React.Component<{}, State> {
-  state = {
+  state: State = {
     isClockVisible: true,
     user: null,
   };
