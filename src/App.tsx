@@ -17,6 +17,20 @@ class App extends React.Component<{}, State> {
     clockName: allClockNames[0],
   };
 
+  changeVisibility = () => {
+    this.setState(({ isVisible }) => ({
+      isVisible: !isVisible,
+    }));
+  };
+
+  changeWatch = () => {
+    this.setState({
+      clockName: (
+        allClockNames[Math.floor(Math.random() * allClockNames.length)]
+      ),
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -27,9 +41,7 @@ class App extends React.Component<{}, State> {
           <button
             type="button"
             className="App__button"
-            onClick={() => {
-              this.setState({ isVisible: true });
-            }}
+            onClick={this.changeVisibility}
           >
             Show Clock
           </button>
@@ -37,9 +49,7 @@ class App extends React.Component<{}, State> {
           <button
             type="button"
             className="App__button"
-            onClick={() => {
-              this.setState({ isVisible: false });
-            }}
+            onClick={this.changeVisibility}
           >
             Hide Clock
           </button>
@@ -47,15 +57,7 @@ class App extends React.Component<{}, State> {
           <button
             type="button"
             className="App__button"
-            onClick={() => {
-              this.setState(
-                {
-                  clockName: (
-                    allClockNames[Math.floor(Math.random() * allClockNames.length)]
-                  ),
-                },
-              );
-            }}
+            onClick={this.changeWatch}
           >
             Buy another watch
           </button>
