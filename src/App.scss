@@ -1,1 +1,30 @@
-// styles go here
+.App {
+  width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 3px solid rgb(112, 14, 14);
+  border-radius: 20px;
+
+  &_title {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+    color: rgb(112, 14, 14);
+  }
+}
+
+h1 {
+  color: rgb(50, 4, 65);
+}
+
+.button {
+  height: 30px;
+  background-color: rgba(112, 14, 14, 0.4);
+  border: 1px solid rgb(112, 14, 14);
+  color: rgb(50, 4, 65);
+  font-weight: bold;
+  border-radius: 10px;
+  margin-right: 20px;
+}
