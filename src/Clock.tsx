@@ -3,7 +3,7 @@ import React from 'react';
 
 export class Clock extends React.Component {
   state = {
-    timer: '',
+    timer: new Date().toLocaleTimeString(),
     timerId: setInterval(() => {}, 0),
   };
 

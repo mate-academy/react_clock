@@ -3,14 +3,22 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './Clock';
 
-export class App extends React.Component {
+type State = {
+  isVisible: boolean,
+};
+
+export class App extends React.Component<{}, State> {
   state = {
     isVisible: true,
   };
 
-  componentDidMount() {
-    console.log('mounted App');
-  }
+  hideClock = () => {
+    this.setState({ isVisible: false });
+  };
+
+  showClock = () => {
+    this.setState({ isVisible: true });
+  };
 
   render(): React.ReactNode {
     return (
@@ -18,22 +26,22 @@ export class App extends React.Component {
         <h1>React clock</h1>
         <button
           type="button"
-          onClick={(() => {
-            this.setState({ isVisible: true });
-          })}
+          onClick={() => {
+            this.showClock();
+          }}
         >
           Show Clock
         </button>
         <button
           type="button"
-          onClick={(() => {
-            this.setState({ isVisible: false });
-          })}
+          onClick={() => {
+            this.hideClock();
+          }}
         >
           Hide Clock
         </button>
         <div>
-          {this.state.isVisible ? <Clock /> : '' }
+          {this.state.isVisible && <Clock />}
         </div>
       </div>
     );
