@@ -12,19 +12,27 @@ class App extends React.Component<{}, State> {
     isClockVisible: true,
   };
 
+  show = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hide = () => {
+    this.setState({ isClockVisible: false });
+  };
+
   render(): React.ReactNode {
     return (
       <div className="App">
         <p>{this.state.isClockVisible && <Clock />}</p>
         <button
           type="button"
-          onClick={() => this.setState({ isClockVisible: true })}
+          onClick={this.show}
         >
           Show Clock
         </button>
         <button
           type="button"
-          onClick={() => this.setState({ isClockVisible: false })}
+          onClick={this.hide}
         >
           Hide Clock
         </button>
