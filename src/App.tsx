@@ -19,7 +19,12 @@ class App extends React.Component {
   };
 
   random = () => {
-    this.setState({ i: Math.floor(Math.random() * 10) });
+    const was = this.state.i;
+    const will = Math.floor(Math.random() * 10);
+
+    this.setState({ i: will });
+    // eslint-disable-next-line
+    console.log(`The Clock was renamed from ${this.state.name[was]} to ${this.state.name[will]} (componentDidUpdate)`)
   };
 
   render() {
