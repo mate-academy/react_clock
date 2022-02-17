@@ -3,7 +3,7 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 function randomName() {
-  return (Math.random() * 100).toString();
+  return (Math.random() * 100).toFixed(6);
 }
 
 export class App extends React.Component {

@@ -8,12 +8,14 @@ type Props = {
 type State = {
   time: string;
   timerId: NodeJS.Timer;
+  name: string;
 };
 
 export class Clock extends React.Component<Props, State> {
   state = {
     time: new Date().toLocaleTimeString(),
     timerId: setTimeout(() => {}, 0),
+    name: this.props.name,
   };
 
   componentDidMount() {
@@ -40,14 +42,20 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
-    const { time } = this.state;
+    const { time, name } = this.state;
 
     return (
-      <p className="clock">
-        current time:
-        {' '}
-        {time}
-      </p>
+      <>
+        <p className="name">
+          Clock name:
+          {name}
+        </p>
+        <p className="clock">
+          current time:
+          {' '}
+          {time}
+        </p>
+      </>
     );
   }
 }
