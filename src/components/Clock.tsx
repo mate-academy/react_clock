@@ -6,7 +6,7 @@ interface State {
 }
 
 interface Props {
-  name: string,
+  name: number,
 }
 
 export class Clock extends React.Component<Props, State> {
@@ -20,9 +20,7 @@ export class Clock extends React.Component<Props, State> {
       this.setState({ date: new Date() });
     }, 1000);
 
-    this.setState({
-      timerId: x,
-    });
+    this.setState({ timerId });
   }
 
   componentWillUnmount() {

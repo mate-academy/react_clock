@@ -5,14 +5,29 @@ import { Button } from './components/Button';
 
 interface State {
   isClockVisible: boolean,
-  clockName: string,
+  clockName: number,
 }
 
 class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
-    // eslint-disable-next-line react/no-unused-state
-    clockName: '',
+    clockName: 0,
+  };
+
+  componentDidUpdate(_pervProps: {}, prevState: State) {
+    const prev = prevState.clockName;
+    const now = this.state.clockName;
+
+    if (prev !== now) {
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${prev} to ${now}`);
+    }
+  }
+
+  setRandom = () => {
+    this.setState({
+      clockName: Math.random(),
+    });
   };
 
   hiding = () => {
@@ -43,6 +58,11 @@ class App extends React.Component<{}, State> {
         <Button
           name="Show clock"
           onClick={this.showing}
+        />
+
+        <Button
+          name="Set a random name"
+          onClick={this.setRandom}
         />
       </div>
     );
