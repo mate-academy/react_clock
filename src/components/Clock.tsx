@@ -8,7 +8,7 @@ type State = {
 class Clock extends React.Component<{}, State> {
   state = {
     timerId: setInterval(() => {}, 0),
-    date: '',
+    date: new Date().toLocaleTimeString(),
   };
 
   componentDidMount() {

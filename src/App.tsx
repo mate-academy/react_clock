@@ -10,6 +10,18 @@ class App extends React.Component {
     i: 0,
   };
 
+  show = () => {
+    this.setState({ hideShow: true });
+  };
+
+  hide = () => {
+    this.setState({ hideShow: false });
+  };
+
+  random = () => {
+    this.setState({ i: Math.floor(Math.random() * 10) });
+  };
+
   render() {
     return (
       <div className="App">
@@ -20,9 +32,9 @@ class App extends React.Component {
             {this.state.name[this.state.i]}
           </div>
         </h1>
-        <button type="button" onClick={() => this.setState({ hideShow: true })}>Show Clock</button>
-        <button type="button" onClick={() => this.setState({ hideShow: false })}>Hide Clock</button>
-        <button type="button" onClick={() => this.setState({ i: Math.floor(Math.random() * 10) })}>Set random name</button>
+        <button type="button" onClick={this.show}>Show Clock</button>
+        <button type="button" onClick={this.hide}>Hide Clock</button>
+        <button type="button" onClick={this.random}>Set random name</button>
         {this.state.hideShow && <Clock />}
       </div>
     );
