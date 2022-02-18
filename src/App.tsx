@@ -14,6 +14,18 @@ class App extends React.Component<{}, State> {
     number: 0,
   };
 
+  show() {
+    this.setState({ clockVisible: true });
+  }
+
+  hide() {
+    this.setState({ clockVisible: false });
+  }
+
+  random() {
+    this.setState({ number: Math.floor(Math.random() * 10) });
+  }
+
   render() {
     return (
       <div className="App">
@@ -21,21 +33,21 @@ class App extends React.Component<{}, State> {
         {this.state.number}
         <div>
           <button
-            onClick={() => this.setState({ clockVisible: true })}
+            onClick={() => this.show()}
             type="button"
             className="button"
           >
             Show Clock
           </button>
           <button
-            onClick={() => this.setState({ clockVisible: false })}
+            onClick={() => this.hide()}
             type="button"
             className="button"
           >
             Hide Clock
           </button>
           <button
-            onClick={() => this.setState({ number: Math.floor(Math.random() * 10) })}
+            onClick={() => this.random()}
             type="button"
             className="button"
           >

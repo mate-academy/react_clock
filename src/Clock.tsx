@@ -7,12 +7,13 @@ type State = {
 
 export class Clock extends React.Component<{}, State> {
   state: State = {
-    date: '',
+    date: new Date().toLocaleTimeString(),
     timerId: setInterval(() => {}, 0),
   };
 
   componentDidMount() {
     this.state.timerId = setInterval(() => {
+      // eslint-disable-next-line no-console
       console.log(new Date().toLocaleTimeString());
       this.setState({
         date: new Date().toLocaleTimeString(),
