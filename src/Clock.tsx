@@ -12,13 +12,16 @@ export class Clock extends React.Component<{}, State> {
   };
 
   componentDidMount() {
-    this.state.timerId = setInterval(() => {
-      // eslint-disable-next-line no-console
-      console.log(new Date().toLocaleTimeString());
-      this.setState({
-        date: new Date().toLocaleTimeString(),
-      });
-    }, 1000);
+    this.setState(() => {
+      setInterval(() => {
+        // eslint-disable-next-line no-console
+        (console.log(new Date().toLocaleTimeString()));
+      }, 1000);
+    });
+
+    this.setState({
+      date: new Date().toLocaleTimeString(),
+    });
   }
 
   componentWillUnmount() {
