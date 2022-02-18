@@ -7,24 +7,23 @@ type State = {
   number: number,
 };
 
-// eslint-disable-next-line react/prefer-stateless-function
 class App extends React.Component<{}, State> {
   state: State = {
     clockVisible: true,
     number: 0,
   };
 
-  show() {
+  show = () => {
     this.setState({ clockVisible: true });
-  }
+  };
 
-  hide() {
+  hide = () => {
     this.setState({ clockVisible: false });
-  }
+  };
 
-  random() {
+  random = () => {
     this.setState({ number: Math.floor(Math.random() * 10) });
-  }
+  };
 
   render() {
     return (
@@ -33,21 +32,21 @@ class App extends React.Component<{}, State> {
         {this.state.number}
         <div>
           <button
-            onClick={() => this.show()}
+            onClick={this.show}
             type="button"
             className="button"
           >
             Show Clock
           </button>
           <button
-            onClick={() => this.hide()}
+            onClick={this.hide}
             type="button"
             className="button"
           >
             Hide Clock
           </button>
           <button
-            onClick={() => this.random()}
+            onClick={() => this.random}
             type="button"
             className="button"
           >
