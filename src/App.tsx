@@ -8,9 +8,13 @@ class App extends React.Component {
     isClockVisible: true,
   };
 
-  setVisible(visible: boolean) {
-    this.setState({ isClockVisible: visible });
-  }
+  visible = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hide = () => {
+    this.setState({ isClockVisible: false });
+  };
 
   render() {
     const { isClockVisible } = this.state;
@@ -18,38 +22,24 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {isClockVisible ? (
-          <>
-            <Clock />
-            <button
-              type="button"
-              onClick={() => this.setVisible(false)}
-            >
-              Hide Clock
-            </button>
-            <button
-              type="button"
-              onClick={() => this.setVisible(true)}
-            >
-              Show Clock
-            </button>
-          </>
-        ) : (
-          <>
-            <button
-              type="button"
-              onClick={() => this.setVisible(false)}
-            >
-              Hide Clock
-            </button>
-            <button
-              type="button"
-              onClick={() => this.setVisible(true)}
-            >
-              Show Clock
-            </button>
-          </>
-        )}
+        <div className="time">
+          Current time:
+          {
+            isClockVisible && <Clock />
+          }
+        </div>
+        <button
+          type="button"
+          onClick={this.hide}
+        >
+          Hide Clock
+        </button>
+        <button
+          type="button"
+          onClick={this.visible}
+        >
+          Show Clock
+        </button>
       </div>
     );
   }

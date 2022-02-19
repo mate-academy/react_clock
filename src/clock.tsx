@@ -24,11 +24,9 @@ export class Clock extends React.Component {
     const { time } = this.state;
 
     return (
-      <p>
-        Current time:
-        {' '}
+      <span className="clock">
         {time}
-      </p>
+      </span>
     );
   }
 }
