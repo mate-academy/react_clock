@@ -1,18 +1,16 @@
 import React from 'react';
 
-type Props = {
-  name: number
-};
-
 type State = {
-  currTime: string,
-  timerId: NodeJS.Timeout
+  timerId:NodeJS.Timeout,
+  currTime:string,
 };
 
-class Clock extends React.Component<Props, State> {
+type Props = {};
+
+export class Clock extends React.Component<Props, State> {
   state = {
-    currTime: 'Mounting...',
     timerId: setTimeout(() => {}, 0),
+    currTime: new Date().toLocaleTimeString(),
   };
 
   componentDidMount() {
@@ -31,17 +29,13 @@ class Clock extends React.Component<Props, State> {
     clearInterval(this.state.timerId);
   }
 
-  render(): React.ReactNode {
-    const { currTime } = this.state;
-    const { name } = this.props;
-
+  render() {
     return (
-      <>
-        <h2>{`Clock name: ${name}`}</h2>
-        <p>{`Current time: ${currTime}`}</p>
-      </>
+      <p>
+        Current time:
+        {' '}
+        {this.state.currTime}
+      </p>
     );
   }
 }
-
-export default Clock;
