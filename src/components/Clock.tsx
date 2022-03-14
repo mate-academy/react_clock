@@ -13,17 +13,10 @@ class Clock extends Component<Props, State> {
     time: '',
   };
 
-  timerId!: NodeJS.Timeout;
+  timerId: NodeJS.Timeout | null = null;
 
   componentDidMount() {
-    this.timerId = setInterval(() => {
-      const date: Date = new Date();
-
-      this.setState({ time: date.toLocaleTimeString() });
-
-      // eslint-disable-next-line no-console
-      console.log(this.state.time);
-    }, 1000);
+    this.timerId = this.createInterval();
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -34,17 +27,34 @@ class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
+  }
+
+  createInterval(): NodeJS.Timeout {
+    return setInterval(() => {
+      const date: Date = new Date();
+
+      this.setState({ time: date.toLocaleTimeString() });
+
+      // eslint-disable-next-line no-console
+      console.log(this.state.time);
+    }, 1000);
   }
 
   render() {
+    const { name } = this.props;
+
     return (
       <p>
-        <span style={{ display: 'block', marginBottom: 10 }}>
-          Clock name -
-          {' '}
-          {this.props.name}
-        </span>
+        {!!name && (
+          <span style={{ display: 'block', marginBottom: 10 }}>
+            Clock name -
+            {' '}
+            {name}
+          </span>
+        )}
 
         Current time:
         {' '}
