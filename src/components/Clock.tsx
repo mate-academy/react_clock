@@ -6,7 +6,7 @@ export class Clock extends React.Component<Props, State> {
     timer: new Date(),
   };
 
-  timerId:NodeJS.Timeout = setInterval(() => {}, 1000);
+  timerId?: NodeJS.Timeout;
 
   componentDidMount() {
     this.timerId = setInterval(() => {
@@ -14,7 +14,7 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps:Props) {
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.name !== this.props.name) {
       console.log(`The Clock was renamed from ${prevProps.name} to ${this.props.name}`);
     }
@@ -23,7 +23,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {

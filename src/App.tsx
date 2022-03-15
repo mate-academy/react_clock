@@ -8,6 +8,14 @@ class App extends React.Component<Props, State> {
     name: 7,
   };
 
+  changeVisible = (toDo:string) => {
+    return toDo === 'show'
+      ? () => this.setState({ isClockVisible: true })
+      : () => this.setState({ isClockVisible: false });
+  };
+
+  changeName = () => this.setState({ name: Math.random() });
+
   render() {
     return (
       <div className="App">
@@ -20,19 +28,19 @@ class App extends React.Component<Props, State> {
           <div>
             <button
               type="button"
-              onClick={() => this.setState({ isClockVisible: true })}
+              onClick={this.changeVisible('show')}
             >
               Show clock
             </button>
             <button
               type="button"
-              onClick={() => this.setState({ isClockVisible: false })}
+              onClick={this.changeVisible('hide')}
             >
               Hide clock
             </button>
             <button
               type="button"
-              onClick={() => this.setState({ name: Math.random() })}
+              onClick={this.changeName}
             >
               Set a random name
             </button>
