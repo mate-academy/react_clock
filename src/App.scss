@@ -1,1 +1,45 @@
 // styles go here
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #e5e5e5;
+}
+
+.App {
+  display: block;
+  width: 300px;
+  border: 0 solid #ea5455;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 25px;
+  text-align: center;
+  background-color: #fff;
+  transition: transform 1s;
+
+  &__heading {
+    color: #2d4059;
+  }
+
+  &__button {
+    width: 90px;
+    color: #fff;
+    background-color: #1fb0e5;
+    margin-left: 10px;
+    padding: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  &__time {
+    font-weight: bold;
+    color: #ea5455;
+  }
+
+  &:hover {
+    transform: translate(50px, 20px);
+  }
+}
