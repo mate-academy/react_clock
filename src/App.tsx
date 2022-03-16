@@ -17,11 +17,6 @@ class App extends React.Component<Props, State> {
     hour: 2,
   };
 
-  componentDidUpdate() {
-    // eslint-disable-next-line
-    console.log(`The Clock was renamed from oldName to ${this.state.clockName}`);
-  }
-
   render() {
     const showClock = () => {
       this.setState({ isClockVisible: true });
