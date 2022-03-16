@@ -1,1 +1,26 @@
-// styles go here
+.clock {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.show {
+  background-color: burlywood;
+  margin-bottom: 10px;
+
+  &:hover {
+    cursor: pointer;
+    font-size: large;
+    transition: 500ms;
+  }
+}
+
+.hide {
+  background-color: aqua;
+  margin-bottom: 10px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: red;
+  }
+}
