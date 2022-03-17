@@ -2,17 +2,17 @@ import React from 'react';
 
 type State = {
   date: string,
+  timerId: NodeJS.Timer | undefined,
 };
 
 export class Clock extends React.Component<{}, State> {
   state: State = {
     date: new Date().toLocaleTimeString(),
+    timerId: undefined,
   };
 
-  timerId: number | undefined;
-
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
+    this.state.timerId = setInterval(() => {
       // eslint-disable-next-line no-console
       console.log(new Date().toLocaleTimeString());
 
@@ -21,7 +21,7 @@ export class Clock extends React.Component<{}, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    clearInterval(this.state.timerId as NodeJS.Timeout);
   }
 
   render() {
