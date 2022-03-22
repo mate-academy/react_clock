@@ -19,7 +19,7 @@ class App extends React.Component {
           <p>
             Current time:
             {' '}
-            {isClockVisible ? <Clock name={this.state.clockName} /> : null}
+            {isClockVisible && <Clock name={this.state.clockName} />}
           </p>
 
           <button
