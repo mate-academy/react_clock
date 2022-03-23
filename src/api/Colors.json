@@ -1,0 +1,8 @@
+[
+  {"id": "1", "colorName": "red", "hex": "#f12323"},
+  {"id": "2", "colorName": "pink", "hex": "#d32b71"},
+  {"id": "3", "colorName": "blue", "hex": "#39c7e4"},
+  {"id": "4", "colorName": "green", "hex": "#2ae7a8"},
+  {"id": "5", "colorName": "yellow", "hex": "#f0ec2e"},
+  {"id": "6", "colorName": "orange", "hex": "#ec4d1c"}
+]
