@@ -1,1 +1,22 @@
 // styles go here
+* {
+  text-align: center;
+}
+
+.app {
+  margin: auto 150px;
+  border: 2px solid #cb8c1d;
+  border-radius: 5px;
+  background-color: #4c3327;
+  color: #cb8c1d;
+}
+
+.button {
+  background-color: #cb8c1d;
+  padding: 0;
+  border: none;
+  color: #4c3327;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 20%;
+}
