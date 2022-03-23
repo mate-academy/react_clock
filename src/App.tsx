@@ -20,7 +20,7 @@ export class App extends React.Component<Props, State> {
 
   render() {
     const { isClockVisible, clockName } = this.state;
-    const { hex, colorName } = Colors[clockName];
+    const { hex } = Colors[clockName];
 
     return (
       <div className="App">
@@ -28,9 +28,8 @@ export class App extends React.Component<Props, State> {
           className="clock App__clock"
           style={{ color: hex }}
         >
-          <h2 className="clock__title">{`${colorName} react clock`}</h2>
-          {isClockVisible
-            && <Clock name={clockName} />}
+          <h2 className="clock__title">react clock</h2>
+          {isClockVisible && <Clock name={clockName} />}
           <div className="button-container clock__button-container">
             <button
               type="button"
