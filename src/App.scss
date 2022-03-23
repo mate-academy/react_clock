@@ -1,1 +1,53 @@
-// styles go here
+@import "./components/Clock/Clock";
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  padding: 5vh;
+
+  &__controller {
+    padding: 15px 50px;
+    height: max-content;
+
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+
+    &-button {
+      width: 100%;
+      font-weight: 600;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  &__clock {
+    &-frame {
+      padding: 50px 100px 10px 100px;
+
+      border-radius: 20px;
+      background: black;
+      box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px,
+      rgba(0, 0, 0, 0.12) 0 -12px 30px,
+      rgba(0, 0, 0, 0.12) 0 4px 6px,
+      rgba(0, 0, 0, 0.17) 0 12px 13px,
+      rgba(0, 0, 0, 0.09) 0 -3px 5px;
+    }
+
+    &-manufacturer {
+      margin-top: 10px;
+
+      color: rgb(111, 111, 111);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      text-transform: uppercase;
+    }
+  }
+}

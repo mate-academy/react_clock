@@ -11,7 +11,7 @@ Create a `Clock` component updating the time every second.
 - Update the `state` every second using `setInterval`
 - Save timerId to stop it later
     ```js
-    this.timerId = setInterval(your code here);
+    this.timerId = setInterval(/*your code here*/);
     ```
 
 ![demo](./screenshot.png)

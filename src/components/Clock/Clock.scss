@@ -1,0 +1,17 @@
+@font-face {
+  font-family: Digital;
+  src: url("../../fonts/Digital.ttf");
+}
+
+.Clock {
+  padding: 10px 30px;
+  width: 32rem;
+  border-radius: 10px;
+  background-color: #081906;
+
+  &__time {
+    color: greenyellow;
+    font-family: Digital, Arial, sans-serif;
+    font-size: 8rem;
+  }
+}
