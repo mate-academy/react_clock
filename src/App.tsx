@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.scss';
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
+  //@ts-ignore
   const timerId: NodeJS.Timer = setInterval(() => {
     const date: Date = new Date();
 
@@ -20,5 +21,3 @@ const App: React.FC = () => {
     </div>
   );
 };
-
-export default App;
