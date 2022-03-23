@@ -30,12 +30,8 @@ export class App extends React.Component<{}, State> {
 
   render() {
     return (
-      <div
-        className="App d-flex"
-      >
-        <div
-          className="App__controller me-5"
-        >
+      <div className="App d-flex">
+        <div className="App__controller me-5">
           <Button
             className="App__controller-button d-block"
             variant="primary"
