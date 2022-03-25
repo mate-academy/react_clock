@@ -5,6 +5,7 @@ import { Clock } from './Clock';
 class App extends React.Component {
   state = {
     isClockVisible: false,
+    clockName: 0,
   };
 
   render() {
@@ -13,7 +14,7 @@ class App extends React.Component {
         <h1>React clock</h1>
 
         {this.state.isClockVisible && (
-          <Clock />
+          <Clock name={this.state.clockName} />
         )}
 
         <button
@@ -32,6 +33,15 @@ class App extends React.Component {
           }}
         >
           Hide Clock
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            this.setState({ clockName: Math.floor(Math.random() * 100) });
+          }}
+        >
+          Set random name
         </button>
       </div>
     );

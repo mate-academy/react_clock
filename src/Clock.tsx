@@ -1,6 +1,10 @@
 import React from 'react';
 
-export class Clock extends React.Component {
+interface Props {
+  name: number;
+}
+
+export class Clock extends React.Component<Props> {
   state = {
     date: new Date(),
     timerId: 0,
@@ -15,6 +19,13 @@ export class Clock extends React.Component {
     }, 1000);
 
     this.setState({ timerId });
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${prevProps.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
