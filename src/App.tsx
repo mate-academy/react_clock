@@ -7,24 +7,25 @@ class App extends React.Component {
     isClockVisible: true,
   };
 
-  hideClock = () => {
-    this.setState({ isClockVisible: false });
-  };
-
-  showClock = () => {
-    this.setState({ isClockVisible: true });
+  toggleClock = (value: boolean) => {
+    this.setState({ isClockVisible: value });
   };
 
   render() {
+    const { isClockVisible } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        <button type="button" className="button" onClick={this.showClock}>
-          Show clock
-        </button>
-
-        <button type="button" className="button" onClick={this.hideClock}>
-          Hide clock
+        <button
+          type="button"
+          className="button"
+          onClick={event => {
+            event.preventDefault();
+            this.toggleClock(!isClockVisible);
+          }}
+        >
+          {isClockVisible ? 'Hide clock' : 'Show clock'}
         </button>
 
         {this.state.isClockVisible && <Clock />}
