@@ -28,7 +28,7 @@ class App extends React.Component {
           {isClockVisible ? 'Hide clock' : 'Show clock'}
         </button>
 
-        {this.state.isClockVisible && <Clock />}
+        {isClockVisible && <Clock />}
       </div>
     );
   }
