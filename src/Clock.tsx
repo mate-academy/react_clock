@@ -4,10 +4,15 @@ interface Props {
   name: number;
 }
 
-export class Clock extends React.Component<Props> {
+interface State {
+  date: Date;
+  timerId: NodeJS.Timer | undefined;
+}
+
+export class Clock extends React.Component<Props, State> {
   state = {
     date: new Date(),
-    timerId: 0,
+    timerId: undefined,
   };
 
   componentDidMount() {
