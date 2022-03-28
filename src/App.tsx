@@ -1,7 +1,7 @@
 import React from 'react';
-import { Clock } from './Clock';
+import { Clock } from './components/Clock/Clock';
 
-import './App.scss';
+import './styles/App.scss';
 
 class App extends React.Component {
   state = {
