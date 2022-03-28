@@ -30,6 +30,13 @@ Create a `Clock` component updating the time every second.
     - Hide and show the `Clock` several times and leave it visible
     - The time in the console should be printed only once each second
 
+## REQUIREMENTS:
+
+- `App` component should have `data-cy="clock"` attribute
+- `Show Clock` button should have `data-cy="show-button"` attribute
+- `Hide Clock` button should have `data-cy="hide-button"` attribute
+- `Clock` component should have `data-cy="clock"` attribute
+
 ## (Optional) Prop update task
 1. Add `Set random name` button to the `App` to set a random number as a `clockName` variable in the `App` state.
 1. Pass the name to the `<Clock name={this.state.clockName} />`
