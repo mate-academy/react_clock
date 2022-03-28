@@ -2,16 +2,12 @@ import React from 'react';
 import { Clock } from './components/Clock';
 import './App.scss';
 
-interface Props {
-  props?: null;
-}
-
 interface State {
   isClockVisible: boolean;
   clockName: number;
 }
 
-export class App extends React.Component<Props, State> {
+export class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
     clockName: 0,
