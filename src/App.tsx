@@ -58,7 +58,7 @@ class App extends React.Component<Props, State> {
         {
           isClockVisible
             ? <Clock name={this.state.clockName} />
-            : <h1>Time for party</h1>
+            : <h1>Time to win</h1>
         }
       </div>
     );
