@@ -1,6 +1,7 @@
 import React from 'react';
-import './App.scss';
 import { Clock } from './Clock';
+
+import './App.scss';
 
 class App extends React.Component {
   state = {
@@ -20,8 +21,7 @@ class App extends React.Component {
         <button
           type="button"
           className="button"
-          onClick={event => {
-            event.preventDefault();
+          onClick={() => {
             this.toggleClock(!isClockVisible);
           }}
         >
