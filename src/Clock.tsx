@@ -6,24 +6,22 @@ interface Props {
 
 interface State {
   date: Date;
-  timerId: NodeJS.Timer | undefined;
 }
 
 export class Clock extends React.Component<Props, State> {
   state = {
     date: new Date(),
-    timerId: undefined,
   };
 
+  timerId: NodeJS.Timer | null = null;
+
   componentDidMount() {
-    const timerId: NodeJS.Timer = setInterval(() => {
+    this.timerId = setInterval(() => {
       this.setState({ date: new Date() });
 
       // eslint-disable-next-line
       console.log(this.state.date.toLocaleTimeString());
     }, 1000);
-
-    this.setState({ timerId });
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -34,7 +32,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
