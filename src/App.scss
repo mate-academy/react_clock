@@ -1,1 +1,25 @@
-// styles go here
+.App {
+  padding: 50px;
+  font-family: "Major Mono Display", monospace;
+
+  &__buttons {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 50px;
+
+    button {
+      width: 100px;
+      padding: 10px;
+      font-size: 18px;
+      color: #fff;
+      background-color: #000;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+
+      &:active {
+        transform: scale(1.02);
+      }
+    }
+  }
+}
