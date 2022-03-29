@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'Alarm Clock';
+  src: url("../../fonts/alarm\ clock.ttf");
+}
+
+.clock {
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 360px;
+    width: 700px;
+    background: #000;
+    border-radius: 28px;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px,
+    rgba(0, 0, 0, 0.12) 0 -12px 30px,
+    rgba(0, 0, 0, 0.12) 0 4px 6px,
+    rgba(0, 0, 0, 0.17) 0 12px 13px,
+    rgba(0, 0, 0, 0.09) 0 -3px 5px;
+  }
+
+  &__face {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Alarm clock";
+    font-size: 130px;
+    font-weight: 500;
+    
+    height: 60%;
+    width: 80%;
+    
+    background-color: #081906;
+    color: #adff2f;
+    text-shadow: 2px 7px 5px rgba(29, 49, 26, 0.3),
+    0px -4px 10px rgba(98, 255, 0, 0.51);
+    border-radius: 20px;
+  }
+
+  &__name {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    color: #6f6f6f;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+}
