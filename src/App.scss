@@ -1,1 +1,77 @@
-// styles go here
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Inconsolata", monospace;
+}
+
+body,
+h1,
+h2,
+div {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+.app {
+  height: 100vh;
+  padding: 150px 30px;
+  text-align: center;
+  background-color: #444;
+
+  &__action {
+    margin-bottom: 20px;
+  }
+
+  &__frame {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 600px;
+    min-width: 460px;
+
+    border-radius: 20px;
+
+    background-color: #c2fff5;
+    border: 3px solid #000;
+    box-shadow: 10px 10px 8px #141414;
+  }
+
+  &__clock-name {
+    margin-bottom: 30px;
+  }
+
+  &__button {
+    padding: 8px;
+    border-radius: 5px;
+
+    font-size: 1em;
+    color: #c2fff5;
+    background-color: #1b1b1b;
+    transition: background-color 0.2s, transform 0.2s;
+
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+
+    &:hover {
+      background-color: #600;
+      transform: scale(1.01);
+      cursor: pointer;
+    }
+  }
+
+  &__time-text {
+    margin-bottom: 76px;
+    font-style: italic;
+  }
+
+  &__time-digits {
+    font-size: 2em;
+    color: #470202;
+  }
+}
