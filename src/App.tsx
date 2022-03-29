@@ -14,19 +14,19 @@ export class App extends React.Component<{}, State> {
     clockName: Math.floor(Math.random() * 1000),
   };
 
-  clockShow = () => {
+  showClock = () => {
     this.setState({
       isClockVisible: true,
     });
   };
 
-  clockHide = () => {
+  hideClock = () => {
     this.setState({
       isClockVisible: false,
     });
   };
 
-  clockRename = () => {
+  renameClock = () => {
     this.setState({
       clockName: Math.floor(Math.random() * 1000),
     });
@@ -46,7 +46,7 @@ export class App extends React.Component<{}, State> {
             <button
               className="app__button"
               type="button"
-              onClick={this.clockShow}
+              onClick={this.showClock}
             >
               Show Clock
             </button>
@@ -54,7 +54,7 @@ export class App extends React.Component<{}, State> {
             <button
               className="app__button"
               type="button"
-              onClick={this.clockHide}
+              onClick={this.hideClock}
             >
               Hide Clock
             </button>
@@ -62,7 +62,7 @@ export class App extends React.Component<{}, State> {
             <button
               className="app__button"
               type="button"
-              onClick={this.clockRename}
+              onClick={this.renameClock}
             >
               Rename clock
             </button>
