@@ -1,6 +1,11 @@
 import React from 'react';
+import './Clock.scss';
 
-export class Clock extends React.Component {
+type State = {
+  time: Date;
+};
+
+export class Clock extends React.Component<{}, State> {
   timerId?: NodeJS.Timeout;
 
   state = {
@@ -13,6 +18,12 @@ export class Clock extends React.Component {
     );
   }
 
+  componentWillUnmount() {
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
+  }
+
   tick() {
     this.setState({ time: new Date() });
   }
@@ -22,8 +33,6 @@ export class Clock extends React.Component {
 
     return (
       <>
-        Current time:
-        {' '}
         {time.toLocaleTimeString()}
       </>
     );
