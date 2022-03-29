@@ -33,11 +33,14 @@ export class App extends React.Component<{}, State> {
 
     return (
       <div className="App">
-        <h1>React clock</h1>
-
-        {isVisible && (
-          <Clock name={clockName} />
-        )}
+        <h1>
+          React clock
+        </h1>
+        <h3>
+          {isVisible && (
+            <Clock name={clockName} />
+          )}
+        </h3>
 
         <button
           type="button"
