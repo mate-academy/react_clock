@@ -1,6 +1,12 @@
 import React from 'react';
 
-class Clock extends React.Component {
+type Props = {};
+
+interface State {
+  time: string,
+}
+
+class Clock extends React.Component<Props, State> {
   state = {
     time: '--:--:--',
   };
