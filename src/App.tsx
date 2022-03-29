@@ -19,6 +19,15 @@ export class App extends React.Component<{}, State> {
     isClockVisible: true,
   };
 
+  componentDidUpdate(prevProps: any, prevState: any) {
+    // eslint-disable-next-line
+    console.log(
+      `${prevProps.clockName ? prevProps.clockName : ''}`
+      + 'Property (clockName) has been changed '
+      + `from ${prevState.clockName} to ${this.state.clockName}`,
+    );
+  }
+
   hideClock = () => {
     this.setState({ isClockVisible: false });
   };
