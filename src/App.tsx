@@ -67,9 +67,18 @@ export class App extends React.Component<{}, State> {
               Rename clock
             </button>
           </div>
+
           {isClockVisible
-            ? <span className="app__time-digits"><Clock name={clockName} /></span>
-            : <h3 className="app__time-text">&#129045; click &quot;Show Clock&quot;</h3>}
+            ? (
+              <span className="app__time-digits">
+                <Clock name={clockName} />
+              </span>
+            )
+            : (
+              <h3 className="app__time-text">
+                &#129045; click &quot;Show Clock&quot;
+              </h3>
+            )}
         </div>
       </div>
     );
