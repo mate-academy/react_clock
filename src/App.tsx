@@ -13,41 +13,44 @@ export class App extends React.Component<{}, State> {
     clockName: 0,
   };
 
-  setRandomNum() {
+  setRandomNum = () => {
     this.setState({ clockName: Math.floor(Math.random() * 10) });
-  }
+  };
+
+  changeVisibility = (isVisible: boolean) => {
+    this.setState((state) => ({
+      ...state,
+      isClockVisible: !isVisible,
+    }));
+  };
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+
     return (
       <div className="App">
         <h3>react clock</h3>
         {
-          this.state.isClockVisible
-          && (<Clock name={this.state.clockName} />)
+          isClockVisible
+          && (<Clock name={clockName} />)
         }
         <div className="buttons">
           <button
             type="button"
-            onClick={() => {
-              this.setState({ isClockVisible: true });
-            }}
+            onClick={() => this.changeVisibility(isClockVisible)}
           >
             show clock
           </button>
           <button
             type="button"
-            onClick={() => {
-              this.setState({ isClockVisible: false });
-            }}
+            onClick={() => this.changeVisibility(isClockVisible)}
           >
             hide clock
           </button>
           <br />
           <button
             type="button"
-            onClick={() => {
-              this.setRandomNum();
-            }}
+            onClick={() => this.setRandomNum()}
           >
             set random name
           </button>
