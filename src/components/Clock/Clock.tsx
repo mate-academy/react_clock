@@ -18,6 +18,9 @@ export class Clock extends React.Component<{}, State> {
       this.setState({
         currentTime: date,
       });
+
+      // eslint-disable-next-line no-console
+      console.log(this.state.currentTime);
     }, 1000);
   }
 
