@@ -3,28 +3,28 @@ import { Clock } from './components/Clock';
 
 type State = {
   name: number,
-  visible: boolean,
+  clockVisible: boolean,
 };
 
 export class App extends React.Component<{}, State> {
   state = {
     name: 0,
-    visible: true,
+    clockVisible: true,
   };
 
-  show = () => {
+  showClock = () => {
     this.setState({
-      visible: true,
+      clockVisible: true,
     });
   };
 
-  hide = () => {
+  hideClock = () => {
     this.setState({
-      visible: false,
+      clockVisible: false,
     });
   };
 
-  generate = () => {
+  generateName = () => {
     const generateName = Math.ceil(Math.random() * 1000);
 
     this.setState({
@@ -35,17 +35,17 @@ export class App extends React.Component<{}, State> {
   render() {
     return (
       <>
-        <button type="button" onClick={this.hide}>
+        <button type="button" onClick={this.hideClock}>
           Hide Clock
         </button>
-        <button type="button" onClick={this.show}>
+        <button type="button" onClick={this.showClock}>
           Show Clock
         </button>
-        <button type="button" onClick={this.generate}>
+        <button type="button" onClick={this.generateName}>
           Generete name
         </button>
         <h3>
-          {this.state.visible && <Clock name={this.state.name} />}
+          {this.state.clockVisible && <Clock name={this.state.name} />}
         </h3>
       </>
     );
