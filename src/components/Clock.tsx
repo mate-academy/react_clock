@@ -22,7 +22,18 @@ export class Clock extends React.Component<Props, State> {
       this.setState({
         time: date,
       });
+      // eslint-disable-next-line no-console
+      console.log(`New time: ${this.state.time}`);
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { name } = prevProps;
+
+    if (name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${prevProps.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
