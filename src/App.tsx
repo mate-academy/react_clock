@@ -10,7 +10,7 @@ type State = {
 class App extends React.Component < {}, State> {
   state = {
     visible: true,
-    nameClock: '',
+    nameClock: 'Johnny Cage',
   };
 
   render() {
