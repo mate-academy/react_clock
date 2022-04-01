@@ -1,1 +1,17 @@
-// styles go here
+.buttonsList {
+  display: flex;
+}
+
+.button {
+  justify-content: center;
+  margin: auto;
+}
+
+.time {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid burlywood;
+  border-radius: 5px;
+}
