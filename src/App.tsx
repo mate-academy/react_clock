@@ -9,6 +9,9 @@ const App: React.FC = () => {
     console.log(date.toLocaleTimeString());
   }, 1000);
 
+  // eslint-disable-next-line
+  console.log(timerId);
+
   return (
     <div className="App">
       <h1>React clock</h1>
