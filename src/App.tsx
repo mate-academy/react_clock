@@ -3,46 +3,46 @@ import { Clock } from './components/Clock';
 import './App.scss';
 
 type State = {
-  visible: boolean;
+  visibleOfClock: boolean;
   nameClock: string;
 };
 
-class App extends React.Component < {}, State> {
+class App extends React.Component<{}, State> {
   state = {
-    visible: true,
+    visibleOfClock: true,
     nameClock: 'Johnny Cage',
   };
 
+  showClock = () => {
+    this.setState({ visibleOfClock: true });
+  };
+
+  hideClock = () => {
+    this.setState({ visibleOfClock: false });
+  };
+
+  clockName = () => {
+    const names = ['Longines', 'Harry Winston', 'Piaget', 'Cartier', 'Jaeger-LeCoultre'];
+    const newName = names[Math.floor(Math.random() * names.length)];
+
+    this.setState({ nameClock: newName });
+  };
+
   render() {
-    const { visible, nameClock } = this.state;
-
-    const showClock = () => {
-      this.setState({ visible: true });
-    };
-
-    const hideClock = () => {
-      this.setState({ visible: false });
-    };
-
-    const clockName = () => {
-      const names = ['Longines', 'Harry Winston', 'Piaget', 'Cartier', 'Jaeger-LeCoultre'];
-      const newName = names[Math.floor(Math.random() * names.length)];
-
-      this.setState({ nameClock: newName });
-    };
+    const { visibleOfClock, nameClock } = this.state;
 
     return (
       <div className="App">
-        {visible && <Clock name={nameClock} />}
-        <button type="button" onClick={showClock}>
+        {visibleOfClock && <Clock name={nameClock} />}
+        <button type="button" onClick={this.showClock}>
           Show clock
         </button>
 
-        <button type="button" onClick={hideClock}>
+        <button type="button" onClick={this.hideClock}>
           Hide Clock
         </button>
 
-        <button type="button" onClick={clockName}>
+        <button type="button" onClick={this.clockName}>
           Rename clock
         </button>
       </div>
