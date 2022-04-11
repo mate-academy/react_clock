@@ -6,15 +6,16 @@ type Props = {
 };
 
 export class Clock extends React.Component<Props> {
-  timerId = 0;
+  timerId?: NodeJS.Timer;
 
   state = {
     date: new Date(),
   };
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
+    this.timerId = setInterval(() => {
       this.setState({ date: new Date() });
+      console.log(this.state.date.toLocaleTimeString());
     }, 1000);
   }
 
@@ -25,7 +26,9 @@ export class Clock extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
@@ -35,7 +38,6 @@ export class Clock extends React.Component<Props> {
       (
         <>
           {date.toLocaleTimeString()}
-          {console.log(date.toLocaleTimeString())}
         </>
       )
     );
