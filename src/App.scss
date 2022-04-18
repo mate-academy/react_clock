@@ -53,7 +53,7 @@ button {
   font-weight: 700;
   color: black;
   transition: all 0.4s;
-  opacity: 40%;
+  opacity: 0.4;
 
   &:not(:last-child) {
     margin-right: 15px;
@@ -62,7 +62,7 @@ button {
   &:hover {
     background-color: lightgreen;
     color: gray;
-    opacity: 100%;
+    opacity: 1;
   }
 }
 
