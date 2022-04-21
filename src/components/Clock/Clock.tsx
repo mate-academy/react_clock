@@ -10,10 +10,7 @@ class Clock extends React.Component<NameType> {
     date: new Date(),
   };
 
-  // I was forced to declare timer here because of mistake appearing during declaring in componentDidMount
-  timerId: NodeJS.Timer = setInterval(() => {
-    this.tick();
-  }, 1000);
+  timerId?: NodeJS.Timer;
 
   componentDidMount() {
     this.timerId = setInterval(() => {
@@ -35,7 +32,9 @@ class Clock extends React.Component<NameType> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   tick() {
@@ -48,13 +47,10 @@ class Clock extends React.Component<NameType> {
     const { date } = this.state;
 
     return (
-      <>
-        <p className="clockText">
-          Current time:
-          {' '}
-          {date.toLocaleTimeString()}
-        </p>
-      </>
+      <p className="clockText">
+        Current time:
+        {` ${date.toLocaleTimeString()}`}
+      </p>
     );
   }
 }
