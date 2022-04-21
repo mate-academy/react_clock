@@ -1,8 +1,21 @@
+const page = {
+  showClock() {
+    return cy.contains('Show Clock');
+  },
+  hideClock() {
+    return cy.contains('Hide Clock');
+  },
+  time() {
+    return cy.getByDataCy('time');
+  }
+};
+
 describe('Page', () => {
   beforeEach(() => {
     cy.visit('/', {
       onBeforeLoad(win) {
-        cy.stub(win.console, 'log').as('consoleLog');
+        cy.stub(win.console, 'log')
+          .as('consoleLog');
       },
     });
   });
@@ -10,56 +23,68 @@ describe('Page', () => {
   it('should show actual time by default', () => {
     const actualTime = new Date().toLocaleTimeString();
 
-    cy.getByDataCy('clock')
+    cy.get('.App')
       .should('contain', actualTime);
   });
 
-  it('should contain show button', () => {
-    cy.getByDataCy('clock')
-      .selectElement('show-button')
+  it('should contain "Show Clock" button', () => {
+    page.showClock()
       .should('exist');
   });
 
-  it('should contain hide button', () => {
-    cy.getByDataCy('clock')
-      .selectElement('hide-button')
+  it('should contain "Hide Clock" button', () => {
+    page.hideClock()
       .should('exist');
   });
 
-  it('should hide clock after the clicj on the hide button', () => {
-    cy.getByDataCy('clock')
-      .selectElement('clock')
+  it('should hide clock after the click on the "Hide Clock" button', () => {
+    page.time()
       .should('exist');
 
-    cy.getByDataCy('clock')
-      .selectElement('hide-button')
+    page.hideClock()
       .click();
     
-    cy.getByDataCy('clock')
-      .selectElement('clock')
+    page.time()
       .should('not.exist');
   });
 
-  it('should show clock after the click on the show button', () => {
-    cy.getByDataCy('clock')
-      .selectElement('hide-button')
+  it('should show clock after the click on the "Show Clock" button', () => {
+    page.hideClock()
       .click();
     
-    cy.getByDataCy('clock')
-      .selectElement('clock')
+    page.time()
       .should('not.exist');
     
-    cy.getByDataCy('clock')
-      .selectElement('show-button')
+    page.showClock()
       .click();
     
-    cy.getByDataCy('clock')
-      .selectElement('clock')
+    page.time()
       .should('exist');
   });
 
-  it('should print each second also in DevTools ', () => {
-    cy.wait(2000);
-    cy.get('@consoleLog').should('to.be.calledThrice')
+  it('should print each second also in DevTools console', () => {
+    cy.wait(1000);
+    cy.get('@consoleLog')
+      .should('to.be.calledTwice');
+  });
+
+  it('should not print not pring each second to DevTools when clock is hidden', () => {
+    page.hideClock()
+      .click();
+
+    cy.wait(1000);
+    cy.get('@consoleLog')
+      .should('to.be.calledOnce');
+  });
+
+  it('should continue show time after click on "Hide Clock" and "Show Clock"', () => {
+    page.hideClock()
+      .click();
+    page.showClock()
+      .click();
+
+    cy.wait(1000);
+    cy.get('@consoleLog')
+      .should('to.be.calledTwice');
   });
 });
