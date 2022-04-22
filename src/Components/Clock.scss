@@ -1,0 +1,11 @@
+.clock__time {
+  margin: 40px auto;
+  color: #f9512e;
+  font-size: 50px;
+  font-weight: 700;
+  text-align: center;
+  transition: transform 0.3s;
+  &:hover {
+    transform: scale(1.2);
+  }
+}

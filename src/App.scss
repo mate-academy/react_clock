@@ -1,1 +1,81 @@
-// styles go here
+* {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+div {
+  margin: 0;
+}
+
+body {
+  background-color: #f9512e;
+}
+
+.App {
+  width: 80%;
+  min-width: 400px;
+  display: block;
+  margin: 200px auto;
+  padding: 50px;
+  border-radius: 10px;
+  font-family: "Inter", sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #1c1a26;
+  background-color: #ffeefc;
+  &__title {
+    margin-bottom: 50px;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 54px;
+    text-align: center;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: #f9512e;
+  }
+  &__name {
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #7f8096;
+  }
+  &__buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+  &__time {
+    margin: 40px auto;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    color: #f9512e;
+    transition: transform 0.3s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+  &__button {
+    display: block;
+    width: 200px;
+    margin: 20px;
+    line-height: 40px;
+    text-align: center;
+    border: 2px solid #f9512e;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: border 0.3s background-color 0.3s color 0.3s;
+    &:hover {
+      border: 2px solid transparent;
+      background-color: #f9512e;
+      color: #fff;
+    }
+  }
+}
