@@ -1,8 +1,8 @@
 const page = {
-  showClock() {
+  getShowClockButton() {
     return cy.contains('Show Clock');
   },
-  hideClock() {
+  getHideClockButton() {
     return cy.contains('Hide Clock');
   },
   time() {
@@ -28,12 +28,12 @@ describe('Page', () => {
   });
 
   it('should contain "Show Clock" button', () => {
-    page.showClock()
+    page.getShowClockButton()
       .should('exist');
   });
 
   it('should contain "Hide Clock" button', () => {
-    page.hideClock()
+    page.getHideClockButton()
       .should('exist');
   });
 
@@ -41,7 +41,7 @@ describe('Page', () => {
     page.time()
       .should('exist');
 
-    page.hideClock()
+    page.getHideClockButton()
       .click();
     
     page.time()
@@ -49,13 +49,13 @@ describe('Page', () => {
   });
 
   it('should show clock after the click on the "Show Clock" button', () => {
-    page.hideClock()
+    page.getHideClockButton()
       .click();
     
     page.time()
       .should('not.exist');
     
-    page.showClock()
+    page.getShowClockButton()
       .click();
     
     page.time()
@@ -69,7 +69,7 @@ describe('Page', () => {
   });
 
   it('should not print not pring each second to DevTools when clock is hidden', () => {
-    page.hideClock()
+    page.getHideClockButton()
       .click();
 
     cy.wait(1000);
@@ -78,9 +78,9 @@ describe('Page', () => {
   });
 
   it('should continue show time after click on "Hide Clock" and "Show Clock"', () => {
-    page.hideClock()
+    page.getHideClockButton()
       .click();
-    page.showClock()
+    page.getShowClockButton()
       .click();
 
     cy.wait(1000);
