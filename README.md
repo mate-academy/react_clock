@@ -20,6 +20,7 @@ Create a `Clock` component updating the time every second.
 1. Watch this video about [HOW TO HANDLE BUTTON CLICK](https://youtu.be/87RkHpYMDXI).
 1. Add buttons `Show Clock` and `Hide Clock` in the `App` component to change `isClockVisible` variable in the `App` state.
 1. The `Clock` should not be rendered when `isClockVisible` is `false`.
+1. You have to add `data-cy="time"` attribute to the element, which show time on the page
 1. Change the `Clock` component to print the time not only on the page but also in the `DevTools` console.
     - Stop the timer when the `Clock` is hidden (`componentWillUnmount`)
         ```js
