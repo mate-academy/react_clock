@@ -10,7 +10,6 @@ type State = {
 export class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
-    //
     clockName: Math.floor(Math.random() * 1000),
   };
 
