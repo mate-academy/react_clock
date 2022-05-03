@@ -1,1 +1,29 @@
-// styles go here
+@import "./fonts.scss";
+@import "./vars.scss";
+
+html {
+  font-family: 'Digital Numbers Regular', sans-serif;
+
+  background-color: $brown;
+}
+
+body {
+  margin: 0;
+
+  user-select: none;
+}
+
+.App {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 64px;
+  }
+}
