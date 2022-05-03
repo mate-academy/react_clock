@@ -1,0 +1,13 @@
+.Clock {
+  &__name {
+    font-size: 30px;
+    color: white;
+    letter-spacing: 6px;
+  }
+
+  &__time {
+    color: white;
+    font-size: 35px;
+    text-align: center;
+  }
+}
