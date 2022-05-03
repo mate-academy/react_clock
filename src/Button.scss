@@ -1,0 +1,40 @@
+@import "./vars.scss";
+
+.Button {
+  position: relative;
+
+  padding: 0;
+
+  text-align: center;
+  font-size: 42px;
+  font-family: inherit;
+  color: $gray;
+
+  background-color: transparent;
+  border: none;
+
+  transition-property: color, text-shadow;
+  transition-duration: 0.3s;
+
+  overflow-x: hidden;
+
+  &:hover {
+    color: $violet;
+    text-shadow: 0 0 10px $violet;
+
+    cursor: pointer;
+  }
+
+  &::before {
+    content: "000000000";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    color: $violet;
+
+    opacity: 0.2;
+  }
+}

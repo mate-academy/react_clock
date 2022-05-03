@@ -1,0 +1,30 @@
+@import "../../vars.scss";
+
+.Clock {
+  position: relative;
+
+  padding-bottom: 80px;
+
+  font-size: 128px;
+  color: $orange;
+
+  transition-property: text-shadow;
+  transition-duration: 0.3s;
+
+  &:hover {
+    text-shadow: 0 0 10px $orange;
+  }
+
+  &::before {
+    content: "00:00:00";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    color: $violet;
+
+    opacity: 0.2;
+  }
+}
