@@ -1,27 +1,57 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+export class App extends React.Component {
+  state = {
+    clockName: '0',
+    isClockVisible: true,
+  };
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  clockStateVisible = () => {
+    this.setState({
+      isClockVisible: true,
+    });
+  };
 
-  // eslint-disable-next-line
-  console.log(timerId);
+  clockStateHidden = () => {
+    this.setState({
+      isClockVisible: false,
+    });
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="App">
+        <h1 className="App__title">React clock</h1>
+        <button
+          className="App__buttonShow"
+          type="button"
+          onClick={this.clockStateVisible}
+        >
+          Show Clock
+        </button>
+        {this.state.isClockVisible && <Clock name={this.state.clockName} />}
 
-export default App;
+        <button
+          className="App__buttonHide"
+          type="button"
+          onClick={this.clockStateHidden}
+        >
+          Hide Clock
+        </button>
+        {(!this.state.isClockVisible) && null}
+
+        <button
+          type="button"
+          className="App__buttonRandom"
+          onClick={() => this.setState({
+            clockName: String(Math.floor(Math.random() * 10)),
+          })}
+        >
+          Set random name
+        </button>
+      </div>
+    );
+  }
+}
