@@ -3,60 +3,62 @@ html {
   font-family: Helvetica, sans-serif;
 }
 
-.App__title {
-  font-size: 56px;
-  text-align: center;
-  color: rgb(11, 83, 131);
-}
-
-.App__buttonShow {
-  display: block;
-  width: 300px;
-  height: 50px;
-  margin: 50px;
-  font-size: 32px;
-  border-radius: 8px;
-  border: 2px solid rgb(5, 112, 14);
-  color: rgb(22, 121, 22);
-  outline: none;
-  font-weight: bold;
-
-  &:hover {
-    background-color: rgb(189, 219, 141);
-    cursor: pointer;
+.App {
+  &__title {
+    font-size: 56px;
+    text-align: center;
+    color: rgb(11, 83, 131);
   }
-}
-
-.App__buttonHide {
-  display: block;
-  width: 300px;
-  height: 50px;
-  margin: 50px;
-  font-size: 32px;
-  border: 2px solid rgb(138, 5, 5);
-  border-radius: 8px;
-  color: rgb(138, 5, 5);
-  font-weight: bold;
-
-  &:hover {
-    background-color: rgb(231, 175, 175);
-    cursor: pointer;
+  
+  &__buttonShow {
+    display: block;
+    width: 300px;
+    height: 50px;
+    margin: 50px;
+    font-size: 32px;
+    border-radius: 8px;
+    border: 2px solid rgb(5, 112, 14);
+    color: rgb(22, 121, 22);
+    outline: none;
+    font-weight: bold;
+  
+    &:hover {
+      background-color: rgb(189, 219, 141);
+      cursor: pointer;
+    }
   }
-}
-
-.App__buttonRandom {
-  display: block;
-  width: 300px;
-  height: 50px;
-  margin: 50px;
-  font-size: 20px;
-  border-radius: 8px;
-  border: 2px solid rgb(5, 74, 138);
-  color: rgb(5, 74, 138);
-  font-weight: bold;
-
-  &:hover {
-    background-color: rgb(149, 201, 221);
-    cursor: pointer;
+  
+  &__buttonHide {
+    display: block;
+    width: 300px;
+    height: 50px;
+    margin: 50px;
+    font-size: 32px;
+    border: 2px solid rgb(138, 5, 5);
+    border-radius: 8px;
+    color: rgb(138, 5, 5);
+    font-weight: bold;
+  
+    &:hover {
+      background-color: rgb(231, 175, 175);
+      cursor: pointer;
+    }
+  }
+  
+  &__buttonRandom {
+    display: block;
+    width: 300px;
+    height: 50px;
+    margin: 50px;
+    font-size: 20px;
+    border-radius: 8px;
+    border: 2px solid rgb(5, 74, 138);
+    color: rgb(5, 74, 138);
+    font-weight: bold;
+  
+    &:hover {
+      background-color: rgb(149, 201, 221);
+      cursor: pointer;
+    }
   }
 }
