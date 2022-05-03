@@ -4,8 +4,8 @@ import { Clock } from './components/Clock';
 
 export class App extends React.Component {
   state = {
-    clockName: 0,
-    isClockVisible: false,
+    clockName: '0',
+    isClockVisible: true,
   };
 
   clockStateVisible = () => {
@@ -46,7 +46,7 @@ export class App extends React.Component {
           type="button"
           className="App__buttonRandom"
           onClick={() => this.setState({
-            clockName: Math.floor(Math.random() * 10),
+            clockName: String(Math.floor(Math.random() * 10)),
           })}
         >
           Set random name

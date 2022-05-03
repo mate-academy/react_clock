@@ -2,7 +2,7 @@ import React from 'react';
 import './Clock.scss';
 
 type Props = {
-  name: number;
+  name: string;
 };
 
 type State = {
@@ -14,7 +14,7 @@ export class Clock extends React.Component<Props, State> {
     time: '',
   };
 
-  timerId: NodeJS.Timer | null = null;
+  timerId: NodeJS.Timer | 0 = 0;
 
   componentDidMount() {
     this.timerId = setInterval(() => {
