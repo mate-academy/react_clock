@@ -1,1 +1,29 @@
-// styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__block {
+    background-color: blue;
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    width: 500px;
+  }
+
+  &__clock {
+    align-items: center;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+    gap: 20px;
+  }
+
+  &__button {
+    height: 100px;
+    border-radius: 50%;
+  }
+}
