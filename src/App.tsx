@@ -18,48 +18,56 @@ class App extends React.Component<Props, State> {
 
   render() {
     // eslint-disable-next-line max-len
-    const names = ['Clock', 'Another Clock', 'React Clock', 'React', 'Clock Name'];
+    const names = ['Clock', 'Another Clock', 'React Clock', 'React', 'Clock Name', 'Random Name'];
+    const { clockName, isClockVisible } = this.state;
 
     return (
       <div className="App">
-        <h1>{this.state.clockName}</h1>
+        <h1 className="title">{clockName}</h1>
 
-        {this.state.isClockVisible && (
-          <p data-cy="time">
+        {isClockVisible && (
+          <p data-cy="time" className="clock">
             Current time:
             {' '}
-            <Clock name={this.state.clockName} />
+            <Clock name={clockName} />
           </p>
         )}
 
-        <button
-          type="button"
-          onClick={() => {
-            this.setState({ isClockVisible: true });
-          }}
-        >
-          Show Clock
-        </button>
+        <div className="buttons">
+          <button
+            type="button"
+            onClick={() => {
+              this.setState({ isClockVisible: true });
+            }}
+            className="clock-button"
+            disabled={isClockVisible}
+          >
+            Show Clock
+          </button>
 
-        <button
-          type="button"
-          onClick={() => {
-            this.setState({ isClockVisible: false });
-          }}
-        >
-          Hide Clock
-        </button>
+          <button
+            type="button"
+            onClick={() => {
+              this.setState({ isClockVisible: false });
+            }}
+            disabled={!isClockVisible}
+            className="clock-button"
+          >
+            Hide Clock
+          </button>
 
-        <button
-          type="button"
-          onClick={() => {
-            const randomized = names[Math.floor(Math.random() * names.length)];
+          <button
+            type="button"
+            onClick={() => {
+              const randomizedIndex = Math.floor(Math.random() * names.length);
 
-            this.setState({ clockName: randomized });
-          }}
-        >
-          Set random name
-        </button>
+              this.setState({ clockName: names[randomizedIndex] });
+            }}
+            className="clock-button"
+          >
+            Set random name
+          </button>
+        </div>
       </div>
     );
   }
