@@ -5,10 +5,9 @@ import { Clock } from './components/clock';
 type State = {
   isClockVisible: boolean;
   clockName: string;
-}
+};
 
 class App extends React.Component<{}, State> {
-
   state: State = {
     isClockVisible: true,
     clockName: '1',
@@ -24,6 +23,7 @@ class App extends React.Component<{}, State> {
 
   render() {
     const { isClockVisible, clockName } = this.state;
+
     return (
       <div className="App">
         <div className="App__block">
