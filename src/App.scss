@@ -1,1 +1,59 @@
-// styles go here
+.Page {
+  background-color: aquamarine;
+
+  &__body {
+    margin: 0;
+  }
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 5px solid darkmagenta;
+  border-radius: 15px;
+  margin: 30px;
+
+  &__title {
+    color: darkmagenta;
+  }
+
+  &__text {
+    font-size: 25px;
+    color: darkmagenta;
+
+    &-green {
+      color: green;
+    }
+  }
+
+  &__button {
+    height: 50px;
+    width: 250px;
+    font-size: 25px;
+    border-radius: 8px;
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+
+    &-show {
+      color: green;
+      background-color: lightgreen;
+    }
+
+    &-hide {
+      color: red;
+      background-color: lightsalmon;
+      margin-bottom: 20px;
+    }
+
+    &-name {
+      color: orangered;
+      background-color: yellow;
+      margin-bottom: 20px;
+    }
+  }
+}
