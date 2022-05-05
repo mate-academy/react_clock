@@ -37,7 +37,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <p className="time">
+        <p className="time" data-cy="time">
           Current time:
           {' '}
           {
