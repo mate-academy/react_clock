@@ -1,1 +1,48 @@
-// styles go here
+html {
+  background-image: url(./matrix.jpg);
+}
+
+body {
+  margin: 0;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.App {
+  width: 600px;
+  height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  background-color: black;
+
+  &__button {
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+    font-size: 15px;
+    color: white;
+    border: 1px solid lightgreen;
+    background-color: black;
+    transition: all 0.5s;
+
+    &:hover {
+      color: black;
+      background-color: lightgreen;
+      box-shadow: 0 0 3px 3px lightgreen;
+    }
+
+    &:disabled {
+      color: black;
+      background-color: black;
+      display: none;
+    }
+  }
+}

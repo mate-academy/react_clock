@@ -1,0 +1,19 @@
+.Clock {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  &__name {
+    font-family: "Press Start 2P", cursive;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+  }
+
+  &__time {
+    font-family: "Press Start 2P", cursive;
+    font-size: 50px;
+    text-align: center;
+    color: lightgreen;
+  }
+}
