@@ -1,1 +1,36 @@
-// styles go here
+body {
+  background-color: #1d1d1d;
+}
+
+.container {
+  height: 40vh;
+  padding-top: 32vh;
+  margin-left: -2vh;
+  text-align: center;
+  color: white;
+  font-size: 6vh;
+  font-family: monospace;
+}
+
+.clockButton {
+  cursor: pointer;
+  border-color: rgb(165, 165, 165);
+  margin: 2vh auto;
+  border-radius: 4vh;
+  padding: 1vh;
+  width: fit-content;
+  border-style: solid;
+  font-size: 4vh;
+}
+
+.App {
+  width: 1000px;
+  height: 1000px;
+  max-width: 100%;
+  max-height: 100vh;
+  background-image: url("./image/AppleWatch.jpg");
+  background-size: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
+}
