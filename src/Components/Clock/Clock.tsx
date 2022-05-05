@@ -1,4 +1,3 @@
-import { Console } from 'console';
 import React from 'react';
 
 export class Clock extends React.Component {
@@ -18,9 +17,10 @@ export class Clock extends React.Component {
 
   render() {
     const { currentDate } = this.state;
-    const currentTime = currentDate.toLocaleTimeString('it-IT');
+    const currentTime = currentDate.toLocaleTimeString();
 
-    Console.log(currentTime);
+    // eslint-disable-next-line no-console
+    console.log(currentTime);
 
     return currentTime;
   }
