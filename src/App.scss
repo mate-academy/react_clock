@@ -1,0 +1,17 @@
+.app {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 100px;
+
+  &__wrap {
+    height: 80px;
+  }
+
+  &__Btns {
+    width: max-content;
+    display: flex;
+    gap: 40px;
+    height: 60px;
+  }
+}

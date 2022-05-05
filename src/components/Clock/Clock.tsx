@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Clock.scss';
+
 type Props = {
   clockName: string;
 };
@@ -9,7 +11,7 @@ type State = {
 };
 
 export class Clock extends React.Component<Props> {
-  timerId: NodeJS.Timer | null = null;
+  timerId?: NodeJS.Timer = undefined;
 
   state: State = {
     updateStateSinceMountCounter: 0,
@@ -45,14 +47,14 @@ export class Clock extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    if (this.timerId !== null) {
+    if (this.timerId) {
       clearInterval(this.timerId);
     }
   }
 
   render() {
     return (
-      <div className="Clock " data-cy="time">
+      <div className="clock" data-cy="time">
         {new Date().toLocaleTimeString()}
       </div>
     );

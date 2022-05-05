@@ -1,6 +1,8 @@
 import React from 'react';
-import './App.scss';
 import { Clock } from './components/Clock';
+import Font from './Font';
+
+import './App.scss';
 
 type Props = {};
 
@@ -10,6 +12,9 @@ type State = {
 };
 
 class App extends React.Component<Props> {
+  static fontUrl
+  = 'https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap';
+
   state: State = {
     clockName: 'init name',
     clockVisible: true,
@@ -43,11 +48,11 @@ class App extends React.Component<Props> {
 
     return (
       <div className="app">
-        {
-          clockVisible
-            ? <Clock clockName={clockName} />
-            : null
-        }
+        <div className="app__wrap">
+          {
+            clockVisible && <Clock clockName={clockName} />
+          }
+        </div>
 
         <div className="app__Btns">
           <button
@@ -69,6 +74,7 @@ class App extends React.Component<Props> {
             Rename
           </button>
         </div>
+        <Font url={App.fontUrl} />
       </div>
     );
   }
