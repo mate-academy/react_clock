@@ -1,1 +1,29 @@
-// styles go here
+body {
+  margin: 0;
+  background-color: #f0858b;
+}
+
+.Clock__timer {
+  font-size: 2em;
+  text-align: center;
+  color: white;
+}
+
+.Clock__title {
+  text-align: center;
+  color: white;
+}
+
+.clock__buttons {
+  display: grid;
+  justify-content: center;
+  gap: 30px;
+}
+
+.clock-button {
+  color: #f0858b;
+  font-size: 20px;
+  font-weight: 500;
+  height: 50px;
+  width: 400px;
+}
