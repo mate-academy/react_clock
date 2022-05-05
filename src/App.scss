@@ -1,1 +1,37 @@
-// styles go here
+h1 {
+  writing-mode: vertical-rl;
+}
+
+.app {
+  display: flex;
+}
+
+.rolex {
+
+  width: 500px;
+  height: 500px;
+  padding-top: 50px;
+  margin-right: 50px;
+  text-align: center;
+  color: aqua;
+  background-image: url(./watch-42mm-sp-blk-stainless.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.button {
+  padding: 10px 20px;
+  margin-left: 3px;
+  margin-right: 3px;
+  color: rgb(33, 165, 7);
+  background-color: aqua;
+  border-radius: 15px;
+}
+
+.clock__name-name {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: larger;
+  font-weight: bold;
+}
