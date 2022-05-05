@@ -1,4 +1,4 @@
-import { Console } from 'node:console';
+import { Console } from 'console';
 import React from 'react';
 
 export class Clock extends React.Component {
