@@ -2,8 +2,7 @@ import React from 'react';
 import './Clock.scss';
 
 type Props = {
-  isClockVisible: boolean,
-  name: number,
+  clockName: number,
 };
 
 type State = {
@@ -29,25 +28,37 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+    }
+  }
+
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
+    const { clockName } = this.props;
+    const { currentTime } = this.state;
+
     return (
       <div className="clock">
         <div>
           Clock Name:
           {' '}
           {'<<'}
-          {this.props.name}
+          {clockName}
           {'>>'}
         </div>
         <div>
           Current time:
           {' '}
           <span data-cy="time">
-            {this.state.currentTime}
+            {currentTime}
           </span>
         </div>
       </div>

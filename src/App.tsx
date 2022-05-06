@@ -2,26 +2,24 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
-type Props = {};
-
 type State = {
   isClockVisible: boolean,
   clockName: number,
 };
 
-class App extends React.Component<Props, State> {
+class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
-    clockName: 1,
+    clockName: 777,
   };
 
-  show = () => {
+  showClock = () => {
     this.setState({
       isClockVisible: true,
     });
   };
 
-  hide = () => {
+  hideClock = () => {
     this.setState({
       isClockVisible: false,
     });
@@ -34,20 +32,21 @@ class App extends React.Component<Props, State> {
   };
 
   render() {
+    const { clockName, isClockVisible } = this.state;
+
     return (
       <div className="App">
         {this.state.isClockVisible && (
           <Clock
-            isClockVisible={this.state.isClockVisible}
-            name={this.state.clockName}
+            clockName={clockName}
           />
         )}
 
         <button
           type="button"
           className="show-btn btn"
-          disabled={this.state.isClockVisible}
-          onClick={this.show}
+          disabled={isClockVisible}
+          onClick={this.showClock}
         >
           Show Clock
         </button>
@@ -55,8 +54,8 @@ class App extends React.Component<Props, State> {
         <button
           type="button"
           className="hide-btn btn"
-          disabled={!this.state.isClockVisible}
-          onClick={this.hide}
+          disabled={!isClockVisible}
+          onClick={this.hideClock}
         >
           Hide Clock
         </button>
@@ -64,7 +63,7 @@ class App extends React.Component<Props, State> {
         <button
           type="button"
           className="set-btn btn"
-          disabled={!this.state.isClockVisible}
+          disabled={!isClockVisible}
           onClick={this.getRandom}
         >
           Set random name
