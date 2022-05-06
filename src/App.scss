@@ -4,10 +4,9 @@
   flex-direction: column;
   align-items: center;
   height: 250px;
-  width: 400px;
+  width: 350px;
   margin: 0 auto;
   background-color: #c788d6;
-  border-radius: 50px;
 
   &__buttons {
     margin-top: 20px;
@@ -39,6 +38,6 @@
   }
 
   &__title {
-    margin-top: 50px;
+    margin: 50px 0 0;
   }
 }

@@ -1,6 +1,13 @@
 .clock {
   padding: 10px;
 
+  &__name {
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    font-weight: bold;
+  }
+
   &__time {
     font-size: large;
     font-weight: bold;
