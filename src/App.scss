@@ -1,1 +1,53 @@
-// styles go here
+.app {
+  background-color: aquamarine;
+  margin: 30px auto 0;
+  width: 400px;
+
+  text-align: center;
+
+  &__title {
+    padding-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  &__text {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  &__clock {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 25px;
+    height: 45px;
+    width: 130px;
+
+    border: 1px solid blue;
+    border-radius: 5px;
+    background-color: rgb(198, 225, 234);
+  }
+
+  &__button-appear {
+    margin: 0 auto 15px;
+
+    display: flex;
+    justify-content: space-between;
+
+    width: 300px;
+    height: 35px;
+
+    border-radius: 5px;
+  }
+
+  &__button-random {
+    margin-bottom: 20px;
+    height: 35px;
+
+    border-radius: 5px;
+  }
+}
