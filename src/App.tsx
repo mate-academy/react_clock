@@ -9,10 +9,14 @@ class App extends React.Component {
   };
 
   showClocks = () => {
+    // eslint-disable-next-line no-console
+    console.log('showClocks');
     this.setState({ isVisible: true });
   };
 
   hideClocks = () => {
+    // eslint-disable-next-line no-console
+    console.log('hideClocks');
     this.setState({ isVisible: false });
   };
 
@@ -20,6 +24,9 @@ class App extends React.Component {
     const arr = ['Strela', 'Oficersky', 'CASIO', 'Meit', 'Apple', 'Sony'];
 
     this.setState({ name: arr[Math.floor(Math.random() * 6)] });
+
+    // eslint-disable-next-line no-console
+    console.log(`The Clock was renamed to ${this.state.name}`);
   };
 
   render(): React.ReactNode {
