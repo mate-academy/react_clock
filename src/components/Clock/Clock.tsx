@@ -39,7 +39,7 @@ export class Clock extends React.Component<Props, State> {
 
   render() {
     return (
-      <p>
+      <p data-cy="time">
         Current time:
         {' '}
         {this.state.date}
