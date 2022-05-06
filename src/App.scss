@@ -1,1 +1,43 @@
-// styles go here
+@import url("https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500&display=swap");
+
+body {
+  background: #66cdaa;
+}
+
+html {
+  font-family: "Libre Bodoni", serif;
+}
+
+.App {
+  max-width: 600px;
+  height: 600px;
+  margin: auto;
+  border-radius: 50%;
+  background-color: #dae2e9;
+  text-align: center;
+  color: rgb(19, 18, 17);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__button {
+    margin: 15px;
+    width: 200px;
+    height: 50px;
+    font-size: 15px;
+    letter-spacing: 3px;
+    background: linear-gradient(hsl(169, 8%, 42%), #38aca3);
+    border-radius: 20px;
+    border: 0;
+    color: #dae2e9;
+    transition: 0.5s;
+
+    &:hover {
+      border-radius: 15px;
+      background: linear-gradient(#2a302f, #50beb5);
+      transform: scale(1.1);
+    }
+  }
+
+}
