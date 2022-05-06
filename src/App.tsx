@@ -29,8 +29,11 @@ class App extends React.Component {
           Current time:
           {this.state.isClockVisible
             ? <Clock name={this.state.clockName} />
-            // eslint-disable-next-line react/no-unescaped-entities
-            : <span className="App__text-green"> "click upper button"</span>}
+            : (
+              <span className="App__text-green">
+                &quot;click upper button&quot;
+              </span>
+            )}
         </div>
         <button
           type="button"
