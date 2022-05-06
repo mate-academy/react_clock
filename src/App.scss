@@ -1,4 +1,4 @@
-.Page {
+.page {
   background-color: aquamarine;
 
   &__body {
@@ -19,8 +19,17 @@
   }
 
   &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 80px;
+    width: 300px;
+    border: 2px solid darkmagenta;
+    border-radius: 8px;
+    text-align: center;
     font-size: 25px;
     color: darkmagenta;
+    margin: 20px;
 
     &-green {
       color: green;

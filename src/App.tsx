@@ -25,13 +25,13 @@ class App extends React.Component {
         >
           Show Clock
         </button>
-        <p className="App__text">
+        <div className="App__text">
           Current time:
           {this.state.isClockVisible
             ? <Clock name={this.state.clockName} />
             // eslint-disable-next-line react/no-unescaped-entities
-            : <span className="App__text-green">"click upper button"</span>}
-        </p>
+            : <span className="App__text-green"> "click upper button"</span>}
+        </div>
         <button
           type="button"
           className="App__button-hide App__button"
