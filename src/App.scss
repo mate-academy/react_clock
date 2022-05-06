@@ -1,1 +1,54 @@
-// styles go here
+* {
+  // box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  display: flexbox;
+}
+
+.Clock {
+  box-sizing: border-box;
+  border: 1px solid black;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: aqua;
+  width: 480px;
+
+  &__title {
+    color: white;
+    font-size: 36px;
+  }
+
+  &__button {
+
+    &-show {
+      width: 150px;
+      height: 50px;
+      background-color: red;
+
+    }
+
+    &-hide {
+      width: 150px;
+      height: 50px;
+      background-color: rgb(72, 228, 137);
+    }
+
+    &-name {
+      width: 150px;
+      height: 50px;
+      background-color: bisque;
+    }
+  }
+
+  &__data {
+    &-name {
+      font-size: 30px;
+    }
+
+    &-time {
+      font-size: 60px;
+    }
+  }
+}
