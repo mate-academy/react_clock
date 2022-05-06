@@ -15,8 +15,8 @@ class App extends React.Component<{}, State> {
     clockName: 0,
   };
 
-  clockVisibilityHandler = (isVisivle: boolean): void => {
-    this.setState({ isClockVisible: isVisivle });
+  clockVisibilityHandler = (isVisible: boolean): void => {
+    this.setState({ isClockVisible: isVisible });
   };
 
   createRandomName = () => {
