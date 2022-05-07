@@ -1,1 +1,31 @@
-// styles go here
+body {
+  box-sizing: border-box;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  background-color: #b0c4de;
+
+}
+
+.app {
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  border: 1px solid black;
+  border-radius: 5px;
+
+  background-image: linear-gradient(
+    to right top,
+    #f5f5f5, #e5e8f5,
+    #cddef5, #aed5f2, #87ceeb
+  );
+}
