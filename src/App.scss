@@ -31,5 +31,12 @@ html {
     border: none;
     font-size: 18px;
     border-radius: 3px;
+    transition: 0.3s all;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(120%);
+      background-color: #764af1;
+    }
   }
 }
