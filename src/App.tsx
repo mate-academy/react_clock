@@ -2,11 +2,24 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './Components/Clock/Clock';
 
-class App extends React.Component {
+type State = {
+  showClock: boolean,
+  clockName: string,
+};
+
+class App extends React.Component<{}, State> {
   state = {
     showClock: true,
     clockName: 'React clock',
   };
+
+  // eslint-disable-next-line no-empty-pattern
+  componentDidUpdate({}, prevState: State) {
+    if (prevState.clockName !== this.state.clockName) {
+    // eslint-disable-next-line no-console
+      console.log(`clock name changed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
+  }
 
   show() {
     this.setState({ showClock: true });
@@ -16,7 +29,7 @@ class App extends React.Component {
     this.setState({ showClock: false });
   }
 
-  name() {
+  rename() {
     this.setState({ clockName: (Math.random() + 1).toString(36).substring(7) });
   }
 
@@ -44,7 +57,7 @@ class App extends React.Component {
           </button>
           <button
             type="button"
-            onClick={this.name.bind(this)}
+            onClick={this.rename.bind(this)}
             className="buttons__button"
           >
             clockName

@@ -1,18 +1,26 @@
 import React from 'react';
 
-export class Clock extends React.Component {
+type State = {
+  currentDate: Date,
+};
+
+export class Clock extends React.Component<{}, State> {
   state = {
     currentDate: new Date(),
   };
 
+  timer?: NodeJS.Timeout;
+
   componentDidMount() {
-    setInterval(() => {
+    this.timer = setInterval(() => {
       this.setState({ currentDate: new Date() });
     }, 1000);
   }
 
   componentWillUnmount() {
-    this.setState({ currentDate: new Date() });
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
   }
 
   render() {
