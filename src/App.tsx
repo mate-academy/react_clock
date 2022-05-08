@@ -35,9 +35,9 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div className="App">
+      <div className="app">
         <h1>React clock</h1>
-        <p className="time" data-cy="time">
+        <p className="app__time" data-cy="time">
           Current time:
           {' '}
           {
@@ -45,23 +45,31 @@ class App extends React.Component {
               ? <Clock name={clockName} />
               : null
           }
+          {' '}
+          {`(clock name is ${clockName})`}
+
         </p>
         <button
           type="button"
+          className="app__button"
           onClick={this.showTimer}
+          disabled={isClockVisible}
         >
           Show
         </button>
         {' '}
         <button
           type="button"
+          className="app__button"
           onClick={this.hideTimer}
+          disabled={!isClockVisible}
         >
           Hide
         </button>
         {' '}
         <button
           type="button"
+          className="app__button"
           onClick={this.getRandomClockName}
         >
           Random clock name
