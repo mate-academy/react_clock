@@ -11,7 +11,7 @@ type State = {
 
 class App extends React.Component<Props, State> {
   state = {
-    clockName: 1,
+    clockName: 0,
     isClockVisible: true,
   };
 
@@ -29,7 +29,7 @@ class App extends React.Component<Props, State> {
 
   randomName = () => {
     this.setState({
-      clockName: Math.floor(Math.random() * 10),
+      clockName: Math.floor(Math.random() * 10) + 1,
     });
   };
 
@@ -37,35 +37,34 @@ class App extends React.Component<Props, State> {
     const { clockName, isClockVisible } = this.state;
 
     return (
-      <div>
-        {`Clock: ${clockName}`}
+      <div className="App">
+        {`Clock #${clockName}`}
         <br />
         {isClockVisible && <Clock clockName={clockName} />}
 
-        <div>
-          <button
-            type="submit"
-            onClick={this.showClock}
-            disabled={isClockVisible}
-          >
-            showClock
-          </button>
+        <button
+          type="submit"
+          onClick={this.showClock}
+          disabled={isClockVisible}
+        >
+          Show Clock
+        </button>
 
-          <button
-            type="submit"
-            onClick={this.hideClock}
-            disabled={!isClockVisible}
-          >
-            hideClock
-          </button>
+        <button
+          type="submit"
+          onClick={this.hideClock}
+          disabled={!isClockVisible}
+        >
+          Hide Clock
+        </button>
 
-          <button
-            type="submit"
-            onClick={this.randomName}
-          >
-            randomName
-          </button>
-        </div>
+        <button
+          type="submit"
+          onClick={this.randomName}
+          disabled={!isClockVisible}
+        >
+          Random Name
+        </button>
       </div>
     );
   }
