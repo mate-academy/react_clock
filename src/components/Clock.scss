@@ -1,0 +1,16 @@
+.clock {
+  &__time {
+    text-align: center;
+    font-size: 100px;
+    color: aqua;
+    border-bottom: 3px solid aquamarine;
+    padding: 10px;
+    text-shadow: 0 0 3px aquamarine;
+    transition: all 0.5s;
+
+    &:hover {
+      transform: scale(1.03);
+      text-shadow: 0 0 7px #df4e4e;
+    }
+  }
+}
