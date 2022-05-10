@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import sound from './TheMatrixSoundtrack.mp3';
 import { Clock } from './components/Clock/Clock';
 
 type State = {
@@ -15,6 +16,8 @@ class App extends React.Component<{}, State> {
 
   showClock = () => {
     this.setState({ isClockVisible: true });
+
+    this.play();
   };
 
   hideClock = () => {
@@ -23,6 +26,12 @@ class App extends React.Component<{}, State> {
 
   renameClock = () => {
     this.setState({ clockName: Math.floor(Math.random() * 100) });
+  };
+
+  play = () => {
+    const audio = new Audio(sound);
+
+    audio.play();
   };
 
   render() {
