@@ -1,5 +1,12 @@
 import React from 'react';
-import { Props, State } from './types';
+
+type Props = {
+  name: number,
+};
+
+type State = {
+  time: string,
+};
 
 export class Clock extends React.Component<Props, State> {
   state = {
