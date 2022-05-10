@@ -31,13 +31,14 @@ class App extends React.Component {
         <h1>React clock</h1>
 
         <div className="rolex">
-          {isVisible && <Clock name={this.state.clockName} />}
+          {isVisible && <Clock name={clockName} />}
         </div>
 
         <div className="clock">
           <button
             className="clock__button button"
             type="button"
+            disabled={isVisible}
             onClick={this.showClocks}
           >
             Show
@@ -45,6 +46,7 @@ class App extends React.Component {
           <button
             className="clock__button button"
             type="button"
+            disabled={!isVisible}
             onClick={this.hideClocks}
           >
             Hide
@@ -56,6 +58,7 @@ class App extends React.Component {
           <button
             className="clock__button button"
             type="button"
+            disabled={!isVisible}
             onClick={this.ClockName}
           >
             New Clocks name

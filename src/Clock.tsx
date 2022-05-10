@@ -20,7 +20,7 @@ export class Clock extends React.Component<Props, State> {
       this.setState({ time: new Date().toLocaleTimeString() });
 
       // eslint-disable-next-line no-console
-      console.log(this.state.time);
+      console.log(new Date().toLocaleTimeString());
     }, 1000);
   }
 
