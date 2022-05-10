@@ -13,11 +13,17 @@ interface State {
 }
 
 export class Clock extends React.Component<Props, State> {
+  private timerId: NodeJS.Timer | null;
+
+  constructor(props: Props) {
+    super(props);
+
+    this.timerId = null;
+  }
+
   state: State = {
     currentTime: new Date().toLocaleTimeString(),
   };
-
-  private timerId: NodeJS.Timer = setInterval(() => {}, 0);
 
   componentDidMount() {
     this.timerId = setInterval(() => {
@@ -36,14 +42,16 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId !== null) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
     return (
       <div className="clock" data-cy="time">
         <h2 className="clock__name">{this.props.name}</h2>
-        <h3 className="clock__time">{(new Date().toLocaleTimeString())}</h3>
+        <h3 className="clock__time">{this.state.currentTime}</h3>
       </div>
     );
   }
