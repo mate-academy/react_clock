@@ -13,17 +13,22 @@ export class Clock extends React.Component<Props, State> {
     time: new Date().toLocaleTimeString(),
   };
 
-  timerId = setInterval(() => {}, 0);
+  timerId?: NodeJS.Timer;
 
   componentDidMount() {
     // eslint-disable-next-line
     console.log(`Start clock: ${this.props.clockName}`);
 
     this.timerId = setInterval(() => {
+      const time = new Date().toLocaleTimeString();
+
       this.setState({
-        time: new Date().toLocaleTimeString(),
+        time,
       });
-    });
+
+      // eslint-disable-next-line
+      console.log(time);
+    }, 1000);
 
     // eslint-disable-next-line
     console.log(`${this.state.time}`);
@@ -40,7 +45,9 @@ export class Clock extends React.Component<Props, State> {
     // eslint-disable-next-line
     console.log(`Stop clock: ${this.props.clockName}`);
 
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
