@@ -9,10 +9,14 @@ class App extends React.Component {
   };
 
   showClocks = () => {
+    // eslint-disable-next-line no-console
+    console.log('showClocks');
     this.setState({ isVisible: true });
   };
 
   hideClocks = () => {
+    // eslint-disable-next-line no-console
+    console.log('hideClocks');
     this.setState({ isVisible: false });
   };
 
