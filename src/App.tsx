@@ -13,15 +13,11 @@ class App extends React.Component<{}, State> {
     clockName: 1,
   };
 
-  showClock = () => {
-    this.setState({
-      clockVisible: true,
-    });
-  };
+  visibleClock = () => {
+    const { clockVisible } = this.state;
 
-  hideClock = () => {
     this.setState({
-      clockVisible: false,
+      clockVisible: !clockVisible,
     });
   };
 
@@ -32,25 +28,33 @@ class App extends React.Component<{}, State> {
   };
 
   render() {
+    const { clockName, clockVisible } = this.state;
+
     return (
       <div className="App">
-        <h1>{this.state.clockName}</h1>
-        {this.state.clockVisible && <Clock {...this.state} />}
+        <h1>{clockName}</h1>
+        {clockVisible && <Clock {...this.state} />}
         <button
-          disabled={this.state.clockVisible}
+          disabled={clockVisible}
           type="button"
-          onClick={this.showClock}
+          onClick={this.visibleClock}
         >
           Show Clock
         </button>
         <button
-          disabled={!this.state.clockVisible}
+          disabled={!clockVisible}
           type="button"
-          onClick={this.hideClock}
+          onClick={this.visibleClock}
         >
           Hide Clock
         </button>
-        <button type="button" onClick={this.changeName}>Change Name</button>
+        <button
+          disabled={!clockVisible}
+          type="button"
+          onClick={this.changeName}
+        >
+          Change Name
+        </button>
       </div>
     );
   }
