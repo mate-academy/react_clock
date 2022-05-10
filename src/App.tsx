@@ -15,15 +15,17 @@ class App extends React.Component<Props, State> {
     clockName: '<<<Clock>>>',
   };
 
-  hideClock = () => {
-    this.setState({ isClockVisible: false });
-  };
+  updateClockVisible = () => {
+    const { isClockVisible } = this.state;
 
-  showClock = () => {
-    this.setState({ isClockVisible: true });
+    return this.setState({ isClockVisible: !isClockVisible });
   };
 
   changeName = () => {
+    if (this.state.isClockVisible === false) {
+      return;
+    }
+
     const clockNumber = Math.floor(Math.random() * 100);
 
     this.setState({ clockName: `<<<Clock - ${clockNumber}>>>` });
@@ -46,7 +48,7 @@ class App extends React.Component<Props, State> {
         <div className="buttons">
           <button
             type="button"
-            onClick={this.showClock}
+            onClick={this.updateClockVisible}
             className="clockButton"
             disabled={isClockVisible}
           >
@@ -55,7 +57,7 @@ class App extends React.Component<Props, State> {
 
           <button
             type="button"
-            onClick={this.hideClock}
+            onClick={this.updateClockVisible}
             disabled={!isClockVisible}
             className="clockButton"
           >
