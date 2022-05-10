@@ -1,1 +1,42 @@
-// styles go here
+html {
+  font-family: sans-serif;
+}
+
+.clock {
+  font-size: 150px;
+  text-align: center;
+}
+
+.app {
+  &__title {
+    font-size: 30px;
+    color: #7f7f7f;
+  }
+
+  &__buttons {
+    position: absolute;
+    width: 100%;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  &__button {
+    padding: 5px 10px;
+    background-color: #9772fb;
+    color: #f2f2f2;
+    border: none;
+    font-size: 18px;
+    border-radius: 3px;
+    transition: 0.3s all;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(120%);
+      background-color: #764af1;
+    }
+  }
+}
