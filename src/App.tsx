@@ -34,21 +34,23 @@ class App extends React.Component<Props, State> {
   };
 
   render() {
+    const { clockName, isClockVisible } = this.state;
+
     return (
       <div className="App">
         <h1>
           React clock
           {' '}
-          {this.state.clockName}
+          {clockName}
         </h1>
-        {this.state.isClockVisible
-        && <Clock clockName={this.state.clockName} />}
+        {isClockVisible
+        && <Clock clockName={clockName} />}
         <div className="App__buttons">
           <button
             type="button"
             className="button"
             onClick={this.showClock}
-            disabled={this.state.isClockVisible}
+            disabled={isClockVisible}
           >
             Show Clock
           </button>
@@ -56,7 +58,7 @@ class App extends React.Component<Props, State> {
             type="button"
             className="button button--hide"
             onClick={this.hideClock}
-            disabled={!this.state.isClockVisible}
+            disabled={!isClockVisible}
           >
             Hide Clock
           </button>

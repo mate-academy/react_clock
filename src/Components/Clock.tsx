@@ -37,6 +37,8 @@ export class Clock extends React.Component<Props, State> {
   componentWillUnmount() {
     if (this.timerId) {
       clearInterval(this.timerId);
+      // eslint-disable-next-line
+      console.log(`Stop clock #${this.props.clockName}`)
     }
   }
 
