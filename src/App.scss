@@ -1,1 +1,50 @@
-// styles go here
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+
+  background: linear-gradient(
+    150deg,
+    rgba(166,17,149,1) 10%,
+    rgba(155,10,176,1) 14%,
+    rgba(110,34,215,1) 55%
+  );
+
+  &__title {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    justify-content: center;
+  }
+
+  &__button {
+    padding: 10px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+
+    transition: border-color 0.2s, transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+      border-color: purple;
+    }
+  }
+}

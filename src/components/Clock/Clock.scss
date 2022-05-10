@@ -1,0 +1,11 @@
+* {
+  text-transform: uppercase;
+}
+
+.clock {
+  font-size: 64px;
+
+  &__time {
+    margin-bottom: 20px;
+  }
+}
