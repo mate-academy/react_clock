@@ -1,0 +1,20 @@
+.button {
+  width: 200px;
+  height: 40px;
+
+  transition: transform 0.5s;
+
+  background-color: #f5fffa;
+  border: 1px solid black;
+  border-radius: 5px;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  margin-right: 10px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
