@@ -14,7 +14,13 @@ export class Clock extends React.Component<Props, State> {
     currentTime: new Date().toLocaleTimeString(),
   };
 
-  timerId: NodeJS.Timer = setInterval(() => {}, 0);
+  private timerId: NodeJS.Timer | null;
+
+  constructor(props: Props) {
+    super(props);
+
+    this.timerId = null;
+  }
 
   componentDidMount() {
     this.timerId = setInterval(() => {
@@ -32,12 +38,13 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId !== null) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
     const { currentTime } = this.state;
-    // const { clockName } = this.props;
 
     return (
       <div className="clock">

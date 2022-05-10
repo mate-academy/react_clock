@@ -21,6 +21,12 @@ class App extends React.Component<{}, State> {
     this.setState({ clockVisible: true });
   };
 
+  clockSetName = () => {
+    this.setState({
+      clockName: String(Math.floor(Math.random() * 10)),
+    });
+  };
+
   render() {
     const { clockVisible, clockName } = this.state;
 
@@ -42,9 +48,7 @@ class App extends React.Component<{}, State> {
             <button
               className="app__button"
               type="button"
-              onClick={() => this.setState({
-                clockName: String(Math.floor(Math.random() * 10)),
-              })}
+              onClick={this.clockSetName}
               disabled={!clockVisible}
             >
               Rename
