@@ -5,44 +5,46 @@ type Props = {
 };
 
 type State = {
-  timer: string;
+  time: string;
 };
 
 export class Clock extends React.Component<Props, State> {
   state = {
-    timer: new Date().toLocaleTimeString(),
+    time: '',
   };
 
-  timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  timerId: NodeJS.Timer | 0 = 0;
 
   componentDidMount() {
-    setInterval(() => {
-      this.setState({ timer: new Date().toLocaleTimeString() });
+    this.timerId = setInterval(() => {
+      const date: Date = new Date();
+
+      // eslint-disable-next-line
+      console.log(date.toLocaleTimeString());
+
+      this.setState({ time: date.toLocaleTimeString() });
     }, 1000);
   }
 
-  componentDidUpdate(prev: Props) {
-    if (this.props.name !== prev.name) {
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line
-      console.log(`The Clock was renamed from ${prev.name} to ${this.props.name}`);
+      console.log(`The Clock was renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
-    const { timer } = this.state;
+    const { time } = this.state;
 
     return (
       <>
-        {timer}
+        {time}
       </>
     );
   }
