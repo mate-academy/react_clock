@@ -1,1 +1,61 @@
-// styles go here
+@font-face {
+  font-family: "Digital Numbers Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Digital Numbers Regular"), url("./fonts/DigitalNumbers-Regular.woff") format("woff");
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  &__name {
+    color: aqua;
+    font-size: 24px;
+    padding: 10px;
+    border: 3px solid aquamarine;
+    border-radius: 15px;
+    width: max-content;
+    margin: 0;
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1000px;
+    height: 400px;
+    border: 3px solid black;
+    border-radius: 20px;
+    padding: 20px;
+    font-family: "Digital Numbers Regular", sans-serif;
+    background-color: black;
+    box-shadow: 0 0 20px cyan;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__button {
+    font-family: "Digital Numbers Regular", sans-serif;
+    width: 300px;
+    height: 100px;
+    font-size: 24px;
+    border: 3px solid aquamarine;
+    color: aqua;
+    background-color: black;
+    border-radius: 20px;
+    text-shadow: 0 0 5px aquamarine;
+    transition: all 0.5s;
+
+    &:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 10px #df4e4e;
+      box-shadow: 0 0 10px aquamarine;
+    }
+  }
+}
