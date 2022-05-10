@@ -66,6 +66,7 @@ class App extends React.Component<Props, State> {
             className="button button--rename"
             type="button"
             onClick={this.randomName}
+            disabled={!isClockVisible}
           >
             Rename
           </button>

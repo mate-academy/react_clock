@@ -95,6 +95,10 @@ button:focus::after {
   display: none;
 }
 
+button:disabled {
+  display: none;
+}
+
 @keyframes ring {
   0% {
     width: 30px;
