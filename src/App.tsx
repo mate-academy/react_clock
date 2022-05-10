@@ -5,32 +5,25 @@ import './App.scss';
 class App extends React.Component {
   state = {
     isVisible: true,
-    name: 'Philipse',
+    clockName: 'Philipse',
   };
 
   showClocks = () => {
-    // eslint-disable-next-line no-console
-    console.log('showClocks');
     this.setState({ isVisible: true });
   };
 
   hideClocks = () => {
-    // eslint-disable-next-line no-console
-    console.log('hideClocks');
     this.setState({ isVisible: false });
   };
 
   ClockName = () => {
     const arr = ['Strela', 'Oficersky', 'CASIO', 'Meit', 'Apple', 'Sony'];
 
-    this.setState({ name: arr[Math.floor(Math.random() * 6)] });
-
-    // eslint-disable-next-line no-console
-    console.log(`The Clock was renamed to ${this.state.name}`);
+    this.setState({ clockName: arr[Math.floor(Math.random() * 6)] });
   };
 
   render(): React.ReactNode {
-    const { isVisible, name } = this.state;
+    const { isVisible, clockName } = this.state;
 
     return (
       <div className="app">
@@ -38,7 +31,7 @@ class App extends React.Component {
         <h1>React clock</h1>
 
         <div className="rolex">
-          {isVisible && <Clock />}
+          {isVisible && <Clock name={this.state.clockName} />}
         </div>
 
         <div className="clock">
@@ -58,7 +51,7 @@ class App extends React.Component {
           </button>
 
           <p className="clock__name-name">
-            {name}
+            {clockName}
           </p>
           <button
             className="clock__button button"
