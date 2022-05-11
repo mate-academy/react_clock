@@ -1,7 +1,7 @@
 import React from 'react';
 
 type State = {
-  time: Date;
+  time: string;
 };
 
 type Props = {
@@ -9,20 +9,20 @@ type Props = {
 };
 
 export class Clock extends React.Component<Props, State> {
-  timerId: NodeJS.Timer = setInterval(() => {}, 0);
+  timerId?: NodeJS.Timer;
 
   state = {
-    time: new Date(),
+    time: new Date().toLocaleTimeString(),
   };
 
   componentDidMount() {
     this.timerId = setInterval(() => {
       this.setState({
-        time: new Date(),
+        time: new Date().toLocaleTimeString(),
       });
 
       // eslint-disable-next-line
-      console.log(this.state.time.toLocaleTimeString());
+      console.log(this.state.time);
     }, 1000);
   }
 
@@ -36,16 +36,16 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
-    const { time } = this.state;
-
     return (
       <p className="Clock">
         {'Current time: '}
-        {time.toLocaleTimeString()}
+        {this.state.time}
       </p>
     );
   }

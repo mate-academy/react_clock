@@ -13,8 +13,14 @@ class App extends React.Component<{}, State> {
     clockName: 0,
   };
 
-  clockVisibilityHandler = (isVisible: boolean): void => {
-    this.setState({ isClockVisible: isVisible });
+  showClock = (): void => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hideClock = () => {
+    this.setState(
+      { isClockVisible: false },
+    );
   };
 
   createRandomName = () => {
@@ -33,19 +39,21 @@ class App extends React.Component<{}, State> {
         <h1>{this.state.clockName}</h1>
 
         {isClockVisible && <Clock name={clockName} />}
-        <button
-          className="App__button App__button--main"
-          type="button"
-          onClick={() => this.clockVisibilityHandler(true)}
-        >
-          Show
-        </button>
+        {!isClockVisible && (
+          <button
+            className="App__button App__button--main"
+            type="button"
+            onClick={() => this.showClock()}
+          >
+            Show
+          </button>
+        )}
 
         {isClockVisible && (
           <button
             className="App__button"
             type="button"
-            onClick={() => this.clockVisibilityHandler(false)}
+            onClick={() => this.hideClock()}
           >
             Hide
           </button>
