@@ -1,1 +1,48 @@
-// styles go here
+body {
+  margin: 30px;
+}
+
+.clock {
+  color: green;
+}
+
+.button {
+  position: absolute;
+  top: 150px;
+  margin-right: 20px;
+  padding: 20px;
+  width: 160px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 10px;
+  transition: 0.3s;
+
+  &__show {
+    border: 2px solid green;
+
+    &:hover {
+      color: white;
+      background-color: green;
+    }
+  }
+
+  &__hide {
+    left: 390px;
+    border: 2px solid red;
+
+    &:hover {
+      color: white;
+      background-color: red;
+    }
+  }
+
+  &__change {
+    left: 210px;
+    border: 2px solid blue;
+
+    &:hover {
+      color: white;
+      background-color: blue;
+    }
+  }
+}
