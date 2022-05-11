@@ -53,9 +53,7 @@ export class App extends React.Component<{}, State> {
       <div className="app">
         <h1 className="clock">{clockName}</h1>
 
-        {isClockVisible && (
-          <Clock />
-        )}
+        {isClockVisible && (<Clock />)}
 
         <button
           className="button button__show"
@@ -70,7 +68,7 @@ export class App extends React.Component<{}, State> {
           type="button"
           onClick={this.changeName}
         >
-          Change Clock
+          Change Name
         </button>
 
         <button
