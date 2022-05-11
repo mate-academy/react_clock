@@ -16,22 +16,31 @@ class App extends React.Component<{}, State> {
   // eslint-disable-next-line no-empty-pattern
   componentDidUpdate({}, prevState: State) {
     if (prevState.clockName !== this.state.clockName) {
-    // eslint-disable-next-line no-console
-      console.log(`clock name changed from ${prevState.clockName} to ${this.state.clockName}`);
+      if (this.state.showClock) {
+        // eslint-disable-next-line no-console
+        console.log(`clock name changed from ${prevState.clockName} to ${this.state.clockName}`);
+      }
+    //
     }
   }
 
-  show() {
-    this.setState({ showClock: true });
-  }
+  show = () => {
+    this.setState(() => (
+      { showClock: true }
+    ));
+  };
 
-  hide() {
-    this.setState({ showClock: false });
-  }
+  hide = () => {
+    this.setState(() => (
+      { showClock: false }
+    ));
+  };
 
-  rename() {
-    this.setState({ clockName: (Math.random() + 1).toString(36).substring(7) });
-  }
+  rename = () => {
+    this.setState({
+      clockName: (Math.random() + 1).toString(36).substring(7),
+    });
+  };
 
   render() {
     const { showClock, clockName } = this.state;
@@ -50,21 +59,21 @@ class App extends React.Component<{}, State> {
         <div className="buttons">
           <button
             type="button"
-            onClick={this.show.bind(this)}
+            onClick={this.show}
             className="buttons__button"
           >
             ShowClock
           </button>
           <button
             type="button"
-            onClick={this.rename.bind(this)}
+            onClick={this.rename}
             className="buttons__button"
           >
             clockName
           </button>
           <button
             type="button"
-            onClick={this.hide.bind(this)}
+            onClick={this.hide}
             className="buttons__button"
           >
             HideClock

@@ -1,14 +1,10 @@
-html {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 .App {
+  font-family: Arial, Helvetica, sans-serif;
   max-width: 400px;
   border: 2px solid yellow;
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .clock {
@@ -17,7 +13,6 @@ html {
   &__description {
     font-size: 20px;
     display: inline;
-
   }
 
   &__value {
