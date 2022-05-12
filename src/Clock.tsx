@@ -1,4 +1,3 @@
-// import { type } from 'os';
 import React from 'react';
 
 import './App.scss';
@@ -45,8 +44,8 @@ export class Clock extends React.Component<Props, State> {
 
     return (
       <div className="Clock__data">
-        <h2 className="Clock__data-name">{`I'm Clock, and my name is ${clockId}`}</h2>
-        <div className="Clock__data-time">{`${clockTime}`}</div>
+        <h2 className="Clock__data--name">{`I'm Clock, and my name is ${clockId}`}</h2>
+        <div className="Clock__data--time">{`${clockTime}`}</div>
       </div>
     );
   }

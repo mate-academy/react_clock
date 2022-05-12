@@ -14,18 +14,6 @@ class App extends React.Component<{}, State> {
     clockId: 0,
   };
 
-  showClock = () => {
-    this.setState({
-      clockVisible: true,
-    });
-  };
-
-  hideClock = () => {
-    this.setState({
-      clockVisible: false,
-    });
-  };
-
   generateName = () => {
     const generateName = Math.ceil(Math.random() * 10);
 
@@ -35,6 +23,8 @@ class App extends React.Component<{}, State> {
   };
 
   render() {
+    const { clockVisible } = this.state;
+
     return (
       <div className="Clock">
         <h1 className="Clock__title">
@@ -42,22 +32,33 @@ class App extends React.Component<{}, State> {
         </h1>
         <div className="Clock__button">
           <button
-            className="Clock__button-hide"
+            className="Clock__button--hide"
             type="button"
-            onClick={this.hideClock}
+            disabled={!clockVisible}
+            onClick={() => {
+              this.setState({
+                clockVisible: false,
+              });
+            }}
           >
             Hide Clock
           </button>
           <button
-            className="Clock__button-show"
+            className="Clock__button--show"
             type="button"
-            onClick={this.showClock}
+            disabled={clockVisible}
+            onClick={() => {
+              this.setState({
+                clockVisible: true,
+              });
+            }}
           >
             Show Clock
           </button>
           <button
-            className="Clock__button-name"
+            className="Clock__button--name"
             type="button"
+            disabled={!clockVisible}
             onClick={this.generateName}
           >
             Try another name
