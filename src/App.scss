@@ -1,1 +1,47 @@
-// styles go here
+.Clock {
+  box-sizing: border-box;
+  border: 1px solid black;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: aqua;
+  width: 480px;
+
+  &__title {
+    color: white;
+    font-size: 36px;
+  }
+
+  &__button {
+
+    &--show {
+      width: 150px;
+      height: 50px;
+      background-color: rgb(55, 214, 55);
+
+    }
+
+    &--hide {
+      width: 150px;
+      height: 50px;
+      background-color: rgb(236, 46, 46);
+    }
+
+    &--name {
+      width: 150px;
+      height: 50px;
+      background-color: bisque;
+    }
+  }
+
+  &__data {
+    &-name {
+      font-size: 30px;
+    }
+
+    &--time {
+      font-size: 60px;
+    }
+  }
+}
