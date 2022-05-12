@@ -1,1 +1,9 @@
-// styles go here
+.app {
+  &__time {
+    font-size: 30px;
+  }
+
+  &__button {
+    cursor: pointer;
+  }
+}
