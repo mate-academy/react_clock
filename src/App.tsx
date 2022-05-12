@@ -38,15 +38,11 @@ class App extends React.Component {
       <div className="app">
         <h1>React clock</h1>
         <p className="app__time" data-cy="time">
-          Current time:
-          {' '}
+          {'Current time: '}
           {
-            isClockVisible
-              ? <Clock name={clockName} />
-              : null
+            isClockVisible && <Clock name={clockName} />
           }
-          {' '}
-          {`(clock name is ${clockName})`}
+          {` (clock name is ${clockName})`}
 
         </p>
         <button
