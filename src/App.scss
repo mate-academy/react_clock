@@ -9,16 +9,23 @@
 
 .clock {
   margin-bottom: 10px;
+  width: 100%;
+
+  &__wraper {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
 
   &__description {
     font-size: 20px;
-    display: inline;
   }
 
   &__value {
+    height: 50px;
+    width: 100%;
     font-size: 30px;
     font-weight: 600;
-    margin-left: 10px;
   }
 }
 

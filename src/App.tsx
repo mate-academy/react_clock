@@ -13,17 +13,6 @@ class App extends React.Component<{}, State> {
     clockName: 'React clock',
   };
 
-  // eslint-disable-next-line no-empty-pattern
-  componentDidUpdate({}, prevState: State) {
-    if (prevState.clockName !== this.state.clockName) {
-      if (this.state.showClock) {
-        // eslint-disable-next-line no-console
-        console.log(`clock name changed from ${prevState.clockName} to ${this.state.clockName}`);
-      }
-    //
-    }
-  }
-
   show = () => {
     this.setState(() => (
       { showClock: true }
@@ -47,13 +36,14 @@ class App extends React.Component<{}, State> {
 
     return (
       <div className="App">
-        <h1>{clockName}</h1>
-
         <div className="clock">
-          <h3 className="clock__description">Current time:</h3>
-          <span className="clock__value" data-cy="time">
-            {showClock && <Clock />}
-          </span>
+          <div className="clock__wraper">
+            <h3 className="clock__description">Clock name:</h3>
+            <h3 className="clock__description">Current time:</h3>
+          </div>
+          <div className="clock__value" data-cy="time">
+            {showClock && <Clock name={clockName} />}
+          </div>
         </div>
 
         <div className="buttons">
