@@ -15,9 +15,22 @@ class App extends React.Component<Props, State> {
     clockName: 'React clock',
   };
 
-  render() {
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  HideClock = () => {
+    this.setState({ isClockVisible: false });
+  };
+
+  RandomName = () => {
     const myArray = ['React', 'Clock', 'Time', 'Now', 'Good clock'];
     const rand = Math.floor(Math.random() * myArray.length);
+
+    this.setState({ clockName: myArray[rand] });
+  };
+
+  render() {
     const { clockName, isClockVisible } = this.state;
 
     return (
@@ -28,10 +41,8 @@ class App extends React.Component<Props, State> {
         <div className="clock__buttons">
           <button
             type="button"
-            onClick={() => {
-              this.setState({ isClockVisible: true });
-            }}
-            className="clock-button"
+            onClick={this.showClock}
+            className="clock__buttons-button"
             disabled={isClockVisible}
           >
             Show Clock
@@ -39,10 +50,8 @@ class App extends React.Component<Props, State> {
 
           <button
             type="button"
-            onClick={() => {
-              this.setState({ isClockVisible: false });
-            }}
-            className="clock-button"
+            onClick={this.HideClock}
+            className="clock__buttons-button"
             disabled={!isClockVisible}
           >
             Hide Clock
@@ -50,10 +59,8 @@ class App extends React.Component<Props, State> {
 
           <button
             type="button"
-            onClick={() => {
-              this.setState({ clockName: myArray[rand] });
-            }}
-            className="clock-button"
+            onClick={this.RandomName}
+            className="clock__buttons-button"
           >
             Set random className
           </button>

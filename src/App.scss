@@ -3,13 +3,13 @@ body {
   background-color: #f0858b;
 }
 
-.Clock__timer {
+.clock__timer {
   font-size: 2em;
   text-align: center;
   color: white;
 }
 
-.Clock__title {
+.clock__title {
   text-align: center;
   color: white;
 }
@@ -18,12 +18,12 @@ body {
   display: grid;
   justify-content: center;
   gap: 30px;
-}
 
-.clock-button {
-  color: #f0858b;
-  font-size: 20px;
-  font-weight: 500;
-  height: 50px;
-  width: 400px;
+  &-button {
+    color: #f0858b;
+    font-size: 20px;
+    font-weight: 500;
+    height: 50px;
+    width: 400px;
+  }
 }
