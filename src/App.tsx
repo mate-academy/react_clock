@@ -46,6 +46,7 @@ class App extends React.Component<Props, State> {
           <button
             type="button"
             className="app__button-hide"
+            disabled={!this.state.isClockVisible}
             onClick={() => this.setState({
               isClockVisible: false,
             })}
@@ -57,6 +58,7 @@ class App extends React.Component<Props, State> {
         <button
           type="button"
           className="app__button-random"
+          disabled={!this.state.isClockVisible}
           onClick={() => this.setState({
             clockName: Math.round(Math.random() * 100),
           })}

@@ -26,6 +26,8 @@ export class Clock extends React.Component<Props, State> {
     this.setState({
       time: new Date().toLocaleTimeString(),
     });
+    // eslint-disable-next-line
+    console.log('The Clock is started');
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -37,6 +39,8 @@ export class Clock extends React.Component<Props, State> {
 
   componentWillUnmount() {
     clearInterval(this.timerId);
+    // eslint-disable-next-line
+    console.log('The Clock is stopped');
   }
 
   render() {
