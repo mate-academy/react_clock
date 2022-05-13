@@ -1,1 +1,12 @@
 // styles go here
+button {
+  background-color: #045;
+  color: yellow;
+  border-radius: 7px;
+  padding: 10px;
+
+  &:disabled {
+    background-color: red;
+    text-decoration: line-through;
+  }
+}
