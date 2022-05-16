@@ -1,1 +1,73 @@
-// styles go here
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  background-color: black;
+  font-family: "Arial", "Helvetica", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  background: linear-gradient(
+    135deg, #14ffe9,#ffeb3b,#ff00e0,rgba(0, 255, 255, 1)
+  );
+  border-radius: 10px;
+  animation: animate 1.5s linear infinite;
+  padding: 40px;
+
+  &__title {
+    text-transform: uppercase;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    font-weight: 300;
+    text-align: center;
+    color: black;
+  }
+}
+
+.App__clock {
+  box-shadow: 0 0 40px orange;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 20px;
+}
+
+button {
+  cursor: pointer;
+  border: 3px solid lightgray;
+  border-radius: 15px;
+  padding: 15px 20px;
+  background-color: white;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  color: black;
+  transition: all 0.4s;
+  opacity: 0.4;
+
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+
+  &:hover {
+    background-color: lightgreen;
+    color: gray;
+    opacity: 1;
+  }
+}
+
+@keyframes animate {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
