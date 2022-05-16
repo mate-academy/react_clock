@@ -1,1 +1,20 @@
-// styles go here
+.App {
+  margin: 30px;
+  padding: 20px;
+  display: inline-block;
+  border: 2px solid black;
+  border-radius: 10px;
+
+  &__button {
+    cursor: pointer;
+    color: red;
+    margin: 5px;
+    padding: 5px;
+    width: 160px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+    border: 2px solid red;
+    background-color: yellow;
+  }
+}
