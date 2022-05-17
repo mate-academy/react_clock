@@ -8,27 +8,30 @@ interface Props {
 
 export class Clock extends React.Component<Props> {
   state = {
-    date: new Date()
+    date: new Date(),
   };
 
   timerId: ClockTime = null;
 
   componentDidMount() {
     this.timerId = setInterval(() => {
-        this.timeGo();
-      }, 1000)
-  };
+      this.timeGo();
+
+      // eslint-disable-next-line
+      console.log(`time ${(this.state.date).toLocaleTimeString()}`);
+    }, 1000);
+  }
 
   componentWillUnmount() {
     if (this.timerId) {
-      clearInterval(this.timerId)
+      clearInterval(this.timerId);
     }
   }
 
   timeGo() {
     this.setState({
       date: new Date(),
-    })
+    });
   }
 
   render() {

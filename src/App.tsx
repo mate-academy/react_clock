@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import {Clock} from "./components/clock/Clock";
+import { Clock } from './components/clock/Clock';
 
 class App extends React.Component {
   state = {
@@ -26,6 +26,8 @@ class App extends React.Component {
     this.setState({
       clockName: randomClockName,
     });
+    // eslint-disable-next-line
+    console.log('New name' + randomClockName);
   };
 
   render() {
@@ -35,7 +37,7 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div className='App'>
+      <div className="App">
         <div className="clock">
           <p className="clock__time" data-cy="time">
             {
@@ -44,7 +46,7 @@ class App extends React.Component {
                 : null
             }
             {'    '}
-            <span className='clock__name'>{clockName}</span>
+            <span className="clock__name">{clockName}</span>
 
           </p>
           <button
