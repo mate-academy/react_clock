@@ -51,6 +51,8 @@ $color_grey: #ebebeb;
     background-color: $color_violet;
     font-weight: 100;
     font-size: 1.7em;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
 
     &::after {
       content: "";
@@ -69,15 +71,10 @@ $color_grey: #ebebeb;
     }
   }
 
-  &__buttons-container {
-    display: grid;
-    gap: 1px;
-  }
-
   &__button {
     display: block;
     width: 100%;
-    height: 50px;
+    height: 101px;
     font-family: "Lexend Deca", sans-serif;
     font-size: 1.1em;
     color: $color_grey;
@@ -85,7 +82,7 @@ $color_grey: #ebebeb;
     background-color: $color_violet;
     border: none;
     cursor: pointer;
-  
+
     &:hover {
       color: #fd7506;
       background-color: #1a1122;
@@ -94,6 +91,11 @@ $color_grey: #ebebeb;
     &:active {
       font-size: 1.07em;
       color: #b35000;
+    }
+
+    &__show-hide {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
     }
   
     &__setName {
@@ -146,7 +148,7 @@ $color_grey: #ebebeb;
 
     &__text {
       height: 100px;
-      background: $color_violet;
+      background: #291c38;
     }
     
     &__text--off {
