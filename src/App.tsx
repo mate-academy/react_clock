@@ -31,7 +31,7 @@ export class App extends React.Component<{}, State> {
 
   setRandomName = () => {
     if (this.state.isClockVisible) {
-      const index = Math.floor(Math.random() * 6);
+      const index = Math.floor(Math.random() * this.randomClockNames.length);
 
       this.setState({
         clockName: this.randomClockNames[index],
@@ -46,8 +46,7 @@ export class App extends React.Component<{}, State> {
       <div className="App">
         <h1>React clock</h1>
         <h2 data-cy="time">
-          Current time:
-          {' '}
+          {'Current time: '}
           {isClockVisible && <Clock name={this.state.clockName} />}
         </h2>
         <button
