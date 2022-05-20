@@ -1,1 +1,159 @@
-// styles go here
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200&display=swap");
+
+$color_violet: #251933;
+$color_grey: #ebebeb;
+
+@keyframes slidein {
+  from {
+    width: 100%;
+    left: 0;
+  }
+
+  to {
+    width: 0;
+    left: 100%;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  display: grid;
+  justify-content: center;
+  gap: 30px;
+  width: 600px;
+  margin: 50px auto;
+  font-size: 18px;
+  font-family: "Lexend Deca", sans-serif;
+  font-weight: 100;
+}
+
+.Clock {
+  display: grid;
+  grid-template-columns: 299px 400px 299px;
+  gap: 2px;
+  height: 100px;
+  justify-content: center;
+  text-align: center;
+  line-height: 100px;
+  background-color: $color_grey;
+  border-radius: 2px;
+  color: $color_grey;
+  box-shadow: 5px 4px 8px -5px rgba(0,0,0,0.94);
+
+  &__name {
+    display: block;
+    position: relative;
+    text-transform: uppercase;
+    background-color: $color_violet;
+    font-weight: 100;
+    font-size: 1.7em;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      width: 0;
+      height: 100px;
+      background-color: $color_violet;
+    }
+
+    &__slider::after {
+      animation-name: slidein;
+      animation-direction: normal;
+      animation-duration: 1s;
+    }
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    height: 101px;
+    font-family: "Lexend Deca", sans-serif;
+    font-size: 1.1em;
+    color: $color_grey;
+    text-transform: uppercase;
+    background-color: $color_violet;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      color: #fd7506;
+      background-color: #1a1122;
+    }
+  
+    &:active {
+      font-size: 1.07em;
+      color: #b35000;
+    }
+
+    &__show-hide {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+  
+    &__setName {
+      background-color: $color_grey;
+      color: #251933;
+      text-transform: lowercase;
+      font-weight: 200;
+      border-radius: 2px;
+      box-shadow: 5px 4px 8px -5px rgba(0,0,0,0.4);
+  
+      &:hover {
+        background-color: rgba(37, 25, 51, 0.7);
+        transition: all 0.15s;
+      }
+  
+      &:active {
+        background-color: #d4d4d4;
+      }
+    }
+  }
+
+  &__face-container {
+    width: 400px;
+    margin: 0 auto;
+    perspective: 100000px;
+    background-color: $color_violet;
+    border-bottom: 1px solid $color_grey;
+
+    & div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    & div:nth-child(1) {
+      transform: rotateX(0deg) translateZ(50px);
+    }
+    
+    & div:nth-child(2) {
+      transform: rotateX(-90deg) translateZ(50px);
+    }
+  }
+
+  &__face {
+    transform-style: preserve-3d;
+    height: 100px;
+    transition: all 0.35s;
+    font-size: 3.5em;
+
+    &__text {
+      height: 100px;
+      background: #291c38;
+    }
+    
+    &__text--off {
+      background: $color_grey;
+      color: $color_violet;
+    }
+  }
+}
