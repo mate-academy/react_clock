@@ -17,7 +17,12 @@ const watchNames = [
   'Orient',
 ];
 
-class App extends React.Component {
+type State = {
+  isClockVisible: boolean,
+  clockName: string,
+};
+
+class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
     clockName: watchNames[Math.round(Math.random() * 10)],
@@ -29,19 +34,15 @@ class App extends React.Component {
     });
   };
 
-  changeClockVisible = () => {
-    if (this.state.isClockVisible) {
-      this.setState({
-        isClockVisible: false,
-      });
-    } else {
-      this.setState({
-        isClockVisible: true,
-      });
-    }
+  changeClockVisibility = () => {
+    this.setState((prevState) => ({
+      isClockVisible: !prevState.isClockVisible,
+    }));
   };
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
@@ -53,18 +54,18 @@ class App extends React.Component {
           Set random name
         </button>
         <div className="Clock">
-          <ClockName name={this.state.clockName} />
+          <ClockName name={clockName} />
           <div className="Clock__face-container">
             <div
               className="Clock__face"
-              style={this.state.isClockVisible
+              style={isClockVisible
                 ? ({ transform: 'translateZ(50px) rotateX(0deg)' })
                 : ({ transform: 'translateZ(-50px) rotateX(90deg' })}
             >
               <div>
                 <p className="Clock__face__text" data-cy="time">
-                  {this.state.isClockVisible && (
-                    <Clock name={this.state.clockName} />
+                  {isClockVisible && (
+                    <Clock name={clockName} />
                   )}
                 </p>
               </div>
@@ -80,11 +81,11 @@ class App extends React.Component {
           <button
             type="button"
             className="Clock__button Clock__button__show-hide"
-            onClick={this.changeClockVisible}
+            onClick={this.changeClockVisibility}
           >
-            {this.state.isClockVisible
-              ? ('Hide Clock')
-              : ('Show Clock')}
+            {isClockVisible
+              ? 'Hide Clock'
+              : 'Show Clock'}
           </button>
         </div>
       </div>

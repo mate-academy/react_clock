@@ -10,11 +10,10 @@ export class ClockName extends React.Component<Props> {
     isClocknameAnimated: false,
   };
 
-  componentDidUpdate(oldName: Props) {
-    if (oldName.name !== this.props.name) {
-      setTimeout(() => {
-        this.setState({ isClocknameAnimated: true });
-      }, 0);
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ isClocknameAnimated: true });
 
       setTimeout(() => {
         this.setState({ isClocknameAnimated: false });
