@@ -19,8 +19,7 @@ class App extends React.Component <Props, State> {
 
   componentDidMount() {
     setInterval(() => {
-      // eslint-disable-next-line react/no-access-state-in-setstate
-      this.setState({ x: this.state.x + 1 });
+      this.setState((prevState) => ({ x: prevState.x + 1 }));
     }, 1000);
   }
 
@@ -30,10 +29,9 @@ class App extends React.Component <Props, State> {
   };
 
   sttChanger = () => {
-    this.setState({
-      // eslint-disable-next-line react/no-access-state-in-setstate
-      isClockVisible: !this.state.isClockVisible,
-    });
+    this.setState((prevState) => ({
+      isClockVisible: !prevState.isClockVisible,
+    }));
   };
 
   show = () => {
