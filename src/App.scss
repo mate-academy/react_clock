@@ -1,1 +1,72 @@
-// styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 40px;
+  width: 80%;
+  box-sizing: border-box;
+  height: max-content;
+  background-color: #212121;
+  border-radius: 16px;
+  color: #ddd;
+
+  &__title {
+    text-align: center;
+    font-size: 34px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    width: 260px;
+    height: 40px;
+    background-color: silver;
+    box-shadow: 4px 4px 4px goldenrod;
+    cursor: pointer;
+
+    &:disabled {
+      border: 3px solid silver;
+      background-color: goldenrod;
+      box-shadow: none;
+    }
+
+    &:hover {
+      border: 3px solid silver;
+      background-color: goldenrod;
+    }
+  }
+
+  &__button-clockName {
+    height: 100%;
+    cursor: pointer;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background-color: silver;
+
+    &:hover {
+      border: 2px solid goldenrod;
+    }
+  }
+
+  &__clockName {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+    border: 1px solid silver;
+    height: 40px;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+  &__clock-info {
+    width: 360px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+}
