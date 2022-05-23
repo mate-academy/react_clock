@@ -6,20 +6,20 @@ type Props = {};
 
 type State = {
   isClockVisible: boolean,
-  x: number,
+  secWaisted: number,
   clockName: number,
 };
 
 class App extends React.Component <Props, State> {
   state = {
-    x: 0,
+    secWaisted: 0,
     isClockVisible: true,
-    clockName: 182,
+    clockName: Math.floor(Math.random() * 999),
   };
 
   componentDidMount() {
     setInterval(() => {
-      this.setState((prevState) => ({ x: prevState.x + 1 }));
+      this.setState((prevState) => ({ secWaisted: prevState.secWaisted + 1 }));
     }, 1000);
   }
 
@@ -63,7 +63,7 @@ class App extends React.Component <Props, State> {
           </legend>
           <h2>
             time of your life waisted on this page =&#160;
-            {new Date(this.state.x * 1000).toISOString().substr(11, 8)}
+            {new Date(this.state.secWaisted * 1000).toISOString().substr(11, 8)}
           </h2>
           <button type="button" onClick={this.someFunction}>
             Hello World to console

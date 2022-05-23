@@ -46,8 +46,10 @@ export class Clock extends React.Component<Props, State> {
           </mark>
         </legend>
         <h1>
-          Hello I`m Clock named &#34;Blink-
-          {this.props.name}
+          Hello I`m Clock named &#34;
+          <mark>
+            {this.props.name}
+          </mark>
           &#34;
           <br />
           <div data-cy="time">
