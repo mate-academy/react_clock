@@ -1,1 +1,28 @@
-// styles go here
+.App {
+  font-family: sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &__button {
+    width: 150px;
+    padding: 10px 20px;
+    margin-bottom: 5px;
+    outline: none;
+    border-radius: 10px;
+    border: 0;
+    background-color: #14a8407c;
+    color: white;
+
+    &:hover {
+      background-color: #1477317c;
+    }
+
+    &:disabled {
+      background-color: #961c1c;
+    }
+  }
+}
