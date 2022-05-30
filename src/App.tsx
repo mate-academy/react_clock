@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 
+import clockNames from './api/clockNames.json';
 import { Clock } from './components/Clock';
 
 type Props = {};
@@ -11,29 +12,6 @@ type State = {
 };
 
 export class App extends React.Component<Props, State> {
-  clockNames = [
-    'Центральноавстралийское время',
-    'Восточноавстралийское время',
-    'Аляскинское время',
-    'Атлантическое время',
-    'Западноавстралийское время',
-    'Центральноафриканское время',
-    'Центральноевропейское время',
-    'Центральноамериканское время',
-    'Восточноафриканское время',
-    'Восточноевропейское время',
-    'Североамериканское восточное время',
-    'Среднее время по Гринвич',
-    'Гавайско-алеутское время',
-    'Московское время',
-    'Горное время',
-    'Ньюфаундлендское время',
-    'Североамериканское тихоокеанское время',
-    'Всемирное координированное время',
-    'Западноафриканское время',
-    'Западноевропейское время',
-  ];
-
   state = {
     isClockVisible: true,
     clockName: 'Центральноевропейское время',
@@ -50,8 +28,8 @@ export class App extends React.Component<Props, State> {
   changeName = () => {
     if (this.state.isClockVisible) {
       this.setState({
-        clockName: this.clockNames[Math.floor(Math.random()
-          * this.clockNames.length)],
+        clockName: clockNames[Math.floor(Math.random()
+          * clockNames.length)],
       });
     }
   };
