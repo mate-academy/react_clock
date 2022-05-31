@@ -21,7 +21,7 @@ class App extends React.Component {
     this.setState({ isClockVisible: false });
   };
 
-  randomNumberName = () => {
+  randomName = () => {
     // eslint-disable-next-line
     this.setState({ clockName: names[Math.floor(Math.random() * names.length)] });
   };
@@ -30,7 +30,7 @@ class App extends React.Component {
     const { isClockVisible, clockName } = this.state;
 
     return (
-      <div className="App">
+      <div className="App box">
         {isClockVisible && (
           <Clock name={clockName} />
         )}
@@ -38,6 +38,7 @@ class App extends React.Component {
           type="button"
           onClick={this.showClock}
           disabled={isClockVisible}
+          className="btn btn-info"
         >
           Show clock
         </button>
@@ -46,14 +47,16 @@ class App extends React.Component {
           type="button"
           onClick={this.hideClock}
           disabled={!isClockVisible}
+          className="btn btn-info"
         >
           Hide clock
         </button>
 
         <button
           type="button"
-          onClick={this.randomNumberName}
+          onClick={this.randomName}
           disabled={!isClockVisible}
+          className="btn btn-info"
         >
           Set random name
         </button>
