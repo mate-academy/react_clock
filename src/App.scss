@@ -1,1 +1,68 @@
 // styles go here
+.App {
+
+  &__title {
+    &--R {
+      display: inline;
+      color: red;
+    }
+    &--e {
+      display: inline;
+      color: orange;
+    }
+    &--a {
+      display: inline;
+      color: green;
+    }
+    &--c {
+      display: inline;
+      color: blue;
+    }
+    &--t {
+      display: inline;
+      color: chartreuse;
+    }
+    &--l {
+      display: inline;
+      color: aqua;
+    }
+    &--o {
+      display: inline;
+      color: coral;
+    }
+    &--k {
+      display: inline;
+      color: yellowgreen;
+    }
+
+  }
+}
+
+.Body {
+  color: cadetblue;
+  font-size: 22px;
+
+  &__clock {
+    font-size: 44px;
+    font-weight: bold;
+    color: red;
+    padding-left: 20px;
+  }
+}
+
+.Button {
+  font-size: 20px;
+  color: blueviolet;
+  padding: 10px;
+  margin-right: 20px;
+  background-color: bisque;
+  border-radius: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
