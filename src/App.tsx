@@ -28,13 +28,19 @@ class App extends React.Component<Props, State> {
   }
 
   render() {
+    const {
+      isClockVisible,
+      clockName,
+    } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
+        <h2>{clockName}</h2>
         <p>
           Current time:
-          {this.state.isClockVisible && (
-            <Clock name={this.state.clockName} />
+          {isClockVisible && (
+            <Clock name={clockName} />
           )}
 
           <button
