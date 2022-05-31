@@ -2,18 +2,20 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
+type Props = {};
+
 type State = {
   isClockVisible: boolean,
   clockName: number,
 };
 
-class App extends React.Component<State> {
+class App extends React.Component<Props, State> {
   state = {
     isClockVisible: true,
     clockName: 1,
   };
 
-  componentDidUpdate(_prevProps: {}, prevState: State): void {
+  componentDidUpdate(_prevProps: Props, prevState: State): void {
     // eslint-disable-next-line no-console
     console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
   }
