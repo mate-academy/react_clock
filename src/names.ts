@@ -1,3 +1,3 @@
 export const names: string[] = [
-  'React clock', 'First name', 'Second Name', 'Third Name',
+  'React clock', 'Реакт годинник', 'React zegarek', 'React regardez',
 ];
