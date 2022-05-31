@@ -2,15 +2,24 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
-class App extends React.Component {
+type Props = {
+
+};
+
+type State = {
+  isClockVisible: boolean,
+  clockName: number,
+};
+
+class App extends React.Component<State, Props> {
   state = {
     isClockVisible: true,
     clockName: 1,
   };
 
-  componentDidUpdate(prev) {
+  componentDidUpdate(_prevProps: {}, prevState: State): void {
     // eslint-disable-next-line no-console
-    console.log(`The Clock was renamed from ${prev} to ${this.state.clockName}`);
+    console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -29,6 +38,7 @@ class App extends React.Component {
           )}
           <button
             type="button"
+            className="btn btn-secondary"
             onClick={() => {
               this.setState({ isClockVisible: true });
             }}
@@ -37,6 +47,7 @@ class App extends React.Component {
           </button>
           <button
             type="button"
+            className="btn btn-danger"
             onClick={() => {
               this.setState({ isClockVisible: false });
             }}
@@ -45,6 +56,7 @@ class App extends React.Component {
           </button>
           <button
             type="button"
+            className="btn btn-primary"
             onClick={() => {
               this.setState({ clockName: this.setRandom() });
             }}

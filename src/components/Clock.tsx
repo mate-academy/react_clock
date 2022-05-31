@@ -1,9 +1,19 @@
 import React from 'react';
 
-export class Clock extends React.Component {
+type State = {
+  date: string,
+};
+
+type Props = {
+  name: number,
+};
+
+export class Clock extends React.Component<Props, State> {
   state = {
-    date: null,
+    date: '0',
   };
+
+  timerId?: NodeJS.Timer;
 
   componentDidMount() {
     this.timerId = setInterval(() => {
@@ -19,13 +29,17 @@ export class Clock extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
+    const { date } = this.state;
+
     return (
       <strong data-cy="time">
-        {this.state.date}
+        {date}
       </strong>
     );
   }
