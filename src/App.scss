@@ -1,1 +1,13 @@
 // styles go here
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  background-color: rgb(30, 111, 169);
+  border-radius: 10px;
+}
+
+.btn {
+  margin: 15px;
+}
