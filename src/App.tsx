@@ -15,13 +15,6 @@ class App extends React.Component<Props, State> {
     clockName: 1,
   };
 
-  componentDidUpdate(_prevProps: Props, prevState: State): void {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
-
   // eslint-disable-next-line class-methods-use-this
   setRandom() {
     return Math.floor(Math.random() * (100 - 1 + 1)) + 1;
@@ -36,11 +29,17 @@ class App extends React.Component<Props, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <h2>{clockName}</h2>
-        <p>
-          Current time:
+        <div>
+          <p>
+            Current time:
+          </p>
           {isClockVisible && (
-            <Clock name={clockName} />
+            <>
+              <div>
+                <h2>{clockName}</h2>
+                <Clock name={clockName} />
+              </div>
+            </>
           )}
 
           <button
@@ -72,7 +71,7 @@ class App extends React.Component<Props, State> {
           >
             Set random name
           </button>
-        </p>
+        </div>
       </div>
     );
   }
