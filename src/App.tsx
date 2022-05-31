@@ -34,12 +34,10 @@ class App extends React.Component<Props, State> {
             Current time:
           </p>
           {isClockVisible && (
-            <>
-              <div>
-                <h2>{clockName}</h2>
-                <Clock name={clockName} />
-              </div>
-            </>
+            <div>
+              <h2>{clockName}</h2>
+              <Clock name={clockName} />
+            </div>
           )}
 
           <button
