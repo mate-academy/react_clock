@@ -16,12 +16,12 @@ class App extends React.Component {
             {'Current time: '}
             <span
               className="
-            my-time
-            bg-info
-            p-2
-            text-dark
-            bg-opacity-50
-            "
+                my-time
+                bg-info
+                p-2
+                text-dark
+                bg-opacity-50
+                "
             >
               {this.state.isClockVisible && (<Clock />)}
             </span>
@@ -31,7 +31,7 @@ class App extends React.Component {
         <button
           type="button"
           data-cy="time"
-          className="btn btn-success"
+          className="btn btn-success d-inline-block"
           onClick={() => {
             this.setState({ isClockVisible: true });
           }}
