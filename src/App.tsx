@@ -16,8 +16,10 @@ class App extends React.Component<Props, State> {
   };
 
   componentDidUpdate(_prevProps: Props, prevState: State): void {
-    // eslint-disable-next-line no-console
-    console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -34,6 +36,7 @@ class App extends React.Component<Props, State> {
           {this.state.isClockVisible && (
             <Clock name={this.state.clockName} />
           )}
+
           <button
             type="button"
             className="btn btn-secondary"
@@ -43,6 +46,7 @@ class App extends React.Component<Props, State> {
           >
             Show Clock
           </button>
+
           <button
             type="button"
             className="btn btn-danger"
@@ -52,6 +56,7 @@ class App extends React.Component<Props, State> {
           >
             Hide Clock
           </button>
+
           <button
             type="button"
             className="btn btn-primary"

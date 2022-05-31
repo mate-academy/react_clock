@@ -10,7 +10,7 @@ type Props = {
 
 export class Clock extends React.Component<Props, State> {
   state = {
-    date: '0',
+    date: '',
   };
 
   timerId?: NodeJS.Timer;
