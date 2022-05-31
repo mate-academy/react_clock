@@ -1,1 +1,46 @@
-// styles go here
+body {
+  background-color: rgba(31, 40, 51, 0.2);
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+  color: #c5c6c7;
+}
+
+.wrapper {
+  background-color: #1f2833;
+  border: 1px solid #0b0c10;
+  width: 400px;
+  height: 200px;
+}
+
+.mainTitle {
+  text-align: center;
+}
+
+.currentTime {
+  text-align: center;
+  font-size: 24px;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn {
+  margin-top: 4px;
+  padding: 8px 14px;
+  background-color: #1f2833;
+  color: #c5c6c7;
+  border: 1px solid #66fcf1;
+  transition: color 0.3s, background-color 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    color: #1f2833;
+    background-color: #45a29e;
+  }
+}
