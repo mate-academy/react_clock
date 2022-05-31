@@ -2,7 +2,6 @@
 import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
-import { ClockName } from './components/ClockName';
 
 class App extends React.Component {
   state = {
@@ -19,7 +18,7 @@ class App extends React.Component {
       >
         <h1>React clock</h1>
         {isClockVisible && (
-          <Clock />
+          <Clock clockName={this.state.clockName} />
         )}
         <button
           type="button"
@@ -45,7 +44,6 @@ class App extends React.Component {
         >
           Random Name
         </button>
-        <ClockName name={this.state.clockName} />
       </div>
     );
   }
