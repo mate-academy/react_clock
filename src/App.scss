@@ -1,1 +1,23 @@
-// styles go here
+.App {
+  height: 100vh;
+  background-color: #f1c0bb;
+}
+
+.wrap-button {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.name-of-project {
+  padding: 20px;
+  font-size: 20px;
+  color: #2b2b2b;
+
+}
+
+.current-time {
+  font-size: 17px;
+  text-align: center;
+  color: #2b2b2b;
+}
