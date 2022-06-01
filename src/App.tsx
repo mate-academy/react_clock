@@ -12,30 +12,24 @@ class App extends React.Component <{}, State> {
   };
 
   hideClock = () => {
-    if (this.state.isClockVisible) {
-      this.state.isClockVisible = false;
-    }
-
-    this.forceUpdate();
+    this.setState({ isClockVisible: false });
   };
 
   showClock = () => {
-    if (!this.state.isClockVisible) {
-      this.state.isClockVisible = true;
-    }
-
-    this.forceUpdate();
+    this.setState({ isClockVisible: true });
   };
 
   render() {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <p>
-          Current time:
-          {' '}
-          {this.state.isClockVisible && <Clock data-cy="time" />}
-        </p>
+        {this.state.isClockVisible && (
+          <p>
+            Current time:
+            {' '}
+            <Clock data-cy="time" />
+          </p>
+        )}
         <button
           type="button"
           onClick={this.showClock}
