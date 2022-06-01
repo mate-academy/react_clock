@@ -1,0 +1,17 @@
+.clock {
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 2rem;
+
+  &__info {
+    color: rgb(106, 163, 137);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: inherit;
+  }
+
+  &__time {
+    display: block;
+    color: rgb(106, 163, 137);
+  }
+}
