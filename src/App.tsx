@@ -12,6 +12,7 @@ const names: string[] = [
   'Something went wrong',
   'React Clock',
   'Bomb has been planted!',
+  'internal poiner variable',
 ];
 
 export class App extends React.Component {
