@@ -1,27 +1,53 @@
 import React from 'react';
 import './App.scss';
+import { Counter } from './Counter';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+class App extends React.Component {
+  state = {
+    // eslint-disable-next-line react/no-unused-state
+    time: new Date().toLocaleTimeString(),
+    // eslint-disable-next-line react/no-unused-state
+    timerId: undefined,
+    // eslint-disable-next-line react/no-unused-state
+    isCounterVisible: true,
+  };
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  timerId?: NodeJS.Timer ;
 
-  // eslint-disable-next-line
-  console.log(timerId);
+  // eslint-disable-next-line react/no-typos
+  componentWillUnMount() {
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="App">
+        {this.state.isCounterVisible && (
+          <Counter />
+        )}
+
+        <div>
+          <button
+            type="button"
+            onClick={() => this.setState({ isCounterVisible: false })}
+          >
+            Hide Clock
+          </button>
+        </div>
+        <br />
+        <div>
+          <button
+            type="button"
+            onClick={() => this.setState({ isCounterVisible: true })}
+          >
+            Open Clock
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default App;
