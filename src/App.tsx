@@ -37,7 +37,7 @@ class App extends React.Component<{}, State> {
           {(this.state.isVisible) && (<Clock name={this.state.name} />)}
         </div>
         <button type="button" onClick={this.showClock}>
-          Show clock
+          Show Clock
         </button>
         <button type="button" onClick={this.hideClock}>
           Hide Clock
