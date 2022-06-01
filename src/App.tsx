@@ -39,7 +39,7 @@ class App extends React.Component <{}, State> {
         <button
           type="button"
           onClick={this.showClock}
-          className="App__button App__button"
+          className="App__button App__button--first"
         >
           Show clock
         </button>
