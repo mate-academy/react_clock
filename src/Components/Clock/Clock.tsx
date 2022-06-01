@@ -27,8 +27,10 @@ class Clock extends React.Component<Props, State> {
   }
 
   componentDidUpdate({ name }: Readonly<Props>) {
-    // eslint-disable-next-line
+    if (this.props.name !== name) {
+      // eslint-disable-next-line
     console.log(`The Clock was renamed from ${name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
