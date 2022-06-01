@@ -37,7 +37,7 @@ class App extends React.Component<{}, Props> {
 
     return (
       <div className="App">
-        <h1 className="app-name">{clockName}</h1>
+        <h1 className="app__name">{clockName}</h1>
         {isClockVisible && (
           <Clock name={clockName} />
         )}

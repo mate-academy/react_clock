@@ -44,8 +44,8 @@ class Clock extends React.Component<Props, State> {
 
     return (
       <div className="clock">
-        <p className="clock-info">Current time:</p>
-        <strong data-cy="time" className="clock-time">{date}</strong>
+        <p className="clock__info">Current time:</p>
+        <strong data-cy="time" className="clock__time">{date}</strong>
       </div>
     );
   }

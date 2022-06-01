@@ -31,6 +31,16 @@ body {
   background: var(--backgroundColor);
 }
 
+.app__name {
+  position: relative;
+  text-align: center;
+  font-size: 3rem;
+  color: var(--colorShadeA);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: inherit;
+}
+
 button {
   position: relative;
   display: inline-block;
@@ -88,14 +98,4 @@ button.big-button:active::before {
   transform: translate3d(0, 0, -1em);
 
   box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.25em 0 0 var(--colorShadeB);
-}
-
-.app-name {
-  position: relative;
-  text-align: center;
-  font-size: 3rem;
-  color: var(--colorShadeA);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-family: inherit;
 }
