@@ -12,7 +12,7 @@ export class Clock extends React.Component <{}, State> {
   timerId?: NodeJS.Timer;
 
   componentDidMount() {
-    setInterval(() => {
+    this.timerId = setInterval(() => {
       this.setState({ time: new Date().toLocaleTimeString() });
     }, 1000);
   }
