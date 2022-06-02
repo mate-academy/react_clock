@@ -1,0 +1,21 @@
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    margin: 0;
+    padding: 0;
+
+    text-align: center;
+    color: darkcyan;
+    font-size: 32px;
+  }
+
+  &__text {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: rgb(47, 41, 41);
+  }
+}
