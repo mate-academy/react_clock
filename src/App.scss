@@ -1,1 +1,32 @@
-// styles go here
+.App {
+  &__time {
+    font-size: 24px;
+    line-height: 1.5;
+  }
+
+  &__clock-name {
+    font-size: 24px;
+    line-height: 1.5;
+  }
+
+  &__buttons {
+    &-hide,
+    &-show,
+    &-name {
+      margin: 5px;
+      padding: 5px;
+    }
+
+    &-hide {
+      background-color: crimson;
+    }
+
+    &-show {
+      background-color: chartreuse;
+    }
+
+    &-name {
+      background-color: beige;
+    }
+  }
+}

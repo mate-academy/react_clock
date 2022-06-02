@@ -1,6 +1,9 @@
 import React from 'react';
+import './Clock.scss';
 
-type Props = {};
+type Props = {
+  name: number;
+};
 
 type State = {
   date: string;
@@ -23,6 +26,13 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.name !== prevProps.name) {
+      // eslint-disable-next-line
+      console.log(`Clock name: ${prevProps.name} is changed to Clock name: ${this.props.name}`);
+    }
+  }
+
   componentWillUnmount() {
     if (this.timerId) {
       clearInterval(this.timerId);
@@ -31,7 +41,7 @@ export class Clock extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     return (
-      <span>{this.state.date}</span>
+      <span className="clock">{this.state.date}</span>
     );
   }
 }
