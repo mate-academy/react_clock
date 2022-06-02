@@ -1,1 +1,14 @@
-// styles go here
+.App {
+  text-align: center;
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__button {
+    cursor: pointer;
+    
+  }
+}
