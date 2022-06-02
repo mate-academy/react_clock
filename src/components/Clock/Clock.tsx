@@ -41,7 +41,7 @@ export class Clock extends React.Component<Props, State> {
       <>
         <h1>React clock</h1>
         <span className="clockName">{`Clock Name Number: ${this.props.clockName}`}</span>
-        <p className="clock">
+        <p className="clock" data-cy="time">
           Current time:
           {' '}
           {this.state.date.toLocaleTimeString()}
