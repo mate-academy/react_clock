@@ -1,11 +1,15 @@
 /* eslint-disable no-console */
 import React from 'react';
 
+type Props = {
+  name: number;
+};
+
 type State = {
   time: Date;
 };
 
-export class Clock extends React.Component<{}, State> {
+export class Clock extends React.Component<Props, State> {
   state = {
     time: new Date(),
   };
@@ -18,10 +22,17 @@ export class Clock extends React.Component<{}, State> {
     return this.timeUpdater;
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: Props) {
     const time = this.state.time.toLocaleTimeString();
 
     console.log(time);
+
+    const prevName = prevProps.name;
+    const { name } = this.props;
+
+    if (name !== prevName) {
+      console.log(`The Clock was renamed from ${prevName} to ${name}`);
+    }
   }
 
   componentWillUnmount() {
@@ -29,6 +40,7 @@ export class Clock extends React.Component<{}, State> {
   }
 
   render() {
+    const { name } = this.props;
     const time = this.state.time.toLocaleTimeString();
 
     return (
@@ -37,6 +49,10 @@ export class Clock extends React.Component<{}, State> {
           Current time:
           {time}
         </h2>
+        <h3 className="clock__name">
+          Clock name:
+          {name}
+        </h3>
       </div>
     );
   }

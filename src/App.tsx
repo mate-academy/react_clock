@@ -3,12 +3,20 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 type State = {
+  clockName: number;
   isClockVisible: boolean
 };
 
 class App extends React.Component<{}, State> {
   state = {
+    clockName: 1,
     isClockVisible: true,
+  };
+
+  generateClockName = () => {
+    const randomNumber = Math.round(Math.random() * 1000);
+
+    this.setState({ clockName: randomNumber });
   };
 
   hideClock = () => {
@@ -20,11 +28,13 @@ class App extends React.Component<{}, State> {
   };
 
   render() {
+    const { clockName } = this.state;
+
     return (
       <div className="App">
         <div className="App__wrapper">
           {this.state.isClockVisible
-            && <Clock data-cy="time" />}
+            && <Clock data-cy="time" name={clockName} />}
 
           <div className="App__buttons">
             <button type="button" onClick={this.hideClock}>
@@ -33,6 +43,10 @@ class App extends React.Component<{}, State> {
 
             <button type="button" onClick={this.showClock}>
               Show clock
+            </button>
+
+            <button type="button" onClick={this.generateClockName}>
+              Generate name
             </button>
           </div>
         </div>
