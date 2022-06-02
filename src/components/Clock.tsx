@@ -13,7 +13,7 @@ export class Clock extends React.Component<Props, State> {
     time: '00:00:00',
   };
 
-  timerId: NodeJS.Timer | undefined;
+  timerId?: NodeJS.Timer;
 
   componentDidMount() {
     this.timerId = setInterval(() => {
