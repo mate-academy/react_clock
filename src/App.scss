@@ -1,1 +1,23 @@
-// styles go here
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.App {
+  display: flex;
+
+  &__wrapper {
+    margin: 0 auto;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0 auto;
+    width: 200px;
+  }
+}
