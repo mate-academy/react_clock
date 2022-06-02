@@ -15,10 +15,18 @@ export class Clock extends React.Component<Props, State> {
 
   componentDidMount() {
     this.timerId = setInterval(() => {
-      const newDate: Date = new Date();
+      const date: Date = new Date();
 
-      this.setState({ date: newDate.toLocaleTimeString() });
+      // eslint-disable-next-line
+      console.log(date.toLocaleTimeString());
+      this.setState({ date: date.toLocaleTimeString() });
     }, 1000);
+  }
+
+  componentWillUnmount() {
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render(): React.ReactNode {
