@@ -8,17 +8,17 @@ type Props = {
 
 type State = {
   time: string;
-  timerId: NodeJS.Timer;
 };
 
 export class Clock extends React.Component<Props, State> {
   state = {
     time: new Date().toLocaleTimeString(),
-    timerId: setInterval(() => {}, 0),
   };
 
+  timerId?: NodeJS.Timer;
+
   componentDidMount() {
-    this.state.timerId = setInterval(() => {
+    this.timerId = setInterval(() => {
       this.setState({
         time: new Date().toLocaleTimeString(),
       });
@@ -39,7 +39,7 @@ export class Clock extends React.Component<Props, State> {
 
   componentWillUnmount() {
     if (this.props.isClockVisible) {
-      clearInterval(this.state.timerId);
+      clearInterval(this.timerId);
     }
   }
 
@@ -51,12 +51,8 @@ export class Clock extends React.Component<Props, State> {
       <div className="App__clock clock">
         <h1 className="clock__name">{name}</h1>
         <p className="clock__time" data-cy="time">
-          <span className="clock__time-text">
-            {'Current time: '}
-          </span>
-          <span className="clock__time-time">
-            {time}
-          </span>
+          <span className="clock__time-text">{'Current time: '}</span>
+          <span className="clock__time-time">{time}</span>
         </p>
       </div>
     );
