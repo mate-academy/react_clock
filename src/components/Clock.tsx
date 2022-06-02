@@ -50,7 +50,7 @@ export class Clock extends React.Component<Props, State> {
         <h2 className="clock__title">
           {name}
         </h2>
-        <p className="clock__text">
+        <p className="clock__text" data-cy="time">
           {`It's ${time} now!`}
         </p>
       </div>
