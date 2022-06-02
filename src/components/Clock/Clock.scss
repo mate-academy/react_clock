@@ -1,0 +1,28 @@
+.clock {
+  &__name {
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: normal;
+  }
+
+  &__time {
+    display: flex;
+    flex-direction: column;
+
+    &-text {
+      margin-top: 5px;
+    }
+
+    &-time {
+      margin: 10px 0;
+      padding: 5px;
+      font-size: 48px;
+      line-height: 48px;
+      font-weight: bold;
+      color: #ff7b25;
+      border-radius: 5px;
+      box-shadow: inset 1px 1px 10px #6b5b95;
+    }
+  }
+
+}
