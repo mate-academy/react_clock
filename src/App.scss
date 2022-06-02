@@ -1,1 +1,61 @@
-// styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.button {
+  align-items: center;
+  background-color: #d1f2ea;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(1rem - 1px) calc(2rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button:hover,
+.button:focus {
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(124, 124, 124, 0.75) 0 2px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.button:hover {
+  transform: scale(1.2);
+  z-index: 5;
+}
+
+.button:active {
+  background-color: #eaeaea;
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(124, 124, 124, 0.75) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: scale(1.1);
+}
+
+.clockName {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.clock {
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
