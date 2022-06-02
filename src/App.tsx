@@ -1,27 +1,30 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+type Props = {
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
-  // eslint-disable-next-line
-  console.log(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
 };
+
+type State = {
+  // timerId: NodeJS.Timer;
+};
+
+export class App extends React.Component<Props, State> {
+  state = {};
+
+  render(): React.ReactNode {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        <p>
+          Current time:
+          {' '}
+          <Clock />
+        </p>
+      </div>
+    );
+  }
+}
 
 export default App;
