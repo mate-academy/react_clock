@@ -25,7 +25,7 @@ export class App extends React.Component<{}, State> {
     const randomNumber = Math.round(Math.random() * 1000);
 
     this.setState({ clockName: randomNumber });
-  }
+  };
 
   render() {
     return (
@@ -37,7 +37,7 @@ export class App extends React.Component<{}, State> {
           {' '}
           {this.state.isClockVisible
             && (
-              <Clock data-cy="time" />
+              <Clock />
             )}
         </p>
         <div className="App__buttons">
