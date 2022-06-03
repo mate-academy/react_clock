@@ -1,24 +1,26 @@
-.App {
+.app {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.appConteiner {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
+  &__conteiner {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
 
-.timer {
-  color: rgb(8, 0, 252);
-  font-size: 24px;
-}
+  &__buttonsConteiner {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 20px;
+  }
 
-.clolck {
-  font-size: 32px;
-  margin-bottom: 10px;
-  border: 4px solid blue;
-  border-radius: 4px;
+  &__clolck {
+    font-size: 32px;
+    margin-bottom: 10px;
+    border: 4px solid blue;
+    border-radius: 4px;
+  }
 }
