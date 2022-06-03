@@ -37,7 +37,7 @@ export class App extends React.Component<{}, State> {
           {' '}
           {this.state.isClockVisible
             && (
-              <Clock />
+              <Clock name={this.state.clockName} />
             )}
         </p>
         <div className="App__buttons">
