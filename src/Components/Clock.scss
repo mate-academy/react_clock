@@ -1,0 +1,23 @@
+.clock {
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 300px;
+  border: 10px solid blue;
+  border-radius: 100%;
+  padding: 20px;
+
+  &__text {
+    margin-top: 40px;
+    font-size: 28px;
+    color: blue;
+  }
+
+  &__timer {
+    margin-bottom: 20;
+    color: rgb(252, 0, 0);
+    font-size: 42px;
+    font-weight: 800;
+  }
+}
