@@ -11,6 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <h1>React clock</h1>
         {this.state.isClockVisible && (
           <Clock />
         )}
@@ -31,7 +32,7 @@ class App extends React.Component {
                 type="button"
                 onClick={() => this.setState({ isClockVisible: true })}
               >
-                Open Clock
+                Show Clock
               </button>
             )}
         </div>

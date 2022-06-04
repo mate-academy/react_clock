@@ -19,6 +19,11 @@ export class Clock extends React.Component {
     }, 1000);
   }
 
+  componentDidUpdate() {
+    // eslint-disable-next-line no-console
+    console.log(this.state.time);
+  }
+
   // eslint-disable-next-line react/no-typos
   componentWillUnMount() {
     if (this.timerId) {
@@ -29,8 +34,7 @@ export class Clock extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>React clock</h1>
-        <p>
+        <p data-cy="time">
           Current time:
           {' '}
           {this.state.time}
