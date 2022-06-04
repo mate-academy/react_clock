@@ -6,12 +6,23 @@ class App extends React.Component {
   state = {
     // eslint-disable-next-line react/no-unused-state
     isClockVisible: true,
+    clockName: 'React clock',
   };
+
+  names = ['Clocker',
+    'Timmar',
+    'Годинник',
+    'Часы',
+    'Hodiny',
+    'Godzin',
+    'Uhr',
+    'Stundas',
+    'Timer'];
 
   render() {
     return (
       <div className="App">
-        <h1>React clock</h1>
+        <h1>{this.state.clockName}</h1>
         {this.state.isClockVisible && (
           <Clock />
         )}
@@ -35,6 +46,19 @@ class App extends React.Component {
                 Show Clock
               </button>
             )}
+          <br />
+          <br />
+          <button
+            type="button"
+            onClick={() => this.setState(
+              {
+                clockName: this.names[Math.floor(Math.random()
+                * this.names.length)],
+              },
+            )}
+          >
+            Set random name
+          </button>
         </div>
       </div>
     );
