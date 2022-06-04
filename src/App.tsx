@@ -22,17 +22,9 @@ class App extends React.Component<{}, State> {
           </h2>
 
           <h1>React clock</h1>
-          <p>
-            {'Current time: '}
-            <span
-              className="
-                my-time
-                bg-info
-                p-2
-                text-dark
-                bg-opacity-50
-                "
-            >
+          <p className="my-time">
+
+            <span className="clock">
               {this.state.isClockVisible
                 && (<Clock name={this.state.clockName} />)}
             </span>
