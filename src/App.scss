@@ -1,1 +1,28 @@
-// styles go here
+.my-time {
+  position: relative;
+  margin: 20px;
+  height: 538px;
+  width: 316px;
+  font-size: 45px;
+  background-image: url(./images/watch.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.my-time::before {
+  position: absolute;
+  left: 72px;
+  top: 214px;
+  content: "";
+  width: 177px;
+  height: 102px;
+  background-color: rgb(42, 185, 42);
+  border-radius: 10px;
+}
+
+.clock {
+  position: absolute;
+  left: 75px;
+  top: 247px;
+}

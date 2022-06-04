@@ -1,27 +1,72 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+interface State {
+  isClockVisible: boolean,
+  clockName: number,
+}
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+class App extends React.Component<{}, State> {
+  state = {
+    isClockVisible: true,
+    clockName: 0,
+  };
 
-  // eslint-disable-next-line
-  console.log(timerId);
+  render() {
+    return (
+      <div className="App">
+        <>
+          <h2>
+            {`Clock name: ${this.state.clockName}`}
+          </h2>
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+          <h1>React clock</h1>
+          <p className="my-time">
+
+            <span className="clock">
+              {this.state.isClockVisible
+                && (<Clock name={this.state.clockName} />)}
+            </span>
+          </p>
+        </>
+
+        <button
+          type="button"
+          data-cy="time"
+          className="btn btn-success d-inline-block"
+          onClick={() => {
+            this.setState({ isClockVisible: true });
+          }}
+        >
+          Show Clock
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={() => {
+            this.setState({ isClockVisible: false });
+          }}
+        >
+          Hide Clock
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-info"
+          onClick={() => {
+            this.setState({
+              clockName:
+                Math.floor(Math.random() * (100 - 1 + 1)) + 1,
+            });
+          }}
+        >
+          Set random name
+        </button>
+      </div>
+    );
+  }
+}
 
 export default App;
