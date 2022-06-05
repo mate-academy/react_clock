@@ -1,1 +1,29 @@
 // styles go here
+.component {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.h1 {
+  text-shadow: rgba(120, 31, 2, 0.3) 1px 3px;
+}
+
+.time {
+  text-shadow: rgba(120, 31, 2, 0.3) 1px 1px;
+  font-weight: 700;
+}
+
+.buttons {
+  margin: 12px;
+  font-family: inherit;
+  background-color: rgb(242, 255, 0);
+  padding: 12px;
+  border-radius: 12px;
+
+  &:disabled {
+    background-color: grey;
+    font-weight: 700;
+    border-color: black;
+    color: black;
+  }
+}
