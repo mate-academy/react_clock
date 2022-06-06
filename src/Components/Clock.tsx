@@ -1,11 +1,11 @@
 import React from 'react';
 
-type State = {
+interface State {
   time: string;
-};
+}
 
 export class Clock extends React.Component<{}, State> {
-  state: State = {
+  state = {
     time: new Date().toLocaleTimeString(),
   };
 
@@ -35,5 +35,4 @@ export class Clock extends React.Component<{}, State> {
       </span>
     );
   }
-  // eslint-disable-next-line
 }

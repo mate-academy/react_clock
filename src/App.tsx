@@ -2,9 +2,9 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './Components/Clock';
 
-type State = {
+interface State {
   isClockVisible: boolean;
-};
+}
 
 class App extends React.Component<{}, State> {
   state: State = {
@@ -18,19 +18,30 @@ class App extends React.Component<{}, State> {
   };
 
   render() {
+    const { isClockVisible } = this.state;
+    const { changeClockVisibility } = this;
+
     return (
       <div className="App">
         <h1>React Clock</h1>
         <p>
           Current time:
           {' '}
-          {this.state.isClockVisible && <Clock />}
+          {isClockVisible && (
+            <Clock />
+          )}
         </p>
-        <button type="button" onClick={() => this.changeClockVisibility(true)}>
+        <button
+          type="button"
+          onClick={() => changeClockVisibility(true)}
+        >
           Show Clock
         </button>
 
-        <button type="button" onClick={() => this.changeClockVisibility(false)}>
+        <button
+          type="button"
+          onClick={() => changeClockVisibility(false)}
+        >
           Hide Clock
         </button>
       </div>
