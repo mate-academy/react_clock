@@ -1,24 +1,24 @@
 import React from 'react';
 
 type State = {
-  time: Date;
+  time: string;
 };
 
 export class Clock extends React.Component<{}, State> {
   state: State = {
-    time: new Date(),
+    time: new Date().toLocaleTimeString(),
   };
 
-  timerId?: NodeJS.Timeout;
+  timerId?: NodeJS.Timer;
 
   componentDidMount() {
     this.timerId = setInterval(() => {
       this.setState({
-        time: new Date(),
+        time: new Date().toLocaleTimeString(),
       });
 
       // eslint-disable-next-line
-      console.log(this.state.time.toLocaleTimeString(), 'Clock ID:', this.timerId);
+      console.log(this.state.time);
     }, 1000);
   }
 
@@ -31,7 +31,7 @@ export class Clock extends React.Component<{}, State> {
   render() {
     return (
       <span data-cy="time">
-        {this.state.time.toLocaleTimeString()}
+        {this.state.time}
       </span>
     );
   }
