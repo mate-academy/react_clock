@@ -1,1 +1,9 @@
 // styles go here
+.clock-box {
+  display: flex;
+  flex-direction: row;
+
+  &__contetn {
+    display: block;
+  }
+}
