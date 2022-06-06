@@ -15,13 +15,15 @@ class App extends React.Component<{}, State> {
   };
 
   render(): React.ReactNode {
+    const { clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
         <div className="clock-box">
           <p className="clock-box__contetn">Current time:</p>
           {this.state.isClockVisible && (
-            <Clock name={this.state.clockName} />)}
+            <Clock name={clockName} />)}
         </div>
 
         <button
