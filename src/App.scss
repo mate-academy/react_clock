@@ -1,1 +1,29 @@
-// styles go here
+.App {
+  text-align: center;
+  padding-bottom: 20px;
+
+  &__clock {
+    font-size: 26px;
+  }
+
+  &__button {
+    cursor: pointer;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    box-shadow: 5px 5px 20px #11121177;
+
+    &:last-child{
+    margin-left: 20px;
+    }
+  }
+}
+
+.show {
+  background-color: #22820279;
+}
+
+.hide {
+  background-color: #bb101087
+}
