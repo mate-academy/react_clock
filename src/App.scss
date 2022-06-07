@@ -1,1 +1,10 @@
-// styles go here
+.App {
+  background-color: gray;
+  width: 300px;
+  padding: 16px;
+  position: relative;
+
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
