@@ -1,3 +1,42 @@
 html {
   background-color: lightgoldenrodyellow;
 }
+
+.App {
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button-24 {
+  background: #FF4742;
+  border: 1px solid #FF4742;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: none;
+  padding: 12px 14px;
+  text-align: center;
+  transition: background 0.3s;
+}
+
+.button-24:hover {
+  background: #bb3430;
+}
+
+.button-24:active {
+  opacity: .5;
+}
