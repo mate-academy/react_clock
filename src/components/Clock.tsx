@@ -30,7 +30,9 @@ export class Clock extends React.Component<Props, State> {
 
   render() {
     return (
-      this.state.time
+      <span data-cy="time">
+        {this.state.time}
+      </span>
     );
   }
 }
