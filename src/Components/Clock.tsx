@@ -2,13 +2,11 @@
 import React from 'react';
 import './Clock.scss';
 
-type Props = {};
-
 type State = {
   date: string;
 };
 
-export class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<{}, State> {
   state = {
     date: '',
   };

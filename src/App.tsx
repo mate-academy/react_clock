@@ -2,13 +2,11 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './Components/Clock';
 
-type Props = {};
-
 type State = {
   isClockVisible: boolean;
 };
 
-class App extends React.Component<Props, State> {
+class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
   };
