@@ -26,6 +26,7 @@ class App extends React.Component<{}, State> {
 
         <button
           type="button"
+          className="App_button"
           onClick={() => {
             this.setState({
               clockName: `${Math.ceil((Math.random() * 1000))}`,
@@ -45,6 +46,7 @@ class App extends React.Component<{}, State> {
 
         <button
           type="button"
+          className="App_button"
           onClick={() => {
             this.setState({
               isClockVisible: true,
@@ -56,6 +58,7 @@ class App extends React.Component<{}, State> {
 
         <button
           type="button"
+          className="App_button"
           onClick={() => {
             this.setState({
               isClockVisible: false,
