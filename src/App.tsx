@@ -8,7 +8,7 @@ type State = {
 
 export class App extends React.Component<{}, State> {
   state = {
-    isClockVisible: false,
+    isClockVisible: true,
   };
 
   clockVisible = () => {
