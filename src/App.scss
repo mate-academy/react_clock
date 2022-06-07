@@ -1,1 +1,12 @@
 // styles go here
+.button {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid salmon;
+  border-radius: 10px;
+  background-color: #d8bfe0;
+
+  &:hover {
+    background-color: salmon;
+  }
+}
