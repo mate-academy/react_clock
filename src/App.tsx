@@ -19,6 +19,8 @@ class App extends React.Component<Props, State> {
 
   showClock = () => {
     this.setState({ isClockVisible: true });
+    // eslint-disable-next-line no-console
+    console.log(this.state);
   };
 
   render() {
@@ -28,15 +30,15 @@ class App extends React.Component<Props, State> {
         <p>
           Current time:
           {' '}
-          {this.state.isClockVisible && (<Clock />)}
         </p>
+        {this.state.isClockVisible && (<Clock />)}
 
         <div>
-          <button type="button" onClick={this.showClock}>
+          <button className="button" type="button" onClick={this.showClock}>
             Show Clock
           </button>
 
-          <button type="button" onClick={this.hideClock}>
+          <button className="button" type="button" onClick={this.hideClock}>
             Hide Clock
           </button>
         </div>

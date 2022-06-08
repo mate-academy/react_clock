@@ -1,18 +1,20 @@
 import React from 'react';
 
 type State = {
-  time: Date;
+  time: string;
 };
 
-type Props = {};
-
-export class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<{}, State> {
   state = {
-    time: new Date(),
+    time: new Date().toLocaleTimeString(),
   };
 
+  timerId?: NodeJS.Timer;
+
   updateTimer = setInterval(() => {
-    this.setState({ time: new Date() });
+    this.setState({ time: new Date().toLocaleTimeString() });
+    // eslint-disable-next-line no-console
+    console.log(this.state.time);
   }, 1000);
 
   componentDidMount() {
