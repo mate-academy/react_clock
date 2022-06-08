@@ -9,7 +9,7 @@ export class Clock extends React.Component<{}, State> {
     time: new Date().toLocaleTimeString(),
   };
 
-  timerId: NodeJS.Timer = setInterval(() => {});
+  timerId?: NodeJS.Timer;
 
   componentDidMount() {
     this.timerId = setInterval(() => {
