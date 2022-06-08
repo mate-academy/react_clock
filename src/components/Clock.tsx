@@ -1,13 +1,10 @@
 import React from 'react';
 
-type Props = {};
-
 type State = {
   time: string;
 };
 
-// eslint-disable-next-line react/prefer-stateless-function
-export class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<{}, State> {
   state = {
     time: new Date().toLocaleTimeString(),
   };
