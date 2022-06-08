@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import './App.scss';
 
@@ -29,14 +30,14 @@ class App extends React.Component<{}, State> {
   };
 
   render() {
-    const { clockName } = this.state;
+    const { clockName, isClockVisible } = this.state;
 
     return (
       <div className="Clock">
         <div className="Clock__App">
-          {this.state.isClockVisible
-            && <Clock data-cy="time" name={clockName} />}
-
+          <h1>
+            {`Clock Name: ${clockName}`}
+          </h1>
           <div className="Clock__buttons">
             <button type="button" onClick={this.hideClock}>
               Hide clock
@@ -49,6 +50,7 @@ class App extends React.Component<{}, State> {
               Generate name
             </button>
           </div>
+          {isClockVisible && <Clock data-cy="time" name={clockName} />}
         </div>
       </div>
     );
