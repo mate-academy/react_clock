@@ -33,6 +33,9 @@ class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <div className="App__wrapper">
+          <h1>
+            {`Clock Name: ${clockName}`}
+          </h1>
           <div className="App__buttons">
             <button type="button" onClick={this.hideClock}>
               Hide clock
@@ -46,7 +49,6 @@ class App extends React.Component<{}, State> {
               Generate name
             </button>
           </div>
-
           {this.state.isClockVisible
             && <Clock data-cy="time" name={clockName} />}
         </div>
