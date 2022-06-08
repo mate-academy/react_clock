@@ -1,1 +1,17 @@
-// styles go here
+.App {
+  text-align: center;
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  &__button {
+    border: 2px solid rgb(125, 82, 30);
+    border-radius: 5px;
+    background-color: rgb(236, 232, 228);
+    color: blue;
+    cursor: pointer;
+  }
+}
