@@ -1,1 +1,45 @@
 // styles go here
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  
+  &__buttons {
+    // position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    // margin: 40px 0;
+    color: lightcoral;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    margin-right: 50px;
+     
+    &:hover {
+      background: lightcoral;
+      color: #080104;
+      box-shadow: 0 0 5px lightcoral,
+        0 0 25px lightcoral,
+        0 0 50px lightcoral,
+        0 0 200px lightcoral;
+      -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+    }
+
+    &__item {
+      padding: 20px 30px;
+      margin-right: 20px;
+      
+      font-size: 18px;
+      font-weight: bold;
+
+      &:hover {
+        background: lightcoral;
+        color: #d51065;
+      
+      }
+    }
+  }
+}
