@@ -1,30 +1,38 @@
 import React from 'react';
-import './App.scss';
+// import './App.scss';
 
-import { Countdown } from './Countdown';
+import { Clock } from './components/Clock';
+// import { Countdown } from './Countdown';
 
 interface State {
-  isStarted: boolean,
-  limit: number,
+  isClockVisible: boolean,
+  clockName: number,
 }
 
 class App extends React.Component<{}, State> {
   state = {
-    isStarted: false,
-    limit: 5,
+    isClockVisible: true,
+    clockName: 1,
   };
 
   render() {
-    const { isStarted, limit } = this.state;
+    const { isClockVisible, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
+        <p>{`Clock Name: ${clockName}`}</p>
+        <p>
+          <p>Local time:</p>
+          {isClockVisible && (
+            <Clock from={clockName} />
+          )}
+        </p>
         <button
           type="button"
           onClick={() => {
             this.setState({
-              isStarted: true,
+              isClockVisible: true,
             });
           }}
         >
@@ -35,25 +43,23 @@ class App extends React.Component<{}, State> {
           type="button"
           onClick={() => {
             this.setState({
-              isStarted: false,
+              isClockVisible: false,
             });
           }}
         >
           Stop
         </button>
 
-        <br />
+        {/* <br /> */}
 
         <button
           type="button"
-          onClick={() => this.setState({ limit: 10 })}
+          onClick={() => this.setState({
+            clockName: Math.round(Math.random() * 1000),
+          })}
         >
-          10
+          Random Clock Name
         </button>
-
-        {isStarted && (
-          <Countdown from={limit} />
-        )}
       </div>
     );
   }
