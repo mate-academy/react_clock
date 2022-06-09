@@ -13,7 +13,7 @@ export class Clock extends React.Component<Props, State> {
     date: new Date().toLocaleTimeString(),
   };
 
-  timerId : NodeJS.Timer = setInterval(() => {});
+  timerId: NodeJS.Timer = setInterval(() => {});
 
   componentDidMount() {
     this.timerId = setInterval(
@@ -22,6 +22,15 @@ export class Clock extends React.Component<Props, State> {
       }),
       1000,
     );
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line
+      console.log(
+        `The Clock was renamed from ${prevProps.name} to ${this.props.name}`,
+      );
+    }
   }
 
   componentWillUnmount() {
@@ -34,6 +43,12 @@ export class Clock extends React.Component<Props, State> {
     // eslint-disable-next-line
     console.log(date);
 
-    return date;
+    return (
+      <p data-cy="time">
+        Current time:
+        {' '}
+        {date}
+      </p>
+    );
   }
 }
