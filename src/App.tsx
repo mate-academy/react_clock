@@ -1,8 +1,5 @@
 import React from 'react';
-// import './App.scss';
-
 import { Clock } from './components/Clock';
-// import { Countdown } from './Countdown';
 
 interface State {
   isClockVisible: boolean,
@@ -64,16 +61,5 @@ class App extends React.Component<{}, State> {
     );
   }
 }
-// const timerId: NodeJS.Timer = setInterval(() => {
-//   const date: Date = new Date();
-
-//   // eslint-disable-next-line
-//   console.log(date.toLocaleTimeString());
-// }, 1000);
-
-// eslint-disable-next-line
-  // console.log(timerId);
-
-// };
 
 export default App;

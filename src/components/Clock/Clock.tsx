@@ -18,8 +18,18 @@ export class Clock extends React.Component<Props, State> {
 
   componentDidMount() {
     this.timerId = setInterval(() => {
+      // eslint-disable-next-line no-console
+      console.log(this.state.time);
+
       this.setState({ time: new Date().toLocaleTimeString() });
     }, 1000);
+  }
+
+  componentDidUpdate(prevProp: Props) {
+    if (prevProp.from !== this.props.from) {
+      // eslint-disable-next-line no-console
+      console.log(`The Clock updated from ${prevProp.from} to ${this.props.from}`);
+    }
   }
 
   componentWillUnmount() {
@@ -34,7 +44,6 @@ export class Clock extends React.Component<Props, State> {
     return (
       <div className="App">
         <p>{ time }</p>
-
       </div>
     );
   }
