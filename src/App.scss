@@ -1,1 +1,31 @@
-// styles go here
+.buttons {
+  width: 100%;
+  display: flex;
+}
+
+.clock-button {
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  height: 50px;
+  width: 50%;
+
+  border: 1px solid #000;
+  margin: 5px;
+  border-radius: 5px;
+
+  &--hide {
+    background-color: #cf3476;
+  }
+
+  &--show {
+    background-color: #77b5fe;
+    width: 100%;
+  }
+
+  &--name {
+    background-color: #cf3476;
+  }
+}
