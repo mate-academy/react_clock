@@ -2,6 +2,7 @@ import React from 'react';
 
 type Props = {
   timerId: NodeJS.Timer,
+  name: string,
 };
 
 type State = {
@@ -21,6 +22,13 @@ class Clock extends React.Component<Props, State> {
     );
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.name !== this.props.name) {
+    // eslint-disable-next-line
+    console.log(`The Clock was renamed from ${prevProps.name} to ${this.props.name}`)
+    }
+  }
+
   componentWillUnmount() {
     clearInterval(this.state.id);
   }
@@ -32,12 +40,17 @@ class Clock extends React.Component<Props, State> {
   }
 
   render() {
+    const { name } = this.props;
+
     return (
-      <p>
-        Current time:
-        {' '}
-        {this.state.date.toLocaleTimeString()}
-      </p>
+      <>
+        <h1>{name}</h1>
+        <p>
+          Current time:
+          {' '}
+          {this.state.date.toLocaleTimeString()}
+        </p>
+      </>
     );
   }
 }
