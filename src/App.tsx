@@ -25,11 +25,9 @@ class App extends React.Component<{}, State> {
   };
 
   changeClockVisibility = () => {
-    if (this.state.isClockVisible) {
-      this.setState({ isClockVisible: false });
-    } else {
-      this.setState({ isClockVisible: true });
-    }
+    this.setState((
+      prevState,
+    ) => ({ isClockVisible: !prevState.isClockVisible }));
   };
 
   render() {
