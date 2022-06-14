@@ -31,8 +31,8 @@ export class App extends React.Component<Props, State> {
           {this.state.visibleClock && <Clock />}
         </p>
         <div>
-          <button type="button" onClick={this.showClock}>Show</button>
-          <button type="button" onClick={this.hideClock}>Hide</button>
+          <button type="button" onClick={this.showClock}>Show Clock</button>
+          <button type="button" onClick={this.hideClock}>Hide Clock</button>
         </div>
       </div>
     );
