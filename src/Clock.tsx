@@ -7,31 +7,33 @@ type Props = {
 
 type State = {
   time: null | string;
-  timer: null | number | NodeJS.Timer;
 };
 
 export class Clock extends React.Component<Props, State> {
   state = {
     time: null,
-    timer: null,
   };
 
+  timerId?: NodeJS.Timer;
+
   componentDidMount() {
-    const timerId = setInterval(() => {
+    this.timerId = setInterval(() => {
       const date: Date = new Date();
 
       this.setState({
         time: date.toLocaleTimeString(),
-        timer: timerId,
       });
-      // eslint-disable-next-line
-      console.log(date.toLocaleTimeString());
+
+      if (this.state.time) {
+        // eslint-disable-next-line no-console
+        console.log(this.state.time);
+      }
     }, 1000);
   }
 
   componentWillUnmount() {
-    if (this.state.timer !== null) {
-      clearInterval(this.state.timer);
+    if (this.timerId) {
+      clearInterval(this.timerId);
     }
   }
 
