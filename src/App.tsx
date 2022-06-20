@@ -14,14 +14,18 @@ class App extends React.Component<{}, State> {
     clockName: 123,
   };
 
+  randomNumber = () => {
+    this.setState({
+      clockName: Math.round(Math.random() * 1000),
+    });
+  };
+
   render() {
     return (
       <div className="App">
         <button
           type="button"
-          onClick={() => this.setState(
-            { clockName: Math.round(Math.random() * 1000) },
-          )}
+          onClick={this.randomNumber}
         >
           Set random name
         </button>
