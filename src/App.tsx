@@ -13,18 +13,6 @@ class App extends React.Component<Props, State> {
     isClockVisible: true,
   };
 
-  showClock() {
-    this.setState({
-      isClockVisible: true,
-    });
-  }
-
-  hideClock() {
-    this.setState({
-      isClockVisible: false,
-    });
-  }
-
   render() {
     const { isClockVisible } = this.state;
 
@@ -36,14 +24,18 @@ class App extends React.Component<Props, State> {
 
         <button
           type="button"
-          onClick={this.showClock}
+          onClick={() => {
+            this.setState({ isClockVisible: true });
+          }}
         >
           Show Clock
         </button>
 
         <button
           type="button"
-          onClick={this.hideClock}
+          onClick={() => {
+            this.setState({ isClockVisible: false });
+          }}
         >
           Hide Clock
         </button>
