@@ -36,18 +36,14 @@ class App extends React.Component<Props, State> {
 
         <button
           type="button"
-          onClick={() => {
-            this.showClock();
-          }}
+          onClick={this.showClock}
         >
           Show Clock
         </button>
 
         <button
           type="button"
-          onClick={() => {
-            this.hideClock();
-          }}
+          onClick={this.hideClock}
         >
           Hide Clock
         </button>
