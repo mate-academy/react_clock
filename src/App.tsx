@@ -1,27 +1,69 @@
 import React from 'react';
-import './App.scss';
+import CLock from './Clock';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
-
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
-
-  // eslint-disable-next-line
-  console.log(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
+type State = {
+  isClockVisible: boolean,
+  clockName: number,
 };
+
+class App extends React.Component<{}, State> {
+  state = {
+    isClockVisible: true,
+    clockName: Math.floor(Math.random() * 100),
+  };
+
+  showClock = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  hideClock = () => {
+    this.setState({ isClockVisible: false });
+  };
+
+  randomName = () => {
+    this.setState({ clockName: Math.floor(Math.random() * 100) });
+  };
+
+  render() {
+    const { isClockVisible, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>
+          React clock&nbsp;
+          {clockName}
+        </h1>
+        <button
+          type="button"
+          disabled={isClockVisible}
+          onClick={this.showClock}
+        >
+          Show Clock
+        </button>
+
+        <button
+          type="button"
+          disabled={!isClockVisible}
+          onClick={this.hideClock}
+        >
+          Hide Clock
+        </button>
+
+        <button
+          type="button"
+          disabled={!isClockVisible}
+          onClick={this.randomName}
+        >
+          Rename
+        </button>
+        <p>
+          Current time:
+          {' '}
+          {isClockVisible && <CLock name={clockName} />}
+        </p>
+      </div>
+    );
+  }
+}
 
 export default App;
