@@ -1,1 +1,30 @@
-// styles go here
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.clock {
+  border: 3px solid #2897c4;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 115px;
+  padding-right: 115px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+
+  width: 350px;
+}
