@@ -1,27 +1,64 @@
 import React from 'react';
-import './App.scss';
+import { Clock } from './components/Clock';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+export class App extends React.Component {
+  state = {
+    isClockVisible: true,
+    clockName: 1,
+  };
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  ShowClock = () => {
+    this.setState({ isClockVisible: true });
+  };
 
-  // eslint-disable-next-line
-  console.log(timerId);
+  HideClock = () => {
+    this.setState({ isClockVisible: false });
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  SetRandomName = () => {
+    const random = Math.floor(Math.random() * (300 - 1)) + 1;
 
-export default App;
+    this.setState({ clockName: random });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <div className="Clock">
+          {this.state.isClockVisible
+            && <Clock name={this.state.clockName} />}
+
+          <div className="Clock__buttons">
+            <button
+              className="Clock__btn"
+              type="button"
+              onClick={this.ShowClock}
+              disabled={this.state.isClockVisible}
+            >
+              Show Clock
+            </button>
+
+            <button
+              className="Clock__btn"
+              type="button"
+              onClick={this.HideClock}
+              disabled={!this.state.isClockVisible}
+            >
+              Hide Clock
+            </button>
+
+            <button
+              className="Clock__btn"
+              type="button"
+              onClick={this.SetRandomName}
+              disabled={!this.state.isClockVisible}
+            >
+              Set random name
+            </button>
+          </div>
+
+        </div>
+      </div>
+    );
+  }
+}
