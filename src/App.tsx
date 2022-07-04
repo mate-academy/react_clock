@@ -2,14 +2,12 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './Clock';
 
-interface Props {}
-
 interface State {
   isClockVisible: boolean,
   clockName?: string,
 }
 
-class App extends React.Component<Props, State> {
+class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
   };
@@ -27,8 +25,9 @@ class App extends React.Component<Props, State> {
 
     return (
       <div className="app">
-        <h2 className='app__clock'>
-          Current time: {isClockVisible && <Clock />}
+        <h2 className="app__clock">
+          Current time:
+          {isClockVisible && <Clock />}
         </h2>
         <div className="app__buttons">
           <button
