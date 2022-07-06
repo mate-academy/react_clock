@@ -1,0 +1,38 @@
+.Clock {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  width: 500px;
+  height: 400px;
+  border: 2px solid orange;
+  border-radius: 40px;
+
+  &__title {
+    color: green;
+  }
+
+  &__time {
+    font-size: 20px;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 30px;
+    grid-row: 3/4;
+  }
+
+  &__btn {
+    width: 130px;
+    padding: 10px;
+    background-color: transparent;
+    border: 2px solid purple;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: yellow;
+    }
+  }
+}
