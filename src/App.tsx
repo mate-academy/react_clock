@@ -1,27 +1,70 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
+import FetchName from './helper/FetchName';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+class App extends React.Component {
+  state = {
+    clockName: 'FRUIT',
+    isClockVisible: true,
+  };
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
-  }, 1000);
+  changeNameHandler = async () => {
+    FetchName();
 
-  // eslint-disable-next-line
-  console.log(timerId);
+    this.setState({
+      clockName: await FetchName(),
+    });
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div>
+        <Clock
+          name={this.state.clockName}
+          isClockVisible={this.state.isClockVisible}
+        />
+        <button
+          type="button"
+          onClick={() => {
+            if (!this.state.isClockVisible) {
+              this.setState({
+                isClockVisible: true,
+              });
+            }
+
+            return this.setState({
+              isClockVisible: true,
+            });
+          }}
+        >
+          Show Clock
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            if (this.state.isClockVisible) {
+              this.setState({
+                isClockVisible: false,
+              });
+            }
+
+            return this.setState({
+              isClockVisible: false,
+            });
+          }}
+        >
+          Hide Clock
+        </button>
+        <button
+          type="button"
+          onClick={this.changeNameHandler}
+        >
+          Set random name
+        </button>
+      </div>
+    );
+  }
+}
 
 export default App;
