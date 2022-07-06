@@ -1,25 +1,33 @@
 import React from 'react';
 import './App.scss';
 
-const App: React.FC = () => {
-  const timerId: NodeJS.Timer = setInterval(() => {
-    const date: Date = new Date();
+function getRandomName(): string {
+  const value = Math.random().toString().slice(2, 6);
 
-    // eslint-disable-next-line
-    console.log(date.toLocaleTimeString());
+  return `Clock-${value}`;
+}
+
+const App: React.FC = () => {
+  const date = new Date();
+  const clockName = getRandomName();
+
+  // This code starts a timer
+  const timerId = window.setInterval(() => {
+    // ...
   }, 1000);
 
-  // eslint-disable-next-line
-  console.log(timerId);
+  // this code stops the timer
+  clearInterval(timerId);
 
   return (
     <div className="App">
       <h1>React clock</h1>
-      <p>
-        Current time:
-        {' '}
-        {/* Print the time here instead of DevTools */}
-      </p>
+
+      <div className="clock">
+        <strong>{clockName}</strong>
+        {' time is '}
+        {date.toLocaleTimeString()}
+      </div>
     </div>
   );
 };

@@ -1,38 +1,34 @@
 # React Clock
+Create a class component `Clock` updating the time every second using a given markup.
+Time should be printed on the page and in the DevTools console.
+
+1. add `clockName` to the `App` state using `getRandomName` function (already implemented)
+1. pass it to the `Clock` to be show near the time (see the markup)
+    ```jsx
+    <Clock name={this.state.clockName} />
+    ```
+1. start the timer only when the component is added to the page (`componentDidMount`)
+1. update time every second using `setInterval`
+1. add `hasClock` variable to the `App` state.
+1. the `Clock` should be visible only when `hasClock` is `true`.
+1. hide the clock on right mouse click in the `document` (`contextmenu` event)
+    ```js
+    document.addEventListener('contextmenu', () => {});
+    ```
+1. show the clock on left mouse click in the `document` (`click` event)
+    ```js
+    document.addEventListener('click', () => {});
+    ```
+1. check if timer stops in the console when it is hidden (`componentWillUnmount`)
+1. update `clockName` every `3300ms` with a new random name (use `setInterval`)
+1. every time the `name` changes the `Clock` must print a message with an old name and a new name to the console (`componentDidUpdate`)
+    ```
+    Renamed from <oldName> to <newName>
+    ```
+1. check in the console that a renaming message occurs after each 3-4 time messages
+
+## Instructions
 - Replace `<your_account>` with your Github username in the
  [DEMO LINK](https://<your_account>.github.io/react_clock/)
 - Follow the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
 - Use [React TypeScript cheat sheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript)
-
-## Task
-Create a `Clock` component updating the time every second.
-- Use class component
-- Start the timer only when the component is added to the page (`componentDidMount`)
-- Update the `state` every second using `setInterval`
-- Save timerId to stop it later 
-    ```js
-    this.timerId = setInterval(your code here);
-    ```
-
-![demo](./screenshot.png)
-
-## Lifecycle methods tasks
-1. Watch this video about [HOW TO HANDLE BUTTON CLICK](https://youtu.be/87RkHpYMDXI).
-1. Add buttons `Show Clock` and `Hide Clock` in the `App` component to change `isClockVisible` variable in the `App` state.
-1. The `Clock` should not be rendered when `isClockVisible` is `false`.
-1. You have to add `data-cy="time"` attribute to the element, which show time on the page
-1. Change the `Clock` component to print the time not only on the page but also in the `DevTools` console.
-    - Stop the timer when the `Clock` is hidden (`componentWillUnmount`)
-        ```js
-        // use previously saved timerId 
-        clearInterval(this.timerId);
-        ```
-1. Check if it works correctly:
-    - Hide and show the `Clock` several times and leave it visible
-    - The time in the console should be printed only once each second
-
-## (Optional) Prop update task
-1. Add `Set random name` button to the `App` to set a random number as a `clockName` variable in the `App` state.
-1. Pass the name to the `<Clock name={this.state.clockName} />`
-1. Every time the `name` changes print a message in the console `The Clock was renamed from oldName to newName` (`componentDidUpdate`)
-    - Check if the message appears in the console between clock ticks
