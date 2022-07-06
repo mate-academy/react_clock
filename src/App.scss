@@ -1,1 +1,51 @@
-// styles go here
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    height: 300px;
+    width: 200px;
+    border: 3px solid #e1e170;
+    border-radius: 20px;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__button {
+    padding: 5px;
+    background-color: #e1e170;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    &:active {
+      transform: scale(0.9);
+      transition: 0.3s;
+    }
+
+    &:disabled {
+      background-color: #fff;
+      cursor: default;
+      pointer-events: none;
+    }
+
+  }
+}
+
+.container {
+  height: 50px;
+}
