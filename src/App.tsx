@@ -2,16 +2,20 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/clock';
 
-class App extends React.Component {
+interface State {
+  isClockVisible: boolean,
+  clockName: number,
+}
+
+class App extends React.Component<{}, State> {
   state = {
     isClockVisible: true,
     clockName: 1,
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  componentDidUpdate(prevProps: any, prevState: any) {
-    if (prevProps
-      && prevState.clockName !== this.state.clockName) {
+  componentDidUpdate(_: any, prevState: State) {
+    if (prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
       console.log(`The Clock was renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
@@ -33,9 +37,9 @@ class App extends React.Component {
         <div className="App__container">
           <h1 className="App__title">React clock</h1>
           <div className="container">
-            {this.state.isClockVisible
-              ? <Clock name={this.state.clockName} />
-              : null}
+            {this.state.isClockVisible && (
+              <Clock name={this.state.clockName} />
+            )}
           </div>
           <div className="App__buttons">
             <button
