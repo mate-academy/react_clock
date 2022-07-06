@@ -1,5 +1,6 @@
 import React from 'react';
 import { Clock } from './components/Clock';
+import './App.scss';
 
 export class App extends React.Component {
   state = {
@@ -7,15 +8,15 @@ export class App extends React.Component {
     clockName: 1,
   };
 
-  ShowClock = () => {
+  showClock = () => {
     this.setState({ isClockVisible: true });
   };
 
-  HideClock = () => {
+  hideClock = () => {
     this.setState({ isClockVisible: false });
   };
 
-  SetRandomName = () => {
+  setRandomName = () => {
     const random = Math.floor(Math.random() * (300 - 1)) + 1;
 
     this.setState({ clockName: random });
@@ -32,7 +33,7 @@ export class App extends React.Component {
             <button
               className="Clock__btn"
               type="button"
-              onClick={this.ShowClock}
+              onClick={this.showClock}
               disabled={this.state.isClockVisible}
             >
               Show Clock
@@ -41,7 +42,7 @@ export class App extends React.Component {
             <button
               className="Clock__btn"
               type="button"
-              onClick={this.HideClock}
+              onClick={this.hideClock}
               disabled={!this.state.isClockVisible}
             >
               Hide Clock
@@ -50,7 +51,7 @@ export class App extends React.Component {
             <button
               className="Clock__btn"
               type="button"
-              onClick={this.SetRandomName}
+              onClick={this.setRandomName}
               disabled={!this.state.isClockVisible}
             >
               Set random name

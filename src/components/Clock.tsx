@@ -38,8 +38,12 @@ export class Clock extends React.Component<Props> {
   render() {
     return (
       <>
-        <h1 className="Clock__title">{`Clock ${this.props.name}`}</h1>
-        <p data-cy="time" className="Clock__time">{`Current time: ${this.state.time}`}</p>
+        <h1 className="Clock__title">
+          {`Clock ${this.props.name}`}
+        </h1>
+        <p data-cy="time" className="Clock__time">
+          {`Current time: ${this.state.time}`}
+        </p>
       </>
     );
   }
