@@ -1,1 +1,17 @@
-// styles go here
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(ellipse at center,  #0a2e38  0%, #000 70%);
+  background-size: 100%;
+}
+
+.App {
+  text-align: center;
+
+  &__title {
+    font-size: 30px;
+  }
+}
