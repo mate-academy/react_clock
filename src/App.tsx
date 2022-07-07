@@ -13,6 +13,10 @@ export class App extends React.Component<{}, ClockBasic> {
     name: 1,
   };
 
+  randomName = setInterval(() => this.setState(
+    { name: Math.floor(Math.random() * 300 + 1) },
+  ), 3300);
+
   componentDidMount() {
     const clear = document.getElementById('clear');
     const start = document.getElementById('start');
@@ -28,10 +32,10 @@ export class App extends React.Component<{}, ClockBasic> {
         { hasClock: true },
       ));
     }
+  }
 
-    setInterval(() => this.setState(
-      { name: Math.floor(Math.random() * 300 + 1) },
-    ), 3300);
+  componentWillUnmount() {
+    clearInterval(this.randomName);
   }
 
   render() {
