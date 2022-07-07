@@ -22,10 +22,14 @@ class App extends React.Component {
 
     this.nameInterval = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
-
-      // eslint-disable-next-line no-console
-      console.log(this.state.clockName);
     }, 3300);
+  }
+
+  componentDidUpdate(_: {}, prevState: { clockName: string }) {
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
   }
 
   componentWillUnmount() {
@@ -45,9 +49,6 @@ class App extends React.Component {
 
       this.nameInterval = window.setInterval(() => {
         this.setState({ clockName: getRandomName() });
-
-        // eslint-disable-next-line no-console
-        console.log(this.state.clockName);
       }, 3300);
     }
   };
