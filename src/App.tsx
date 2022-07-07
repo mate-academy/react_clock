@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
-import FetchName from './helper/FetchName';
+import fetchName from './helper/fetchName';
 
 class App extends React.Component {
   state = {
@@ -10,10 +10,32 @@ class App extends React.Component {
   };
 
   changeNameHandler = async () => {
-    FetchName();
-
     this.setState({
-      clockName: await FetchName(),
+      clockName: await fetchName(),
+    });
+  };
+
+  changeToggleStateFalse = () => {
+    if (this.state.isClockVisible) {
+      this.setState({
+        isClockVisible: false,
+      });
+    }
+
+    return this.setState({
+      isClockVisible: false,
+    });
+  };
+
+  changeToggleStateTrue = () => {
+    if (!this.state.isClockVisible) {
+      this.setState({
+        isClockVisible: true,
+      });
+    }
+
+    return this.setState({
+      isClockVisible: true,
     });
   };
 
@@ -26,33 +48,13 @@ class App extends React.Component {
         />
         <button
           type="button"
-          onClick={() => {
-            if (!this.state.isClockVisible) {
-              this.setState({
-                isClockVisible: true,
-              });
-            }
-
-            return this.setState({
-              isClockVisible: true,
-            });
-          }}
+          onClick={this.changeToggleStateTrue}
         >
           Show Clock
         </button>
         <button
           type="button"
-          onClick={() => {
-            if (this.state.isClockVisible) {
-              this.setState({
-                isClockVisible: false,
-              });
-            }
-
-            return this.setState({
-              isClockVisible: false,
-            });
-          }}
+          onClick={this.changeToggleStateFalse}
         >
           Hide Clock
         </button>
