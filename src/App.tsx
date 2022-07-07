@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './componets/Clock';
 
 function getRandomName(): string {
   const value = Math.random().toString().slice(2, 6);
@@ -7,29 +8,61 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-const App: React.FC = () => {
-  const date = new Date();
-  const clockName = getRandomName();
+class App extends React.Component {
+  state = {
+    hasClock: true,
+    clockName: getRandomName(),
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    // ...
-  }, 1000);
+  nameInterval = 0;
 
-  // this code stops the timer
-  clearInterval(timerId);
+  componentDidMount() {
+    document.addEventListener('contextmenu', this.stopClock);
+    document.addEventListener('click', this.startClock);
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    this.nameInterval = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
 
-      <div className="clock">
-        <strong>{clockName}</strong>
-        {' time is '}
-        {date.toLocaleTimeString()}
+      // eslint-disable-next-line no-console
+      console.log(this.state.clockName);
+    }, 3300);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.stopClock);
+    document.removeEventListener('click', this.startClock);
+    clearInterval(this.nameInterval);
+  }
+
+  stopClock = () => {
+    this.setState({ hasClock: false });
+    clearInterval(this.nameInterval);
+  };
+
+  startClock = () => {
+    if (!this.state.hasClock) {
+      this.setState({ hasClock: true });
+
+      this.nameInterval = window.setInterval(() => {
+        this.setState({ clockName: getRandomName() });
+
+        // eslint-disable-next-line no-console
+        console.log(this.state.clockName);
+      }, 3300);
+    }
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.hasClock && (
+          <Clock name={this.state.clockName} />
+        )}
+        <p>Righ Click to stop, LeftClick - start</p>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default App;
