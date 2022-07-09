@@ -8,21 +8,24 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-class App extends React.Component {
+type State = {
+  hasClock: boolean,
+  clockName: string,
+};
+
+class App extends React.Component<{}, State> {
   state = {
     hasClock: true,
     clockName: getRandomName(),
   };
 
-  nameInterval = 0;
+  intervalId = 0;
 
   componentDidMount() {
     document.addEventListener('contextmenu', this.stopClock);
     document.addEventListener('click', this.startClock);
 
-    this.nameInterval = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
+    this.intervalId = this.createNameChangeIntervar();
   }
 
   componentDidUpdate(_: {}, prevState: { clockName: string }) {
@@ -35,23 +38,27 @@ class App extends React.Component {
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.stopClock);
     document.removeEventListener('click', this.startClock);
-    clearInterval(this.nameInterval);
+    clearInterval(this.intervalId);
   }
 
   stopClock = () => {
     this.setState({ hasClock: false });
-    clearInterval(this.nameInterval);
+    clearInterval(this.intervalId);
   };
 
   startClock = () => {
     if (!this.state.hasClock) {
       this.setState({ hasClock: true });
 
-      this.nameInterval = window.setInterval(() => {
-        this.setState({ clockName: getRandomName() });
-      }, 3300);
+      this.intervalId = this.createNameChangeIntervar();
     }
   };
+
+  createNameChangeIntervar(): number {
+    return window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+  }
 
   render() {
     return (

@@ -36,8 +36,7 @@ export class Clock extends React.Component<Props, State> {
     return (
       <div className="clock">
         <strong>{this.props.name}</strong>
-        {' time is '}
-        {this.state.time}
+        {` time is ${this.state.time}`}
       </div>
     );
   }
