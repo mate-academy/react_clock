@@ -25,11 +25,11 @@ class App extends React.Component<{}, State> {
 
   }
 
-  visibleClock = () => {
+  showClock = () => {
     this.setState({ hasClock: true });
   };
 
-  hiddenClock = () => {
+  hideClock = () => {
     this.setState({ hasClock: false });
   };
 
@@ -47,7 +47,7 @@ class App extends React.Component<{}, State> {
         <div className="button__container">
           <button
             type="button"
-            onClick={this.visibleClock}
+            onClick={this.showClock}
             className="App__button App__button-1"
           >
             Start timer
@@ -55,7 +55,7 @@ class App extends React.Component<{}, State> {
 
           <button
             type="button"
-            onClick={this.hiddenClock}
+            onClick={this.hideClock}
             className="App__button App__button-2"
           >
             Finish timer
