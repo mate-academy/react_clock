@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import React from 'react';
-import './Clock.scss';
 
 type Props = {
   name: string,
