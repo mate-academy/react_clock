@@ -18,20 +18,20 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ date: new Date() });
+
+      const { date } = this.state;
+
+      window.console.log(date.toLocaleTimeString());
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
-    if (this.props.name !== prevProps.name) {
-      // eslint-disable-next-line no-console
-      console.log(
-        `previousName-${prevProps.name}, currentName-${this.props.name}`,
-      );
-    }
+  componentDidUpdate(prevProps: Props) {
+    const { name } = this.props;
 
-    if (this.state.date !== prevState.date) {
-      // eslint-disable-next-line no-console
-      console.log(this.state.date, prevState.date);
+    if (name !== prevProps.name) {
+      window.console.log(
+        `previousName-${prevProps.name}, currentName-${name}`,
+      );
     }
   }
 
@@ -41,10 +41,11 @@ export class Clock extends Component<Props, State> {
 
   render() {
     const { date } = this.state;
+    const { name } = this.props;
 
     return (
       <div className="clock">
-        <strong>{this.props.name}</strong>
+        <strong>{name}</strong>
         {' time is '}
         {date.toLocaleTimeString()}
       </div>
