@@ -1,1 +1,18 @@
-// styles go here
+.App {
+  text-align: center;
+  align-items: center;
+  height: 100%;
+}
+
+.clock {
+  font-size: 100px;
+}
+
+.tablo {
+  justify-content: center;
+  margin: 0 auto;
+  width: fit-content;
+  font-size: 200px;
+  border: 3px solid black;
+  color: red;
+}
