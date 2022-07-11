@@ -28,15 +28,12 @@ export class App extends Component<{}, State> {
 
     document.addEventListener('contextmenu', () => {
       this.setState({ hasClock: false });
+      clearInterval(this.nameTimer);
     });
 
     this.nameTimer = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.nameTimer);
   }
 
   render() {
