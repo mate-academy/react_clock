@@ -14,9 +14,7 @@ export class Clock extends React.Component<Props, State> {
     date: new Date(),
   };
 
-  constructor(props:Props, public timerId: NodeJS.Timer) {
-    super(props);
-  }
+  public timerId!: NodeJS.Timer;
 
   componentDidMount() {
     this.timerId = setInterval(() => {
@@ -24,15 +22,19 @@ export class Clock extends React.Component<Props, State> {
         date: new Date(),
       });
 
+      const { date } = this.state;
+
       // eslint-disable-next-line no-console
-      console.log(this.state.date.toLocaleTimeString());
+      console.log(date.toLocaleTimeString());
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {
-    if (prevProps.name !== this.props.name) {
+    const { name } = this.props;
+
+    if (prevProps.name !== name) {
       // eslint-disable-next-line no-console
-      console.log(`The Clock was renamed from ${prevProps.name} to ${this.props.name}`);
+      console.log(`The Clock was renamed from ${prevProps.name} to ${name}`);
     }
   }
 
@@ -41,19 +43,21 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
+    const { date } = this.state;
+
+    const { isClockVisible, name } = this.props;
+
     return (
       <div className="Clock" data-cy="time">
         <h1>
           React clock
           {' '}
-          {this.props.name ? this.props.name : 'Unknown Fruit'}
+          {name || 'Unknown Fruit'}
         </h1>
         <p>
           Current time:
           {' '}
-          {this.props.isClockVisible
-            ? this.state.date.toLocaleTimeString()
-            : ''}
+          {isClockVisible && date.toLocaleTimeString()}
         </p>
       </div>
     );

@@ -5,7 +5,7 @@ import fetchName from './helper/fetchName';
 
 class App extends React.Component {
   state = {
-    clockName: 'FRUIT',
+    clockName: 'Fruit',
     isClockVisible: true,
   };
 
@@ -40,19 +40,23 @@ class App extends React.Component {
   };
 
   render() {
+    const { isClockVisible, clockName } = this.state;
+
     return (
       <div>
         <Clock
-          name={this.state.clockName}
-          isClockVisible={this.state.isClockVisible}
+          name={clockName}
+          isClockVisible={isClockVisible}
         />
         <button
+          disabled={isClockVisible}
           type="button"
           onClick={this.changeToggleStateTrue}
         >
           Show Clock
         </button>
         <button
+          disabled={!isClockVisible}
           type="button"
           onClick={this.changeToggleStateFalse}
         >
