@@ -13,15 +13,14 @@ class Clock extends Component <Props, State> {
     date: new Date(),
   };
 
-  timerId = 0;
+  timerId = setInterval(() => {
+    this.setState({ date: new Date() });
+    // eslint-disable-next-line no-console
+    console.log(this.state.date.toLocaleTimeString());
+  }, 1000);
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
-      this.setState({ date: new Date() });
-
-      // eslint-disable-next-line no-console
-      console.log(this.state.date.toLocaleTimeString());
-    }, 1000);
+    return this.timerId;
   }
 
   componentDidUpdate(prevProps: Props) {
