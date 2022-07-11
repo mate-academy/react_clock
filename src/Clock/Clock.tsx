@@ -21,22 +21,29 @@ export class Clock extends Component <Props, State> {
     return this.timerId;
   }
 
-  componentWillUnmount(): void {
+  componentDidUpdate(prevProps: Props) {
+    const { name: oldName } = prevProps;
+    const { name: newName } = this.props;
+
+    if (oldName !== newName) {
+      // eslint-disable-next-line no-console
+      console.log(`Renamed from ${oldName} to ${newName}`);
+    }
+
+    // eslint-disable-next-line no-console
+    console.log(this.state.date.toLocaleTimeString());
+  }
+
+  componentWillUnmount() {
     clearInterval(this.timerId);
   }
 
   render() {
-    const { name } = this.props;
-    const { date } = this.state;
-
     return (
       <div className="clock">
-        <strong>{name}</strong>
+        <strong>{this.props.name}</strong>
         {' time is '}
-        {date.toLocaleTimeString()}
-
-        {/* eslint-disable-next-line no-console */}
-        {console.log(name, date.toLocaleTimeString())}
+        {this.state.date.toLocaleTimeString()}
       </div>
     );
   }
