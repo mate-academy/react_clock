@@ -18,7 +18,7 @@ class App extends Component<{}, State> {
       const randomName = Math.random().toString().slice(2, 6);
 
       this.setState({ name: `Clock-${randomName}` });
-    }, 1000);
+    }, 3300);
 
     document.addEventListener('contextmenu', () => {
       this.setState({ hasClock: false });
