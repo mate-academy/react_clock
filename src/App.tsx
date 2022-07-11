@@ -28,21 +28,6 @@ class App extends Component<{}, State> {
     document.addEventListener('click', this.handleLeftButtonClick);
   }
 
-  componentDidUpdate(_: {}, prevState: State) {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleLeftButtonClick);
-    document.removeEventListener('contextmenu', this.handleRightButtonClick);
-    clearInterval(this.timerId);
-    // eslint-disable-next-line no-console
-    console.log('GAME OVER');
-  }
-
   handleRightButtonClick = () => {
     this.setState({ hasClock: false });
     clearInterval(this.timerId);
