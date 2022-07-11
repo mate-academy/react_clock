@@ -1,35 +1,68 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/clock';
 
-function getRandomName(): string {
-  const value = Math.random().toString().slice(2, 6);
-
-  return `Clock-${value}`;
-}
-
-const App: React.FC = () => {
-  const date = new Date();
-  const clockName = getRandomName();
-
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    // ...
-  }, 1000);
-
-  // this code stops the timer
-  clearInterval(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="clock">
-        <strong>{clockName}</strong>
-        {' time is '}
-        {date.toLocaleTimeString()}
-      </div>
-    </div>
-  );
+type State = {
+  hasClock: boolean;
+  clockName: string | void;
 };
+
+class App extends React.Component<{}, State> {
+  state = {
+    hasClock: true,
+    clockName: 'initial',
+  };
+
+  timerId = 0;
+
+  componentDidMount() {
+    this.getRandomName();
+
+    this.timerId = window.setInterval(this.getRandomName, 3300);
+
+    document.addEventListener('contextmenu', this.hideClock);
+
+    document.addEventListener('click', this.showClock);
+  }
+
+  componentDidUpdate(_: {}, prevState: State) {
+    if (!this.state.hasClock) {
+      clearInterval(this.timerId);
+      this.timerId = 0;
+    }
+
+    if ((this.state.hasClock && !this.timerId)) {
+      this.timerId = window.setInterval(this.getRandomName, 3300);
+    }
+
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
+  }
+
+  getRandomName = () => {
+    const value = Math.random().toString().slice(2, 6);
+
+    return this.setState({ clockName: value });
+  };
+
+  hideClock = () => {
+    this.setState({ hasClock: false });
+  };
+
+  showClock = () => {
+    this.setState({ hasClock: true });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
+      </div>
+    );
+  }
+}
 
 export default App;
