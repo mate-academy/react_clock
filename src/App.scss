@@ -1,1 +1,11 @@
-// styles go here
+html {
+  background-color: #196f3d;
+  color: aquamarine;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.App {
+  &__title {
+    text-align: center;
+  }
+}
