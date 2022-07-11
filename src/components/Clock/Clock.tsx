@@ -15,9 +15,13 @@ export class Clock extends Component<Props, State> {
     date: new Date(),
   };
 
-  componentDidMount = () => (
-    window.setInterval(this.timerId, 1000)
-  );
+  clockInterval = 0;
+
+  componentDidMount() {
+    this.clockInterval = window.setInterval(() => {
+      this.setState({ date: new Date() });
+    }, 1000);
+  }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
     const { name: oldName } = prevProps;
@@ -34,9 +38,9 @@ export class Clock extends Component<Props, State> {
     }
   }
 
-  componentWillUnmount() {
-    clearInterval(setInterval(this.timerId, 1000));
-  }
+  componentWillUnmount = () => (
+    clearInterval(this.clockInterval)
+  );
 
   timerId = () => {
     this.setState({ date: new Date() });

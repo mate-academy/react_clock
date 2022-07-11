@@ -25,9 +25,19 @@ class App extends Component<{}, State> {
     });
   }
 
+  componentDidUpdate() {
+    document.addEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
+  }
+
   componentWillUnmount() {
     document.removeEventListener('contextmenu', () => {
       this.setState({ hasClock: false });
+    });
+
+    document.removeEventListener('click', () => {
+      this.setState({ hasClock: true });
     });
   }
 
