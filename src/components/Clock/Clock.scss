@@ -1,0 +1,19 @@
+.clock {
+  text-align: center;
+  background-color: red;
+  border-radius: 50%;
+  width: 400px;
+  height: 400px;
+
+  &__time {
+    position: relative;
+    top: 50px;
+    font-size: 50px;
+  }
+
+  &__name {
+    position: relative;
+    top: 150px;
+    font-size: 30px;
+  }
+}
