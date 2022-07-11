@@ -20,18 +20,11 @@ class App extends React.Component<{}, State> {
     hasClock: true,
   };
 
-  timerId = 0;
-
   clockName = window.setInterval(() => {
     this.setState({ clockName: getRandomName() });
   }, 3300);
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
-      this.setState({ date: new Date() });
-    }, 1000);
-    this.state.hasClock = true;
-    this.state.clockName = getRandomName();
     document.addEventListener('contextmenu', () => {
       this.setState({ hasClock: false });
     });
