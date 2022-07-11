@@ -1,0 +1,12 @@
+.clock {
+  box-sizing: border-box;
+  border: 4px solid aquamarine;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  font-weight: 700;
+
+  &__time {
+    font-size: 3em;
+  }
+}
