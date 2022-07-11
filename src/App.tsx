@@ -6,7 +6,7 @@ const getRandomName = (): string => {
   const value = Math.random().toString().slice(2, 6);
 
   return `Clock-${value}`;
-}
+};
 
 type State = {
   hasClock: boolean,
@@ -28,27 +28,29 @@ class App extends Component<{}, State> {
     document.addEventListener('click', this.handleLeftButtonClick);
   }
 
-  componentDidUpdate(prevState: State) {
+  componentDidUpdate(_: {}, prevState: State) {
     if (prevState.clockName !== this.state.clockName) {
-      console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`)
+      // eslint-disable-next-line no-console
+      console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
   }
 
-componentWillUnmount() {
-  document.removeEventListener('click', this.handleLeftButtonClick);
-  document.removeEventListener('contextmenu', this.handleRightButtonClick);
-  clearInterval(this.timerId);
-  console.log('GAME OVER');
-}
-
-  handleRightButtonClick = () => {
-    this.setState({ hasClock: false});
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleLeftButtonClick);
+    document.removeEventListener('contextmenu', this.handleRightButtonClick);
     clearInterval(this.timerId);
+    // eslint-disable-next-line no-console
+    console.log('GAME OVER');
   }
 
+  handleRightButtonClick = () => {
+    this.setState({ hasClock: false });
+    clearInterval(this.timerId);
+  };
+
   handleLeftButtonClick = () => {
-    this.setState({ hasClock: true});
-    this.timerId = window.setInterval(this.getNewClockName , 3300);
+    this.setState({ hasClock: true });
+    this.timerId = window.setInterval(this.getNewClockName, 3300);
   };
 
   getNewClockName = () => {
