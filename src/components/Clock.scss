@@ -1,0 +1,14 @@
+.clock {
+  &__name {
+    font-weight: bold;
+  }
+
+  &__time {
+    font-size: 50px;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #2e6a7c;
+    }
+  }
+}
