@@ -1,6 +1,6 @@
-import { Component } from 'react';
+import React from 'react';
 import './App.scss';
-import { Clock } from './Clock';
+import Clock from './Clock/Clock';
 
 function getRandomName(): string {
   const value = Math.random().toString().slice(2, 6);
@@ -13,7 +13,7 @@ type State = {
   hasClock: boolean,
 };
 
-class App extends Component<{}, State> {
+export class App extends React.Component<{}, State> {
   state = {
     clockName: getRandomName(),
     hasClock: true,
@@ -53,5 +53,4 @@ class App extends Component<{}, State> {
     );
   }
 }
-
-export default App;
+// export default App;

@@ -8,7 +8,7 @@ type State = {
   date: Date,
 };
 
-export class Clock extends Component <Props, State> {
+class Clock extends Component <Props, State> {
   state = {
     date: new Date(),
   };
@@ -48,3 +48,5 @@ export class Clock extends Component <Props, State> {
     );
   }
 }
+
+export default Clock;
