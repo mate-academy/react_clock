@@ -10,23 +10,25 @@ type State = {
 class App extends Component<{}, State> {
   state: Readonly<State> = {
     hasClock: true,
-    name: 'Clock',
+    name: `Clock-${Math.random().toString().slice(2, 6)}`,
   };
 
-  RandomName = setInterval(() => {
-    const randomName = Math.random().toString().slice(2, 6);
-
-    this.setState({ name: `Clock-${randomName}` });
-  }, 3300);
-
   componentDidMount() {
+    setInterval(() => {
+      const randomName = Math.random().toString().slice(2, 6);
+
+      this.setState({ name: `Clock-${randomName}` });
+    }, 1000);
+
     document.addEventListener('contextmenu', () => {
       this.setState({ hasClock: false });
     });
   }
 
   componentWillUnmount() {
-    clearInterval(this.RandomName);
+    document.removeEventListener('contextmenu', () => {
+      this.setState({ hasClock: false });
+    });
   }
 
   render() {

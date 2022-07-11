@@ -15,17 +15,18 @@ export class Clock extends Component<Props, State> {
     date: new Date(),
   };
 
-  timerId = window.setInterval(() => {
-    this.setState({ date: new Date() });
-  }, 1000);
+  componentDidMount = () => (
+    window.setInterval(this.timerId, 1000)
+  );
 
-  componentDidMount() {
-    return this.timerId;
-  }
-
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     const { name: oldName } = prevProps;
     const { name: newName } = this.props;
+
+    if (prevState.date !== this.state.date) {
+      // eslint-disable-next-line no-console
+      console.log(this.state.date.toLocaleTimeString());
+    }
 
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
@@ -34,15 +35,16 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    clearInterval(setInterval(this.timerId, 1000));
   }
+
+  timerId = () => {
+    this.setState({ date: new Date() });
+  };
 
   render() {
     const { date } = this.state;
     const { name } = this.props;
-
-    // eslint-disable-next-line no-console
-    console.log(this.state.date.toLocaleTimeString());
 
     return (
       <div className="clock">
