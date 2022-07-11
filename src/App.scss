@@ -1,1 +1,13 @@
-// styles go here
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+* {
+  font-family: sans-serif;
+}
+
+.numbers {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 100px;
+  text-align: center;
+  color: blue;
+  text-shadow: 1px 1px 2px rgb(90, 87, 236), 0 0 1em blue, 0 0 0.2em blue;
+}
