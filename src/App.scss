@@ -1,1 +1,68 @@
 // styles go here
+body {
+  background-color: #bdbfcc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__name {
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    font-weight: 500;
+
+    margin-bottom: 20px;
+  }
+
+  &__timer {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 250px;
+    height: 250px;
+
+    border: 2px solid #76656c;
+    border-radius: 50%;
+
+    margin-bottom: 40px;
+
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__button {
+    width: 100px;
+    height: 45px;
+
+    margin: 20px;
+
+    color: #f3f3f3;
+    background-color: #76656c;
+    border: #76656c 1px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    transition: all 2s;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &__button-1 {
+    margin-left: 0;
+  }
+
+  &__button-2 {
+    margin-right: 0;
+  }
+}
