@@ -1,1 +1,22 @@
-// styles go here
+body,
+h1 {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 32px;
+}
+
+.App {
+  padding: 100px;
+  text-align: center;
+  height: 100vh;
+  background: linear-gradient(190deg, #8fcfda, #a2c2ce, #2b6267);
+
+  text-transform: uppercase;
+}
