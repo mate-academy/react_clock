@@ -13,12 +13,15 @@ class Clock extends Component <Props, State> {
     date: new Date(),
   };
 
-  timerId = setInterval(() => {
-    this.setState({ date: new Date() });
-  }, 1000);
+  timerId = 0;
 
   componentDidMount() {
-    return this.timerId;
+    this.timerId = window.setInterval(() => {
+      this.setState({ date: new Date() });
+
+      // eslint-disable-next-line no-console
+      console.log(this.state.date.toLocaleTimeString());
+    }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -29,9 +32,6 @@ class Clock extends Component <Props, State> {
       // eslint-disable-next-line no-console
       console.log(`Renamed from ${oldName} to ${newName}`);
     }
-
-    // eslint-disable-next-line no-console
-    console.log(this.state.date.toLocaleTimeString());
   }
 
   componentWillUnmount() {
