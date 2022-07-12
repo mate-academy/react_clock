@@ -8,7 +8,7 @@ Create a `Clock` class component that will update the time every second using a 
 1. Change the `App` to be a class component.
 1. Add a `hasClock` variable to the `App` state.
 1. The `Clock` should be visible only when the `hasClock` is `true`.
-1. Hide the clock on the right mouse click in the `document` (`contextmenu` event):
+1. Hide the `Clock` on a right mouse click in the `document` (`contextmenu` event):
 
     ```js
     document.addEventListener('contextmenu', () => {});
