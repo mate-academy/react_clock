@@ -14,7 +14,7 @@ Create a `Clock` class component that will update the time every second using a 
     document.addEventListener('contextmenu', () => {});
     ```
     
-1. Show the clock on the left mouse click in the `document` (`click` event):
+1. Show the `Clock` on a left mouse click in the `document` (`click` event):
 
     ```js
     document.addEventListener('click', () => {});
