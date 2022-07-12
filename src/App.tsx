@@ -4,7 +4,7 @@ import { Clock } from './components/clock';
 
 type State = {
   hasClock: boolean;
-  clockName: string | void;
+  clockName: string;
 };
 
 class App extends React.Component<{}, State> {
