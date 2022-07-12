@@ -1,3 +1,9 @@
+## Instructions
+- Replace `<your_account>` with your Github username in the
+ [DEMO LINK](https://ivangrabovsky.github.io/react_clock/)
+- Follow the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
+- Use [React TypeScript cheat sheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript)
+
 # React Clock
 Create a class component `Clock` updating the time every second using a given markup.
 
@@ -27,9 +33,3 @@ Create a class component `Clock` updating the time every second using a given ma
     Renamed from <oldName> to <newName>
     ```
 1. check in the console that a renaming message occurs after each 3-4 time messages
-
-## Instructions
-- Implement a solution following the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
-- Use [React TypeScript cheat sheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript)
-- Open one more terminal and run tests with `npm test` to ensure your solution is correct
-- Replace `<your_account>` with your Github username in the [DEMO LINK](https://<your_account>.github.io/react_clock/) and add it to PR description

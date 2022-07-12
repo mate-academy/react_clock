@@ -1,41 +1,45 @@
-import React from 'react';
+import { Component } from 'react';
+import { Clock } from './Clock';
 import './App.scss';
 
-function getRandomName(): string {
-  const value = Math.random().toString().slice(2, 6);
-
-  return `Clock-${value}`;
-}
-
-const App: React.FC = () => {
-  const date = new Date();
-  const clockName = getRandomName();
-
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    // ...
-  }, 1000);
-
-  // this code stops the timer
-  window.clearInterval(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {date.toLocaleTimeString()}
-        </span>
-      </div>
-    </div>
-  );
+type State = {
+  clockShow: boolean,
+  clockName: string,
 };
 
-export default App;
+export class App extends Component<{}, State> {
+  state: Readonly<State> = {
+    clockShow: true,
+    clockName: 'Clock 777',
+  };
+
+  componentDidMount() {
+    document.addEventListener('click', this.clockIsVisible);
+    document.addEventListener('contextmenu', this.clockIsHidden);
+  }
+
+  setRandomClockName = setInterval(() => {
+    const random = Math.random().toString().slice(2, 6);
+
+    this.setState({ clockName: `Clock ${random}` });
+  }, 5000);
+
+  clockIsVisible = () => {
+    this.setState({ clockShow: true });
+  };
+
+  clockIsHidden = () => {
+    this.setState({ clockShow: false });
+  };
+
+  render() {
+    const { clockShow, clockName } = this.state;
+
+    return (
+      <div>
+        <h1 className="title is-size-3 has-text-centered mt-6">React clock</h1>
+        <div>{ clockShow && <Clock name={clockName} /> }</div>
+      </div>
+    );
+  }
+}
