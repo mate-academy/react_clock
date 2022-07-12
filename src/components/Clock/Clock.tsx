@@ -20,10 +20,10 @@ export class Clock extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props) {
-    const { name } = this.props;
-
-    // eslint-disable-next-line no-console
-    console.log(`Renamed from ${prevProps.name} to ${name}`);
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.log(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
@@ -36,7 +36,7 @@ export class Clock extends Component<Props, State> {
     this.setState({ date });
 
     // eslint-disable-next-line no-console
-    console.log(date);
+    console.log(date.toLocaleTimeString());
   };
 
   render() {
