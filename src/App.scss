@@ -1,1 +1,21 @@
-// styles go here
+h1,
+span {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  margin: 0 auto;
+  padding: 20px;
+  width: 300px;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-align: center;
+
+  border: 2px solid #000;
+  border-radius: 15px;
+
+  &__title {
+    margin-bottom: 20px;
+  }
+}
