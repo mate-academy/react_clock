@@ -22,18 +22,26 @@ export class App extends Component<{}, State> {
   nameTimer = 0;
 
   componentDidMount() {
+    this.nameTimer = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+
     document.addEventListener('click', () => {
       this.setState({ hasClock: true });
+
+      this.nameTimer = window.setInterval(() => {
+        this.setState({ clockName: getRandomName() });
+      }, 3300);
     });
 
     document.addEventListener('contextmenu', () => {
       this.setState({ hasClock: false });
       clearInterval(this.nameTimer);
     });
+  }
 
-    this.nameTimer = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
+  componentDidUpdate() {
+
   }
 
   render() {
