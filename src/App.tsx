@@ -16,13 +16,11 @@ class App extends Component<{}, State> {
   componentDidMount() {
     document.addEventListener('click', this.visibleClock);
     document.addEventListener('contextmenu', this.hiddenClock);
+
+    setInterval(() => {
+      this.setState({ clockName: `Clock №${Math.random().toString().slice(2, 6)}` });
+    }, 3300);
   }
-
-  setRandomName = setInterval(() => {
-    const randomName = Math.random().toString().slice(2, 6);
-
-    this.setState({ clockName: `Clock №${randomName}` });
-  }, 3300);
 
   visibleClock = () => {
     this.setState({ hasClock: true });
