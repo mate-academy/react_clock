@@ -17,16 +17,22 @@ const App: React.FC = () => {
   }, 1000);
 
   // this code stops the timer
-  clearInterval(timerId);
+  window.clearInterval(timerId);
 
   return (
     <div className="App">
       <h1>React clock</h1>
 
-      <div className="clock">
-        <strong>{clockName}</strong>
+      <div className="Clock">
+        <strong className="Clock__name">
+          {clockName}
+        </strong>
+
         {' time is '}
-        {date.toLocaleTimeString()}
+
+        <span className="Clock__time">
+          {date.toLocaleTimeString()}
+        </span>
       </div>
     </div>
   );

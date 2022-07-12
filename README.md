@@ -1,9 +1,9 @@
 # React Clock
 Create a class component `Clock` updating the time every second using a given markup.
-Time should be printed on the page and in the DevTools console.
 
+1. time should be printed on the page and in the DevTools console.
 1. start the timer only when the component is added to the page (`componentDidMount`)
-1. update time every second using `setInterval`.
+1. update time every second using `window.setInterval`.
 1. Change the `App` to be a class components
 1. add `hasClock` variable to the `App` state.
 1. the `Clock` should be visible only when `hasClock` is `true`.
@@ -21,15 +21,15 @@ Time should be printed on the page and in the DevTools console.
     ```jsx
     <Clock name={this.state.clockName} />
     ```
-1. update `clockName` every `3300ms` with a new random name (use `setInterval`)
-1. every time the `name` changes the `Clock` must print a message with an old name and a new name to the console (`componentDidUpdate`)
+1. update `clockName` every `3300ms` with a new random name (use `window.setInterval`)
+1. each time the `name` changes the `Clock` must print a message with an old name and a new name to the console (use `componentDidUpdate`)
     ```
     Renamed from <oldName> to <newName>
     ```
 1. check in the console that a renaming message occurs after each 3-4 time messages
 
 ## Instructions
-- Replace `<your_account>` with your Github username in the
- [DEMO LINK](https://<your_account>.github.io/react_clock/)
-- Follow the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
+- Implement a solution following the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
 - Use [React TypeScript cheat sheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript)
+- Open one more terminal and run tests with `npm test` to ensure your solutions is correct
+- Replace `<your_account>` with your Github username in the [DEMO LINK](https://<your_account>.github.io/react_clock/) and add it to PR description
