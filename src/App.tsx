@@ -1,5 +1,4 @@
 import React from 'react';
-import { clearInterval } from 'timers';
 import './App.scss';
 import { Clock } from './components/Clock';
 
@@ -11,15 +10,15 @@ type ClockBasic = {
 export class App extends React.Component<{}, ClockBasic> {
   state = {
     hasClock: true,
-    name: 1,
+    name: 13,
   };
 
   randomName = setInterval(() => this.setState(
-    { name: Math.floor(Math.random() * 400 + 1) },
+    { name: Math.floor(Math.random() * 400) },
   ), 3300);
 
   componentDidMount() {
-    const clear = document.getElementById('claer');
+    const clear = document.getElementById('clear');
     const start = document.getElementById('start');
 
     if (clear) {

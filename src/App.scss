@@ -52,4 +52,9 @@
   margin: 10px 20px;
   font-weight: bold;
   color: #95350b;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #cdc457;
+  }
 }

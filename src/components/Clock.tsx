@@ -1,5 +1,4 @@
 import React from 'react';
-import { clearInterval } from 'timers';
 
 type Time = {
   name: number,
@@ -45,8 +44,8 @@ export class Clock extends React.Component<Time, {}> {
 
     return (
       <div className="clock__table">
-        <h1 className="clock__table-name">{`Clock name ${name}`}</h1>
-        <h2 className="clock__table-time">{localeTime}</h2>
+        <h1 className="clock__time clock__table-name">{`Clock name ${name}`}</h1>
+        <h2 className="clock__time clock__table-time">{localeTime}</h2>
       </div>
     );
   }
