@@ -1,1 +1,10 @@
-// styles go here
+.App {
+  display: flex;
+  width: 300px;
+  background: black;
+
+  &__title {
+    margin-left: 10px;
+    color: aqua;
+  }
+}
