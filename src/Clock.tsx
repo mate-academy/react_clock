@@ -6,16 +6,12 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-type Props = {
-  clockName?: string;
-};
-
 type State = {
   clockName: string;
   date: Date,
 };
 
-export class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<{}, State> {
   state = {
     clockName: getRandomName(),
     date: new Date(),
@@ -32,10 +28,10 @@ export class Clock extends React.Component<Props, State> {
     }, 3300);
   }
 
-  componentDidUpdate(prevProps: Props) {
-    if (prevProps.clockName !== this.props.clockName) {
+  componentDidUpdate(prevProps: State) {
+    if (prevProps.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
-      console.log(prevProps.clockName, '---', this.props.clockName);
+      console.log(prevProps.clockName, '---', this.state.clockName);
     }
   }
 
@@ -44,12 +40,14 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
+    const { clockName, date } = this.state;
+
     return (
       <div className="clock">
-        <strong>{this.state.clockName}</strong>
+        <strong>{clockName}</strong>
         {' time is '}
         <div className="numbers">
-          {this.state.date.toLocaleTimeString()}
+          {date.toLocaleTimeString()}
         </div>
       </div>
 
