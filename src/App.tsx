@@ -1,64 +1,69 @@
-/* eslint-disable react/no-unused-state */
-/* eslint-disable react/button-has-type */
 import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
-function getRandomName(): string {
-  const value = Math.random().toString().slice(2, 6);
-
-  return `Clock-${value}`;
-}
-
 type State = {
   hasClock: boolean,
-  nameClock: number,
+  name: number,
 };
 
 class App extends React.Component<{}, State> {
   state: Readonly<State> = {
     hasClock: true,
-    nameClock: 0,
+    name: 0,
   };
+
+  getRandomName = setInterval(() => this.setState(
+    { name: Math.floor(Math.random() * 400) },
+  ), 3300);
 
   componentDidMount() {
+    const clear = document.getElementById('clear');
+    const start = document.getElementById('start');
 
+    if (clear) {
+      clear.addEventListener('click', () => this.setState(
+        { hasClock: false },
+      ));
+    }
+
+    if (start) {
+      start.addEventListener('click', () => this.setState(
+        { hasClock: true },
+      ));
+    }
   }
 
-  showClock = () => {
-    this.setState({ hasClock: true });
-  };
-
-  hideClock = () => {
-    this.setState({ hasClock: false });
-  };
+  componentWillUnmount() {
+    clearInterval(this.getRandomName);
+  }
 
   render() {
+    const { hasClock } = this.state;
+
     return (
       <div className="App">
-        <div className="App__name">
-          Name is:
-          {getRandomName()}
-        </div>
-        <div className="App__timer">
-          {this.state.hasClock && <Clock name={this.state.nameClock} />}
-        </div>
+        { hasClock
+          ? <Clock name={this.state.name} />
+          : <div className="App__name" />}
 
-        <div className="button__container">
+        <div className="App__container-button">
           <button
             type="button"
-            onClick={this.showClock}
-            className="App__button App__button-1"
+            id="start"
+            className="App__button"
+            disabled={this.state.hasClock}
           >
-            Start timer
+            Start
           </button>
 
           <button
             type="button"
-            onClick={this.hideClock}
-            className="App__button App__button-2"
+            id="clear"
+            className="App__button"
+            disabled={!this.state.hasClock}
           >
-            Finish timer
+            Clear
           </button>
         </div>
       </div>
