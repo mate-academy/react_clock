@@ -52,7 +52,7 @@ class App extends React.Component<{}, State> {
             type="button"
             id="start"
             className="App__button"
-            disabled={this.state.hasClock}
+            disabled={hasClock}
           >
             Start
           </button>
@@ -61,7 +61,7 @@ class App extends React.Component<{}, State> {
             type="button"
             id="clear"
             className="App__button"
-            disabled={!this.state.hasClock}
+            disabled={!hasClock}
           >
             Clear
           </button>
