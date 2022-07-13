@@ -37,9 +37,9 @@ class App extends React.Component<{}, State> {
     }, 3300);
   }
 
-  componentDidUpdate(_: any, prevState: State) {
-    console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-  }
+  // componentDidUpdate(_: any, prevState: State) {
+  //   console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+  // }
 
   render() {
     const { hasClock, clockName } = this.state;

@@ -22,8 +22,12 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: Props) {
     console.log(this.state.date.toLocaleTimeString());
+
+    if (prevProps.clockName !== this.props.clockName) {
+      console.log(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+    }
   }
 
   componentWillUnmount() {
