@@ -9,7 +9,7 @@ type State = {
 };
 
 export class Clock extends React.Component<Props, State> {
-  state = {
+  state: Readonly<State> = {
     date: new Date(),
   };
 

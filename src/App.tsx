@@ -14,7 +14,7 @@ type State = {
 };
 
 class App extends React.Component<{}, State> {
-  state = {
+  state: Readonly<State> = {
     hasClock: true,
     clockName: getRandomName(),
   };
