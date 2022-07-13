@@ -13,10 +13,10 @@ export class Clock extends React.Component<Props, State> {
     date: new Date(),
   };
 
-  watch = 0;
+  timerId = 0;
 
   componentDidMount() {
-    this.watch = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       const date = new Date();
 
       // eslint-disable-next-line no-console

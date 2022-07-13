@@ -19,10 +19,10 @@ class App extends React.Component<{}, State> {
     hasClock: true,
   };
 
-  name = 0;
+  timerId = 0;
 
   componentDidMount() {
-    this.name = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
@@ -32,7 +32,7 @@ class App extends React.Component<{}, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.name);
+    clearInterval(this.timerId);
   }
 
   removeClock = () => {
@@ -51,7 +51,8 @@ class App extends React.Component<{}, State> {
         <h1 className="App__title">React clock</h1>
 
         {hasClock && (
-          <Clock name={clockName} />)}
+          <Clock name={clockName} />
+        )}
       </div>
     );
   }
