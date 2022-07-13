@@ -19,6 +19,9 @@ export class Clock extends React.Component<Props, State> {
     this.timerId = window.setInterval(() => {
       const date = new Date();
 
+      // eslint-disable-next-line no-console
+      console.log(date.toLocaleTimeString());
+
       this.setState({ date });
     }, 1000);
   }
