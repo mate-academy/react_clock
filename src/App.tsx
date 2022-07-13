@@ -7,7 +7,7 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   const date = new Date();
   const clockName = getRandomName();
 
@@ -37,5 +37,3 @@ const App: React.FC = () => {
     </div>
   );
 };
-
-export default App;
