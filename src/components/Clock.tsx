@@ -34,7 +34,7 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.watch);
+    clearInterval(this.timerId);
   }
 
   render() {
