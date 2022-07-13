@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Component } from 'react';
 
 type Props = {
@@ -21,8 +22,16 @@ export class Clock extends Component<Props, State> {
 
       date = new Date().toLocaleTimeString();
 
+      console.log(date);
+
       this.setState({ date });
     }, 1000);
+  }
+
+  componentDidUpdate(prevState: Props) {
+    if (prevState.name !== this.props.name) {
+      console.log(`Renamed from ${prevState.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
