@@ -1,1 +1,26 @@
-// styles go here
+.App {
+  width: 600px;
+  height: 600px;
+  text-align: center;
+  margin: 100px auto;
+
+  border: 2px dashed gray;
+  background-color: khaki;
+
+  &__title {
+    margin-top: 200px;
+    font-size: 40px;
+    color: blue;
+  }
+  &__info {
+    font-size: 40px;
+    align-items: center;
+    padding: auto;
+    color: red;
+  }
+}
+
+
+
+
+
