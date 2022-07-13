@@ -34,11 +34,14 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
+    const { clockName } = this.props;
+    const { date } = this.state;
+
     return (
       <div>
-        <strong>{this.props.clockName}</strong>
+        <strong>{clockName}</strong>
         {' - '}
-        {this.state.date.toLocaleTimeString()}
+        {date.toLocaleTimeString()}
       </div>
     );
   }
