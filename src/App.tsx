@@ -19,14 +19,20 @@ class App extends React.Component<{}, State> {
     hasClock: true,
   };
 
+  name = 0;
+
   componentDidMount() {
-    window.setInterval(() => {
+    this.name = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
     document.addEventListener('contextmenu', this.removeClock);
 
     document.addEventListener('click', this.addClock);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.name);
   }
 
   removeClock = () => {
@@ -44,8 +50,8 @@ class App extends React.Component<{}, State> {
       <div className="App">
         <h1 className="App__title">React clock</h1>
 
-        {hasClock
-        && <Clock name={clockName} />}
+        {hasClock && (
+          <Clock name={clockName} />)}
       </div>
     );
   }

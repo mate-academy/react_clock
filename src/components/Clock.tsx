@@ -13,8 +13,10 @@ export class Clock extends React.Component<Props, State> {
     date: new Date(),
   };
 
+  watch = 0;
+
   componentDidMount() {
-    window.setInterval(() => {
+    this.watch = window.setInterval(() => {
       const date = new Date();
 
       // eslint-disable-next-line no-console
@@ -29,6 +31,10 @@ export class Clock extends React.Component<Props, State> {
       // eslint-disable-next-line no-console
       console.log(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.watch);
   }
 
   render() {
