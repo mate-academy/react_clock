@@ -1,5 +1,4 @@
-// import React from 'react';
-import { Component } from 'react';
+import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
@@ -14,7 +13,7 @@ type State = {
   hesClock: boolean,
 };
 
-class App extends Component<{}, State> {
+class App extends React.Component<{}, State> {
   state = {
     hesClock: true,
     clockName: getRandomName(),
