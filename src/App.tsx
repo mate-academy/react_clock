@@ -23,7 +23,8 @@ export class App extends Component<{}, State> {
       this.setState({ hasChild: true });
     });
 
-    document.addEventListener('contextmenu', () => {
+    document.addEventListener('contextmenu', (event) => {
+      event?.preventDefault();
       this.setState({ hasChild: false });
     });
 
