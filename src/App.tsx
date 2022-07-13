@@ -47,7 +47,7 @@ class App extends React.Component<{}, State> {
 
     return (
       <div className="App">
-        <h1 className="App__title">React clock</h1>
+        <h1 className="App__titl">React clock</h1>
 
         <div className="clock">
           {hesClock && (
