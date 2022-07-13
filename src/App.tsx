@@ -40,10 +40,6 @@ export class App extends Component<{}, State> {
     });
   }
 
-  componentDidUpdate() {
-
-  }
-
   render() {
     return (
       <div className="App">
