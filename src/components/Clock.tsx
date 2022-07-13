@@ -1,0 +1,47 @@
+import React from 'react';
+
+type Props = {
+  name: string,
+};
+
+type State = {
+  date: Date,
+};
+
+export class Clock extends React.Component<Props, State> {
+  state: Readonly<State> = {
+    date: new Date(),
+  };
+
+  componentDidMount() {
+    window.setInterval(() => {
+      const date = new Date();
+
+      // eslint-disable-next-line no-console
+      console.log(date.toLocaleTimeString());
+
+      this.setState({ date });
+    }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.log(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
+  render() {
+    return (
+      <div className="clock">
+        <p className="clock__name">
+          {this.props.name}
+        </p>
+
+        <p className="clock__time">
+          {this.state.date.toLocaleTimeString()}
+        </p>
+      </div>
+    );
+  }
+}
