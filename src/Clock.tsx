@@ -10,11 +10,11 @@ type State = {
 };
 
 export class Clock extends React.Component<Props, State> {
-  timerId = 0;
-
   state = {
     date: new Date(),
   };
+
+  timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
@@ -23,8 +23,14 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props) {
+    if (prevProps.clockName !== this.props.clockName) {
+      console.log(
+        `Old name: ${prevProps.clockName} / New name:${this.props.clockName}`,
+      );
+    }
+
     console.log(
-      `Old name: ${prevProps.clockName} / New name:${this.props.clockName}`,
+      `${this.props.clockName} - ${this.state.date.toLocaleTimeString()}`,
     );
   }
 
