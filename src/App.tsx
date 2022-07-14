@@ -35,13 +35,6 @@ class App extends React.Component<{}, State> {
     });
   }
 
-  componentDidUpdate(_: {}, prevState: State) {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
-
   componentWillUnmount() {
     clearInterval(this.timerId);
   }
