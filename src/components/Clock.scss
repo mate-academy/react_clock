@@ -1,0 +1,13 @@
+.Clock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  box-sizing: border-box;
+  font-size: 18px;
+
+  &__name {
+    font-size: 20px;
+    color: darkorange;
+  }
+}
