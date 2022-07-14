@@ -19,8 +19,10 @@ class App extends React.Component<{}, State> {
     clockName: getRandomName(),
   };
 
+  timerId = 0;
+
   componentDidMount() {
-    setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
@@ -31,6 +33,17 @@ class App extends React.Component<{}, State> {
     document.addEventListener('contextmenu', () => {
       this.setState({ hasClock: false });
     });
+  }
+
+  componentDidUpdate(_: {}, prevState: State) {
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
   }
 
   render() {
