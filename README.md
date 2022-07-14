@@ -1,5 +1,7 @@
 # React Clock
 
+> [React + Typescript cheatsheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript)
+
 Create a `Clock` class component that will update the time every second using a given markup:
 
 1. Time should be printed on the page and in the DevTools console.
@@ -40,6 +42,6 @@ Create a `Clock` class component that will update the time every second using a 
 ## Instructions
 
 - Implement a solution following the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
-- Use the [React TypeScript cheat sheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript).
+- Use the [React TypeScript cheatsheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript).
 - Open one more terminal and run tests with `npm test` to ensure your solution is correct.
 - Replace `<your_account>` with your Github username in the [DEMO LINK](https://<your_account>.github.io/react_clock/) and add it to the PR description.
