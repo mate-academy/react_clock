@@ -1,6 +1,6 @@
 # React Clock
 
-> [React + Typescript cheatsheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript)
+> [React + Typescript cheat sheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript)
 
 Create a `Clock` class component that will update the time every second using a given markup:
 
