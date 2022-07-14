@@ -29,26 +29,22 @@ class App extends React.Component<{}, State> {
     document.addEventListener('click', () => {
       this.setState({ hasClock: true });
     });
-
-    setInterval(() => this.setState({ clockName: getRandomName() }), 3300);
   };
+
+  setRandomName = setInterval(() => this.setState(
+    { clockName: getRandomName() },
+  ), 3300);
 
   render() {
     return (
       <div className="App">
         <h1 className="App__title">React clock</h1>
 
-        <div className="Clock">
-          <strong className="Clock__name">
-            {this.state.clockName}
-          </strong>
-
-          {' time is '}
-
-          <strong className="Clock__time">
+        <>
+          <strong>
             {this.state.hasClock && <Clock clockName={this.state.clockName} />}
           </strong>
-        </div>
+        </>
       </div>
     );
   }

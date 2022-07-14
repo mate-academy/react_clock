@@ -23,7 +23,7 @@ class Clock extends React.Component<Props, State> {
 
       this.setState({ date });
       // eslint-disable-next-line no-console
-      console.log(date);
+      console.log(date.toLocaleTimeString());
     }, 1000);
   };
 
@@ -40,9 +40,15 @@ class Clock extends React.Component<Props, State> {
 
   render() {
     return (
-      <span className="Clock__time">
-        {this.state.date.toLocaleTimeString()}
-      </span>
+      <div className="Clock">
+        <span className="Clock__name">
+          {this.props.clockName}
+        </span>
+
+        <span className="Clock__time">
+          {this.state.date.toLocaleTimeString()}
+        </span>
+      </div>
     );
   }
 }
