@@ -4,7 +4,11 @@ type State = {
   date: Date,
 };
 
-export class Clock extends React.Component<{}, State> {
+type Props = {
+  clockName: string;
+};
+
+export class Clock extends React.Component<Props, State> {
   state = {
     date: new Date(),
   };
@@ -15,6 +19,13 @@ export class Clock extends React.Component<{}, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ date: new Date() });
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line no-console
+      console.log(prevProps.clockName, '---', this.props.clockName);
+    }
   }
 
   componentWillUnmount() {

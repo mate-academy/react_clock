@@ -13,17 +13,15 @@ type State = {
   hasClock: boolean;
 };
 
-type Props = {
-  clockName: string;
-};
-
 class App extends React.Component<{}, State> {
   state = {
     clockName: getRandomName(),
     hasClock: true,
   };
 
-  timerId = 0;
+  timerId = setInterval(() => {
+    this.setState({ clockName: getRandomName() });
+  }, 3300);
 
   componentDidMount() {
     document.addEventListener('contextmenu', () => {
@@ -32,16 +30,10 @@ class App extends React.Component<{}, State> {
     document.addEventListener('click', () => {
       this.setState({ hasClock: true });
     });
-    this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
   }
 
-  componentDidUpdate(_prevProps: Props, prevState: State) {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.log(prevState.clockName, '---', this.state.clockName);
-    }
+  componentWillUnmount() {
+    clearInterval(this.timerId);
   }
 
   render() {
@@ -55,7 +47,7 @@ class App extends React.Component<{}, State> {
             ? (
               <>
                 <strong>{clockName}</strong>
-                <Clock />
+                <Clock clockName={clockName} />
               </>
             )
             : ''}
