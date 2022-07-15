@@ -1,1 +1,22 @@
-// styles go here
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+
+  .App__clock {
+    padding: 50px;
+    width: 300px;
+    height: 100px;
+
+    background-color: #e9ffc1;
+    border: 6px double #000;
+    border-radius: 20px;
+  }
+
+  .App__clock-title {
+    margin: 0 0 30px;
+    font-family: sans-serif;
+  }
+}
