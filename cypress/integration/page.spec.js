@@ -43,7 +43,7 @@ describe('Page', () => {
 
     page.getHideClockButton()
       .click();
-    
+
     page.time()
       .should('not.exist');
   });
@@ -51,13 +51,13 @@ describe('Page', () => {
   it('should show clock after the click on the "Show Clock" button', () => {
     page.getHideClockButton()
       .click();
-    
+
     page.time()
       .should('not.exist');
-    
+
     page.getShowClockButton()
       .click();
-    
+
     page.time()
       .should('exist');
   });
