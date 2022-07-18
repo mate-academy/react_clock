@@ -26,14 +26,6 @@ class App extends React.Component<{}, State> {
     this.setState({ hasClock: false });
   };
 
-  setRandomName = () => {
-    if (!this.state.hasClock) {
-      return;
-    }
-
-    this.setState({ clockName: Math.round(Math.random() * 1000) });
-  };
-
   render() {
     const { clockName, hasClock } = this.state;
 
