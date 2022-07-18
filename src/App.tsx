@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { Clock } from './components/Clock';
+import { Clock2 } from './components/Clock';
 
 function getRandomName(): string {
   const value = Math.random().toString().slice(2, 6);
@@ -42,7 +42,7 @@ class App extends React.Component<{}, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && <Clock clockName={clockName} />}
+        {hasClock && <Clock2 clockName={clockName} />}
       </div>
     );
   }
