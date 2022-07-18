@@ -16,7 +16,7 @@ export class Clock extends Component<Props, State> {
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      const date: Date = new Date();
+      const date = new Date();
 
       // eslint-disable-next-line
       console.log(date.toLocaleTimeString());
@@ -29,11 +29,10 @@ export class Clock extends Component<Props, State> {
     const { name: prevName } = prevProps;
     const { name: newName } = this.props;
 
-    if (prevName === newName) {
-      return;
+    if (prevName !== newName) {
+      // eslint-disable-next-line
+      console.log(`The Clock was renamed from ${prevName} to ${newName}`);
     }
-    // eslint-disable-next-line
-    console.log(`The Clock was renamed from ${prevName} to ${newName}`);
   }
 
   componentWillUnmount() {

@@ -14,7 +14,7 @@ export type State = {
 };
 
 class App extends Component<{}, State> {
-  state: Readonly<State> = {
+  state = {
     hasClock: true,
     clockName: getRandomName(),
   };
@@ -22,11 +22,12 @@ class App extends Component<{}, State> {
   newName = 0;
 
   componentDidMount() {
+    const { clockName } = this.state;
+
     this.newName = window.setInterval(this.nameChanger, 3300);
     document.addEventListener('click', (event: MouseEvent) => {
       if (event.button === 0) {
         this.setState({ hasClock: true });
-        this.newName = window.setInterval(this.nameChanger, 3300);
       }
     });
 
@@ -34,7 +35,7 @@ class App extends Component<{}, State> {
       event.preventDefault();
       this.setState({ hasClock: false });
       // eslint-disable-next-line no-console
-      console.log(this.state.clockName);
+      console.log(clockName);
       clearInterval(this.newName);
     });
   }
@@ -44,15 +45,18 @@ class App extends Component<{}, State> {
   };
 
   render() {
+    const { clockName } = this.state;
+    const { hasClock } = this.state;
+
     return (
       <div className="App">
         <h1 className="App__title">React clock</h1>
         <div className="App__info">
           <div>
-            <strong>{this.state.clockName}</strong>
+            <strong>{clockName}</strong>
           </div>
           <div>
-            {this.state.hasClock && <Clock name={this.state.clockName} />}
+            {hasClock && <Clock name={clockName} />}
           </div>
         </div>
       </div>
