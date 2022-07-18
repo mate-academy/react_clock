@@ -12,42 +12,51 @@ function getRandomName(): string {
 type State = {
   hasClock: boolean,
   clockName: string,
+  timerNameChange: number,
 };
 
 class App extends Component<{}, State> {
   state = {
     hasClock: true,
     clockName: getRandomName(),
+    timerNameChange: 0,
   };
 
-  timerNameChange = 0;
-
   componentDidMount() {
-    this.timerNameChange = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
+    this.settingTimer();
 
-    document.addEventListener('contextmenu', this.handleClockDisappearing);
+    document.addEventListener('contextmenu', () => {
+      this.handleClockDisappearing();
+      clearInterval(this.state.timerNameChange);
+    });
 
-    document.addEventListener('click', this.handleClockDisappearing);
+    document.addEventListener('click', () => {
+      this.handleClockDisappearing();
+      this.settingTimer();
+    });
   }
-    // eslint-disable-next-line no-empty-pattern
+
+  // eslint-disable-next-line no-empty-pattern
   componentDidUpdate({}, PreviousState: State) {
     // eslint-disable-next-line no-console
     console.log(`Renamed from <${PreviousState.clockName}> to <${this.state.clockName}>`);
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerNameChange);
-
     document.removeEventListener('contextmenu', this.handleClockDisappearing);
 
     document.removeEventListener('click', this.handleClockDisappearing);
   }
 
+  settingTimer = () => {
+    this.state.timerNameChange = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+  };
+
   handleClockDisappearing = () => {
-    this.setState(PreviousState => {
-      return { hasClock: !PreviousState.hasClock };
+    this.setState(previousState => {
+      return { hasClock: !previousState.hasClock };
     });
   };
 
