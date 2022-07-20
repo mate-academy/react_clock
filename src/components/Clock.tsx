@@ -17,9 +17,8 @@ export class Clock extends Component<Props, State> {
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      let { date } = this.state;
+      const date = new Date();
 
-      date = new Date();
       this.setState({ date });
       // eslint-disable-next-line
       console.log(date.toLocaleTimeString());

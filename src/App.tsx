@@ -13,22 +13,23 @@ class App extends Component<{}, State> {
     clockName: 'Clock 1',
   };
 
+  // eslint-disable-next-line react/sort-comp
   componentDidMount() {
-    document.addEventListener('click', this.visibleClock);
-    document.addEventListener('contextmenu', this.hiddenClock);
+    document.addEventListener('click', this.showClock);
+    document.addEventListener('contextmenu', this.hideClock);
   }
 
-  setRandomName = setInterval(() => {
+  timerId = setInterval(() => {
     const randomName = Math.random().toString().slice(2, 6);
 
     this.setState({ clockName: `Clock ${randomName}` });
   }, 3000);
 
-  visibleClock = () => {
+  showClock = () => {
     this.setState({ hasClock: true });
   };
 
-  hiddenClock = () => {
+  hideClock = () => {
     this.setState({ hasClock: false });
   };
 
