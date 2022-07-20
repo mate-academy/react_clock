@@ -26,10 +26,12 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.showClock);
 
     this.timerID = window.setInterval(() => {
-      const name = getRandomName();
+      if (this.state.hasClock) {
+        const name = getRandomName();
 
-      window.console.log(`Renamed from ${this.state.clockName} to ${name}`);
-      this.setState({ clockName: name });
+        window.console.log(`Renamed from ${this.state.clockName} to ${name}`);
+        this.setState({ clockName: name });
+      }
     }, 3300);
   }
 
