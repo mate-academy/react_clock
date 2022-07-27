@@ -32,7 +32,6 @@ export class App extends Component<{}, State> {
 
     document.addEventListener('click', () => {
       if (this.state.hasClock) {
-        // eslint-disable-next-line no-useless-return
         return;
       }
 
@@ -40,10 +39,15 @@ export class App extends Component<{}, State> {
     });
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   render() {
     return (
-      this.state.hasClock
-      && <Clock name={this.state.clockName} />
+      this.state.hasClock && (
+        <Clock name={this.state.clockName} />
+      )
     );
   }
 }
