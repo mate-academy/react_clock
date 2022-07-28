@@ -14,7 +14,7 @@ interface State {
 }
 
 export class App extends Component<{}, State> {
-  state = {
+  state: Readonly<State> = {
     clockName: getRandomName(),
     hasClock: true,
   };
