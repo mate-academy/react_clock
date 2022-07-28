@@ -13,10 +13,6 @@ type State = {
   clockName: string;
 };
 
-document.documentElement.oncontextmenu = (event: MouseEvent) => {
-  event.preventDefault();
-};
-
 export class App extends Component<{}, State> {
   state = {
     hasClock: true,
@@ -26,11 +22,13 @@ export class App extends Component<{}, State> {
   timerUpdateName = 0;
 
   componentDidMount() {
-    document.addEventListener('mousedown', (event: MouseEvent) => {
-      // eslint-disable-next-line
-      return event.button === 0
-        ? this.setState({ hasClock: true })
-        : this.setState({ hasClock: false });
+    document.addEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
+
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
     });
 
     this.timerUpdateName = window.setInterval(() => {
