@@ -41,8 +41,6 @@ export class App extends Component<{}, State> {
     if (event.type === 'contextmenu') {
       event.preventDefault();
       this.setState({ hasClock: false });
-
-      clearInterval(this.setTimer);
     }
 
     if (event.type === 'click') {
