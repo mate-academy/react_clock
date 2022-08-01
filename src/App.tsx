@@ -19,6 +19,12 @@ class App extends Component<{}, State> {
     name: getRandomName(),
   };
 
+  componentDidMount() {
+    window.setInterval(() => {
+      this.setState({ name: getRandomName() });
+    }, 3300);
+  }
+
   render() {
     const { isClockVisible } = this.state;
 
