@@ -38,7 +38,7 @@ export class Clock extends Component<Props, State> {
           {clockName}
         </strong>
 
-        {' time is '}
+        time is
 
         <span className="Clock__time">
           {date.toLocaleTimeString()}
