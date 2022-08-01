@@ -37,6 +37,12 @@ export class App extends Component<{}, State> {
     }
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+
+    console.clear() // eslint-disable-line
+  }
+
   handlerClock = (event: MouseEvent) => {
     if (event.type === 'contextmenu') {
       event.preventDefault();
@@ -45,8 +51,6 @@ export class App extends Component<{}, State> {
 
     if (event.type === 'click') {
       this.setState({ hasClock: true });
-
-      this.setTimer = window.setInterval(this.handlerSetInterval, 3300);
     }
   };
 
