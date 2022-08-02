@@ -24,8 +24,8 @@ export class App extends Component<{}, State> {
   componentDidMount() {
     this.timerId = this.setTimer();
 
-    document.addEventListener('contextmenu', this.contextEvent);
-    document.addEventListener('click', this.clickEvent);
+    document.addEventListener('contextmenu', this.handleContextEvent);
+    document.addEventListener('click', this.handleClickEvent);
   }
 
   setTimer = () => {
@@ -34,14 +34,12 @@ export class App extends Component<{}, State> {
     }, 3300);
   };
 
-  clickEvent = () => {
+  handleClickEvent = () => {
     this.setState({ hasClock: true });
-    this.timerId = this.setTimer();
   };
 
-  contextEvent = () => {
+  handleContextEvent = () => {
     this.setState({ hasClock: false });
-    window.clearInterval(this.timerId);
   };
 
   render() {
