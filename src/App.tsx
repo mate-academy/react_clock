@@ -41,18 +41,18 @@ export class App extends React.Component<{}, State> {
   }
 
   componentDidUpdate(_: {}, prevState: State) {
-    // eslint-disable-next-line no-console
-    console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
   }
 
   render() {
-    return (this.state.hasClock && (
+    return (
       <div className="App">
         <h1>React clock</h1>
-
-        <Clock name={this.state.clockName} />
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
-    )
     );
   }
 }
