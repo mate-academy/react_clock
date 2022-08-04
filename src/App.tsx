@@ -1,5 +1,8 @@
 import React from 'react';
+
 import './App.scss';
+
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Math.random().toString().slice(2, 6);
@@ -7,33 +10,50 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const date = new Date();
-  const clockName = getRandomName();
+interface State {
+  hasClock: boolean,
+  clockName: string;
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    // ...
-  }, 1000);
+// eslint-disable-next-line react/prefer-stateless-function
+export class App extends React.Component<{}, State> {
+  state: Readonly<State> = {
+    hasClock: true,
+    clockName: getRandomName(),
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  clockNameId = 0;
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount() {
+    document.addEventListener('click', this.handleDocumentClick);
+    document.addEventListener('contextmenu', this.handleContextMenu);
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    this.clockNameId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+  }
 
-        {' time is '}
+  componentDidUpdate(_prevProps: {}, prevState: Readonly<State>) {
+    if (prevState.clockName !== this.state.clockName) {
+      window.console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
+  }
 
-        <span className="Clock__time">
-          {date.toLocaleTimeString()}
-        </span>
+  handleDocumentClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  handleContextMenu = () => {
+    this.setState({ hasClock: false });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {this.state.hasClock && <Clock clockName={this.state.clockName} clockNameId={this.clockNameId} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
