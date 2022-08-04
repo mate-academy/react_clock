@@ -1,39 +1,59 @@
 import React from 'react';
 import './App.scss';
 
+import { Clock } from './components/Clock';
+
 function getRandomName(): string {
   const value = Math.random().toString().slice(2, 6);
 
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const date = new Date();
-  const clockName = getRandomName();
+type State = {
+  hasClock: boolean,
+  clockName: string,
+};
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    // ...
-  }, 1000);
+export class App extends React.Component<{}, State> {
+  state = {
+    hasClock: true,
+    clockName: getRandomName(),
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount() {
+    window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+      this.setState({ hasClock: false });
+    });
 
-        {' time is '}
+    document.addEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
+  }
 
-        <span className="Clock__time">
-          {date.toLocaleTimeString()}
-        </span>
+  componentDidUpdate(_prevProps: Readonly<{}>, prevState: Readonly<State>) {
+    const oldName = prevState.clockName;
+    const newName = this.state.clockName;
+
+    if (oldName !== newName) {
+      // eslint-disable-next-line
+      console.log(`Renamed from ${oldName} to ${newName}`);
+    }
+  }
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {hasClock && <Clock clockName={clockName} />}
       </div>
-    </div>
-  );
+    );
+  }
 };
