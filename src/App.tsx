@@ -11,7 +11,7 @@ function getRandomName(): string {
 }
 
 interface State {
-  hasClock: boolean,
+  hasClock: boolean;
   clockName: string;
 }
 
@@ -35,7 +35,9 @@ export class App extends React.Component<{}, State> {
 
   componentDidUpdate(_prevProps: {}, prevState: Readonly<State>) {
     if (prevState.clockName !== this.state.clockName) {
-      window.console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+      window.console.log(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
     }
   }
 
@@ -48,11 +50,18 @@ export class App extends React.Component<{}, State> {
   };
 
   render() {
+    const { hasClock, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock && <Clock clockName={this.state.clockName} clockNameId={this.clockNameId} />}
+        {hasClock && (
+          <Clock
+            clockName={clockName}
+            clockNameId={this.clockNameId}
+          />
+        )}
       </div>
     );
   }
