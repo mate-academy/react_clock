@@ -48,7 +48,6 @@ export class App extends Component<{}, State> {
 
   handleHideClock = () => {
     if (this.state.hasClock) {
-      window.clearInterval(this.timerIdRename);
       this.setState({ hasClock: false });
     }
   };
@@ -70,7 +69,8 @@ export class App extends Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock && <Clock clockName={clockName} />}
+        {hasClock
+        && <Clock clockName={clockName} timerIdRename={this.timerIdRename} />}
       </div>
     );
   }
