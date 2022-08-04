@@ -22,9 +22,7 @@ export class App extends Component<{}, State> {
   timerIdRename = 0;
 
   componentDidMount() {
-    this.timerIdRename = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
+    this.timerIdRename = window.setInterval(this.renameClock, 3300);
     document.addEventListener('contextmenu', this.handleHideClock);
     document.addEventListener('click', this.handleShowClock);
   }
@@ -40,21 +38,30 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerIdRename);
+    if (this.state.hasClock) {
+      window.clearInterval(this.timerIdRename);
+    }
+
     document.removeEventListener('contextmenu', this.handleHideClock);
     document.removeEventListener('click', this.handleShowClock);
   }
 
   handleHideClock = () => {
     if (this.state.hasClock) {
+      window.clearInterval(this.timerIdRename);
       this.setState({ hasClock: false });
     }
   };
 
   handleShowClock = () => {
     if (!this.state.hasClock) {
+      this.timerIdRename = window.setInterval(this.renameClock, 3300);
       this.setState({ hasClock: true });
     }
+  };
+
+  renameClock = () => {
+    this.setState({ clockName: getRandomName() });
   };
 
   render() {
