@@ -28,7 +28,7 @@ describe('Page', () => {
       .should('exist')
 
     cy.get('body').rightclick();
-    
+
     clock.time()
       .should('not.exist');
   });
