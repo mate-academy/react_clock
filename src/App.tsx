@@ -27,6 +27,10 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.handleClockTurnOn);
     this.handleChangeClockName = window
       .setInterval(this.handleClockName, 3300);
+
+    if (!this.state.hasClock) {
+      window.clearInterval(this.handleChangeClockName);
+    }
   }
 
   componentDidUpdate(_: {}, prevState: State) {
