@@ -17,30 +17,36 @@ export class Clock extends Component<{}, State> {
 
   timerIdConsoleName = 0;
 
+  prevName = this.state.clockName;
+
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       const date = new Date();
 
       this.setState({ date });
       // eslint-disable-next-line no-console
-      console.log(this.state);
+      console.log(this.state.date);
     }, 1000);
 
     this.timerIdName = window.setInterval(() => {
       const clockName = this.getRandomName();
 
       this.setState({ clockName });
+      // eslint-disable-next-line no-console
+      console.log(this.state.clockName);
     }, 3300);
-  }
 
-  componentDidUpdate(_: {}, prevState: State) {
     this.timerIdConsoleName = window.setInterval(() => {
-      const massage = `Renamed from ${prevState.clockName} to ${this.state.clockName}`;
+      const massage = `Renamed from ${this.prevName} to ${this.state.clockName}`;
 
       // eslint-disable-next-line no-console
       console.log(massage);
     }, 4000);
   }
+
+  // componentDidUpdate(_: {}, prevState: State) {
+  //   // this.prevName = prevState.clockName;
+  // }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
