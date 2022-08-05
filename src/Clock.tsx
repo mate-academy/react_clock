@@ -44,10 +44,6 @@ export class Clock extends Component<{}, State> {
     }, 4000);
   }
 
-  // componentDidUpdate(_: {}, prevState: State) {
-  //   // this.prevName = prevState.clockName;
-  // }
-
   componentWillUnmount() {
     window.clearInterval(this.timerId);
     window.clearInterval(this.timerIdName);
