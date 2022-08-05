@@ -29,6 +29,10 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.showClock);
   }
 
+  componentWillUnmount() {
+    window.clearInterval(this.timerId);
+  }
+
   hideClock = () => {
     this.setState({ hasClock: false });
   };
