@@ -52,20 +52,16 @@ export class Clock extends React.Component<Props, State> {
     const { clockName } = this.props;
 
     return (
-      <div className="App">
-        <h1>React clock</h1>
+      <div className="Clock">
+        <strong className="Clock__name">
+          {clockName}
+        </strong>
 
-        <div className="Clock">
-          <strong className="Clock__name">
-            {clockName}
-          </strong>
+        {' time is '}
 
-          {' time is '}
-
-          <span className="Clock__time">
-            {timeString}
-          </span>
-        </div>
+        <span className="Clock__time">
+          {timeString}
+        </span>
       </div>
     );
   }

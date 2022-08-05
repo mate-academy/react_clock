@@ -37,7 +37,8 @@ export class App extends React.Component<{}, State> {
     window.clearInterval(this.timerId);
   }
 
-  handleRightClick = () => {
+  handleRightClick = (event: Event) => {
+    event.preventDefault();
     this.setState({ hasClock: false });
   };
 
@@ -49,11 +50,12 @@ export class App extends React.Component<{}, State> {
     const { hasClock, clockName } = this.state;
 
     return (
-      <>
+      <div className="App">
+        <h1>React clock</h1>
         {hasClock && (
           <Clock clockName={clockName} />
         )}
-      </>
+      </div>
     );
   }
 }
