@@ -26,6 +26,10 @@ export class App extends Component<{}, State> {
     this.timerId = this.setTimer;
     document.addEventListener('click', this.handlerClock);
     document.addEventListener('contextmenu', this.handlerClock);
+
+    if (this.state.hasClock === false) {
+      console.clear() // eslint-disable-line
+    }
   }
 
   componentDidUpdate(_: Readonly<{}>, prevState: Readonly<State>) {
@@ -39,13 +43,11 @@ export class App extends Component<{}, State> {
 
   componentWillUnmount() {
     clearInterval(this.timerId);
-
-    console.clear() // eslint-disable-line
   }
 
   handlerClock = (event: MouseEvent) => {
     if (event.type === 'contextmenu') {
-      event.preventDefault();
+      // event.preventDefault();
       this.setState({ hasClock: false });
     }
 
