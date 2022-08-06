@@ -10,7 +10,7 @@ function getRandomName(): string {
 
 type State = {
   hasClock: boolean,
-  clockName: string | number;
+  clockName: string;
 
 };
 
@@ -28,13 +28,10 @@ export class App extends Component<{}, State> {
     document.addEventListener('click', () => {
       this.setState({ hasClock: true });
     });
-
     window.setInterval(() => {
       this.setState({
         clockName: getRandomName(),
       });
-      // eslint-disable-next-line no-console
-      console.log(this.state.clockName);
     }, 3300);
   }
 
@@ -42,7 +39,19 @@ export class App extends Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock && <Clock clockName={this.state.clockName} />}
+        <div className="Clock">
+          <strong className="Clock__name">
+            {this.state.clockName}
+          </strong>
+
+          {' time is '}
+          {
+            this.state.hasClock
+              ? <Clock clockName={this.state.clockName} />
+              // eslint-disable-next-line no-console
+              : console.clear()
+          }
+        </div>
       </div>
     );
   }
