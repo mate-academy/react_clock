@@ -11,10 +11,6 @@ type State = {
   date: Date,
 };
 
-// type Props = {
-//   clockName: string;
-// };
-
 export class Clock extends Component<{}, State> {
   state = {
     date: new Date(),
@@ -29,7 +25,7 @@ export class Clock extends Component<{}, State> {
     this.timerIdTime = window.setInterval(() => {
       this.setState({ date: new Date() });
       // eslint-disable-next-line no-console
-      console.log(this.state.date);
+      console.log(this.state.date.toLocaleTimeString());
     }, 1000);
 
     this.timerIdName = window.setInterval(() => {

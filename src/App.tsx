@@ -13,7 +13,9 @@ export class App extends Component<{}, State> {
 
   componentDidMount() {
     document.addEventListener('click', () => this.setState({ hasClock: true }));
-    document.addEventListener('contextmenu', () => (
+    document.addEventListener('contextmenu', (event) => (
+      // eslint-disable-next-line no-sequences
+      event.preventDefault(),
       this.setState({ hasClock: false })));
   }
 
