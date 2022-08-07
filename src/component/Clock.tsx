@@ -2,6 +2,7 @@ import { Component } from 'react';
 
 type Props = {
   name: string;
+  timer: number;
 };
 
 type State = {
@@ -26,6 +27,7 @@ export class Clock extends Component<Props, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.interval);
+    window.clearInterval(this.props.timer);
   }
 
   render() {

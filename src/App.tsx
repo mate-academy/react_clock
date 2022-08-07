@@ -20,8 +20,10 @@ export class App extends Component<{}, State> {
     clockName: getRandomName(),
   };
 
+  timer = 0;
+
   componentDidMount() {
-    window.setInterval(() => {
+    this.timer = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
     document.addEventListener('click', this.handleClick);
@@ -47,7 +49,7 @@ export class App extends Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock && (<Clock name={clockName} />)}
+        {hasClock && (<Clock name={clockName} timer={this.timer} />)}
       </div>
     );
   }
