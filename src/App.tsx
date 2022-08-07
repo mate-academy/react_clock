@@ -1,5 +1,12 @@
-import React from 'react';
+import { Component } from 'react';
 import './App.scss';
+import { Clock } from './Clock';
+
+type State = {
+  hasClock: boolean,
+  clockName: string,
+  date: Date,
+};
 
 function getRandomName(): string {
   const value = Math.random().toString().slice(2, 6);
@@ -7,33 +14,48 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const date = new Date();
-  const clockName = getRandomName();
+const clockName = getRandomName();
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    // ...
-  }, 1000);
+export class App extends Component<{}, State> {
+  state = {
+    hasClock: true,
+    clockName,
+    date: new Date(),
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  timerId = 0;
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount() {
+    document.addEventListener('contextmenu', () => {
+      this.setState({ hasClock: false });
+    });
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    document.addEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
 
-        {' time is '}
+    this.timerId = window.setInterval(() => {
+      this.setState({ date: new Date() });
+    }, 1000);
 
-        <span className="Clock__time">
-          {date.toLocaleTimeString()}
-        </span>
+    window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
+
+  render() {
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    const { hasClock, clockName, date } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React Clock</h1>
+        {hasClock && <Clock clockName={clockName} date={date} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
