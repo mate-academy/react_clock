@@ -17,13 +17,22 @@ export class Clock extends Component<Props, State> {
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ date: new Date().toLocaleTimeString() });
+      const date = new Date().toLocaleTimeString();
+
+      this.setState({ date });
     }, 1000);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.handleDocument);
   }
+
+  handleDocument = () => {
+    const date = new Date().toLocaleTimeString();
+
+    this.setState({ date });
+  };
 
   render() {
     return (

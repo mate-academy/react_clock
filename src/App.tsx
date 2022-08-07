@@ -27,7 +27,8 @@ export class App extends Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', () => {
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
       this.setState({ hasClock: false });
     });
 
@@ -36,7 +37,7 @@ export class App extends Component<{}, State> {
     });
   }
 
-  componentDidUpdate(_prevProps: {}, currentProps: State) {
+  componentDidUpdate(currentProps: State) {
     // eslint-disable-next-line no-console
     console.log(`Renamed from ${currentProps.clockName} to ${this.state.clockName}`);
   }
