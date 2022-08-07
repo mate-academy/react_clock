@@ -30,7 +30,7 @@ export class Clock extends React.Component<Props, State> {
     const newName = this.props.clockName;
 
     if (oldName !== newName) {
-      console.log(`Rename from ${oldName} to ${newName}`);
+      console.log(`Renamed from ${oldName} to ${newName}`);
     }
   }
 
