@@ -20,6 +20,7 @@ export class Clock extends Component<Props, State> {
       const date = new Date();
 
       this.setState({ date });
+      // eslint-disable-next-line no-console
       console.log(date);
     }, 1000);
   }
@@ -28,6 +29,7 @@ export class Clock extends Component<Props, State> {
     const { clockName } = this.props;
 
     if (clockName !== prevProps.clockName) {
+      // eslint-disable-next-line no-console
       console.log(`Renamed from ${prevProps.clockName} to ${clockName}`);
     }
   }
