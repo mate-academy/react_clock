@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Clock';
 
 function getRandomName(): string {
   const value = Math.random().toString().slice(2, 6);
@@ -7,33 +8,59 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const date = new Date();
-  const clockName = getRandomName();
+export interface State {
+  hasClock: boolean;
+  clockName: string;
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    // ...
-  }, 1000);
+export class App extends React.Component<{}, State> {
+  state: Readonly<State> = {
+    hasClock: false,
+    clockName: getRandomName(),
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  date = new Date();
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  clockNameTimer = 0;
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+  componentDidMount() {
+    this.setState({ hasClock: true });
 
-        {' time is '}
+    this.clockNameTimer = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
 
-        <span className="Clock__time">
-          {date.toLocaleTimeString()}
-        </span>
+    document.addEventListener('contextmenu', (event: Event) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    });
+
+    document.addEventListener('click', () => (
+      this.setState({ hasClock: true })
+    ));
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.clockNameTimer);
+    this.setState({ hasClock: false });
+  }
+
+  changeClockVisibility() {
+    const { hasClock } = this.state;
+
+    return this.setState({ hasClock: !hasClock });
+  }
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock
+          && <Clock name={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
