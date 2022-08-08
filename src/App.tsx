@@ -29,22 +29,26 @@ export class App extends Component<{}, State> {
     }, 3300);
 
     document.addEventListener('click',
-      this.handleDocumentOnClick, false);
+      this.showClockHandler, false);
 
     document.addEventListener('contextmenu',
-      this.handleDocumentOnContext, false);
+      this.hideClockHadler, false);
   }
 
   componentWillUnmount() {
     clearInterval(this.timerId);
+    document.removeEventListener('click',
+      this.showClockHandler);
+    document.removeEventListener('contextmenu',
+      this.hideClockHadler);
   }
 
-  handleDocumentOnClick = (ev: Event) => {
+  showClockHandler = (ev: Event) => {
     ev.preventDefault();
     this.setState({ hasClock: true });
   };
 
-  handleDocumentOnContext = (ev: Event) => {
+  hideClockHadler = (ev: Event) => {
     ev.preventDefault();
     this.setState({ hasClock: false });
   };
