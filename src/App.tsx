@@ -15,19 +15,19 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.clockInVisible);
-    document.addEventListener('click', this.clockVisible);
+    document.addEventListener('contextmenu', this.hideClock);
+    document.addEventListener('click', this.showClock);
 
     window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
-  clockInVisible = () => {
+  hideClock = () => {
     this.setState({ hasClock: false });
   };
 
-  clockVisible = () => {
+  showClock = () => {
     this.setState({ hasClock: true });
   };
 
@@ -37,8 +37,9 @@ export class App extends Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock
-        && <Clock name={clockName} /> }
+        {hasClock && (
+          <Clock name={clockName} />
+        )}
       </div>
     );
   }
