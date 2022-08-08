@@ -1,39 +1,67 @@
 import React from 'react';
 import './App.scss';
 
+import { Clock } from './Clock';
+
 function getRandomName(): string {
   const value = Math.random().toString().slice(2, 6);
 
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const date = new Date();
-  const clockName = getRandomName();
+interface State {
+  clockName: string,
+  hasClock: boolean,
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    // ...
-  }, 1000);
+export class App extends React.Component<{}, State> {
+  state = {
+    clockName: getRandomName(),
+    hasClock: true,
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  handleChangeClockName = 0;
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount() {
+    document.addEventListener('contextmenu', this.handleClockTurnOff);
+    document.addEventListener('click', this.handleClockTurnOn);
+    this.handleChangeClockName = window
+      .setInterval(this.handleClockName, 3300);
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    if (!this.state.hasClock) {
+      window.clearInterval(this.handleChangeClockName);
+    }
+  }
 
-        {' time is '}
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.handleClockTurnOff);
+    document.removeEventListener('click', this.handleClockTurnOn);
+    window.clearInterval(this.handleChangeClockName);
+  }
 
-        <span className="Clock__time">
-          {date.toLocaleTimeString()}
-        </span>
+  handleClockName = () => {
+    this.setState({ clockName: getRandomName() });
+  };
+
+  handleClockTurnOff = () => {
+    this.setState({ hasClock: false });
+  };
+
+  handleClockTurnOn = () => {
+    this.setState({ hasClock: true });
+  };
+
+  render() {
+    const {
+      clockName,
+      hasClock,
+    } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {hasClock && <Clock clockName={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
