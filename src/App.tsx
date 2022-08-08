@@ -30,6 +30,11 @@ export class App extends Component<{}, State> {
     document.addEventListener('contextmenu', this.handleDocumentClickDown);
   }
 
+  componentDidUpdate(_:never, prevState:State) {
+    // eslint-disable-next-line no-console
+    console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+  }
+
   handleDocumentClickUp = () => {
     this.setState({
       hasClock: true,
