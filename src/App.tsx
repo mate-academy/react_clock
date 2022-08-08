@@ -45,12 +45,6 @@ export class App extends React.Component<{}, State> {
     this.setState({ hasClock: false });
   }
 
-  changeClockVisibility() {
-    const { hasClock } = this.state;
-
-    return this.setState({ hasClock: !hasClock });
-  }
-
   render() {
     const { hasClock, clockName } = this.state;
 
