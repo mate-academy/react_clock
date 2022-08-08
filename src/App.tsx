@@ -31,7 +31,7 @@ export class App extends Component<{}, State> {
   }
 
   componentDidUpdate(_:never, prevState:State) {
-    // eslint-disable-next-line no-console
+    // eslint-disable-next-line
     console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
   }
 
