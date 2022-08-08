@@ -4,7 +4,11 @@ interface State {
   date: Date,
 }
 
-export class Clock extends React.Component<{ clockName: string }, State> {
+interface Props {
+  clockName: string;
+}
+
+export class Clock extends React.Component<Props, State> {
   state = {
     date: new Date(),
   };
@@ -19,6 +23,14 @@ export class Clock extends React.Component<{ clockName: string }, State> {
 
       window.console.log(date.toLocaleTimeString());
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.clockName !== prevProps.clockName) {
+      window.console.log(
+        `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
+      );
+    }
   }
 
   componentWillUnmount() {

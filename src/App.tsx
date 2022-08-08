@@ -27,17 +27,9 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.handleClockTurnOn);
     this.handleChangeClockName = window
       .setInterval(this.handleClockName, 3300);
-  }
 
-  componentDidUpdate(_: {}, prevState: State) {
     if (!this.state.hasClock) {
       window.clearInterval(this.handleChangeClockName);
-    }
-
-    if (this.state.clockName !== prevState.clockName) {
-      window.console.log(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-      );
     }
   }
 
