@@ -22,20 +22,31 @@ export class App extends Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
+    this.timerId = this.setTimer;
 
-    document.addEventListener('contextmenu', this.handleContextClick);
+    document.addEventListener('contextmenu', this.handleClick);
     document.addEventListener('click', this.handleClick);
   }
 
-  handleContextClick = () => {
-    this.setState({ hasClock: false });
+  handlerSetInterval = () => {
+    this.setState({ clockName: getRandomName() });
   };
 
-  handleClick = () => {
-    this.setState({ hasClock: true });
+  setTimer = window.setInterval(this.handlerSetInterval, 3300);
+
+  handleClick = (event: MouseEvent) => {
+    if (event.type === 'contextmenu') {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+
+      clearInterval(this.setTimer);
+    }
+
+    if (event.type === 'click') {
+      this.setState({ hasClock: true });
+
+      this.setTimer = window.setInterval(this.handlerSetInterval, 3300);
+    }
   };
 
   render() {
