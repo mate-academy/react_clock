@@ -38,15 +38,6 @@ export class App extends React.Component<{}, State> {
     });
   }
 
-  componentDidUpdate(_prevProps: Readonly<{}>, prevState: Readonly<State>) {
-    const prevName = prevState.clockName;
-    const newName = this.state.clockName;
-
-    if (prevName !== newName) {
-      console.log(`Renamed from ${prevName} to ${newName}`);
-    }
-  }
-
   render() {
     const { clockName, hasClock } = this.state;
 

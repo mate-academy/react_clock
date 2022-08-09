@@ -25,6 +25,16 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
+  componentDidUpdate(prev: Props) {
+    const { clockName } = this.props;
+    const prevName = prev.clockName;
+    const newName = clockName;
+
+    if (prevName !== newName) {
+      console.log(`Renamed from ${prevName} to ${newName}`);
+    }
+  }
+
   componentWillUnmount() {
     window.clearInterval(this.timerId);
   }
