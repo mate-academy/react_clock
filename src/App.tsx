@@ -23,6 +23,8 @@ export class App extends Component<{}, State> {
   componentDidMount() {
     document.addEventListener('contextmenu', () => {
       this.setState({ hasClock: false });
+      // eslint-disable-next-line no-console
+      console.clear();
     });
 
     document.addEventListener('click', () => {
@@ -48,8 +50,7 @@ export class App extends Component<{}, State> {
           {
             this.state.hasClock
               ? <Clock clockName={this.state.clockName} />
-              // eslint-disable-next-line no-console
-              : console.clear()
+              : ''
           }
         </div>
       </div>
