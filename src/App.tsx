@@ -43,10 +43,10 @@ export class App extends Component<{}, State> {
         <h1>React clock</h1>
         <div className="Clock">
           <strong className="Clock__name">
-            {this.state.clockName}
+            {this.state.hasClock && this.state.clockName}
           </strong>
 
-          {' time is '}
+          {this.state.hasClock && ' time is '}
           {
             this.state.hasClock
               ? <Clock clockName={this.state.clockName} />
