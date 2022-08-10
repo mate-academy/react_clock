@@ -16,8 +16,6 @@ export class Clock extends React.Component<Props, State> {
 
   timerId = 0;
 
-  timertext = 0;
-
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({
@@ -38,14 +36,20 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerId);
+    clearInterval(this.timerId);
   }
 
   render() {
     return (
-      <span className="Clock__time">
-        {this.state.date.toLocaleTimeString()}
-      </span>
+      <div className="Clock">
+        <strong className="Clock__name">
+          {this.props.clockName}
+        </strong>
+        {' time is '}
+        <span className="Clock__time">
+          {this.state.date.toLocaleTimeString()}
+        </span>
+      </div>
     );
   }
 }
