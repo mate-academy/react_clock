@@ -21,14 +21,14 @@ export class Clock extends React.Component<Props, State> {
       this.setState({
         date: new Date(),
       });
-      // eslint-disable-next-line no-console
-      console.log(this.state.date.toLocaleTimeString());
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
     const { clockName } = prevProps;
 
+    // eslint-disable-next-line no-console
+    console.log(this.state.date.toLocaleTimeString());
     if (clockName !== this.props.clockName) {
       // eslint-disable-next-line no-console
       console.log(`Renamed from ${clockName} to ${this.props.clockName}`);
