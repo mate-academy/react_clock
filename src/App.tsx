@@ -47,7 +47,7 @@ export class App extends Component<{}, State> {
 
   handlerClock = (event: MouseEvent) => {
     if (event.type === 'contextmenu') {
-      // event.preventDefault();
+      event.preventDefault();
       this.setState({ hasClock: false });
     }
 
