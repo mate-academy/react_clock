@@ -36,7 +36,7 @@ export class App extends Component<{}, State> {
     const prevName = prevState.clockName;
     const currentName = this.state.clockName;
 
-    if (prevName !== currentName) {
+    if (prevName !== currentName && this.state.hasClock) {
       console.log(`Renamed from <${prevName}> to <${currentName}>`); // eslint-disable-line
     }
   }
