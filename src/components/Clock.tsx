@@ -24,8 +24,18 @@ export class Clock extends Component<Props, State> {
     }, 1000);
   }
 
+  componentDidUpdate(prev: Props) {
+    const newState = this.props.clockName;
+    const oldState = prev.clockName;
+
+    if (newState !== oldState) {
+      // eslint-disable-next-line
+      console.log(`Renamed from ${oldState} to ${newState}`);
+    }
+  }
+
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    window.clearInterval(this.timerId);
 
     // eslint-disable-next-line
     console.clear();
