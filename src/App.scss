@@ -1,1 +1,23 @@
-// styles go here
+.App {
+  margin: 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: aqua;
+}
+
+h1 {
+  color: rgb(8, 90, 91);
+}
+
+.Clock {
+  &__name {
+    font-size: larger;
+    color: rgb(233, 142, 30);
+  }
+
+  &__time {
+    font-size: xx-large;
+  }
+}
