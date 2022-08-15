@@ -37,7 +37,7 @@ export class App extends Component<{}, State> {
     });
   }
 
-  componentDidUpdate(prevProps: unknown, prevState: { clockName: unknown; }) {
+  componentDidUpdate(_prevProps: unknown, prevState: { clockName: unknown; }) {
     // eslint-disable-next-line no-console
     console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
   }
