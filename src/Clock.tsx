@@ -9,7 +9,7 @@ type State = {
 };
 
 export class Clock extends Component<Props, State> {
-  state: Readonly<State> = {
+  state = {
     date: new Date().toLocaleTimeString(),
   };
 
@@ -22,12 +22,12 @@ export class Clock extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props) {
-    const { name: prev } = prevProps;
-    const { name: next } = this.props;
+    const { name: prevValue } = prevProps;
+    const { name: newValue } = this.props;
 
-    if (prev !== next) {
+    if (prevValue !== newValue) {
       // eslint-disable-next-line no-console
-      console.log(`Renamed from ${prev} to ${next}`);
+      console.log(`Renamed from ${prevValue} to ${newValue}`);
     }
   }
 

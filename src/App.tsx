@@ -25,13 +25,13 @@ export class App extends Component<{}, State> {
   }, 3300);
 
   componentDidMount() {
+    document.addEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
+
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
       this.setState({ hasClock: false });
-    });
-
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
     });
 
     return this.randomName;
