@@ -13,26 +13,27 @@ export class Clock extends Component<Props, State> {
     date: new Date().toLocaleTimeString(),
   };
 
-  timerId = 0;
+  timerId = window.setInterval(() => {
+    this.setState({ date: new Date().toLocaleTimeString() });
+  }, 1000);
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
-      const date = new Date().toLocaleTimeString();
+    return this.timerId;
+  }
 
-      this.setState({ date });
-    }, 1000);
+  componentDidUpdate(prevProps: Props) {
+    const { name: prev } = prevProps;
+    const { name: next } = this.props;
+
+    if (prev !== next) {
+      // eslint-disable-next-line no-console
+      console.log(`Renamed from ${prev} to ${next}`);
+    }
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerId);
-    document.removeEventListener('contextmenu', this.handleDocument);
+    clearInterval(this.timerId);
   }
-
-  handleDocument = () => {
-    const date = new Date().toLocaleTimeString();
-
-    this.setState({ date });
-  };
 
   render() {
     return (

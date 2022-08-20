@@ -20,13 +20,11 @@ export class App extends Component<{}, State> {
     hasClock: true,
   };
 
-  randomName = 0;
+  randomName = window.setInterval(() => {
+    this.setState({ clockName: getRandomName() });
+  }, 3300);
 
   componentDidMount() {
-    this.randomName = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
-
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
       this.setState({ hasClock: false });
@@ -35,18 +33,21 @@ export class App extends Component<{}, State> {
     document.addEventListener('click', () => {
       this.setState({ hasClock: true });
     });
+
+    return this.randomName;
   }
 
-  componentDidUpdate(_prevProps: unknown, prevState: { clockName: unknown; }) {
-    // eslint-disable-next-line no-console
-    console.log(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+  componentWillUnmount() {
+    clearInterval(this.randomName);
   }
 
   render() {
+    const { hasClock, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock && <Clock name={this.state.clockName} />}
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }
