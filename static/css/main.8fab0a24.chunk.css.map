@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/App.scss"],"names":[],"mappings":"AACA,KACE,uDAA2D,CAC3D,cAAe","file":"main.8fab0a24.chunk.css","sourcesContent":["// styles go here\nhtml {\n  font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif;\n  font-size: 24px;\n}\n"]}
