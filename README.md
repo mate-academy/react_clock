@@ -37,7 +37,8 @@ Create a `Clock` class component that will update the time every second using a 
     ```
 - to see `console.debug` messages enable the `verbose` level in DevTools console:
     ![How to enable verbose level](./readme-files/enable-verbose-level.png)
-- check in the console that a renaming message occurs after each 3-4 time messages.
+
+> check in the console that a renaming message occurs after each 3-4 time messages.
     ![Expected console output](./readme-files/expected-console-output.png)
 
 ## Instructions
