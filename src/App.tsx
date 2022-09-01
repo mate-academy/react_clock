@@ -2,19 +2,19 @@ import React from 'react';
 import './App.scss';
 
 function getRandomName(): string {
-  const value = Math.random().toString().slice(2, 6);
+  const value = Date.now().toString().slice(-4);
 
   return `Clock-${value}`;
 }
 
 export const App: React.FC = () => {
-  const date = new Date();
-  const clockName = getRandomName();
+  const today = new Date();
+  let clockName = 'Clock-0';
 
   // This code starts a timer
   const timerId = window.setInterval(() => {
-    // ...
-  }, 1000);
+    clockName = getRandomName();
+  }, 3300);
 
   // this code stops the timer
   window.clearInterval(timerId);
@@ -31,7 +31,7 @@ export const App: React.FC = () => {
         {' time is '}
 
         <span className="Clock__time">
-          {date.toLocaleTimeString()}
+          {today.toLocaleTimeString()}
         </span>
       </div>
     </div>
