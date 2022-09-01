@@ -1,5 +1,16 @@
-import React from 'react';
+import { Component } from 'react';
 import './App.scss';
+import './Clock';
+
+type Props = {
+  name: string;
+};
+
+type State = {
+  date: Date;
+  hasClock: boolean;
+  clockName: any;
+};
 
 function getRandomName(): string {
   const value = Math.random().toString().slice(2, 6);
@@ -7,33 +18,80 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const date = new Date();
-  const clockName = getRandomName();
+export class App extends Component<Props, State> {
+  state = {
+    date: new Date(),
+    hasClock: true,
+    clockName: getRandomName(),
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    // ...
-  }, 1000);
+  timerId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount() {
+    this.timerId = window.setInterval(() => {
+      const date = new Date();
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+      // eslint-disable-next-line
+      console.log(date);
+      this.setState({ date });
+    }, 1000);
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
 
-        {' time is '}
+    document.addEventListener('contextmenu', () => {
+      this.setState({ hasClock: false });
+    });
 
-        <span className="Clock__time">
-          {date.toLocaleTimeString()}
-        </span>
+    document.addEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { name } = this.props;
+    // eslint-disable-next-line
+    console.log(name);
+    // eslint-disable-next-line
+    console.log(prevProps.name);
+    if (this.props.name !== prevProps.name) {
+      // eslint-disable-next-line
+      console.log(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', () => {});
+    document.removeEventListener('click', () => {});
+    window.clearInterval(this.timerId);
+
+    // eslint-disable-next-line
+    console.log('Unmounted clock');
+  }
+
+  render() {
+    const { hasClock } = this.state;
+
+    return (
+      hasClock
+    && (
+      <div className="App">
+        <h1>React clock</h1>
+
+        <div className="Clock">
+          <strong className="Clock__name">
+            {this.state.clockName}
+          </strong>
+
+          {' time is '}
+
+          <span className="Clock__time">
+            {this.state.date.toLocaleTimeString()}
+          </span>
+        </div>
       </div>
-    </div>
-  );
-};
+    )
+    );
+  }
+}
