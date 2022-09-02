@@ -4,8 +4,17 @@ const page = {
   clockName: () => cy.get('.Clock__name'),
 };
 
+let failed = false;
+
+Cypress.on('fail', (e) => {
+  failed = true;
+  throw e;
+});
+
 describe('Clock', () => {
   beforeEach(() => {
+    if (failed) Cypress.runner.stop();
+
     cy.clock(1661938351600);
 
     cy.visit('/', {
