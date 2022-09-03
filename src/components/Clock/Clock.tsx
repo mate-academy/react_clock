@@ -20,7 +20,9 @@ export class Clock extends Component<Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ date: new Date() });
 
-      console.info(this.state.date.toLocaleTimeString('uk-UA'));
+      console.info(
+        this.state.date.toLocaleTimeString(undefined, { hour12: false }),
+      );
     }, 1000);
   }
 
@@ -47,7 +49,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {date.toLocaleTimeString('uk-UA')}
+          {date.toLocaleTimeString(undefined, { hour12: false })}
         </span>
       </div>
     );
