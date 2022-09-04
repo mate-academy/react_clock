@@ -19,18 +19,23 @@ export class App extends React.Component<{}, State> {
     clockName: 'Clock-0',
   };
 
+  timerId = 0;
+
+  secondValue = 3300;
+
   componentDidMount() {
     document.addEventListener('click', this.handleClickLeftKey);
     document.addEventListener('contextmenu', this.handleClickRightKey);
 
     window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
-    }, 3300);
+    }, this.secondValue);
   }
 
   componentWillUnmount() {
     document.removeEventListener('click', this.handleClickLeftKey);
-    document.removeEventListener('click', this.handleClickRightKey);
+    document.removeEventListener('contextmenu', this.handleClickRightKey);
+    window.clearInterval(this.timerId);
   }
 
   handleClickLeftKey = () => {
