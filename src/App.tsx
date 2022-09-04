@@ -19,8 +19,6 @@ export class App extends React.Component<{}, State> {
     clockName: 'Clock-0',
   };
 
-  timerId = 0;
-
   componentDidMount() {
     document.addEventListener('click', () => {
       this.setState({ hasClock: true });
@@ -34,6 +32,18 @@ export class App extends React.Component<{}, State> {
     window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
+  }
+
+  componentWillUnmount() {
+    document.addEventListener('click', (event: MouseEvent) => {
+      if (event.button === 0) {
+        this.setState({ hasClock: true });
+      }
+
+      if (event.button === 2) {
+        this.setState({ hasClock: false });
+      }
+    });
   }
 
   render() {
