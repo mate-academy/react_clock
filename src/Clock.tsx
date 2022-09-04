@@ -16,17 +16,19 @@ export class Clock extends Component<Props, State> {
 
   timerId = 0;
 
+  clockInterval = 1000;
+
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       const date = new Date();
 
       // eslint-disable-next-line no-console
-      console.log(date.toLocaleTimeString());
+      console.info(date.toLocaleTimeString());
 
       this.setState({
         date: new Date(),
       });
-    }, 1000);
+    }, this.clockInterval);
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -35,7 +37,7 @@ export class Clock extends Component<Props, State> {
 
     if (newName !== oldName) {
       // eslint-disable-next-line no-console
-      console.log(`Renamed from ${oldName} to ${newName}`);
+      console.info(`Renamed from ${oldName} to ${newName}`);
     }
   }
 

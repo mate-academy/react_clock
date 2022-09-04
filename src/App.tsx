@@ -23,6 +23,8 @@ export class App extends Component<{}, State> {
 
   timerId = 0;
 
+  randomNameInterval = 3300;
+
   componentDidMount() {
     document.addEventListener('mouseup', this.clickHandler);
 
@@ -30,7 +32,7 @@ export class App extends Component<{}, State> {
       this.setState({
         clockName: getRandomName(),
       });
-    }, 3300);
+    }, this.randomNameInterval);
   }
 
   componentWillUnmount() {
