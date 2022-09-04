@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import './App.scss';
-import './Clock';
+import { Clock } from './Clock';
 
 type Props = {
   name: string;
@@ -30,9 +30,8 @@ export class App extends Component<Props, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       const date = new Date();
-
       // eslint-disable-next-line
-      console.log(date);
+      console.info(date);
       this.setState({ date });
     }, 1000);
 
@@ -40,7 +39,8 @@ export class App extends Component<Props, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', () => {
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
       this.setState({ hasClock: false });
     });
 
@@ -51,13 +51,10 @@ export class App extends Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     const { name } = this.props;
-    // eslint-disable-next-line
-    console.log(name);
-    // eslint-disable-next-line
-    console.log(prevProps.name);
-    if (this.props.name !== prevProps.name) {
+
+    if (name !== prevProps.name) {
       // eslint-disable-next-line
-      console.log(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
 
@@ -65,13 +62,11 @@ export class App extends Component<Props, State> {
     document.removeEventListener('contextmenu', () => {});
     document.removeEventListener('click', () => {});
     window.clearInterval(this.timerId);
-
-    // eslint-disable-next-line
-    console.log('Unmounted clock');
   }
 
   render() {
     const { hasClock } = this.state;
+    const { date } = this.state;
 
     return (
       hasClock
@@ -87,7 +82,7 @@ export class App extends Component<Props, State> {
           {' time is '}
 
           <span className="Clock__time">
-            {this.state.date.toLocaleTimeString()}
+            <Clock date={date} />
           </span>
         </div>
       </div>
