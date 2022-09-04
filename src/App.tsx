@@ -26,7 +26,7 @@ export class App extends Component<{}, State> {
   randomNameInterval = 3300;
 
   componentDidMount() {
-    document.addEventListener('mouseup', this.clickHandler);
+    document.addEventListener('mouseup', this.handleClick);
 
     this.timerId = window.setInterval(() => {
       this.setState({
@@ -36,11 +36,11 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mouseup', this.clickHandler);
+    document.removeEventListener('mouseup', this.handleClick);
     window.clearInterval(this.timerId);
   }
 
-  clickHandler = (event: MouseEvent) => {
+  handleClick = (event: MouseEvent) => {
     if (event.button === 0) {
       this.setState({
         hasClock: true,
