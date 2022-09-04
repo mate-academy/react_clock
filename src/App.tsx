@@ -22,7 +22,8 @@ export class App extends Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('mouseup', this.handleClick);
+    document.addEventListener('mouseup', this.handleLeftClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -30,18 +31,18 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mouseup', this.handleClick);
+    document.removeEventListener('mouseup', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
     window.clearInterval(this.timerId);
   }
 
-  handleClick = (event: MouseEvent) => {
-    if (event.button === 0) {
-      this.setState({ hasClock: true });
-    }
+  handleLeftClick = () => {
+    this.setState({ hasClock: true });
+  };
 
-    if (event.button === 2) {
-      this.setState({ hasClock: false });
-    }
+  handleRightClick = (event: MouseEvent) => {
+    this.setState({ hasClock: false });
+    event.preventDefault();
   };
 
   render() {

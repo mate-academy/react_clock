@@ -22,7 +22,7 @@ export class Clock extends Component<Props, State> {
       // eslint-disable-next-line no-console
       console.info(date.toLocaleTimeString());
 
-      this.setState({ date: new Date() });
+      this.setState({ date });
     }, 1000);
   }
 
