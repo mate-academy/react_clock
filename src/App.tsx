@@ -25,9 +25,11 @@ export class App extends Component<{}, State> {
     document.addEventListener('mouseup', this.handleLeftClick);
     document.addEventListener('contextmenu', this.handleRightClick);
 
+    const messageDelay = 3300;
+
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
-    }, 3300);
+    }, messageDelay);
   }
 
   componentWillUnmount() {
