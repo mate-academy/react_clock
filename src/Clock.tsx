@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Component } from 'react';
 
 type Props = {
@@ -7,19 +8,18 @@ type Props = {
 type State = {
   today: Date;
 };
-
 export class Clock extends Component<Props, State> {
   state = {
     today: new Date(),
   };
 
-  componentDidMount() {
-    const { today } = this.state;
+  timerId = 0;
 
-    window.setInterval(() => {
+  componentDidMount() {
+    this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
 
-      console.info(today);
+      console.info(this.state.today.toLocaleTimeString());
     }, 1000);
   }
 
@@ -29,6 +29,10 @@ export class Clock extends Component<Props, State> {
     if (prevProps.name !== name) {
       console.debug(`Renamed from ${prevProps.name} to ${name}`);
     }
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.timerId);
   }
 
   render() {
