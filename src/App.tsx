@@ -43,16 +43,7 @@ export class App extends Component<{}, State> {
   handleClick = () => {
     this.setState({ hasClock: true });
   };
-  // const date = new Date();
-  // const clockName = getRandomName();
 
-  // // This code starts a timer
-  // const timerId = window.setInterval(() => {
-
-  // }, 1000);
-
-  // this code stops the timer
-  // window.clearInterval(timerId);
   render() {
     const { clockName, hasClock } = this.state;
 
