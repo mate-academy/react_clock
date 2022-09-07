@@ -53,16 +53,3 @@ export class App extends React.Component<{}, State> {
     );
   }
 }
-
-// export const App: React.FC = () => {
-//   const today = new Date();
-
-//   // This code starts a timer
-//   const timerId = window.setInterval(() => {
-//     clockName = getRandomName();
-//   }, 3300);
-
-//   // this code stops the timer
-//   window.clearInterval(timerId);
-
-// // };
