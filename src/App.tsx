@@ -18,39 +18,33 @@ type State = {
 export class App extends Component<{}, State> {
   state = {
     hasClock: true,
-    clockName: getRandomName(),
+    clockName: 'Clock-0',
   };
 
   timerId = 0;
 
-  componentDidMount(): void {
-    document.addEventListener('mouseup', this.clickEvent);
+  componentDidMount() {
+    document.addEventListener('click', this.handleClick);
+    document.addEventListener('contextmenu', this.handleContextMenu);
 
     this.timerId = window.setInterval(() => {
-      this.setState({
-        clockName: getRandomName(),
-      });
+      this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
-  componentWillUnmount(): void {
-    document.removeEventListener('mouseup', this.clickEvent);
-
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClick);
+    document.removeEventListener('contextmenu', this.handleContextMenu);
     window.clearInterval(this.timerId);
   }
 
-  clickEvent = (event: MouseEvent) => {
-    if (event.button === 0) {
-      this.setState({
-        hasClock: true,
-      });
-    }
+  handleClick = () => {
+    this.setState({ hasClock: true });
+  };
 
-    if (event.button === 2) {
-      this.setState({
-        hasClock: false,
-      });
-    }
+  handleContextMenu = (event: MouseEvent) => {
+    this.setState({ hasClock: false });
+    event.preventDefault();
   };
 
   render() {
