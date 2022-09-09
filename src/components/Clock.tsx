@@ -20,7 +20,7 @@ export class Clock extends Component<Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
       // eslint-disable-next-line
-      console.info(this.state.today);
+      console.info(this.state.today.toLocaleTimeString());
     }, 1000);
   }
 
