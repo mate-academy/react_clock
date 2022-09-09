@@ -22,8 +22,9 @@ export class App extends React.Component<{}, State> {
         && <Clock />}
         <button
           type="button"
-          onContextMenu={() => {
+          onContextMenu={(event) => {
             this.setState({ hasClock: false });
+            event.preventDefault();
           }}
           onClick={() => {
             this.setState({ hasClock: true });
