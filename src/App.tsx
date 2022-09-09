@@ -19,6 +19,8 @@ export class App extends Component<{}, State> {
     clockName: 'Clock-0',
   };
 
+  clockNameTimerId = 0;
+
   componentDidMount() {
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
@@ -30,9 +32,13 @@ export class App extends Component<{}, State> {
       this.setState({ hasClock: true });
     });
 
-    window.setInterval(() => {
+    this.clockNameTimerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.clockNameTimerId);
   }
 
   render() {
