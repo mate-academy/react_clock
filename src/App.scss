@@ -5,4 +5,22 @@ iframe {
 html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
+  background-color: #000;
+  color: darksalmon;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  height: 250px;
+  margin: 30vh auto;
+  text-align: center;
+  border-radius: 50px;
+  box-shadow: 0 0 10px 5px rgb(177, 179, 67);
+
+  &__title {
+    margin: 0;
+  }
 }
