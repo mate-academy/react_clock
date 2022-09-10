@@ -19,6 +19,8 @@ export class App extends Component<{}, State> {
     clockName: getRandomName(),
   };
 
+  timerId = 0;
+
   componentDidMount() {
     document.addEventListener('click', this.handleDocClick);
 
@@ -27,7 +29,7 @@ export class App extends Component<{}, State> {
       this.handleDocContextmenu();
     });
 
-    window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
@@ -35,6 +37,7 @@ export class App extends Component<{}, State> {
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.handleDocContextmenu);
     document.removeEventListener('click', this.handleDocClick);
+    window.clearInterval(this.timerId);
   }
 
   handleDocContextmenu = () => {
