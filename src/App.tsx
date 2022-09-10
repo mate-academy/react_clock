@@ -37,15 +37,11 @@ export default class App extends Component {
 
   handleClickLeft = () => {
     this.setState({ hasClock: true });
-    this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
   };
 
   handleClickRight = (event: MouseEvent) => {
     this.setState({ hasClock: false });
     event.preventDefault();
-    window.clearInterval(this.timerId);
   };
 
   render() {
