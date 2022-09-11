@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import Clock from './Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +8,48 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+type Props = { hasClock: boolean };
+type State = { clockName: string, isClockShown: boolean };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+class App extends React.Component <Props, State> {
+  updateNameId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  state: Readonly<State> = {
+    clockName: 'Clock-0',
+    isClockShown: this.props.hasClock,
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount(): void {
+    this.updateNameId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+    document.addEventListener('contextmenu', this.hideClock);
+    document.addEventListener('mousedown', this.showClock);
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+  componentWillUnmount(): void {
+    window.clearInterval(this.updateNameId);
+    document.removeEventListener('contextmenu', this.hideClock);
+    document.addEventListener('mousedown', this.showClock);
+  }
 
-        {' time is '}
+  hideClock = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ isClockShown: false });
+  };
 
-        <span className="Clock__time">
-          {today.toLocaleTimeString()}
-        </span>
+  showClock = () => {
+    this.setState({ isClockShown: true });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.isClockShown && <Clock clockName={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+export default App;
