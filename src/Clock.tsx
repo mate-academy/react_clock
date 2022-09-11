@@ -2,22 +2,16 @@ import { Component } from 'react';
 
 type State = {
   date: Date,
-  clockName:string,
+
 };
-
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
+type Props = {
+  clockName: string,
 }
 
-export class Clock extends Component<{}, State> {
+export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
     date: new Date(),
-    clockName: 'Clock-0',
   };
-
-  clockId = 0;
 
   timerId = 0;
 
@@ -30,33 +24,25 @@ export class Clock extends Component<{}, State> {
 
       this.setState({ date });
     }, 1000);
-
-    this.clockId = window.setInterval(() => {
-      const { clockName: currClockName } = this.state;
-
-      this.setState({ clockName: getRandomName() });
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${currClockName} to ${this.state.clockName}`);
-    }, 3300);
   }
 
-  // componentDidUpdate() {
-  //   this.clockId = window.setInterval(() => {
-  //     const { clockName: currClockName } = this.state;
-
-  //     this.setState({ clockName: getRandomName() });
-  //     // eslint-disable-next-line no-console
-  //     console.debug(`Renamed from ${currClockName} to ${this.state.clockName}`);
-  //   }, 3300);
-  // }
+  componentDidUpdate(prevProps: Props) {
+    // console.log(prevProps.clockName);
+    // console.log(this.props.clockName);
+    if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line
+      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+    }
+  }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    window.clearInterval(this.clockId);
+    // window.clearInterval(this.clockId);
   }
 
   render() {
-    const { date, clockName } = this.state;
+    const { date } = this.state;
+    const { clockName } = this.props;
 
     return (
       <div className="Clock">
