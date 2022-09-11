@@ -66,15 +66,4 @@ export class App extends Component<{}, State> {
       </div>
     );
   }
-
-  // const today = new Date();
-  // let clockName = 'Clock-0';
-
-  // // This code starts a timer
-  // const timerId = window.setInterval(() => {
-  //   clockName = getRandomName();
-  // }, 3300);
-
-  // // this code stops the timer
-  // window.clearInterval(timerId);
 }
