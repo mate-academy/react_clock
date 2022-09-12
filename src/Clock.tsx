@@ -13,16 +13,19 @@ export class Clock extends Component<Props, State> {
     today: new Date(),
   };
 
-  timerId: number | undefined;
+  timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(this.generateNewDate, 1000);
   }
 
   componentDidUpdate(prevName: Props) {
-    if (this.props.clockName !== prevName.clockName) {
+    const oldName = prevName.clockName;
+    const newName = this.props.clockName;
+
+    if (newName !== oldName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevName.clockName} to ${this.props.clockName}`);
+      console.debug(`Renamed from ${oldName} to ${newName}`);
     }
   }
 
@@ -38,13 +41,21 @@ export class Clock extends Component<Props, State> {
   };
 
   render() {
+    const { clockName } = this.props;
     const { today } = this.state;
     const timeString = today.toLocaleTimeString();
 
     return (
-      <span className="Clock__time">
+      <div className="Clock">
+        <strong className="Clock__name">
+          {clockName}
+        </strong>
+
+        {' time is '}
+        <span className="Clock__time">
         {timeString}
-      </span>
+        </span>
+      </div>
     );
   }
 }
