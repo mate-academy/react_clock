@@ -22,14 +22,6 @@ export class Clock extends Component<Props, State> {
       // eslint-disable-next-line no-console
       console.info(this.state.today.toLocaleTimeString());
     }, 1000);
-
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-
-      if (event) {
-        clearInterval(this.timerId);
-      }
-    });
   }
 
   componentDidUpdate(prevDate: Props) {
