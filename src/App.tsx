@@ -32,7 +32,7 @@ export class App extends Component<{}, State> {
   }
 
   componentDidUpdate(_not: unknown, prevState: { clockName: string; }) {
-    if (this.state.clockName !== prevState.clockName) {
+    if (this.state.clockName !== prevState.clockName && this.state.hasClock) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
