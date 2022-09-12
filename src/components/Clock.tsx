@@ -8,10 +8,6 @@ type State = {
   now: Date;
 };
 
-function getFormatedTime(time: number): string {
-  return time.toString().length === 2 ? time.toString() : `0${time}`;
-}
-
 export class Clock extends React.Component<Props, State> {
   state: Readonly<State> = {
     now: new Date(),
@@ -24,7 +20,7 @@ export class Clock extends React.Component<Props, State> {
       const updatedDate = new Date();
 
       // eslint-disable-next-line no-console
-      console.info(`${getFormatedTime(updatedDate.getHours())}:${getFormatedTime(updatedDate.getMinutes())}:${getFormatedTime(updatedDate.getSeconds())}`);
+      console.info(this.state.now.toLocaleTimeString());
 
       this.setState({ now: updatedDate });
     }, 1000);
