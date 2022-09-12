@@ -19,13 +19,15 @@ export class Clock extends React.Component<Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ date: new Date() });
 
-      console.info(this.state.date.toLocaleTimeString());
+      console.info(this.state.date.toLocaleTimeString()); //eslint-disable-line
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
-    if (this.props.name !== prevProps.name) {
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    const { name } = this.props;
+
+    if (name !== prevProps.name) {
+      console.debug(`Renamed from ${prevProps.name} to ${name}`); //eslint-disable-line
     }
   }
 
@@ -34,10 +36,12 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    const { name } = this.props;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.name}
+          {name}
         </strong>
 
         {' time is '}

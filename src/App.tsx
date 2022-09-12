@@ -22,15 +22,15 @@ export class App extends React.Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.rightMouseClick);
-    document.addEventListener('click', this.leftMouseClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
     this.timerId = window.setInterval(this.updateClockName, 3300);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    document.removeEventListener('contextmenu', this.rightMouseClick);
-    document.removeEventListener('click', this.leftMouseClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
   }
 
   updateClockName = () => {
@@ -39,12 +39,12 @@ export class App extends React.Component<{}, State> {
     this.setState({ clockName });
   };
 
-  rightMouseClick = (event: MouseEvent) => {
+  handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
 
-  leftMouseClick = () => {
+  handleLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
