@@ -21,7 +21,7 @@ export class App extends Component<Props, State> {
     hasClock: true,
   };
 
-  clockId: number | undefined;
+  clockId = 0;
 
   componentDidMount() {
     document.addEventListener('contextmenu', this.hideClock);

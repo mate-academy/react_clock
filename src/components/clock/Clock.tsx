@@ -5,32 +5,32 @@ type Props = {
 };
 
 type State = {
-  today: Date;
+  date: Date;
 };
 
 export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
-    today: new Date(),
+    date: new Date(),
   };
 
-  timerId: number | undefined;
+  timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({ date: new Date() });
     }, 1000);
   }
 
   componentDidUpdate(
     { clockName: prevClockName }: Props,
-    { today: prevToday }: State,
+    { date: prevDate }: State,
   ) {
     const { clockName } = this.props;
-    const { today } = this.state;
+    const { date } = this.state;
 
-    if (prevToday !== today) {
+    if (prevDate !== date) {
       // eslint-disable-next-line no-console
-      console.info(today.toLocaleTimeString());
+      console.info(date.toLocaleTimeString());
     }
 
     if (prevClockName !== clockName) {
@@ -45,7 +45,7 @@ export class Clock extends Component<Props, State> {
 
   render() {
     const { clockName } = this.props;
-    const { today } = this.state;
+    const { date } = this.state;
 
     return (
       <div className="Clock">
@@ -56,7 +56,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toLocaleTimeString()}
+          {date.toLocaleTimeString()}
         </span>
       </div>
     );
