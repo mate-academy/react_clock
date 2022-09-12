@@ -35,7 +35,7 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    window.clearInterval(this.timerId);
   }
 
   render() {
