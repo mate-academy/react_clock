@@ -25,9 +25,11 @@ export class Clock extends Component<Props, State> {
   }
 
   componentDidUpdate(prevDate: Props) {
-    if (this.props.clockName !== prevDate.clockName) {
+    const { clockName } = this.props;
+
+    if (clockName !== prevDate.clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevDate.clockName} to ${this.props.clockName}`);
+      console.debug(`Renamed from ${prevDate.clockName} to ${clockName}`);
     }
   }
 
