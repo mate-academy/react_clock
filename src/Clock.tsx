@@ -37,6 +37,7 @@ export class Clock extends Component<Props, State> {
 
   render(): ReactNode {
     const { today } = this.state;
+
     const { clockName } = this.props;
 
     return (
