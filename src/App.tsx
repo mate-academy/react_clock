@@ -14,7 +14,10 @@ type State = {
   clockName: string;
 };
 
-export class App extends Component<{}, State> {
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Props {}
+
+export class App extends Component<Props, State> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
