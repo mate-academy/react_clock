@@ -40,27 +40,23 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      if (event) {
-        clearInterval(this.timerId);
-      }
-    });
+    clearInterval(this.timerId);
   }
-
-  getRandomDate = () => {
-    const value = Date.now().toString().slice(-4);
-
-    return `Clock-${value}`;
-  };
 
   render(): ReactNode {
     const { today } = this.state;
+    const { clockName } = this.props;
 
     return (
-      <span className="Clock__time">
-        {today.toLocaleTimeString()}
-      </span>
+      <div className="Clock">
+        <strong className="Clock__name">
+          {clockName}
+        </strong>
+        {' time is '}
+        <span className="Clock__time">
+          {today.toLocaleTimeString()}
+        </span>
+      </div>
     );
   }
 }
