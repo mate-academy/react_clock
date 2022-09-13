@@ -38,13 +38,21 @@ export class Clock extends Component<Props, State> {
   };
 
   render() {
+    const { clock } = this.props;
     const { day } = this.state;
     const time = day.toLocaleTimeString();
 
     return (
-      <span className="Clock__time">
-        {time}
-      </span>
+      <div className="Clock">
+        <strong className="Clock__name">
+          {clock}
+        </strong>
+
+        {' time is '}
+        <span className="Clock__time">
+          {time}
+        </span>
+      </div>
     );
   }
 }

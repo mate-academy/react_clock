@@ -21,25 +21,31 @@ export class App extends Component<Props, State> {
     hasClock: true,
   };
 
+  timerName = 0;
+
   componentDidMount() {
-    window.setInterval(this.getNewName, 3300);
-
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      if (event) {
-        this.setState({ hasClock: false });
-      }
-    });
-
-    document.addEventListener('click', (event) => {
-      if (event) {
-        this.setState({ hasClock: true });
-      }
-    });
+    document.addEventListener('click', this.leftClick);
+    document.addEventListener('contextmenu', this.rightClick);
+    this.timerName = window.setInterval(() => {
+      this.setState({
+        clock: getRandomName(),
+      });
+    }, 3300);
   }
 
-  getNewName = () => {
-    this.setState({ clock: getRandomName() });
+  componentWillUnmount() {
+    window.clearInterval(this.timerName);
+    document.removeEventListener('click', this.leftClick);
+    document.removeEventListener('click', this.rightClick);
+  }
+
+  leftClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  rightClick = (event: MouseEvent) => {
+    this.setState({ hasClock: false });
+    event.preventDefault();
   };
 
   render() {
@@ -48,17 +54,8 @@ export class App extends Component<Props, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">
-              {this.state.clock}
-            </strong>
-
-            {' time is '}
-            <Clock clock={clock} />
-          </div>
-        )}
-
+        {hasClock
+        && <Clock clock={clock} />}
       </div>
     );
   }
