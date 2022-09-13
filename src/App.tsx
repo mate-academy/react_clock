@@ -26,16 +26,12 @@ export class App extends Component<Props, State> {
   componentDidMount() {
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
-
-      if (event) {
-        this.setState({ hasClock: false });
-      }
+      this.setState({ hasClock: false });
     });
 
     document.addEventListener('click', (event) => {
-      if (event) {
-        this.setState({ hasClock: true });
-      }
+      event.preventDefault();
+      this.setState({ hasClock: true });
     });
 
     this.timerId = window.setInterval(() => {
