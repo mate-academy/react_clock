@@ -20,7 +20,7 @@ export class Clock extends Component<Props, State> {
       const date = new Date();
 
       // eslint-disable-next-line no-console
-      console.info(date.toLocaleTimeString());
+      console.info(date.toLocaleTimeString('us', { hour12: false }));
 
       this.setState({ date });
     }, 1000);
@@ -50,7 +50,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {date.toLocaleTimeString()}
+          {date.toLocaleTimeString('us', { hour12: false })}
         </span>
       </div>
     );
