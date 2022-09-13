@@ -24,12 +24,12 @@ export class Clock extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props): void {
-    const name = this.props.clockName;
-    const oldName = prevProps.clockName;
+    const { clockName } = this.props;
+    const { clockName: prevName } = prevProps;
 
-    if (oldName !== name) {
+    if (prevName !== clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${oldName} to ${name}`);
+      console.debug(`Renamed from ${prevName} to ${clockName}`);
     }
   }
 
