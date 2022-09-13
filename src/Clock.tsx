@@ -35,21 +35,20 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
+    const { clockName } = this.props;
+    const { time } = this.state;
+
     return (
-      <div className="App">
-        <h1>React clock</h1>
+      <div className="Clock">
+        <strong className="Clock__name">
+          {clockName}
+        </strong>
 
-        <div className="Clock">
-          <strong className="Clock__name">
-            {this.props.clockName}
-          </strong>
+        {' time is '}
 
-          {' time is '}
-
-          <span className="Clock__time">
-            {this.state.time.toLocaleTimeString()}
-          </span>
-        </div>
+        <span className="Clock__time">
+          {time.toLocaleTimeString()}
+        </span>
       </div>
     );
   }
