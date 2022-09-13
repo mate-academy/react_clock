@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-type Props = {
+export type Props = {
   clockName: string;
 };
 
