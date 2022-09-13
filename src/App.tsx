@@ -32,11 +32,12 @@ export class App extends Component<{}, State> {
 
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.isRight);
-    document.removeEventListener('click', this.isRight);
+    document.removeEventListener('click', this.isLeft);
     window.clearInterval(this.timerId);
   }
 
-  isRight = () => {
+  isRight = (event: MouseEvent) => {
+    event.preventDefault();
     this.setState({ hasClock: false });
   };
 
