@@ -35,10 +35,13 @@ export class App extends Component<{}, State> {
     document.removeEventListener('contextmenu', this.handleContextMenu);
 
     document.removeEventListener('click', this.handleMouseClick);
+
+    window.clearInterval(this.timerId);
   }
 
   handleContextMenu = (event: MouseEvent) => {
     event.preventDefault();
+
     this.setState({ hasClock: false });
   };
 
@@ -47,11 +50,13 @@ export class App extends Component<{}, State> {
   };
 
   render() {
+    const { hasClock, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock
-        && <Clock name={this.state.clockName} />}
+        {hasClock
+        && <Clock clockName={clockName} />}
 
       </div>
     );

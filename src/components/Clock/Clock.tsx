@@ -9,7 +9,7 @@ type State = {
 };
 
 type Props = {
-  name: string,
+  clockName: string,
 };
 
 export class Clock extends Component<Props, State> {
@@ -27,12 +27,12 @@ export class Clock extends Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate({ name: OldClockName } : Props) {
-    const { name: ClockName } = this.props;
+  componentDidUpdate({ clockName: oldClockName } : Props) {
+    const { clockName } = this.props;
 
-    if (OldClockName !== ClockName) {
+    if (oldClockName !== clockName) {
       // eslint-disable-next-line
-      console.debug(`Renamed from ${OldClockName} to ${ClockName}`);
+      console.debug(`Renamed from ${oldClockName} to ${clockName}`);
     }
   }
 
@@ -41,13 +41,13 @@ export class Clock extends Component<Props, State> {
   }
 
   render() {
-    const { name: ClockName } = this.props;
+    const { clockName } = this.props;
     const { time } = this.state;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {ClockName}
+          {clockName}
         </strong>
 
         {' time is '}
