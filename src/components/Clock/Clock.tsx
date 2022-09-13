@@ -23,17 +23,17 @@ export class Clock extends Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props): void {
+  componentDidUpdate(prevProps: Props) {
     const { clockName } = this.props;
     const { clockName: prevName } = prevProps;
 
     if (prevName !== clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevName} to ${clockName}`);
+      console.info(`Renamed from ${prevName} to ${clockName}`);
     }
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     window.clearInterval(this.timerId);
   }
 
