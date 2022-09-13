@@ -6,3 +6,15 @@ html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
 }
+
+.App {
+  width: 400px;
+  height: 350px;
+  margin: 100px auto;
+  padding-top: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+
+  &__header {
+    text-align: center;
+  }
+}
