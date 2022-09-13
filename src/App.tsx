@@ -1,6 +1,13 @@
 /* eslint-disable no-console */
 import { Component } from 'react';
+
 import './App.scss';
+import { Clock } from './Clock';
+
+type State = {
+  hasClock: boolean,
+  clockName: string,
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -8,121 +15,45 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class App extends Component {
-  state: Readonly<{
-    today: Date,
-    clockName?: string,
-    hasClock: boolean,
-  }> = {
-    today: new Date(),
-    clockName: 'Clock-0',
+export class App extends Component<{}, State> {
+  state: Readonly<State> = {
     hasClock: true,
+    clockName: 'Clock-0',
   };
 
-  componentDidMount(): void {
-    let timerId: number | undefined = window?.setInterval(() => {
-      this.setState((prevState) => ({
-        ...prevState,
-        clockName: getRandomName(),
-      }));
+  clockId = 0;
+
+  componentDidMount() {
+    this.clockId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
     }, 3300);
-
-    let printId: number | undefined = window?.setInterval(() => {
-      console.info(new Date().toLocaleTimeString());
-    }, 1000);
-
-    document?.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault();
-
-      if (this.state.hasClock) {
-        this.setState((prevState) => ({
-          ...prevState,
-          hasClock: false,
-        }));
-        window?.clearInterval(printId);
-        window?.clearInterval(timerId);
-        printId = undefined;
-        timerId = undefined;
-      }
-    });
-
-    document?.addEventListener('click', (event: MouseEvent) => {
-      event.preventDefault();
-
-      if (!this.state.hasClock) {
-        this.setState((prevState) => ({
-          ...prevState,
-          hasClock: true,
-        }));
-        printId = window?.setInterval(() => {
-          console.info(new Date().toLocaleTimeString());
-        }, 1000);
-        timerId = window?.setInterval(() => {
-          this.setState((prevState) => ({
-            ...prevState,
-            clockName: getRandomName(),
-          }));
-        }, 3300);
-      }
-    });
-
-    const removeListeners = () => {
-      document?.removeEventListener('contextmenu', (event: MouseEvent) => {
-        event.preventDefault();
-
-        if (this.state.hasClock) {
-          this.setState((prevState) => ({
-            ...prevState,
-            hasClock: false,
-          }));
-        }
-      });
-
-      document?.removeEventListener('click', (event: MouseEvent) => {
-        event.preventDefault();
-
-        if (!this.state.hasClock) {
-          this.setState((prevState) => ({
-            ...prevState,
-            hasClock: true,
-          }));
-        }
-      });
-    };
-
-    return (
-      removeListeners()
-    );
+    document.addEventListener('click', this.handleLeftMouseClick);
+    document.addEventListener('contextmenu', this.handleRightMouseClick);
   }
 
-  componentDidUpdate(_: unknown, prevState: typeof this.state) {
-    console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleLeftMouseClick);
+
+    document.removeEventListener('contextmenu', this.handleRightMouseClick);
+    window.clearInterval(this.clockId);
   }
+
+  handleLeftMouseClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  handleRightMouseClick = (event: MouseEvent) => {
+    this.setState({ hasClock: false });
+    event.preventDefault();
+  };
 
   render() {
-    const {
-      today,
-      clockName,
-      hasClock,
-    } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-
-        {hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">
-              {clockName}
-            </strong>
-
-            {' time is '}
-
-            <span className="Clock__time">
-              {today.toLocaleTimeString('us', { hour12: false })}
-            </span>
-          </div>
-        )}
+        {hasClock && <Clock clockName={clockName} />}
       </div>
     );
   }
