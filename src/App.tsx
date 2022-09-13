@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, MouseEvent } from 'react';
 import { Clock } from './Clock';
 import './App.scss';
 
@@ -19,29 +19,46 @@ export class App extends Component<{}, State> {
     clockName: 'Clock-0',
   };
 
+  clockId = 0;
+
   componentDidMount() {
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.addClock);
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.removeClock);
 
-    window.setInterval(() => {
+    this.clockId = window.setInterval(() => {
       const clockName = getRandomName();
 
       this.setState({ clockName });
     }, 3300);
   }
 
-  render() {
-    return (
+  componentWillUnmount() {
+    document.removeEventListener('click', this.addClock);
 
+    document.removeEventListener('contextmenu', this.removeClock);
+    window.clearInterval(this.clockId);
+  }
+
+  addClock = () => {
+    this.setState({ hasClock: true });
+  };
+
+  removeClock = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  render() {
+    const {
+      hasClock,
+      clockName,
+    } = this.state;
+
+    return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock && <Clock name={this.state.clockName} />}
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }
