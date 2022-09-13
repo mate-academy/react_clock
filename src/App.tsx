@@ -16,23 +16,27 @@ export class App extends React.Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      if (event) {
-        this.setState({ isClockVisible: false });
-      }
-    });
-
-    document.addEventListener('click', (event) => {
-      if (event) {
-        this.setState({ isClockVisible: true });
-      }
-    });
-
+    document.addEventListener('contextmenu', this.handleContextMenu);
+    document.addEventListener('click', this.handleClick);
     this.timerId = window.setInterval(() => {
       this.setState({ name: this.getRandomName() });
     }, 3300);
   }
+
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleClick);
+    window.clearInterval(this.timerId);
+  }
+
+  handleClick = () => {
+    this.setState({ isClockVisible: true });
+  };
+
+  handleContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ isClockVisible: false });
+  };
 
   getRandomName = () => {
     const random = Date.now().toString().slice(-4);
