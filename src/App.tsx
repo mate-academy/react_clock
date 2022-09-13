@@ -1,4 +1,4 @@
-import { Component, MouseEvent } from 'react';
+import { Component } from 'react';
 import { Clock } from './Clock';
 import './App.scss';
 
@@ -44,7 +44,7 @@ export class App extends Component<{}, State> {
     this.setState({ hasClock: true });
   };
 
-  removeClock = (event: MouseEvent) => {
+  removeClock = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
