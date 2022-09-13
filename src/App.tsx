@@ -24,7 +24,7 @@ export class App extends Component<{}, State> {
   componentDidMount() {
     document.addEventListener('contextmenu', this.isHiden);
 
-    document.addEventListener('click', this.isVissible);
+    document.addEventListener('click', this.isVisible);
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
