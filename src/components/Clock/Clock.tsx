@@ -29,7 +29,7 @@ export class Clock extends Component<Props, State> {
 
     if (prevName !== clockName) {
       // eslint-disable-next-line no-console
-      console.info(`Renamed from ${prevName} to ${clockName}`);
+      console.debug(`Renamed from ${prevName} to ${clockName}`);
     }
   }
 

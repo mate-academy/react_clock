@@ -23,8 +23,8 @@ export class App extends React.Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('click', this.visible);
-    document.addEventListener('contextmenu', this.hide);
+    document.addEventListener('click', this.handleVisible);
+    document.addEventListener('contextmenu', this.handleHide);
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
@@ -33,15 +33,15 @@ export class App extends React.Component<{}, State> {
   componentWillUnmount() {
     window.clearInterval(this.timerId);
 
-    document.removeEventListener('click', this.visible);
-    document.removeEventListener('contextmenu', this.hide);
+    document.removeEventListener('click', this.handleVisible);
+    document.removeEventListener('contextmenu', this.handleHide);
   }
 
-  visible = () => {
+  handleVisible = () => {
     this.setState({ hasClock: true });
   };
 
-  hide = (event: MouseEvent) => {
+  handleHide = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
