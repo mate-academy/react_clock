@@ -18,6 +18,7 @@ export class Clock extends React.Component<Props, State> {
   componentDidMount() {
     this.timesId = window.setInterval(() => {
       this.setState({ date: new Date() });
+      // eslint-disable-next-line
       console.info(this.state.date.toLocaleTimeString());
     }, 1000);
   }
@@ -27,6 +28,7 @@ export class Clock extends React.Component<Props, State> {
     const newProps = this.props.name;
 
     if (oldProps !== newProps) {
+      // eslint-disable-next-line
       console.debug(`Renamed from ${oldProps} to ${newProps}`);
     }
   }
@@ -44,13 +46,13 @@ export class Clock extends React.Component<Props, State> {
         <strong className="Clock__name">
           {name}
         </strong>
-  
+
         {' time is '}
-  
+
         <span className="Clock__time">
           {date.toLocaleTimeString()}
         </span>
       </div>
-    )
+    );
   }
 }
