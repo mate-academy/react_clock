@@ -36,7 +36,7 @@ export class App extends Component<Props, State> {
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.pressedRightMouse);
 
-    document.addEventListener('click', this.pressedLeftmouse);
+    document.removeEventListener('click', this.pressedLeftmouse);
 
     window.clearInterval(this.timerId);
   }

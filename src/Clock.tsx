@@ -39,6 +39,12 @@ export class Clock extends Component<Props, State> {
     }
   }
 
+  componentWillUnmount() {
+    this.timer = window.setInterval(() => {
+      this.setState({ date: new Date() });
+    }, 1000);
+  }
+
   render() {
     const { clockName } = this.props;
     const { date } = this.state;
