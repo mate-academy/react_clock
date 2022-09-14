@@ -17,32 +17,28 @@ export class Clock extends Component<Props, State> {
 
   componentDidMount() {
     this.timer = window.setInterval(() => {
-      this.setState({ date: new Date() });
+      const newDate = new Date();
+
+      this.setState({ date: newDate });
+
+      // eslint-disable-next-line no-console
+      console.info(newDate.toLocaleTimeString());
     }, 1000);
   }
 
   componentDidUpdate(
     { clockName: prevClockName }: Readonly<Props>,
-    { date: prevDate }: Readonly<State>,
   ) {
     const { clockName } = this.props;
-    const { date } = this.state;
 
     if (prevClockName !== clockName) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevClockName} to ${clockName}`);
     }
-
-    if (prevDate !== date) {
-      // eslint-disable-next-line no-console
-      console.info(date.toLocaleTimeString());
-    }
   }
 
   componentWillUnmount() {
-    this.timer = window.setInterval(() => {
-      this.setState({ date: new Date() });
-    }, 1000);
+    window.clearTimeout(this.timer);
   }
 
   render() {
