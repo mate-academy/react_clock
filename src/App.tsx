@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import './App.scss';
-import { Clock } from './Clock';
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -26,20 +26,22 @@ export class App extends Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', this.hideClock);
-    document.addEventListener('click', this.showClock);
+    document.addEventListener('contextmenu', this.handleHideClock);
+    document.addEventListener('click', this.handleShowClock);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.nameId);
+    document.removeEventListener('contextmenu', this.handleHideClock);
+    document.removeEventListener('click', this.handleShowClock);
   }
 
-  hideClock = (event: MouseEvent) => {
+  handleHideClock = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
 
-  showClock = () => {
+  handleShowClock = () => {
     this.setState({ hasClock: true });
   };
 
