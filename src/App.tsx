@@ -24,15 +24,9 @@ export class App extends Component<Props, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ isClock: false });
-    });
+    document.addEventListener('contextmenu', this.pressedRightMouse);
 
-    document.addEventListener('click', (event) => {
-      event.preventDefault();
-      this.setState({ isClock: true });
-    });
+    document.addEventListener('click', this.pressedLeftmouse);
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -40,18 +34,21 @@ export class App extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ isClock: false });
-    });
+    document.removeEventListener('contextmenu', this.pressedRightMouse);
 
-    document.addEventListener('click', (event) => {
-      event.preventDefault();
-      this.setState({ isClock: true });
-    });
+    document.addEventListener('click', this.pressedLeftmouse);
 
-    this.timerId = 0;
+    window.clearInterval(this.timerId);
   }
+
+  pressedRightMouse = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ isClock: false });
+  };
+
+  pressedLeftmouse = () => {
+    this.setState({ isClock: true });
+  };
 
   render() {
     const { clockName } = this.state;

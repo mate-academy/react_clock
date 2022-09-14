@@ -55,7 +55,6 @@ export class Clock extends Component<Props, State> {
           {date.toLocaleTimeString()}
         </span>
       </div>
-
     );
   }
 }
