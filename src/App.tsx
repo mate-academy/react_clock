@@ -37,13 +37,13 @@ export class App extends Component <{}, State> {
 
   showClock = () => {
     this.setState({
-      hasClock: false,
+      hasClock: true,
     });
   };
 
   hideClock = (event: MouseEvent) => {
     this.setState({
-      hasClock: true,
+      hasClock: false,
     });
     event.preventDefault();
   };
