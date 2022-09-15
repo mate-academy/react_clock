@@ -26,10 +26,7 @@ export class App extends Component<{}, State> {
       this.setState({ hasClock: true });
     });
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.removeListener);
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -43,11 +40,13 @@ export class App extends Component<{}, State> {
       this.setState({ hasClock: true });
     });
 
-    document.removeEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.removeEventListener('contextmenu', this.removeListener);
   }
+
+  removeListener = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
   render() {
     const { hasClock, clockName } = this.state;
