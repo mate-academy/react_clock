@@ -26,7 +26,7 @@ export class Clock extends React.Component<Props, State> {
   componentDidUpdate(prevProps: Props) {
     const { clockId } = this.props;
 
-    if (prevProps.clockId !== this.props.clockId) {
+    if (prevProps.clockId !== clockId) {
       console.debug(`Renamed from ${prevProps.clockId} to ${clockId}`);
     }
   }
