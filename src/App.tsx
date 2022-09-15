@@ -1,3 +1,5 @@
+import { time } from 'console';
+import { timers } from 'cypress/types/jquery';
 import { Component } from 'react';
 import './App.scss';
 import { Clock } from './Clock';
@@ -19,12 +21,14 @@ export class App extends Component<{}, State> {
     hasClock: true,
   };
 
+  timerForClockName = 0;
+
   componentDidMount() {
     document.addEventListener('contextmenu', this.callbackOnRightClick);
 
     document.addEventListener('click', this.callbackOnLeftClick);
 
-    window.setInterval(() => {
+    this.timerForClockName = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
@@ -34,7 +38,7 @@ export class App extends Component<{}, State> {
 
     document.removeEventListener('click', this.callbackOnLeftClick);
 
-    window.clearInterval();
+    window.clearInterval(this.timerForClockName);
   }
 
   callbackOnRightClick = (event: MouseEvent) => {
