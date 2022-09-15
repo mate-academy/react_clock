@@ -22,11 +22,9 @@ export class App extends Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.addClock);
 
-    document.addEventListener('contextmenu', this.removeListener);
+    document.addEventListener('contextmenu', this.removeClock);
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -36,14 +34,16 @@ export class App extends Component<{}, State> {
   componentWillUnmount() {
     clearInterval(this.timerId);
 
-    document.removeEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.removeEventListener('click', this.addClock);
 
-    document.removeEventListener('contextmenu', this.removeListener);
+    document.removeEventListener('contextmenu', this.removeClock);
   }
 
-  removeListener = (event: { preventDefault: () => void; }) => {
+  addClock = () => {
+    this.setState({ hasClock: true });
+  };
+
+  removeClock = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
