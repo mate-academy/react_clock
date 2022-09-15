@@ -2,7 +2,6 @@ import { Component } from 'react';
 
 type State = {
   today: string;
-  why: string;
 };
 
 type Props = {
@@ -12,7 +11,6 @@ type Props = {
 export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
     today: new Date().toLocaleTimeString(),
-    why: this.props.name,
   };
 
   oneSecondTimer = 0;
@@ -20,16 +18,15 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.oneSecondTimer = window.setInterval(() => {
       this.setState({ today: new Date().toLocaleTimeString() });
-      this.setState({ why: this.props.name });
       // eslint-disable-next-line
       console.info(new Date().toLocaleTimeString());
     }, 1000);
   }
 
-  componentDidUpdate(_prevProps: unknown, prevState: State) {
+  componentDidUpdate(prevProps: Props) {
     // eslint-disable-next-line
-    prevState.why !== this.state.why && console.debug(
-      `Renamed from ${prevState.why} to ${this.state.why}`,
+    prevProps.name !== this.props.name && console.debug(
+      `Renamed from ${prevProps.name} to ${this.props.name}`,
     );
   }
 

@@ -39,8 +39,6 @@ export class App extends Component {
     document.removeEventListener('contextmenu', this.handleContextMenu);
 
     document.removeEventListener('click', this.handleclick);
-
-    clearInterval(this.threeSecondTimer);
   }
 
   handleContextMenu = (event: Context) => {
