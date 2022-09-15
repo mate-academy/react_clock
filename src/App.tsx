@@ -1,5 +1,8 @@
-import React from 'react';
+import { Component } from 'react';
+import { Context } from 'vm';
 import './App.scss';
+
+import { Clock } from './clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +10,52 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
-
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
-
-  // this code stops the timer
-  window.clearInterval(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toLocaleTimeString()}
-        </span>
-      </div>
-    </div>
-  );
+type State = {
+  hasClock: boolean;
+  clockName: string;
 };
+
+export class App extends Component {
+  state: Readonly<State> = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
+
+  threeSecondTimer = 0;
+
+  componentDidMount() {
+    document.addEventListener('contextmenu', this.handleContextMenu);
+
+    document.addEventListener('click', this.handleclick);
+
+    this.threeSecondTimer = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.threeSecondTimer);
+
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+
+    document.removeEventListener('click', this.handleclick);
+  }
+
+  handleContextMenu = (event: Context) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handleclick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
+      </div>
+    );
+  }
+}
