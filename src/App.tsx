@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Context } from 'vm';
 import './App.scss';
 
 import { Clock } from './clock';
@@ -23,39 +24,33 @@ export class App extends Component {
   threeSecondTimer = 0;
 
   componentDidMount() {
+    document.addEventListener('contextmenu', this.handleContextMenu);
+
+    document.addEventListener('click', this.handleclick);
+
     this.threeSecondTimer = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
-
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
-
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
-  }
-
-  componentDidUpdate(_prevProps: State, prevState: State) {
-    // eslint-disable-next-line
-    this.state.hasClock && console.debug(
-      `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-    );
   }
 
   componentWillUnmount() {
     clearInterval(this.threeSecondTimer);
 
-    document.removeEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.removeEventListener('contextmenu', this.handleContextMenu);
 
-    document.removeEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.removeEventListener('click', this.handleclick);
+
+    clearInterval(this.threeSecondTimer);
   }
+
+  handleContextMenu = (event: Context) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handleclick = () => {
+    this.setState({ hasClock: true });
+  };
 
   render() {
     return (
