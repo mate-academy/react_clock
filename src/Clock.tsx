@@ -46,9 +46,9 @@ export class Clock extends React.Component<Props, Stage> {
         </strong>
 
         {' time is '}
-
-        {date.toLocaleTimeString()}
-        <span className="Clock__time" />
+        <span className="Clock__time">
+          {date.toLocaleTimeString()}
+        </span>
       </div>
     );
   }
