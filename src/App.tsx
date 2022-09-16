@@ -55,9 +55,7 @@ export class App extends Component<{}, State> {
         <h1>React clock</h1>
 
         {hasClock
-          ? (
-            <Clock clockName={clockName} />
-          )
+          ? (<Clock clockName={clockName} />)
           : (
             <p>
               Click Left Mouse Button to
