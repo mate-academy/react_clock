@@ -23,27 +23,27 @@ export class App extends Component<{}, State> {
 
   componentDidMount() {
     this.timerId = window.setInterval(this.timerName, 3300);
-    document.addEventListener('contextmenu', this.hide);
-    document.addEventListener('click', this.show);
+    document.addEventListener('contextmenu', this.hideClock);
+    document.addEventListener('click', this.showClock);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    document.removeEventListener('contextmenu', this.hide);
-    document.removeEventListener('click', this.show);
+    document.removeEventListener('contextmenu', this.hideClock);
+    document.removeEventListener('click', this.showClock);
   }
 
   timerName = () => {
     this.setState({ clockName: getRandomName() });
   };
 
-  hide = (event: { preventDefault: () => void; }) => {
+  hideClock = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
     this.setState({ hasClock: false });
   };
 
-  show = () => {
+  showClock = () => {
     this.setState({ hasClock: true });
   };
 

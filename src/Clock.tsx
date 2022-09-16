@@ -13,31 +13,32 @@ export class Clock extends Component<Props, State> {
     today: new Date(),
   };
 
-  second = 0;
+  timerId = 0;
 
   componentDidMount() {
-    this.second = window.setInterval(this.secondTime, 1000);
+    this.timerId = window.setInterval(this.timer, 1000);
   }
 
   componentDidUpdate(prevState: Props) {
-    if (this.props.clockName !== prevState.clockName) {
+    const { clockName } = prevState;
+
+    if (this.props.clockName !== clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevState.clockName} to ${this.props.clockName}`);
+      console.debug(`Renamed from ${clockName} to ${clockName}`);
     }
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.second);
+    window.clearInterval(this.timerId);
   }
 
-  secondTime = () => {
+  timer = () => {
     this.setState({ today: new Date() });
+    // eslint-disable-next-line no-console, @typescript-eslint/no-unused-expressions
+    console.info(this.state.today.toLocaleTimeString());
   };
 
   render() {
-    // eslint-disable-next-line no-console, @typescript-eslint/no-unused-expressions
-    console.info(this.state.today.toLocaleTimeString());
-
     return (
       <div className="Clock">
         <p>
