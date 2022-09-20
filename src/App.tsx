@@ -19,24 +19,31 @@ export class App extends Component<{}, State> {
     clockName: getRandomName(),
   };
 
-  componentDidMount() {
-    this.setTimerForName();
+  intervalName = 0;
 
-    document.addEventListener('contextmenu', (event) => {
-      this.setState({ hasClock: false });
-      event.preventDefault();
+  componentDidMount() {
+    window.addEventListener('contextmenu', () => {
+      this.setState({
+        hasClock: false,
+      });
     });
 
     document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
+      this.setState({
+        hasClock: true,
+      });
     });
-  }
 
-  setTimerForName = () => {
-    return window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
+    this.intervalName = window.setInterval(() => {
+      this.setState({
+        clockName: getRandomName(),
+      });
     }, 3300);
-  };
+
+    if (!this.state.hasClock) {
+      window.clearInterval(this.intervalName);
+    }
+  }
 
   render() {
     const { hasClock, clockName } = this.state;
