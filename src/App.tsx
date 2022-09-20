@@ -19,10 +19,10 @@ export class App extends Component<{}, State> {
     hasClock: true,
   };
 
-  clockId = 0;
+  timerId = 0;
 
   componentDidMount() {
-    this.clockId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
     document.addEventListener('contextmenu', this.handlerLeftClick);
@@ -30,9 +30,9 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.clockId);
-    document.removeEventListener('contextmenu', this.handlerLeftClick);
+    window.clearInterval(this.timerId);
     document.removeEventListener('click', this.handlerRightClick);
+    document.removeEventListener('contextmenu', this.handlerLeftClick);
   }
 
   handlerLeftClick = (e: MouseEvent) => {

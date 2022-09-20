@@ -5,12 +5,12 @@ type Props = {
 };
 
 type State = {
-  today: Date,
+  date: Date,
 };
 
 export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
-    today: new Date(),
+    date: new Date(),
   };
 
   timerId = 0;
@@ -31,15 +31,15 @@ export class Clock extends Component<Props, State> {
   }
 
   timerFunction = () => {
-    this.setState({ today: new Date() });
+    this.setState({ date: new Date() });
     // eslint-disable-next-line no-console
-    console.info(this.state.today.toLocaleTimeString());
+    console.info(this.state.date.toLocaleTimeString());
   };
 
   render(): JSX.Element {
-    const { today } = this.state;
+    const { date } = this.state;
     const { clock } = this.props;
-    const time = today.toLocaleTimeString();
+    const time = date.toLocaleTimeString();
 
     return (
       <div className="Clock">
