@@ -1,39 +1,38 @@
-import React from 'react';
+import { Component } from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
-
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
-
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
-
-  // this code stops the timer
-  window.clearInterval(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toLocaleTimeString()}
-        </span>
-      </div>
-    </div>
-  );
+type State = {
+  hide: boolean,
 };
+
+export class App extends Component<{}, State> {
+  state = {
+    hide: false,
+  };
+
+  componentDidMount() {
+    document.addEventListener('click', () => {
+      this.setState({ hide: true });
+    });
+
+    document.addEventListener('contextmenu', () => {
+      this.setState({ hide: false });
+    });
+  }
+
+  render() {
+    const {
+      hide,
+    } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hide || <Clock />}
+
+      </div>
+    );
+  }
+}
