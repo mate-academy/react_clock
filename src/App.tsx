@@ -34,8 +34,8 @@ export class App extends Component<{}, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.timerIdOne);
-    document.addEventListener('click', this.handleLeftButton);
-    document.addEventListener('contextmenu', this.handleRightButton);
+    document.removeEventListener('click', this.handleLeftButton);
+    document.removeEventListener('contextmenu', this.handleRightButton);
   }
 
   handleLeftButton = () => {
