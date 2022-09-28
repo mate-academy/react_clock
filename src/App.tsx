@@ -19,21 +19,21 @@ export class App extends Component<{}, State> {
     hasClock: true,
   };
 
-  timerId = window.setInterval(() => {
-    this.setState({ clockName: getRandomName() });
-  }, 3300);
+  timerId = 0;
 
   componentDidMount() {
-    this.timerId;
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
 
     document.addEventListener('contextmenu', (event) => {
-      event.preventDefault(); 
+      event.preventDefault();
 
-      this.setState({ hasClock: false })
+      this.setState({ hasClock: false });
     });
 
     document.addEventListener('click', () => {
-      this.setState({ hasClock: true })
+      this.setState({ hasClock: true });
     });
   }
 
@@ -47,12 +47,11 @@ export class App extends Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-  
+
         { hasClock && (
           <Clock name={clockName} />
         )}
       </div>
     );
   }
-
-};
+}
