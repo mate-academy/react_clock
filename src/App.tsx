@@ -50,4 +50,3 @@ export class App extends Component<{}, ClockState> {
     );
   }
 }
-
