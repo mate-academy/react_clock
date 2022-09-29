@@ -44,38 +44,38 @@ describe('Clock', () => {
     });
 
     it('should show start time', () => {
-      page.clockTime().should('have.text', '12:32:31');
+      page.clockTime().should('have.text', '09:32:31');
     });
 
     it('should update time every second', () => {
       cy.tick(1000);
-      page.clockTime().should('have.text', '12:32:32');
+      page.clockTime().should('have.text', '09:32:32');
 
       cy.tick(1000);
-      page.clockTime().should('have.text', '12:32:33');
+      page.clockTime().should('have.text', '09:32:33');
 
       cy.tick(1000);
-      page.clockTime().should('have.text', '12:32:34');
+      page.clockTime().should('have.text', '09:32:34');
     });
 
     it('should not update time before 1s has passed', () => {
       cy.tick(999);
-      page.clockTime().should('have.text', '12:32:31');
+      page.clockTime().should('have.text', '09:32:31');
     });
 
     it('should print the time with console.info every second', () => {
       cy.tick(1000);
-      cy.get('@console.info').should('be.calledOnceWithExactly', '12:32:32')
+      cy.get('@console.info').should('be.calledOnceWithExactly', '09:32:32')
 
       cy.tick(1000);
       cy.get('@console.info')
         .should('have.callCount', 2)
-        .and('be.calledWith', '12:32:33');
+        .and('be.calledWith', '09:32:33');
 
       cy.tick(1000);
       cy.get('@console.info')
         .should('have.callCount', 3)
-        .and('be.calledWith', '12:32:34');
+        .and('be.calledWith', '09:32:34');
     });
 
     it('should not call console.info before the first time update', () => {
@@ -164,23 +164,23 @@ describe('Clock', () => {
     });
 
     it('should show actual time immediately', () => {
-      page.clockTime().should('have.text', '12:32:35');
+      page.clockTime().should('have.text', '09:32:35');
     });
 
     it('should not update time before 1s has passed', () => {
       cy.tick(999);
-      page.clockTime().should('have.text', '12:32:35');
+      page.clockTime().should('have.text', '09:32:35');
     });
 
     it('should proceed updating time every second', () => {
       cy.tick(1000);
-      page.clockTime().should('have.text', '12:32:36');
+      page.clockTime().should('have.text', '09:32:36');
 
       cy.tick(1000);
-      page.clockTime().should('have.text', '12:32:37');
+      page.clockTime().should('have.text', '09:32:37');
 
       cy.tick(1000);
-      page.clockTime().should('have.text', '12:32:38');
+      page.clockTime().should('have.text', '09:32:38');
     });
 
     it('should not print time again to the console before 1s has passed', () => {
@@ -192,12 +192,12 @@ describe('Clock', () => {
       cy.tick(1000);
       cy.get('@console.info')
         .should('have.callCount', 2)
-        .and('be.calledWith', '12:32:36');
+        .and('be.calledWith', '09:32:36');
 
       cy.tick(1000);
       cy.get('@console.info')
         .should('have.callCount', 3)
-        .and('be.calledWith', '12:32:37');
+        .and('be.calledWith', '09:32:37');
     });
 
     it('should show actual name', () => {
