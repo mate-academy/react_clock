@@ -19,7 +19,7 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ date: new Date() });
-      console.info(this.state.date.toLocaleTimeString());
+      console.info(this.state.date.toTimeString());
     }, 1000);
   }
 
