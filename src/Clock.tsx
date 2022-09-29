@@ -19,7 +19,7 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ date: new Date() });
-      console.info(this.state.date.toTimeString());
+      console.info(this.state.date.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
@@ -35,7 +35,7 @@ export class Clock extends Component<Props, State> {
 
   render() {
     const { date } = this.state;
-    const timeToString = date.toTimeString();
+    const timeToString = date.toUTCString().slice(-12, -4);
     const { name } = this.props;
 
     return (
