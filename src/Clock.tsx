@@ -35,7 +35,7 @@ export class Clock extends Component<Props, State> {
 
   render() {
     const { date } = this.state;
-    const timeToString = date.toLocaleTimeString();
+    const timeToString = date.toTimeString();
     const { name } = this.props;
 
     return (
