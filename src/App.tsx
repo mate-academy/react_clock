@@ -15,6 +15,8 @@ export class App extends Component<{}, ClockState> {
     hasClock: true,
   };
 
+  nameLog = 0;
+
   componentDidMount() {
     document.addEventListener('contextmenu', (event) => {
       this.handleDocContextMenu();
@@ -26,12 +28,16 @@ export class App extends Component<{}, ClockState> {
     window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
+
+    this.nameLog = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
   }
 
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.handleDocContextMenu);
-
     document.removeEventListener('click', this.handleDocClick);
+    window.clearInterval(this.nameLog);
   }
 
   handleDocContextMenu = () => this.setState({ hasClock: false });
