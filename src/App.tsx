@@ -16,9 +16,8 @@ export class App extends Component<{}, ClockState> {
   };
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.handleDocContextMenu);
-
     document.addEventListener('contextmenu', (event) => {
+      this.handleDocContextMenu();
       event.preventDefault();
     });
 
