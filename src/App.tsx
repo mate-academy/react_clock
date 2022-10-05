@@ -11,14 +11,12 @@ function getRandomName(): string {
 type State = {
   hasClock: boolean,
   clockName: string,
-  time: Date,
 };
 
 export class App extends React.Component<{}, State> {
   state: Readonly<State> = {
     hasClock: true,
     clockName: 'Clock-0',
-    time: new Date(),
   };
 
   clockNameInterval = 0;
@@ -28,8 +26,8 @@ export class App extends React.Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', this.handlerContext);
-    document.addEventListener('click', this.handlerClick);
+    document.addEventListener('contextmenu', this.handlerRightClick);
+    document.addEventListener('click', this.handlerLeftClick);
   }
 
   componentDidUpdate(_pp: {}, prevState: Readonly<State>): void {
@@ -40,16 +38,16 @@ export class App extends React.Component<{}, State> {
   }
 
   componentWillUnmount(): void {
-    document.removeEventListener('click', this.handlerClick);
-    document.removeEventListener('contextmenu', this.handlerContext);
+    document.removeEventListener('click', this.handlerLeftClick);
+    document.removeEventListener('contextmenu', this.handlerRightClick);
     window.clearInterval(this.clockNameInterval);
   }
 
-  handlerClick = () => {
+  handlerLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
-  handlerContext = () => {
+  handlerRightClick = () => {
     this.setState({ hasClock: false });
   };
 
@@ -61,7 +59,6 @@ export class App extends React.Component<{}, State> {
           <Clock
             hasClock={this.state.hasClock}
             clockName={this.state.clockName}
-            time={this.state.time}
           />
         )}
       </div>
