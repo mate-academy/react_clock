@@ -1,18 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
 
-const formatAMPM = (date: Date): string => {
-  let hours = date.getHours();
-  const ampm = hours >= 12 ? 'AM' : 'PM';
-
-  hours %= 12;
-  const min = date.getMinutes().toString().padStart(2, '0');
-  const sec = date.getSeconds().toString().padStart(2, '0');
-  const strTime = `${hours}:${min}:${sec} ${ampm}`;
-
-  return strTime;
-};
-
 type Props = {
   name: string,
 };
@@ -32,7 +20,7 @@ export class Clock extends React.Component<Props, State> {
       this.setState({
         currentTime: new Date(),
       });
-      console.info(formatAMPM(this.state.currentTime));
+      console.info(this.state.currentTime.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
@@ -61,7 +49,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {formatAMPM(this.state.currentTime)}
+          {this.state.currentTime.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );
