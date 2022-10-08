@@ -4,9 +4,14 @@ import React from 'react';
 type Props = {
   name: string,
 };
+
 type State = {
   currentTime: Date,
 };
+
+function formatDate(date: Date): string {
+  return date.toUTCString().slice(-12, -4);
+}
 
 export class Clock extends React.Component<Props, State> {
   state = {
@@ -20,7 +25,7 @@ export class Clock extends React.Component<Props, State> {
       this.setState({
         currentTime: new Date(),
       });
-      console.info(this.state.currentTime.toUTCString().slice(-12, -4));
+      console.info(formatDate(this.state.currentTime));
     }, 1000);
   }
 
@@ -49,7 +54,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.currentTime.toUTCString().slice(-12, -4)}
+          {formatDate(this.state.currentTime)}
         </span>
       </div>
     );
