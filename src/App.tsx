@@ -22,7 +22,9 @@ export class App extends React.Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', () => {
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+
       this.setState({ hasClock: false });
     });
 
