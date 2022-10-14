@@ -44,8 +44,9 @@ export class App extends Component<{}, State> {
     window.clearInterval(this.nameId);
   }
 
-  handleRightClick = () => {
+  handleRightClick = (event: MouseEvent) => {
     this.setState({ hasClock: false });
+    event.preventDefault();
   };
 
   handleLeftClick = () => {
