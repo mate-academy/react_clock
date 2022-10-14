@@ -22,7 +22,7 @@ export class Clock extends Component<Props, State> {
       this.setState({ currentTime });
 
       // eslint-disable-next-line no-console
-      console.info(currentTime.toUTCString().slice(-12, -4));
+      console.info(currentTime.toTimeString().slice(0, 8));
     }, 1000);
   }
 
@@ -43,7 +43,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {currentTime.toUTCString().slice(-12, -4)}
+          {currentTime.toTimeString().slice(0, 8)}
         </span>
       </div>
     );

@@ -42,7 +42,7 @@ export class App extends Component<{}, State> {
     }
   }
 
-  rightClickHandler = (e: Event) => {
+  rightClickHandler = (e: MouseEvent) => {
     e.preventDefault();
 
     this.setState({ hasClock: false });
