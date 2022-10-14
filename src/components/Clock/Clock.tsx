@@ -20,12 +20,10 @@ export class Clock extends Component<IClockProps, IClockState> {
   componentDidMount() {
     this.intervalTimeId = window.setInterval(() => {
       this.setState({ date: new Date() });
-    }, 1000);
-  }
 
-  componentDidUpdate() {
-    // eslint-disable-next-line no-console
-    console.info(timeToString(this.state.date));
+      // eslint-disable-next-line no-console
+      console.info(timeToString(this.state.date));
+    }, 1000);
   }
 
   componentWillUnmount() {
