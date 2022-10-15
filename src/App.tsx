@@ -36,7 +36,7 @@ export class App extends Component<{}, State> {
     });
   }
 
-  componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<State>) {
+  componentDidUpdate(_prevProps: Readonly<{}>, prevState: Readonly<State>) {
     if (this.state.hasClock
       && prevState.clockName !== this.state.clockName
     ) {
