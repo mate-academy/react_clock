@@ -21,15 +21,12 @@ export class Clock extends Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props) {
-    const { name } = this.props;
+  componentDidUpdate(_: never, prevState: State) {
+    const { date } = this.state;
 
-    // eslint-disable-next-line no-console
-    console.info(this.state.date.toUTCString().slice(-12, -4));
-
-    if (prevProps.name !== name) {
+    if (date !== prevState.date) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.name} to ${name}`);
+      console.info(date.toUTCString().slice(-12, -4));
     }
   }
 
@@ -39,11 +36,12 @@ export class Clock extends Component<Props, State> {
 
   render() {
     const { date } = this.state;
+    const { name } = this.props;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.name}
+          {name}
         </strong>
 
         {' time is '}
