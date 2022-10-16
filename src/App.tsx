@@ -32,7 +32,9 @@ export class App extends React.Component<{}, State> {
 
   componentDidUpdate(_prevProps:{}, prevState:State): void {
     if (
-      this.state.hasClock && prevState.randomName !== this.state.randomName
+      this.state.hasClock
+      && prevState.randomName
+      !== this.state.randomName
     ) {
       console.debug(
         `Renamed from ${prevState.randomName} to ${this.state.randomName}`,
@@ -53,12 +55,13 @@ export class App extends React.Component<{}, State> {
   }
 
   render() {
-    const { randomName, hasClock } = this.state;
-
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock && <Clock randomName={randomName} />}
+        {
+          this.state.hasClock
+          && <Clock randomName={this.state.randomName} />
+        }
       </div>
     );
   }
