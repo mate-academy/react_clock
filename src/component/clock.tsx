@@ -5,25 +5,31 @@ type State = {
 };
 
 type Props = {
-  date: number;
+  name: string;
 };
 
 function getToday(): string {
   return (new Date()).toUTCString().slice(-12, -4);
 }
 
-function getRandomName(date: number): string {
-  const value = date.toString().slice(-4);
+function extractNumberFromClockName(clockName: string): number | null {
+  let number = '';
 
-  return `Clock-${value}`;
+  for (let i = 0; i < clockName.length; i += 1) {
+    if ('0123456789'.includes(clockName[i])) {
+      number += clockName[i];
+    } else if (number.length > 0) {
+      break;
+    }
+  }
+
+  return (number.length === 0) ? null : +number;
 }
 
 export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
     today: getToday(),
   };
-
-  timerIdClockName = 0;
 
   timerIdToday = 0;
 
@@ -36,12 +42,21 @@ export class Clock extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    if (+this.props.date - +prevProps.date > 3050) {
-      // eslint-disable-next-line no-console
-      console.debug(
-        `Renamed from ${getRandomName(prevProps.date)}`
-          + ` to ${getRandomName(this.props.date)}`,
-      );
+    const prevNameClockNumber = extractNumberFromClockName(prevProps.name);
+    const newNameClockNumber = extractNumberFromClockName(this.props.name);
+
+    if (prevNameClockNumber !== null && newNameClockNumber !== null) {
+      const timeBetweenCalls = (newNameClockNumber < prevNameClockNumber)
+        ? 10000 - prevNameClockNumber + newNameClockNumber
+        : newNameClockNumber - prevNameClockNumber;
+
+      if (timeBetweenCalls > 0) {
+        // eslint-disable-next-line no-console
+        console.debug(
+          `Renamed from ${prevProps.name}`
+            + ` to ${this.props.name}`,
+        );
+      }
     }
   }
 
@@ -51,12 +66,12 @@ export class Clock extends Component<Props, State> {
 
   render() {
     const { today } = this.state;
-    const { date } = this.props;
+    const { name } = this.props;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          { getRandomName(date) }
+          { name }
         </strong>
 
         {' time is '}

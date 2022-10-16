@@ -4,20 +4,26 @@ import { Clock } from './component/clock';
 
 type State = {
   hasClock: boolean;
-  clockDate: number;
+  clockName: string;
 };
+
+function getRandomName(): string {
+  const value = Date.now().toString().slice(-4);
+
+  return `Clock-${value}`;
+}
 
 export class App extends Component<{}, State> {
   state: Readonly<State> = {
     hasClock: true,
-    clockDate: 0,
+    clockName: 'Clock-0',
   };
 
-  timerIdClockDate = 0;
+  timerIdClockName = 0;
 
   componentDidMount(): void {
-    this.timerIdClockDate = window.setInterval(() => {
-      this.setState({ clockDate: Date.now() });
+    this.timerIdClockName = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
     }, 3300);
 
     document.addEventListener('click', (): void => {
@@ -32,7 +38,7 @@ export class App extends Component<{}, State> {
   componentWillUnmount(): void {
     document.removeEventListener('click', this.handleClick);
     document.removeEventListener('contextmenu', this.handleContextmenu);
-    window.clearInterval(this.timerIdClockDate);
+    window.clearInterval(this.timerIdClockName);
   }
 
   handleClick = () => {
@@ -46,13 +52,13 @@ export class App extends Component<{}, State> {
   };
 
   render() {
-    const { hasClock, clockDate } = this.state;
+    const { hasClock, clockName: clockDate } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && <Clock date={clockDate} />}
+        {hasClock && <Clock name={clockDate} />}
       </div>
     );
   }
