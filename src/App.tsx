@@ -15,17 +15,18 @@ type State = {
 };
 
 export class App extends React.Component<{}, State> {
+  intervalId = 0;
+
   state = {
     randomName: 'Clock-0',
     hasClock: true,
-    intervalId: 0,
   };
 
   componentDidMount(): void {
     this.changeClockVisibility(false, 'contextmenu');
     this.changeClockVisibility(true, 'click');
 
-    this.state.intervalId = window.setInterval(() => {
+    this.intervalId = window.setInterval(() => {
       this.setState({ randomName: getRandomName() });
     }, 3300);
   }
@@ -43,7 +44,7 @@ export class App extends React.Component<{}, State> {
   }
 
   componentWillUnmount(): void {
-    clearInterval(this.state.intervalId);
+    clearInterval(this.intervalId);
   }
 
   changeClockVisibility(shouldShow:boolean, typeListener: string) {

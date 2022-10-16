@@ -7,28 +7,28 @@ type Props = {
 
 type State = {
   time: string,
-  intervalId: number
 };
 
 export class Clock extends React.Component<Props, State> {
   today = new Date();
 
+  intervalId = 0;
+
   state = {
     time: this.getRecentTime(),
-    intervalId: 0,
   };
 
   componentDidMount(): void {
     this.setState({ time: this.getRecentTime() });
 
-    this.state.intervalId = window.setInterval(() => {
+    this.intervalId = window.setInterval(() => {
       this.setState({ time: this.getRecentTime() });
       console.info(this.state.time);
     }, 1000);
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.state.intervalId);
+    window.clearInterval(this.intervalId);
   }
 
   getRecentTime() {
