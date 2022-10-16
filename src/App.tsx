@@ -32,16 +32,6 @@ export class App extends Component<{}, State> {
     document.addEventListener('click', this.leftClickHandler);
   }
 
-  componentDidUpdate(_prevProps: {}, prevState: State) {
-    const { clockName: prevName } = prevState;
-    const { clockName: currentName } = this.state;
-
-    if (prevName !== currentName && this.state.hasClock) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevName} to ${currentName}`);
-    }
-  }
-
   rightClickHandler = (e: MouseEvent) => {
     e.preventDefault();
 
@@ -58,9 +48,7 @@ export class App extends Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock
-          ? <Clock name={clockName} />
-          : null}
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }

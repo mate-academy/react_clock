@@ -22,8 +22,18 @@ export class Clock extends Component<Props, State> {
       this.setState({ currentTime });
 
       // eslint-disable-next-line no-console
-      console.info(currentTime.toTimeString().slice(0, 8));
+      console.info(currentTime.toUTCString().slice(-12, -4));
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { name: prevName } = prevProps;
+    const { name: currentName } = this.props;
+
+    if (prevName !== currentName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevName} to ${currentName}`);
+    }
   }
 
   componentWillUnmount() {
@@ -43,7 +53,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {currentTime.toTimeString().slice(0, 8)}
+          {currentTime.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );
