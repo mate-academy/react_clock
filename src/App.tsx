@@ -20,16 +20,30 @@ export class App extends Component<{}, State> {
       this.setState({ clockDate: Date.now() });
     }, 3300);
 
-    window.addEventListener('click', (): void => {
-      this.setState({ hasClock: true });
+    document.addEventListener('click', (): void => {
+      this.handleClick();
     });
 
-    window.addEventListener('contextmenu', (event: MouseEvent): void => {
-      event.preventDefault();
-
-      this.setState({ hasClock: false });
+    document.addEventListener('contextmenu', (event: MouseEvent): void => {
+      this.handleContextmenu(event);
     });
   }
+
+  componentWillUnmount(): void {
+    document.removeEventListener('click', this.handleClick);
+    document.removeEventListener('contextmenu', this.handleContextmenu);
+    window.clearInterval(this.timerIdClockDate);
+  }
+
+  handleClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  handleContextmenu = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: false });
+  };
 
   render() {
     const { hasClock, clockDate } = this.state;
