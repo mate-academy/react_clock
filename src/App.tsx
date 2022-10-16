@@ -22,17 +22,8 @@ export class App extends React.Component<{}, State> {
   };
 
   componentDidMount(): void {
-    document.addEventListener('contextmenu', event => {
-      event.preventDefault();
-
-      this.setState({ hasClock: false });
-    });
-
-    document.addEventListener('click', event => {
-      event.preventDefault();
-
-      this.setState({ hasClock: true });
-    });
+    this.changeClockVisibility(false, 'contextmenu');
+    this.changeClockVisibility(true, 'click');
 
     this.state.intervalId = window.setInterval(() => {
       this.setState({ randomName: getRandomName() });
@@ -40,13 +31,25 @@ export class App extends React.Component<{}, State> {
   }
 
   componentDidUpdate(_prevProps:{}, prevState:State): void {
-    if (this.state.hasClock && prevState.randomName !== this.state.randomName) {
-      console.debug(`Renamed from ${prevState.randomName} to ${this.state.randomName}`);
+    if (
+      this.state.hasClock && prevState.randomName !== this.state.randomName
+    ) {
+      console.debug(
+        `Renamed from ${prevState.randomName} to ${this.state.randomName}`,
+      );
     }
   }
 
   componentWillUnmount(): void {
     clearInterval(this.state.intervalId);
+  }
+
+  changeClockVisibility(shouldShow:boolean, typeListener: string) {
+    document.addEventListener(typeListener, event => {
+      event.preventDefault();
+
+      this.setState({ hasClock: shouldShow });
+    });
   }
 
   render() {

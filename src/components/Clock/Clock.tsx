@@ -38,16 +38,13 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
-    const { randomName } = this.props;
-    const { time } = this.state;
-
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {randomName}
+          {this.props.randomName}
         </strong>
         <span> time is </span>
-        <span className="Clock__time">{time}</span>
+        <span className="Clock__time">{this.state.time}</span>
       </div>
     );
   }
