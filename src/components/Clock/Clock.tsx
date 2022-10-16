@@ -25,8 +25,7 @@ export class Clock extends Component<Props, State> {
     const { date } = this.state;
 
     if (date !== prevState.date) {
-      // eslint-disable-next-line no-console
-      console.info(date.toUTCString().slice(-12, -4));
+      window.console.info(date.toUTCString().slice(-12, -4));
     }
   }
 

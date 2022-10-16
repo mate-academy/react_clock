@@ -41,9 +41,12 @@ export class App extends React.Component<{}, State> {
     const { hasClock, clockName } = this.state;
 
     if (clockName !== prevState.clockName && hasClock) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
+      window.console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
     }
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.clockNameId);
   }
 
   addClock = () => {
