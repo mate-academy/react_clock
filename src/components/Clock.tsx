@@ -15,7 +15,7 @@ const setTime = () => (
 );
 
 export class Clock extends Component<Props, State> {
-  state = {
+  state: Readonly<State> = {
     time: setTime(),
   };
 
