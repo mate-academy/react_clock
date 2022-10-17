@@ -28,17 +28,24 @@ export class App extends Component<{}, State> {
       this.setState({ clockName });
     }, 3300);
 
-    document.addEventListener('contextmenu', this.rightClickHandler);
-    document.addEventListener('click', this.leftClickHandler);
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
   }
 
-  rightClickHandler = (e: MouseEvent) => {
+  componentWillUnmount() {
+    window.clearInterval(this.timerId);
+
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+  }
+
+  handleRightClick = (e: MouseEvent) => {
     e.preventDefault();
 
     this.setState({ hasClock: false });
   };
 
-  leftClickHandler = () => {
+  handleLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
