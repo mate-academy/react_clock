@@ -30,6 +30,11 @@ export class App extends Component<{}, State> {
     }
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.hundleContextmenuEvent);
+    document.removeEventListener('click', this.hundleClickEvent);
+  }
+
   hundleClickEvent = () => {
     this.setState({ hasClock: true });
   };
