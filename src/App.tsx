@@ -1,39 +1,81 @@
-import React from 'react';
+import { Component } from 'react';
+import { Clock } from './components/Clock';
 import './App.scss';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+type State = {
+  clockName: string;
+  hasClock: boolean;
+};
 
-  return `Clock-${value}`;
-}
+export class App extends Component<{}, State> {
+  state = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+  clockNameTimer = 0;
 
   // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  componentDidMount() {
+    this.clockNameTimer = window.setInterval(() => {
+      this.getRandomName();
+    }, 3300);
+
+    document.addEventListener('contextmenu', this.handleContextMenue);
+    document.addEventListener('click', this.handleClick);
+  }
+
+  componentDidUpdate(_: {}, prevState: State) {
+    const { clockName, hasClock } = this.state;
+
+    if ((clockName !== prevState.clockName) && hasClock) {
+      window.console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
+    }
+  }
 
   // this code stops the timer
-  window.clearInterval(timerId);
+  componentWillUnmount() {
+    window.clearInterval(this.clockNameTimer);
+    document.removeEventListener('click', this.handleClick);
+    document.removeEventListener('contextmenu', this.handleContextMenue);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  getRandomName() {
+    const value = Date.now().toString().slice(-4);
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    this.setState({
+      clockName: `Clock-${value}`,
+    });
+  }
 
-        {' time is '}
+  handleClick = () => {
+    this.setState({
+      hasClock: true,
+    });
+  };
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  handleContextMenue = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({
+      hasClock: false,
+    });
+  };
+
+  render() {
+    const {
+      clockName,
+      hasClock,
+    } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock && (
+          <Clock name={clockName} />
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
