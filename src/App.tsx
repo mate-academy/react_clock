@@ -3,7 +3,9 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+  const value = Date.now()
+    .toString()
+    .slice(-4);
 
   return `Clock-${value}`;
 }
@@ -19,6 +21,8 @@ export class App extends Component<{}, State> {
     hasClock: true,
   };
 
+  interval: NodeJS.Timer | undefined;
+
   componentDidMount() {
     document.addEventListener('contextmenu', (event) => (
       // eslint-disable-next-line no-sequences
@@ -31,7 +35,7 @@ export class App extends Component<{}, State> {
     ));
 
     if (this.state.hasClock) {
-      setInterval(() => {
+      this.interval = setInterval(() => {
         this.setState({ clockName: getRandomName() });
       }, 3300);
     }
@@ -40,6 +44,9 @@ export class App extends Component<{}, State> {
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.rightMouseClick);
     document.removeEventListener('click', this.leftMouseClick);
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   }
 
   leftMouseClick = () => (
@@ -57,11 +64,7 @@ export class App extends Component<{}, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && (
-          <div className="Clock">
-            <Clock clockName={clockName} />
-          </div>
-        )}
+        {hasClock && <Clock clockName={clockName} />}
       </div>
     );
   }

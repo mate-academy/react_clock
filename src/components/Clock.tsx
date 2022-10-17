@@ -19,8 +19,10 @@ export class Clock extends Component<Props, State> {
     time: setTime(),
   };
 
+  interval: NodeJS.Timer | undefined;
+
   componentDidMount() {
-    setInterval(() => (
+    this.interval = setInterval(() => (
       this.setState({ time: setTime() })
     ), 1000);
   }
@@ -36,9 +38,15 @@ export class Clock extends Component<Props, State> {
     }
   }
 
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
+
   render() {
     return (
-      <>
+      <div className="Clock">
         <strong className="Clock__name">
           {this.props.clockName}
         </strong>
@@ -48,7 +56,7 @@ export class Clock extends Component<Props, State> {
         <span className="Clock__time">
           {this.state.time}
         </span>
-      </>
+      </div>
     );
   }
 }
