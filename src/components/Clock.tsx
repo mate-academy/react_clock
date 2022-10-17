@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-type Prop = {
+type Props = {
   name: string,
 };
 
@@ -8,7 +8,7 @@ type State = {
   date: Date,
 };
 
-export class Clock extends Component<Prop, State> {
+export class Clock extends Component<Props, State> {
   state = {
     date: new Date(),
   };
@@ -23,7 +23,7 @@ export class Clock extends Component<Prop, State> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps:Prop) {
+  componentDidUpdate(prevProps:Props) {
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);

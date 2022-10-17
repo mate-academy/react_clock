@@ -28,8 +28,8 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    document.addEventListener('contextmenu', this.hiddenClock);
-    document.addEventListener('click', this.makeClockVisible);
+    document.removeEventListener('contextmenu', this.hiddenClock);
+    document.removeEventListener('click', this.makeClockVisible);
     window.clearInterval(this.nameId);
   }
 
