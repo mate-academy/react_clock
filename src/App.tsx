@@ -16,8 +16,8 @@ export class App extends Component<{}, State> {
   clockNameId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.hundleContextmenuEvent);
-    document.addEventListener('click', this.hundleClickEvent);
+    document.addEventListener('contextmenu', this.handleContextmenuEvent);
+    document.addEventListener('click', this.handleClickEvent);
 
     this.clockNameId = window.setInterval(() => {
       this.setState({ clockName: this.getRandomName() });
@@ -31,15 +31,16 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', this.hundleContextmenuEvent);
-    document.removeEventListener('click', this.hundleClickEvent);
+    document.removeEventListener('contextmenu', this.handleContextmenuEvent);
+    document.removeEventListener('click', this.handleClickEvent);
+    window.clearInterval(this.clockNameId);
   }
 
-  hundleClickEvent = () => {
+  handleClickEvent = () => {
     this.setState({ hasClock: true });
   };
 
-  hundleContextmenuEvent = (event: Event) => {
+  handleContextmenuEvent = (event: Event) => {
     event.preventDefault();
 
     this.setState({ hasClock: false });
