@@ -12,20 +12,20 @@ function getRandomName(): string {
 type State = {
   hasClock: boolean,
   clockName: string,
-  clockRandomNameId: number;
 };
 
 export class App extends Component<{}, State> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
-    clockRandomNameId: 0,
   };
+
+  clockRandomNameId = 0;
 
   componentDidMount() {
     document.addEventListener('contextmenu', this.clickRMB);
     document.addEventListener('click', this.clickLMB);
-    this.state.clockRandomNameId = window.setInterval(() => {
+    this.clockRandomNameId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
@@ -39,7 +39,7 @@ export class App extends Component<{}, State> {
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.clickRMB);
     document.removeEventListener('click', this.clickLMB);
-    window.clearInterval(this.state.clockRandomNameId);
+    window.clearInterval(this.clockRandomNameId);
   }
 
   clickRMB = (event: MouseEvent) => {

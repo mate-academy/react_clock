@@ -7,18 +7,18 @@ type Props = {
 };
 
 type State = {
-  clockTime: Date;
-  timerId: number,
+  clockTime: Date,
 };
 
 export class Clock extends Component<Props, State> {
   state = {
     clockTime: new Date(),
-    timerId: 0,
   };
 
+  timerId = 0;
+
   componentDidMount() {
-    this.state.timerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockTime: new Date() });
     }, 1000);
   }
@@ -28,7 +28,7 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.state.timerId);
+    window.clearInterval(this.timerId);
   }
 
   render() {
