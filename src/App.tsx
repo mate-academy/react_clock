@@ -51,6 +51,7 @@ export class App extends Component<{}, State> {
   commponentWillUnmount() {
     document.removeEventListener('contextmenu', this.hidingClock);
     document.removeEventListener('click', this.showingClock);
+    window.clearInterval(this.timerId);
   }
 
   render() {
