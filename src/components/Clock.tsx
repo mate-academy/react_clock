@@ -24,12 +24,14 @@ export class Clock extends Component<Props, State> {
       const today = new Date();
 
       this.setState({ today });
+      // eslint-disable-next-line no-console
       console.info(getProperTime(today));
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
     if (this.props.name !== prevProps.name) {
+      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
