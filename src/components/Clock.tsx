@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Component } from 'react';
 
 type Props = {
@@ -19,6 +18,7 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
+      // eslint-disable-next-line no-console
       console.info(this.state.today.toLocaleTimeString());
     }, 1000);
   }
@@ -27,6 +27,7 @@ export class Clock extends Component<Props, State> {
     const { clockName } = this.props;
 
     if (clockName !== prevDate.clockName) {
+      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevDate.clockName} to ${clockName}`);
     }
   }
