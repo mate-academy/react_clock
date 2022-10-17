@@ -16,12 +16,14 @@ export class Clock extends Component<Prop, State> {
   timeId = 0;
 
   componentDidMount() {
-    this.timeId = window.setInterval(this.setNewDate, 1000);
+    this.timeId = window.setInterval(() => {
+      this.setState({ date: new Date() });
+      // eslint-disable-next-line no-console
+      console.info(this.state.date.toUTCString().slice(-12, -4));
+    }, 1000);
   }
 
   componentDidUpdate(prevProps:Prop) {
-    // eslint-disable-next-line no-console
-    console.info(this.state.date.toUTCString().slice(-12, -4));
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
@@ -31,10 +33,6 @@ export class Clock extends Component<Prop, State> {
   componentWillUnmount() {
     window.clearInterval(this.timeId);
   }
-
-  setNewDate = ():void => {
-    this.setState({ date: new Date() });
-  };
 
   render() {
     const { name } = this.props;
