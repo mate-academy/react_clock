@@ -30,6 +30,12 @@ export class App extends Component<{}, State> {
     document.addEventListener('click', this.leftMouseButtonClick);
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.rightMouseButtonClick);
+    document.removeEventListener('click', this.leftMouseButtonClick);
+    window.clearInterval(this.timerId);
+  }
+
   rightMouseButtonClick = (event: Event) => {
     event.preventDefault();
     this.setState({ hasClock: false });

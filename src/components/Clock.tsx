@@ -24,8 +24,10 @@ export class Clock extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props) {
-    if (prevProps.clockName !== this.props.clockName) {
-      window.console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+    const { clockName } = this.props;
+
+    if (prevProps.clockName !== clockName) {
+      window.console.debug(`Renamed from ${prevProps.clockName} to ${clockName}`);
     }
   }
 
