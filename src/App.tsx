@@ -20,7 +20,7 @@ export class App extends Component<{}, State> {
 
   componentDidUpdate(_prevProps: {}, prevState: State) {
     if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
-      // eslint-disable-next-line no-console
+      //  eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
   }

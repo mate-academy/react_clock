@@ -22,7 +22,7 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
-      // eslint-disable-next-line no-console
+      // eslint-disable-next-line  no-console
       console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
 
