@@ -7,6 +7,12 @@ type State = {
   clockName: string,
 };
 
+function getRandomName(): string {
+  const value = Date.now().toString().slice(-4);
+
+  return `Clock-${value}`;
+}
+
 export class App extends Component<{}, State> {
   state = {
     hasClock: true,
@@ -16,18 +22,12 @@ export class App extends Component<{}, State> {
   clockId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.handleRightClick);
-    document.addEventListener('click', this.handleLeftClick);
-
-    function getRandomName(): string {
-      const value = Date.now().toString().slice(-4);
-
-      return `Clock-${value}`;
-    }
-
     this.clockId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
+    
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
   }
 
   componentDidUpdate(_prevProps: {}, prevState: State) {
@@ -38,9 +38,9 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
+    window.clearInterval(this.clockId);
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
-    window.clearInterval(this.clockId);
   }
 
   handleRightClick = (event: MouseEvent) => {

@@ -2,7 +2,6 @@ import { Component } from 'react';
 
 type State = {
   today: Date,
-  name: string,
 };
 
 type Props = {
@@ -12,7 +11,6 @@ type Props = {
 export class Clock extends Component<Props, State> {
   state = {
     today: new Date(),
-    name: this.props.name,
   };
 
   timerId = 0;
@@ -30,7 +28,8 @@ export class Clock extends Component<Props, State> {
   }
 
   render() {
-    const { today, name } = this.state;
+    const { today } = this.state;
+    const { name } = this.props;
 
     return (
       <div className="Clock">
