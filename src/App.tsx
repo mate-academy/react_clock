@@ -24,12 +24,6 @@ export class App extends Component<{}, State> {
     }, 3300);
   }
 
-  componentDidUpdate(_prevProps: {}, prevState: State) {
-    if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
-      window.console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
-
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.handleContextmenuEvent);
     document.removeEventListener('click', this.handleClickEvent);
