@@ -28,16 +28,6 @@ export class App extends Component<{}, State> {
     this.timerId = window.setInterval(this.setNewClockName, 3300);
   }
 
-  componentDidUpdate(_: never, prevState: State) {
-    const { clockName, hasClock } = this.state;
-    const { clockName: prevClockName } = prevState;
-
-    if (clockName !== prevClockName && hasClock) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevClockName} to ${clockName}`);
-    }
-  }
-
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.removeClock);
     document.removeEventListener('click', this.addClock);
@@ -65,7 +55,7 @@ export class App extends Component<{}, State> {
         <h1>React clock</h1>
 
         {hasClock
-          && <Clock clockName={clockName} hasClock={hasClock} />}
+          && <Clock name={clockName} />}
       </div>
     );
   }

@@ -1,8 +1,7 @@
 import { Component } from 'react';
 
 type Props = {
-  hasClock: boolean,
-  clockName: string,
+  name: string,
 };
 
 type State = {
@@ -20,9 +19,16 @@ export class Clock extends Component<Props, State> {
     this.timerId = window.setInterval(this.tick, 1000);
   }
 
-  componentDidUpdate(_: never, prevState: State) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    const { name } = this.props;
+    const { name: prevName } = prevProps;
     const { date } = this.state;
     const { date: prevDate } = prevState;
+
+    if (name !== prevName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevName} to ${name}`);
+    }
 
     if (date !== prevDate) {
       // eslint-disable-next-line no-console
@@ -42,12 +48,12 @@ export class Clock extends Component<Props, State> {
 
   render() {
     const { date } = this.state;
-    const { clockName } = this.props;
+    const { name } = this.props;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {clockName}
+          {name}
         </strong>
 
         {' time is '}
