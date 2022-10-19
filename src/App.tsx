@@ -36,14 +36,14 @@ export class App extends Component<{}, State> {
     document.removeEventListener('click', this.handleClick);
   }
 
-  handleClick = (e: MouseEvent) => {
+  handleClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  handleContextMenu = (e: MouseEvent) => {
     e.preventDefault();
 
     this.setState({ hasClock: false });
-  };
-
-  handleContextMenu = () => {
-    this.setState({ hasClock: true });
   };
 
   render() {
