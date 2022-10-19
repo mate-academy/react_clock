@@ -55,15 +55,15 @@ export class App extends React.Component<{}, State> {
   hadleRightClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
-    // eslint-disable-next-line no-console
-    console.log(this.state.hasClock);
   };
 
   render() {
+    const { hasClock, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock && (<Clock name={this.state.clockName} />)}
+        {hasClock && (<Clock name={clockName} />)}
 
       </div>
     );
