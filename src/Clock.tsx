@@ -4,7 +4,11 @@ type Props = {
   name: string;
 };
 
-export class Clock extends Component<Props, {}> {
+type State = {
+  today: Date,
+};
+
+export class Clock extends Component<Props, State> {
   state = {
     today: new Date(),
   };
