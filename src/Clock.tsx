@@ -20,7 +20,7 @@ export class Clock extends Component<Props, State> {
       this.setState({ timeNow: new Date() });
 
       // eslint-disable-next-line no-console
-      console.info(new Date().toUTCString().slice(-12, -4));
+      console.info(this.state.timeNow.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
