@@ -5,7 +5,6 @@ type State = {
 };
 
 type Props = {
-  hasClock: boolean,
   clockName: string,
 };
 
@@ -19,12 +18,19 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.clockInterval = window.setInterval(() => {
       this.setState({ clockTime: new Date() });
-
-      if (this.props.hasClock) {
-        // eslint-disable-next-line no-console
-        console.info(this.state.clockTime.toUTCString().slice(-12, -4));
-      }
+      // eslint-disable-next-line no-console
+      console.info(this.state.clockTime.toUTCString().slice(-12, -4));
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { clockName: prevName } = prevProps;
+    const { clockName: currentName } = this.props;
+
+    if (prevName !== currentName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevName} to ${currentName}`);
+    }
   }
 
   componentWillUnmount() {
