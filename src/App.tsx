@@ -44,6 +44,8 @@ export class App extends Component<{}, State> {
   componentWillUnmount() {
     document.addEventListener('contextmenu', this.hideClock);
     document.addEventListener('click', this.showClock);
+
+    window.clearInterval(this.timerId);
   }
 
   hideClock = (e: MouseEvent) => {
