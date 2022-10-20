@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Clock } from './components/clock';
+import { Clock } from './components/Сlock';
 import './App.scss';
 
 function getRandomName(): string {
