@@ -20,13 +20,14 @@ export class Clock extends Component <ClockProps, ClockState> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
-
+      // eslint-disable-next-line no-console
       console.info(this.state.today);
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Readonly<ClockProps>): void {
     if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
