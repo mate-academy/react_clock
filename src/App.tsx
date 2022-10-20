@@ -22,19 +22,23 @@ export class App extends Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.hideClock.bind(this, false));
+    document.addEventListener('contextmenu', (event) => {
+      this.hideClock(event, false);
+    });
 
-    document.addEventListener('click', this.hideClock.bind(this, true));
+    document.addEventListener('click', (event) => {
+      this.hideClock(event, true);
+    });
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
-  hideClock(value: boolean, event: MouseEvent) {
+  hideClock = (event: MouseEvent, value: boolean) => {
     event.preventDefault();
     this.setState({ hasClock: value });
-  }
+  };
 
   render() {
     const { clockName } = this.state;
@@ -47,18 +51,3 @@ export class App extends Component<{}, State> {
     );
   }
 }
-//
-// export const App: React.FC = () => {
-//
-//
-//
-//   // This code starts a timer
-//
-//
-//   // this code stops the timer
-//   window.clearInterval(timerId);
-//
-//   return (
-//
-//   );
-// };
