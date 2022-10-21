@@ -30,18 +30,6 @@ export class App extends Component<{}, State> {
     document.addEventListener('click', this.handleLeftClick);
   }
 
-  componentDidUpdate(_previousProps: {}, previousState: Readonly<State>) {
-    if (
-      this.state.hasClock
-        && previousState.clockName !== this.state.clockName
-    ) {
-      // eslint-disable-next-line no-console
-      console.debug(
-        `Renamed from ${previousState.clockName} to ${this.state.clockName}`,
-      );
-    }
-  }
-
   componentWillUnmount() {
     window.clearInterval(this.clockNameIntervalId);
 
@@ -68,7 +56,6 @@ export class App extends Component<{}, State> {
 
         {hasClock && (
           <Clock
-            hasClock={hasClock}
             clockName={clockName}
           />
         )}

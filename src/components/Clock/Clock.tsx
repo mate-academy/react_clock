@@ -1,7 +1,6 @@
 import { Component } from 'react';
 
 type Props = {
-  hasClock: boolean;
   clockName: string;
 };
 
@@ -20,11 +19,20 @@ export class Clock extends Component<Props, State> {
     this.timeIntervalId = window.setInterval(() => {
       this.setState({ time: new Date() });
 
-      if (this.props.hasClock) {
-        // eslint-disable-next-line no-console
-        console.info(this.state.time.toUTCString().slice(-12, -4));
-      }
+      // eslint-disable-next-line no-console
+      console.info(this.state.time.toUTCString().slice(-12, -4));
     }, 1000);
+  }
+
+  componentDidUpdate(previousProps: Readonly<Props>) {
+    if (
+      previousProps.clockName !== this.props.clockName
+    ) {
+      // eslint-disable-next-line no-console
+      console.debug(
+        `Renamed from ${previousProps.clockName} to ${this.props.clockName}`,
+      );
+    }
   }
 
   componentWillUnmount() {
