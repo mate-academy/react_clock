@@ -7,6 +7,8 @@ type State = {
   visibility: boolean;
 };
 
+type Props = {};
+
 function ClockName(): string {
   const value = Date.now().toString().slice(-4);
 
@@ -16,7 +18,7 @@ function ClockName(): string {
 export class App extends React.Component<{}, State> {
   state = {
     time: new Date(),
-    value: '',
+    value: '0',
     visibility: true,
   };
 
@@ -39,8 +41,20 @@ export class App extends React.Component<{}, State> {
       3300,
     );
 
-    document.addEventListener('contextmenu', this.rightMouseButtonHandle);
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      this.setState({ visibility: false });
+    });
     document.addEventListener('click', this.leftMouseButtonHandle);
+  }
+
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    const { value } = prevState;
+
+    if (prevProps && value !== this.state.value && this.state.visibility) {
+      // eslint-disable-next-line
+      console.debug(`Renamed from Clock-${value} to Clock-${this.state.value}`);
+    }
   }
 
   componentWillUnmount() {
@@ -52,11 +66,15 @@ export class App extends React.Component<{}, State> {
       clearInterval(this.valueTimerId);
     }
 
-    document.removeEventListener('contextmenu', this.rightMouseButtonHandle);
+    document.removeEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      this.setState({ visibility: false });
+    });
     document.removeEventListener('click', this.leftMouseButtonHandle);
   }
 
-  rightMouseButtonHandle = () => {
+  rightMouseButtonHandle = (event: React.MouseEvent) => {
+    event.preventDefault();
     this.setState({ visibility: false });
   };
 
@@ -71,7 +89,7 @@ export class App extends React.Component<{}, State> {
 
     if (this.state.visibility) {
       // eslint-disable-next-line
-      console.log(this.state.time.toLocaleTimeString());
+      console.info(this.state.time.toLocaleTimeString());
     }
   }
 
