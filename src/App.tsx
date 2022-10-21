@@ -31,10 +31,6 @@ export class App extends Component<{}, State> {
     }
   }
 
-  componentWillUnmount(): void {
-    clearInterval(this.timerClockName);
-  }
-
   getRandomName = (): string => {
     const value = Date.now().toString().slice(-4);
 
@@ -42,12 +38,12 @@ export class App extends Component<{}, State> {
   };
 
   render() {
-    const { hasClock } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock && <Clock name={this.state.clockName} />}
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }
