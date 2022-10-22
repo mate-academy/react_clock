@@ -22,14 +22,8 @@ export class App extends React.Component<{}, State> {
   clockNameId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.addClock();
-    });
-
-    document.addEventListener('click', () => {
-      this.removeClock();
-    });
+    document.addEventListener('contextmenu', this.addClock);
+    document.addEventListener('click', this.removeClock);
 
     this.clockNameId = window.setInterval(() => {
       this.updateClock();
@@ -45,6 +39,8 @@ export class App extends React.Component<{}, State> {
   }
 
   componentWillUnmount() {
+    document.removeEventListener('click', this.removeClock);
+    document.removeEventListener('contextmenu', this.addClock);
     window.clearInterval(this.clockNameId);
   }
 

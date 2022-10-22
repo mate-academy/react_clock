@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+const timeString = (date: Date): string => date.toUTCString().slice(-12, -4);
+
 type Props = {
   clockName: string;
 };
@@ -25,7 +27,7 @@ export class Clock extends Component<Props, State> {
     const { today } = this.state;
 
     if (today !== prevState.today) {
-      window.console.info(today.toUTCString().slice(-12, -4));
+      window.console.info(timeString(this.state.today));
     }
   }
 
@@ -46,7 +48,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {timeString(today)}
         </span>
       </div>
     );
