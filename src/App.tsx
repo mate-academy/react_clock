@@ -22,20 +22,25 @@ export class App extends Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', (event) => {
-      this.hideClock(event, false);
-    });
+    document.addEventListener('contextmenu', this.hideClock.bind(this, false));
 
-    document.addEventListener('click', (event) => {
-      this.hideClock(event, true);
-    });
+    document.addEventListener('click', this.hideClock.bind(this, true));
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
-  hideClock = (event: MouseEvent, value: boolean) => {
+  componentWillUnmount() {
+    document.removeEventListener(
+      'contextmenu', this.hideClock.bind(this, false),
+    );
+
+    document.removeEventListener('click', this.hideClock.bind(this, true));
+    clearInterval(this.timerId);
+  }
+
+  hideClock = (value: boolean, event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: value });
   };
