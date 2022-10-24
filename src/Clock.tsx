@@ -6,7 +6,6 @@ interface State {
 
 interface Prop {
   clockName: string;
-  hasClock: boolean;
 }
 
 export class Clock extends Component<Prop, State> {
@@ -22,6 +21,16 @@ export class Clock extends Component<Prop, State> {
       // eslint-disable-next-line
       console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Prop) {
+    const { clockName } = this.props;
+    const { clockName: prevClockName } = prevProps;
+
+    if (clockName !== prevClockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevClockName} to ${clockName}`);
+    }
   }
 
   componentWillUnmount() {

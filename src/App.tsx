@@ -31,16 +31,6 @@ export class App extends Component<{}, State> {
     }, 3300);
   }
 
-  componentDidUpdate(_: never, prevState: State) {
-    const { clockName, hasClock } = this.state;
-    const { clockName: prevClockName } = prevState;
-
-    if (clockName !== prevClockName && hasClock) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevClockName} to ${clockName}`);
-    }
-  }
-
   componentWillUnmount() {
     document.addEventListener('contextmenu', this.hideClock);
     document.addEventListener('click', this.showClock);
@@ -63,8 +53,8 @@ export class App extends Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock
-          && <Clock clockName={clockName} hasClock={hasClock} />}
+        {hasClock
+          && <Clock clockName={clockName} />}
       </div>
     );
   }
