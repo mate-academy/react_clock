@@ -38,6 +38,8 @@ export class App extends Component<{}, State> {
 
   componentWillUnmount() {
     clearInterval(this.timerId);
+    document.removeEventListener('click', this.addClock);
+    document.removeEventListener('contextmenu', this.removeClock);
   }
 
   addClock = () => {
