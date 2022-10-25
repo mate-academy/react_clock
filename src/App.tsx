@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import './App.scss';
+import { Clock } from './Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -55,30 +56,20 @@ export class App extends Component<{}, State> {
   }
 
   render() {
-    const { date } = this.state;
-    const { clockName } = this.state;
-    const { hasClock } = this.state;
+    const { date, clockName, hasClock } = this.state;
 
     return (
-      <div className="App">
-        <h1>React clock</h1>
+      <>
+        <div className="App">
+          <h1>React clock</h1>
+        </div>
 
-        {(hasClock)
-          ? (
-            <div className="Clock">
-              <strong className="Clock__name">
-                {clockName}
-              </strong>
-
-              {' time is '}
-
-              <span className="Clock__time">
-                {date.toUTCString().slice(-12, -4)}
-              </span>
-            </div>
-          )
-          : ('No clock')}
-      </div>
+        <Clock
+          date={date}
+          clockName={clockName}
+          hasClock={hasClock}
+        />
+      </>
     );
   }
 }
