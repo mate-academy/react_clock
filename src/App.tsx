@@ -30,7 +30,7 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.handleClick);
   }
 
-  componentDidUpdate(prevState: State) {
+  componentDidUpdate(_: {}, prevState: State) {
     const { clockName, hasClock } = this.state;
 
     if (clockName !== prevState.clockName && hasClock) {
