@@ -17,10 +17,10 @@ export class Clock extends React.Component<Props, State> {
     clockTime: getTime(),
   };
 
-  timeTimerId = 0;
+  timeChangeTimer = 0;
 
   componentDidMount() {
-    this.timeTimerId = window.setInterval(() => {
+    this.timeChangeTimer = window.setInterval(() => {
       this.setState({ clockTime: getTime() });
       // eslint-disable-next-line no-console
       console.info(this.state.clockTime);
@@ -35,7 +35,7 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timeTimerId);
+    window.clearInterval(this.timeChangeTimer);
   }
 
   render() {
