@@ -18,24 +18,9 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.timer = window.setInterval(() => {
       this.setState({ today: new Date() });
+
+      window.console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
-  }
-
-  componentDidUpdate(prevProps: Props, prevState: State) {
-    const { name: currentClockName } = this.props;
-    const { name: prevClockName } = prevProps;
-    const { today: currentToday } = this.state;
-    const { today: prevToday } = prevState;
-
-    if (currentClockName !== prevClockName) {
-      // eslint-disable-next-line
-      console.debug(`Renamed from ${prevClockName} to ${currentClockName}`);
-    }
-
-    if (currentToday !== prevToday) {
-      // eslint-disable-next-line
-      console.info(prevToday.toUTCString().slice(-12, -4));
-    }
   }
 
   componentWillUnmount() {
