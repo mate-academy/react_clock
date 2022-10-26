@@ -30,13 +30,6 @@ export class App extends React.Component<{}, State> {
     }, 3300);
   }
 
-  componentDidUpdate(_prevProps: {}, prevState: State) {
-    if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
-
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.rightClick);
     document.removeEventListener('click', this.leftClick);

@@ -27,6 +27,13 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.name !== prevProps.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
   componentWillUnmount() {
     window.clearInterval(this.timeTimerId);
   }
