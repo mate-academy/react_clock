@@ -53,6 +53,14 @@ export class App extends Component<{}, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.state.timerId);
+
+    document.removeEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
+
+    document.removeEventListener('contextmenu', () => {
+      this.setState({ hasClock: false });
+    });
   }
 
   render() {
