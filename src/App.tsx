@@ -35,7 +35,7 @@ export class App extends React.Component<{}, State> {
 
     if (clockName !== prevState.clockName && hasClock) {
       // eslint-disable-next-line
-      console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
+      window.console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
     }
   }
 
