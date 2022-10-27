@@ -25,7 +25,7 @@ export class Clock extends Component<Props, State> {
     const { date } = this.state;
 
     if (date !== prevState.date) {
-      window.console.info(date.toUTCString().slice(-12, -4));
+      window.console.info(date.toLocaleString().slice(-12, -4));
     }
   }
 

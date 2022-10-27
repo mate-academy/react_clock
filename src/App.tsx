@@ -20,7 +20,7 @@ export class App extends React.Component<{}, State> {
     clockName: 'Clock-0',
   };
 
-  clockNameId = 0;
+  clockNameTimerId = 0;
 
   componentDidMount() {
     document.addEventListener('contextmenu', (e) => {
@@ -32,7 +32,7 @@ export class App extends React.Component<{}, State> {
       this.removeClock();
     });
 
-    this.clockNameId = window.setInterval(() => {
+    this.clockNameTimerId = window.setInterval(() => {
       this.updateClock();
     }, 3300);
   }
@@ -46,11 +46,11 @@ export class App extends React.Component<{}, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.clockNameId);
+    window.clearInterval(this.clockNameTimerId);
   }
 
   addClock = () => {
-    this.setState({ hasClock: false });
+    this.setState({ hasClock: true });
   };
 
   removeClock = () => {
