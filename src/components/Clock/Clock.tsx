@@ -18,6 +18,8 @@ export class Clock extends React.Component<Props, State> {
   componentDidMount() {
     this.Interval = window.setInterval(() => {
       this.setState({ time: new Date() });
+      // eslint-disable-next-line no-console
+      console.info(this.state.time.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
@@ -26,9 +28,6 @@ export class Clock extends React.Component<Props, State> {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
-
-    // eslint-disable-next-line no-console
-    console.info(this.state.time.toUTCString().slice(-12, -4));
   }
 
   componentWillUnmount(): void {
