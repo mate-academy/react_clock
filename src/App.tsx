@@ -35,6 +35,7 @@ export class App extends React.Component<{}, State> {
       this.setState({
         hasClock: true,
         clockName: getRandomName(),
+        today: new Date(),
       });
     });
 
