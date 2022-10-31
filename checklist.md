@@ -25,7 +25,7 @@ handleClick = () => {
 }
 ```
 
-GOOD EXAMPLE: (you will create **one** timer on mount and remove it on unmount.) 
+GOOD EXAMPLE: (you will create **one** timer on mount and remove it on unmount.)
 ```jsx
 componentDidMount() {
   this.id = window.setTimeout(() => {}, 0)
