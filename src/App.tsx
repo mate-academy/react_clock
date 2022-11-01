@@ -15,14 +15,9 @@ export class App extends Component<{}, State> {
   timerClockName = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.handlerContextMenu);
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.handlerClick);
 
     if (this.state.hasClock) {
       this.timerClockName = window.setInterval(() => {
@@ -31,10 +26,25 @@ export class App extends Component<{}, State> {
     }
   }
 
+  componentWillUnmount(): void {
+    clearInterval(this.timerClockName);
+    document.removeEventListener('contextmenu', this.handlerContextMenu);
+    document.removeEventListener('click', this.handlerClick);
+  }
+
   getRandomName = (): string => {
     const value = Date.now().toString().slice(-4);
 
     return `Clock-${value}`;
+  };
+
+  handlerContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handlerClick = () => {
+    this.setState({ hasClock: true });
   };
 
   render() {
