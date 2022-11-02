@@ -2,35 +2,35 @@ import { Component } from 'react';
 import './App.scss';
 import { Clock } from './Clock';
 
-function getRandomName(): string {
+export function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
 
   return `Clock-${value}`;
 }
 
 type State = {
-  date: Date,
-  clockName: string,
-  timerId: number,
   hasClock: boolean,
+  date: Date,
 };
 
 export class App extends Component<{}, State> {
   state = {
     date: new Date(),
-    clockName: 'Clock-0',
-    timerId: 0,
     hasClock: true,
   };
 
-  componentDidMount() {
-    this.state.timerId = window.setInterval(() => {
-      const oldName = this.state.clockName;
+  timerId = 0;
 
-      this.setState({ clockName: getRandomName() });
+  clockName = 'Clock-0';
+
+  componentDidMount() {
+    this.timerId = window.setInterval(() => {
+      const oldName = this.clockName;
+
+      this.clockName = getRandomName();
 
       // eslint-disable-next-line no-console
-      console.debug(`Перейменовано з ${oldName} на ${this.state.clockName}`);
+      console.debug(`Перейменовано з ${oldName} на ${this.clockName}`);
     }, 3300);
 
     window.setInterval(() => {
@@ -52,19 +52,19 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.state.timerId);
-
-    document.removeEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    window.clearInterval(this.timerId);
 
     document.removeEventListener('contextmenu', () => {
       this.setState({ hasClock: false });
     });
+
+    document.removeEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
   }
 
   render() {
-    const { date, clockName, hasClock } = this.state;
+    const { hasClock, date } = this.state;
 
     return (
       <>
@@ -74,8 +74,9 @@ export class App extends Component<{}, State> {
 
         <Clock
           date={date}
-          clockName={clockName}
+          clockName={this.clockName}
           hasClock={hasClock}
+          timerId={this.timerId}
         />
       </>
     );
