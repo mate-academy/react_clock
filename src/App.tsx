@@ -25,8 +25,8 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    document.addEventListener('contextmenu', this.handleDocumentClick);
-    document.addEventListener('click', this.handleDocumentClick);
+    document.removeEventListener('contextmenu', this.handleDocumentClick);
+    document.removeEventListener('click', this.handleDocumentClick);
     window.clearInterval(this.timerIdName);
   }
 
