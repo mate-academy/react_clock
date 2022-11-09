@@ -21,8 +21,10 @@ export class App extends React.Component<Props, State> {
     hasClock: true,
   };
 
+  intervalID = 0;
+
   componentDidMount() {
-    window.setInterval(() => {
+    this.intervalID = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
@@ -39,6 +41,8 @@ export class App extends React.Component<Props, State> {
     document.removeEventListener('contextmenu', this.handleRightClick);
 
     document.removeEventListener('click', this.handleLeftClick);
+
+    window.clearInterval(this.intervalID);
   }
 
   handleRightClick = () => {
