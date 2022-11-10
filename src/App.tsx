@@ -5,7 +5,6 @@ import { Clock } from './components/Clock';
 type State = {
   hasClock: boolean,
   clockName: string,
-  timerId: number,
 };
 
 function getRandomName(): string {
@@ -18,15 +17,16 @@ export class App extends React.Component<{}, State> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
-    timerId: 0,
   };
 
   today = new Date();
 
+  timerId = 0;
+
   componentDidMount() {
     document.addEventListener('contextmenu', this.hideClock, true);
     document.addEventListener('click', this.showClock, true);
-    this.state.timerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
@@ -34,7 +34,7 @@ export class App extends React.Component<{}, State> {
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.hideClock, true);
     document.removeEventListener('click', this.showClock, true);
-    window.clearInterval(this.state.timerId);
+    window.clearInterval(this.timerId);
   }
 
   hideClock = (e: Event) => {
