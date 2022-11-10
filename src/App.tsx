@@ -1,6 +1,4 @@
-// import { type } from 'os';
 import { Component } from 'react';
-// import { render } from 'react-dom';
 import './App.scss';
 import { Clock } from './Clock';
 
