@@ -20,21 +20,31 @@ export class App extends Component<{}, State> {
   };
 
   clockNameTimerId = 0;
-
-  UNSAFE_componentWillMount(): void {
+  // eslint-disable-next-line
+  componentWillMount(): void {
     this.clockNameTimerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.onClick);
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.onContextMenuClick);
   }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.onClick);
+    document.removeEventListener('contextmenu', this.onContextMenuClick);
+    clearInterval(this.clockNameTimerId);
+  }
+
+  onClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  onContextMenuClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
   render(): React.ReactNode {
     const { hasClock, clockName } = this.state;
