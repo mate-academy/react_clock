@@ -10,16 +10,16 @@ Create a `Clock` class component that will update the time every second using a 
   - use `.toUTCString().slice(-12, -4)` methods do awoid timezone issues;
 - update the time every second using the `window.setInterval`;
 - start the timer only when the component is added to the page (`componentDidMount`).- every second print the time in the DevTools using `console.info` method (**not** the `console.log`);
-- make the `App` a class component;
-- add the `hasClock` property to the `App` state;
-- the `Clock` should be visible only when the `hasClock` is `true`;
-- hide the `Clock` on a right mouse click in the `document` (`contextmenu` event):
+<!-- - make the `App` a class component; -->
+<!-- - add the `hasClock` property to the `App` state; -->
+<!-- - the `Clock` should be visible only when the `hasClock` is `true`; -->
+<!-- - hide the `Clock` on a right mouse click in the `document` (`contextmenu` event):
     ```js
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault(); // not to show the context menu
 
       // put your code here
-    });
+    }); -->
     ```
 - show the `Clock` on a left mouse click in the `document` (`click` event):
     ```js
