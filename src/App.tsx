@@ -16,7 +16,7 @@ function getRandomName(): string {
 export class App extends Component<{}, State> {
   state = {
     hasClock: true,
-    clockName: 'Clock 0',
+    clockName: 'Clock-0',
   };
 
   timeId = 0;
