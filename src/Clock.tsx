@@ -1,9 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
 
-let timerId: number;
-// let dateId: number;
-
 type GetRandomName = () => string;
 
 type Props = {
@@ -23,12 +20,14 @@ export class Clock extends React.Component<Props, State> {
     clockName: this.props.clockName,
   };
 
+  timerId: number | null = null;
+
   componentDidMount() {
-    timerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: this.props.getRandomName() });
     }, 3300);
 
-    timerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
 
       console.info(this.state.today.toUTCString().slice(-12, -4));
@@ -42,7 +41,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(timerId);
+    if (this.timerId !== null) {
+      window.clearInterval(this.timerId);
+    }
   }
 
   render() {
