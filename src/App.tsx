@@ -64,7 +64,6 @@ export class App extends Component<{}, State> {
         <Clock
           clockName={clockName}
           hasClock={hasClock}
-          timerId={this.timerId}
         />
       </>
     );

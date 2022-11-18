@@ -9,20 +9,16 @@ export function getRandomName(): string {
 export class Clock extends Component<{
   clockName: string,
   hasClock: boolean,
-  timerId: number,
 }, {}> {
   state = {
     date: new Date(),
+
   };
 
-  timerId = this.props.timerId;
-
-  clockName = this.props.clockName;
-
-  hasClock = this.props.hasClock;
+  timerId = 0;
 
   componentDidMount() {
-    window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ date: new Date() });
 
       if (this.props.hasClock) {
