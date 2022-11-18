@@ -10,37 +10,26 @@ export function getRandomName(): string {
 
 type State = {
   hasClock: boolean,
-  date: Date,
+  clockName: string,
 };
 
 export class App extends Component<{}, State> {
   state = {
-    date: new Date(),
     hasClock: true,
+    clockName: 'Clock-0',
   };
 
   timerId = 0;
 
-  clockName = 'Clock-0';
-
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      const oldName = this.clockName;
+      const oldName = this.state.clockName;
 
-      this.clockName = getRandomName();
+      this.setState({ clockName: getRandomName() });
 
       // eslint-disable-next-line no-console
-      console.debug(`Перейменовано з ${oldName} на ${this.clockName}`);
+      console.debug(`Перейменовано з ${oldName} на ${this.state.clockName}`);
     }, 3300);
-
-    window.setInterval(() => {
-      this.setState({ date: new Date() });
-
-      if (this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.info(this.state.date);
-      }
-    }, 1000);
 
     document.addEventListener('contextmenu', () => {
       this.setState({ hasClock: false });
@@ -64,7 +53,7 @@ export class App extends Component<{}, State> {
   }
 
   render() {
-    const { hasClock, date } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <>
@@ -73,8 +62,7 @@ export class App extends Component<{}, State> {
         </div>
 
         <Clock
-          date={date}
-          clockName={this.clockName}
+          clockName={clockName}
           hasClock={hasClock}
           timerId={this.timerId}
         />

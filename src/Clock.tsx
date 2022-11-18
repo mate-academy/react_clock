@@ -7,28 +7,38 @@ export function getRandomName(): string {
 }
 
 export class Clock extends Component<{
-  date: Date,
   clockName: string,
   hasClock: boolean,
   timerId: number,
 }, {}> {
+  state = {
+    date: new Date(),
+  };
+
   timerId = this.props.timerId;
 
   clockName = this.props.clockName;
 
+  hasClock = this.props.hasClock;
+
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
-      const oldName = this.props.clockName;
+    window.setInterval(() => {
+      this.setState({ date: new Date() });
 
-      this.clockName = getRandomName();
+      if (this.props.hasClock) {
+        // eslint-disable-next-line no-console
+        console.info(this.state.date);
+      }
+    }, 1000);
+  }
 
-      // eslint-disable-next-line no-console
-      console.debug(`Перейменовано з ${oldName} на ${this.props.clockName}`);
-    }, 3300);
+  componentWillUnmount() {
+    window.clearInterval(this.timerId);
   }
 
   render() {
-    const { date, clockName, hasClock } = this.props;
+    const { clockName, hasClock } = this.props;
+    const { date } = this.state;
 
     return (
       <>
