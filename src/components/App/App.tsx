@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 import { Component } from 'react';
 import { Clock } from '../Clock';
 
@@ -25,17 +24,16 @@ export class App extends Component<{}, State> {
   componentWillUnmount() {
     document.removeEventListener('click', this.onClickHandler);
     document.removeEventListener('contextmenu', this.onContextHandler);
+    clearInterval(this.timerIdName);
   }
 
   onClickHandler = () => {
     this.setState({ hasClock: true });
-    this.timerIdName = window.setInterval(this.setNewClockName, 3300);
   };
 
   onContextHandler = (e: MouseEvent) => {
     e.preventDefault();
     this.setState({ hasClock: false });
-    clearInterval(this.timerIdName);
   };
 
   getRandomName = () => {
@@ -48,8 +46,16 @@ export class App extends Component<{}, State> {
     const prevClockName = this.state.clockName;
 
     this.setState({ clockName: this.getRandomName() });
-    // eslint-disable-next-line no-console
-    console.debug(`Renamed from ${prevClockName} to ${this.state.clockName}`);
+
+    const {
+      clockName,
+      hasClock,
+    } = this.state;
+
+    if (hasClock) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevClockName} to ${clockName}`);
+    }
   };
 
   render() {
