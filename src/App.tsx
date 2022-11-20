@@ -39,7 +39,7 @@ export class App extends Component<{}, State> {
     });
   }
 
-  componentDidUpdate(_prevProps: State, prevState: State) {
+  componentDidUpdate(_prevProps: unknown, prevState: State) {
     const { clockName } = this.state;
 
     if (prevState.clockName !== clockName) {
