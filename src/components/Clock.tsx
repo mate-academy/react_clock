@@ -19,6 +19,7 @@ export class Clock extends Component<Props, State> {
     this.timerId = window.setInterval(() => {
       this.updateClock();
 
+      // eslint-disable-next-line no-console
       console.info(this.state.currentDate);
     }, 1000);
   }

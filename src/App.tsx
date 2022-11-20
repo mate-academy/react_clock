@@ -39,10 +39,13 @@ export class App extends Component<{}, State> {
     });
   }
 
-  componentDidUpdate(prevProps: any, prevState: State) {
+  componentDidUpdate(_prevProps: State, prevState: State) {
     const { clockName } = this.state;
 
-    console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
+    if (prevState.clockName !== clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
+    }
   }
 
   render() {
