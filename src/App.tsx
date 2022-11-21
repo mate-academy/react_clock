@@ -52,11 +52,7 @@ export class App extends Component <{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock && (
-          <Clock
-            name={clockName}
-          />
-        )}
+        {hasClock && (<Clock name={clockName} />)}
       </div>
     );
   }
