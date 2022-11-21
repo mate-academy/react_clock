@@ -25,9 +25,7 @@ export class Clock extends Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<Props>,
-  ): void {
+  componentDidUpdate(prevProps: Readonly<Props>) {
     const { name } = this.props;
 
     if (name !== prevProps.name) {
