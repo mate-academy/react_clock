@@ -5,21 +5,21 @@ type Props = {
 };
 
 type State = {
-  today: Date
+  date: string
 };
 
 export class Clock extends Component<Props, State> {
   state = {
-    today: new Date(),
+    date: new Date().toUTCString().slice(-12, -4),
   };
 
-  timerId: number | undefined;
+  timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({ date: new Date().toUTCString().slice(-12, -4) });
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(this.state.date);
     }, 1000);
   }
 
@@ -34,8 +34,10 @@ export class Clock extends Component<Props, State> {
     window.clearInterval(this.timerId);
   }
 
+
   render() {
-    const { today } = this.state;
+    const { date } = this.state;
+
 
     return (
       <div className="Clock">
@@ -46,7 +48,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {date}
         </span>
       </div>
     );

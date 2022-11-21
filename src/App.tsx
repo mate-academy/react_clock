@@ -8,46 +8,44 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-type Props = {
-};
-
 type State = {
   hasClock: boolean,
   clockName: string,
 };
 
-export class App extends Component<Props, State> {
+export class App extends Component<{}, State> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
   };
 
-  timerId: number | undefined;
+  timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault(); // not to show the context menu
+    document.addEventListener('contextmenu', this.rightClickMouse);
 
-      this.setState({ hasClock: false });
-    });
-
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.leftClickMouse);
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
-  // componentDidUpdate(_prevProps: Props, prevState: State) {
-  //   // eslint-disable-next-line @typescript-eslint/no-unused-expressions, no-console
-  //   this.state.hasClock && console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-  // }
-
   componentWillUnmount() {
     window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.rightClickMouse);
+    document.removeEventListener('click', this.leftClickMouse);
   }
+
+  leftClickMouse = () => {
+    this.setState({ hasClock: true });
+  };
+
+  rightClickMouse = (event: MouseEvent) => {
+    event.preventDefault(); // not to show the context menu
+
+    this.setState({ hasClock: false });
+  };
 
   render() {
     const { hasClock, clockName } = this.state;
@@ -56,7 +54,7 @@ export class App extends Component<Props, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock ? <Clock name={clockName} /> : null}
+        {hasClock && <Clock name={clockName} />}
 
       </div>
     );
