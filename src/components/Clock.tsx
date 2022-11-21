@@ -15,8 +15,6 @@ export class Clock extends Component<Props, State> {
 
   timerToday = 0;
 
-  intervalDebug = 0;
-
   componentDidMount() {
     this.timerToday = window.setInterval(() => {
       this.setState({ today: new Date() });
@@ -38,7 +36,6 @@ export class Clock extends Component<Props, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.timerToday);
-    window.clearInterval(this.intervalDebug);
   }
 
   render() {
