@@ -39,6 +39,7 @@ export class App extends Component<{}, State> {
 
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
+
     this.setState({ hasClock: false });
   };
 
