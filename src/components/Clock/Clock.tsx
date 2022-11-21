@@ -5,27 +5,23 @@ type Props = {
 };
 
 type State = {
-  today: Date;
+  currentTime: string;
 };
 
 export class Clock extends React.Component<Props, State> {
   state: Readonly<State> = {
-    today: new Date(),
+    currentTime: (new Date()).toUTCString().slice(-12, -4),
   };
 
   timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
-
+      this.setState({
+        currentTime: (new Date()).toUTCString().slice(-12, -4),
+      });
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
-
-      // When I use .toUTCString() time is 2 hours late.
-      // if I use string below, time is displayed correctly.
-      // Can I use it?
-      // console.info(this.state.today.toString().slice(16, 24));
+      console.info(this.state.currentTime);
     }, 1000);
   }
 
@@ -41,7 +37,7 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
-    const { today } = this.state;
+    const { currentTime } = this.state;
     const { name } = this.props;
 
     return (
@@ -53,7 +49,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {currentTime}
         </span>
       </div>
     );
