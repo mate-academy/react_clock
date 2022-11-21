@@ -26,19 +26,28 @@ export class App extends Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.handleRightClick);
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.handleLeftClick);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
+
+    document.removeEventListener('contextmenu', this.handleRightClick);
+
+    document.removeEventListener('click', this.handleLeftClick);
   }
+
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: false });
+  };
+
+  handleLeftClick = () => {
+    this.setState({ hasClock: true });
+  };
 
   render() {
     const { clockName, hasClock } = this.state;
@@ -46,9 +55,7 @@ export class App extends Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock && (
-          <Clock clockName={clockName} />
-        )}
+        {hasClock && <Clock clockName={clockName} />}
       </div>
     );
   }
