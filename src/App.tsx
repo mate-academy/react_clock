@@ -16,7 +16,7 @@ type State = {
 export class App extends Component<{}, State> {
   state: Readonly<State> = {
     hasClock: true,
-    clockName: 'Clock-0000',
+    clockName: 'Clock-0',
   };
 
   timerId = 0;
