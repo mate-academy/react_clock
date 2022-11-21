@@ -17,14 +17,16 @@ export class Clock extends Component<Props, State> {
   timerId = 0;
 
   componentDidMount() {
+    const { time } = this.state;
+
     this.timerId = window.setInterval(() => {
       this.setState({ time: new Date() });
-      console.info(this.state.time.toUTCString().slice(-12, -4));
+      console.info(time.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
-    if (prevState.time.getSeconds() === this.state.time.getSeconds()) {
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.name !== this.props.name) {
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
