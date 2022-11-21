@@ -8,6 +8,10 @@ type Props = {
   name: string,
 };
 
+function getTimeFromDate(date: Date) {
+  return date.toUTCString().slice(-12, -4);
+}
+
 export class Clock extends Component<Props, State> {
   state = {
     today: new Date(),
@@ -22,11 +26,11 @@ export class Clock extends Component<Props, State> {
       this.setState({ today });
 
       // eslint-disable-next-line no-console
-      console.info(today.toUTCString().slice(-12, -4));
+      console.info(getTimeFromDate(today));
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>): void {
+  componentDidUpdate(prevProps: Readonly<Props>) {
     const { name } = this.props;
 
     if (name !== prevProps.name) {
@@ -52,7 +56,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {getTimeFromDate(today)}
         </span>
       </div>
     );
