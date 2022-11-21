@@ -42,6 +42,8 @@ export class Clock extends Component<Props, State> {
   render() {
     const { date } = this.state;
 
+    const formattedDate = date.toUTCString().slice(-12, -4);
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
@@ -51,7 +53,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {date.toUTCString().slice(-12, -4)}
+          {formattedDate}
         </span>
       </div>
     );
