@@ -1,12 +1,12 @@
 import { Component } from 'react';
 
-type State = {
+interface State {
   currentTime: string,
-};
+}
 
-type Props = {
+interface Props {
   clockName: string,
-};
+}
 
 export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
