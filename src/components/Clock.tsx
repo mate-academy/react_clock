@@ -20,8 +20,17 @@ export class Clock extends Component<Props, State> {
       this.updateClock();
 
       // eslint-disable-next-line no-console
-      console.info(this.state.currentDate);
+      console.info(this.state.currentDate.toUTCString().slice(-12, -4));
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { name } = this.props;
+
+    if (prevProps.name !== name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${name}`);
+    }
   }
 
   componentWillUnmount() {

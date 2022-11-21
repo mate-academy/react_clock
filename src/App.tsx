@@ -19,8 +19,6 @@ export class App extends Component<{}, State> {
     clockName: 'Clock-0000',
   };
 
-  clockName = '';
-
   componentDidMount() {
     window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -37,15 +35,6 @@ export class App extends Component<{}, State> {
         this.setState({ hasClock: true });
       }
     });
-  }
-
-  componentDidUpdate(_prevProps: unknown, prevState: State) {
-    const { clockName } = this.state;
-
-    if (prevState.clockName !== clockName) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
-    }
   }
 
   render() {
