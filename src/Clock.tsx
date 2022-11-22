@@ -5,23 +5,24 @@ type Props = {
 };
 
 type State = {
-  today: Date;
+  today: string;
 };
 
 export class Clock extends Component <Props, State> {
   state = {
-    today: new Date(),
+    today: new Date().toUTCString().slice(-12, -4),
   };
 
   timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      const today = new Date();
+      const today = new Date().toUTCString().slice(-12, -4);
 
       this.setState({ today });
+
       // eslint-disable-next-line no-console
-      console.info(today.toUTCString().slice(-12, -4));
+      console.info(today);
     }, 1000);
   }
 
@@ -46,7 +47,7 @@ export class Clock extends Component <Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.today.toUTCString().slice(-12, -4)}
+          {this.state.today}
         </span>
       </div>
     );
