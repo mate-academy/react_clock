@@ -29,7 +29,7 @@ export class Clock extends Component<Props, State> {
   componentDidUpdate(prevProps: Readonly<Props>) {
     const { name } = this.props;
 
-    if (clockName !== prevProps.clockName) {
+    if (name !== prevProps.name) {
       // eslint-disable-next-line
       console.debug(`Renamed from ${prevProps.name} to ${name}`);
     }
