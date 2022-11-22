@@ -43,7 +43,7 @@ export class App extends Component<{}, State> {
     this.setState({ hasClock: false });
   };
 
-  leftClick = () => {
+  handleLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
