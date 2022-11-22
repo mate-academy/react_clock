@@ -30,7 +30,7 @@ clickHandler = () => {
 
 GOOD EXAMPLE:
 ```jsx
-handleClick = () => {
+clickHandle = () => {
  console.log('Hello, world');
 }
 ```
@@ -39,12 +39,12 @@ handleClick = () => {
 
 BAD EXAMPLE: (you will create new timer on each click and can't clear previous one)
 ```jsx
-handleClick = () => {
+clickHandle = () => {
   this.id = window.setTimeout(() => {}, 0)
 }
 ```
 
-GOOD EXAMPLE: (you will create **one** timer on mount and remove it on unmount.) 
+GOOD EXAMPLE: (you will create **one** timer on mount and remove it on unmount.)
 ```jsx
 componentDidMount() {
   this.id = window.setTimeout(() => {}, 0)
