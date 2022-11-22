@@ -37,7 +37,7 @@ export class App extends Component<{}, State> {
     document.removeEventListener('click', this.leftClick);
   }
 
-  rightClick = (event: MouseEvent) => {
+  handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
 
     this.setState({ hasClock: false });
