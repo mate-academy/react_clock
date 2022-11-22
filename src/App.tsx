@@ -29,7 +29,7 @@ export class App extends Component<{}, State> {
     document.addEventListener('contextmenu', this.handleRightClick);
 
     this.clockId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
+      this.updateName();
     }, 3300);
   }
 
@@ -48,6 +48,10 @@ export class App extends Component<{}, State> {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
+
+  updateName() {
+    this.setState({ clockName: getRandomName() });
+  }
 
   render() {
     const {

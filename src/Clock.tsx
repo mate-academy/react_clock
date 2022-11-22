@@ -17,12 +17,10 @@ export class Clock extends Component<Props, State> {
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      const today = new Date();
-
-      this.setState({ today });
+      this.updateClock();
 
       // eslint-disable-next-line no-console
-      console.info(today.toUTCString().slice(-12, -4));
+      console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
@@ -39,9 +37,14 @@ export class Clock extends Component<Props, State> {
     window.clearInterval(this.timerId);
   }
 
+  updateClock() {
+    this.setState({ today: new Date() });
+  }
+
   render() {
     const { name } = this.props;
     const { today } = this.state;
+    const currentTime = today.toUTCString().slice(-12, -4);
 
     return (
       <div className="Clock">
@@ -52,7 +55,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {currentTime}
         </span>
       </div>
     );
