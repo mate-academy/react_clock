@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Clock } from './components/Clock/Clock';
+import { Clock } from './components/Clock/Clock.js';
 import './App.scss';
 
 interface State {
