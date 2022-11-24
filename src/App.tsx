@@ -20,22 +20,23 @@ export class App extends Component< {}, State> {
       this.getRandomName();
     }, 3300);
 
-    document.addEventListener('contextmenu', this.hideByContextMenue);
-    document.addEventListener('click', this.showByClick);
+    document.addEventListener('contextmenu', this.handleClockHiding);
+    document.addEventListener('click', this.handleClockShowing);
   }
 
   componentDidUpdate(_: {}, prevState: State) {
     const { clockName, hasClock } = this.state;
 
     if ((clockName !== prevState.clockName) && hasClock) {
-      window.console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
     }
   }
 
   componentWillUnmount() {
     window.clearInterval(this.clockNameTimer);
-    document.removeEventListener('click', this.showByClick);
-    document.removeEventListener('contextmenu', this.hideByContextMenue);
+    document.removeEventListener('click', this.handleClockShowing);
+    document.removeEventListener('contextmenu', this.handleClockHiding);
   }
 
   getRandomName() {
@@ -46,13 +47,13 @@ export class App extends Component< {}, State> {
     });
   }
 
-  showByClick = () => {
+  handleClockShowing = () => {
     this.setState({
       hasClock: true,
     });
   };
 
-  hideByContextMenue = (event: MouseEvent) => {
+  handleClockHiding = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({
       hasClock: false,

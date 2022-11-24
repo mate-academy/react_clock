@@ -20,8 +20,8 @@ export class Clock extends Component< Props, State > {
       this.setState({
         today: new Date(),
       });
-
-      window.console.info(this.state.today.toUTCString().slice(-12, -4));
+      // eslint-disable-next-line no-console
+      console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
@@ -40,9 +40,7 @@ export class Clock extends Component< Props, State > {
         <strong className="Clock__name">
           {name}
         </strong>
-
-        {' time is '}
-
+        time is
         <span className="Clock__time">
           {date}
         </span>
