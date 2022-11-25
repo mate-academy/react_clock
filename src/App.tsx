@@ -22,28 +22,29 @@ export class App extends Component<{}, State> {
   clockId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', () => {
-      this.setState({ hasClock: false });
-    });
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
-
     this.clockId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
+
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleClick);
   }
 
   componentWillUnmount() {
-    document.addEventListener('contextmenu', () => {
-      this.setState({ hasClock: false });
-    });
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
-
     window.clearInterval(this.clockId);
+
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleClick);
   }
+
+  handleClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
   render() {
     const { hasClock, clockName } = this.state;
