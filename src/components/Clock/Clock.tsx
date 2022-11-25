@@ -19,12 +19,12 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(this.state.today);
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
-    if (prevState.today.getSeconds() === this.state.today.getSeconds()) {
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.name !== prevProps.name) {
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
