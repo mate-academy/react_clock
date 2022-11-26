@@ -17,13 +17,11 @@ export class App extends Component<{}, State> {
 
   componentDidMount() {
     document.addEventListener('contextmenu', (ev) => {
-      ev.preventDefault();
-
-      this.setState({ hasClock: false });
+      this.clickRight(ev);
     });
 
     document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
+      this.clickLeft();
     });
 
     this.timerId = window.setInterval(() => {
@@ -32,6 +30,14 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount():void {
+    document.removeEventListener('contextmenu', (ev) => {
+      this.clickRight(ev);
+    });
+
+    document.removeEventListener('click', () => {
+      this.clickLeft();
+    });
+
     window.clearInterval(this.timerId);
   }
 
@@ -39,6 +45,16 @@ export class App extends Component<{}, State> {
     const value = Date.now().toString().slice(-4);
 
     return `Clock-${value}`;
+  };
+
+  clickRight = (ev: MouseEvent) => {
+    ev.preventDefault();
+
+    this.setState({ hasClock: false });
+  };
+
+  clickLeft = () => {
+    this.setState({ hasClock: true });
   };
 
   render() {

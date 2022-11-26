@@ -25,6 +25,7 @@ export class Clock extends Component<Props, State> {
 
     if (oldName !== newName) {
       const str = (`Renamed from ${oldName} to ${newName}`);
+
       // eslint-disable-next-line no-console
       console.debug(str);
     }
