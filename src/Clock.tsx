@@ -8,23 +8,25 @@ type Props = {
   clockName: string,
 };
 
-const formateDate = (date: Date): string => {
-  return date.toUTCString().slice(-12, -4);
+const formatedDate = (): string => {
+  return new Date().toUTCString().slice(-12, -4);
 };
 
 export class Clock extends Component<Props, State> {
   state = {
-    today: formateDate(new Date()),
+    today: formatedDate(),
   };
 
   timerId = 0;
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: formateDate(new Date()) });
+      this.setState({ today: formatedDate() });
+
+      const { today } = this.state;
 
       // eslint-disable-next-line no-console
-      console.info(this.state.today);
+      console.info(today);
     }, 1000);
   }
 
