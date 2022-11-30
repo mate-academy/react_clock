@@ -13,7 +13,7 @@ type State = {
 
 export class Clock extends Component<{}, State> {
   state = {
-    clockName: getRandomName(),
+    clockName: 'Clock-0',
     today: new Date(),
   };
 

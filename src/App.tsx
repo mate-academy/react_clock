@@ -22,6 +22,11 @@ export class App extends Component<{}, State> {
     });
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', () => {});
+    document.removeEventListener('click', () => {});
+  }
+
   render() {
     const { hasClock } = this.state;
 
