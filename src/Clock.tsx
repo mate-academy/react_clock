@@ -1,19 +1,15 @@
 import { Component } from 'react';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
-
 type State = {
-  clockName: string,
   today: Date,
 };
 
-export class Clock extends Component<{}, State> {
+type Props = {
+  currentName: string;
+};
+
+export class Clock extends Component<Props, State> {
   state = {
-    clockName: 'Clock-0',
     today: new Date(),
   };
 
@@ -25,18 +21,14 @@ export class Clock extends Component<{}, State> {
       // eslint-disable-next-line
       console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
-
-    window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
   }
-  // eslint-disable-next-line
-  componentDidUpdate({}, prevState: State) {
-    const { clockName } = this.state;
 
-    if (clockName !== prevState.clockName) {
+  componentDidUpdate(prevProps: Props) {
+    const { currentName } = this.props;
+
+    if (currentName !== prevProps.currentName) {
       // eslint-disable-next-line
-      console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
+      console.debug(`Renamed from ${prevProps.currentName} to ${currentName}`);
     }
   }
 
@@ -45,13 +37,15 @@ export class Clock extends Component<{}, State> {
   }
 
   render() {
-    const { clockName, today } = this.state;
+    const { today } = this.state;
     const currentTime = today.toUTCString().slice(-12, -4);
+
+    const { currentName } = this.props;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {clockName}
+          {currentName}
         </strong>
 
         {' time is '}
