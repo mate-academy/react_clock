@@ -1,1 +1,1 @@
-export { Clock } from './Clock'
+export { Clock } from './Clock';
