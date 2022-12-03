@@ -7,7 +7,7 @@ Create a `Clock` class component that will update the time every second using a 
 > Here is [the working version](https://mate-academy.github.io/react_clock)
 
 - print current time on the page on page load;
-  - use `.toUTCString().slice(-12, -4)` methods do awoid timezone issues;
+- use `.toUTCString().slice(-12, -4)` methods do avoid timezone issues;
 - update the time every second using the `window.setInterval`;
 - start the timer only when the component is added to the page (`componentDidMount`).- every second print the time in the DevTools using `console.info` method (**not** the `console.log`);
 - make the `App` a class component;
@@ -49,4 +49,4 @@ Create a `Clock` class component that will update the time every second using a 
 - Implement a solution following the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
 - Use the [React TypeScript cheatsheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript).
 - Open one more terminal and run tests with `npm test` to ensure your solution is correct.
-- Replace `<your_account>` with your Github username in the [DEMO LINK](https://<your_account>.github.io/react_clock/) and add it to the PR description.
+- Replace `<your_account>` with your Github username in the [DEMO LINK](https://Anastasiia-Smirnova.github.io/react_clock/) and add it to the PR description.
