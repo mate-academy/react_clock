@@ -37,8 +37,6 @@ export default class Clock extends React.Component<Props, {}> {
     );
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault(); // not to show the context menu
-
-      // put your code here
       this.setState({ hasClock: false });
     });
 
@@ -48,7 +46,8 @@ export default class Clock extends React.Component<Props, {}> {
   }
 
   componentDidUpdate = (_prevProps: Props, prevState: Props) => {
-    if (prevState.clockName !== this.state.clockName) {
+    if (prevState.clockName !== this.state.clockName
+      && this.state.hasClock === true) {
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
   };
