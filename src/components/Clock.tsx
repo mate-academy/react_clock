@@ -9,7 +9,6 @@ function getRandomName(): string {
 
 type Props = {
   clockName: string;
-  today: Date;
   hasClock: boolean;
   timerID: number;
 };
@@ -17,14 +16,10 @@ type Props = {
 export default class Clock extends React.Component<Props, {}> {
   state = {
     clockName: this.props.clockName,
-    today: this.props.today,
+    today: new Date(),
     hasClock: this.props.hasClock,
     timerID: this.props.timerID,
   };
-
-  // timerId = window.setInterval(() => {
-  //   this.setState({ clockName: getRandomName() });
-  // }, 3300);
 
   componentDidMount() {
     window.setInterval(() => {
