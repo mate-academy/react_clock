@@ -29,7 +29,7 @@ export class App extends React.Component<{}, State> {
   };
 
   componentDidMount() {
-    window.setInterval(() => {
+    this.state.timerID = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 

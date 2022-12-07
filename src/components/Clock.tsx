@@ -8,34 +8,30 @@ type Props = {
 
 type State = {
   date: Date;
-  myInterval: number;
 };
 
 export default class Clock extends Component<Props, State> {
+  myInterval = 0;
+
   state = {
     date: new Date(),
-    myInterval: 0,
   };
 
   componentDidMount() {
-    this.state.myInterval = window.setInterval(
-      () => this.tick(),
+    this.myInterval = window.setInterval(
+      () => {
+        this.setState({ date: new Date() });
+
+        if (this.props.hasClock === true) {
+          console.info(this.state.date.toUTCString().slice(-12, -4));
+        }
+      },
       1000,
     );
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.myInterval);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date(),
-    });
-
-    if (this.props.hasClock === true) {
-      console.info(this.state.date.toUTCString().slice(-12, -4));
-    }
+    clearInterval(this.myInterval);
   }
 
   render() {
