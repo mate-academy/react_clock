@@ -43,9 +43,10 @@ export class App extends React.Component<{}, State> {
     });
   }
 
-  componentDidUpdate = (_prevProps: Props, prevState: Props) => {
-    if (prevState.clockName !== this.state.clockName
-      && this.state.hasClock === true) {
+  componentDidUpdate = (_: Props, prevState: State) => {
+    const isRenamed = prevState.clockName !== this.state.clockName;
+
+    if (isRenamed && this.state.hasClock === true) {
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
   };
@@ -53,10 +54,6 @@ export class App extends React.Component<{}, State> {
   componentWillUnmount() {
     clearInterval(this.state.timerID);
   }
-
-  leftClick = () => {
-    this.setState({ hasClock: true });
-  };
 
   render() {
     const {
