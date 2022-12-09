@@ -7,10 +7,6 @@ type State = {
   clockName: string,
 };
 
-type Props = {
-  name: string,
-};
-
 export class App extends React.Component <{}, State> {
   state = {
     hasClock: true,
@@ -26,22 +22,20 @@ export class App extends React.Component <{}, State> {
 
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
-
-      this.setState({ hasClock: false });
+      if (this.state.hasClock) {
+        this.setState({ hasClock: false });
+      }
     });
 
     document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
+      if (!this.state.hasClock) {
+        this.setState({ hasClock: true });
+      }
     });
   }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
-    /* eslint-disable no-console */
-    console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-  }
-
   componentWillUnmount() {
-    window.clearTimeout(this.timerName);
+    clearInterval(this.timerName);
   }
 
   getRandomName = () => {
