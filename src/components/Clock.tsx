@@ -36,10 +36,10 @@ export default class Clock extends Component<Props, State> {
 
   render() {
     const { date } = this.state;
-    const { hasClock, clockName } = this.props;
+    const { clockName } = this.props;
 
     return (
-      <div className={`${hasClock === true ? 'Clock' : 'ClockHide'}`}>
+      <div className="Clock">
         <strong className="Clock__name">
           {clockName}
         </strong>

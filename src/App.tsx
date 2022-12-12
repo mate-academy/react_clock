@@ -9,12 +9,6 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-type Props = {
-  clockName: string;
-  hasClock: boolean;
-  timerID: number;
-};
-
 type State = {
   clockName: string;
   timerID: number;
@@ -43,7 +37,7 @@ export class App extends React.Component<{}, State> {
     });
   }
 
-  componentDidUpdate = (_: Props, prevState: State) => {
+  componentDidUpdate = (_: State, prevState: State) => {
     const isRenamed = prevState.clockName !== this.state.clockName;
 
     if (isRenamed && this.state.hasClock === true) {
@@ -64,10 +58,15 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <Clock
-          clockName={clockName}
-          hasClock={hasClock}
-        />
+        {
+          hasClock && (
+            <Clock
+              clockName={clockName}
+              hasClock={hasClock}
+            />
+          )
+        }
+
       </div>
     );
   }
