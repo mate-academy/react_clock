@@ -27,23 +27,23 @@ export class App extends React.Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', this.clickRightHadler);
-    document.addEventListener('click', this.clickLeftHadler);
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    document.removeEventListener('contextmenu', this.clickRightHadler);
-    document.removeEventListener('click', this.clickLeftHadler);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
   }
 
-  clickRightHadler = (event: MouseEvent) => {
+  handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
 
     this.setState({ hasClock: false });
   };
 
-  clickLeftHadler = () => {
+  handleLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
