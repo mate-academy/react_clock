@@ -23,19 +23,21 @@ export class Clock extends Component<Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ today: formatedDate() });
 
-      //   const { today } = this.state;
+      const { today } = this.state;
 
-    //   console.info(today);
+      // eslint-disable-next-line no-console
+      console.info(today);
     }, 1000);
   }
 
-  //   componentDidUpdate(prevProps: Readonly<Props>): void {
-  //     const { clockName } = this.props;
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    const { clockName } = this.props;
 
-  //     // if (clockName !== prevProps.clockName) {
-  //     //   console.debug(`Renamed from ${prevProps.clockName} to ${clockName}`);
-  //     // }
-  //   }
+    if (clockName !== prevProps.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.clockName} to ${clockName}`);
+    }
+  }
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
