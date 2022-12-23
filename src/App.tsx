@@ -8,10 +8,6 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-// export const App: React.FC = () => {
-//   const today = new Date();
-//   let clockName = 'Clock-0';
-
 type State = {
   hasClock: boolean,
   clockName: string,

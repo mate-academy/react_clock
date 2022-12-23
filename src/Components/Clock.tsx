@@ -29,7 +29,7 @@ export class Clock extends Component<Props, State> {
     const { name } = this.props;
     const prevName = previousDateProp.name;
 
-    if (!(name === prevName)) {
+    if (name !== prevName) {
       window.console.debug(`Renamed from ${prevName} to ${name}`);
     }
   }
