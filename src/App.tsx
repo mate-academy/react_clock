@@ -22,23 +22,32 @@ export class App extends React.Component<{}, State> {
   intervalId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', () => {
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.removeClock);
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.addClock);
 
     this.intervalId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
-  componentDidUpdate(_prevProps: unknown, prevState: any) {
-    // eslint-disable-next-line no-console
-    console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+  componentWillUnmount(): void {
+    document.removeEventListener('contextmenu', this.removeClock);
+
+    document.removeEventListener('click', this.addClock);
+
+    clearInterval(this.intervalId);
   }
+
+  addClock = () => {
+    this.setState({ hasClock: true });
+  };
+
+  removeClock = (event: any) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: false });
+  };
 
   render() {
     const { clockName, hasClock } = this.state;
