@@ -43,7 +43,7 @@ export class App extends React.Component<{}, State> {
     this.setState({ hasClock: true });
   };
 
-  removeClock = (event: any) => {
+  removeClock = (event: MouseEvent) => {
     event.preventDefault();
 
     this.setState({ hasClock: false });
