@@ -43,7 +43,7 @@ export class Clock extends Component<Props, State> {
     const { timer } = this.state;
 
     if (timer) {
-      clearInterval(timer);
+      window.clearInterval(timer);
     }
   }
 
