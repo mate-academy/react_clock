@@ -22,9 +22,7 @@ export class App extends React.Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.leftKeyHendler);
     document.addEventListener('contextmenu', this.rightKeyHendler);
 
     this.timerId = window.setInterval(() => {
@@ -33,6 +31,7 @@ export class App extends React.Component<{}, State> {
   }
 
   componentWillUnmount() {
+    document.removeEventListener('click', this.leftKeyHendler);
     document.removeEventListener('contextmenu', this.rightKeyHendler);
     window.clearInterval(this.timerId);
   }
@@ -40,6 +39,10 @@ export class App extends React.Component<{}, State> {
   rightKeyHendler = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
+  };
+
+  leftKeyHendler = () => {
+    this.setState({ hasClock: true });
   };
 
   render() {
