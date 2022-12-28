@@ -1,9 +1,7 @@
 import { Component } from 'react';
 
 function getTime(): string {
-  const date = (new Date()).toUTCString().slice(-12, -4);
-
-  return date;
+  return (new Date()).toUTCString().slice(-12, -4);
 }
 
 type State = {
