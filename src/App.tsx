@@ -18,24 +18,29 @@ export class App extends Component {
 
   componentDidMount() {
     this.timerNameId = window.setInterval(() => {
-      getRandomName();
+      this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', this.changeClockState);
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerNameId);
 
-    document.removeEventListener('contextmenu', this.changeClockState);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
   }
 
-  changeClockState(event: Event) {
+  handleRightClick = (event: Event) => {
     event.preventDefault();
-    const swapValue = () => !this.state.hasClock;
 
-    this.setState({ hasClock: swapValue() });
-  }
+    this.setState({ hasClock: false });
+  };
+
+  handleLeftClick = () => {
+    this.setState({ hasClock: true });
+  };
 
   render() {
     const { clockName, hasClock } = this.state;
