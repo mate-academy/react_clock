@@ -18,7 +18,7 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.timerDateId = window.setInterval(() => {
       this.setState({ today: new Date() });
-    }, 100);
+    }, 1000);
   }
 
   componentWillUnmount() {
