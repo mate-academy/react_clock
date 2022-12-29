@@ -15,6 +15,16 @@ export class Clock extends Component<Props, State> {
 
   timerDateId = 0;
 
+  componentDidMount() {
+    this.timerDateId = window.setInterval(() => {
+      this.setState({ today: new Date() });
+    }, 100);
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.timerDateId);
+  }
+
   render() {
     const { today } = this.state;
     const clockName = this.props.name;
