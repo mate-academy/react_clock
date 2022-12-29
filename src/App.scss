@@ -4,5 +4,17 @@ iframe {
 
 html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 24px;
+  font-size: 46px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  background-image: url("https://png.pngtree.com/background/20210714/original/pngtree-blue-carbon-background-with-sport-style-and-golden-light-picture-image_1200848.jpg");
+  background-size: cover;
+  color: #ffd54f;
 }
