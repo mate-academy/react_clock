@@ -5,20 +5,19 @@ interface Props {
 }
 
 interface State {
-  today: Date,
-  clockName: string,
+  today: Date
 }
 
 export class Clock extends Component<Props, State> {
   state = {
     today: new Date(),
-    clockName: this.props.name,
   };
 
   timerDateId = 0;
 
   render() {
-    const { today, clockName } = this.state;
+    const { today } = this.state;
+    const clockName = this.props.name;
 
     return (
       <div className="Clock">
