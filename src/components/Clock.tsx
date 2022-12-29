@@ -5,23 +5,21 @@ type Props = {
 };
 
 type State = {
-  currentTime: string;
+  currentTime: Date;
 };
 
 export class Clock extends Component<Props, State> {
   intervalId = 0;
 
   state: Readonly<State> = {
-    currentTime: '',
+    currentTime: new Date(),
   };
 
   componentDidMount() {
-    this.setState({ currentTime: this.getCurrentTime() });
-
     this.intervalId = window.setInterval(() => {
-      this.setState({ currentTime: this.getCurrentTime() });
+      this.setState({ currentTime: new Date() });
 
-      window.console.info(this.state.currentTime);
+      window.console.info(this.getCurrentTime(this.state.currentTime));
     }, 1000);
   }
 
@@ -38,7 +36,7 @@ export class Clock extends Component<Props, State> {
     window.clearInterval(this.intervalId);
   }
 
-  getCurrentTime = () => ((new Date()).toUTCString().slice(-12, -4));
+  getCurrentTime = (date: Date) => date.toUTCString().slice(-12, -4);
 
   render() {
     const { name } = this.props;
@@ -53,7 +51,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {currentTime}
+          { this.getCurrentTime(currentTime) }
         </span>
       </div>
     );
