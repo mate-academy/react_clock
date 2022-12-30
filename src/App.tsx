@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import './App.scss';
+
 import { Clock } from './Components/Clock';
 
 type State = {
@@ -50,9 +51,10 @@ export class App extends Component<{}, State> {
 
     return (
       <div className="App">
-        <h1>React clock</h1>
-
-        {hasClock && <Clock name={clockName} />}
+        <div className="App__content">
+          <h1>React clock</h1>
+          {hasClock && <Clock name={clockName} />}
+        </div>
       </div>
     );
   }
