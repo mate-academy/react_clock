@@ -6,3 +6,25 @@ html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
 }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #B0C4DE;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+
+  border: 2px solid #FF9191;
+  box-shadow: 0 0 15px rgb(255, 147, 147);
+  border-radius: 50%;
+  background-color: #FFE4C4;
+}
