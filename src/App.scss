@@ -1,4 +1,4 @@
-@import './reset';
+@import "./reset";
 
 iframe {
   display: none;
@@ -14,25 +14,23 @@ html {
   justify-content: center;
   align-items: center;
 
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkN9Bz4NF_yRrfLV5GdgIkl7lXiIfqNC1pg&usqp=CAU');
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPkN9Bz4NF_yRrfLV5GdgIkl7lXiIfqNC1pg&usqp=CAU");
   height: 100vh;
 
   &__content {
-    display:  flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-width: 350px;
     min-height: 150px;
-    background-color: #f1f2f2;
     padding: 30px;
-    text-align: center;
-    color: #3e352e;
 
+    background-color: #f1f2f2;
     box-shadow: #3e352e 0 0 10px 10px;
-
-
-
     border: 5px solid #3e352e;
     border-radius: 10px;
+
+    text-align: center;
+    color: #3e352e;
   }
 }
