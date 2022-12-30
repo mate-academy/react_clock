@@ -45,7 +45,7 @@ export class Clock extends Component<Props, State> {
   render() {
     const { time } = this.state;
     const clockName = this.props.name;
-    const oddOrEven = +(time.toUTCString().slice(-6, -4)) % 2 === 0;
+    const areSecondsEven = +(time.toUTCString().slice(-6, -4)) % 2 === 0;
 
     return (
       <div className="Clock">
@@ -58,8 +58,8 @@ export class Clock extends Component<Props, State> {
         <span className={cn(
           'Clock__time',
           {
-            'Clock__time--seconds-odd': !oddOrEven,
-            'Clock__time--seconds-even': oddOrEven,
+            'Clock__time--seconds-odd': !areSecondsEven,
+            'Clock__time--seconds-even': areSecondsEven,
           },
         )}
         >
