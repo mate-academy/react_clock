@@ -1,0 +1,9 @@
+.Clock {
+  text-align: center;
+  color: #eee;
+
+  &__name,
+  &__time {
+    color: rgb(209, 163, 254);
+  }
+}

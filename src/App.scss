@@ -6,3 +6,29 @@ html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #222;
+}
+
+.App {
+
+  &__content {
+    margin-top: 50px;
+  }
+
+  &__title {
+    margin: 0;
+
+    font-size: 54px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #eee;
+  }
+
+  &__clock {
+    margin-top: 20px;
+  }
+}
