@@ -5,20 +5,35 @@ interface Props {
 }
 
 interface State {
-  today: Date
+  time: Date
 }
 
 export class Clock extends Component<Props, State> {
   state = {
-    today: new Date(),
+    time: new Date(),
   };
 
   timerDateId = 0;
 
   componentDidMount() {
     this.timerDateId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({ time: new Date() });
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const oldName = prevProps.name;
+    const newName = this.props.name;
+
+    // eslint-disable-next-line no-console
+    console.info(
+      this.state.time.toUTCString().slice(-12, -4),
+    );
+
+    if (oldName !== newName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${oldName} to ${newName}`);
+    }
   }
 
   componentWillUnmount() {
@@ -26,7 +41,7 @@ export class Clock extends Component<Props, State> {
   }
 
   render() {
-    const { today } = this.state;
+    const { time } = this.state;
     const clockName = this.props.name;
 
     return (
@@ -38,7 +53,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {time.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );
