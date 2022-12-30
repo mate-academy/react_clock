@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/Clock.scss';
 
 type Props = {
   name: string;
@@ -41,15 +42,22 @@ export class Clock extends React.Component<Props, State> {
 
     return (
       <div className="Clock">
-        <strong className="Clock__name">
-          {name}
-        </strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today}
+        <span className="Clock__name">
+          <strong>
+            {name}
+          </strong>
         </span>
+        <p className="Clock__description">time is</p>
+        <div className="Clock-container">
+          <div className="Clock__rim" />
+          <div className="Clock__outer" />
+          <div className="Clock__inner" />
+          <div className="Clock__time-container">
+            <span className="Clock__time">
+              {today}
+            </span>
+          </div>
+        </div>
       </div>
     );
   }

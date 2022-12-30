@@ -1,0 +1,144 @@
+.Clock {
+  &__name {
+    align-self: start;
+    color: white;
+    display: block;
+    margin: 100px 0 0;
+    text-align: center;
+    font-size: 30px;
+    text-shadow: 0 0 30px #8dcaed;
+  }
+
+  &__description {
+    align-self: start;
+    color: white;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    text-align: center;
+    font-size: 30px;
+    text-shadow: 0 0 30px #8dcaed;
+  }
+
+  &__rim {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    border: 20px solid #000;
+    border-radius: 50%;
+    box-shadow: 0 0 50px 19px rgba(255,255,255,0.49);
+    animation: shift-rim 8s infinite;
+    z-index: 10;
+  }
+
+  &__outer {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(8,8,71,1)
+      100%
+    );
+    border: 10px solid #1a23f2;
+    border-radius: 50%;
+    box-sizing: border-box;
+    filter: blur(2px);
+    animation: shift 8s infinite;
+
+    &::before {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 104%;
+      height: 104%;
+      border: 1px solid #fff;
+      box-sizing: border-box;
+      border-radius: 50%;
+      opacity: 1;
+      filter: blur(2px);
+    }
+  }
+
+  &__inner {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(
+      to bottom,
+      rgba(8,8,71,1)
+      0%,
+      rgba(0,0,0,1)
+      100%
+    );
+    border: 8px solid #1a23f2;
+    border-radius: 50%;
+    box-sizing: border-box;
+    box-shadow: 0 10px 20px 10px #000;
+    filter: blur(1px);
+    animation: shift-inner 8s infinite;
+
+    &::before {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      border: 8px solid #000;
+      box-sizing: border-box;
+      border-radius: 50%;
+      opacity: 1;
+      filter: blur(5px);
+    }
+
+    &::after {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 105%;
+      height: 105%;
+      border: 1px solid #6aaee9;
+      box-sizing: border-box;
+      border-radius: 50%;
+      opacity: 1;
+      filter: blur(3px);
+    }
+  }
+
+  &__time-container {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 50px;
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    text-shadow: 0 0 30px #8dcaed;
+    animation: shift-clock 8s infinite;
+  }
+}
+
+.Clock-container {
+  position: relative;
+}
+
+@import "./Animation.css";

@@ -52,7 +52,7 @@ export class App extends React.Component<{}, State> {
 
     return (
       <div className="App">
-        <h1>React clock</h1>
+        <h1 style={{ display: 'none' }}>React clock</h1>
 
         {hasClock && <Clock name={clockName} />}
       </div>
