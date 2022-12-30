@@ -45,7 +45,7 @@ export class Clock extends Component<Props, State> {
   render() {
     const { time } = this.state;
     const clockName = this.props.name;
-    const areSecondsEven = +(time.toUTCString().slice(-6, -4)) % 2 === 0;
+    const areSecondsEven = time.getSeconds() % 2 === 0;
 
     return (
       <div className="Clock">
