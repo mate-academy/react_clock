@@ -5,4 +5,14 @@ iframe {
 html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
+  color: rgb(60, 60, 60);
+}
+
+body {
+  background: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+  display: grid;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
