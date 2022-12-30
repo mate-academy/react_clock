@@ -20,16 +20,19 @@ export class App extends Component<{}, State> {
     hasClock: true,
   };
 
+  timer = 0;
+
   componentDidMount() {
     document.addEventListener('contextmenu', this.disableClock);
     document.addEventListener('click', this.enableClock);
 
-    window.setInterval(() => {
+    this.timer = window.setInterval(() => {
       this.setState({ clockName: App.getRandomName() });
     }, 3300);
   }
 
   componentWillUnmount() {
+    window.clearInterval(this.timer);
     document.removeEventListener('click', this.enableClock);
   }
 
