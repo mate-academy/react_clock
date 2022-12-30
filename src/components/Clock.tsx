@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import './Clock.scss';
+import cn from 'classnames';
 
 interface Props {
   name: string
@@ -43,6 +45,7 @@ export class Clock extends Component<Props, State> {
   render() {
     const { time } = this.state;
     const clockName = this.props.name;
+    const oddOrEven = +(time.toUTCString().slice(-6, -4)) % 2 === 0;
 
     return (
       <div className="Clock">
@@ -52,7 +55,14 @@ export class Clock extends Component<Props, State> {
 
         {' time is '}
 
-        <span className="Clock__time">
+        <span className={cn(
+          'Clock__time',
+          {
+            'Clock__time--seconds-odd': !oddOrEven,
+            'Clock__time--seconds-even': oddOrEven,
+          },
+        )}
+        >
           {time.toUTCString().slice(-12, -4)}
         </span>
       </div>

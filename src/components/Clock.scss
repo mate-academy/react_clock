@@ -1,0 +1,12 @@
+.Clock {
+  &__time {
+    &--seconds-even {
+      color: black;
+    }
+
+    &--seconds-odd {
+      color: yellow;
+      font-weight: bold;
+    }
+  }
+}
