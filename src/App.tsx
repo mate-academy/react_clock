@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
+import Paper from '@mui/material/Paper';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -65,17 +66,19 @@ export class App extends Component<{}, State> {
     const { clockName, hasClock } = this.state;
 
     return (
-      <div className="App">
-        <h1>React clock</h1>
+      <Paper
+      elevation="12"
+      >
+        <div className="App">
+          <h1>React clock</h1>
 
-        {hasClock
-        && (
-          <Clock
-            clockName={clockName}
-          />
-        )}
-
-      </div>
-    );
+          {hasClock
+            && (
+              <Clock
+                clockName={clockName} />
+            )}
+        </div>
+      </Paper>
+    )
   }
 }
