@@ -41,26 +41,26 @@ export class App extends React.Component<Props, State> {
     window.clearInterval(this.timerId);
   }
 
-  leftClickHandler() {
+  leftClickHandler = () => {
     this.setState({
       hasClock: true,
     });
-  }
+  };
 
-  rightClickHandler(event: MouseEvent) {
+  rightClickHandler = (event: MouseEvent) => {
     event.preventDefault();
 
     this.setState({
       hasClock: false,
     });
-  }
+  };
 
   render() {
     const { clockName, hasClock } = this.state;
 
     return (
       <div className="App">
-        <h1>That is not a clock..</h1>
+        <h1 className="App__title">That is not a clock..</h1>
 
         {hasClock && (
           <Clock name={clockName} />
