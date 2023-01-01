@@ -6,3 +6,13 @@ html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #000;
+  height: 100vh;
+  width: 100%;
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/repeated-square.png");
+}
