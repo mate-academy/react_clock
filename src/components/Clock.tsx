@@ -6,7 +6,6 @@ interface Props {
 
 interface State {
   currentTime: string
-  timerId: number
 }
 
 const toSlicedUTCDate = (date: Date = new Date()): string => {
@@ -16,20 +15,19 @@ const toSlicedUTCDate = (date: Date = new Date()): string => {
 export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
     currentTime: toSlicedUTCDate(),
-    timerId: 0,
   };
 
-  componentDidMount = () => {
-    this.setState({
-      timerId: window.setInterval(() => {
-        this.setState({
-          currentTime: toSlicedUTCDate(),
-        });
+  timerId = 0;
 
-        // eslint-disable-next-line no-console
-        console.info(toSlicedUTCDate());
-      }, 1000),
-    });
+  componentDidMount = () => {
+    this.timerId = window.setInterval(() => {
+      this.setState({
+        currentTime: toSlicedUTCDate(),
+      });
+
+      // eslint-disable-next-line no-console
+      console.info(toSlicedUTCDate());
+    }, 1000);
   };
 
   componentDidUpdate = (prevProps: Readonly<Props>) => {
@@ -40,7 +38,7 @@ export class Clock extends Component<Props, State> {
   };
 
   componentWillUnmount = () => {
-    window.clearInterval(this.state.timerId);
+    window.clearInterval(this.timerId);
   };
 
   render() {

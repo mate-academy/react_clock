@@ -5,7 +5,6 @@ import './App.scss';
 interface State {
   clockName: string
   hasClock: boolean
-  timerId: number
 }
 
 const getRandomName = (): string => {
@@ -18,24 +17,23 @@ export class App extends Component<{}, State> {
   state: Readonly<State> = {
     clockName: 'Clock-0',
     hasClock: true,
-    timerId: 0,
   };
 
+  timerId = 0;
+
   componentDidMount() {
-    this.setState({
-      timerId: window.setInterval(() => {
-        this.setState({
-          clockName: getRandomName(),
-        });
-      }, 3300),
-    });
+    this.timerId = window.setInterval(() => {
+      this.setState({
+        clockName: getRandomName(),
+      });
+    }, 3300);
 
     document.addEventListener('contextmenu', this.handleContextMenuClick);
     document.addEventListener('click', this.handleClick);
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.state.timerId);
+    window.clearInterval(this.timerId);
 
     document.removeEventListener('click', this.handleClick);
     document.removeEventListener('contextmenu', this.handleContextMenuClick);
