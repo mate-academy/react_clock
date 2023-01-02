@@ -43,11 +43,11 @@ export class Clock extends React.Component<Props, State> {
           {this.props.name}
         </strong>
 
-        {' time is '}
+        {' time is: '}
 
-        <span className="Clock__time">
+        <div className="Clock__time">
           {this.state.currentTime.toUTCString().slice(-12, -4)}
-        </span>
+        </div>
       </div>
     );
   }

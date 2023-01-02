@@ -3,6 +3,26 @@ iframe {
 }
 
 html {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
   font-size: 24px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Clock {
+  text-align: center;
+}
+
+.Clock__time {
+  font-size: 30px;
+  width: 270px;
+  margin: 20px;
+  border: solid 2px #000;
+  box-shadow: 0 0 7px 3px black;
+  padding: 20px;
 }
