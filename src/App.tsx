@@ -1,4 +1,7 @@
 import { Component } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+
+import Paper from '@mui/material/Paper';
 import './App.scss';
 import { Clock } from './Clock';
 
@@ -50,10 +53,23 @@ export class App extends Component<{}, State> {
     const { clockName, hasClock } = this.state;
 
     return (
-      <div className="App">
-        <h1>React clock</h1>
-        {hasClock && <Clock name={clockName} />}
-      </div>
+      <Paper
+        sx={{
+          padding: '20px',
+          width: '30%',
+          height: '120px',
+          margin: '50px auto',
+          textAlign: 'center',
+        }}
+        elevation={16}
+      >
+        <div className="App">
+          <h1>React clock</h1>
+          {hasClock
+            ? <Clock name={clockName} />
+            : <CircularProgress />}
+        </div>
+      </Paper>
     );
   }
 }
