@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 interface Props {
-  clockName: string
+  name: string
 }
 
 interface State {
@@ -14,7 +14,7 @@ const toSlicedUTCDate = (date: Date = new Date()): string => {
 };
 
 export class Clock extends Component<Props, State> {
-  state = {
+  state: Readonly<State> = {
     currentTime: toSlicedUTCDate(),
     timerId: 0,
   };
@@ -33,9 +33,9 @@ export class Clock extends Component<Props, State> {
   };
 
   componentDidUpdate = (prevProps: Readonly<Props>) => {
-    if (prevProps.clockName !== this.props.clockName) {
+    if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   };
 
@@ -44,13 +44,13 @@ export class Clock extends Component<Props, State> {
   };
 
   render() {
-    const { clockName } = this.props;
+    const { name } = this.props;
     const { currentTime } = this.state;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {clockName}
+          {name}
         </strong>
 
         {' time is '}
