@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import './App.scss';
+import { Typography } from '@mui/material';
 
 import { Clock } from './components/Clock';
 
@@ -54,7 +55,15 @@ export class App extends Component<{}, State> {
 
     return (
       <div className="App">
-        <h1>React clock</h1>
+        <Typography
+          sx={{
+            color: 'Purple',
+          }}
+          variant="h1"
+          align="center"
+        >
+          React clock
+        </Typography>
 
         {hasClock && <Clock clockName={clockName} />}
       </div>

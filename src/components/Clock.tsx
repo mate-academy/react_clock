@@ -1,4 +1,5 @@
 import React from 'react';
+import { Typography } from '@mui/material';
 
 type Props = {
   clockName: string;
@@ -39,17 +40,25 @@ export class Clock extends React.Component<Props, State> {
     const { date } = this.state;
 
     return (
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+      <Typography
+        sx={{
+          color: 'Green',
+        }}
+        variant="h4"
+        align="center"
+      >
+        <div className="Clock">
+          <strong className="Clock__name">
+            {clockName}
+          </strong>
 
-        {' time is '}
+          {' time is '}
 
-        <span className="Clock__time">
-          {date.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
+          <span className="Clock__time">
+            {date.toUTCString().slice(-12, -4)}
+          </span>
+        </div>
+      </Typography>
     );
   }
 }
