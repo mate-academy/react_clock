@@ -1,6 +1,15 @@
 import React from 'react';
 import './App.scss';
+
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActions } from '@mui/material';
+import Link from '@mui/material/Link';
+import Container from '@mui/material/Container';
 import { Clock } from './components/Clock';
+import photo from './London.jpg';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -54,13 +63,44 @@ export class App extends React.Component<{}, State> {
     } = this.state;
 
     return (
-      <div className="App">
-        <h1>React clock</h1>
+      <Container fixed>
+        <Card style={{ color: '#004d40' }}>
+          <h1>React clock</h1>
+          <CardMedia
+            component="img"
+            height="300"
+            image={photo}
+            alt="London panorama"
+          />
+          <CardContent>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              color="#f57c00"
+            >
+              London, UK
+            </Typography>
 
-        {hasClock && (
-          <Clock clockName={clockName} />
-        )}
-      </div>
+            {hasClock && (
+              <Clock clockName={clockName} />
+            )}
+
+          </CardContent>
+
+          <CardActions>
+            <Link
+              target="_blank"
+              href="https://en.wikipedia.org/wiki/Greenwich_Mean_Time"
+              underline="none"
+              color="#4db6ac"
+            >
+              Read more about GMT
+            </Link>
+
+          </CardActions>
+        </Card>
+      </Container>
     );
   }
 }
