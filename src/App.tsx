@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActions } from '@mui/material';
+import { CardActionArea } from '@mui/material';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import { Clock } from './components/Clock';
@@ -64,7 +64,7 @@ export class App extends React.Component<{}, State> {
 
     return (
       <Container fixed>
-        <Card style={{ color: '#004d40' }}>
+        <Card style={{ color: '#004d40', padding: '10px' }}>
           <h1>React clock</h1>
           <CardMedia
             component="img"
@@ -76,7 +76,6 @@ export class App extends React.Component<{}, State> {
             <Typography
               gutterBottom
               variant="h5"
-              component="div"
               color="#f57c00"
             >
               London, UK
@@ -88,17 +87,19 @@ export class App extends React.Component<{}, State> {
 
           </CardContent>
 
-          <CardActions>
+          <CardActionArea sx={{ padding: 1 }}>
             <Link
               target="_blank"
+              rel="noopener"
               href="https://en.wikipedia.org/wiki/Greenwich_Mean_Time"
               underline="none"
               color="#4db6ac"
+              fontSize="20px"
             >
               Read more about GMT
             </Link>
 
-          </CardActions>
+          </CardActionArea>
         </Card>
       </Container>
     );
