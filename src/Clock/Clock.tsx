@@ -47,13 +47,13 @@ export class Clock extends Component<Props, State> {
     return (
       <div className="Clock">
         <div className="Clock__name">
-          {clockName}
+          { clockName }
         </div>
         <div className="Clock__label">
           {' time is '}
         </div>
         <div className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          { today.toUTCString().slice(-12, -4) }
         </div>
       </div>
     );
