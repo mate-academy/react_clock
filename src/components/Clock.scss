@@ -1,0 +1,10 @@
+.Clock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  color: rgb(255, 249, 84);
+  font-size: 48px;
+}
