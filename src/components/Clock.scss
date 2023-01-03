@@ -1,5 +1,5 @@
 .Clock {
-  padding: 1em;
+  padding: 1em 0 0.5em 1.5em;
   text-transform: uppercase;
   line-height: 24px;
   letter-spacing: -2px;
@@ -16,6 +16,11 @@
     display: inline-block;
     width: 6em;
     padding-bottom: 15px;
+  }
+  &__time {
+    display: inline-block;
+    width: 18%;
+    overflow: hidden;
   }
   .Seconds {
     width: fit-content;

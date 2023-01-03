@@ -49,7 +49,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -7)}
+          {today.toUTCString().slice(-12, -4)}
         </span>
         <div className="Seconds">
           {today.toUTCString().slice(-6, -4)}
