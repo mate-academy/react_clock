@@ -5,4 +5,13 @@ iframe {
 html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
+  background-color: azure;
+}
+
+.App {
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
