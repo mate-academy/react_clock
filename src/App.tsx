@@ -58,7 +58,6 @@ export class App extends Component<{}, State> {
     return (
       <div className="App">
         <Typography
-          className="App__title"
           variant="h2"
         >
           React clock
