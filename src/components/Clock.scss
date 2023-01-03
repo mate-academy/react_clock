@@ -1,0 +1,40 @@
+.Clock {
+  padding: 1em;
+  text-transform: uppercase;
+  line-height: 24px;
+  letter-spacing: -2px;
+  text-shadow: 0 0 5px cyan;
+  color: cyan;
+  box-shadow: 0 0 20px rgb(128, 0, 128);
+  border: 1px solid fuchsia;
+  &__header {
+    color: fuchsia;
+    font-size: 20px;
+    text-shadow: 0 0 5px rgb(128, 0, 128);
+  }
+  &__name {
+    display: inline-block;
+    width: 6em;
+    padding-bottom: 15px;
+  }
+  .Seconds {
+    width: fit-content;
+    line-height: 34px;
+    animation-name: roll;
+    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+
+  }
+}
+
+@keyframes roll {
+  from {
+    transform: translateX(0) rotate(0);
+  }
+
+  to {
+    transform: translateX(420px) rotate(2turn);
+  }
+}
