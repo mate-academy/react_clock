@@ -6,3 +6,76 @@ html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url(https://images.unsplash.com/photo-1643424975787-f134e78ecbc8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: rgb(0, 74, 212);
+}
+
+h1 {
+  margin: 10px;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 500px;
+  padding: 20px;
+
+  border-radius: 20px;
+
+  animation: bouncing-animation 5s ease infinite;
+  background-color: rgb(179, 255, 0);
+
+  @-webkit-keyframes bouncing-animation {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-75%);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @-o-keyframes bouncing-animation {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-75%);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bouncing-animation {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-75%);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+}

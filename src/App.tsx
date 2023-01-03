@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import { Clock } from './components/Clock/Clock';
 import './App.scss';
+import { Clock } from './components/Clock/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
