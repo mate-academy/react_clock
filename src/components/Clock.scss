@@ -1,0 +1,8 @@
+.Clock {
+  transition: transform 0.5s ease;
+  color: white;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}

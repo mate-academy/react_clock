@@ -11,16 +11,8 @@ body {
   display: flex;
   justify-content: center;
   padding-top: 150px;
-  background-image: url('https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg');
+  background-image: url("https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg");
   background-size: cover;
   text-align: center;
-}
-
-.App {
-  transition: transform 0.5s ease;
-  color:white;
-
-  &:hover {
-    transform:scale(1.2);
-  }
+  color: #fff;
 }
