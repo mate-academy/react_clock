@@ -1,8 +1,37 @@
-iframe {
-  display: none;
+$size: 90px;
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #e0e0e0;
+
+  &__icon {
+    width: $size;
+    height: $size;
+
+    font-size: 86px;
+    text-align: center;
+    color: #e91f63;
+
+    animation: rotation 9s linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  &__title {
+    font-size: 32px;
+    text-transform: uppercase;
+  }
 }
 
-html {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 24px;
+@keyframes rotation {
+  from {
+    rotate: (0deg);
+  }
+
+  to {
+    rotate: (360deg);
+  }
 }
