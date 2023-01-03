@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { Component } from 'react';
+import './Clock.scss';
 
 type Props = {
   clockName: string,
@@ -40,15 +41,12 @@ export class Clock extends Component<Props, State> {
 
     return (
       <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+        <strong className="Clock__name">{clockName}</strong>
 
         {' time is '}
+        <br />
 
-        <span className="Clock__time">
-          {date.toUTCString().slice(-12, -4)}
-        </span>
+        <span className="Clock__time">{date.toUTCString().slice(-12, -4)}</span>
       </div>
     );
   }

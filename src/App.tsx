@@ -1,3 +1,6 @@
+import {
+  Alert, Skeleton, Typography,
+} from '@mui/material';
 import { Component } from 'react';
 import './App.scss';
 
@@ -54,8 +57,31 @@ export class App extends Component<{}, State> {
 
     return (
       <div className="App">
-        <h1>React clock</h1>
-        {hasClock && <Clock clockName={clockName} />}
+        <Typography
+          className="App__title"
+          variant="h2"
+        >
+          React clock
+        </Typography>
+
+        {
+          hasClock
+            ? (
+              <Alert severity="info">
+                <strong>
+                  {hasClock && <Clock clockName={clockName} />}
+                </strong>
+              </Alert>
+            )
+            : (
+              <Skeleton
+                variant="rounded"
+                width={243}
+                height={88}
+              />
+            )
+        }
+
       </div>
     );
   }
