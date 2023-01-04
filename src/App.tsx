@@ -1,5 +1,9 @@
 import { Component } from 'react';
 import './App.scss';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import QueryBuilderTwoToneIcon from '@mui/icons-material/QueryBuilderTwoTone';
 import { Clock } from './clock';
 
 function getRandomName(): string {
@@ -59,10 +63,49 @@ export class App extends Component<{}, State> {
     } = this.state;
 
     return (
-      <div className="App">
-        <h1>React clock</h1>
-        {hasClock && <Clock name={clockName} />}
-      </div>
+      <Box
+        sx={{
+          display: 'block',
+          my: 0,
+          mx: 'auto',
+          width: 350,
+          height: 450,
+        }}
+      >
+        <Paper
+          elevation={3}
+          variant="outlined"
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignContent: 'space-around',
+            textAlign: 'center',
+            p: 2,
+            backgroundColor: 'lightblue',
+          }}
+        >
+          <div className="App">
+            <Typography
+              fontWeight="bold"
+              display="block"
+              fontSize={35}
+            >
+              React clock
+            </Typography>
+
+            <QueryBuilderTwoToneIcon
+              sx={{
+                p: 2,
+                my: 0,
+                mx: 'auto',
+              }}
+            />
+
+            {hasClock && <Clock name={clockName} />}
+          </div>
+        </Paper>
+      </Box>
     );
   }
 }

@@ -44,7 +44,7 @@ export class Clock extends Component<Props, State> {
           {name}
         </strong>
 
-        {' time is '}
+        <div> time is </div>
 
         <span className="Clock__time">
           {time}
