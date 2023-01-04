@@ -14,7 +14,7 @@ type State = {
 };
 
 export class App extends Component<{}, State> {
-  state = {
+  state: Readonly<State> = {
     hasClock: true,
     clockName: 'Clock-0',
   };
