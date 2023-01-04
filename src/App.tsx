@@ -1,4 +1,4 @@
-import { FC, Component } from 'react';
+import { Component } from 'react';
 import './App.scss';
 import { Clock } from './Components/Clock';
 
@@ -13,7 +13,7 @@ type State = {
   isClockVisible: boolean,
 };
 
-export class App2 extends Component<{}, State> {
+export class App extends Component<{}, State> {
   state = {
     clockName: 'Clock-0',
     isClockVisible: true,
@@ -25,7 +25,7 @@ export class App2 extends Component<{}, State> {
 
     window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
-    }, 3300); // + <---- reset to 3300 ms
+    }, 3300);
   }
 
   componentWillUnmount() {
@@ -34,7 +34,7 @@ export class App2 extends Component<{}, State> {
   }
 
   contextMenuHandler = (e: MouseEvent) => {
-    e.preventDefault(); // not to show the context menu
+    e.preventDefault();
     this.setState({ isClockVisible: false });
   };
 
@@ -55,34 +55,3 @@ export class App2 extends Component<{}, State> {
     );
   }
 }
-
-export const App: FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
-
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
-
-  // this code stops the timer
-  window.clearInterval(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
-    </div>
-  );
-};
