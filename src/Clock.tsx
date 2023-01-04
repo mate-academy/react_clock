@@ -26,9 +26,7 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    const {
-      clockName,
-    } = this.props;
+    const { clockName } = this.props;
 
     if (clockName !== prevProps.clockName) {
       console.debug(`Renamed from ${prevProps.clockName} to ${clockName}`);
@@ -36,13 +34,11 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerId);
+    clearInterval(this.timerId);
   }
 
   render() {
-    const {
-      date,
-    } = this.state;
+    const { date } = this.state;
 
     const {
       clockName,
