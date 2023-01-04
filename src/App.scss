@@ -6,3 +6,24 @@ html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
 }
+
+body {
+  background-image: url('./bg3.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  color: #4682B4;
+}
+
+.Clock {
+  color: azure;
+}
+
+.App {
+  position: absolute;
+  top: 50%;
+  left: 50px;
+}
+
