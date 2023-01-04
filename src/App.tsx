@@ -1,9 +1,8 @@
 import { Component } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
-
 import Paper from '@mui/material/Paper';
 import './App.scss';
-import { Clock } from './Clock';
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -35,8 +34,8 @@ export class App extends Component<{}, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    document.addEventListener('contextmenu', this.handleRightClick);
-    document.addEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
   }
 
   handleRightClick = (event: MouseEvent) => {
