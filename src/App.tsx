@@ -1,6 +1,7 @@
 import React from 'react';
-import { Clock } from './components/Clock';
 import './App.scss';
+import 'bulma/css/bulma.css';
+import { Clock } from './components/Clock';
 
 type State = {
   hasClock: boolean;
@@ -51,7 +52,7 @@ export class App extends React.Component<{}, State> {
     const { hasClock, clockName } = this.state;
 
     return (
-      <div className="App">
+      <div className="App box">
         <h1>
           REACT CLOCK
         </h1>
