@@ -1,5 +1,6 @@
 import { FC, Component } from 'react';
 import './App.scss';
+import { Clock } from './Components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -8,19 +9,15 @@ function getRandomName(): string {
 }
 
 type State = {
-  today: Date, // + <---- dont need
   clockName: string,
   isVisible: boolean,
 };
 
 export class App2 extends Component<{}, State> {
   state = {
-    today: new Date(),
     clockName: 'Clock-0',
     isVisible: true,
   };
-
-  timerId = 0;
 
   componentDidMount() {
     document.addEventListener('contextmenu', this.contextMenuHandler);
@@ -42,25 +39,14 @@ export class App2 extends Component<{}, State> {
   };
 
   render() {
-    const { today, clockName, isVisible } = this.state;
+    const { clockName, isVisible } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-        {isVisible && (
-          // + starts <Clock /> component
-          <div className="Clock">
-            <strong className="Clock__name">
-              {clockName}
-            </strong>
-
-            {' time is '}
-
-            <span className="Clock__time">
-              {today.toUTCString().slice(-12, -4)}
-            </span>
-          </div>
-        )}
+        {
+          isVisible && <Clock clockName={clockName} />
+        }
       </div>
     );
   }
