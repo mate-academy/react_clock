@@ -1,0 +1,20 @@
+.Clock {
+  width: 376px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($color: #fff, $alpha: 0.3);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+
+  &__name {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  &__time {
+    font-weight: bold;
+  }
+}
