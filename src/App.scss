@@ -3,6 +3,17 @@ iframe {
 }
 
 html {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 24px;
+  background-image: url(./back.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.App {
+  position: absolute;
+  top: 70%;
+  left: 10%;
+
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
 }
