@@ -37,12 +37,6 @@ export class Clock extends React.Component<Props, State> {
     clearInterval(this.timerId);
   }
 
-  tick() {
-    this.setState({
-      today: new Date(),
-    });
-  }
-
   render() {
     const { today } = this.state;
     const { clockName } = this.props;
