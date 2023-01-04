@@ -15,21 +15,19 @@ export class Clock extends Component<Props, State> {
 
   timerId = 0;
 
-  newProps: any;
-
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
-    }, 1000);
 
-    // eslint-disable-next-line no-console
-    console.debug(this.state.today);
+      // eslint-disable-next-line no-console
+      console.log(new Date().toUTCString().slice(-12, -4));
+    }, 1000);
   }
 
-  componentDidUpdate(prevProps:Props) {
+  componentDidUpdate(prevProps: Props) {
     if (this.props.clockName !== prevProps.clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`${this.props.clockName}, changed to ${prevProps.clockName}`);
+      console.log(`${this.props.clockName}, changed to ${prevProps.clockName}`);
     }
   }
 

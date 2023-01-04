@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import './App.scss';
-import { Clock } from './components/Clock';
 import Paper from '@mui/material/Paper';
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -44,7 +44,7 @@ export class App extends Component<{}, State> {
     document.addEventListener('click', this.handlerClick);
 
     this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
+      this.setState({ clockName: getRandomName() }); // consol
     }, 3300);
   }
 
@@ -67,7 +67,7 @@ export class App extends Component<{}, State> {
 
     return (
       <Paper
-      elevation="12"
+        elevation={12}
       >
         <div className="App">
           <h1>React clock</h1>
@@ -75,10 +75,11 @@ export class App extends Component<{}, State> {
           {hasClock
             && (
               <Clock
-                clockName={clockName} />
+                clockName={clockName}
+              />
             )}
         </div>
       </Paper>
-    )
+    );
   }
 }
