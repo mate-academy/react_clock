@@ -34,9 +34,9 @@ export class App extends Component<{}, State> {
     _prevProps: Readonly<{}>,
     prevState: Readonly<State>,
   ) {
-    const { clockName } = this.state;
+    const { clockName, hasClock } = this.state;
 
-    if (clockName !== prevState.clockName) {
+    if (clockName !== prevState.clockName && hasClock) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
     }
