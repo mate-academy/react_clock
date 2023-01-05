@@ -42,6 +42,7 @@ export class Clock extends Component<Props, State> {
     return (
       <div className="Clock">
         <h1 className="Clock__header">React clock</h1>
+
         <div className="Clock__name">
           {name}
         </div>
@@ -51,6 +52,7 @@ export class Clock extends Component<Props, State> {
         <span className="Clock__time">
           {today.toUTCString().slice(-12, -4)}
         </span>
+
         <div className="Seconds">
           {today.toUTCString().slice(-6, -4)}
         </div>
