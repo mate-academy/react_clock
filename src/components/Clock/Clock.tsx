@@ -5,7 +5,7 @@ type State = {
 };
 
 type Props = {
-  name: string,
+  clockName: string,
 };
 
 export class Clock extends Component<Props, State> {
@@ -13,27 +13,28 @@ export class Clock extends Component<Props, State> {
     today: new Date(),
   };
 
-  timerId = 0;
+  timerIdClock = 0;
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
+    this.timerIdClock = window.setInterval(() => {
       this.setState({ today: new Date() });
 
+      // eslint-disable-next-line no-console
       console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    clearInterval(this.timerIdClock);
   }
 
   render() {
     const { today } = this.state;
-    const { name } = this.props;
+    const { clockName } = this.props;
 
     return (
       <div className="Clock">
-        <strong className="Clock__name">{name}</strong>
+        <strong className="Clock__name">{clockName}</strong>
 
         {' time is '}
 
