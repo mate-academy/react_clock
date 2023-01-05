@@ -8,13 +8,13 @@ interface State {
   currentTime: string
 }
 
-const toSlicedUTCDate = (date: Date = new Date()): string => {
+const convertToSlicedUTCDate = (date: Date = new Date()): string => {
   return date.toUTCString().slice(-12, -4);
 };
 
 export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
-    currentTime: toSlicedUTCDate(),
+    currentTime: convertToSlicedUTCDate(),
   };
 
   timerId = 0;
@@ -22,11 +22,11 @@ export class Clock extends Component<Props, State> {
   componentDidMount = () => {
     this.timerId = window.setInterval(() => {
       this.setState({
-        currentTime: toSlicedUTCDate(),
+        currentTime: convertToSlicedUTCDate(),
       });
 
       // eslint-disable-next-line no-console
-      console.info(toSlicedUTCDate());
+      console.info(convertToSlicedUTCDate());
     }, 1000);
   };
 

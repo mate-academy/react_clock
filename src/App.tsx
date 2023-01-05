@@ -1,5 +1,12 @@
 import { Component } from 'react';
+import {
+  Box,
+} from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 import { Clock } from './components/Clock';
+
 import './App.scss';
 
 interface State {
@@ -12,6 +19,14 @@ const getRandomName = (): string => {
 
   return `Clock-${value}`;
 };
+
+export const themeLight = createTheme({
+  palette: {
+    background: {
+      default: '#e4f0e2',
+    },
+  },
+});
 
 export class App extends Component<{}, State> {
   state: Readonly<State> = {
@@ -53,6 +68,33 @@ export class App extends Component<{}, State> {
     });
   };
 
+  getColorDigits = () => {
+    return this.state.clockName.slice(6);
+  };
+
+  handleColor = () => {
+    const colorDigits = this.getColorDigits();
+    const color = `#ff${colorDigits}`;
+    const primaryColor = +colorDigits < 4000 ? '#ffffff' : '#000000';
+
+    // eslint-disable-next-line no-console
+    console.log('color', color);
+
+    // changes theme according to last 4 clock name digits
+    const theme = createTheme({
+      palette: {
+        background: {
+          default: color,
+        },
+        text: {
+          primary: primaryColor,
+        },
+      },
+    });
+
+    return theme;
+  };
+
   render() {
     const {
       hasClock,
@@ -61,9 +103,24 @@ export class App extends Component<{}, State> {
 
     return (
       <div className="App">
-        <h1>React clock</h1>
+        <ThemeProvider theme={this.handleColor()}>
+          <CssBaseline />
 
-        {hasClock && (<Clock name={clockName} />)}
+          <Box
+            sx={{
+              textAlign: 'center',
+              border: 5,
+              borderColor: +this.getColorDigits() < 4000
+                ? '#ffffff' : '#000000',
+              padding: 20,
+              margin: 20,
+            }}
+          >
+            <h1>React clock</h1>
+
+            {hasClock && (<Clock name={clockName} />)}
+          </Box>
+        </ThemeProvider>
       </div>
     );
   }
