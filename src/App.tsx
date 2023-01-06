@@ -4,12 +4,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Clock } from './components/Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
-
 type State = {
   clockName: string;
   hasClock: boolean;
@@ -21,32 +15,37 @@ export class App extends React.Component<{}, State> {
     hasClock: true,
   };
 
-  counterRandomName = 0;
+  timerId = 0;
 
   componentDidMount(): void {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-
-      this.setState({ hasClock: false });
-    });
-
-    this.counterRandomName = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
+    document.addEventListener('contextmenu', this.clickOrContextHandler);
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: this.getRandomName() });
     }, 3300);
   }
 
   componentDidUpdate(): void {
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.clickOrContextHandler);
   }
 
   componentWillUnmount(): void {
-    document.addEventListener('contextmenu', (event) => {
+    document.removeEventListener('contextmenu', this.clickOrContextHandler);
+  }
+
+  getRandomName = () => {
+    const value = Date.now().toString().slice(-4);
+
+    return `Clock-${value}`;
+  };
+
+  clickOrContextHandler = (event: MouseEvent) => {
+    if (event.type === 'click') {
+      this.setState({ hasClock: true });
+    } else if (event.type === 'contextmenu') {
       event.preventDefault();
       this.setState({ hasClock: false });
-    });
-  }
+    }
+  };
 
   render() {
     const { clockName } = this.state;
@@ -58,13 +57,13 @@ export class App extends React.Component<{}, State> {
           <h1 className="App__title">React clock</h1>
         </div>
 
-        { hasClock && <Clock nameOfClock={clockName} /> }
-        { hasClock === false
-        && (
-          <Box className="Awaiting" sx={{ display: 'flex' }}>
-            <CircularProgress color="inherit" />
-          </Box>
-        ) }
+        { hasClock
+          ? <Clock nameOfClock={clockName} />
+          : (
+            <Box className="Awaiting" sx={{ display: 'flex' }}>
+              <CircularProgress color="inherit" />
+            </Box>
+          )}
       </>
     );
   }
