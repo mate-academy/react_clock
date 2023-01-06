@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import Box from '@mui/material/Box';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import './App.scss';
 import { Clock } from './Clock';
 
@@ -48,12 +50,30 @@ export class App extends Component<{}, State> {
 
   render() {
     return (
-      <div className="App">
-        <h1>React clock</h1>
-        {this.state.hasClock && (
-          <Clock name={this.state.clockName} />
-        )}
-      </div>
+      <Box
+        sx={{
+          width: 300,
+          height: 300,
+          backgroundColor: 'primary.light',
+          border: '5px solid lightblue',
+        }}
+      >
+        <div className="App">
+          <h1 className="App__title">React clock</h1>
+          <div className="App__clock">
+            {this.state.hasClock && (
+              <Clock name={this.state.clockName} />
+            )}
+          </div>
+          <AccessTimeIcon
+            sx={{
+              p: 2,
+              my: 0,
+              mx: 'auto',
+            }}
+          />
+        </div>
+      </Box>
     );
   }
 }
