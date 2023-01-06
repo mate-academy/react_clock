@@ -39,7 +39,7 @@ export class App extends Component<{}, State> {
     this.setState({ hasClock: true });
   };
 
-  handleDocumentContextMenu = (event: React.MouseEvent) => {
+  handleDocumentContextMenu = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
