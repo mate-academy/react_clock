@@ -5,7 +5,6 @@ import './App.scss';
 type State = {
   hasClock: boolean,
   clockName: string,
-
 };
 
 function getRandomName(): string {
