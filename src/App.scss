@@ -1,0 +1,12 @@
+.App {
+  font-size: 34px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-image: radial-gradient(
+    circle, #a44a7d, #984786, #88468e, #744696,
+    #5a489c, #4a57ab, #3465b8, #0073c3, #0090d5,
+    #00acdb, #00c5d8, #12ddd0);
+}
