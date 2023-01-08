@@ -2,7 +2,37 @@ iframe {
   display: none;
 }
 
+body,
+div,
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
 html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
+}
+
+body {
+  background-image: url(https://images.unsplash.com/photo-1508962914676-134849a727f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.App {
+  &__content {
+    padding: 50px 0;
+
+    background: linear-gradient(white, 85%, transparent) no-repeat;
+    text-align: center;
+
+    color: rgb(58, 58, 58);
+
+    &__title {
+      box-sizing: border-box;
+
+      padding-bottom: 5px;
+    }
+  }
 }
