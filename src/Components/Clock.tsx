@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 type Props = {
-  clockName: string;
+  name: string;
 };
 
 type State = {
@@ -27,8 +27,8 @@ export class Clock extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {
-    const { clockName: prevName } = prevProps;
-    const { clockName: currentName } = this.props;
+    const { name: prevName } = prevProps;
+    const { name: currentName } = this.props;
 
     if (prevName !== currentName) {
       // eslint-disable-next-line no-console
@@ -42,7 +42,7 @@ export class Clock extends Component<Props, State> {
 
   render() {
     const { today } = this.state;
-    const { clockName } = this.props;
+    const { name: clockName } = this.props;
 
     return (
       <div className="Clock">

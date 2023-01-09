@@ -20,8 +20,8 @@ export class App extends Component<{}, State> {
   };
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.contextMenuHandler);
-    document.addEventListener('click', this.clickHandler);
+    document.addEventListener('contextmenu', this.handleContextMenu);
+    document.addEventListener('click', this.handleClick);
 
     window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -29,16 +29,16 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', this.contextMenuHandler);
-    document.removeEventListener('click', this.clickHandler);
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleClick);
   }
 
-  contextMenuHandler = (e: MouseEvent) => {
+  handleContextMenu = (e: MouseEvent) => {
     e.preventDefault();
     this.setState({ isClockVisible: false });
   };
 
-  clickHandler = () => {
+  handleClick = () => {
     this.setState({ isClockVisible: true });
   };
 
@@ -48,9 +48,9 @@ export class App extends Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {
-          isClockVisible && <Clock clockName={clockName} />
-        }
+        {isClockVisible && (
+          <Clock name={clockName} />
+        )}
       </div>
     );
   }
