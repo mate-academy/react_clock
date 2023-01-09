@@ -1,6 +1,8 @@
 import { Component } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Paper from '@mui/material/Paper';
 import './App.scss';
-import { Clock } from './Clock';
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -54,11 +56,26 @@ export class App extends Component<{}, State> {
     } = this.state;
 
     return (
-      <div className="App">
-        <h1>React clock</h1>
+      <Paper
+        sx={{
+          padding: '60px',
+          width: '40%',
+          height: '130px',
+          margin: '60px auto',
+          textAlign: 'center',
+          color: 'white',
+          bgcolor: 'black',
+        }}
+        elevation={24}
+      >
+        <div className="App">
+          <h1>React clock</h1>
 
-        {hasClock && <Clock name={clockName} />}
-      </div>
+          {hasClock
+            ? <Clock name={clockName} />
+            : <CircularProgress />}
+        </div>
+      </Paper>
     );
   }
 }
