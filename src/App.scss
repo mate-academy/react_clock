@@ -1,8 +1,94 @@
+@import url("https://fonts.cdnfonts.com/css/lcd");
+
+@mixin flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 iframe {
   display: none;
 }
 
 html {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "LCD", sans-serif;
   font-size: 24px;
+}
+
+body {
+  @include flex;
+
+  height: 100vh;
+  margin: 0;
+
+  background-image: url(https://www.itl.cat/pngfile/big/253-2538296_wallpaper-black-hole-eclipse-stars-singularity-black-hole.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.App {
+  @include flex;
+  flex-direction: column;
+
+  width: 400px;
+  height: 400px;
+  padding: 10px;
+
+  text-align: center;
+  color: #04fefc;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.Clock {
+  &__time {
+    @include flex;
+
+    position: relative;
+    z-index: 1;
+
+    width: max-content;
+    height: 100px;
+    margin: 20px auto 0;
+    padding: 0 10px;
+
+    font-size: 50px;
+    line-height: 200px;
+    font-weight: 600;
+    border-radius: 20px;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+
+      width: 120%;
+      height: 50px;
+
+      background-color: #0006a7;
+      animation: animate 4s linear infinite;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+
+      background: black;
+      inset: 4px;
+      border-radius: 15px;
+    }
+
+    @keyframes animate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
 }
