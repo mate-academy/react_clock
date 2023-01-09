@@ -7,30 +7,27 @@ interface Props {
 }
 
 interface State {
-  time: Date
+  time: string
 }
 
 export class Clock extends Component<Props, State> {
   state = {
-    time: new Date(),
+    time: new Date().toUTCString().slice(-12, -4),
   };
 
   timerDateId = 0;
 
   componentDidMount() {
     this.timerDateId = window.setInterval(() => {
-      this.setState({ time: new Date() });
+      this.setState({ time: new Date().toUTCString().slice(-12, -4) });
+      // eslint-disable-next-line no-console
+      console.info(this.state.time);
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
     const oldName = prevProps.name;
     const newName = this.props.name;
-
-    // eslint-disable-next-line no-console
-    console.info(
-      this.state.time.toUTCString().slice(-12, -4),
-    );
 
     if (oldName !== newName) {
       // eslint-disable-next-line no-console
@@ -45,7 +42,7 @@ export class Clock extends Component<Props, State> {
   render() {
     const { time } = this.state;
     const clockName = this.props.name;
-    const areSecondsEven = time.getSeconds() % 2 === 0;
+    const areSecondsEven = +(time.slice(-2)) % 2 === 0;
 
     return (
       <div className="Clock">
@@ -59,11 +56,10 @@ export class Clock extends Component<Props, State> {
           'Clock__time',
           {
             'Clock__time--seconds-odd': !areSecondsEven,
-            'Clock__time--seconds-even': areSecondsEven,
           },
         )}
         >
-          {time.toUTCString().slice(-12, -4)}
+          {time}
         </span>
       </div>
     );
