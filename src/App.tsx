@@ -27,6 +27,8 @@ export class App extends React.Component<{}, State> {
 
   componentWillUnmount(): void {
     document.removeEventListener('contextmenu', this.clickOrContextHandler);
+    document.removeEventListener('click', this.clickOrContextHandler);
+    window.clearInterval(this.timerId);
   }
 
   getRandomName = () => {
