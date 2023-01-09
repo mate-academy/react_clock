@@ -10,13 +10,13 @@ function getRandomName(): string {
 }
 
 type State = {
-  hasClock: boolean,
+  isClockVisible: boolean,
   clockName: string,
 };
 
 export class App extends Component<{}, State> {
   state: Readonly<State> = {
-    hasClock: true,
+    isClockVisible: true,
     clockName: 'Clock-0',
   };
 
@@ -42,21 +42,21 @@ export class App extends Component<{}, State> {
 
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({ hasClock: false });
+    this.setState({ isClockVisible: false });
   };
 
   handleLeftClick = () => {
-    this.setState({ hasClock: true });
+    this.setState({ isClockVisible: true });
   };
 
   render() {
-    const { hasClock, clockName } = this.state;
+    const { isClockVisible, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && (
+        {isClockVisible && (
           <Clock name={clockName} />)}
       </div>
     );
