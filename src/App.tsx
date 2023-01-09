@@ -10,20 +10,20 @@ function getRandomName(): string {
 }
 
 type State = {
-  hasChild: boolean,
+  isClockVisible: boolean,
   clockName: string
 };
 
 export class App extends Component<{}, State> {
   state = {
-    hasChild: true,
+    isClockVisible: true,
     clockName: 'Clock-0',
   };
 
-  nameTimerId = 0;
+  timerId  = 0;
 
   componentDidMount() {
-    this.nameTimerId = window.setInterval(() => {
+    this.timerId  = window.setInterval(() => {
       this.setState({
         clockName: getRandomName(),
       });
@@ -34,30 +34,30 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.nameTimerId);
+    window.clearInterval(this.timerId );
     document.removeEventListener('contextmenu', this.handleLeftClick);
     document.removeEventListener('click', this.handleLeftClick);
   }
 
   handleLeftClick = () => {
-    this.setState({ hasChild: true });
+    this.setState({ isClockVisible: true });
   };
 
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({ hasChild: false });
+    this.setState({ isClockVisible: false });
   };
 
   render() {
     const {
-      hasChild,
+      isClockVisible,
       clockName,
     } = this.state;
 
     return (
       <div className="App">
         <h1>Time in Greenwich, London, UK</h1>
-        {hasChild && <Clock clockName={clockName} />}
+        {isClockVisible && <Clock clockName={clockName} />}
       </div>
     );
   }
