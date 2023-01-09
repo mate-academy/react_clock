@@ -1,0 +1,8 @@
+.Clock {
+  &__time {
+    &--seconds-odd {
+      color: yellow;
+      font-weight: bold;
+    }
+  }
+}
