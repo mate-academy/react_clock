@@ -9,8 +9,8 @@ type State = {
 };
 
 export class Clock extends Component<Props, State> {
-  state = {
-    time: (new Date()).toLocaleTimeString().slice(0, 8),
+  state: Readonly<State> = {
+    time: (new Date()).toUTCString().slice(-12, -4),
   };
 
   timerId = 0;
