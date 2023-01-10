@@ -10,7 +10,7 @@ const darkTheme = createTheme({
   },
 });
 
-function App1() {
+function DarkTheme() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
@@ -72,7 +72,7 @@ export class App extends Component<{}, State> {
     return (
 
       <div className="App">
-        <App1 />
+        <DarkTheme />
         <h1>React clock</h1>
         {hasClock && <Clock name={clockName} />}
       </div>
