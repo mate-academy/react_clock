@@ -1,6 +1,23 @@
 import { Component } from 'react';
 import './App.scss';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import { Clock } from './Clock';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+function App1() {
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <main>This app is using the dark mode</main>
+    </ThemeProvider>
+  );
+}
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -53,7 +70,9 @@ export class App extends Component<{}, State> {
     } = this.state;
 
     return (
+
       <div className="App">
+        <App1 />
         <h1>React clock</h1>
         {hasClock && <Clock name={clockName} />}
       </div>

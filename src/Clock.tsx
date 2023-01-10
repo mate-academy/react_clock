@@ -9,29 +9,22 @@ type State = {
 };
 
 export class Clock extends Component<Props, State> {
-  state: Readonly<State> = {
-    time: (new Date()).toUTCString().slice(-12, -4),
+  state = {
+    time: (new Date()).toLocaleTimeString().slice(0, 8),
   };
 
-  timerIdChangeTime = 0;
+  timerId = 0;
 
   componentDidMount() {
-    this.timerIdChangeTime = window.setInterval(() => {
-      this.setState({ time: (new Date()).toUTCString().slice(-12, -4) });
+    this.timerId = window.setInterval(() => {
+      this.setState({ time: (new Date().toLocaleTimeString().slice(0, 8)) });
       // eslint-disable-next-line no-console
       console.info(this.state.time);
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>) {
-    if (prevProps.name !== this.props.name) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
-    }
-  }
-
-  componentWillUnmount() {
-    window.clearInterval(this.timerIdChangeTime);
+  componentWillUpmount() {
+    window.clearInterval(this.timerId);
   }
 
   render() {
