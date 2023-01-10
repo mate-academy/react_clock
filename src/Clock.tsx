@@ -13,18 +13,25 @@ export class Clock extends Component<Props, State> {
     time: (new Date()).toUTCString().slice(-12, -4),
   };
 
-  timerId = 0;
+  timerIdChangeTime = 0;
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
-      this.setState({ time: (new Date().toLocaleTimeString().slice(0, 8)) });
+    this.timerIdChangeTime = window.setInterval(() => {
+      this.setState({ time: (new Date()).toUTCString().slice(-12, -4) });
       // eslint-disable-next-line no-console
       console.info(this.state.time);
     }, 1000);
   }
 
-  componentWillUpmount() {
-    window.clearInterval(this.timerId);
+  componentDidUpdate(prevProps: Readonly<Props>) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.timerIdChangeTime);
   }
 
   render() {
