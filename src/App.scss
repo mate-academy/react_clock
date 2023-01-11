@@ -5,4 +5,20 @@ iframe {
 html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
+  color: cadetblue;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: aquamarine;
+}
+
+.Clock {
+  padding: 20px;
+  background-color: aqua;
+  width: max-content;
+  border: 1rem solid;
 }
