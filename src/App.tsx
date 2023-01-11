@@ -25,10 +25,9 @@ export class App extends React.Component<State, Props> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.handleRightClick)
+    document.addEventListener('contextmenu', this.handleRightClick);
 
-    document.addEventListener('click', this.handleLeftClick)
-
+    document.addEventListener('click', this.handleLeftClick);
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
