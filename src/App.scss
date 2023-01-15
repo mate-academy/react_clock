@@ -5,4 +5,31 @@ iframe {
 html {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 24px;
+  background-image: url(https://images.wallpaperscraft.com/image/single/alarm_clock_clock_time_218574_3840x2160.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+
+.body {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+
+  &__title {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.Awaiting {
+  display: flex;
+  justify-content: center;
 }
