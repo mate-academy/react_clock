@@ -9,23 +9,6 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-// export const App: React.FC = () => {
-//   const today = new Date();
-//   let clockName = 'Clock-0';
-
-//   // This code starts a timer // comDid Mount
-//   const timerId = window.setInterval(() => {
-//     clockName = getRandomName();
-//   }, 3300);
-
-//   // this code stops the timer //comWillUnm + clic
-//   window.clearInterval(timerId);
-
-//   return (
-
-//   );
-// };
-
 interface State {
   hasClock: boolean;
   clockName: string;
@@ -40,7 +23,7 @@ export class App extends Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.handlerContextMenu);
+    document.addEventListener('contextmenu', this.handleContextMenu);
     document.addEventListener('click', this.handlerClick);
 
     this.timerId = window.setInterval(() => {
@@ -49,7 +32,7 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', this.handlerContextMenu);
+    document.removeEventListener('contextmenu', this.handleContextMenu);
     document.removeEventListener('click', this.handlerClick);
   }
 
@@ -57,7 +40,7 @@ export class App extends Component<{}, State> {
     this.setState({ hasClock: true })
   );
 
-  handlerContextMenu = (event: MouseEvent) => {
+  handleContextMenu = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
@@ -72,12 +55,7 @@ export class App extends Component<{}, State> {
         <div className="App">
           <h1>React clock</h1>
 
-          {hasClock
-            && (
-              <Clock
-                clockName={clockName}
-              />
-            )}
+          {hasClock && (<Clock clockName={clockName} />)}
         </div>
       </Paper>
     );
