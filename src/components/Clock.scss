@@ -1,0 +1,46 @@
+.Clock {
+  position: relative;
+  background-image: url("../images/s-l500.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  width: 500px;
+  height: 500px;
+
+  border: 2px solid #232122;
+
+  &__name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(30%, 50%);
+    width: 60%;
+    margin: 0;
+    padding: 4px;
+    text-align: center;
+    background: #ffb2de;
+    border-radius: 10px;
+    border: 2px solid #232122;
+  }
+
+  &__time {
+    position: absolute;
+    right: 43.5%;
+    top: 49%;
+    width: 90px;
+
+    background: black;
+
+    color: #6b8c95;
+    font-size: 24px;
+    line-height: 100%;
+    font-family: "Digital-7", sans-serif;
+    text-align: center;
+    letter-spacing: -0.5px;
+
+    border-radius: 4px;
+
+    transform: skew(7deg, -3deg);
+  }
+}

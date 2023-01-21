@@ -1,6 +1,8 @@
 import { Component } from 'react';
 
-const formatTime = (time: Date): string => time.toUTCString().slice(-12, -4);
+import './Clock.scss';
+
+const formatTime = (time: Date): string => time.toTimeString().slice(0, 8);
 
 type State = {
   time: Date,
@@ -46,12 +48,9 @@ export class Clock extends Component<Props, State> {
 
     return (
       <div className="Clock">
-        <strong className="Clock__name">
+        <h3 className="Clock__name">
           {this.props.name}
-        </strong>
-
-        {' time is '}
-
+        </h3>
         <span className="Clock__time">
           {formatTime(time)}
         </span>
