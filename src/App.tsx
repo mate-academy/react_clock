@@ -3,7 +3,6 @@ import { Component } from 'react';
 import './App.scss';
 
 import { Clock } from './components/Clock';
-import { Greeting } from './components/Greeting';
 
 const names = [
   'Cute Little Ben',
@@ -13,8 +12,16 @@ const names = [
   'Peppa de Tudor',
 ];
 
-function getRandomName(): string {
-  return names[Math.floor(Math.random() * names.length)];
+function getNewRandomName(currentName: string): string {
+  const getRandomName = () => names[Math.floor(Math.random() * names.length)];
+
+  let newName = getRandomName();
+
+  while (newName === currentName) {
+    newName = getRandomName();
+  }
+
+  return newName;
 }
 
 type State = {
@@ -24,15 +31,17 @@ type State = {
 
 export class App extends Component<{}, Readonly<State>> {
   state: Readonly<State> = {
-    hasClock: false,
-    clockName: getRandomName(),
+    hasClock: true,
+    clockName: 'Peppa Watch',
   };
 
   timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
+      this.setState(state => ({
+        clockName: getNewRandomName(state.clockName),
+      }));
     }, 3300);
 
     document.addEventListener('contextmenu', this.hideClock);
@@ -58,10 +67,8 @@ export class App extends Component<{}, Readonly<State>> {
     return (
       <div className="App">
         {hasClock
-          ? (
+          && (
             <Clock name={clockName} />
-          ) : (
-            <Greeting />
           )}
       </div>
     );

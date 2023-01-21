@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 import './Clock.scss';
 
-const formatTime = (time: Date): string => time.toTimeString().slice(0, 8);
+const formatTime = (time: Date): string => time.toUTCString().slice(-12, -4);
 
 type State = {
   time: Date,

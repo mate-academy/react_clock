@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Digital-7";
+  src: url("./fonts/digital-7 (mono).ttf");
+  font-weight: normal;
+}
+
 iframe {
   display: none;
 }
@@ -12,10 +18,4 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-@font-face {
-  font-family: "Digital-7";
-  src: url("./fonts/digital-7 (mono).ttf");
-  font-weight: normal;
 }
