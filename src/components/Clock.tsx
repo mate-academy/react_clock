@@ -37,7 +37,7 @@ export class Clock extends Component<Props, State> {
   }
 
   fixDateFormat = (date: Date) => {
-    return date.toString().slice(-50, -42);
+    return date.toUTCString().slice(-12, -4);
   };
 
   render() {
