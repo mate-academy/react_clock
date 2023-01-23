@@ -3,8 +3,13 @@ import React from 'react';
 type Props = {
   name: string,
 };
-export class Clock extends React.Component<Props> {
-  state = {
+
+type State = {
+  today: Date,
+};
+
+export class Clock extends React.Component<Props, State> {
+  state: State = {
     today: new Date(),
   };
 
@@ -16,8 +21,7 @@ export class Clock extends React.Component<Props> {
         today: new Date(),
       });
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString()
-        .slice(-12, -4));
+      console.info(this.normalizeData(this.state.today));
     }, 1000);
   }
 
@@ -32,6 +36,10 @@ export class Clock extends React.Component<Props> {
     window.clearInterval(this.timerId);
   }
 
+  normalizeData = (date: Date) => {
+    return date.toUTCString().slice(-12, -4);
+  };
+
   render() {
     const { name } = this.props;
 
@@ -44,8 +52,7 @@ export class Clock extends React.Component<Props> {
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.today.toUTCString()
-            .slice(-12, -4)}
+          {this.normalizeData(this.state.today)}
         </span>
       </div>
     );
