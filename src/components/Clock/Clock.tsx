@@ -17,7 +17,7 @@ export class Clock extends Component<Props, {}> {
 
       this.setState({ date });
       // eslint-disable-next-line no-console
-      console.info(date.toUTCString().slice(-12, -4));
+      console.info(this.timeStyle(date));
     }, 1000);
   }
 
@@ -33,6 +33,8 @@ export class Clock extends Component<Props, {}> {
   componentWillUnmount() {
     window.clearInterval(this.timerIdEverySecond);
   }
+
+  timeStyle = (time:Date) => time.toUTCString().slice(-12, -4);
 
   render() {
     const {
@@ -50,7 +52,7 @@ export class Clock extends Component<Props, {}> {
         </strong>
         {' time is '}
         <span className="Clock__time">
-          {date.toUTCString().slice(-12, -4)}
+          {this.timeStyle(date)}
         </span>
       </>
     );
