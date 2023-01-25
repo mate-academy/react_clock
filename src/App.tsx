@@ -24,14 +24,9 @@ export class App extends Component<{}, State> {
   }, 3300);
 
   componentDidMount() {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.handleDocumentRightClick);
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.handleDocumentLeftClick);
   }
 
   componentDidUpdate(_prevProps: never, prevState: State) {
@@ -43,6 +38,20 @@ export class App extends Component<{}, State> {
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
   }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleDocumentLeftClick);
+    document.removeEventListener('contextmenu', this.handleDocumentRightClick);
+  }
+
+  handleDocumentRightClick = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handleDocumentLeftClick = () => {
+    this.setState({ hasClock: true });
+  };
 
   render() {
     const { hasClock, clockName } = this.state;
