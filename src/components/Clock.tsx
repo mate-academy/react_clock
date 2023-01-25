@@ -47,11 +47,11 @@ export class Clock extends Component<Props, State> {
     const { time } = this.state;
 
     return (
-      <div className="Clock">
-        <h3 className="Clock__name">
+      <div className="clock">
+        <h3 className="clock__name">
           {this.props.name}
         </h3>
-        <span className="Clock__time">
+        <span className="clock__time">
           {formatTime(time)}
         </span>
       </div>

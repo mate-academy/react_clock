@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Digital-7";
-  src: url("./fonts/digital-7 (mono).ttf");
+  src: url("fonts/digital-7.ttf");
   font-weight: normal;
 }
 
@@ -8,12 +8,7 @@ iframe {
   display: none;
 }
 
-html {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 24px;
-}
-
-.App {
+.app {
   height: 100vh;
   display: flex;
   justify-content: center;

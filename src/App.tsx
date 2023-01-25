@@ -65,7 +65,7 @@ export class App extends Component<{}, Readonly<State>> {
     const { clockName, hasClock } = this.state;
 
     return (
-      <div className="App">
+      <div className="app">
         {hasClock
           && (
             <Clock name={clockName} />
