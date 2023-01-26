@@ -47,7 +47,7 @@ export class App extends Component<{}, State> {
     clearInterval(this.timerId);
   }
 
-  handleDocumentRightClick = (event: { preventDefault: () => void; }) => {
+  handleDocumentRightClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
