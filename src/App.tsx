@@ -29,8 +29,8 @@ type State = {
   clockName: string,
 };
 
-export class App extends Component<{}, Readonly<State>> {
-  state: Readonly<State> = {
+export class App extends Component<{}, State> {
+  state: State = {
     hasClock: true,
     clockName: 'Peppa Watch',
   };
