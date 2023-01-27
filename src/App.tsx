@@ -9,13 +9,13 @@ function getRandomName(): string {
 }
 
 type State = {
-  clockVisibility: boolean,
+  isClockVisible: boolean,
   clockName: string,
 };
 
 export class App extends React.Component<{}, State> {
   state: Readonly<State> = {
-    clockVisibility: true,
+    isClockVisible: true,
     clockName: 'Clock-0',
   };
 
@@ -39,11 +39,11 @@ export class App extends React.Component<{}, State> {
 
   handleContextMenu = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({ clockVisibility: false });
+    this.setState({ isClockVisible: false });
   };
 
   handleClick = () => {
-    this.setState({ clockVisibility: true });
+    this.setState({ isClockVisible: true });
   };
 
   currentTime = (date: Date) => date.toUTCString().slice(-12, -4);
@@ -52,7 +52,7 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.clockVisibility && <Clock name={this.state.clockName} />}
+        {this.state.isClockVisible && <Clock name={this.state.clockName} />}
       </div>
     );
   }
