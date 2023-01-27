@@ -9,7 +9,7 @@ type Props = {
 };
 
 export class Clock extends Component<Props, State> {
-  state: Readonly<State> = {
+  state: State = {
     today: new Date(),
   };
 
