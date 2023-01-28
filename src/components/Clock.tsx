@@ -1,5 +1,4 @@
 import { Component } from 'react';
-
 /* eslint-disable no-console */
 
 type State = {
@@ -49,15 +48,15 @@ export class Clock extends Component<Props, State> {
 
     return (
       <div className="Clock">
-        <strong className="Clock__name">
-          {name}
-        </strong>
+        <div className="Clock__name">
+          <strong>{name}</strong>
+        </div>
 
         {' time is '}
 
-        <span className="Clock__time">
+        <div className="Clock__time">
           {today.toUTCString().slice(-12, -4)}
-        </span>
+        </div>
       </div>
     );
   }

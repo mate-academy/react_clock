@@ -2,7 +2,30 @@ iframe {
   display: none;
 }
 
-html {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+body {
+  --bg-main: linear-gradient(90deg, rgba(223,233,243,1) 0%, rgba(255,255,255,1) 100%);
+
+  font-family: 'Roboto', sans-serif;
   font-size: 24px;
+  letter-spacing: 3px;
+  color: #94b0da;
+  background: var(--bg-main);
+}
+
+.App {
+  position: absolute;
+  padding: 15px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  background: var(--bg-main);
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  transition: all 0.7s;
+  border: 2px solid;
+
+  &:hover{
+    letter-spacing: 10px;
+  }
 }
