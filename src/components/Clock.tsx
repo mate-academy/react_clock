@@ -50,8 +50,10 @@ export class Clock extends Component<Props, State> {
           {clockName}
         </strong>
 
+        {' time is '}
+
         <span className="Clock__time">
-        { ` time is ${today}` }
+          {today}
         </span>
       </div>
     );
