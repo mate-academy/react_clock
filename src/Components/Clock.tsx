@@ -17,9 +17,6 @@ export class Clock extends Component<Props, State> {
 
   componentDidMount() {
     this.intervalId = setInterval(this.updateTime, 1000);
-
-    // eslint-disable-next-line no-console
-    console.info(this.state.time);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {
@@ -37,6 +34,9 @@ export class Clock extends Component<Props, State> {
     this.setState({
       time: new Date(),
     });
+
+    // eslint-disable-next-line no-console
+    console.info(this.state.time);
   };
 
   render() {
