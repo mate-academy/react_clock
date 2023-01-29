@@ -36,7 +36,7 @@ export class Clock extends Component<Props, State> {
     });
 
     // eslint-disable-next-line no-console
-    console.info(this.state.time);
+    console.info(this.state.time.toUTCString().slice(-12, -4));
   };
 
   render() {
