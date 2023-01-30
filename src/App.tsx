@@ -42,8 +42,7 @@ export class App extends Component<{}, State> {
     this.setState({ hasClock: false });
   };
 
-  handleLeftClick = (event: MouseEvent) => {
-    event.preventDefault();
+  handleLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
