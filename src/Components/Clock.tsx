@@ -16,7 +16,7 @@ export class Clock extends Component<Props, State> {
   intervalId = setInterval(() => {});
 
   componentDidMount() {
-    this.intervalId = setInterval(this.updateTime, 1000);
+    this.intervalId = setInterval(this.handleUpdateTime, 1000);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>) {
@@ -30,26 +30,33 @@ export class Clock extends Component<Props, State> {
     clearInterval(this.intervalId);
   }
 
-  updateTime = () => {
+  getFormattedDate = (date: Date) => {
+    date.toUTCString().slice(-12, -4);
+  };
+
+  handleUpdateTime = () => {
     this.setState({
       time: new Date(),
     });
 
     // eslint-disable-next-line no-console
-    console.info(this.state.time.toUTCString().slice(-12, -4));
+    console.info(this.getFormattedDate(this.state.time));
   };
 
   render() {
+    const { time } = this.state;
+    const { name } = this.props;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.name}
+          {name}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.time.toUTCString().slice(-12, -4)}
+          {this.getFormattedDate(time)}
         </span>
       </div>
     );
