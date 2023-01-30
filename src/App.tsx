@@ -4,7 +4,7 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 type State = {
-  clockName:string,
+  clockName: string,
   hasClock: boolean,
 };
 

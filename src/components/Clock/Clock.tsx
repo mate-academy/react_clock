@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 type Props = {
-  name:string,
+  name: string,
 };
 
 export class Clock extends Component<Props, {}> {
@@ -17,7 +17,7 @@ export class Clock extends Component<Props, {}> {
 
       this.setState({ date });
       // eslint-disable-next-line no-console
-      console.info(this.timeStyle(date));
+      console.info(this.fixTimeStyle(date));
     }, 1000);
   }
 
@@ -34,16 +34,11 @@ export class Clock extends Component<Props, {}> {
     window.clearInterval(this.timerIdEverySecond);
   }
 
-  timeStyle = (time:Date) => time.toUTCString().slice(-12, -4);
+  fixTimeStyle = (time:Date) => time.toUTCString().slice(-12, -4);
 
   render() {
-    const {
-      date,
-    } = this.state;
-
-    const {
-      name,
-    } = this.props;
+    const { date } = this.state;
+    const { name } = this.props;
 
     return (
       <>
@@ -52,7 +47,7 @@ export class Clock extends Component<Props, {}> {
         </strong>
         {' time is '}
         <span className="Clock__time">
-          {this.timeStyle(date)}
+          {this.fixTimeStyle(date)}
         </span>
       </>
     );
