@@ -37,16 +37,19 @@ export class Clock extends Component<ClockProps, ClockState> {
   }
 
   render() {
+    const { today } = this.state;
+    const { name } = this.props;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.name}
+          {name}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.today.toUTCString().slice(-12, -4)}
+          {today.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );
