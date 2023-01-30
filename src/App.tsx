@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
@@ -14,7 +14,7 @@ type State = {
   timerId: number,
 };
 
-export class App extends Component<{}, State> {
+export class App extends React.Component<{}, State> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',

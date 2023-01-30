@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React from 'react';
 
 type Props = {
   name: string,
@@ -9,7 +9,11 @@ type State = {
   timerId: number,
 };
 
-export class Clock extends Component<Props, State> {
+function getTime(fullDate: Date): string {
+  return fullDate.toUTCString().slice(-12, -4);
+}
+
+export class Clock extends React.Component<Props, State> {
   state = {
     time: new Date(),
     timerId: 0,
@@ -20,7 +24,7 @@ export class Clock extends Component<Props, State> {
       this.setState({ time: new Date() });
 
       // eslint-disable-next-line no-console
-      console.info(this.state.time.toUTCString().slice(-12, -4));
+      console.info(getTime(this.state.time));
     }, 1000);
 
     this.setState({
@@ -42,16 +46,20 @@ export class Clock extends Component<Props, State> {
   }
 
   render() {
+    const { time } = this.state;
+
+    const { name } = this.props;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.name}
+          {name}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.time.toUTCString().slice(-12, -4)}
+          {getTime(time)}
         </span>
       </div>
     );
