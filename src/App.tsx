@@ -1,4 +1,5 @@
-import React from 'react';
+import { Component } from 'react';
+import { Clock } from './components/Clock';
 import './App.scss';
 
 function getRandomName(): string {
@@ -7,33 +8,59 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
-
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
-
-  // this code stops the timer
-  window.clearInterval(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
-    </div>
-  );
+type State = {
+  isClockVisible: boolean;
+  clockName: string;
 };
+
+export class App extends Component<{}, Readonly<State>> {
+  state: Readonly<State> = {
+    isClockVisible: true,
+    clockName: 'Clock-0',
+  };
+
+  timerId = 0;
+
+  componentDidMount() {
+    this.timerId = window.setInterval(() => {
+      this.setState({
+        clockName: getRandomName(),
+      });
+    }, 3300);
+    document.addEventListener('contextmenu', this.handleHideClock);
+    document.addEventListener('click', this.handleShowClock);
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.handleHideClock);
+    document.removeEventListener('click', this.handleShowClock);
+  }
+
+  handleHideClock = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({
+      isClockVisible: false,
+    });
+  };
+
+  handleShowClock = () => {
+    this.setState({
+      isClockVisible: true,
+    });
+  };
+
+  render() {
+    const { clockName, isClockVisible } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {isClockVisible && (
+          <Clock name={clockName} />
+        )}
+      </div>
+    );
+  }
+}
