@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import './App.scss';
+import './styles/imports.scss';
 import { Clock } from './components/Clock';
 
 function getRandomName(): string {
@@ -10,19 +10,17 @@ function getRandomName(): string {
 }
 
 type State = {
-  hasClock: boolean;
+  hasClock: boolean,
   clockName: string,
+  timerId: number,
 };
 
 export class App extends Component<{}, State> {
-  state: Readonly<State> = {
+  state = {
     clockName: 'Clock-0',
     hasClock: true,
+    timerId: 0,
   };
-
-  timerId = window.setInterval(() => {
-    this.setState({ clockName: getRandomName() });
-  }, 3300);
 
   componentDidMount() {
     document.addEventListener('contextmenu', (ev) => {
@@ -33,10 +31,14 @@ export class App extends Component<{}, State> {
     document.addEventListener('click', () => {
       this.appearClock();
     });
+
+    this.state.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
   }
 
   componentWillUnmpunt() {
-    clearInterval(this.timerId);
+    window.clearInterval(this.state.timerId);
   }
 
   hideClock() {
@@ -51,9 +53,11 @@ export class App extends Component<{}, State> {
     const { hasClock, clockName } = this.state;
 
     return (
-      <div className="App">
-        <h1>React clock</h1>
-        {hasClock && <Clock name={clockName} />}
+      <div className="wrapper">
+        <div className="App">
+          <h1>React clock</h1>
+          {hasClock && <Clock name={clockName} />}
+        </div>
       </div>
     );
   }
