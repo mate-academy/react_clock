@@ -30,8 +30,8 @@ export class Clock extends Component<Props, State> {
     clearInterval(this.intervalId);
   }
 
-  getFormattedDate = (date: Date) => {
-    date.toUTCString().slice(-12, -4);
+  getFormattedDate = (date: Date): string => {
+    return date.toUTCString().slice(-12, -4);
   };
 
   handleUpdateTime = () => {
