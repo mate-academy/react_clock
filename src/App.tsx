@@ -3,7 +3,7 @@ import './App.scss';
 import { Clock } from './Clock';
 
 type State = {
-  hasClock: boolean,
+  isClockVisible: boolean,
   clockName: string,
 };
 
@@ -15,7 +15,7 @@ function getRandomName(): string {
 
 export class App extends Component<{}, State> {
   state: Readonly<State> = {
-    hasClock: true,
+    isClockVisible: true,
     clockName: 'Clock-0',
   };
 
@@ -26,34 +26,36 @@ export class App extends Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', this.disappear);
-    document.addEventListener('click', this.appear);
+    document.addEventListener('contextmenu', this.disappearClock);
+    document.addEventListener('click', this.appearClock);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
 
-    document.removeEventListener('contextmenu', this.disappear);
-    document.removeEventListener('click', this.appear);
+    document.removeEventListener('contextmenu', this.disappearClock);
+    document.removeEventListener('click', this.appearClock);
   }
 
-  disappear = (event: MouseEvent) => {
+  disappearClock = (event: MouseEvent) => {
     event.preventDefault();
 
-    this.setState({ hasClock: false });
+    this.setState({ isClockVisible: false });
   };
 
-  appear = () => {
-    this.setState({ hasClock: true });
+  appearClock = () => {
+    this.setState({ isClockVisible: true });
   };
 
   render() {
+    const { clockName, isClockVisible } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock && (
-          <Clock name={this.state.clockName} />
+        {isClockVisible && (
+          <Clock name={clockName} />
         )}
       </div>
     );
