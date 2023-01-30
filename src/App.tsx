@@ -4,7 +4,7 @@ import { Clock } from './components/Clock';
 import './App.scss';
 
 type State = {
-  visible: boolean;
+  isVisible: boolean;
   clockName: string;
 };
 
@@ -16,7 +16,7 @@ function getRandomName(): string {
 
 export class App extends React.Component<{}, State> {
   state = {
-    visible: true,
+    isVisible: true,
     clockName: 'Clock-0',
   };
 
@@ -32,26 +32,27 @@ export class App extends React.Component<{}, State> {
   }
 
   componentWillUnmount() {
+    window.clearInterval(this.timerId);
     document.removeEventListener('click', this.handleDocumentClick);
     document.removeEventListener('contextmenu', this.handleDocumentContextMenu);
   }
 
   handleDocumentClick = () => {
-    this.setState({ visible: true });
+    this.setState({ isVisible: true });
   };
 
   handleDocumentContextMenu = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({ visible: false });
+    this.setState({ isVisible: false });
   };
 
   render() {
-    const { clockName, visible } = this.state;
+    const { clockName, isVisible } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-        {visible && <Clock clockName={clockName} />}
+        {isVisible && <Clock clockName={clockName} />}
       </div>
     );
   }
