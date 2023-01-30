@@ -37,11 +37,11 @@ export class App extends React.Component<{}, State> {
 
   rightClick = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({visibleClock: false});
+    this.setState({ visibleClock: false });
   };
 
   leftClick = () => {
-    this.setState({visibleClock: true});
+    this.setState({ visibleClock: true });
   };
 
   render() {
