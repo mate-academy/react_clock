@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+const formatDate = (date: Date): string => date.toUTCString().slice(-12, -4);
+
 type State = {
   today: Date,
 };
@@ -20,7 +22,7 @@ export class Clock extends Component<Props, State> {
       this.setState({ today: new Date() });
 
       // eslint-disable-next-line
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(formatDate(this.state.today));
     }, 1000);
   }
 
@@ -51,7 +53,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {formatDate(today)}
         </span>
       </div>
     );
