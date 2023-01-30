@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 interface Props {
-  name: string;
+  clockName: string;
 }
 
 type ClockState = {
@@ -25,8 +25,8 @@ export class Clock extends Component<Props, ClockState> {
   }
 
   componentDidUpdate(prevProps: Props) {
-    if (prevProps.name !== this.props.name) {
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    if (prevProps.clockName !== this.props.clockName) {
+      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
   }
 
@@ -36,11 +36,12 @@ export class Clock extends Component<Props, ClockState> {
 
   render() {
     const { today } = this.state;
+    const { clockName } = this.props;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.name}
+          {clockName}
         </strong>
 
         {' time is '}

@@ -20,12 +20,14 @@ export class App extends Component<{}, AppState> {
     clockName: 'Clock-0',
   };
 
+  timerId = 0;
+
   componentDidMount() {
     document.addEventListener('contextmenu', this.handleRightClick);
 
     document.addEventListener('click', this.handleLeftClick);
 
-    window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({
         clockName: getRandomName(),
       });
@@ -36,6 +38,8 @@ export class App extends Component<{}, AppState> {
     document.removeEventListener('click', this.handleLeftClick);
 
     document.removeEventListener('contextmenu', this.handleRightClick);
+
+    clearInterval(this.timerId);
   }
 
   handleLeftClick = () => {
@@ -60,7 +64,7 @@ export class App extends Component<{}, AppState> {
         <h1>React clock</h1>
 
         {hasClock && (
-          <Clock name={clockName} />
+          <Clock clockName={clockName} />
         )}
       </div>
     );
