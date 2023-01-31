@@ -19,7 +19,7 @@ export class Clock extends Component<Props, State> {
       this.setState({ today: new Date() });
 
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(this.formatDateToUTC(this.state.today));
     }, 1000);
   }
 
@@ -33,8 +33,10 @@ export class Clock extends Component<Props, State> {
     }
   }
 
+  formatDateToUTC = (date: Date) => date.toUTCString().slice(-12, -4);
+
   render(): ReactNode {
-    const currentTime = this.state.today.toUTCString().slice(-12, -4);
+    const { formatDateToUTC } = this;
     const { clockName } = this.props;
 
     return (
@@ -46,7 +48,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {currentTime}
+          {formatDateToUTC(this.state.today)}
         </span>
       </div>
     );
