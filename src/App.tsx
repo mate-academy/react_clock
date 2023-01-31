@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.scss';
-
 import { Clock } from './Component/Clock/Clock';
 
 function getRandomName(): string {
@@ -9,14 +8,12 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-type Props = {};
-
 type State = {
   clockName: string,
   clockStatus: boolean,
 };
 
-export class App extends React.Component<State, Props> {
+export class App extends React.Component<{}, State> {
   state = {
     clockName: 'Clock-0',
     clockStatus: true,
@@ -39,6 +36,15 @@ export class App extends React.Component<State, Props> {
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
   }
+
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ clockStatus: false });
+  };
+
+  handleLeftClick = () => {
+    this.setState({ clockStatus: true });
+  };
 
   render(): React.ReactNode {
     const { clockStatus, clockName } = this.state;
