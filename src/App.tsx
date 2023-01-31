@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
 import './App.scss';
-import { Clock } from './Clock';
+import { Clock } from './Components/Clock';
 
 type State = {
   hasClock: boolean,
