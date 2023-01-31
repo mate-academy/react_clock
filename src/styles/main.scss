@@ -1,0 +1,13 @@
+@import "./variables";
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: $font-main;
+  background: $bg-main;
+}
+
+.wrapper {
+  padding-top: 20vh;
+  letter-spacing: 3px;
+  color: #94b0da;
+}

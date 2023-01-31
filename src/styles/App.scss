@@ -1,0 +1,23 @@
+@import "./mixins", "./variables";
+
+.App {
+  @include flex;
+  position: relative;
+  flex-direction: column;
+  padding: 15px;
+  text-align: center;
+  width: fit-content;
+  height: 333px;
+
+  margin: auto;
+
+  background: $bg-main;
+  box-shadow: $shadow-main;
+  transition: all 0.7s;
+  border: 2px solid;
+  border-radius: 2%;
+
+  &:hover {
+    letter-spacing: calc(#{$font-main} / 2);
+  }
+}
