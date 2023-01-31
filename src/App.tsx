@@ -23,23 +23,23 @@ export class App extends Component<{}, State> {
   };
 
   componentDidMount() {
-    document.addEventListener('contextmenu', (ev) => {
-      ev.preventDefault();
-      this.hideClock();
-    });
+    document.addEventListener('contextmenu', this.handleContextMenu);
 
-    document.addEventListener('click', () => {
-      this.appearClock();
-    });
+    document.addEventListener('click', this.handleClick);
 
     this.state.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
-  componentWillUnmpunt() {
-    window.clearInterval(this.state.timerId);
-  }
+  handleContextMenu = (ev: MouseEvent) => {
+    ev.preventDefault();
+    this.hideClock();
+  };
+
+  handleClick = () => {
+    this.appearClock();
+  };
 
   hideClock() {
     this.setState({ hasClock: false });
@@ -47,6 +47,14 @@ export class App extends Component<{}, State> {
 
   appearClock() {
     this.setState({ hasClock: true });
+  }
+
+  componentWillUnmpunt() {
+    window.clearInterval(this.state.timerId);
+
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+
+    document.removeEventListener('click', this.handleClick);
   }
 
   render() {
