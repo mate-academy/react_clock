@@ -6,23 +6,21 @@ interface Props {
 
 interface State {
   today: Date;
-  id: number;
 }
 
 export class Clock extends Component<Props, State> {
+  timerId = 0;
+
   state = {
     today: new Date(),
-    id: 0,
   };
 
   componentDidMount() {
-    const timerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.getTime();
       // eslint-disable-next-line
       console.info(new Date().toUTCString().slice(-12, -4));
     }, 1000);
-
-    this.setState({ id: timerId });
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -31,7 +29,7 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.state.id);
+    window.clearInterval(this.timerId);
   }
 
   getTime() {
