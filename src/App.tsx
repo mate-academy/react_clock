@@ -49,10 +49,6 @@ export class App extends Component<{}, State> {
     this.setState({ hasClock: true });
   };
 
-  changeVisability() {
-    this.setState(currState => ({ hasClock: !currState.hasClock }));
-  }
-
   render() {
     const { clockName, hasClock } = this.state;
 
@@ -60,7 +56,11 @@ export class App extends Component<{}, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && <Clock name={clockName} />}
+        {hasClock && (
+
+          <Clock name={clockName} />
+
+        )}
 
       </div>
     );
