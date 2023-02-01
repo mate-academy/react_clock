@@ -30,6 +30,11 @@ export class App extends Component<{}, State> {
     document.addEventListener('click', this.handleLeftClick);
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+  }
+
   handleRightClick = (e: Event) => {
     e.preventDefault();
 
