@@ -5,44 +5,33 @@ import './App.scss';
 
 interface State {
   clockName: string;
-  id: number;
   hasClock: boolean;
 }
 
 export class App extends Component<{}, State> {
+  timerId = 0;
+
   state = {
     clockName: 'Clock-0',
-    id: 0,
     hasClock: true,
   };
 
   componentDidMount() {
-    const timerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.getRandomName();
     }, 3300);
 
-    this.setState({ id: timerId });
+    document.addEventListener('contextmenu', this.hideClock);
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
-
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.showClock);
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.state.id);
+    window.clearInterval(this.timerId);
 
-    document.removeEventListener('contextmenu', () => {
-      this.setState({ hasClock: false });
-    });
+    document.removeEventListener('contextmenu', this.hideClock);
 
-    document.removeEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.removeEventListener('click', this.showClock);
   }
 
   getRandomName() {
@@ -50,6 +39,15 @@ export class App extends Component<{}, State> {
 
     this.setState({ clockName: `Clock-${value}` });
   }
+
+  hideClock: EventListener = (event) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  showClock: EventListener = () => {
+    this.setState({ hasClock: true });
+  };
 
   changeVisability() {
     this.setState(currState => ({ hasClock: !currState.hasClock }));
