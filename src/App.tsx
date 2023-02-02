@@ -9,13 +9,13 @@ function getRandomName(): string {
 }
 
 type State = {
-  visibleClock: boolean,
+  isClockVisible: boolean,
   clockName: string,
 };
 
 export class App extends React.Component<{}, State> {
   state: Readonly<State> = {
-    visibleClock: true,
+    isClockVisible: true,
     clockName: 'Clock-0',
   };
 
@@ -25,33 +25,33 @@ export class App extends React.Component<{}, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
-    document.addEventListener('contextmenu', this.leftClick);
-    document.addEventListener('click', this.rightClick);
+    document.addEventListener('contextmenu', this.handleLeftClick);
+    document.addEventListener('click', this.handleRightClick);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    document.removeEventListener('click', this.leftClick);
-    document.removeEventListener('contextmenu', this.rightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
   }
 
-  rightClick = (event: MouseEvent) => {
+  handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({ visibleClock: false });
+    this.setState({ isClockVisible: false });
   };
 
-  leftClick = () => {
-    this.setState({ visibleClock: true });
+  handleLeftClick = () => {
+    this.setState({ isClockVisible: true });
   };
 
   render() {
-    const { visibleClock, clockName } = this.state;
+    const { isClockVisible, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {visibleClock && <Clock name={clockName} />}
+        {isClockVisible && <Clock name={clockName} />}
       </div>
     );
   }

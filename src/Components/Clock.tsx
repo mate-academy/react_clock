@@ -8,6 +8,10 @@ type State = {
   currentTime: Date;
 };
 
+const formattedDate = (time: Date): string => {
+  return time.toUTCString().slice(-12, -4);
+};
+
 export class Clock extends React.Component<Props, State> {
   state = {
     currentTime: new Date(),
@@ -50,7 +54,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {currentTime.toUTCString().slice(-12, -4)}
+          {formattedDate(currentTime)}
         </span>
       </div>
     );
