@@ -8,7 +8,7 @@ Create a `Clock` class component that will update the time every second using a 
 
 - print current time on the page on page load;
   - use `.toUTCString().slice(-12, -4)` methods do awoid timezone issues;
-- update the time every second using the `window.setInterval`;
+- upd ate the time every second using the `window.setInterval`;
 - start the timer only when the component is added to the page (`componentDidMount`).- every second print the time in the DevTools using `console.info` method (**not** the `console.log`);
 - make the `App` a class component;
 - add the `hasClock` property to the `App` state;
@@ -37,7 +37,7 @@ Create a `Clock` class component that will update the time every second using a 
     Renamed from oldName to newName
     ```
 - to see `console.debug` messages enable the `verbose` level in DevTools console:
-    
+
 ![How to enable verbose level](./readme-files/enable-verbose-level.png)
 
 > check in the console that a renaming message occurs after each 3-4 time messages.
