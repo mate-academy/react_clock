@@ -30,6 +30,10 @@ export class App extends React.Component<{}, State> {
     }, 3300);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timerIdClock);
+  }
+
   getRandomName = () => {
     const value = Date.now().toString().slice(-4);
 
