@@ -17,20 +17,18 @@ export class App extends React.Component<{}, State> {
   timerIdClock = 0;
 
   componentDidMount() {
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.getHasClockTtrue);
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.getHasClockFalse);
     this.timerIdClock = window.setInterval(() => {
       this.setState({ clockName: this.getRandomName() });
     }, 3300);
   }
 
   componentWillUnmount() {
+    document.removeEventListener('click', this.getHasClockTtrue);
+    document.removeEventListener('contextmenu', this.getHasClockFalse);
+
     clearInterval(this.timerIdClock);
   }
 
@@ -38,6 +36,15 @@ export class App extends React.Component<{}, State> {
     const value = Date.now().toString().slice(-4);
 
     return `Clock-${value}`;
+  };
+
+  getHasClockTtrue = () => {
+    this.setState({ hasClock: true });
+  };
+
+  getHasClockFalse = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
   };
 
   render() {
