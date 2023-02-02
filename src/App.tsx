@@ -21,13 +21,11 @@ class App extends React.Component<{}, State> {
 
   intervalId = 0;
 
-  nameInterval: number;
-
   componentDidMount() {
     document.addEventListener('contextmenu', this.stopClock);
     document.addEventListener('click', this.startClock);
 
-    this.nameInterval = window.setInterval(() => {
+    this.intervalId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
     this.intervalId = this.createNameChangeIntervar();
