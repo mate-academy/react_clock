@@ -1,4 +1,3 @@
-// import { extend } from 'cypress/types/jquery';
 import React from 'react';
 
 import { Clock } from './Clock/Clock';
@@ -32,6 +31,20 @@ export class App extends React.Component {
     setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
+  }
+
+  componentWillUnmount(): void {
+    document.removeEventListener('contextmenu', (event) => {
+      event.preventDefault();
+
+      this.setState({ hasClock: false });
+    });
+
+    document.removeEventListener('click', (event) => {
+      event.preventDefault();
+
+      this.setState({ hasClock: true });
+    });
   }
 
   render() {
