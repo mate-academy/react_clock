@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Clock } from '../Clock/Clock';
+// import { Clock } from '../Clock/Clock';
+import { Clock } from '../Clock';
 import './App.scss';
 
 function getRandomName(): string {
