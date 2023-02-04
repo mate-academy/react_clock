@@ -24,11 +24,11 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    /* eslint-disable-next-line no-console */ 
+    /* eslint-disable-next-line no-console */
     console.info(this.state.time.toUTCString().slice(-12, -4));
 
     if (this.props.name !== prevProps.name) {
-      /* eslint-disable-next-line no-console */ 
+      /* eslint-disable-next-line no-console */
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
