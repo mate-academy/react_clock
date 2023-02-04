@@ -1,6 +1,7 @@
 import React from 'react';
 
 // import { Clock } from '../Clock/Clock';
+
 import { Clock } from '../Clock/Clock';
 import './App.scss';
 
@@ -16,25 +17,25 @@ export class App extends React.Component {
     hasClock: true,
   };
 
+  timeId: any;
+
   componentDidMount() {
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
-
       this.setState({ hasClock: false });
     });
 
     document.addEventListener('click', (event) => {
       event.preventDefault();
-
       this.setState({ hasClock: true });
     });
 
-    setInterval(() => {
+    this.timeId = setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     document.removeEventListener('contextmenu', (event) => {
       event.preventDefault();
 
@@ -43,8 +44,9 @@ export class App extends React.Component {
 
     document.removeEventListener('click', (event) => {
       event.preventDefault();
-
       this.setState({ hasClock: true });
+
+      clearTimeout(this.timeId);
     });
   }
 
