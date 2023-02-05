@@ -2,7 +2,43 @@ iframe {
   display: none;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Segoe UI", "Dejavu Sans", "Helvetica Neue", sans-serif;
   font-size: 24px;
+  color: #fff;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  background-color: #10101e;
+}
+
+.App {
+  border: 3px solid #297ec0;
+  padding: 20px 50px;
+  border-radius: 15px;
+  letter-spacing: 3px;
+
+  transition: 0.3s ease-in-out;
+  transition-property: background-color, box-shadow;
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+  }
+
+  &:hover {
+    background-color: #297ec0;
+    box-shadow: 0 0 30px #297ec0;
+  }
 }
