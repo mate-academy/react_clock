@@ -18,12 +18,14 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.timer = window.setInterval(() => {
       this.setState({ date: new Date() });
+      // eslint-disable-next-line no-console
       console.info(this.formatTime(this.state.date));
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
     if (this.props.clockName !== prevProps.clockName) {
+      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
   }
