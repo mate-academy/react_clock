@@ -19,10 +19,10 @@ export class App extends Component<{}, State> {
     hasClock: true,
   };
 
-  id = 0;
+  timer = 0;
 
   componentDidMount() {
-    this.id = window.setInterval(() => {
+    this.timer = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
     document.addEventListener('click', this.handleLeftMouseClick);
@@ -30,7 +30,7 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.id);
+    window.clearInterval(this.timer);
     document.removeEventListener('click', this.handleLeftMouseClick);
     document.removeEventListener('click', this.handleRigthMouseClick);
   }
@@ -45,11 +45,13 @@ export class App extends Component<{}, State> {
   };
 
   render() {
+    const { hasClock, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        { this.state.hasClock
-          && <Clock clockName={this.state.clockName} /> }
+        { hasClock
+          && <Clock clockName={clockName} /> }
       </div>
     );
   }
