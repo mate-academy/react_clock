@@ -37,7 +37,7 @@ export class App extends Component<{}, State> {
     if (hasClock === true
       && clockName !== prevState.clockName) {
       // eslint-disable-next-line no-console
-      console.info(`Renamed from ${prevState.clockName} to ${clockName}`);
+      console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
     }
   }
 
