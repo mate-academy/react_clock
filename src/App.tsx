@@ -30,6 +30,8 @@ export class App extends Component<{}, State> {
 
   componentWillUnmount(): void {
     window.clearInterval(this.timeId);
+    document.removeEventListener('click', this.leftClick);
+    document.removeEventListener('contextmenu', this.rightClick);
   }
 
   setName = () => {
