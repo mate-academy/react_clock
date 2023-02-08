@@ -19,12 +19,20 @@ export class App extends Component<{}, State> {
     clockName: 'Clock-0',
   };
 
+  timerIdRename = 0;
+
   componentDidMount() {
     document.addEventListener('contextmenu', this.handleDocumentContextMenu);
     document.addEventListener('click', this.handleDocumentClick);
-    window.setInterval(() => {
+    this.timerIdRename = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.handleDocumentContextMenu);
+    document.removeEventListener('click', this.handleDocumentClick);
+    window.clearInterval(this.timerIdRename);
   }
 
   handleDocumentContextMenu = (event: MouseEvent) => {
