@@ -16,7 +16,11 @@ export class Clock extends Component<Props, State> {
   timer = 0;
 
   componentDidMount() {
-    this.timer = window.setInterval(this.seconds, 1000);
+    this.timer = window.setInterval(() => {
+      this.setState({ today: new Date() });
+      // eslint-disable-next-line no-console
+      console.info(this.state.today.toUTCString().slice(-12, -4));
+    }, 1000);
   }
 
   componentDidUpdate(prevProps: Props): void {
@@ -30,12 +34,6 @@ export class Clock extends Component<Props, State> {
   componentWillUnmount(): void {
     clearInterval(this.timer);
   }
-
-  seconds = () => {
-    this.setState({ today: new Date() });
-    // eslint-disable-next-line no-console
-    console.info(this.state.today.toUTCString().slice(-12, -4));
-  };
 
   render() {
     const { clockName } = this.props;
