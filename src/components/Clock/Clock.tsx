@@ -33,7 +33,7 @@ export class Clock extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     return (
-      <div className="clock">
+      <div className="Clock">
         <strong>{this.props.name}</strong>
         {' time is '}
         {this.state.time}
