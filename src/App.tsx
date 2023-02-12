@@ -25,8 +25,8 @@ export class App extends React.Component<{}, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
-    document.addEventListener('contextmenu', this.handleLeftClick);
-    document.addEventListener('click', this.handleRightClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
   }
 
   componentWillUnmount() {
