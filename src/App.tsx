@@ -36,8 +36,7 @@ export class App extends React.Component<{}, State> {
   }
 
   componentDidUpdate(prevProps:State) {
-    // eslint-disable-next-line no-console
-    console.log(
+    console.debug(
       `Renamed from ${prevProps.clockName} to ${this.state.clockName}`,
     );
   }
