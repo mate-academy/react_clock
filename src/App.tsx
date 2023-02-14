@@ -26,9 +26,7 @@ export class App extends React.Component<{}, State> {
 
     if (elem.button === 0) {
       this.setState({ hasClock: true });
-    }
-
-    if (elem.button === 2) {
+    } else if (elem.button === 2) {
       this.setState({ hasClock: false });
     }
   };

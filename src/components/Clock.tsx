@@ -35,7 +35,6 @@ export class Clock extends React.Component<Props, State> {
     prevState: Readonly<{ clockName: string }>,
   ): void {
     if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName} `);
     }
   }
@@ -47,7 +46,6 @@ export class Clock extends React.Component<Props, State> {
   updateDate = () => {
     this.setState({ today: new Date() });
     if (this.props.status) {
-      // eslint-disable-next-line no-console
       console.info(stringDate(this.state.today));
     }
   };
