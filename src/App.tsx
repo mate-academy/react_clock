@@ -36,6 +36,7 @@ export class App extends React.Component<{}, State> {
   }
 
   componentDidUpdate(prevProps:State) {
+    // eslint-disable-next-line no-console
     console.log(
       `Renamed from ${prevProps.clockName} to ${this.state.clockName}`,
     );
@@ -46,10 +47,12 @@ export class App extends React.Component<{}, State> {
   }
 
   render() {
+    const { showClock, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.showClock && <Clock name={this.state.clockName} />}
+        {showClock && <Clock name={clockName} />}
       </div>
     );
   }
