@@ -40,7 +40,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   timerId = () => {
-    this.setState({ clockName: getRandomName() });
+    if (this.props.status) {
+      this.setState({ clockName: getRandomName() });
+    }
   };
 
   updateDate = () => {
