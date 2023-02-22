@@ -1,39 +1,65 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { Component } from 'react';
+
 import './App.scss';
+import { Clock } from './components/Clock/Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
+interface AppState {
+  hasClock: boolean;
+  clockName: string;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+function getRandomName(): string {
+  return `Clock-${Math.floor(Math.random() * 100)}`;
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+export class App extends Component<{}, AppState> {
+  intervalID: number | undefined;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  state = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount() {
+    this.intervalID = window.setInterval(() => {
+      const newName = getRandomName();
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+      // eslint-disable-next-line no-console
+      console.debug(`Generated new clock name: ${newName}`);
+      this.setState({ clockName: newName });
+    }, 3300);
+  }
 
-        {' time is '}
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  handleClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  handleContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        <div
+          onClick={this.handleClick}
+          onContextMenu={this.handleContextMenu}
+          className="Clock"
+        >
+          {hasClock && <Clock name={clockName} />}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
