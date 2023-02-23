@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Component } from 'react';
 
 import './App.scss';
@@ -30,20 +28,16 @@ export class App extends Component<{}, AppState> {
       console.debug(`Generated new clock name: ${newName}`);
       this.setState({ clockName: newName });
     }, 3300);
+
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    });
+
+    document.addEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
   }
-
-  componentWillUnmount() {
-    clearInterval(this.intervalID);
-  }
-
-  handleClick = () => {
-    this.setState({ hasClock: true });
-  };
-
-  handleContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    this.setState({ hasClock: false });
-  };
 
   render() {
     const { hasClock, clockName } = this.state;
@@ -52,13 +46,7 @@ export class App extends Component<{}, AppState> {
       <div className="App">
         <h1>React clock</h1>
 
-        <div
-          onClick={this.handleClick}
-          onContextMenu={this.handleContextMenu}
-          className="Clock"
-        >
-          {hasClock && <Clock name={clockName} />}
-        </div>
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }
