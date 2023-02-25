@@ -28,6 +28,7 @@ export class App extends Component<{}, State> {
     this.timerForTime = window.setInterval(() => {
       this.setState({ currentTime: new Date() });
       if (this.state.hasClock) {
+        // eslint-disable-next-line no-console
         console.info(this.state.currentTime.toUTCString().slice(-12, -4));
       }
     }, 1000);
@@ -42,6 +43,7 @@ export class App extends Component<{}, State> {
 
   componentDidUpdate(_: {}, prevState: State) {
     if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
+      // eslint-disable-next-line no-console
       console.info(`Previous clock name: ${prevState.clockName}, current clock name: ${this.state.clockName}`);
     }
   }
