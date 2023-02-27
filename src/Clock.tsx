@@ -1,5 +1,9 @@
 import React from 'react';
 
+function formattingDate(date: Date): string {
+  return date.toUTCString().slice(-12, -4);
+}
+
 type Props = {
   clockName: string,
 };
@@ -19,7 +23,7 @@ export class Clock extends React.Component< Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(formattingDate(this.state.today));
     }, 1000);
   }
 
