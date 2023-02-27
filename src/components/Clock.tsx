@@ -34,13 +34,9 @@ export class Clock extends React.Component<Props, State> {
     this.timerPrint = window.setInterval(() => {
       console.info(this.state.today);
     }, 1000);
-  }
-
-  componentDidUpdate() {
-    const { clockName } = this.state;
 
     this.timerId = window.setInterval(() => {
-      const oldName = clockName;
+      const oldName = this.state.clockName;
       const newName = getRandomName();
 
       this.setState({ clockName: newName });
