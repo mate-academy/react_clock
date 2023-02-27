@@ -12,16 +12,26 @@ const formattedDate = (time: Date): string => {
   return time.toUTCString().slice(-12, -4);
 };
 
+const setStartTimer = new Date();
+
+// by default new Date sets the time to UTC+0 time zone
+// so I added 2 hours to correspond to Kyiv time UTC +2
+
+setStartTimer.setHours(setStartTimer.getHours() + 2);
+
 export class Clock extends React.Component<Props, State> {
   state = {
-    currentTime: new Date(),
+    currentTime: setStartTimer,
   };
 
   timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ currentTime: new Date() });
+      const event = new Date();
+
+      event.setHours(event.getHours() + 2);
+      this.setState({ currentTime: event });
       // eslint-disable-next-line no-console
       console.info(this.state.currentTime.toUTCString().slice(-12, -4));
     }, 1000);
