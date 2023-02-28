@@ -2,7 +2,7 @@ import { Component } from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
-export function getRandomName(): string {
+function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
 
   return `Clock-${value}`;
