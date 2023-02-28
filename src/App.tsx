@@ -14,20 +14,32 @@ export class App extends React.Component {
     clockName: 'Clock-0',
   };
 
+  randomname = 0;
+
   componentDidMount() {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.rightClick);
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.leftClik);
 
-    window.setInterval(() => {
+    this.randomname = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
+
+  componentWillUnmount() {
+    window.clearInterval(this.randomname);
+    document.removeEventListener('contextmenu', this.rightClick);
+    document.removeEventListener('click', this.leftClik);
+  }
+
+  rightClick = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  leftClik = () => {
+    this.setState({ hasClock: true });
+  };
 
   render() {
     const { hasClock, clockName } = this.state;
