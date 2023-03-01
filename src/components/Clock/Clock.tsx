@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Component } from 'react';
 
 interface ClockProps {
@@ -20,7 +21,6 @@ export class Clock extends Component<ClockProps, ClockState> {
 
   componentDidUpdate(prevProps: ClockProps) {
     if (prevProps.name !== this.props.name) {
-      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
@@ -34,7 +34,6 @@ export class Clock extends Component<ClockProps, ClockState> {
   handleDocumentClick = () => {
     this.intervalID = window.setInterval(() => {
       this.setState({ time: new Date().toUTCString().slice(-12, -4) });
-      // eslint-disable-next-line no-console
       console.info(`${this.state.time}`);
     }, 1000);
   };
