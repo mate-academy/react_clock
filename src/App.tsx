@@ -9,7 +9,9 @@ interface AppState {
 }
 
 function getRandomName(): string {
-  return `Clock-${Math.floor(Math.random() * 100)}`;
+  const value = Date.now().toString().slice(-4);
+
+  return `Clock-${value}`;
 }
 
 export class App extends Component<{}, AppState> {
@@ -24,8 +26,6 @@ export class App extends Component<{}, AppState> {
     this.intervalID = window.setInterval(() => {
       const newName = getRandomName();
 
-      // eslint-disable-next-line no-console
-      console.debug(`Generated new clock name: ${newName}`);
       this.setState({ clockName: newName });
     }, 3300);
 
@@ -34,10 +34,17 @@ export class App extends Component<{}, AppState> {
       this.setState({ hasClock: false });
     });
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.stateSet);
   }
+
+  componentWillUnmount() {
+    window.clearInterval(this.intervalID);
+    document.removeEventListener('click', this.stateSet);
+  }
+
+  stateSet = () => {
+    this.setState({ hasClock: true });
+  };
 
   render() {
     const { hasClock, clockName } = this.state;
