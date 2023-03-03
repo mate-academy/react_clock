@@ -19,7 +19,7 @@ export class App extends Component<{}, State> {
     clockName: 'Clock-0',
   };
 
-  timerForClockName = window.setInterval(() => {
+  setTimerForClockName = window.setInterval(() => {
     this.setState({ clockName: getRandomName() });
   }, 3300);
 
@@ -27,15 +27,20 @@ export class App extends Component<{}, State> {
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
     });
-    document.addEventListener('contextmenu', this.handleAddClock);
-    document.addEventListener('click', this.handleRemoveClock);
+    document.addEventListener('contextmenu', this.handleRemoveClock);
+    document.addEventListener('click', this.handleAddClock);
   }
 
-  handleAddClock = () => {
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.handleRemoveClock);
+    document.removeEventListener('click', this.handleAddClock);
+  }
+
+  handleRemoveClock = () => {
     this.setState({ hasClock: false });
   };
 
-  handleRemoveClock = () => {
+  handleAddClock = () => {
     this.setState({ hasClock: true });
   };
 

@@ -14,10 +14,10 @@ export class Clock extends Component<Props, State> {
     today: new Date(),
   };
 
-  timerForDate = 0;
+  setTimerForDate = 0;
 
   componentDidMount() {
-    this.timerForDate = window.setInterval(() => {
+    this.setTimerForDate = window.setInterval(() => {
       this.setState({ today: new Date() });
       console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
@@ -32,7 +32,7 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerForDate);
+    window.clearInterval(this.setTimerForDate);
   }
 
   render() {
