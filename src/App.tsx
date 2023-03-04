@@ -40,6 +40,16 @@ export class App extends Component<{}, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.renamedId);
+
+    document.removeEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
+
+    document.removeEventListener('contextmenu', (event:MouseEvent) => {
+      event.preventDefault(); // not to show the context menu
+
+      this.setState({ hasClock: false });
+    });
   }
 
   render() {
