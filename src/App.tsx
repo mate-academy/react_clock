@@ -13,11 +13,9 @@ type State = {
   clockName: string;
 };
 
-type Props = {};
-
 let timerId: number | null = null;
 
-export class App extends React.Component<Props, State> {
+export class App extends React.Component<{}, State> {
   state: Readonly<State> = {
     hasClock: true,
     clockName: 'Clock-0',
@@ -53,9 +51,6 @@ export class App extends React.Component<Props, State> {
     clearInterval(timerId as number);
     timerId = window.setInterval(() => {
       const clockName = getRandomName();
-
-      /* eslint-disable no-console */
-      console.debug(`Renamed from ${this.state.clockName} to ${clockName}`);
       this.setState((previousState) => ({ ...previousState, clockName }));
     }, 3300);
   }
