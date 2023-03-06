@@ -15,13 +15,12 @@ export class Clock extends Component<ClockProps, ClockState> {
   state = { time: new Date().toUTCString().slice(-12, -4) };
 
   componentDidMount() {
-    setInterval(this.handleDocumentClick);
     document.addEventListener('click', this.handleDocumentClick);
   }
 
   componentDidUpdate(prevProps: ClockProps) {
     if (prevProps.name !== this.props.name) {
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      console.info(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
 
