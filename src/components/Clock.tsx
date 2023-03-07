@@ -13,10 +13,10 @@ export class Clock extends Component<Props, State> {
     today: new Date(),
   };
 
-  timerClockTime = 0;
+  timerClockTimeId = 0;
 
   componentDidMount(): void {
-    this.timerClockTime = window.setInterval(() => {
+    this.timerClockTimeId = window.setInterval(() => {
       this.setState({ today: new Date() });
 
       window.console.info(
@@ -26,15 +26,18 @@ export class Clock extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props): void {
-    if (this.props.clockName !== prevProps.clockName) {
+    const { clockName: newName } = this.props;
+    const { clockName: oldName } = prevProps;
+
+    if (newName !== oldName) {
       window.console.debug(
-        `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
+        `Renamed from ${oldName} to ${newName}`,
       );
     }
   }
 
   componentWillUnmount(): void {
-    clearInterval(this.timerClockTime);
+    clearInterval(this.timerClockTimeId);
   }
 
   render() {

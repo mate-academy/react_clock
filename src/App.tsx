@@ -19,17 +19,17 @@ export class App extends Component<{}, State> {
     clockName: 'Clock-0',
   };
 
-  timerClockName = 0;
+  timerClockNameId = 0;
 
   componentDidMount(): void {
-    this.timerClockName = window.setInterval(this.changeClockName, 3300);
+    this.timerClockNameId = window.setInterval(this.changeClockName, 3300);
 
     document.addEventListener('contextmenu', this.hideWatch);
     document.addEventListener('click', this.showWatch);
   }
 
   componentWillUnmount(): void {
-    clearInterval(this.timerClockName);
+    clearInterval(this.timerClockNameId);
 
     document.removeEventListener('contextmenu', this.hideWatch);
     document.removeEventListener('click', this.showWatch);
@@ -50,13 +50,18 @@ export class App extends Component<{}, State> {
   };
 
   render() {
+    const {
+      hasClock,
+      clockName,
+    } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
 
         {
-          this.state.hasClock && (
-            <Clock clockName={this.state.clockName} />
+          hasClock && (
+            <Clock clockName={clockName} />
           )
         }
       </div>
