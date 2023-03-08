@@ -42,6 +42,9 @@ export class App extends Component<{}, State> {
 
   componentWillUnmount() {
     clearInterval(this.timerId);
+
+    document.removeEventListener('click', this.handleRightClick);
+    document.removeEventListener('contextmenu', this.handleLeftClick);
   }
 
   handleRightClick = () => {
