@@ -8,6 +8,10 @@ type Props = {
   clockName: string;
 };
 
+function getFormattedTime(date: Date) {
+  return date.toUTCString().slice(-12, -4);
+}
+
 export class Clock extends Component<Props, State> {
   state = {
     today: new Date(),
@@ -19,7 +23,9 @@ export class Clock extends Component<Props, State> {
     this.clockId = window.setInterval(() => {
       this.setState({ today: new Date() });
 
-      this.printCurrentTime();
+      window.console.info(
+        getFormattedTime(this.state.today),
+      );
     }, 1000);
   }
 
@@ -35,23 +41,20 @@ export class Clock extends Component<Props, State> {
     clearInterval(this.clockId);
   }
 
-  printCurrentTime() {
-    window.console.info(
-      this.state.today.toUTCString().slice(-12, -4),
-    );
-  }
-
   render() {
+    const { clockName } = this.props;
+    const { today } = this.state;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.clockName}
+          {clockName}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.today.toUTCString().slice(-12, -4)}
+          {getFormattedTime(today)}
         </span>
       </div>
     );
