@@ -8,6 +8,8 @@ type Props = {
   name: string;
 };
 
+const getFormattedDate = (value: Date) => value.toUTCString().slice(-12, -4);
+
 export class Clock extends Component<Props, State> {
   state = {
     today: new Date(),
@@ -19,8 +21,18 @@ export class Clock extends Component<Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
 
-      window.console.info(this.state.today.toUTCString().slice(-12, -4));
+      window.console.info(getFormattedDate(this.state.today));
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { name } = this.props;
+
+    if (name !== prevProps.name) {
+      window.console.debug(
+        `Renamed from ${prevProps.name} to ${name}`,
+      );
+    }
   }
 
   componentWillUnmount() {
@@ -40,7 +52,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {getFormattedDate(today)}
         </span>
       </div>
     );
