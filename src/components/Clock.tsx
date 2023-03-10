@@ -8,6 +8,10 @@ type Props = {
   clockName: string;
 };
 
+const formatTime = (date: Date): string => {
+  return date.toUTCString().slice(-12, -4);
+};
+
 export class Clock extends Component<Props, State> {
   state = {
     today: new Date(),
@@ -20,7 +24,7 @@ export class Clock extends Component<Props, State> {
       this.setState({ today: new Date() });
 
       window.console.info(
-        this.state.today.toUTCString().slice(-12, -4),
+        formatTime(this.state.today),
       );
     }, 1000);
   }
@@ -41,16 +45,19 @@ export class Clock extends Component<Props, State> {
   }
 
   render() {
+    const { today } = this.state;
+    const { clockName } = this.props;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.clockName}
+          {clockName}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.today.toUTCString().slice(-12, -4)}
+          {formatTime(today)}
         </span>
       </div>
     );
