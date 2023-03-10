@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React from 'react';
 import { Clock } from './Clock';
 import './App.scss';
 
@@ -13,7 +13,7 @@ type State = {
   clockName: string;
 };
 
-export class App extends Component<{}, State> {
+export class App extends React.Component<{}, State> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
@@ -22,9 +22,6 @@ export class App extends Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.handleRightMouseClick);
-    document.addEventListener('click', this.handleLeftMouseClick);
-
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
@@ -32,11 +29,9 @@ export class App extends Component<{}, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    document.removeEventListener('contextmenu', this.handleRightMouseClick);
-    document.removeEventListener('click', this.handleLeftMouseClick);
   }
 
-  handleRightMouseClick = (ev: MouseEvent) => {
+  handleRightMouseClick = (ev: React.MouseEvent) => {
     ev.preventDefault();
     this.setState({ hasClock: false });
   };
@@ -49,7 +44,12 @@ export class App extends Component<{}, State> {
     const { hasClock, clockName } = this.state;
 
     return (
-      <div className="App">
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+      <div
+        className="App"
+        onClick={this.handleLeftMouseClick}
+        onContextMenu={this.handleRightMouseClick}
+      >
         <h1>React clock</h1>
 
         { hasClock && <Clock clockName={clockName} />}
