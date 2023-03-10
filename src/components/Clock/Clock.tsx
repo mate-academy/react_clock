@@ -19,9 +19,7 @@ export class Clock extends Component<Props, State> {
     this.clockId = window.setInterval(() => {
       this.setState({ today: new Date() });
 
-      window.console.info(
-        this.state.today.toUTCString().slice(-12, -4),
-      );
+      this.printCurrentTime();
     }, 1000);
   }
 
@@ -35,6 +33,12 @@ export class Clock extends Component<Props, State> {
 
   componentWillUnmount() {
     clearInterval(this.clockId);
+  }
+
+  printCurrentTime() {
+    window.console.info(
+      this.state.today.toUTCString().slice(-12, -4),
+    );
   }
 
   render() {
