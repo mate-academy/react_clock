@@ -32,7 +32,7 @@ export class App extends React.Component<{}, State> {
   }
 
   handleRightMouseClick = (ev: React.MouseEvent) => {
-    ev.preventDefault();
+    ev.nativeEvent.preventDefault();
     this.setState({ hasClock: false });
   };
 
