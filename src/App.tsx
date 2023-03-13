@@ -37,12 +37,15 @@ export class App extends Component<{}, State> {
 
   hideWatch = (event: Event) => {
     event.preventDefault();
-
-    this.setState({ hasClock: false });
+    if (this.state.hasClock) {
+      this.setState({ hasClock: false });
+    }
   };
 
   showWatch = () => {
-    this.setState({ hasClock: true });
+    if (!this.state.hasClock) {
+      this.setState({ hasClock: true });
+    }
   };
 
   changeClockName = () => {
