@@ -34,8 +34,9 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.showClock);
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     document.removeEventListener('click', this.showClock);
+    document.removeEventListener('contextmenu', this.hideClock);
   }
 
   hideClock = (event: MouseEvent) => {
