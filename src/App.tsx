@@ -48,20 +48,13 @@ export class App extends React.Component<{}, State> {
   };
 
   render() {
-    const { hasClock, clockName } = this.state;
+    const { clockName, hasClock } = this.state;
 
     return (
       <div>
-        <h1>Clock Example</h1>
-        {hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">
-              {clockName}
-            </strong>
-            {' time is '}
-            <Clock name={clockName} />
-          </div>
-        )}
+        <h1>React clock</h1>
+
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }

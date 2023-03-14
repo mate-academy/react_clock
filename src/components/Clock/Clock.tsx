@@ -13,11 +13,11 @@ function getTime(date: Date): string {
 }
 
 export class Clock extends React.Component<Props, State> {
-  timerId = 0;
-
   state: Readonly<State> = {
     date: new Date(),
   };
+
+  timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
@@ -44,7 +44,19 @@ export class Clock extends React.Component<Props, State> {
 
   render() {
     const { date } = this.state;
+    const { name } = this.props;
 
-    return <span className="Clock__time">{getTime(date)}</span>;
+    return (
+      <div className="Clock">
+        <strong className="Clock__name">
+          {name}
+        </strong>
+        {' time is '}
+
+        <span className="Clock__time">
+          {getTime(date)}
+        </span>
+      </div>
+    );
   }
 }
