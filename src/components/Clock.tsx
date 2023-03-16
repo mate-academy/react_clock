@@ -1,10 +1,14 @@
 import React from 'react';
 
+type Props = {
+  clockName: string;
+};
+
 type State = {
   today: Date;
 };
 
-export class Clock extends React.Component<{}, State> {
+export class Clock extends React.Component<Props, State> {
   state: Readonly<State> = {
     today: new Date(),
   };
@@ -30,7 +34,7 @@ export class Clock extends React.Component<{}, State> {
   }
 
   render() {
-    const clockName = 'Clock-0';
+    const { clockName } = this.props;
 
     return (
       <div className="Clock">
