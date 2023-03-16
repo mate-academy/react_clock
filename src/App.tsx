@@ -34,6 +34,11 @@ export class App extends Component<{}, State> {
     document.addEventListener('mouseup', this.handleClick);
   }
 
+  componentWillUnmount(): void {
+    document.oncontextmenu = null;
+    document.removeEventListener('mouseup', this.handleClick);
+  }
+
   handleClick = (event: MouseEvent) => {
     if (event.button === 0) {
       this.setState({ hasClock: true });
