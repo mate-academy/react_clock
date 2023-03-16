@@ -35,11 +35,11 @@ export class App extends Component<{}, State> {
     document.removeEventListener('contextmenu', this.handleLeftClick);
   }
 
-  handleRightClick = () => {
+  handleLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
-  handleLeftClick = (event: MouseEvent) => {
+  handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
