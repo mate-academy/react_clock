@@ -1,39 +1,57 @@
 import React from 'react';
 import './App.scss';
 
+type State = {
+  clockName: string;
+  date: Date,
+};
+
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
 
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+const randomName = getRandomName();
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
+export class App extends React.Component<{}, State> {
+  state = {
+    clockName: randomName,
+    date: new Date(),
+  };
+
+  timerId = window.setInterval(() => {
+    this.state.clockName = getRandomName();
   }, 3300);
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({ date: new Date() });
+    }, 1000);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  render() {
+    const {
+      date,
+      clockName,
+    } = this.state;
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    return (
+      <div className="App">
+        <h1>React clock</h1>
 
-        {' time is '}
+        <div className="Clock">
+          <strong className="Clock__name">
+            {clockName}
+          </strong>
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+          {' time is '}
+
+          <span className="Clock__time">
+            {date.toUTCString().slice(-12, -4)}
+          </span>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
