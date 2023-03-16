@@ -10,7 +10,9 @@ export class Clock extends Component<Props, {}> {
   componentDidUpdate(prevProps: Props) {
     const { name, today } = this.props;
 
-    console.info(today);
+    if (today !== prevProps.today) {
+      console.info(today);
+    }
 
     if (name !== prevProps.name) {
       console.debug(`Renamed from ${prevProps.name} to ${name}`);
