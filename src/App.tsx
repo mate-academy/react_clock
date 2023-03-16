@@ -22,8 +22,8 @@ export class App extends React.Component<{}, State> {
   clockNameChangeTimerId = 0;
 
   componentDidMount() {
-    document.addEventListener('click', this.leftMouseClickHandler);
-    document.addEventListener('contextmenu', this.rightMouseClickHandler);
+    document.addEventListener('click', this.handleLeftMouseClick);
+    document.addEventListener('contextmenu', this.handleRightMouseClick);
 
     this.clockNameChangeTimerId = window.setInterval(() => {
       const clockName = getRandomName();
@@ -32,21 +32,34 @@ export class App extends React.Component<{}, State> {
     }, 3300);
   }
 
+  componentDidUpdate(_: {}, prevState: State) {
+    if (
+      this.state.hasClock
+      && this.state.clockName !== prevState.clockName
+    ) {
+      window.console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
+  }
+
   componentWillUnmount() {
-    document.removeEventListener('click', this.leftMouseClickHandler);
-    document.removeEventListener('contextmenu', this.rightMouseClickHandler);
+    document.removeEventListener('click', this.handleLeftMouseClick);
+    document.removeEventListener('contextmenu', this.handleRightMouseClick);
 
     window.clearInterval(this.clockNameChangeTimerId);
   }
 
-  leftMouseClickHandler = (): void => (
-    this.setState({ hasClock: true })
-  );
+  handleLeftMouseClick = (): void => {
+    if (!this.state.hasClock) {
+      this.setState({ hasClock: true });
+    }
+  };
 
-  rightMouseClickHandler = (event: Event): void => {
+  handleRightMouseClick = (event: Event): void => {
     event.preventDefault();
 
-    this.setState({ hasClock: false });
+    if (this.state.hasClock) {
+      this.setState({ hasClock: false });
+    }
   };
 
   render() {
