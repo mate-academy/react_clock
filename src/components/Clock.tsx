@@ -13,15 +13,13 @@ export class Clock extends Component<Props, State> {
     date: new Date(),
   };
 
-  timerId = 0;
+  timerIdClock = 0;
 
   componentDidMount() {
-    setInterval(() => {
+    this.timerIdClock = window.setInterval(() => {
       this.setState({ date: new Date() });
-    }, 1000);
 
-    this.timerId = window.setInterval(() => {
-      console.info(this.state.date.toUTCString().slice(-12, -4));
+      window.console.info(this.state.date.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
@@ -29,12 +27,13 @@ export class Clock extends Component<Props, State> {
     const { name } = this.props;
 
     if (prev.name !== name) {
-      console.debug(`Renamed from ${prev.name} to ${name}`);
+      // eslint-disable-next-line no-console
+      window.console.debug(`Renamed from ${prev.name} to ${name}`);
     }
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    window.clearInterval(this.timerIdClock);
   }
 
   render() {
