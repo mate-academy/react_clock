@@ -15,13 +15,6 @@ type State = {
 };
 
 export class App extends Component<{}, State> {
-  // // This code starts a timer
-  // const timerId = window.setInterval(() => {
-  //   clockName = getRandomName();
-  // }, 3300);
-
-  // // this code stops the timer
-  // window.clearInterval(timerId);
   state = {
     hasClock: true,
     clockName: 'Clock-0',
