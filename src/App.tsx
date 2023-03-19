@@ -50,9 +50,7 @@ export class App extends React.Component<Props, State> {
     });
   };
 
-  handleClickEvent = (event: Event) => {
-    event.preventDefault();
-
+  handleClickEvent = () => {
     this.setState({
       hasClock: true,
     });
