@@ -27,13 +27,6 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
-  // componentDidUpdate({ clockName }: Readonly<Props>) {
-  //   if (clockName !== this.props.clockName) {
-  //     // eslint-disable-next-line
-  //     console.debug(`Renamed from ${clockName} to ${this.props.clockName}`);
-  //   }
-  // }
-
   componentDidUpdate(prevProps: Readonly<Props>): void {
     const { clockName } = this.props;
 
