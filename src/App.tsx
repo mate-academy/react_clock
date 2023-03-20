@@ -1,5 +1,6 @@
-import React from 'react';
 import './App.scss';
+import { Component } from 'react';
+import { Clock } from './componenents/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,35 +8,23 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-type State = {
+interface State {
   hasClock: boolean,
-  clockName: string,
-  today: Date,
-};
+  clockName: string;
+}
 
-export class App extends React.Component<{}, State> {
-  timerId = 0;
-
-  timerId2 = 0;
-
+export class App extends Component {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
-    today: new Date(),
   };
+
+  timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
-
-    this.timerId2 = window.setInterval(() => {
-      const newDate = new Date();
-
-      /* eslint-disable no-console */
-      this.setState({ today: newDate });
-      console.info(newDate.toUTCString().slice(-12, -4));
-    }, 1000);
 
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
@@ -47,7 +36,8 @@ export class App extends React.Component<{}, State> {
     });
   }
 
-  componentDidUpdate(_: any, prevState: State) {
+  componentDidUpdate(_: unknown, prevState: State) {
+    /* eslint-disable no-console */
     if (prevState.clockName !== this.state.clockName) {
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
@@ -55,10 +45,9 @@ export class App extends React.Component<{}, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    window.clearInterval(this.timerId2);
 
     document.removeEventListener('contextmenu', (event) => {
-      event.preventDefault(); // not to show the context menu
+      event.preventDefault();
       this.setState({ hasClock: false });
     });
 
@@ -68,23 +57,20 @@ export class App extends React.Component<{}, State> {
   }
 
   render() {
-    const { hasClock, clockName, today } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-
-        <div className="Clock" style={{ display: hasClock ? 'block' : 'none' }}>
-          <strong className="Clock__name">
-            {clockName}
-          </strong>
-
-          {' time is '}
-
-          <span className="Clock__time">
-            {today.toUTCString().slice(-12, -4)}
-          </span>
-        </div>
+        {hasClock
+       && (
+         <div>
+           <strong className="Clock__name">
+             {clockName}
+           </strong>
+           <Clock />
+         </div>
+       )}
       </div>
     );
   }
