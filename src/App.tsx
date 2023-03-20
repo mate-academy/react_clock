@@ -28,32 +28,52 @@ export class App extends Component<{}, State> {
       });
     }, 3300);
 
-    document.addEventListener('click', () => {
-      this.setState({
-        hasClock: true,
-      });
-    });
+    document.addEventListener('click', this.handleLeftMouseClick);
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({
-        hasClock: false,
-      });
-    });
+    document.addEventListener(
+      'contextmenu',
+      (event) => {
+        this.handleRightMouseClick(event);
+      },
+    );
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerId);
+    const {
+      timerId,
+      handleLeftMouseClick,
+      handleRightMouseClick,
+    } = this;
+
+    window.clearInterval(timerId);
+    window.removeEventListener('click', handleLeftMouseClick);
+    window.removeEventListener('contextmenu', handleRightMouseClick);
   }
 
+  handleLeftMouseClick = () => {
+    this.setState({
+      hasClock: true,
+    });
+  };
+
+  handleRightMouseClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({
+      hasClock: false,
+    });
+  };
+
   render() {
+    const { hasClock, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
 
         {
-          this.state.hasClock
-          && <Clock name={this.state.clockName} />
+          hasClock && (
+            <Clock name={clockName} />
+          )
         }
 
       </div>
