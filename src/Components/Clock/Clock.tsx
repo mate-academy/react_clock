@@ -24,7 +24,7 @@ export class Clock extends React.Component<Props, State> {
     this.clockId = setInterval(() => {
       this.setState({ today: new Date() });
 
-      console.info(getFormatedTime(this.state.today));
+      console.info(getFormatedTime(new Date()));
     }, 1000);
   }
 
