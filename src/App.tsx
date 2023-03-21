@@ -31,13 +31,19 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('contextmenu', this.handleRightClick);
   }
 
-  handleLeftClick = (event :Event) => {
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+    document.removeEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+  }
+
+  handleLeftClick = (event: Event) => {
     event.preventDefault();
 
     this.setState({ hasClock: true });
   };
 
-  handleRightClick = (event :Event) => {
+  handleRightClick = (event: Event) => {
     event.preventDefault();
 
     this.setState({ hasClock: false });
@@ -47,7 +53,9 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock && <Clock clockName={this.state.clockName} />}
+
+        {this.state.hasClock
+          && <Clock clockName={this.state.clockName} />}
       </div>
     );
   }

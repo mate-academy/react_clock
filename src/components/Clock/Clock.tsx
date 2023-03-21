@@ -20,12 +20,12 @@ export class Clock extends Component<Props, State> {
       this.setState({ today: new Date() });
 
       window.console.info(
-        this.state.today.toUTCString().slice(-12, -4),
+        Clock.getFormattedTime(this.state.today),
       );
     }, 1000);
   }
 
-  componentDidUpdate(prevProps : Props) {
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.clockName !== this.props.clockName) {
       window.console.debug(
         `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
@@ -35,6 +35,10 @@ export class Clock extends Component<Props, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
+  }
+
+  static getFormattedTime(date: Date) {
+    return date.toUTCString().slice(-12, -4);
   }
 
   render() {
@@ -47,7 +51,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.today.toUTCString().slice(-12, -4)}
+          {Clock.getFormattedTime(this.state.today)}
         </span>
       </div>
     );
