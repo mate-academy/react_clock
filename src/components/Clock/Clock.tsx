@@ -5,27 +5,27 @@ type Props = {
 };
 
 type State = {
-  currentTime: Date;
+  currentTime: string;
 };
 
-function getTimeString(date: Date): string {
-  return date.toUTCString().slice(-12, -4);
+function getTimeString(): string {
+  return ((new Date()).toUTCString().slice(-12, -4));
 }
 
 export class Clock extends Component<Props, State> {
   state = {
-    currentTime: new Date(),
+    currentTime: getTimeString(),
   };
 
   timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      const newDate = new Date();
+      const currentTime = getTimeString();
 
-      window.console.info(getTimeString(newDate));
+      window.console.info(getTimeString());
 
-      this.setState({ currentTime: newDate });
+      this.setState({ currentTime });
     }, 1000);
   }
 
@@ -55,7 +55,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {getTimeString(currentTime)}
+          {currentTime}
         </span>
       </div>
     );
