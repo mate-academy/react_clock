@@ -15,7 +15,7 @@ type State = {
 };
 
 export class App extends Component<{}, State> {
-  state = {
+  state: Readonly<State> = {
     hasClock: true,
     clockName: 'Clock-0',
   };
@@ -27,26 +27,22 @@ export class App extends Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('click', this.leftClick);
-    document.addEventListener('contextmenu', this.rightClick);
+    document.addEventListener('click', this.handleLeftClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerId);
+    clearInterval(this.timerId);
 
-    document.removeEventListener('click', this.leftClick);
-    document.removeEventListener('contextmenu', this.rightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
   }
 
-  rightClick = (event: Event) => {
-    event.preventDefault();
-
+  handleRightClick = () => {
     this.setState({ hasClock: false });
   };
 
-  leftClick = (event: Event) => {
-    event.preventDefault();
-
+  handleLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
