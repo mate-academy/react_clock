@@ -13,7 +13,7 @@ type Props = {
 };
 
 export class Clock extends Component<Props, State> {
-  state = {
+  state: Readonly<State> = {
     date: getFormattedDate(),
   };
 
@@ -22,16 +22,21 @@ export class Clock extends Component<Props, State> {
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
       this.setState({ date: getFormattedDate() });
-      window.console.info(this.state.date);
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props): void {
+  componentDidUpdate(prevProps: Props, prevState: State): void {
     const { name: oldName } = prevProps;
+    const { date: oldDate } = prevState;
     const { name } = this.props;
+    const { date } = this.state;
 
     if (oldName !== name) {
       window.console.debug(`Renamed from ${oldName} to ${name}`);
+    }
+
+    if (oldDate !== date) {
+      window.console.info(date);
     }
   }
 
