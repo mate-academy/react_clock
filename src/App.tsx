@@ -32,21 +32,6 @@ export class App extends Component<{}, State> {
     }, 3300);
   }
 
-  componentDidUpdate(prevState: State): void {
-    const { hasClock: prevHasClock } = prevState;
-    const { hasClock } = this.state;
-
-    if (hasClock === false && prevHasClock === true) {
-      window.clearInterval(this.timer);
-    }
-
-    if (hasClock === true && prevHasClock === false) {
-      this.timer = window.setInterval(() => {
-        this.setState({ clockName: getRandomName() });
-      }, 3300);
-    }
-  }
-
   componentWillUnmount(): void {
     window.clearInterval(this.timer);
     document.removeEventListener('contextmenu', this.leftClick);
@@ -70,12 +55,9 @@ export class App extends Component<{}, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {
-          hasClock
-          && (
-            <Clock name={clockName} />
-          )
-        }
+        {hasClock && (
+          <Clock name={clockName} />
+        )}
       </div>
     );
   }
