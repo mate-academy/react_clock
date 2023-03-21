@@ -1,11 +1,12 @@
+/* eslint-disable no-console */
 import React from 'react';
 
 type Props = {
-  clockName: string;
+  clockName: string,
 };
 
 type State = {
-  today: Date
+  today: Date,
 };
 
 function getFormatedTime(time: Date): string {
@@ -17,24 +18,26 @@ export class Clock extends React.Component<Props, State> {
     today: new Date(),
   };
 
-  timeLog = 0;
+  clockId: NodeJS.Timer | undefined = undefined;
 
   componentDidMount(): void {
-    this.timeLog = window.setInterval(() => {
+    this.clockId = setInterval(() => {
       this.setState({ today: new Date() });
 
-      window.console.info(getFormatedTime(this.state.today));
+      console.info(getFormatedTime(this.state.today));
     }, 1000);
   }
 
   componentDidUpdate({ clockName }: Readonly<Props>): void {
     if (clockName !== this.props.clockName) {
-      window.console.debug(`Renamed from ${clockName} to ${this.props.clockName}`);
+      console.debug(`Renamed from ${clockName} to ${this.props.clockName}`);
     }
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timeLog);
+    if (this.clockId) {
+      clearInterval(this.clockId);
+    }
   }
 
   render() {
