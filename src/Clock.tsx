@@ -21,8 +21,14 @@ export class Clock extends Component<Props, State> {
 
   componentDidMount() {
     this.timerCountId = window.setInterval(() => {
-      this.setState({ today: new Date() });
-      window.console.info(formatTime(this.state.today));
+      const today = new Date();
+
+      this.setState(
+        { today },
+        () => {
+          window.console.info(formatTime(this.state.today));
+        },
+      );
     }, 1000);
   }
 
