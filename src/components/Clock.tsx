@@ -15,17 +15,20 @@ const formattedTime = (date: Date) => (
 export class Clock extends React.Component<Props, State> {
   state = {
     today: new Date(),
+
   };
 
   clockId = 0;
 
   componentDidMount() {
     this.clockId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      const newToday = new Date();
 
-      window.console.info(
-        formattedTime(this.state.today),
-      );
+      window.console.info(formattedTime(newToday));
+
+      this.setState({
+        today: newToday,
+      });
     }, 1000);
   }
 

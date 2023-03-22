@@ -14,7 +14,7 @@ type State = {
 };
 
 export class App extends React.Component<{}, State> {
-  state = {
+  state: Readonly<State> = {
     hasClock: true,
     clockName: 'Clock-0',
   };
@@ -53,6 +53,7 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
+
         {hasClock && (
           <Clock clockName={clockName} />
         )}
