@@ -13,14 +13,14 @@ type Props = {
 };
 
 export class Clock extends Component<Props, State> {
-  state: State = {
+  state: Readonly<State> = {
     date: getFormattedDate(),
   };
 
-  timer = 0;
+  timerId = 0;
 
   componentDidMount(): void {
-    this.timer = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ date: getFormattedDate() });
       window.console.info(this.state.date);
     }, 1000);
@@ -36,7 +36,7 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timer);
+    window.clearInterval(this.timerId);
   }
 
   render() {

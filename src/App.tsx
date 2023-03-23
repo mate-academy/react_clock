@@ -15,36 +15,36 @@ type State = {
 };
 
 export class App extends Component<{}, State> {
-  state: State = {
+  state: Readonly<State> = {
     hasClock: true,
     clockName: 'Clock-0',
   };
 
-  timer = 0;
+  timerId = 0;
 
   componentDidMount(): void {
     document.addEventListener('contextmenu', this.leftClick);
 
     document.addEventListener('click', this.rightClick);
 
-    this.timer = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timer);
-    document.removeEventListener('contextmenu', this.leftClick);
-    document.removeEventListener('click', this.rightClick);
+    window.clearInterval(this.timerId);
+    document.removeEventListener('click', this.leftClick);
+    document.removeEventListener('contextmenu', this.rightClick);
   }
 
   leftClick = (event: Event) => {
     event.preventDefault();
-
     this.setState({ hasClock: false });
   };
 
-  rightClick = () => {
+  rightClick = (event: Event) => {
+    event.preventDefault();
     this.setState({ hasClock: true });
   };
 
