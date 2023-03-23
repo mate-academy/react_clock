@@ -19,8 +19,10 @@ export class App extends React.Component<{}, State> {
     clockName: 'Clock-0',
   };
 
+  timer = 0;
+
   componentDidMount() {
-    window.setInterval(() => {
+    this.timer = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
@@ -31,6 +33,20 @@ export class App extends React.Component<{}, State> {
     });
 
     document.addEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+
+    document.removeEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+
+      this.setState({ hasClock: false });
+    });
+
+    document.removeEventListener('click', () => {
       this.setState({ hasClock: true });
     });
   }

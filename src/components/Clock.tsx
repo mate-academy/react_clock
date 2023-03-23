@@ -13,10 +13,10 @@ export class Clock extends React.Component<Props, State> {
     time: new Date(),
   };
 
-  timer?: NodeJS.Timeout;
+  timer = 0;
 
   componentDidMount() {
-    this.timer = setInterval(() => {
+    this.timer = window.setInterval(() => {
       const newD = new Date();
 
       this.setState({ time: newD });
@@ -34,9 +34,7 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.timer) {
-      clearInterval(this.timer);
-    }
+    clearInterval(this.timer);
   }
 
   render() {
