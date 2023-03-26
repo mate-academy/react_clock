@@ -20,11 +20,10 @@ export class App extends Component<{}, State> {
     clockName: 'Clock-0',
   };
 
-  // timerId = 0;
+  timerId = 0;
 
   componentDidMount() {
-    // this.timerId = window.setInterval(() => {
-    window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
@@ -33,7 +32,6 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    // clearInterval(this.timerId);
     document.removeEventListener('click', this.handleLeftClick);
     document.removeEventListener('contextmenu', this.handleRightClick);
   }

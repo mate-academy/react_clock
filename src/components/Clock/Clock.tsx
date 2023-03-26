@@ -8,6 +8,10 @@ type State = {
   today: Date,
 };
 
+function getTime(date: Date) {
+  return date.toUTCString().slice(-12, -4);
+}
+
 export class Clock extends Component<Props, State> {
   state = {
     today: new Date(),
@@ -19,7 +23,7 @@ export class Clock extends Component<Props, State> {
     this.clockId = window.setInterval(() => {
       this.setState({ today: new Date() });
 
-      window.console.info(this.state.today.toUTCString().slice(-12, -4));
+      window.console.info(getTime(this.state.today));
     }, 1000);
   }
 
@@ -46,7 +50,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {getTime(today)}
         </span>
       </div>
     );
