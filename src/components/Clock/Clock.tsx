@@ -8,7 +8,7 @@ export type Props = {
   name: string;
 };
 
-function getTime(date: Date): string {
+function getFormatedTime(date: Date): string {
   return date.toUTCString().slice(-12, -4);
 }
 
@@ -23,7 +23,7 @@ export class Clock extends React.Component<Props, State> {
     this.timerId = window.setInterval(() => {
       const newDate = new Date();
 
-      window.console.info(getTime(newDate));
+      window.console.info(getFormatedTime(newDate));
 
       this.setState({ date: newDate });
     }, 1000);
@@ -54,7 +54,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {getTime(date)}
+          {getFormatedTime(date)}
         </span>
       </div>
     );
