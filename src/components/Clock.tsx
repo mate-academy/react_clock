@@ -1,11 +1,11 @@
 import { Component } from 'react';
 
-type Props = {
-  clockName: string;
-};
-
 type State = {
   today: Date;
+};
+
+type Props = {
+  clockName: string;
 };
 
 function getTime(date: Date): string {
