@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 
-import { Clock } from './Clock';
+import Clock from './Components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -10,8 +10,8 @@ function getRandomName(): string {
 }
 
 type State = {
-  hasClock: boolean,
-  clockName: string,
+  hasClock: boolean;
+  clockName: string;
 };
 
 export class App extends React.Component<{}, State> {
@@ -20,25 +20,39 @@ export class App extends React.Component<{}, State> {
     clockName: 'Clock-0',
   };
 
-  timerId = window.setInterval(() => {
-    this.setState({ clockName: getRandomName() });
-  }, 3300);
+  timerId = 0;
 
-  componentDidMount() {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-
-      this.setState({ hasClock: false });
-    });
-
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+  componentDidMount(): void {
+    this.timerId = window.setInterval(this.nameChange, 3300);
+    document.addEventListener('contextmenu', this.clickRight);
+    document.addEventListener('click', this.clickLeft);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timerId);
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.clickRight);
+    document.removeEventListener('click', this.clickLeft);
   }
+
+  nameChange = () => {
+    this.setState({
+      clockName: getRandomName(),
+    });
+  };
+
+  clickRight = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({
+      hasClock: false,
+    });
+  };
+
+  clickLeft = () => {
+    this.setState({
+      hasClock: true,
+    });
+  };
 
   render() {
     const { hasClock, clockName } = this.state;
@@ -48,7 +62,7 @@ export class App extends React.Component<{}, State> {
         <h1>React clock</h1>
 
         {hasClock && (
-          <Clock clockName={clockName} />
+          <Clock name={clockName} />
         )}
       </div>
     );
