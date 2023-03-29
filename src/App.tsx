@@ -13,8 +13,8 @@ type Props = {};
 
 type State = {
   time: string;
-  oldName: string,
-  newName: string,
+  oldName: string | {},
+  newName: string | {},
   hasClock: boolean,
 };
 
@@ -22,7 +22,7 @@ export class App extends React.Component<Props, State> {
   state = {
     time: '',
     oldName: 'Clock-0',
-    newName: '',
+    newName: 'Clock-0',
     hasClock: true,
   };
 
@@ -46,10 +46,10 @@ export class App extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: {}, prevState: {}) {
     if (this.state.hasClock === true
-      && this.state.oldName !== prevState
-      && this.state.newName !== prevState
-      && this.state.oldName !== prevProps
-      && this.state.newName !== prevProps) {
+      && this.state.oldName !== prevState.oldName
+      && this.state.newName !== prevState.newName
+      && this.state.oldName !== prevProps.thisoldName
+      && this.state.newName !== prevProps.newName) {
       console.info(`Renamed from ${this.state.oldName} to ${this.state.newName}`);
     }
 
