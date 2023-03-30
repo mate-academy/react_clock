@@ -44,18 +44,15 @@ export class App extends React.Component<Props, State> {
     document.addEventListener('mousedown', this.clockShow);
   }
 
-  componentDidUpdate(prevProps: {}, prevState: {}) {
+  componentDidUpdate(prevState: State) {
     if (this.state.hasClock === true
-      && this.state.oldName !== prevState
-      && this.state.newName !== prevState
-      && this.state.oldName !== prevProps
-      && this.state.newName !== prevProps) {
+      && this.state.oldName !== prevState.oldName
+      && this.state.newName !== prevState.newName) {
       console.info(`Renamed from ${this.state.oldName} to ${this.state.newName}`);
     }
 
     if (this.state.hasClock === true
-      && this.state.time !== prevState
-      && this.state.time !== prevProps) {
+      && this.state.time !== prevState.time) {
       console.info(this.state.time);
     }
   }
