@@ -43,7 +43,7 @@ export class App extends React.Component<Props, State> {
   componentDidUpdate(prevState: State) {
     if (this.state.hasClock === true
       && this.state.timerName !== prevState.timerName) {
-      console.warn(`Renamed from ${prevState.timerName} to ${this.state.timerName}`);
+      console.info(`Renamed from ${prevState.timerName} to ${this.state.timerName}`);
     }
   }
 
