@@ -13,47 +13,37 @@ type Props = {};
 
 type State = {
   time: string;
-  oldName: string | {},
-  newName: string | {},
+  timerName: string,
   hasClock: boolean,
 };
 
 export class App extends React.Component<Props, State> {
   state = {
     time: '',
-    oldName: 'Clock-0',
-    newName: 'Clock-0',
+    timerName: 'Clock-0',
     hasClock: true,
   };
 
   timerID = 0;
 
   componentDidMount() {
+    this.timerID = window.setInterval(() => {
+      this.setState(({ timerName: getRandomName() }
+      ));
+    }, 3300);
+
     window.setInterval(() => {
       this.setState({ time: new Date().toLocaleTimeString() });
+      console.info(this.state.time);
     }, 1000);
-
-    this.timerID = window.setInterval(() => {
-      this.setState(prevState => (
-        { oldName: prevState.newName }
-      ));
-
-      this.setState({ newName: getRandomName() });
-    }, 3300);
 
     document.addEventListener('mousedown', this.clockShow);
   }
 
   componentDidUpdate(prevState: State) {
     if (this.state.hasClock === true
-      && this.state.oldName !== prevState.oldName
-      && this.state.newName !== prevState.newName) {
-      console.info(`Renamed from ${this.state.oldName} to ${this.state.newName}`);
-    }
-
-    if (this.state.hasClock === true
-      && this.state.time !== prevState.time) {
-      console.info(this.state.time);
+      && this.state.timerName !== prevState.timerName) {
+      console.warn(`Renamed from ${prevState.timerName} to ${this.state.timerName}`);
     }
   }
 
@@ -62,10 +52,10 @@ export class App extends React.Component<Props, State> {
     document.removeEventListener('mousedown', this.clockShow);
   }
 
-  clockShow = (click: MouseEvent) => {
-    click.preventDefault();
+  clockShow = (event: MouseEvent) => {
+    event.preventDefault();
 
-    if (click.button === 2) {
+    if (event.button === 2) {
       this.setState({ hasClock: false });
     } else {
       this.setState({ hasClock: true });
@@ -80,7 +70,7 @@ export class App extends React.Component<Props, State> {
         { this.state.hasClock && (
           <div className="Clock">
             <strong className="Clock__name">
-              {this.state.newName}
+              {this.state.timerName}
             </strong>
 
             {' time is '}
