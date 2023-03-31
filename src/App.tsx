@@ -33,8 +33,10 @@ export class App extends React.Component<Props, State> {
     }, 3300);
 
     window.setInterval(() => {
-      this.setState({ time: new Date().toLocaleTimeString() });
-      console.info(this.state.time);
+      const time = new Date().toLocaleTimeString();
+
+      this.setState({ time });
+      console.info(time);
     }, 1000);
 
     document.addEventListener('mousedown', this.clockShow);
@@ -43,7 +45,7 @@ export class App extends React.Component<Props, State> {
   componentDidUpdate(prevState: State) {
     if (this.state.hasClock === true
       && this.state.timerName !== prevState.timerName) {
-      console.info(`Renamed from ${prevState.timerName} to ${this.state.timerName}`);
+      console.warn(`Renamed from ${prevState.timerName} to ${this.state.timerName}`);
     }
   }
 
