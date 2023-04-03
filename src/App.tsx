@@ -27,6 +27,8 @@ export class App extends React.Component<Props, State> {
   timerID = 0;
 
   componentDidMount() {
+    window.addEventListener('mousedown', this.clockShow);
+
     this.timerID = window.setInterval(() => {
       this.setState(({ timerName: getRandomName() }
       ));
@@ -36,16 +38,18 @@ export class App extends React.Component<Props, State> {
       const time = new Date().toLocaleTimeString();
 
       this.setState({ time });
-      console.info(time);
     }, 1000);
-
-    document.addEventListener('mousedown', this.clockShow);
   }
 
-  componentDidUpdate(prevState: State) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (this.state.hasClock === true
-      && this.state.timerName !== prevState.timerName) {
-      console.warn(`Renamed from ${prevState.timerName} to ${this.state.timerName}`);
+      && this.state.time !== prevState.time && prevProps) {
+      console.info(this.state.time);
+    }
+
+    if (this.state.hasClock === true
+      && this.state.timerName !== prevState.timerName && prevProps) {
+      console.debug(`Renamed from ${prevState.timerName} to ${this.state.timerName}`);
     }
   }
 
