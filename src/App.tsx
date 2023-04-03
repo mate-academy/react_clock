@@ -1,12 +1,7 @@
 import { Component } from 'react';
 import './App.scss';
-import { CLock } from './Clock';
-
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
+import { Clock } from './Clock';
+import { getRandomName } from './function';
 
 type State = {
   hasClock: boolean,
@@ -26,6 +21,11 @@ export class App extends Component<{}, State> {
     document.addEventListener('contextmenu', this.handleRigthClick);
 
     this.clockNameId = window.setInterval(this.clockNameChanger, 3300);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRigthClick);
   }
 
   clockNameChanger = () => {
@@ -50,7 +50,7 @@ export class App extends Component<{}, State> {
         <h1>React clock</h1>
 
         {
-          hasClock && (<CLock clockName={clockName} />)
+          hasClock && (<Clock clockName={clockName} />)
         }
       </div>
     );

@@ -12,7 +12,7 @@ const avoidingTimezoneIssues = (time: Date) => {
   return time.toUTCString().slice(-12, -4);
 };
 
-export class CLock extends Component<Props, State> {
+export class Clock extends Component<Props, State> {
   state = {
     currentTime: new Date(),
   };
