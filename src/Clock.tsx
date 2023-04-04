@@ -8,7 +8,7 @@ type Props = {
   clockName: string;
 };
 
-const avoidingTimezoneIssues = (time: Date) => {
+const formatTime = (time: Date) => {
   return time.toUTCString().slice(-12, -4);
 };
 
@@ -23,7 +23,7 @@ export class Clock extends Component<Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ currentTime: new Date() });
 
-      window.console.info(avoidingTimezoneIssues(this.state.currentTime));
+      window.console.info(formatTime(this.state.currentTime));
     }, 1000);
   }
 
@@ -54,7 +54,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {avoidingTimezoneIssues(currentTime)}
+          {formatTime(currentTime)}
         </span>
       </div>
     );
