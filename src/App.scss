@@ -3,6 +3,21 @@ iframe {
 }
 
 html {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 24px;
+  box-sizing: border-box;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 34px;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(45deg, #0f1630 0%, #350d29 100%);
 }
