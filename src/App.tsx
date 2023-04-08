@@ -28,34 +28,30 @@ export class App extends Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
+    document.addEventListener('contextmenu', this.handleHideClock);
 
-      this.setState({ hasClock: false });
-    });
-
-    document.addEventListener('click', (event) => {
-      event.preventDefault();
-
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.handleShowClock);
   }
 
   componentWillUnmount() {
     clearInterval(this.timer);
 
-    document.removeEventListener('contextmenu', (event) => {
-      event.preventDefault();
+    document.removeEventListener('contextmenu', this.handleHideClock);
 
-      this.setState({ hasClock: false });
-    });
-
-    document.removeEventListener('click', (event) => {
-      event.preventDefault();
-
-      this.setState({ hasClock: true });
-    });
+    document.removeEventListener('click', this.handleShowClock);
   }
+
+  handleHideClock = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: false });
+  };
+
+  handleShowClock = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: true });
+  };
 
   render() {
     const { hasClock, clockName } = this.state;

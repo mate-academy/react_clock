@@ -43,16 +43,19 @@ export class Clock extends Component<Props, State> {
   }
 
   render() {
+    const { name } = this.props;
+    const { time } = this.state;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.name}
+          {name}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.time}
+          {time}
         </span>
       </div>
     );
