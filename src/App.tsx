@@ -2,6 +2,8 @@
 import React from 'react';
 // import { render } from 'react-dom';
 import './App.scss';
+// import { event } from 'cypress/types/jquery';
+import { Clock } from './Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -12,44 +14,32 @@ function getRandomName(): string {
 type Props = {};
 
 type State = {
-  time: string;
-  timerName: string,
+  clockName: string,
   hasClock: boolean,
 };
 
 export class App extends React.Component<Props, State> {
   state = {
-    time: '',
-    timerName: 'Clock-0',
+    clockName: 'Clock-0',
     hasClock: true,
   };
 
   timerID = 0;
 
   componentDidMount() {
-    window.addEventListener('mousedown', this.clockShow);
+    window.addEventListener('click', this.clockShow);
+    window.addEventListener('contextmenu', this.clockShow);
 
     this.timerID = window.setInterval(() => {
-      this.setState(({ timerName: getRandomName() }
+      this.setState(({ clockName: getRandomName() }
       ));
     }, 3300);
-
-    window.setInterval(() => {
-      const time = new Date().toLocaleTimeString();
-
-      this.setState({ time });
-    }, 1000);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
     if (this.state.hasClock === true
-      && this.state.time !== prevState.time && prevProps) {
-      console.info(this.state.time);
-    }
-
-    if (this.state.hasClock === true
-      && this.state.timerName !== prevState.timerName && prevProps) {
-      console.debug(`Renamed from ${prevState.timerName} to ${this.state.timerName}`);
+      && this.state.clockName !== prevState.clockName && prevProps) {
+      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
   }
 
@@ -58,10 +48,10 @@ export class App extends React.Component<Props, State> {
     document.removeEventListener('mousedown', this.clockShow);
   }
 
-  clockShow = (event: MouseEvent) => {
-    event.preventDefault();
+  clockShow = (e: MouseEvent) => {
+    e.preventDefault();
 
-    if (event.button === 2) {
+    if (e.button === 2) {
       this.setState({ hasClock: false });
     } else {
       this.setState({ hasClock: true });
@@ -73,19 +63,8 @@ export class App extends React.Component<Props, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        { this.state.hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">
-              {this.state.timerName}
-            </strong>
-
-            {' time is '}
-
-            <span className="Clock__time">
-              {this.state.time}
-            </span>
-          </div>
-        )}
+        { this.state.hasClock
+        && (<Clock name={this.state.clockName} />)}
       </div>
     );
   }
