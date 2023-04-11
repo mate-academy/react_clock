@@ -51,20 +51,18 @@ export class App extends React.Component<Props, State> {
   clockShow = (e: MouseEvent) => {
     e.preventDefault();
 
-    if (e.button === 2) {
-      this.setState({ hasClock: false });
-    } else {
-      this.setState({ hasClock: true });
-    }
+    this.setState({ hasClock: e.button !== 2 });
   };
 
   render(): React.ReactNode {
+    const { clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
 
         { this.state.hasClock
-        && (<Clock name={this.state.clockName} />)}
+        && (<Clock name={clockName} />)}
       </div>
     );
   }

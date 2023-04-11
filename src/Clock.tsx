@@ -6,7 +6,6 @@ import './App.scss';
 
 type State = {
   time: string;
-  hasTime: boolean,
 };
 
 type Props = {
@@ -16,11 +15,9 @@ type Props = {
 export class Clock extends React.Component<Props, State> {
   state = {
     time: '',
-    hasTime: true,
   };
 
   componentDidMount(): void {
-    window.addEventListener('click', this.timerState);
     window.setInterval(() => {
       const time = new Date().toLocaleTimeString();
 
@@ -29,22 +26,10 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    if (this.state.hasTime && this.state.time !== prevState.time && prevProps) {
+    if (this.state.time !== prevState.time && prevProps) {
       console.info(this.state.time);
     }
   }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.timerState);
-  }
-
-  timerState = (e: MouseEvent) => {
-    if (e.button === 2) {
-      this.setState({ hasTime: false });
-    } else {
-      this.setState({ hasTime: true });
-    }
-  };
 
   render(): React.ReactNode {
     return (
