@@ -19,8 +19,6 @@ export class Clock extends Component<Props, State> {
     this.newTime = window.setInterval(() => {
       this.setState({ today: new Date() });
     }, 1000);
-
-    document.addEventListener('click', this.handleLeftClick);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State): void {
@@ -36,13 +34,8 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount(): void {
-    document.removeEventListener('click', this.handleLeftClick);
     window.clearInterval(this.newTime);
   }
-
-  handleLeftClick = () => {
-    this.setState({ today: new Date() });
-  };
 
   render(): React.ReactNode {
     const { today } = this.state;
