@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 type State = {
   today: Date,
-  newTime: number,
 };
 
 type Props = {
@@ -10,17 +9,16 @@ type Props = {
 };
 
 export class Clock extends Component<Props, State> {
+  newTime = 0;
+
   state: Readonly<State> = {
     today: new Date(),
-    newTime: 0,
   };
 
   componentDidMount(): void {
-    this.setState({
-      newTime: window.setInterval(() => {
-        this.setState({ today: new Date() });
-      }, 1000),
-    });
+    this.newTime = window.setInterval(() => {
+      this.setState({ today: new Date() });
+    }, 1000);
 
     document.addEventListener('click', this.handleLeftClick);
   }
@@ -39,7 +37,7 @@ export class Clock extends Component<Props, State> {
 
   componentWillUnmount(): void {
     document.removeEventListener('click', this.handleLeftClick);
-    window.clearInterval(this.state.newTime);
+    window.clearInterval(this.newTime);
   }
 
   handleLeftClick = () => {
@@ -48,11 +46,21 @@ export class Clock extends Component<Props, State> {
 
   render(): React.ReactNode {
     const { today } = this.state;
+    const { clockName } = this.props;
 
     return (
-      <span className="Clock__time">
-        {today.toUTCString().slice(-12, -4)}
-      </span>
+      <div className="Clock">
+        <strong className="Clock__name">
+          {clockName}
+        </strong>
+
+        {' time is '}
+
+        <span className="Clock__time">
+          {today.toUTCString().slice(-12, -4)}
+        </span>
+      </div>
+
     );
   }
 }
