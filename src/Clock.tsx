@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-// import { render } from 'react-dom';
 import './App.scss';
-// import { event } from 'cypress/types/jquery';
 
 type State = {
   time: string;
@@ -17,8 +15,10 @@ export class Clock extends React.Component<Props, State> {
     time: '',
   };
 
+  timerID = 0;
+
   componentDidMount(): void {
-    window.setInterval(() => {
+    this.timerID = window.setInterval(() => {
       const time = new Date().toLocaleTimeString();
 
       this.setState({ time });
@@ -26,28 +26,28 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    if (this.state.time !== prevState.time && prevProps) {
+    if (this.state.time !== prevState.time) {
       console.info(this.state.time);
     }
+
+    return prevProps;
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
   }
 
   render(): React.ReactNode {
     return (
-
-      <>
-        <div className="Clock">
-          <strong className="Clock__name">
-            {this.props.name}
-          </strong>
-
-          {' time is '}
-          <span className="Clock__time">
-            {this.state.time}
-          </span>
-
-        </div>
-
-      </>
+      <div className="Clock">
+        <strong className="Clock__name">
+          {this.props.name}
+        </strong>
+        {' time is '}
+        <span className="Clock__time">
+          {this.state.time}
+        </span>
+      </div>
     );
   }
 }
