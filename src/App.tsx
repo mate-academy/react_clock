@@ -27,7 +27,17 @@ export class App extends React.Component {
   componentWillUnmount() {
     document.removeEventListener('click', this.addClock);
     document.removeEventListener('contextmenu', this.removeClock);
+    clearInterval(this.state.timeInterval);
+    clearInterval(this.state.nameInterval);
   }
+
+  addClickEvent = () => {
+    document.addEventListener('click', this.addClock);
+  };
+
+  addContextEvent = () => {
+    document.addEventListener('contextmenu', this.removeClock);
+  };
 
   addClock = () => {
     this.setState({ today: new Date() });
