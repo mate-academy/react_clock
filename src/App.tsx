@@ -36,9 +36,11 @@ export class App extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: Props, prevState: State) {
     if (this.state.hasClock === true
-      && this.state.clockName !== prevState.clockName && prevProps) {
+      && this.state.clockName !== prevState.clockName) {
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
+
+    return prevProps;
   }
 
   componentWillUnmount() {
