@@ -26,11 +26,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    if (this.state.time !== prevState.time) {
+    if (this.state.time !== prevState.time && prevProps) {
       console.info(this.state.time);
     }
-
-    return prevProps;
   }
 
   componentWillUnmount() {
