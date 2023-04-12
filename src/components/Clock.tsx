@@ -9,16 +9,18 @@ type State = {
   date: string;
 };
 
+const getDate = () => new Date().toUTCString().slice(-12, -4);
+
 export class Clock extends Component<Props, State> {
   state = {
-    date: new Date().toUTCString().slice(-12, -4),
+    date: getDate(),
   };
 
   dateTimer = 0;
 
   componentDidMount() {
     this.dateTimer = window.setInterval(() => {
-      const date = new Date().toUTCString().slice(-12, -4);
+      const date = getDate();
 
       this.setState({ date });
 
