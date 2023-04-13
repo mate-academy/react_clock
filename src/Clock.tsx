@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 
 type State = {
   currentTime: string;
@@ -12,7 +12,7 @@ function getFormattedTime(date: Date) {
   return date.toUTCString().slice(-12, -4);
 }
 
-export class Clock extends React.Component<Props, State> {
+export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
     currentTime: getFormattedTime(new Date()),
   };
@@ -52,6 +52,7 @@ export class Clock extends React.Component<Props, State> {
 
     return (
       <div className="Clock">
+
         <strong className="Clock__name">
           {name}
         </strong>
