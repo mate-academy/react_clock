@@ -8,17 +8,21 @@ type Props = {
 
 export class Clock extends React.Component<Props> {
   componentDidUpdate(prevState: Readonly<Props>) {
-    if (this.props.today.toUTCString().slice(-12, -4)
-    !== prevState.today.toUTCString().slice(-12, -4)) {
-      console.info(this.props.today.toUTCString().slice(-12, -4));
+    const currentDate = this.props.today.toUTCString().slice(-12, -4);
+    const prevDate = prevState.today.toUTCString().slice(-12, -4);
+    const prevName = prevState.name;
+    const currentName = this.props.name;
+
+    if (currentDate !== prevDate) {
+      console.info(currentDate);
     }
 
-    if (prevState.name.localeCompare(this.props.name) !== 0) {
-      console.debug(`Renamed from ${prevState.name} to ${this.props.name}`);
+    if (prevName.localeCompare(currentName) !== 0) {
+      console.debug(`Renamed from ${prevName} to ${currentName}`);
     }
   }
 
-  render() {
+  render(): JSX.Element {
     const { today, name } = this.props;
 
     return (

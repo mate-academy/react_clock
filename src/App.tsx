@@ -20,13 +20,17 @@ export class App extends React.Component {
   componentDidMount() {
     document.addEventListener('click', this.addClock);
     document.addEventListener('contextmenu', this.removeClock);
-    this.state.timeInterval = window.setInterval(this.dateHandler, 1000);
-    this.state.nameInterval = window.setInterval(this.nameHandler, 3300);
+
+    this.setState({
+      timeInterval: window.setInterval(this.dateHandler, 1000),
+      nameInterval: window.setInterval(this.nameHandler, 3300),
+    });
   }
 
   componentWillUnmount() {
     document.removeEventListener('click', this.addClock);
     document.removeEventListener('contextmenu', this.removeClock);
+
     clearInterval(this.state.timeInterval);
     clearInterval(this.state.nameInterval);
   }
@@ -40,13 +44,17 @@ export class App extends React.Component {
   };
 
   addClock = () => {
-    this.setState({ today: new Date() });
-    this.state.timeInterval = window.setInterval(this.dateHandler, 1000);
-    this.setState({ hasClock: true });
+    this.setState({
+      today: new Date(),
+      timeInterval: window.setInterval(this.dateHandler, 1000),
+      hasClock: true,
+    });
   };
 
   removeClock = () => {
-    this.setState({ hasClock: false });
+    this.setState({ hasClock: false, nameInterval: 0 });
+    clearInterval(this.state.timeInterval);
+    clearInterval(this.state.nameInterval);
   };
 
   dateHandler = () => {
