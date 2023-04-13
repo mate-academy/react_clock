@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 
 function getFormattedDate(): string {
   const date = new Date();
@@ -6,44 +6,35 @@ function getFormattedDate(): string {
   return date.toUTCString().slice(-12, -4);
 }
 
-interface ClockState {
+interface State {
   today: string;
-  todayTimer?: number;
 }
 
-interface ClockProps {
+interface Props {
   clockName: string;
 }
 
-export class Clock extends React.Component<ClockProps> {
-  state: Readonly<ClockState> = {
+export class Clock extends Component<Props> {
+  state: Readonly<State> = {
     today: getFormattedDate(),
   };
 
-  componentDidMount() {
-    const handleToday = () => {
-      const date = getFormattedDate();
+  dateTimerId = window.setInterval(() => {
+    const date = getFormattedDate();
 
-      this.setState((state: ClockState) => {
-        return { ...state, today: date };
-      });
+    this.setState({ today: date });
 
-      // eslint-disable-next-line no-console
-      console.info(date);
-    };
-
-    this.setState((state: ClockState) => ({
-      ...state,
-      todayTimer: window.setInterval(handleToday, 1000),
-    }));
-  }
+    // eslint-disable-next-line no-console
+    console.info(date);
+  }, 1000);
 
   componentWillUnmount() {
-    window.clearInterval(this.state.todayTimer);
+    window.clearInterval(this.dateTimerId);
   }
 
   render() {
     const { clockName } = this.props;
+    const { today } = this.state;
 
     return (
       <div className="Clock">
@@ -51,7 +42,7 @@ export class Clock extends React.Component<ClockProps> {
 
         {' time is '}
 
-        <span className="Clock__time">{this.state.today}</span>
+        <span className="Clock__time">{today}</span>
       </div>
     );
   }
