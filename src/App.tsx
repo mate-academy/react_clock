@@ -1,5 +1,6 @@
-import React from 'react';
+import { Component } from 'react';
 import './App.scss';
+import { Clock } from './components/Clock/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +8,68 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+interface State {
+  clockName: string;
+  hasClock: boolean;
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
+export class App extends Component {
+  state: Readonly<State> = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
+
+  nameTimerId = window.setInterval(() => {
+    this.setState((state: State): State => {
+      return {
+        ...state,
+        clockName: getRandomName(),
+      };
+    });
   }, 3300);
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount() {
+    document.addEventListener('contextmenu', this.handleClick);
+    document.addEventListener('click', this.handleClick);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidUpdate(_: unknown, prevState: State) {
+    const isClockNameUpdated = prevState.clockName !== this.state.clockName;
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    if (isClockNameUpdated && this.state.hasClock) {
+      const message = `Renamed from ${prevState.clockName} to ${this.state.clockName}`;
 
-        {' time is '}
+      // eslint-disable-next-line no-console
+      console.debug(message);
+    }
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  componentWillUnmount() {
+    window.clearInterval(this.nameTimerId);
+
+    document.removeEventListener('contextmenu', this.handleClick);
+    document.removeEventListener('click', this.handleClick);
+  }
+
+  handleClick = (event: Event) => {
+    event.preventDefault();
+
+    const isLeftClick = event.type === 'click';
+
+    this.setState((state: State) => ({
+      ...state,
+      hasClock: isLeftClick,
+    }));
+  };
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {hasClock && <Clock clockName={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
