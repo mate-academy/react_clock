@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.scss';
-import { time } from 'console';
 import { Clock } from './Clock';
 
 type State = {

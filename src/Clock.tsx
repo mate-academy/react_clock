@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import React from 'react';
 
 type State = {
@@ -20,7 +22,7 @@ export class Clock extends React.Component<Props, State> {
       const date = new Date();
 
       this.setState({ today: date });
-      console.info(this.state.today);
+      console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
