@@ -9,14 +9,14 @@ type Props = {
 };
 
 export class Clock extends Component<Props, State> {
-  newTime = 0;
+  dateTimerId: number | undefined = undefined;
 
   state: Readonly<State> = {
     today: new Date(),
   };
 
   componentDidMount(): void {
-    this.newTime = window.setInterval(() => {
+    this.dateTimerId = window.setInterval(() => {
       this.setState({ today: new Date() });
     }, 1000);
   }
@@ -24,7 +24,7 @@ export class Clock extends Component<Props, State> {
   componentDidUpdate(prevProps: Props, prevState: State): void {
     if (prevState.today !== this.state.today) {
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(this.getTimeFromDate());
     }
 
     if (prevProps.clockName !== this.props.clockName) {
@@ -34,11 +34,14 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.newTime);
+    window.clearInterval(this.dateTimerId);
   }
 
+  getTimeFromDate = () => {
+    return this.state.today.toUTCString().slice(-12, -4);
+  };
+
   render(): React.ReactNode {
-    const { today } = this.state;
     const { clockName } = this.props;
 
     return (
@@ -50,10 +53,9 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {this.getTimeFromDate()}
         </span>
       </div>
-
     );
   }
 }

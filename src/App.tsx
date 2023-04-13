@@ -9,7 +9,7 @@ type State = {
 };
 
 export class App extends Component<{}, State> {
-  timerId = 0;
+  nameTimerId: number | undefined = undefined;
 
   state = {
     clockName: 'Clock-0',
@@ -17,8 +17,10 @@ export class App extends Component<{}, State> {
   };
 
   componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
-      this.setState({ clockName: this.getRandomName() });
+    this.nameTimerId = window.setInterval(() => {
+      this.setState({
+        clockName: this.getRandomName(),
+      });
     }, 3300);
 
     document.addEventListener('contextmenu', this.handleRightClick);
@@ -27,7 +29,7 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
+    window.clearInterval(this.nameTimerId);
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
   }
