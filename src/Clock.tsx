@@ -1,36 +1,42 @@
 import React from 'react';
 
+function createTime() {
+  const date = new Date();
+
+  return date.toUTCString().slice(-12, -4);
+}
+
 interface Props {
   clockName: string;
 }
 
 interface State {
-  today: Date,
+  today: string,
 }
 
 export class Clock extends React.Component<Props, State> {
   state: Readonly<State> = {
-    today: new Date(),
+    today: createTime(),
   };
 
   timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({ today: createTime() });
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    const { clockName } = prevProps;
-    const { today } = prevState;
+    const { clockName } = this.props;
+    const { today } = this.state;
 
-    if (clockName !== this.props.clockName) {
-      window.console.debug(clockName);
+    if (prevProps.clockName !== clockName) {
+      window.console.debug(`Renamed from ${clockName} to ${prevProps.clockName}`);
     }
 
-    if (today !== this.state.today) {
-      window.console.info(today);
+    if (prevState.today !== today) {
+      window.console.info(prevState.today);
     }
   }
 
@@ -51,7 +57,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {today}
         </span>
       </div>
     );
