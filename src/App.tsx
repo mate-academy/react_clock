@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import { Clock } from './components/Clock';
 import './App.scss';
 
@@ -13,7 +13,7 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class App extends React.Component<{}, State> {
+export class App extends Component<{}, State> {
   state: Readonly<State> = {
     hasClock: true,
     clockName: 'Clock-0',
