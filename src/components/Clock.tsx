@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 
 interface State {
   today: string;
@@ -10,7 +10,7 @@ interface Props {
 
 const getDate = () => new Date().toUTCString().slice(-12, -4);
 
-export class Clock extends React.Component<Props, State> {
+export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
     today: getDate(),
   };
