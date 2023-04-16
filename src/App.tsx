@@ -32,15 +32,19 @@ export class App extends React.Component<{}, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    document.addEventListener('contextmenu', this.handleContextmenu);
-    document.addEventListener('click', this.handleClick);
+    document.removeEventListener('contextmenu', this.handleContextmenu);
+    document.removeEventListener('click', this.handleClick);
   }
 
-  handleContextmenu = () => {
+  handleContextmenu = (event: Event) => {
+    event.preventDefault();
+
     this.setState({ hasClock: false });
   };
 
-  handleClick = () => {
+  handleClick = (event: Event) => {
+    event.preventDefault();
+
     this.setState({ hasClock: true });
   };
 
