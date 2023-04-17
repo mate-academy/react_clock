@@ -13,7 +13,7 @@ export class Clock extends Component<Props, State> {
     today: new Date(),
   };
 
-  timerId = 0;
+  timerId: number | null = null;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
@@ -34,7 +34,9 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerId);
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
   }
 
   render() {

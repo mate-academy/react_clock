@@ -2,8 +2,6 @@ import { Component } from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
-// window.clearInterval(timerId);
-
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
 
@@ -21,19 +19,24 @@ export class App extends Component<{}, State> {
     clockName: 'Clock-0',
   };
 
-  timerId = window.setInterval(() => {
-    this.setState({ clockName: getRandomName() });
-  }, 3300);
+  timerId: number | null = null;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.handleRightClick);
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+
     document.addEventListener('click', this.handleLeftClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerId);
-    document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
+
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
   }
 
   handleLeftClick = () => {
