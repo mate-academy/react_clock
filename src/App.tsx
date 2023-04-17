@@ -22,14 +22,9 @@ export class App extends React.Component<{}, State> {
   nameId = 0;
 
   componentDidMount(): void {
-    document.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.removeClock);
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.addClock);
 
     this.nameId = window.setInterval(() => {
       this.setState({
@@ -37,6 +32,20 @@ export class App extends React.Component<{}, State> {
       });
     }, 3300);
   }
+
+  componentWillUnmount(): void {
+    document.removeEventListener('contextmenu', this.removeClock);
+    document.removeEventListener('click', this.addClock);
+  }
+
+  removeClock = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  addClock = () => {
+    this.setState({ hasClock: true });
+  };
 
   render() {
     return this.state.hasClock && (
