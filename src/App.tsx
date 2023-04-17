@@ -34,7 +34,7 @@ export class App extends React.Component<{}, State> {
 
   handleContextMenu = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({hasClock: false});
+    this.setState({ hasClock: false });
   };
 
   handleClick = (event: MouseEvent) => {
