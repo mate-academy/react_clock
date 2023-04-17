@@ -1,25 +1,31 @@
 import { Component } from 'react';
 
 type State = {
-  today: Date;
+  today: string;
 };
 
 type Props = {
   clockName: string;
 };
 
+function getCurrentTime() {
+  const today = new Date();
+
+  return today.toUTCString().slice(-12, -4);
+}
+
 export class Clock extends Component<Props, State> {
   state = {
-    today: new Date(),
+    today: getCurrentTime(),
   };
 
-  timerId = 0;
+  timerId: number | null = null;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({ today: getCurrentTime() });
       // eslint-disable-next-line no-console
-      console.info(`${this.state.today.toUTCString().slice(-12, -4)}`);
+      console.info(`${this.state.today}`);
     }, 1000);
   }
 
@@ -31,7 +37,9 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerId);
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
   }
 
   render() {
@@ -44,7 +52,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.today.toUTCString().slice(-12, -4)}
+          {this.state.today}
         </span>
       </div>
     );
