@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { formatedDate } from '../helper/helper';
 
 interface Props {
   clockName: string;
@@ -19,7 +20,7 @@ export class Clock extends Component<Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
       /* eslint-disable */
-      console.info(`${this.state.today.toUTCString().slice(-12, -4)}`);
+      console.info(formatedDate(this.state.today));
       /* eslint-enable */
     }, 1000);
   }
@@ -49,7 +50,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {formatedDate(today)}
         </span>
       </div>
     );
