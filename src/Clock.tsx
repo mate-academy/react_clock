@@ -6,6 +6,10 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
+function formatDate(date: Date) {
+  return date.toUTCString().slice(-12, -4);
+}
+
 type Props = {
   name: string;
 };
@@ -31,16 +35,14 @@ export class Clock extends Component<Props, State> {
     }, 3300);
 
     this.counterId = window.setInterval(() => {
-      const today = new Date();
-
-      this.setState({ today });
+      this.setState({ today: new Date() });
       // eslint-disable-next-line no-console
-      console.info(today.toUTCString().slice(-12, -4));
+      console.info(formatDate(this.state.today));
     }, 1000);
   }
 
   componentDidUpdate(
-    prevProps: Readonly<Props>,
+    _prevProps: Readonly<Props>,
     prevState: Readonly<State>,
   ): void {
     if (prevState.clockName !== this.state.clockName) {
@@ -66,7 +68,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {formatDate(today)}
         </span>
       </div>
     );

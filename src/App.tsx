@@ -1,5 +1,4 @@
 import { Component } from 'react';
-// import { render } from 'react-dom';
 import './App.scss';
 import { Clock } from './Clock';
 
@@ -19,7 +18,7 @@ export class App extends Component<{}, State> {
     document.addEventListener('click', this.handleLeftClick);
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     document.removeEventListener('contextmenu', this.handleRihgtClick);
     document.removeEventListener('click', this.handleLeftClick);
   }
@@ -34,10 +33,12 @@ export class App extends Component<{}, State> {
   };
 
   render() {
+    const { hasClock, name } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock && <Clock name={this.state.name} />}
+        {hasClock && <Clock name={name} />}
       </div>
     );
   }
