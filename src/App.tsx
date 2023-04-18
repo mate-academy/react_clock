@@ -21,13 +21,13 @@ export class App extends Component<{}, State> {
     hasClock: true,
   };
 
-  clockNameTimerId: number | null = null;
+  timerId: number | null = null;
 
   componentDidMount() {
     document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
 
-    this.clockNameTimerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
@@ -36,8 +36,8 @@ export class App extends Component<{}, State> {
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
 
-    if (this.clockNameTimerId) {
-      window.clearInterval(this.clockNameTimerId);
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
     }
   }
 
