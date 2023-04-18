@@ -19,7 +19,7 @@ export class Clock extends Component<Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
       // eslint-disable-next-line no-console
-      console.info(`${this.state.today.toUTCString().slice(-12, -4)}`);
+      console.info(this.getFormattedDate());
     }, 1000);
   }
 
@@ -39,18 +39,20 @@ export class Clock extends Component<Props, State> {
     }
   }
 
+  getFormattedDate = () => {
+    return this.state.today.toUTCString().slice(-12, -4);
+  };
+
   render() {
+    const { name } = this.props;
+
     return (
       <div className="Clock">
-        <strong className="Clock__name">
-          {this.props.name}
-        </strong>
+        <strong className="Clock__name">{name}</strong>
 
         {' time is '}
 
-        <span className="Clock__time">
-          {this.state.today.toUTCString().slice(-12, -4)}
-        </span>
+        <span className="Clock__time">{this.getFormattedDate()}</span>
       </div>
     );
   }

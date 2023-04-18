@@ -31,8 +31,8 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    document.addEventListener('click', this.handleLeftClick);
-    document.addEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
 
     if (this.timerId) {
       window.clearInterval(this.timerId);
@@ -54,6 +54,7 @@ export class App extends Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
+
         {hasClock && <Clock name={clockName} />}
       </div>
     );
