@@ -1,12 +1,12 @@
 import React from 'react';
 
-function getCuerrentDate(): string {
-  const date = new Date();
+function getCurrentDate(): string {
+  const today = new Date();
 
-  return date.toUTCString().slice(-12, -4);
+  return today.toUTCString().slice(-12, -4).toString();
 }
 
-type Props = {
+type Prop = {
   name: string;
 };
 
@@ -14,22 +14,22 @@ type State = {
   today: string;
 };
 
-export class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<Prop, State> {
   state = {
-    today: getCuerrentDate(),
+    today: getCurrentDate(),
   };
 
-  timerId = 0;
+  timmer = 0;
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
-      this.setState({ today: getCuerrentDate() });
-
-      console.info(`${this.state.today}`); // eslint-disable-line
+    this.timmer = window.setInterval(() => {
+      this.setState({
+        today: getCurrentDate(),
+      });
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props): void {
+  componentDidUpdate(prevProps: Readonly<Prop>) {
     const prevName = prevProps.name;
     const currName = this.props.name;
 
@@ -38,18 +38,18 @@ export class Clock extends React.Component<Props, State> {
     }
   }
 
-  componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
+  componentWillUnmount() {
+    window.clearInterval(this.timmer);
   }
 
   render() {
-    const { name } = this.props;
     const { today } = this.state;
+    const { name } = this.props;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {name}
+          { name }
         </strong>
 
         {' time is '}
