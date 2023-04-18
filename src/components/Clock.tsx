@@ -8,7 +8,6 @@ function getDate(): string {
 
 type State = {
   date: string,
-  timer: number,
 };
 
 type Props = {
@@ -18,15 +17,16 @@ type Props = {
 export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
     date: getDate(),
-    timer: 0,
   };
 
+  timerId: number | null = null;
+
   componentDidMount(): void {
-    this.setState({
-      timer: window.setInterval(() => {
-        this.setState({ date: getDate() });
-      }, 1000),
-    });
+    this.timerId = window.setInterval(() => {
+      this.setState({ date: getDate() });
+    }, 1000);
+    // eslint-disable-next-line no-console
+    console.info(`${this.state.date}`);
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -37,7 +37,9 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.state.timer);
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
   }
 
   render() {
