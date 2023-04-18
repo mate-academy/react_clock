@@ -8,16 +8,22 @@ interface State {
   today: string;
 }
 
+const getTime = () => {
+  const date = new Date();
+
+  return date.toUTCString().slice(-12, -4);
+};
+
 export class Clock extends React.Component<Props, State> {
   state: Readonly<State> = {
-    today: new Date().toUTCString().slice(-12, -4),
+    today: getTime(),
   };
 
   timerId: number | null = null;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date().toUTCString().slice(-12, -4) });
+      this.setState({ today: getTime() });
 
       // eslint-disable-next-line no-console
       console.info(this.state.today);
