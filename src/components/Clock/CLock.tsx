@@ -10,11 +10,11 @@ interface State {
 }
 
 export class Clock extends Component<Props, State> {
-  state = {
+  state: Readonly<State> = {
     today: new Date(),
   };
 
-  timerId = 0;
+  timerId: number | null = null;
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
@@ -34,7 +34,9 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
   }
 
   render() {

@@ -19,7 +19,7 @@ export class App extends Component<{}, State> {
     hasClock: true,
   };
 
-  timerId = 0;
+  timerId: number | null = null;
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
@@ -30,7 +30,10 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
+
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
   }
