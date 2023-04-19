@@ -12,17 +12,14 @@ function getTimeFromDate(date: Date): string {
   return date.toUTCString().slice(-12, -4);
 }
 
-const initialDate = new Date();
-const initialTime = getTimeFromDate(initialDate);
-
 export class Clock extends React.Component<Props, State> {
   state = {
-    currentTime: initialTime,
+    currentTime: getTimeFromDate(new Date()),
   };
 
   timerId = 0;
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.timerId = window.setInterval(() => {
       const today = new Date();
       const currentTime = getTimeFromDate(today);
@@ -36,14 +33,17 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props): void {
-    if (prevProps.name !== this.props.name) {
+  componentDidUpdate(prevProps: Props) {
+    const { name: prevName } = prevProps;
+    const { name: currentName } = this.props;
+
+    if (prevName !== currentName) {
       // eslint-disable-next-line
-      console.debug(prevProps.name, this.props.name);
+      console.debug(`Renamed from ${prevName} to ${currentName}`);
     }
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     clearInterval(this.timerId);
   }
 
@@ -52,21 +52,17 @@ export class Clock extends React.Component<Props, State> {
     const { currentTime } = this.state;
 
     return (
-      <>
-        <h1>React clock</h1>
+      <div className="Clock">
+        <strong className="Clock__name">
+          {name}
+        </strong>
 
-        <div className="Clock">
-          <strong className="Clock__name">
-            {name}
-          </strong>
+        {' time is '}
 
-          {' time is '}
-
-          <span className="Clock__time">
-            {currentTime}
-          </span>
-        </div>
-      </>
+        <span className="Clock__time">
+          {currentTime}
+        </span>
+      </div>
     );
   }
 }
