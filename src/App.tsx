@@ -24,7 +24,7 @@ export class App extends React.Component<{}, State> {
   componentDidMount() {
     document.addEventListener('contextmenu', this.removeClock);
 
-    document.addEventListener('click', this.addClock);
+    document.addEventListener('click', this.handleShowClock);
 
     this.nameId = window.setInterval(() => {
       this.setState({
@@ -35,7 +35,7 @@ export class App extends React.Component<{}, State> {
 
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.removeClock);
-    document.removeEventListener('click', this.addClock);
+    document.removeEventListener('click', this.handleShowClock);
     clearInterval(this.nameId);
   }
 
@@ -44,7 +44,7 @@ export class App extends React.Component<{}, State> {
     this.setState({ hasClock: false });
   };
 
-  addClock = () => {
+  handleShowClock = () => {
     this.setState({ hasClock: true });
   };
 
