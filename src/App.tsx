@@ -19,7 +19,7 @@ export class App extends Component<{}, State> {
     hasClock: true,
   };
 
-  timerId = 0;
+  timerId: number | null = null;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
@@ -31,9 +31,11 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
     document.addEventListener('contextmenu', this.handleLeftClick);
     document.addEventListener('click', this.handleLeftClick);
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
   }
 
   handleRightClick = (event: Event) => {
