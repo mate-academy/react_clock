@@ -22,6 +22,13 @@ export class App extends React.Component {
     document.addEventListener('click', this.handleHasClockOn);
   }
 
+  componentDidUpdate(_: unknown, prevState: State): void {
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
+  }
+
   componentWillUnmount(): void {
     window.clearInterval(window.setInterval(this.getRandomName, 3300));
     window.clearInterval(window.setInterval(this.handleClockUpdate, 1000));
