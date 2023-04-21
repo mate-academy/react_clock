@@ -1,12 +1,12 @@
 import { Component } from 'react';
 
-type State = {
+interface State {
   time: string;
-};
+}
 
-type Props = {
+interface Props {
   clockName: string;
-};
+}
 
 function getTime(): string {
   const date = new Date();
@@ -21,7 +21,7 @@ export class Clock extends Component<Props, State> {
 
   timerId = 0;
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ time: getTime() });
 
@@ -29,23 +29,30 @@ export class Clock extends Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props): void {
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.clockName !== this.props.clockName) {
       window.console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
   }
 
+  componentWillUnmount() {
+    window.clearInterval(this.timerId);
+  }
+
   render() {
+    const { clockName } = this.props;
+    const { time } = this.state;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.clockName}
+          {clockName}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.time}
+          {time}
         </span>
       </div>
     );
