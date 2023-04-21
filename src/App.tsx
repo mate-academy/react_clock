@@ -1,5 +1,5 @@
-import React from 'react';
 import './App.scss';
+import { Component } from 'react';
 import { Clock } from './Components/Clock';
 
 function getRandomName(): string {
@@ -13,7 +13,7 @@ interface State {
   hasClock: boolean;
 }
 
-export class App extends React.Component<{}, State> {
+export class App extends Component<{}, State> {
   state = {
     clockName: 'Clock-0',
     hasClock: true,
