@@ -20,16 +20,15 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ today: getNewDate() });
+      // eslint-disable-next-line no-console
+      console.info(this.state.today);
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
-    if (this.props.clockName !== prevProps.clockName) {
-      window.console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}}`);
-    }
-
-    if (this.state.today !== prevState.today) {
-      window.console.info(this.state.today);
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.clockName !== this.props.clockName) {
+    // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
   }
 
