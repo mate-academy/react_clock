@@ -31,12 +31,12 @@ export class App extends Component<{}, State> {
   }
 
   componentWillUnmount() {
-    document.addEventListener('click', this.handleLeftClick);
-    document.addEventListener('contextmenu', this.handleRightClick);
-
     if (this.timerId) {
       window.clearInterval(this.timerId);
     }
+
+    document.removeEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
   }
 
   handleLeftClick = () => {
