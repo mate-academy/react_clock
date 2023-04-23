@@ -30,7 +30,7 @@ export class App extends React.Component<{}, State> {
   }
 
   componentDidUpdate(
-    prevProps: Readonly<State>,
+    _prevProps: Readonly<State>,
     prevState: Readonly<State>,
   ): void {
     // eslint-disable-next-line no-console

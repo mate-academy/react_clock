@@ -15,7 +15,6 @@ export class Clock extends Component<Props, State> {
   state: Readonly<State> = {
     today: new Date(),
     displayClock: true,
-    clockName: this.props.name,
   };
 
   timerId = 0;
@@ -57,19 +56,17 @@ export class Clock extends Component<Props, State> {
     });
   }
 
-  componentDidUpdate(): void {}
-
   componentWillUnmount() {
     clearInterval(this.timerId);
   }
 
   render() {
-    const { clockName, today } = this.state;
+    const { today } = this.state;
 
     return (
       this.state.displayClock && (
         <div className="Clock">
-          <strong className="Clock__name">{clockName}</strong>
+          <strong className="Clock__name">{this.props.name}</strong>
 
           {' time is '}
 
