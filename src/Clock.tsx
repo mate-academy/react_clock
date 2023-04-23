@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 
 interface Props {
@@ -12,7 +13,6 @@ const today = () => new Date().toUTCString().slice(-12, -4);
 
 export class Clock extends React.Component<Props, State> {
   state = {
-    // eslint-disable-next-line react/no-unused-state
     date: today(),
   };
 
@@ -22,16 +22,13 @@ export class Clock extends React.Component<Props, State> {
     this.timerId = window.setInterval(() => {
       const date = today();
 
-      // eslint-disable-next-line react/no-unused-state
       this.setState({ date });
-      // eslint-disable-next-line no-console
       console.info(date);
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
     if (prevProps.clockName !== this.props.clockName) {
-      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
   }
@@ -43,16 +40,19 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
+    const { date } = this.state;
+    const { clockName } = this.props;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.clockName}
+          {clockName}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {today()}
+          {date}
         </span>
       </div>
     );

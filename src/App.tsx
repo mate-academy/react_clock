@@ -23,7 +23,7 @@ export class App extends React.Component<{}, State> {
 
   componentDidMount() {
     document.addEventListener('contextmenu', this.rightClick);
-    document.addEventListener('click', this.rightClick);
+    document.addEventListener('click', this.leftClick);
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -50,12 +50,14 @@ export class App extends React.Component<{}, State> {
   };
 
   render() {
+    const { clockName, hasClock } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock && (
-          <Clock clockName={this.state.clockName} />
+        {hasClock && (
+          <Clock clockName={clockName} />
         )}
       </div>
     );
