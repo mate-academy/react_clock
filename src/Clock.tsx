@@ -6,16 +6,16 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-interface S {
+interface State {
   today: Date;
   clockName: string;
 }
 
-interface P {
+interface Props {
   clockName: string;
 }
 
-export default class Clock extends React.Component<P, S> {
+export default class Clock extends React.Component<Props, State> {
   state = {
     today: new Date(),
     clockName: this.props.clockName,
@@ -41,7 +41,7 @@ export default class Clock extends React.Component<P, S> {
     );
   }
 
-  componentDidUpdate(_: {}, prevState: Readonly<S>) {
+  componentDidUpdate(_: {}, prevState: Readonly<State>) {
     if (prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);

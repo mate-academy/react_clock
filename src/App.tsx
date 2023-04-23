@@ -2,12 +2,12 @@ import React from 'react';
 import './App.scss';
 import Clock from './Clock';
 
-interface S {
+interface State {
   hasClock: boolean;
   clockName: string;
 }
 
-export class App extends React.Component<{}, S> {
+export class App extends React.Component<{}, State> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
@@ -38,9 +38,7 @@ export class App extends React.Component<{}, S> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock
-          ? <Clock clockName={clockName} />
-          : null}
+        {hasClock && <Clock clockName={clockName} />}
       </div>
     );
   }
