@@ -7,7 +7,6 @@ type Props = {
 type State = {
   today: Date;
   displayClock: boolean;
-  clockName: string;
 };
 
 // eslint-disable-next-line react/prefer-stateless-function
