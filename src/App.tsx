@@ -7,29 +7,36 @@ interface State {
   clockName: string;
 }
 
+const getRandomName = (): string => {
+  const value = Date.now().toString().slice(-4);
+
+  return `Clock-${value}`;
+};
+
 export class App extends React.Component<{}, State> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
   };
 
-  timerId = 0;
-
-  value = '';
+  timerId: number | null = null;
 
   componentDidMount(): void {
     window.addEventListener('contextmenu', this.handlerRightClick);
     window.addEventListener('click', this.handlerLeftClick);
 
     this.timerId = window.setInterval(() => {
-      const name = this.getRandomName();
+      const name = getRandomName();
 
       this.setState({ clockName: name });
     }, 3300);
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
+
     window.removeEventListener('contextmenu', this.handlerRightClick);
     window.removeEventListener('click', this.handlerLeftClick);
   }
@@ -42,12 +49,6 @@ export class App extends React.Component<{}, State> {
   handlerLeftClick = () => {
     this.setState({ hasClock: true });
   };
-
-  getRandomName(): string {
-    this.value = Date.now().toString().slice(-4);
-
-    return `Clock-${this.value}`;
-  }
 
   render() {
     const {

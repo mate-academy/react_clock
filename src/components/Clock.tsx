@@ -8,11 +8,15 @@ interface State {
   date: string;
 }
 
+const sliceTimeString = (date: Date): string => {
+  return date.toUTCString().slice(-12, -4);
+};
+
 export class Clock extends React.Component<Props, State> {
   currentDate = new Date();
 
   state = {
-    date: this.currentDate.toUTCString().slice(-12, -4),
+    date: sliceTimeString(this.currentDate),
   };
 
   timerId = 0;
@@ -20,7 +24,7 @@ export class Clock extends React.Component<Props, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       const currentDate = new Date();
-      const currentStringDate = currentDate.toUTCString().slice(-12, -4);
+      const currentStringDate = sliceTimeString(currentDate);
 
       this.setState({ date: currentStringDate });
       // eslint-disable-next-line
