@@ -31,7 +31,7 @@ export class App extends React.Component<{}, AppState> {
     });
   }
 
-  rename(): void {
+  rename() {
     this.setState({
       clockName: getRandomName(),
     });
