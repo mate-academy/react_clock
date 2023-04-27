@@ -19,8 +19,8 @@ export class Clock extends React.Component<ClockProps, ClockState> {
 
   componentDidMount() {
     this.timerID = window.setInterval(() => this.tick(), 1000);
-
-    // console.info(this.state.date);
+    // eslint-disable-next-line no-console
+    console.info(this.state.date);
   }
 
   componentDidUpdate(prevProps: Readonly<ClockProps>,
