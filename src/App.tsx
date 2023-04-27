@@ -21,7 +21,7 @@ export class App extends React.Component<{}, AppState> {
 
   timerId = window.setInterval(() => this.rename(), 3300);
 
-  componentDidMount(): void {
+  componentDidMount() {
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
       this.setState({ hasClock: false });
