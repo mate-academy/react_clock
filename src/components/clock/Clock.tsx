@@ -6,7 +6,7 @@ interface Props {
 
 interface State {
   today: Date;
-};
+}
 
 export class Clock extends Component<Props, State> {
   timerId: number | null = null;
