@@ -23,9 +23,16 @@ export class Clock extends React.Component<ClockProps, ClockState> {
     // console.info(this.state.date);
   }
 
-  // componentDidUpdate(prevProps: Readonly<ClockProps>): void {
-  //   console.debug(prevProps);
-  // }
+  componentDidUpdate(prevProps: Readonly<ClockProps>,
+    prevState: Readonly<ClockState>): void {
+    if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+    } else {
+      // eslint-disable-next-line no-console
+      console.debug(prevState.date);
+    }
+  }
 
   componentWillUnmount() {
     if (this.timerID) {
