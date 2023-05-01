@@ -37,6 +37,10 @@ export class App extends React.Component<{}, State> {
     }, 3300);
   }
 
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+  }
+
   render() {
     return (
       <div className="App">
