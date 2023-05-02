@@ -1,5 +1,6 @@
-import React from 'react';
+import { Component } from 'react';
 import './App.scss';
+import { Clock } from './CLock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +8,59 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends Component {
+  state = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  timeId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount() {
+    this.timeId = window.setInterval(() => {
+      const newClockName = getRandomName();
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+      this.setState({
+        clockName: newClockName,
+      });
+    }, 3300);
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    document.documentElement.addEventListener(
+      'contextmenu',
+      this.removingClock,
+    );
 
-        {' time is '}
+    document.documentElement.addEventListener(
+      'click',
+      this.addingClock,
+    );
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  componentWillUnmount() {
+    clearInterval(this.timeId);
+    document.documentElement.removeEventListener(
+      'contexmenu',
+      this.removingClock,
+    );
+    document.documentElement.removeEventListener('click', this.addingClock);
+  }
+
+  removingClock = (ev: Event) => {
+    ev.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  addingClock = () => {
+    this.setState({ hasClock: true });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.hasClock
+          && <Clock clockName={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
