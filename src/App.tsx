@@ -21,7 +21,7 @@ export class App extends React.Component<{}, State> {
 
   timerId: number | null = null;
 
-  componentDidMount(): void {
+  componentDidMount() {
     window.addEventListener('contextmenu', this.handlerRightClick);
     window.addEventListener('click', this.handlerLeftClick);
 
@@ -32,7 +32,7 @@ export class App extends React.Component<{}, State> {
     }, 3300);
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     if (this.timerId) {
       window.clearInterval(this.timerId);
     }
@@ -59,8 +59,7 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock
-        && (
+        {hasClock && (
           <Clock clockName={clockName} />
         )}
       </div>
