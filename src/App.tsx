@@ -13,7 +13,7 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class AppClass extends Component<{}, State> {
+export class App extends Component<{}, State> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
@@ -41,8 +41,6 @@ export class AppClass extends Component<{}, State> {
   }
 
   componentDidUpdate(_prevProps: {}, prevState: State): void {
-    document.addEventListener('contextmenu', this.handleContextmenu);
-    document.addEventListener('click', this.handleMouseClick);
     // eslint-disable-next-line no-console
     console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
   }
@@ -63,11 +61,3 @@ export class AppClass extends Component<{}, State> {
     ));
   }
 }
-
-export const App: React.FC = () => {
-  return (
-    <div className="App">
-      <AppClass />
-    </div>
-  );
-};
