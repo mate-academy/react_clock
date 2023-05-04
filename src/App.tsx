@@ -34,13 +34,17 @@ export class AppClass extends Component<{}, State> {
     document.addEventListener('contextmenu', this.handleContextmenu);
     document.addEventListener('click', this.handleMouseClick);
     window.setInterval(() => {
-      this.state.clockName = getRandomName();
-    }, 1000);
+      const newNameClock = getRandomName();
+
+      this.setState({ clockName: newNameClock });
+    }, 3300);
   }
 
-  componentDidUpdate(): void {
+  componentDidUpdate(_prevProps: {}, prevState: State): void {
     document.addEventListener('contextmenu', this.handleContextmenu);
     document.addEventListener('click', this.handleMouseClick);
+    // eslint-disable-next-line no-console
+    console.info(prevState.clockName);
   }
 
   componentWillUnmount(): void {
