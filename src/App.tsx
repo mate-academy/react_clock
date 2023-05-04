@@ -44,7 +44,7 @@ export class AppClass extends Component<{}, State> {
     document.addEventListener('contextmenu', this.handleContextmenu);
     document.addEventListener('click', this.handleMouseClick);
     // eslint-disable-next-line no-console
-    console.info(prevState.clockName);
+    console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
   }
 
   componentWillUnmount(): void {
