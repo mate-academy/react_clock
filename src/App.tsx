@@ -28,6 +28,7 @@ export class App extends React.Component<{}, State> {
 
     this.upClock = setInterval(() => {
       const value = Date.now().toString().slice(-4);
+
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${this.state.clockName} to Clock-${value}`);
       this.setState({ clockName: `Clock-${value}` });
