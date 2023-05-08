@@ -2,7 +2,7 @@
 import React from 'react';
 
 interface ClockState {
-  today: Date;
+  clockTime: Date;
 }
 
 interface ClockProps {
@@ -11,15 +11,15 @@ interface ClockProps {
 
 export class Clock extends React.Component<ClockProps, ClockState> {
   state = {
-    today: new Date(),
+    clockTime: new Date(),
   };
 
   timeNow = 0;
 
   componentDidMount() {
     this.timeNow = window.setInterval(() => {
-      this.setState({ today: new Date() });
-      console.info((this.state.today).toUTCString().slice(-12, -4));
+      this.setState({ clockTime: new Date() });
+      console.info((this.state.clockTime).toUTCString().slice(-12, -4));
     }, 1000);
   }
 
@@ -39,7 +39,7 @@ export class Clock extends React.Component<ClockProps, ClockState> {
 
   render() {
     const { clockName } = this.props;
-    const { today } = this.state;
+    const { clockTime } = this.state;
 
     return (
       <div className="Clock">
@@ -50,7 +50,7 @@ export class Clock extends React.Component<ClockProps, ClockState> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {clockTime.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );

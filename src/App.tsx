@@ -35,6 +35,7 @@ export class App extends React.Component<{}, AppState> {
 
     document.addEventListener('click', () => {
       this.setState({ hasClock: true });
+      clearInterval(this.timerId);
     });
   }
 
