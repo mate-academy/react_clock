@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
-import { Clock } from './components/Clock';
 import { clearInterval } from 'timers';
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -34,6 +34,11 @@ export class App extends React.Component<{}, AppState> {
   }
 
   componentWillUnmount() {
+    document.removeEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    });
+
     clearInterval(this.timerId);
   }
 

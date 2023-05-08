@@ -29,9 +29,7 @@ export class Clock extends React.Component<ClockProps, ClockState> {
   }
 
   componentWillUnmount() {
-    if (this.timerID) {
-      window.clearInterval(this.timerID);
-    }
+    clearInterval(this.timerID);
   }
 
   tick() {
