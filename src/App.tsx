@@ -8,12 +8,14 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
+type Props = {};
+
 interface State {
   hasClock: boolean;
   clockName: string;
 }
 
-export class App extends React.Component<PropertyDescriptor, State> {
+export class App extends React.Component<Props, State> {
   state: Readonly<State> = {
     hasClock: true,
     clockName: 'Clock-0',
