@@ -19,9 +19,10 @@ export class App extends React.Component<{}, AppState> {
     clockName: 'Clock-0',
   };
 
-  timerId = window.setInterval(() => this.rename(), 3300);
+  timerId = 0;
 
   componentDidMount() {
+    this.timerId = window.setInterval(() => this.rename(), 3300);
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
       this.setState({ hasClock: false });
