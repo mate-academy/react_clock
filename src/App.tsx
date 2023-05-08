@@ -35,12 +35,12 @@ export class App extends React.Component<{}, AppState> {
 
     document.addEventListener('click', () => {
       this.setState({ hasClock: true });
-      clearInterval(this.timerId);
     });
   }
 
   componentWillUnmount() {
     this.setState({ hasClock: false });
+    clearInterval(this.timerId);
   }
 
   render() {
