@@ -4,9 +4,9 @@ type ClockState = {
   currentTime: Date;
 };
 
-type ClockProps = {
+interface ClockProps {
   name: string;
-};
+}
 
 export class Clock extends React.Component< ClockProps, ClockState> {
   state = {
@@ -21,6 +21,13 @@ export class Clock extends React.Component< ClockProps, ClockState> {
       // eslint-disable-next-line
       console.info(this.state.currentTime.toUTCString().slice(-12, -4));
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Readonly<ClockProps>): void {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {

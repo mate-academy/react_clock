@@ -8,10 +8,10 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-type AppState = {
+interface AppState{
   hasClock: boolean;
   clockName: string;
-};
+}
 
 export class App extends React.Component<{}, AppState> {
   state = {
@@ -22,36 +22,32 @@ export class App extends React.Component<{}, AppState> {
   timerClockNameId = 0;
 
   componentDidMount() {
-    document.addEventListener('click', () => {
-      if (!this.state.hasClock) {
-        this.setState({ hasClock: true });
-      }
-    });
-
-    document.addEventListener('contextmenu', (event: Event) => {
-      if (this.state.hasClock) {
-        event.preventDefault();
-        this.setState({ hasClock: false });
-      }
-    });
+    document.addEventListener('click', this.displayClock);
+    document.addEventListener('contextmenu', this.hideClock);
 
     this.timerClockNameId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
-  componentDidUpdate(
-    _prevProps: Readonly<{}>, prevState: Readonly<AppState>,
-  ): void {
-    if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
-      // eslint-disable-next-line
-      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
-
   componentWillUnmount() {
     clearInterval(this.timerClockNameId);
+    document.removeEventListener('click', this.displayClock);
+    document.removeEventListener('contextmenu', this.hideClock);
   }
+
+  displayClock = () => {
+    if (!this.state.hasClock) {
+      this.setState({ hasClock: true });
+    }
+  };
+
+  hideClock = (event: Event) => {
+    if (this.state.hasClock) {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    }
+  };
 
   render() {
     const { hasClock, clockName } = this.state;
