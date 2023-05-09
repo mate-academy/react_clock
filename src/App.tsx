@@ -12,15 +12,23 @@ export class App extends Component<{}, State> {
   };
 
   componentDidMount() {
-    document.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-      this.setState({ isContextmenu: false });
-    });
-
-    document.addEventListener('click', () => {
-      this.setState({ isContextmenu: true });
-    });
+    document.addEventListener('contextmenu', this.handleContextMenu);
+    document.addEventListener('click', this.handleClick);
   }
+
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleClick);
+  }
+
+  handleContextMenu = (e: MouseEvent) => {
+    e.preventDefault();
+    this.setState({ isContextmenu: false });
+  };
+
+  handleClick = () => {
+    this.setState({ isContextmenu: true });
+  };
 
   render() {
     const { isContextmenu } = this.state;
@@ -29,7 +37,7 @@ export class App extends Component<{}, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {isContextmenu && (<Clock />)}
+        {isContextmenu && <Clock />}
       </div>
     );
   }

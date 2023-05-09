@@ -39,7 +39,7 @@ export class Clock extends Component<{}, State> {
   componentWillUnmount() {
     window.clearInterval(this.timerId);
   }
-  
+
   render() {
     const { clockName, date } = this.state;
 
