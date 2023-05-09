@@ -35,7 +35,7 @@ export class App extends Component<{}, State> {
     window.clearInterval(this.timerId);
 
     document.removeEventListener('contextmenu', this.rightClickHandler);
-    document.removeEventListener('contextmenu', this.leftClickHandler);
+    document.removeEventListener('click', this.leftClickHandler);
   }
 
   rightClickHandler = (event: MouseEvent): void => {
