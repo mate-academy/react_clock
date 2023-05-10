@@ -43,7 +43,7 @@ export class App extends Component<{}, State> {
     this.setState({ hasClock: true });
   };
 
-  hideClock = (event: KeyboardEvent) => {
+  hideClock = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
