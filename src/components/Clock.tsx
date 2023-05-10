@@ -2,7 +2,6 @@ import { Component } from 'react';
 
 type State = {
   date: Date,
-  isMounted: boolean,
 };
 
 type Props = {
@@ -12,23 +11,17 @@ type Props = {
 export class Clock extends Component<Props, State> {
   state = {
     date: new Date(),
-    isMounted: false,
   };
 
   timerId = 0;
 
   componentDidMount() {
-    this.setState({ isMounted: true });
-
     this.timerId = window.setInterval(() => {
       const date = new Date();
 
       this.setState({ date });
-
-      if (this.state.isMounted) {
-        // eslint-disable-next-line
-        console.info(date);
-      }
+      // eslint-disable-next-line
+      console.info(date.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
@@ -43,9 +36,7 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    this.setState({ isMounted: false });
-
-    window.clearInterval(this.timerId);
+    clearInterval(this.timerId);
   }
 
   render() {
