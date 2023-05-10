@@ -1,7 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import './App.scss';
 import { Clock } from './Clock';
+
+type State = {
+  hasClock: boolean,
+  clockName: string,
+};
+type Props = {
+  clockName: string,
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -9,21 +16,22 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class App extends React.Component {
+export class App extends React.Component<{}, State, Props> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
   };
 
-  timerId =  window.setInterval(() => {
-    this.setState({ clockName: getRandomName() });
-  }, 3300);
+  timerId = 0;
 
   componentDidMount() {
-   this.timerId
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
   }
 
-  componentDidUpdate(_prevState: any, prevProps: any) {
+  componentDidUpdate(_prevState: State, prevProps: Props) {
+    // eslint-disable no-console
     console.debug(`Renamed from ${prevProps.clockName} to ${this.state.clockName}`);
   }
 

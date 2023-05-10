@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Component } from 'react';
 
 type Props = {
@@ -17,11 +18,11 @@ export class Clock extends Component<Props> {
     console.info(new Date().toLocaleTimeString());
   };
 
-  test = setInterval(() => console.info(new Date().toLocaleTimeString()),1000)
+  test: any = null;
 
   componentDidMount() {
     setInterval(this.currentTime, 1000);
-    this.test;
+    this.test = setInterval(() => console.info(new Date().toLocaleTimeString()), 1000);
   }
 
   componentWillUnmount() {
