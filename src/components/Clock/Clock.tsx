@@ -3,6 +3,7 @@ import React from 'react';
 
 interface State {
   currentTime: string;
+  clockTimer: number;
 }
 
 interface Props {
@@ -14,26 +15,24 @@ const today = new Date().toUTCString().slice(-12, -4);
 export class Clock extends React.Component<Props, State> {
   state: State = {
     currentTime: today,
+    clockTimer: 0,
   };
 
   componentDidMount(): void {
-    window.setInterval(() => {
+    const timerId = window.setInterval(() => {
       this.setState({
         currentTime: new Date().toUTCString().slice(-12, -4),
       });
+      console.info(this.state.currentTime);
     }, 1000);
-  }
 
-  componentDidUpdate(): void {
-    console.debug(this.state.currentTime);
+    this.setState({
+      clockTimer: timerId,
+    });
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(window.setInterval(() => {
-      this.setState({
-        currentTime: new Date().toUTCString().slice(-12, -4),
-      });
-    }, 1000));
+    window.clearInterval(this.state.clockTimer);
   }
 
   render() {
