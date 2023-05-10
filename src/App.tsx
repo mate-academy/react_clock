@@ -21,7 +21,7 @@ export class App extends React.Component<Props, State> {
     clockName: 'Clock-0',
   };
 
-  intervalId: number | undefined;
+  intervalId = 0;
 
   componentDidMount(): void {
     this.intervalId = window.setInterval(() => {
