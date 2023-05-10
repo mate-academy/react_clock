@@ -2,10 +2,10 @@ import { Component } from 'react';
 import { Clock } from './Clock';
 import './App.scss';
 
-type State = {
+interface State {
   clockName: string,
   hasClock: boolean,
-};
+}
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -28,22 +28,22 @@ export class App extends Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', this.rightClick);
-    document.addEventListener('click', this.leftClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', this.rightClick);
-    document.removeEventListener('click', this.leftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
     window.clearInterval(this.timerId);
   }
 
-  rightClick = (event: MouseEvent) => {
+  handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
 
-  leftClick = () => {
+  handleLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
