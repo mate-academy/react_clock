@@ -38,6 +38,9 @@ export class App extends React.Component<{}, AppState> {
       event.preventDefault();
       this.setState({ hasClock: false });
     });
+    document.removeEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
 
     clearInterval(this.timerId);
   }
