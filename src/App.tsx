@@ -24,8 +24,8 @@ export class App extends React.Component <Props, State> {
   timerId = 0;
 
   componentDidMount(): void {
-    window.addEventListener('click', this.toggleClock);
-    window.addEventListener('contextmenu', this.toggleClock);
+    window.addEventListener('click', this.showClock);
+    window.addEventListener('contextmenu', this.hideClock);
 
     // This code starts a timer
     this.timerId = window.setInterval(() => {
@@ -36,16 +36,21 @@ export class App extends React.Component <Props, State> {
   componentWillUnmount(): void {
     // this code stops the timer
     window.clearInterval(this.timerId);
-    window.removeEventListener('click', this.toggleClock);
-    window.removeEventListener('contextmenu', this.toggleClock);
+    window.removeEventListener('click', this.showClock);
+    window.removeEventListener('contextmenu', this.hideClock);
   }
 
-  toggleClock = (event:Event) => {
+  showClock = (event:Event) => {
     event.preventDefault();
-    const isShown = this.state.isClockShown;
-
     this.setState({
-      isClockShown: !isShown,
+      isClockShown: true,
+    });
+  };
+
+  hideClock = (event:Event) => {
+    event.preventDefault();
+    this.setState({
+      isClockShown: false,
     });
   };
 

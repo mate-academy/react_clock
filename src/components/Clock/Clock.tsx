@@ -13,15 +13,13 @@ export class Clock extends React.Component <Props, State> {
     date: '',
   };
 
-  today = new Date().toUTCString().slice(-12, -4) ;
-
   dateId = 0;
 
   componentDidMount(): void {
-    this.setState({ date: new Date().toUTCString().slice(-12, -4) });
+    this.setState({ date: this.today() });
 
     this.dateId = window.setInterval(() => {
-      this.setState({ date: new Date().toUTCString().slice(-12, -4) });
+      this.setState({ date: this.today() });
       window.console.info(this.state.date);
     }, 1000);
   }
@@ -36,6 +34,8 @@ export class Clock extends React.Component <Props, State> {
     // this code stops the timer
     window.clearInterval(this.dateId);
   }
+
+  today = () => new Date().toUTCString().slice(-12, -4);
 
   render() {
     return (
