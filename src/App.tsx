@@ -40,7 +40,7 @@ export class App extends React.Component<{}, AppState> {
 
   componentWillUnmount() {
     this.setState({ hasClock: false });
-    clearInterval(this.timerId);
+    window.clearInterval(this.timerId);
   }
 
   render() {
