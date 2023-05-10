@@ -1,31 +1,22 @@
+/* eslint-disable no-console */
 import React from 'react';
 
 interface State {
-  clockName: string;
   currentTime: string;
 }
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
+interface Props {
+  clockName: string;
 }
 
 const today = new Date().toUTCString().slice(-12, -4);
 
-export class Clock extends React.Component<{}, State> {
+export class Clock extends React.Component<Props, State> {
   state: State = {
-    clockName: 'Clock-0',
     currentTime: today,
   };
 
   componentDidMount(): void {
-    window.setInterval(() => {
-      this.setState({
-        clockName: getRandomName(),
-      });
-    }, 3300);
-
     window.setInterval(() => {
       this.setState({
         currentTime: new Date().toUTCString().slice(-12, -4),
@@ -40,12 +31,6 @@ export class Clock extends React.Component<{}, State> {
   componentWillUnmount(): void {
     window.clearInterval(window.setInterval(() => {
       this.setState({
-        clockName: getRandomName(),
-      });
-    }, 3300));
-
-    window.clearInterval(window.setInterval(() => {
-      this.setState({
         currentTime: new Date().toUTCString().slice(-12, -4),
       });
     }, 1000));
@@ -55,7 +40,7 @@ export class Clock extends React.Component<{}, State> {
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.state.clockName}
+          {this.props.clockName}
         </strong>
 
         {' time is '}
