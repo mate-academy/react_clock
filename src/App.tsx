@@ -20,7 +20,7 @@ export class App extends React.Component<{}, State> {
     hasClock: true,
   };
 
-  timerId: number | null = null;
+  timerId = 0;
 
   componentDidMount() {
     window.addEventListener('contextmenu', (event) => {
