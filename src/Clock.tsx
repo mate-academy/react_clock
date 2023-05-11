@@ -5,8 +5,8 @@ type Props = {
 };
 
 type State = {
-  clockName: string,
   today: Date,
+  clockName: string,
 };
 
 function getRandomName(): string {
@@ -17,38 +17,43 @@ function getRandomName(): string {
 
 export class Clock extends Component<Props, State> {
   state = {
-    clockName: this.props.name,
     today: new Date(),
+    clockName: this.props.name,
   };
 
   timerId = 0;
+
+  timerPrint = 0;
 
   componentDidMount() {
     window.setInterval(() => {
       this.setState({ today: new Date() });
     }, 1000);
-  }
 
-  componentDidUpdate() {
-    // eslint-disable-next-line no-console
-    console.info(this.state.today.toUTCString().slice(-12, -4));
+    const { clockName, today } = this.state;
 
     this.timerId = window.setInterval(() => {
-      const oldName = this.state.clockName;
+      const oldName = clockName;
       const newName = getRandomName();
 
       this.setState({ clockName: newName });
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${oldName} to ${newName}`);
     }, 3300);
+
+    this.timerPrint = window.setInterval(() => {
+      // eslint-disable-next-line no-console
+      console.info(today);
+    }, 1000);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
+    window.clearInterval(this.timerPrint);
   }
 
   render() {
-    const { today, clockName } = this.state;
+    const { clockName, today } = this.state;
 
     return (
       <div className="Clock">
