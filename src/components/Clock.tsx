@@ -15,7 +15,7 @@ export class Clock extends React.Component<ClockProps, State> {
     time: getDate(),
   };
 
-  timerId: number | null = null;
+  timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
