@@ -30,7 +30,7 @@ export class Clock extends Component<Props, State> {
       this.setState({ today: new Date() });
     }, 1000);
 
-    const { clockName, today } = this.state;
+    const { clockName } = this.state;
 
     this.timerId = window.setInterval(() => {
       const oldName = clockName;
@@ -43,7 +43,7 @@ export class Clock extends Component<Props, State> {
 
     this.timerPrint = window.setInterval(() => {
       // eslint-disable-next-line no-console
-      console.info(today);
+      console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
@@ -60,9 +60,7 @@ export class Clock extends Component<Props, State> {
         <strong className="Clock__name">
           {clockName}
         </strong>
-
         {' time is '}
-
         <span className="Clock__time">
           {today.toUTCString().slice(-12, -4)}
         </span>
