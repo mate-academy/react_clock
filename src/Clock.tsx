@@ -37,13 +37,15 @@ export class Clock extends Component<Props, State> {
       const newName = getRandomName();
 
       this.setState({ clockName: newName });
+
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${oldName} to ${newName}`);
     }, 3300);
 
     this.timerPrint = window.setInterval(() => {
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(`${this.state.today.toUTCString().slice(-12, -4)
+      } PM`);
     }, 1000);
   }
 
@@ -58,11 +60,11 @@ export class Clock extends Component<Props, State> {
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {clockName}
+          {`${clockName} time is`}
         </strong>
-        {' time is '}
+
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {`${today.toUTCString().slice(-12, -4)} PM`}
         </span>
       </div>
     );
