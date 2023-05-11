@@ -24,26 +24,30 @@ export class App extends React.Component<{}, AppState> {
 
   componentDidMount() {
     this.timerId = window.setInterval(() => this.rename(), 3300);
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('contextmenu', this.hideClock);
+    document.addEventListener('click', this.showClock);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
-    document.removeEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.removeEventListener('contextmenu', this.hideClock);
+    document.removeEventListener('click', this.showClock);
 
     clearInterval(this.timerId);
   }
+
+  hideClock = (event: Event) => {
+    event.preventDefault();
+    this.setState({
+      hasClock: false,
+    });
+  };
+
+  showClock = (event: Event) => {
+    event.preventDefault();
+    this.setState({
+      hasClock: true,
+    });
+  };
 
   rename() {
     this.setState({
