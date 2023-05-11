@@ -18,7 +18,7 @@ export class Clock extends Component<Props> {
     console.info(new Date().toLocaleTimeString());
   };
 
-  test: any = null;
+  test: any = 0;
 
   componentDidMount() {
     setInterval(this.currentTime, 1000);
