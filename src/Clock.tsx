@@ -18,11 +18,11 @@ export class Clock extends Component<Props> {
     console.info(new Date().toLocaleTimeString());
   };
 
-  test: any = 0;
+  test: number = 0;
 
   componentDidMount() {
     setInterval(this.currentTime, 1000);
-    this.test = setInterval(() => console.info(new Date().toLocaleTimeString()), 1000);
+    this.test = window.setInterval(() => console.info(new Date().toLocaleTimeString()), 1000);
   }
 
   componentWillUnmount() {
