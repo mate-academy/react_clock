@@ -17,7 +17,7 @@ export class Clock extends React.Component<ClockProps, State> {
     currentTime: getCurrentTime(),
   };
 
-  intervalId: number | undefined;
+  intervalId = 0;
 
   componentDidMount(): void {
     this.intervalId = window.setInterval(() => {
