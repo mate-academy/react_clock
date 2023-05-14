@@ -36,16 +36,6 @@ export class Clock extends React.Component<ClockProps, ClockState> {
     window.clearInterval(this.intervalId);
   }
 
-  hideClock = (event: MouseEvent) => {
-    event.preventDefault();
-    this.setState({ hasClock: false });
-  };
-
-  showClock = (event: MouseEvent) => {
-    event.preventDefault();
-    this.setState({ hasClock: true });
-  };
-
   render() {
     const { hasClock, time } = this.state;
     const { name } = this.props;
@@ -57,7 +47,6 @@ export class Clock extends React.Component<ClockProps, ClockState> {
             <strong className="Clock__name">
               { name}
             </strong>
-            {}
             <span className="Clock__time">
               {time}
             </span>
