@@ -37,6 +37,13 @@ export class App extends React.Component<{}, AppClock> {
   componentWillUnmount(): void {
     // this code stops the timer
     this.setState({ hasClock: false });
+    document.removeEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    });
+    document.removeEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
   }
 
   render() {
