@@ -20,8 +20,10 @@ export class App extends React.Component<{}, State> {
     hasClock: true,
   };
 
+  timerId = 0;
+
   componentDidMount(): void {
-    window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({
         clockName: getRandomName(),
       });
@@ -46,29 +48,23 @@ export class App extends React.Component<{}, State> {
     });
   }
 
-  componentDidUpdate(
-    _prevProps: Readonly<{}>, prevState: Readonly<State>,
-  ): void {
-    if (this.state.hasClock) {
-      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
+  // componentDidUpdate(
+  //   _prevProps: Readonly<{}>, prevState: Readonly<State>,
+  // ): void {
+  //   if (this.state.hasClock) {
+  //     console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+  //   }
+  // }
 
   componentWillUnmount(): void {
-    window.clearInterval(window.setInterval(() => {
-      this.setState({
-        clockName: getRandomName(),
-      });
-    }));
+    window.clearInterval(this.timerId);
   }
 
   render() {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock
-          ? <Clock clockName={this.state.clockName} />
-          : null}
+        {this.state.hasClock && <Clock clockName={this.state.clockName} />}
       </div>
     );
   }
