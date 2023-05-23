@@ -21,7 +21,7 @@ export class Clock extends React.Component<Props, State> {
   state: State = {
     hasClock: true,
     clockName: 'Clock-0',
-    currentTime: '',
+    currentTime: new Date().toUTCString().slice(-12, -4),
   };
 
   componentDidMount() {
