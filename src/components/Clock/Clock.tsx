@@ -9,11 +9,9 @@ interface Props {
   clockName: string;
 }
 
-const today = new Date().toUTCString().slice(-12, -4);
-
 export class Clock extends React.Component<Props, State> {
   state: State = {
-    currentTime: today,
+    currentTime: new Date().toUTCString().slice(-12, -4),
   };
 
   timerId = 0;

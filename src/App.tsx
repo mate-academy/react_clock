@@ -32,19 +32,15 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault(); // not to show the context menu
 
-      if (this.state.hasClock) {
-        this.setState({
-          hasClock: false,
-        });
-      }
+      this.setState({
+        hasClock: false,
+      });
     });
 
     document.addEventListener('click', () => {
-      if (!this.state.hasClock) {
-        this.setState({
-          hasClock: true,
-        });
-      }
+      this.setState({
+        hasClock: true,
+      });
     });
   }
 
