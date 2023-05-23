@@ -50,15 +50,15 @@ export class Clock extends React.Component<Props, State> {
     });
 
     document.addEventListener('contextmenu', (event) => {
-      event.preventDefault(); // Prevent the default context menu
+      event.preventDefault();
       this.setState({ hasClock: false });
     });
   }
 
   componentDidUpdate(_: Readonly<Props>, prevState: Readonly<State>) {
-    const { clockName } = this.state;
+    const { hasClock, clockName } = this.state;
 
-    if (prevState.clockName !== clockName) {
+    if (prevState.hasClock && hasClock && prevState.clockName !== clockName) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
     }
@@ -78,9 +78,7 @@ export class Clock extends React.Component<Props, State> {
         {hasClock && (
           <div className="Clock">
             <strong className="Clock__name">{clockName}</strong>
-
             {' time is '}
-
             <span className="Clock__time">{currentTime}</span>
           </div>
         )}
