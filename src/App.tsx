@@ -30,30 +30,44 @@ export class App extends React.Component<{}, State> {
     }, 3300);
 
     document.addEventListener('contextmenu', (event) => {
-      event.preventDefault(); // not to show the context menu
+      event.preventDefault();
+
+      this.hideClock();
+    });
+
+    document.addEventListener('click', () => {
+      this.showClock();
+    });
+  }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+
+    document.removeEventListener('contextmenu', (event) => {
+      event.preventDefault();
 
       this.setState({
         hasClock: false,
       });
     });
 
-    document.addEventListener('click', () => {
+    document.removeEventListener('click', () => {
       this.setState({
         hasClock: true,
       });
     });
   }
 
-  // componentDidUpdate(
-  //   _prevProps: Readonly<{}>, prevState: Readonly<State>,
-  // ): void {
-  //   if (this.state.hasClock) {
-  //     console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-  //   }
-  // }
+  showClock() {
+    this.setState({
+      hasClock: true,
+    });
+  }
 
-  componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
+  hideClock() {
+    this.setState({
+      hasClock: false,
+    });
   }
 
   render() {
