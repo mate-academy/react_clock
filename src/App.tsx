@@ -32,6 +32,10 @@ export class App extends React.Component<{}, State> {
   }
 
   componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.deleteClock);
+
+    document.removeEventListener('click', this.addClock);
+
     window.clearInterval(this.timerId);
   }
 
