@@ -29,33 +29,18 @@ export class App extends React.Component<{}, State> {
       });
     }, 3300);
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
+    document.addEventListener('contextmenu', (event) => this.hideClock(event));
 
-      this.hideClock();
-    });
-
-    document.addEventListener('click', () => {
-      this.showClock();
-    });
+    document.addEventListener('click', () => this.showClock());
   }
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
 
-    document.removeEventListener('contextmenu', (event) => {
-      event.preventDefault();
+    document
+      .removeEventListener('contextmenu', (event) => this.hideClock(event));
 
-      this.setState({
-        hasClock: false,
-      });
-    });
-
-    document.removeEventListener('click', () => {
-      this.setState({
-        hasClock: true,
-      });
-    });
+    document.removeEventListener('click', () => this.showClock());
   }
 
   showClock() {
@@ -64,7 +49,9 @@ export class App extends React.Component<{}, State> {
     });
   }
 
-  hideClock() {
+  hideClock(event: MouseEvent) {
+    event.preventDefault();
+
     this.setState({
       hasClock: false,
     });
