@@ -23,7 +23,7 @@ export class App extends Component<{}, State> {
   timerId: number | null = null;
 
   componentDidMount() {
-    window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       const clockName = getRandomName();
 
       this.setState({ clockName });
