@@ -14,6 +14,11 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
+type State = {
+  clockName: string;
+  hasClock: boolean;
+}
+
 export class App extends Component<{}, State> {
   state = {
     clockName: 'Clock-0',
