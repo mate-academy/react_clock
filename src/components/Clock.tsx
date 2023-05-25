@@ -15,10 +15,10 @@ export class Clock extends Component<Props, State> {
     currentTime: getCurrentTime(),
   };
 
-  interval: number | null = null;
+  timerId: number | null = null;
 
   componentDidMount() {
-    this.interval = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ currentTime: getCurrentTime() });
 
       // eslint-disable-next-line no-console
@@ -34,8 +34,8 @@ export class Clock extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval);
+    if (this.timerId) {
+      clearInterval(this.timerId);
     }
   }
 
