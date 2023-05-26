@@ -7,9 +7,10 @@ type ClockState = {
   clockName: string;
   currentTime: string;
 };
-const RANDOMNAME_INTERVAL = 3300;
 
 export class Clock extends React.Component<ClockProps, ClockState> {
+  RANDOMNAME_INTERVAL = 3300;
+
   timerId = 0;
 
   state: ClockState = {
@@ -25,12 +26,13 @@ export class Clock extends React.Component<ClockProps, ClockState> {
       this.setState({
         clockName,
       });
-    }, RANDOMNAME_INTERVAL);
+    }, this.RANDOMNAME_INTERVAL);
 
     setInterval(() => {
       if (this.state.hasClock) {
         const currentTime = new Date().toUTCString().slice(-12, -4);
 
+        // eslint-disable-next-line no-console
         console.info(currentTime);
         this.setState({ currentTime });
       }
@@ -44,6 +46,7 @@ export class Clock extends React.Component<ClockProps, ClockState> {
     const { hasClock, clockName } = this.state;
 
     if (prevState.hasClock && hasClock && prevState.clockName !== clockName) {
+      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
     }
   }
