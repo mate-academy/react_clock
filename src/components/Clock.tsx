@@ -1,24 +1,18 @@
 import React from 'react';
 
-function getRandomName(): string {
-  const min = 1000;
-  const max = 9999;
+type ClockProps = {};
 
-  return `Clock-${Math.floor(Math.random() * (max - min + 1)) + min}`;
-}
-
-type Props = {};
-
-type State = {
+type ClockState = {
   hasClock: boolean;
   clockName: string;
   currentTime: string;
 };
+const RANDOMNAME_INTERVAL = 3300;
 
-export class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<ClockProps, ClockState> {
   timerId = 0;
 
-  state: State = {
+  state: ClockState = {
     hasClock: true,
     clockName: 'Clock-0',
     currentTime: new Date().toUTCString().slice(-12, -4),
@@ -26,47 +20,55 @@ export class Clock extends React.Component<Props, State> {
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      const clockName = getRandomName();
+      const clockName = this.getRandomName();
 
       this.setState({
         clockName,
       });
-    }, 3300);
+    }, RANDOMNAME_INTERVAL);
 
     setInterval(() => {
       if (this.state.hasClock) {
         const currentTime = new Date().toUTCString().slice(-12, -4);
 
-        // eslint-disable-next-line no-console
         console.info(currentTime);
-        this.setState({
-          currentTime,
-        });
+        this.setState({ currentTime });
       }
     }, 1000);
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
-
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('click', this.clickListener);
+    document.addEventListener('contextmenu', this.contextMenuListener);
   }
 
-  componentDidUpdate(_: Readonly<Props>, prevState: Readonly<State>) {
+  componentDidUpdate(_: Readonly<ClockProps>, prevState: Readonly<ClockState>) {
     const { hasClock, clockName } = this.state;
 
     if (prevState.hasClock && hasClock && prevState.clockName !== clockName) {
-      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
     }
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
+    document.removeEventListener('click', this.clickListener);
+    document.removeEventListener('contextmenu', this.contextMenuListener);
   }
+
+  getRandomName = () => {
+    const min = 1000;
+    const max = 9999;
+
+    return `Clock-${Math.floor(Math.random() * (max - min + 1)) + min}`;
+  };
+
+  contextMenuListener = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  clickListener = () => {
+    this.setState({ hasClock: true });
+  };
 
   render() {
     const { hasClock, clockName, currentTime } = this.state;
@@ -78,7 +80,7 @@ export class Clock extends React.Component<Props, State> {
         {hasClock && (
           <div className="Clock">
             <strong className="Clock__name">{clockName}</strong>
-            {' time is '}
+            <span className="Clock_name_separator"> time is </span>
             <span className="Clock__time">{currentTime}</span>
           </div>
         )}
