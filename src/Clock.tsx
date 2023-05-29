@@ -1,10 +1,8 @@
 import React from 'react';
 
-
 type Props = {
   name: string;
 };
-
 
 export class Clock extends React.Component<Props> {
   state = {
@@ -17,6 +15,7 @@ export class Clock extends React.Component<Props> {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
 
+      // eslint-disable-next-line no-console
       console.info(this.state.today);
     }, 1000);
   }
@@ -29,15 +28,6 @@ export class Clock extends React.Component<Props> {
 
   render() {
     const today = new Date();
-    let clockName = 'Clock-0';
-
-    // This code starts a timer
-    const timerId = window.setInterval(() => {
-      clockName = getRandomName();
-    }, 3300);
-
-    // this code stops the timer
-    window.clearInterval(timerId);
 
     return (
       <div className="Clock">
