@@ -9,20 +9,27 @@ export class Clock extends React.Component<Props> {
     today: new Date(),
   };
 
-  timerId: number;
+  timerID = 0;
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
+    this.timerID = window.setInterval(() => {
       this.setState({ today: new Date() });
 
       // eslint-disable-next-line no-console
-      console.info(this.state.today);
+      console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
   componentWillUnmount(): void {
-    if (this.timerId) {
-      clearInterval(this.timerId);
+    if (this.timerID) {
+      clearInterval(this.timerID);
     }
   }
 
