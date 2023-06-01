@@ -26,19 +26,25 @@ export class App extends React.Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.onContextMenu);
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.onClickDocument);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
+    document.removeEventListener('click', this.onClickDocument);
+    document.removeEventListener('contextmenu', this.onContextMenu);
   }
+
+  onClickDocument = () => {
+    this.setState({ hasClock: true });
+  };
+
+  onContextMenu = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
   render() {
     const {
