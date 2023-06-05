@@ -24,11 +24,12 @@ export class Clock extends React.Component<Props, State> {
     this.setState({ today: new Date() });
 
     this.timerIdEverySec = window.setInterval(() => {
+      this.setState({ today: new Date() });
       console.info(new Date().toUTCString().slice(-12, -4));
     }, 1000);
 
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date(), clockName: this.props.name });
+      this.setState({ clockName: this.props.name });
     }, 3300);
   }
 
