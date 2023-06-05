@@ -16,8 +16,6 @@ export class Clock extends Component<Props, State> {
 
   timerForDate = 0;
 
-  timerForClockinfo = 0;
-
   componentDidMount() {
     this.timerForDate = window.setInterval(() => {
       this.setState({ today: new Date() });
@@ -29,7 +27,7 @@ export class Clock extends Component<Props, State> {
   componentDidUpdate(prevProps: Props) {
     if (prevProps.clockName !== this.props.clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${this.props.previousClockName} to ${this.props.clockName}`);
+      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
   }
 
