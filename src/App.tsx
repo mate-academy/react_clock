@@ -5,7 +5,6 @@ import './App.scss';
 type State = {
   hasClock: boolean,
   clockName: string,
-  previousClockName: string,
 };
 
 function getRandomName(): string {
@@ -18,7 +17,6 @@ export class App extends Component<{}, State> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
-    previousClockName: '',
   };
 
   timerForClock = 0;
@@ -30,10 +28,7 @@ export class App extends Component<{}, State> {
     });
 
     this.timerForClock = window.setInterval(() => {
-      this.setState(prevState => ({
-        clockName: getRandomName(),
-        previousClockName: prevState.clockName,
-      }));
+      this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
@@ -46,17 +41,13 @@ export class App extends Component<{}, State> {
     const {
       hasClock,
       clockName,
-      previousClockName,
     } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
         {hasClock && (
-          <Clock
-            clockName={clockName}
-            previousClockName={previousClockName}
-          />
+          <Clock clockName={clockName} />
         )}
       </div>
     );

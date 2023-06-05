@@ -6,7 +6,6 @@ type State = {
 
 type Props = {
   clockName: string,
-  previousClockName: string,
 };
 
 export class Clock extends Component<Props, State> {
@@ -33,7 +32,6 @@ export class Clock extends Component<Props, State> {
 
   componentWillUnmount() {
     clearInterval(this.timerForDate);
-    clearInterval(this.timerForClockinfo);
   }
 
   render() {
