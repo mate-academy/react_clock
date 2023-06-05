@@ -6,14 +6,12 @@ type Props = {
 };
 
 type State = {
-  today: Date,
-  clockName: string,
+  today: null | Date,
 };
 
 export class Clock extends React.Component<Props, State> {
   state = {
     today: new Date(),
-    clockName: this.props.name,
   };
 
   timerId = 0;
@@ -27,15 +25,11 @@ export class Clock extends React.Component<Props, State> {
       this.setState({ today: new Date() });
       console.info(new Date().toUTCString().slice(-12, -4));
     }, 1000);
-
-    this.timerId = window.setInterval(() => {
-      this.setState({ clockName: this.props.name });
-    }, 3300);
   }
 
-  componentDidUpdate(_prevProps: Props, prevState: State): void {
-    if (this.state.clockName !== prevState.clockName) {
-      console.debug(`now: ${this.state.clockName}, prev: ${prevState.clockName}`);
+  componentDidUpdate(prevProps: Props): void {
+    if (this.props.name !== prevProps.name) {
+      console.debug(`now: ${this.props.name}, prev: ${prevProps.name}`);
     }
   }
 
@@ -47,7 +41,7 @@ export class Clock extends React.Component<Props, State> {
   render() {
     return (
       <div className="Clock">
-        <strong className="Clock__name">{this.state.clockName}</strong>
+        <strong className="Clock__name">{this.props.name}</strong>
 
         {' time is '}
 
