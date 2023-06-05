@@ -37,10 +37,6 @@ export class App extends Component<{}, State> {
     }, 3300);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timerForClock);
-  }
-
   handleContextMenu = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
