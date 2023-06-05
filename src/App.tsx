@@ -10,14 +10,12 @@ function getRandomName(): string {
 }
 
 type State = {
-  today: Date,
   clockName: string,
   hasClock: boolean,
 };
 
 export class App extends Component<{}, State> {
   state: Readonly<State> = {
-    today: new Date(),
     clockName: 'Clock-0',
     hasClock: true,
   };
@@ -28,10 +26,6 @@ export class App extends Component<{}, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
-
-    this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
-    }, 1000);
 
     document.addEventListener('contextmenu', this.handleContextMenu);
 
@@ -54,13 +48,14 @@ export class App extends Component<{}, State> {
   };
 
   render() {
-    const { clockName, today, hasClock } = this.state;
+    const { clockName, hasClock } = this.state;
 
     return (
-      <>
+      <div className="App">
         <h1>React clock</h1>
-        {hasClock && <Clock today={today} clockName={clockName} />}
-      </>
+
+        { hasClock && <Clock clockName={clockName} /> }
+      </div>
     );
   }
 }
