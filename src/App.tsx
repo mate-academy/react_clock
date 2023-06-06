@@ -7,6 +7,7 @@ function getRandomName(): string {
 
   return `Clock-${value}`;
 }
+
 type State = {
   clockName: string;
   hasClock: boolean;
