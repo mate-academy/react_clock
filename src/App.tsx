@@ -21,9 +21,9 @@ export class App extends React.Component<{}, State> {
 
   nameTimerId = 0;
 
-  currentName = this.state.clockName;
+  // currentName = this.state.clockName;
 
-  oldName = this.state.clockName;
+  // oldName = this.state.clockName;
 
   componentDidMount() {
     this.nameTimerId = window.setInterval(() => {
@@ -36,9 +36,9 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.showClock);
   }
 
-  componentDidUpdate(_prevProps: {}, prevState: State) {
-    this.oldName = prevState.clockName;
-  }
+  // componentDidUpdate(_prevProps: {}, prevState: State) {
+  //   this.oldName = prevState.clockName;
+  // }
 
   componentWillUnmount() {
     window.clearInterval(this.nameTimerId);
