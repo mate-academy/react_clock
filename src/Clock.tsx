@@ -52,9 +52,9 @@ export class Clock extends React.Component<Props, State> {
         <strong className="Clock__name">
           {name}
         </strong>
-
-        {' time is '}
-
+        <span>
+          {' time is '}
+        </span>
         <span className="Clock__time">
           {today.toUTCString().slice(-12, -4)}
         </span>
