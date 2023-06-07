@@ -34,7 +34,7 @@ export class Clock extends React.Component<Props> {
   }
 
   render() {
-    const today = new Date();
+    const today = new Date().toUTCString().slice(-12, -4);
 
     return (
       <div className="Clock">
@@ -45,7 +45,7 @@ export class Clock extends React.Component<Props> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {today}
         </span>
       </div>
     );
