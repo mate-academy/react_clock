@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Component } from 'react';
 
 interface State {
@@ -11,15 +12,42 @@ export class Clock extends Component<{}, State> {
     clockName: 'Clock-0',
   };
 
+  timerId = 0;
+
+  timeUpdate = 0;
+
   componentDidMount(): void {
-    const timerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: this.getRandomName() });
     }, 3300);
 
-    const timeUpdate = window.setInterval(() => {
-      this.setState({ today: new Date() });
+    this.timeUpdate = window.setInterval(() => {
+      const newDate = new Date();
+
+      this.setState({ today: newDate });
+      console.info(this.formatTime(newDate));
     }, 1000);
   }
+
+  componentDidUpdate(_: Readonly<{}>, prevState: Readonly<State>) {
+    const { clockName } = this.state;
+    const { clockName: prevClockName } = prevState;
+
+    const isClockNameChanged = clockName !== prevClockName;
+
+    if (isClockNameChanged) {
+      console.debug(`Renamed from ${prevClockName} to ${clockName}`);
+    }
+  }
+
+  componentWillUnmount() {
+    window.clearTimeout(this.timerId);
+    window.clearTimeout(this.timeUpdate);
+  }
+
+  formatTime = (date: Date) => (
+    date.toUTCString().slice(-12, -4)
+  );
 
   getRandomName = (): string => {
     const value = Date.now().toString().slice(-4);
@@ -39,20 +67,9 @@ export class Clock extends Component<{}, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {this.formatTime(today)}
         </span>
       </div>
     );
   }
 }
-
-// const today = new Date();
-// let clockName = 'Clock-0';
-
-// // This code starts a timer
-// const timerId = window.setInterval(() => {
-//   clockName = getRandomName();
-// }, 3300);
-
-// // this code stops the timer
-// window.clearInterval(timerId);
