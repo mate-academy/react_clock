@@ -1,1 +1,42 @@
-// styles go here
+$color-btn-bg: #eee;
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0 auto;
+}
+
+button {
+  border: 4px solid gray;
+  border-radius: 10px;
+  background-color: $color-btn-bg;
+  padding: 10px 20px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background: lighten($color-btn-bg, 20%);
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.App {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.timer {
+  font-weight: bold;
+  font-size: 2rem;
+}
