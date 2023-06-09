@@ -19,15 +19,19 @@ export class App extends React.Component<{}, State> {
     hasClock: true,
   };
 
+  clockTimerId: number | null = null;
+
   componentDidMount(): void {
-    this.timerId();
+    this.clockTimerId = this.createNewClockTimer();
 
     document.addEventListener('contextmenu', this.handleContextMenu);
     document.addEventListener('click', this.handleClick);
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timerId());
+    if (this.clockTimerId) {
+      window.clearInterval(this.clockTimerId);
+    }
   }
 
   handleClick = () => {
@@ -40,9 +44,11 @@ export class App extends React.Component<{}, State> {
     this.setState({ hasClock: false });
   };
 
-  timerId = () => (window.setInterval(() => {
-    this.setState({ clockName: getRandomName() });
-  }, 3300));
+  createNewClockTimer = () => {
+    return (window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300));
+  };
 
   render() {
     const {

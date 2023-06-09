@@ -13,29 +13,35 @@ export class Clock extends React.Component<Props, State> {
     currentTime: new Date(),
   };
 
+  dateTimerId: number | null = null;
+
   componentDidMount(): void {
-    this.createTimer();
+    this.dateTimerId = this.createNewDateTimer();
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevProps.clockName !== this.props.clockName) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
 
-    // eslint-disable-next-line no-console
-    console.info(this.getUtcDate());
+    if (prevState.currentTime !== this.state.currentTime) {
+      // eslint-disable-next-line no-console
+      console.info(this.getUtcDate());
+    }
   }
 
-  componentWillUnmount(): void {
-    window.clearInterval(this.createTimer());
+  componentWillUnmount() {
+    if (this.dateTimerId) {
+      window.clearInterval(this.dateTimerId);
+    }
   }
 
   getUtcDate() {
     return this.state.currentTime.toUTCString().slice(-12, -4);
   }
 
-  createTimer = () => (
+  createNewDateTimer = () => (
     window.setInterval(() => (this.setState({ currentTime: new Date() })), 1000)
   );
 
