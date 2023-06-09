@@ -16,7 +16,7 @@ export class Clock extends React.Component<Props, State> {
   dateTimerId: number | null = null;
 
   componentDidMount(): void {
-    this.dateTimerId = this.createNewDateTimer();
+    this.dateTimerId = this.startDateTimer();
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
@@ -41,8 +41,8 @@ export class Clock extends React.Component<Props, State> {
     return this.state.currentTime.toUTCString().slice(-12, -4);
   }
 
-  createNewDateTimer = () => (
-    window.setInterval(() => (this.setState({ currentTime: new Date() })), 1000)
+  startDateTimer = () => (
+    window.setInterval(() => this.setState({ currentTime: new Date() }), 1000)
   );
 
   render() {

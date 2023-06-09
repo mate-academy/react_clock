@@ -22,7 +22,7 @@ export class App extends React.Component<{}, State> {
   clockTimerId: number | null = null;
 
   componentDidMount(): void {
-    this.clockTimerId = this.createNewClockTimer();
+    this.clockTimerId = this.startClockTimer();
 
     document.addEventListener('contextmenu', this.handleContextMenu);
     document.addEventListener('click', this.handleClick);
@@ -44,7 +44,7 @@ export class App extends React.Component<{}, State> {
     this.setState({ hasClock: false });
   };
 
-  createNewClockTimer = () => {
+  startClockTimer = () => {
     return (window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300));
