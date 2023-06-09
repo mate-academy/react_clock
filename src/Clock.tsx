@@ -7,24 +7,16 @@ interface Props {
 
 interface State {
   today: Date;
-  clockName: string;
 }
 
 export class Clock extends Component<Props, State> {
   state = {
     today: new Date(),
-    clockName: this.props.name,
   };
-
-  timerId = 0;
 
   timeUpdate = 0;
 
   componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
-      this.setState({ clockName: this.getRandomName() });
-    }, 3300);
-
     this.timeUpdate = window.setInterval(() => {
       const newDate = new Date();
 
@@ -33,19 +25,18 @@ export class Clock extends Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(_: Readonly<{}>, prevState: Readonly<State>) {
-    const { clockName } = this.state;
-    const { clockName: prevClockName } = prevState;
+  componentDidUpdate(prevProps: Readonly<Props>) {
+    const { name } = this.props;
+    const { name: prevClockName } = prevProps;
 
-    const isClockNameChanged = clockName !== prevClockName;
+    const isClockNameChanged = name !== prevClockName;
 
     if (isClockNameChanged) {
-      console.debug(`Renamed from ${prevClockName} to ${clockName}`);
+      console.debug(`Renamed from ${prevClockName} to ${name}`);
     }
   }
 
   componentWillUnmount() {
-    window.clearTimeout(this.timerId);
     window.clearTimeout(this.timeUpdate);
   }
 
@@ -53,19 +44,14 @@ export class Clock extends Component<Props, State> {
     date.toUTCString().slice(-12, -4)
   );
 
-  getRandomName = (): string => {
-    const value = Date.now().toString().slice(-4);
-
-    return `Clock-${value}`;
-  };
-
   render() {
-    const { today, clockName } = this.state;
+    const { today } = this.state;
+    const { name } = this.props;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {clockName}
+          {name}
         </strong>
 
         {' time is '}
