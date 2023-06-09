@@ -1,0 +1,15 @@
+.Clock {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+  font-family: "Courier New", Courier, monospace;
+  &__name,
+  &__time {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #e5beec;
+    color: #917fb3;
+  }
+}

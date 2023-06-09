@@ -2,7 +2,35 @@ iframe {
   display: none;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 24px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 20px;
+}
+
+body {
+  --c-c: #2a2f4f;
+  --c-b: #fde2f3;
+  --c-a: #917fb3;
+  background-color: #2a2f4f;
+  color: #fde2f3;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  height: 200px;
+  margin: 150px auto 0;
+  padding: 20px 20px 0;
+  border-radius: 10px;
+  background-color: #917fb3;
+
+  &__header {
+    margin: 0;
+  }
 }
