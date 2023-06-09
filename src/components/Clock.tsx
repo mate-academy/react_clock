@@ -21,7 +21,7 @@ export class Clock extends React.Component <Props, State> {
     }, 1000);
 
     // eslint-disable-next-line no-console
-    console.info(this.state);
+    console.info(this.state.today);
   }
 
   componentDidUpdate(prevProps: Props) {
