@@ -1,15 +1,19 @@
 /* eslint-disable no-console */
 import { Component } from 'react';
 
+interface Props {
+  name: string;
+}
+
 interface State {
   today: Date;
   clockName: string;
 }
 
-export class Clock extends Component<{}, State> {
+export class Clock extends Component<Props, State> {
   state = {
     today: new Date(),
-    clockName: 'Clock-0',
+    clockName: this.props.name,
   };
 
   timerId = 0;
