@@ -1,7 +1,7 @@
 import React from 'react';
 
 type State = {
-  today: Date,
+  today: string,
 };
 
 type Props = {
@@ -10,18 +10,19 @@ type Props = {
 
 export class Clock extends React.Component <Props, State> {
   state = {
-    today: new Date(),
+    today: new Date().toUTCString().slice(-12, -4),
   };
 
   timeDate = 0;
 
   componentDidMount() {
     this.timeDate = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({
+        today: new Date().toUTCString().slice(-12, -4),
+      });
+      // eslint-disable-next-line no-console
+      console.info(this.state.today);
     }, 1000);
-
-    // eslint-disable-next-line no-console
-    console.info(this.state.today);
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -40,18 +41,16 @@ export class Clock extends React.Component <Props, State> {
 
     const { name } = this.props;
 
-    const timeString = today.toUTCString().slice(-12, -4);
-
     return (
       <div className="Clock">
         <strong className="Clock__name">
           {name}
         </strong>
 
-        <span>{' time is '}</span>
+        <span> time is </span>
 
         <span className="Clock__time">
-          {timeString}
+          {today}
         </span>
       </div>
     );
