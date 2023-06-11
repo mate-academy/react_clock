@@ -73,9 +73,7 @@ export class App extends Component<{}, State> {
     const { hasClock, clockName, today } = this.state;
 
     return (
-      <div
-        className="App"
-      >
+      <div className="App">
         <h1>React clock</h1>
 
         {hasClock && (
@@ -83,9 +81,7 @@ export class App extends Component<{}, State> {
             <strong className="Clock__name">
               {clockName}
             </strong>
-
-            {' time is '}
-
+            <span> time is </span>
             <span className="Clock__time">
               {today.toUTCString().slice(-12, -4)}
             </span>
