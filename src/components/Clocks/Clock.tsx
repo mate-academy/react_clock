@@ -40,11 +40,12 @@ export class Clock extends React.Component<Props, State> {
 
   render() {
     const { today } = this.state;
+    const { clockName } = this.props;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.clockName}
+          {clockName}
         </strong>
 
         {' time is '}
