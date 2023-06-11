@@ -1,5 +1,11 @@
 import React from 'react';
 import './App.scss';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import Typography from '@mui/material/Typography';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Clock } from './Clock';
 
 function getRandomName(): string {
@@ -37,9 +43,15 @@ export class App extends React.Component<{}, State> {
   render() {
     return (
       <>
-        <div className="App">
-          <h1>React clock</h1>
-        </div>
+        <Typography
+          align="center"
+          color="primary"
+        >
+          <div className="App">
+            <h1>React clock</h1>
+            <AccessTimeIcon />
+          </div>
+        </Typography>
 
         {this.state.hasClock && <Clock name={this.state.clockName} />}
       </>
