@@ -2,8 +2,13 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
-export class App extends React.Component {
-  state: { hasClock: boolean, clockName: string } = {
+type State = {
+  hasClock: boolean,
+  clockName: string,
+};
+
+export class App extends React.Component<{}, State> {
+  state = {
     hasClock: true,
     clockName: 'Clock-0',
   };
@@ -42,13 +47,13 @@ export class App extends React.Component {
   };
 
   render() {
-    const { clockName } = this.state;
+    const { clockName, hasClock } = this.state;
 
     return (
       <div className="App">
         <h1 className="App__header">React clock</h1>
         {
-          this.state.hasClock && <Clock name={clockName} />
+          hasClock && <Clock name={clockName} />
         }
       </div>
     );
