@@ -1,5 +1,12 @@
 import React from 'react';
 import './App.scss';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import Typography from '@mui/material/Typography';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { Clock } from './Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +14,63 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+interface State {
+  hasClock: boolean,
+  clockName: string,
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+export class App extends React.Component<{}, State> {
+  state: Readonly<State> = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  timeInterval: number | undefined;
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount(): void {
+    document.addEventListener('click', this.leftClickHandler);
+    document.addEventListener('contextmenu', this.rightClickHandler);
+    const interval = window.setInterval(() => this.setState(
+      { clockName: getRandomName() },
+    ), 3300);
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    this.timeInterval = interval;
+  }
 
-        {' time is '}
+  componentWillUnmount(): void {
+    document.removeEventListener('click', this.leftClickHandler);
+    document.removeEventListener('contextmenu', this.rightClickHandler);
+    window.clearInterval(this.timeInterval);
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
-    </div>
-  );
-};
+  leftClickHandler = () => {
+    if (this.timeInterval) {
+      this.setState({ hasClock: true });
+    }
+  };
+
+  rightClickHandler = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <>
+        <Typography
+          align="center"
+          color="primary"
+        >
+          <div className="App">
+            <h1>React clock</h1>
+            <AccessTimeIcon />
+          </div>
+        </Typography>
+
+        {hasClock && <Clock name={clockName} />}
+      </>
+    );
+  }
+}
