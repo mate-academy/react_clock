@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.scss';
 
 type Props = {
   clockName: string,
