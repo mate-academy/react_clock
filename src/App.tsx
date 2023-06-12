@@ -9,7 +9,7 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export interface State {
+interface State {
   hasClock: boolean,
   clockName: string,
 }
@@ -23,33 +23,46 @@ export class App extends React.Component<{}, State> {
   timerId = 0;
 
   componentDidMount(): void {
+    document.addEventListener('contextmenu', this.onClickRightButton);
+
+    document.addEventListener('click', this.onClickLeftButton);
+
     this.timerId = window.setInterval(() => {
       this.setState({
         clockName: getRandomName(),
       });
     }, 3300);
+  }
 
-    document.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
+  componentWillUnmount(): void {
+    document.removeEventListener('contextmenu', this.onClickRightButton);
+    window.clearInterval(this.timerId);
+  }
 
-      this.setState({
-        hasClock: false,
-      });
+  onClickRightButton = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({
+      hasClock: false,
     });
+  };
 
-    document.addEventListener('click', () => {
+  onClickLeftButton = (event: MouseEvent) => {
+    if (event.button === 0) {
       this.setState({
         hasClock: true,
       });
-    });
-  }
+    }
+  };
 
   render() {
+    const { hasClock, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock && <Clock clockName={this.state.clockName} />}
+        {hasClock && <Clock clockName={clockName} />}
       </div>
     );
   }
