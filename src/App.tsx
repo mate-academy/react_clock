@@ -14,12 +14,12 @@ interface AppClock {
 }
 
 export class App extends React.Component<{}, AppClock> {
-  timerId = 0;
-
   state = {
     hasClock: true,
     clockName: 'Clock-0',
   };
+
+  timerId = 0;
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
@@ -27,23 +27,27 @@ export class App extends React.Component<{}, AppClock> {
     }, 3300);
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
-      this.setState({ hasClock: false });
+      this.handleClock(false);
     });
     document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
+      this.handleClock(true);
     });
   }
 
   componentWillUnmount(): void {
     // this code stops the timer
-    this.setState({ hasClock: false });
+    this.handleClock(false);
     document.removeEventListener('contextmenu', (event) => {
       event.preventDefault();
-      this.setState({ hasClock: false });
+      this.handleClock(false);
     });
     document.removeEventListener('click', () => {
-      this.setState({ hasClock: true });
+      this.handleClock(true);
     });
+  }
+
+  handleClock(toogle:boolean) {
+    this.setState({ hasClock: toogle });
   }
 
   render() {
