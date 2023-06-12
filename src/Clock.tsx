@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 
 interface State {
   time: string,
-  interval: number | null,
+  // interval: number | null,
 }
 
 interface Props {
@@ -13,8 +13,9 @@ interface Props {
 export class Clock extends React.Component<Props, State> {
   state = {
     time: new Date().toUTCString().slice(-12, -4),
-    interval: null,
   };
+
+  nameMessageInterval: number | undefined;
 
   componentDidMount(): void {
     window.setInterval(() => this.setState(
@@ -26,7 +27,7 @@ export class Clock extends React.Component<Props, State> {
       new Date().toUTCString().slice(-12, -4),
     ), 1000);
 
-    this.setState({ interval });
+    this.nameMessageInterval = interval;
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -37,8 +38,8 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount(): void {
-    if (this.state.interval) {
-      clearInterval(this.state.interval);
+    if (this.nameMessageInterval) {
+      clearInterval(this.nameMessageInterval);
     }
   }
 
