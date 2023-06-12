@@ -41,6 +41,8 @@ export class App extends React.Component<{}, State> {
   }
 
   render() {
+    const { hasClock, clockName } = this.state;
+
     return (
       <>
         <Typography
@@ -53,7 +55,7 @@ export class App extends React.Component<{}, State> {
           </div>
         </Typography>
 
-        {this.state.hasClock && <Clock name={this.state.clockName} />}
+        {hasClock && <Clock name={clockName} />}
       </>
     );
   }

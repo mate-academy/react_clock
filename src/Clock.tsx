@@ -3,7 +3,6 @@ import Typography from '@mui/material/Typography';
 
 interface State {
   time: string,
-  // interval: number | null,
 }
 
 interface Props {
@@ -44,6 +43,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    const { time } = this.state;
+    const { name } = this.props;
+
     return (
 
       <Typography
@@ -52,13 +54,13 @@ export class Clock extends React.Component<Props, State> {
       >
         <div className="Clock">
           <strong className="Clock__name">
-            {this.props.name}
+            {name}
           </strong>
 
           {' time is '}
 
           <span className="Clock__time">
-            {this.state.time}
+            {time}
           </span>
         </div>
       </Typography>
