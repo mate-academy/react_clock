@@ -26,16 +26,16 @@ export class App extends Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
     document.addEventListener('contextmenu', this.eventContextMenu);
-    document.addEventListener('click', this.eventClick);
+    document.addEventListener('click', this.handleClick);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
     document.removeEventListener('contextmenu', this.eventContextMenu);
-    document.removeEventListener('click', this.eventClick);
+    document.removeEventListener('click', this.handleClick);
   }
 
-  eventClick = () => {
+  handleClick = () => {
     this.setState({ hasClock: true });
   };
 
