@@ -24,7 +24,6 @@ export class App extends React.Component<{}, State> {
 
   componentDidMount(): void {
     document.addEventListener('contextmenu', this.onClickRightButton);
-
     document.addEventListener('click', this.onClickLeftButton);
 
     this.timerId = window.setInterval(() => {
@@ -36,6 +35,7 @@ export class App extends React.Component<{}, State> {
 
   componentWillUnmount(): void {
     document.removeEventListener('contextmenu', this.onClickRightButton);
+    document.removeEventListener('click', this.onClickLeftButton);
     window.clearInterval(this.timerId);
   }
 
