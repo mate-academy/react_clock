@@ -27,7 +27,7 @@ export class Clock extends Component<Props, State> {
 
     if (prevState.date !== date) {
       // eslint-disable-next-line no-console
-      console.info(date.toUTCString().slice(-12, -4));
+      console.info(this.getFormattedDate(date));
     }
 
     if (prevProps.name !== clockName) {
@@ -40,10 +40,12 @@ export class Clock extends Component<Props, State> {
     window.clearInterval(this.timerId);
   }
 
+  getFormattedDate = (date: Date) => date.toUTCString().slice(-12, -4);
+
   render() {
     const { date } = this.state;
     const { name: clockName } = this.props;
-    const today = date.toUTCString().slice(-12, -4);
+    const today = this.getFormattedDate(date);
 
     return (
       <div className="Clock">
