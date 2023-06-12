@@ -1,56 +1,61 @@
 import React from 'react';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+const getTimeString = (time: Date): string => time.toUTCString().slice(-12, -4);
 
-  return `Clock-${value}`;
+interface ClockProps {
+  clockName: string;
 }
 
 interface ClockState {
   time: Date;
-  clockName: string;
 }
 
-export class Clock extends React.Component<{}, ClockState> {
-  timeIntervalID: NodeJS.Timeout | null = null;
-
-  clockNameIntervalID: NodeJS.Timeout | null = null;
-
+export class Clock extends React.Component<ClockProps, ClockState> {
   state: ClockState = {
     time: new Date(),
-    clockName: 'clock0',
   };
 
+  timeIntervalID = 0;
+
   componentDidMount() {
-    this.timeIntervalID = setInterval(this.updateTime, 1000);
-    this.clockNameIntervalID = setInterval(this.updateClockName, 3300);
+    this.timeIntervalID = window.setInterval(() => {
+      this.setState({ time: new Date() });
+
+      // eslint-disable-next-line no-console
+      console.info(getTimeString(this.state.time));
+    }, 1000);
+  }
+
+  componentDidUpdate(prevProps: ClockProps) {
+    const oldName = prevProps.clockName;
+    const newName = this.props.clockName;
+
+    if (oldName !== newName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${oldName} to ${newName}`);
+    }
   }
 
   componentWillUnmount() {
-    if (this.timeIntervalID) {
-      clearInterval(this.timeIntervalID);
-    }
-
-    if (this.clockNameIntervalID) {
-      clearInterval(this.clockNameIntervalID);
-    }
+    window.clearInterval(this.timeIntervalID);
   }
 
-  updateTime = () => {
-    this.setState({ time: new Date() });
-  };
-
-  updateClockName = () => {
-    this.setState({ clockName: getRandomName() });
-  };
-
   render() {
+    const { clockName } = this.props;
+    const { time } = this.state;
+
     return (
       <div className="Clock">
-        <strong className="Clock__name">{this.state.clockName}</strong>
-        {' time is '}
+        <strong className="Clock__name">
+          {clockName}
+        </strong>
+
+        <span>
+          {' time is '}
+        </span>
+
         <span className="Clock__time">
-          {this.state.time.toUTCString().slice(-12, -4)}
+          {time.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );
