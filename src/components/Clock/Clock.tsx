@@ -16,13 +16,11 @@ export class Clock extends Component<Props, State> {
   timerId = 0;
 
   componentDidMount() {
-    const { today } = this.state;
-
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
 
       // eslint-disable-next-line no-console
-      console.info(today.toUTCString().slice(-12, -4));
+      console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
