@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Clock } from './components/Clock/';
+import { Clock } from './components/Clock';
 import { getRandomName } from './components/utils';
 import './App.scss';
 
