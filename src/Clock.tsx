@@ -5,22 +5,22 @@ type Props = {
 };
 
 type State = {
-  today: Date;
+  now: Date;
 };
 
 export class Clock extends React.Component<Props, State> {
   state: Readonly<State> = {
-    today: new Date(),
+    now: new Date(),
   };
 
   intervalId = 0;
 
   componentDidMount(): void {
     this.intervalId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({ now: new Date() });
 
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(this.state.now.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
@@ -29,14 +29,14 @@ export class Clock extends React.Component<Props, State> {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
-}
+  }
 
   componentWillUnmount(): void {
     window.clearInterval(this.intervalId);
   }
 
   render() {
-    const { today } = this.state;
+    const { now: today } = this.state;
     const { clockName } = this.props;
 
     return (
