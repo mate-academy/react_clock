@@ -19,6 +19,12 @@ export class Clock extends Component<Props, State> {
     this.startTimer();
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.clockName !== this.props.clockName) {
+      window.console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+    }
+  }
+
   componentWillUnmount() {
     window.clearInterval(this.intervalId);
   }
@@ -28,7 +34,7 @@ export class Clock extends Component<Props, State> {
       this.setState({
         today: new Date(),
       });
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      window.console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
   }
 

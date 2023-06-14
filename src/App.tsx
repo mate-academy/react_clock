@@ -39,12 +39,6 @@ export class App extends Component<{}, State> {
     }, 3300);
   }
 
-  componentDidUpdate({}, prevState: State) {
-    if (this.state.hasClock && prevState.clockName !== this.state.clockName) {
-      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
-
   componentWillUnmount() {
     window.clearInterval(this.timerId);
   }
