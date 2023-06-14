@@ -1,47 +1,48 @@
-import { Component } from 'react';
+import React from 'react';
 
-interface Props {
+interface ClockState {
+  currentTime: string,
+}
+
+interface ClockProps {
   clockName: string,
 }
 
-interface State {
-  today: string,
+function getCurrentDate() {
+  return new Date().toUTCString().slice(-12, -4);
 }
 
-const getDate = () => new Date().toUTCString().slice(-12, -4);
-
-export class Clock extends Component<Props, State> {
+export class Clock extends React.Component<ClockProps, ClockState> {
   state = {
-    today: getDate(),
+    currentTime: getCurrentDate(),
   };
 
-  timerId = 0;
+  secondTimerId = 0;
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
+    this.secondTimerId = window.setInterval(() => {
       this.setState({
-        today: getDate(),
+        currentTime: getCurrentDate(),
       });
-
       // eslint-disable-next-line no-console
-      console.info(this.state.today);
+      console.info(this.state.currentTime);
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props) {
-    if (prevProps.clockName !== this.props.clockName) {
+  componentDidUpdate(lastProps: Readonly<ClockProps>) {
+    if (lastProps.clockName !== this.props.clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+      console.debug(`Renamed from ${lastProps.clockName} to ${this.props.clockName}`);
     }
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerId);
+    window.clearInterval(this.secondTimerId);
   }
 
   render() {
+    const { currentTime } = this.state;
     const { clockName } = this.props;
-    const { today } = this.state;
 
     return (
       <div className="Clock">
@@ -52,7 +53,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today}
+          {currentTime}
         </span>
       </div>
     );
