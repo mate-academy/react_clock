@@ -37,9 +37,7 @@ export class Clock extends Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     if (prevProps.name !== this.props.name) {
-      // console.debug(`prevState - ${prevState.clockName}`);
       this.changeStateClockName();
-      // eslint-disable-next-line no-console
     }
   }
 

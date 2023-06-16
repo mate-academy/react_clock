@@ -39,6 +39,10 @@ export class App extends Component< {}, State > {
     }, 3300);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
+
   render() {
     const { hasClock, clockName } = this.state;
 
