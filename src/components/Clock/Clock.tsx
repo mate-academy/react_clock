@@ -65,10 +65,12 @@ export class Clock extends Component<Props, State> {
 
     return (
       <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
-        {' time is '}
+        <span>
+          <strong className="Clock__name">
+            {clockName}
+          </strong>
+          {' time is '}
+        </span>
         <span className="Clock__time">
           {time}
         </span>
