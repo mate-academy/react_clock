@@ -1,17 +1,17 @@
 import React from 'react';
 
-type State = {
+type ClockState = {
   today: Date
 };
 
-type Props = {
+type ClockProps = {
   name: string
 };
 
-export class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<ClockProps, ClockState> {
   value = Date.now().toString().slice(-4);
 
-  state = {
+  state: Readonly<ClockState> = {
     today: new Date(),
   };
 
@@ -24,7 +24,7 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>): void {
+  componentDidUpdate(prevProps: Readonly<ClockProps>): void {
     if (this.props.name !== prevProps.name) {
       window.console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
@@ -37,14 +37,13 @@ export class Clock extends React.Component<Props, State> {
   render() {
     return (
       <div className="Clock">
-        <strong className="Clock__name">
-          {this.props.name}
-        </strong>
+        <strong className="Clock__name">{this.props.name}</strong>
 
         {' time is '}
 
         <span className="Clock__time">
           {this.state.today.toUTCString().slice(-12, -4)}
+          {/* text "time is" should not be placed in span.Clock__time element */}
         </span>
       </div>
     );

@@ -8,13 +8,18 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class App extends React.Component<{}> {
-  state = {
+type AppState = {
+  hasClock: boolean;
+  clockName: string;
+};
+
+export class App extends React.Component<{}, AppState> {
+  state: Readonly<AppState> = {
     hasClock: true,
     clockName: 'Clock-0',
   };
 
-  intervalId = 0;
+  intervalId?: number;
 
   componentDidMount(): void {
     document.addEventListener('contextmenu', this.handleRightClick);
