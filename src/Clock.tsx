@@ -16,7 +16,7 @@ export class Clock extends React.Component<Props, State> {
   interval: number | undefined;
 
   componentDidMount(): void {
-    this.interval = window.setInterval(this.newTime, 1000);
+    this.interval = window.setInterval(this.setNewTime, 1000);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -26,28 +26,36 @@ export class Clock extends React.Component<Props, State> {
     }
 
     // eslint-disable-next-line no-console
-    console.info(this.state.time.toUTCString().slice(-12, -4));
+    console.info(this.correctTimeFormat());
   }
 
   componentWillUnmount(): void {
     window.clearInterval(this.interval);
   }
 
-  newTime = () => {
+  setNewTime = () => {
     this.setState({ time: new Date() });
   };
 
+  correctTimeFormat() {
+    return this.state.time.toUTCString().slice(-12, -4);
+  }
+
   render() {
+    const {
+      name,
+    } = this.props;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.name}
+          {name}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.time.toUTCString().slice(-12, -4)}
+          {this.correctTimeFormat()}
         </span>
       </div>
     );
