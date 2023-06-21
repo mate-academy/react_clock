@@ -22,18 +22,9 @@ export class App extends Component<{}, State> {
   timerId = 0;
 
   componentDidMount() {
-    document.addEventListener('click', () => {
-      this.setState({
-        hasClock: true,
-      });
-    });
+    document.addEventListener('click', this.handleDocumentClick);
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({
-        hasClock: false,
-      });
-    });
+    document.addEventListener('contextmenu', this.handleDocumentContextMenu);
 
     this.timerId = window.setInterval(() => {
       this.setState({
@@ -44,7 +35,22 @@ export class App extends Component<{}, State> {
 
   componentWillUnmount() {
     clearInterval(this.timerId);
+    document.removeEventListener('click', this.handleDocumentClick);
+    document.removeEventListener('click', this.handleDocumentContextMenu);
   }
+
+  handleDocumentClick = () => {
+    this.setState({
+      hasClock: true,
+    });
+  };
+
+  handleDocumentContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({
+      hasClock: false,
+    });
+  };
 
   render() {
     const { name, hasClock } = this.state;
