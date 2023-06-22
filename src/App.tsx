@@ -36,7 +36,7 @@ export class App extends Component<{}, State> {
       }
 
       if (e.button === 2) {
-        this.handleGigthBtnMouse();
+        this.handleRightBtnMouse();
       }
     });
   }
@@ -44,13 +44,27 @@ export class App extends Component<{}, State> {
   componentWillUnmount(): void {
     // this code stops the timer
     window.clearInterval(this.timerId);
+
+    document.removeEventListener('contextmenu', (event) => {
+      event.preventDefault();
+    });
+
+    document.removeEventListener('mouseup', (e) => {
+      if (e.button === 0) {
+        this.handleLeftBtnMouse();
+      }
+
+      if (e.button === 2) {
+        this.handleRightBtnMouse();
+      }
+    });
   }
 
   handleLeftBtnMouse = () => {
     this.setState({ hasClock: true });
   };
 
-  handleGigthBtnMouse = () => {
+  handleRightBtnMouse = () => {
     this.setState({ hasClock: false });
   };
 
