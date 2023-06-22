@@ -26,28 +26,27 @@ export class App extends Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', this.rightClick);
-    document.addEventListener('click', this.leftClick);
+    document.addEventListener('contextmenu', this.handlerRightClick);
+    document.addEventListener('click', this.handlerLeftClick);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    document.removeEventListener('contextmenu', this.rightClick);
-    document.removeEventListener('click', this.leftClick);
+    document.removeEventListener('contextmenu', this.handlerRightClick);
+    document.removeEventListener('click', this.handlerLeftClick);
   }
 
-  leftClick = () => {
+  handlerLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
-  rightClick = (event : MouseEvent) => {
+  handlerRightClick = (event : MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
 
   render() {
-    const { hasClock } = this.state;
-    const { clockName } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
