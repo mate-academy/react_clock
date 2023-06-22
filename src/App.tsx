@@ -11,7 +11,7 @@ function getRandomName(): string {
 type State = {
   clockName: string,
   clockTrue: boolean,
-}
+};
 
 export class App extends React.Component<{}, State> {
   state = {
