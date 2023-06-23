@@ -10,13 +10,13 @@ function getRandomName(): string {
 
 type State = {
   clockName: string,
-  clockTrue: boolean,
+  isClockVisible: boolean,
 };
 
 export class App extends React.Component<{}, State> {
   state = {
     clockName: 'Clock-0',
-    clockTrue: true,
+    isClockVisible: true,
   };
 
   timerId = 0;
@@ -32,27 +32,29 @@ export class App extends React.Component<{}, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.rightClick);
+    document.removeEventListener('click', this.leftClick);
   }
 
   rightClick = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({ clockTrue: false });
+    this.setState({ isClockVisible: false });
   };
 
   leftClick = () => {
-    this.setState({ clockTrue: true });
+    this.setState({ isClockVisible: true });
   };
 
   render() {
     const {
       clockName,
-      clockTrue,
+      isClockVisible,
     } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-        {clockTrue && <Clock name={clockName} />}
+        {isClockVisible && <Clock name={clockName} />}
       </div>
     );
   }

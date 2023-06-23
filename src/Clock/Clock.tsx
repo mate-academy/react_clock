@@ -13,7 +13,7 @@ export class Clock extends React.Component<Props, State> {
     today: new Date(),
   };
 
-  newTimer = 0;
+  private newTimer = 0;
 
   componentDidMount() {
     this.newTimer = window.setInterval(() => {
@@ -36,10 +36,12 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
+    const { name } = this.props;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.name}
+          {name}
         </strong>
 
         {' time is '}
