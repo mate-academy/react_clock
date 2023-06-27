@@ -20,7 +20,7 @@ export class App extends React.Component<{}, State> {
 
   componentDidMount() {
     document.addEventListener('contextmenu', (event) => {
-      event.preventDefault(); // not to show the context menu
+      event.preventDefault();
 
       this.setState({ hasClock: false });
     });

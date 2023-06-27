@@ -15,7 +15,6 @@ export class Clock extends React.Component<Props, State> {
 
   timerIdLitle = 0;
 
-  // This code starts a timer
   componentDidMount(): void {
     this.timerIdLitle = window.setInterval(() => {
       this.setState({ today: new Date() });
@@ -30,7 +29,6 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
-  // This code stops the timer
   componentWillUnmount(): void {
     window.clearInterval(this.timerIdLitle);
   }
