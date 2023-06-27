@@ -8,23 +8,19 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-type ClockProps = {
-  name: string;
-};
-
-type ClockState = {
+type State = {
   time: string;
   hasClock: boolean;
-  name: string
+  clockName: string;
 };
 
-export class App extends React.Component<ClockProps, ClockState> {
+export class App extends React.Component<{}, State> {
   timerId: number | null = null;
 
-  state = {
+  state: State = {
     time: '',
     hasClock: true,
-    name: '',
+    clockName: '',
   };
 
   componentDidMount() {
@@ -66,13 +62,13 @@ export class App extends React.Component<ClockProps, ClockState> {
   updateClockName = () => {
     const newClockName = getRandomName();
 
-    console.debug(`Renamed from ${this.state.name} to ${newClockName}`);
+    console.debug(`Renamed from ${this.state.clockName} to ${newClockName}`);
 
-    this.setState({ name: newClockName });
+    this.setState({ clockName: newClockName });
   };
 
   render() {
-    const { time, hasClock, name } = this.state;
+    const { time, hasClock, clockName } = this.state;
 
     return (
       <div className="App">
@@ -80,7 +76,7 @@ export class App extends React.Component<ClockProps, ClockState> {
         <div>
           {hasClock && (
             <div>
-              <strong>{name}</strong>
+              <strong>{clockName}</strong>
               {' time is '}
               {time}
             </div>
