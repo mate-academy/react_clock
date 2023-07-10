@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { clearInterval } from 'timers';
 
 type Props = {
   clockName: string,
@@ -25,12 +24,12 @@ export class Clock extends Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     if (this.props.clockName !== prevProps.clockName) {
-      window.console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}}`);
+      window.console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    window.clearInterval(this.timerId);
   }
 
   render() {
