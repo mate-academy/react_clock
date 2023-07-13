@@ -14,13 +14,9 @@ export class App extends Component<{}, State> {
   };
 
   componentDidMount(): void {
-    window.addEventListener('click', (event) => {
-      this.toggleClockVisibility(event, true);
-    });
+    window.addEventListener('click', this.handleLeftClick);
 
-    window.addEventListener('contextmenu', (event) => {
-      this.toggleClockVisibility(event, false);
-    });
+    window.addEventListener('contextmenu', this.handleRightClick);
 
     window.setInterval(() => {
       this.setState({
@@ -29,18 +25,29 @@ export class App extends Component<{}, State> {
     }, 3300);
   }
 
+  componentWillUnmount(): void {
+    window.removeEventListener('click', this.handleLeftClick);
+    window.removeEventListener('contextmenu', this.handleRightClick);
+  }
+
+  handleLeftClick = () => {
+    this.setState({
+      hasClock: true,
+    });
+  };
+
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({
+      hasClock: false,
+    });
+  };
+
   getRandomName = (): string => {
     const value = Date.now().toString().slice(-4);
 
     return `Clock-${value}`;
-  };
-
-  toggleClockVisibility = (event: MouseEvent, value: boolean): void => {
-    event.preventDefault();
-
-    this.setState({
-      hasClock: value,
-    });
   };
 
   render() {
