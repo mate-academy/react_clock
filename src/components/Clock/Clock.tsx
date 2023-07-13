@@ -32,15 +32,24 @@ export class Clock extends React.Component {
   }
 
   setClockName = () => {
+    // eslint-disable-next-line
+    console.debug(this.state.clockName);
+
     this.setState({
       clockName: getRandomName(),
     });
+
+    // eslint-disable-next-line
+    console.debug(this.state.clockName);
   };
 
   setTime = () => {
     this.setState({
       today: new Date(),
     });
+
+    // eslint-disable-next-line
+    console.info(this.state.today.toUTCString().slice(-12, -4));
   };
 
   render() {

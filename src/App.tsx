@@ -12,26 +12,38 @@ export class App extends React.Component<{}, State> {
   };
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.toggleClock);
+    document.addEventListener('contextmenu', this.hideClock);
+    document.addEventListener('click', this.showClock);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', this.toggleClock);
+    document.addEventListener('contextmenu', this.hideClock);
+    document.addEventListener('click', this.showClock);
   }
 
-  toggleClock = (event: MouseEvent) => {
+  hideClock = (event: MouseEvent) => {
     event.preventDefault();
 
-    this.setState(prevState => ({
-      hasClock: !prevState.hasClock,
-    }));
+    this.setState({
+      hasClock: false,
+    });
+  };
+
+  showClock = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({
+      hasClock: true,
+    });
   };
 
   render() {
+    const { hasClock } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock && <Clock />}
+        {hasClock && <Clock />}
       </div>
     );
   }
