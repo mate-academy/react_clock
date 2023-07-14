@@ -7,8 +7,8 @@ function getRandomName(): string {
 }
 
 type State = {
-  today: Date,
   clockName: string,
+  today: Date,
 };
 
 export class Clock extends React.Component {
