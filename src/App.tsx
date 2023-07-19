@@ -25,7 +25,7 @@ export class App extends React.Component {
         ...prev,
         clockName: getRandomName(),
       }));
-    }, 3000);
+    }, 3300);
   }
 
   componentWillUnmount(): void {
