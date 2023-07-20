@@ -30,18 +30,6 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.handleShowClock);
   }
 
-  componentDidUpdate(
-    _prevProps: Readonly<{}>,
-    prevState: Readonly<State>,
-  ): void {
-    if (prevState.clockName !== this.state.clockName) {
-      if (this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-      }
-    }
-  }
-
   componentWillUnmount(): void {
     window.clearInterval(this.timerNameId);
     document.removeEventListener('contextmenu', this.handleHideClock);

@@ -23,12 +23,17 @@ export class Clock extends Component<Props, State> {
   }
 
   componentDidUpdate(
-    _prevProps: Readonly<Props>,
+    prevProps: Readonly<Props>,
     prevState: Readonly<State>,
   ): void {
     if (prevState.time !== this.state.time) {
       // eslint-disable-next-line no-console
       console.info(this.state.time.toUTCString().slice(-12, -4));
+    }
+
+    if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
   }
 
