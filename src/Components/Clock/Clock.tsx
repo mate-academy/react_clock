@@ -22,12 +22,14 @@ export class Clock extends React.PureComponent<Props, State> {
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
       this.setState({ time: new Date() });
+      // eslint-disable-next-line no-console
       console.info(cutTime(this.state.time));
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props): void {
     if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
