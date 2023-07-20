@@ -25,16 +25,19 @@ export class App extends React.Component {
     document.addEventListener('click', this.handleClockAppear);
   }
 
+  componentWillUnmount(): void {
+    document.removeEventListener('contextmenu', this.handleClockDissappear);
+    document.removeEventListener('click', this.handleClockAppear);
+  }
+
   handleClockDissappear = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
-    document.removeEventListener('contextmenu', this.handleClockDissappear);
     document.addEventListener('click', this.handleClockAppear);
   };
 
   handleClockAppear = () => {
     this.setState({ hasClock: true });
-    document.removeEventListener('click', this.handleClockAppear);
     document.addEventListener('contextmenu', this.handleClockDissappear);
   };
 
