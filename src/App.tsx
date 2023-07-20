@@ -8,10 +8,10 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-type State = {
+interface State {
   clockName: string,
   hasClock: boolean,
-};
+}
 
 export class App extends React.Component<{}, State> {
   state = {
