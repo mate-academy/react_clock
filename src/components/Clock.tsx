@@ -8,7 +8,7 @@ type Props = {
   name: string;
 };
 
-export class Clock extends React.Component<Props, State> {
+export class Clock extends React.Component<Props> {
   state: State = {
     today: new Date(),
   };
@@ -17,10 +17,7 @@ export class Clock extends React.Component<Props, State> {
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState(currentTime => ({
-        ...currentTime,
-        today: new Date(),
-      }));
+      this.setState({ today: new Date() });
       // eslint-disable-next-line
       console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);

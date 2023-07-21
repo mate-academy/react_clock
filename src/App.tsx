@@ -3,7 +3,7 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 type State = {
-  hasVisibleClock: boolean;
+  hasClock: boolean;
   clockName: string,
 };
 
@@ -15,35 +15,33 @@ function getRandomName(): string {
 
 export class App extends React.Component {
   state: State = {
-    hasVisibleClock: true,
+    hasClock: true,
     clockName: 'Clock-0',
   };
 
-  timerId = 0;
-
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
+    window.setInterval(() => {
       this.setState({
         clockName: getRandomName(),
       });
     }, 3300);
 
-    document.addEventListener('contextmenu', this.hideClock);
-    document.addEventListener('click', this.unhideClock);
+    window.addEventListener('contextmenu', this.hideClock);
+    window.addEventListener('click', this.unhideClock);
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerId);
+    // window.clearInterval();
 
-    document.removeEventListener('contextmenu', this.hideClock);
-    document.removeEventListener('click', this.unhideClock);
+    window.removeEventListener('contextmenu', this.hideClock);
+    window.removeEventListener('click', this.unhideClock);
   }
 
   unhideClock = (event: MouseEvent) => {
     event.preventDefault();
 
     this.setState({
-      hasVisibleClock: true,
+      hasClock: true,
     });
   };
 
@@ -51,28 +49,18 @@ export class App extends React.Component {
     event.preventDefault();
 
     this.setState({
-      hasVisibleClock: false,
+      hasClock: false,
     });
   };
 
   render() {
-    const { hasVisibleClock, clockName } = this.state;
-    // const today = new Date();
-    // let clockName = 'Clock-0';
-
-    // // This code starts a timer
-    // const timerId = window.setInterval(() => {
-    //   clockName = getRandomName();
-    // }, 3300);
-
-    // // this code stops the timer
-    // window.clearInterval(timerId);
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {hasVisibleClock && (
+        {hasClock && (
           <Clock name={clockName} />
         )}
       </div>
