@@ -20,13 +20,21 @@ export class App extends React.Component {
     hasClock: true,
   };
 
+  timerId = 0;
+
   componentDidMount() {
-    window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
     document.addEventListener('contextmenu', this.hideClock);
     document.addEventListener('click', this.showClock);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.hideClock);
+    document.removeEventListener('click', this.showClock);
   }
 
   hideClock = (event: MouseEvent) => {
