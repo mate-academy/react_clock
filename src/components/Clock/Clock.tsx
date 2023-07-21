@@ -13,10 +13,7 @@ export class Clock extends React.PureComponent<Props> {
   timerId = 0;
 
   componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
-      console.info(this.state.today.toUTCString().slice(-12, -4));
-    }, 1000);
+    this.timerId = window.setInterval(() => this.showTodayDate(), 1000);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -28,6 +25,11 @@ export class Clock extends React.PureComponent<Props> {
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
   }
+
+  showTodayDate = () => {
+    this.setState({ today: new Date() });
+    console.info(this.state.today.toUTCString().slice(-12, -4));
+  };
 
   render() {
     const { name } = this.props;
