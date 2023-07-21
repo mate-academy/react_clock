@@ -50,7 +50,6 @@ export class App extends React.Component {
 
         {hasClock && (
           <Clock clockName={clockName} />
-
         )}
       </div>
     );
