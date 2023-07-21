@@ -22,12 +22,12 @@ export class App extends React.Component {
   timerId = 0;
 
   componentDidMount(): void {
-    document.addEventListener('contextmenu', this.handleContextmenu);
-    document.addEventListener('click', this.handleClick);
-
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
+
+    document.addEventListener('contextmenu', this.handleContextmenu);
+    document.addEventListener('click', this.handleClick);
   }
 
   handleContextmenu = (event: MouseEvent) => {
@@ -40,9 +40,9 @@ export class App extends React.Component {
   };
 
   componentWillUnount(): void {
+    window.clearInterval(this.timerId);
     document.removeEventListener('contextmenu', this.handleContextmenu);
     document.removeEventListener('click', this.handleClick);
-    window.clearInterval(this.timerId);
   }
 
   render() {
