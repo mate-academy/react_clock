@@ -30,6 +30,12 @@ export class App extends React.Component {
     document.addEventListener('click', this.handleLeftClick);
   }
 
+  componentWillUnmount() {
+    window.clearInterval(this.clockNameTimerId);
+    document.removeEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+  }
+
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
