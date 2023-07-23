@@ -11,7 +11,7 @@ function getRandomName(): string {
 type State = {
   clockName: string,
   hasClock: boolean,
-}
+};
 
 type Props = any;
 
