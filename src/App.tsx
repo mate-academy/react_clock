@@ -9,21 +9,21 @@ function getRandomName(): string {
 }
 
 type State = {
-  isOpenClock: boolean;
+  hasClock: boolean;
   clockName: string;
 };
 
 export class App extends React.Component {
   state: State = {
-    isOpenClock: true,
+    hasClock: true,
     clockName: 'Clock-0',
   };
 
   timer = 0;
 
   componentDidMount(): void {
-    document.addEventListener('click', this.leftClickHandler);
-    document.addEventListener('contextmenu', this.rightClickHandler);
+    document.addEventListener('click', this.handleLeftClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
 
     this.timer = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -31,26 +31,26 @@ export class App extends React.Component {
   }
 
   componentWillUnmount(): void {
-    document.removeEventListener('click', this.leftClickHandler);
-    document.removeEventListener('contextmenu', this.rightClickHandler);
+    document.removeEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
 
     window.clearInterval(this.timer);
   }
 
-  rightClickHandler = () => {
+  handleRightClick = () => {
     this.setState({
-      isOpenClock: false,
+      hasClock: false,
     });
   };
 
-  leftClickHandler = () => {
+  handleLeftClick = () => {
     this.setState({
-      isOpenClock: true,
+      hasClock: true,
     });
   };
 
   render() {
-    const { isOpenClock } = this.state;
+    const { hasClock: isOpenClock } = this.state;
 
     return (
       <div className="App">
