@@ -14,10 +14,10 @@ export class Clock extends React.Component<Props> {
     today: new Date(),
   };
 
-  timerId = 0;
+  intervalId = 0;
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
+    this.intervalId = window.setInterval(() => {
       this.setState({ today: new Date() });
 
       console.info(this.state.today.toUTCString().slice(-12, -4));
@@ -34,7 +34,7 @@ export class Clock extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    window.clearInterval(this.intervalId);
   }
 
   render() {
