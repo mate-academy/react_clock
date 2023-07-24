@@ -21,20 +21,6 @@ export class App extends React.Component {
 
   setTimerId = 0;
 
-  // eslint-disable-next-line react/sort-comp
-  handleRightClick = (event: MouseEvent) => {
-    event.preventDefault();
-    this.setState({
-      hasClock: false,
-    });
-  };
-
-  handleLeftClick = () => {
-    this.setState({
-      hasClock: true,
-    });
-  };
-
   componentDidMount(): void {
     this.setTimerId = window.setInterval(() => {
       this.setState({
@@ -49,6 +35,19 @@ export class App extends React.Component {
   componentWillUnmount(): void {
     window.clearInterval(this.setTimerId);
   }
+
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({
+      hasClock: false,
+    });
+  };
+
+  handleLeftClick = () => {
+    this.setState({
+      hasClock: true,
+    });
+  };
 
   render() {
     const {
