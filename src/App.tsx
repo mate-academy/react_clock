@@ -33,6 +33,7 @@ export class App extends React.Component<{}, State> {
   componentWillUnmount(): void {
     window.clearInterval(this.clockTimerId);
 
+    document.addEventListener('click', this.hasShowClock);
     document.removeEventListener('contextmenu', this.hideClock);
   }
 
