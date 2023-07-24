@@ -27,6 +27,8 @@ export class App extends React.PureComponent {
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
   }
 
   handleRightClick = (event: MouseEvent) => {
