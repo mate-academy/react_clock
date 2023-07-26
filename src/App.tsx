@@ -11,28 +11,26 @@ function getRandomName(): string {
 interface State {
   hasClock: boolean,
   clockName: string,
-  timerId: number,
 }
 
 export class App extends React.Component {
   state: State = {
     hasClock: true,
     clockName: 'Clock-0',
-    timerId: 0,
   };
 
+  timerId = 0;
+
   componentDidMount(): void {
-    document.addEventListener('contextmenu', this.hideClock);
-    document.addEventListener('click', this.showClock);
-    this.state.timerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
+    document.addEventListener('contextmenu', this.hideClock);
+    document.addEventListener('click', this.showClock);
   }
 
   componentWillUnmount(): void {
-    document.removeEventListener('contextmenu', this.hideClock);
-    document.removeEventListener('click', this.showClock);
-    window.clearInterval(this.state.timerId);
+    window.clearInterval(this.timerId);
   }
 
   hideClock = (event: MouseEvent) => {

@@ -6,13 +6,11 @@ interface Props {
 
 interface State {
   today: Date,
-  timerId: number,
 }
 
 export class Clock extends React.Component<Props> {
   state: State = {
     today: new Date(),
-    timerId: 0,
   };
 
   timerId = 0;
@@ -33,7 +31,7 @@ export class Clock extends React.Component<Props> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.state.timerId);
+    window.clearInterval(this.timerId);
   }
 
   render() {
