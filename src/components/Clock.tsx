@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 
 type Props = {
@@ -16,7 +17,16 @@ export class Clock extends React.Component<Props> {
       this.setState({
         currentTime: new Date(),
       });
+      console.info(this.state.currentTime.toUTCString().slice(-12, -4));
     }, 1000);
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+  ) {
+    if (prevProps !== this.props) {
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
