@@ -31,17 +31,17 @@ export class App extends React.Component<{}, AppClock> {
   }
 
   componentWillUnmount() {
-    this.setState({ hasClock: false });
+    window.clearInterval(this.timerId);
     document.removeEventListener('contextmenu', this.hideClock);
     document.removeEventListener('click', this.showClock);
   }
 
-  showClock = (event: Event) => {
+  showClock = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: true });
   };
 
-  hideClock = (event: Event) => {
+  hideClock = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
