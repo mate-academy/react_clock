@@ -15,7 +15,7 @@ type State = {
   hasClock: boolean;
 };
 
-export class App extends React.Component<State> {
+export class App extends React.Component<{}, State> {
   state: State = {
     clockName: 'Clock-0',
     today: new Date(),
@@ -57,7 +57,7 @@ export class App extends React.Component<State> {
     }
 
     document.removeEventListener('contextmenu', this.handleClockHidden);
-    document.removeEventListener('contextmenu', this.handleClockDisplay);
+    document.removeEventListener('click', this.handleClockDisplay);
   }
 
   handleClockHidden = (event: MouseEvent) => {
