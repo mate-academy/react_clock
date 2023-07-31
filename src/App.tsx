@@ -41,8 +41,7 @@ export class App extends React.Component<State> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Readonly<State>,
-    prevState: Readonly<State>): void {
+  componentDidUpdate(prevState: Readonly<State>): void {
     if (prevState.clockName !== this.state.clockName) {
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
