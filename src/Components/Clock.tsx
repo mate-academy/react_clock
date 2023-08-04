@@ -2,17 +2,10 @@ import React from 'react';
 
 type Props = {
   clockName: string,
+  clockdate: Date,
 };
 
-type State = {
-  date: Date,
-};
-
-export class Clock extends React.Component<Props, State> {
-  state: State = {
-    date: new Date(),
-  };
-
+export class Clock extends React.PureComponent<Props> {
   render() {
     return (
       <div className="Clock">
@@ -23,7 +16,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.date.toUTCString().slice(-12, -4)}
+          {this.props.clockdate.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );
