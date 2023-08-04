@@ -3,56 +3,38 @@ import './App.scss';
 import { Clock } from './Components/Clock';
 
 type State = {
-  today: Date;
-  clockName: string;
-  timerId: number;
-  timer: number;
+  clockName: string,
   isVisible: boolean;
+  timerId: number;
 };
 
-function getRandomName(prevName: string, visible: boolean): string {
+function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
-
-  if (prevName !== value && visible) {
-    // eslint-disable-next-line no-console
-    console.debug(`Renamed from ${prevName} to Clock-${value}`);
-  }
 
   return `Clock-${value}`;
 }
 
 export class App extends React.Component {
   state: State = {
-    today: new Date(),
     clockName: 'Clock-0',
-    timerId: 0,
-    timer: 0,
     isVisible: true,
+    timerId: 0,
   };
 
-  prevclockName = this.state.clockName;
-
-  visibleClock = this.state.isVisible;
-
   componentDidMount() {
-    window.addEventListener('contextmenu', this.hideClock);
-    window.addEventListener('click', this.hasClock);
+    document.addEventListener('contextmenu', this.hideClock);
+    document.addEventListener('click', this.hasClock);
 
     this.state.timerId = window.setInterval(() => {
       this.setState({
-        clockName: getRandomName(this.prevclockName, this.visibleClock),
+        clockName: getRandomName(),
       });
     }, 3300);
-
-    this.state.timer = window.setInterval(
-      () => this.tick(),
-      1000,
-    );
   }
 
   componentWillUnmount() {
-    window.removeEventListener('contextmenu', this.hideClock);
-    window.removeEventListener('click', this.hasClock);
+    document.removeEventListener('contextmenu', this.hideClock);
+    document.removeEventListener('click', this.hasClock);
 
     window.clearInterval(this.state.timerId);
   }
@@ -67,17 +49,6 @@ export class App extends React.Component {
     this.setState({ isVisible: false });
   };
 
-  tick() {
-    this.setState({
-      today: new Date(),
-    });
-
-    if (this.state.isVisible) {
-      // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
-    }
-  }
-
   render() {
     return (
       <div className="App">
@@ -87,7 +58,7 @@ export class App extends React.Component {
           && (
             <Clock
               clockName={this.state.clockName}
-              clockdate={this.state.today}
+              isVisible={this.state.isVisible}
             />
           )}
       </div>
