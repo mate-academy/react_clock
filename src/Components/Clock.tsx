@@ -2,7 +2,6 @@ import React from 'react';
 
 type Props = {
   clockName: string,
-  isVisible: boolean,
 };
 
 type State = {
@@ -24,7 +23,7 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevName: Props): void {
-    if (prevName.clockName !== this.props.clockName && this.props.isVisible) {
+    if (prevName.clockName !== this.props.clockName) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevName} to Clock-${this.props.clockName}`);
     }
@@ -39,10 +38,8 @@ export class Clock extends React.Component<Props, State> {
       clockdate: new Date(),
     });
 
-    if (this.props.isVisible) {
-      // eslint-disable-next-line no-console
-      console.info(this.state.clockdate.toUTCString().slice(-12, -4));
-    }
+    // eslint-disable-next-line no-console
+    console.info(this.state.clockdate.toUTCString().slice(-12, -4));
   }
 
   render() {

@@ -58,7 +58,6 @@ export class App extends React.Component {
           && (
             <Clock
               clockName={this.state.clockName}
-              isVisible={this.state.isVisible}
             />
           )}
       </div>
