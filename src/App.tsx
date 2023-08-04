@@ -30,15 +30,18 @@ export class App extends React.Component {
     isVisible: true,
   };
 
+  prevclockName = this.state.clockName;
+
+  visibleClock = this.state.isVisible;
+
   componentDidMount() {
-    document.addEventListener('contextmenu', this.hideClock);
-    document.addEventListener('click', this.hasClock);
+    window.addEventListener('contextmenu', this.hideClock);
+    window.addEventListener('click', this.hasClock);
 
     this.state.timerId = window.setInterval(() => {
-      this.state.clockName = getRandomName(
-        this.state.clockName,
-        this.state.isVisible,
-      );
+      this.setState({
+        clockName: getRandomName(this.prevclockName, this.visibleClock),
+      });
     }, 3300);
 
     this.state.timer = window.setInterval(
@@ -48,8 +51,8 @@ export class App extends React.Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', this.hideClock);
-    document.removeEventListener('click', this.hasClock);
+    window.removeEventListener('contextmenu', this.hideClock);
+    window.removeEventListener('click', this.hasClock);
 
     window.clearInterval(this.state.timerId);
   }
