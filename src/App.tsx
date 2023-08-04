@@ -1,39 +1,88 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Components/Clock';
 
-function getRandomName(): string {
+type State = {
+  today: Date;
+  clockName: string;
+  timerId: number;
+  timer: number;
+  isVisible: boolean;
+};
+
+function getRandomName(prevName: string, visible: boolean): string {
   const value = Date.now().toString().slice(-4);
+
+  if (prevName !== value && visible) {
+    // eslint-disable-next-line no-console
+    console.debug(`Renamed from ${prevName} to Clock-${value}`);
+  }
 
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component {
+  state: State = {
+    today: new Date(),
+    clockName: 'Clock-0',
+    timerId: 0,
+    timer: 0,
+    isVisible: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  componentDidMount() {
+    window.addEventListener('contextmenu', this.hideClock);
+    window.addEventListener('click', this.hasClock);
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+    this.state.timerId = window.setInterval(() => {
+      this.state.clockName = getRandomName(
+        this.state.clockName,
+        this.state.isVisible,
+      );
+    }, 3300);
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    this.state.timer = window.setInterval(
+      () => this.tick(),
+      1000,
+    );
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+  componentWillUnmount() {
+    window.removeEventListener('contextmenu', this.hideClock);
+    window.removeEventListener('click', this.hasClock);
 
-        {' time is '}
+    window.clearInterval(this.state.timerId);
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  hasClock = () => {
+    this.setState({ isVisible: true });
+  };
+
+  hideClock = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ isVisible: false });
+  };
+
+  tick() {
+    this.setState({
+      today: new Date(),
+    });
+
+    if (this.state.isVisible) {
+      // eslint-disable-next-line no-console
+      console.info(this.state.today.toUTCString().slice(-12, -4));
+    }
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {this.state.isVisible
+          && <Clock clockName={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
