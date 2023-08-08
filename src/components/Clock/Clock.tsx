@@ -1,15 +1,19 @@
 /* eslint-disable no-console */
 import React from 'react';
 
-interface State {
+interface ClockState {
   currentTime: string,
   clockName: string,
   isVisible: boolean,
 }
 
-export class Clock extends React.Component<{}, State> {
-  state: State = {
-    clockName: 'Clock-0',
+interface ClockProps {
+  name: string;
+}
+
+export class Clock extends React.Component<ClockProps, ClockState> {
+  state: ClockState = {
+    clockName: this.props.name,
     currentTime: new Date().toUTCString().slice(-12, -4),
     isVisible: true,
   };
@@ -28,9 +32,10 @@ export class Clock extends React.Component<{}, State> {
     );
 
     document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
   }
 
-  componentDidUpdate(_prevProps: {}, prevState: State) {
+  componentDidUpdate(_prevProps: {}, prevState: ClockState) {
     if (prevState.clockName !== this.state.clockName) {
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
@@ -46,6 +51,7 @@ export class Clock extends React.Component<{}, State> {
     }
 
     document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
   }
 
   getRandomName = (): string => {
@@ -57,7 +63,13 @@ export class Clock extends React.Component<{}, State> {
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
 
-    this.setState(prevState => ({ isVisible: !prevState.isVisible }));
+    this.setState({ isVisible: false });
+  };
+
+  handleLeftClick = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ isVisible: true });
   };
 
   updateTime() {
