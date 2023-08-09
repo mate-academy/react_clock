@@ -39,6 +39,12 @@ export class Clock extends React.Component<ClockProps, ClockState> {
     if (prevState.clockName !== this.state.clockName) {
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
+
+    if (
+      this.state.isVisible && prevState.currentTime !== this.state.currentTime
+    ) {
+      console.info(this.state.currentTime);
+    }
   }
 
   componentWillUnmount() {
@@ -75,16 +81,9 @@ export class Clock extends React.Component<ClockProps, ClockState> {
   updateTime() {
     const newTime = new Date().toUTCString().slice(-12, -4);
 
-    this.setState(
-      {
-        currentTime: newTime,
-      },
-      () => {
-        if (this.state.isVisible) {
-          console.info(this.state.currentTime);
-        }
-      },
-    );
+    this.setState({
+      currentTime: newTime,
+    });
   }
 
   updateName() {
@@ -97,7 +96,7 @@ export class Clock extends React.Component<ClockProps, ClockState> {
     const { isVisible, clockName, currentTime } = this.state;
 
     return (
-      <div className="App">
+      <>
         <h1>React clock</h1>
         {isVisible && (
           <div className="Clock">
@@ -112,7 +111,8 @@ export class Clock extends React.Component<ClockProps, ClockState> {
             </span>
           </div>
         )}
-      </div>
+      </>
+
     );
   }
 }
