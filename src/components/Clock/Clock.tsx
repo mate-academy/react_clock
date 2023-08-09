@@ -36,12 +36,16 @@ export class Clock extends React.Component<ClockProps, ClockState> {
   }
 
   componentDidUpdate(_prevProps: {}, prevState: ClockState) {
-    if (prevState.clockName !== this.state.clockName) {
+    if (
+      this.state.isVisible
+      && prevState.clockName !== this.state.clockName
+    ) {
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
 
     if (
-      this.state.isVisible && prevState.currentTime !== this.state.currentTime
+      this.state.isVisible
+      && prevState.currentTime !== this.state.currentTime
     ) {
       console.info(this.state.currentTime);
     }
@@ -63,7 +67,7 @@ export class Clock extends React.Component<ClockProps, ClockState> {
   getRandomName = (): string => {
     const value = Date.now().toString().slice(-4);
 
-    return `Clock ${value}`;
+    return `Clock-${value}`;
   };
 
   handleRightClick = (event: MouseEvent) => {
