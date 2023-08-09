@@ -6,7 +6,7 @@ interface AppState {
   clockName: string;
 }
 
-export class App extends React.Component<[], AppState> {
+export class App extends React.Component<{}, AppState> {
   state: AppState = {
     clockName: 'Clock-0',
   };
