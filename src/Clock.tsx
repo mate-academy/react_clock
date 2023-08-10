@@ -8,8 +8,13 @@ type ClockProps = {
   name: string
 };
 
-export class Clock extends React.Component<ClockProps> {
-  state = {
+interface ClockState {
+  time: string
+  timeUpdaterId: number
+}
+
+export class Clock extends React.Component<ClockProps, ClockState> {
+  state: Readonly<ClockState> = {
     time: getCurrentClockTime(),
     timeUpdaterId: -1,
   };
@@ -28,9 +33,8 @@ export class Clock extends React.Component<ClockProps> {
     });
   }
 
-  componentDidUpdate(prevProps: Readonly<ClockProps>) {
-    const oldName = prevProps.name;
-    const newName = this.props.name;
+  componentDidUpdate({ name: oldName }: Readonly<ClockProps>) {
+    const { name: newName } = this.props;
 
     if (oldName !== newName) {
       // eslint-disable-next-line no-console
