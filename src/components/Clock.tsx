@@ -36,6 +36,10 @@ export class Clock extends React.Component<ClockProps, State> {
     clearInterval(this.timerId);
   }
 
+  formatTime(date: Date): string {
+    return date.toUTCString().slice(-12, -4);
+  }
+
   render() {
     const { clockName } = this.props;
     const { today } = this.state;
@@ -49,7 +53,7 @@ export class Clock extends React.Component<ClockProps, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {this.formatTime(today)}
         </span>
       </div>
     );
