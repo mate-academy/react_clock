@@ -29,10 +29,8 @@ export class Time extends React.Component<{}, TimeState> {
 
   timerId = 0;
 
-  timerId2 = 0;
-
   componentDidMount() {
-    this.timerId2 = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
       console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
@@ -40,7 +38,6 @@ export class Time extends React.Component<{}, TimeState> {
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    window.clearInterval(this.timerId2);
   }
 
   render() {
@@ -59,8 +56,6 @@ export class Time extends React.Component<{}, TimeState> {
 }
 
 export class App extends React.Component<{}, AppState> {
-  static visable: false;
-
   state = {
     hasClock: true,
     clockName: 'Clock-0',
