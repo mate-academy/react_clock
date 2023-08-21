@@ -15,7 +15,11 @@ Create a `Clock` class component that will update the time every second using a 
 - the `Clock` should be visible only when the `hasClock` is `true`;
 - hide the `Clock` on a right mouse click in the `document` (`contextmenu` event):
     ```js
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault(); // not to show the context menu
 
+      // put your code here
+    });
     ```
 - show the `Clock` on a left mouse click in the `document` (`click` event):
     ```js
