@@ -8,7 +8,7 @@ type State = {
   today: string;
 };
 
-export class Timer extends React.Component<Props, State> {
+export class Clock extends React.Component<Props, State> {
   state: State = {
     today: new Date().toUTCString().slice(-12, -4),
   };

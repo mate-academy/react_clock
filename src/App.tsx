@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { Timer } from './components/Timer';
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -10,13 +10,13 @@ function getRandomName(): string {
 
 interface State {
   clockName: string;
-  hide: boolean;
+  showClock: boolean;
 }
 
 export class App extends React.Component<{}, State> {
   state = {
     clockName: 'Clock-0',
-    hide: true,
+    showClock: true,
   };
 
   private timerId: number | undefined = undefined;
@@ -45,7 +45,7 @@ export class App extends React.Component<{}, State> {
     event.preventDefault();
 
     this.setState({
-      hide: false,
+      showClock: false,
     });
   };
 
@@ -53,7 +53,7 @@ export class App extends React.Component<{}, State> {
     event.preventDefault();
 
     this.setState({
-      hide: true,
+      showClock: true,
     });
   };
 
@@ -62,7 +62,7 @@ export class App extends React.Component<{}, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hide && <Timer name={this.state.clockName} />}
+        {this.state.showClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }
