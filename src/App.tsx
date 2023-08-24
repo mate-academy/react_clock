@@ -1,5 +1,12 @@
 import React from 'react';
+// import { useState, useEffect } from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
+
+type State = {
+  clockName: string;
+  hasClock: boolean;
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +14,73 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App
+  extends React.PureComponent<{ nothing: () => void }, State> {
+  state: State = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  timerId: number | null = null;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount(): void {
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentWillUnmount(): void {
+    if (this.timerId !== null) {
+      clearInterval(this.timerId);
+    }
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+  setHasClock = (value: boolean) => {
+    this.setState({ hasClock: value });
+  };
 
-        {' time is '}
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+        {this.state.hasClock && (
+          <Clock
+            clockName={this.state.clockName}
+            setHasClock={this.setHasClock}
+          />
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+// export const App: React.FC = () => {
+//   const [clockName, setClockName] = useState('Clock-0');
+//   const [hasClock, setHasClock] = useState(true);
+
+//   useEffect(() => {
+//     // This code starts a timer
+//     const timerId = window.setInterval(() => {
+//       setClockName(getRandomName());
+//     }, 3300);
+
+//     // this code stops the timer
+//     return () => {
+//       window.clearInterval(timerId);
+//     };
+//   }, []);
+
+//   return (
+//     <div className="App">
+//       <h1>React clock</h1>
+
+//       {hasClock && (
+//         <Clock
+//           clockName={clockName}
+//           setHasClock={setHasClock}
+//         />
+//       )}
+//     </div>
+//   );
+// };
