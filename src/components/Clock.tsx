@@ -20,6 +20,8 @@ export class Clock extends React.PureComponent<Props, State> {
       const thisTime = new Date();
       /* eslint-disable no-console */
 
+      this.setState({ currTime: thisTime });
+
       console.info(thisTime.toUTCString().slice(-12, -4));
     }, 1000);
   }
