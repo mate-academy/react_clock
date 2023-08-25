@@ -26,7 +26,8 @@ export class App extends React.Component {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    window.addEventListener('contextmenu', () => {
+    window.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
       this.setHasClock(false);
     });
 
