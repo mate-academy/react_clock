@@ -1,88 +1,52 @@
+/* eslint-disable no-console */
 import React from 'react';
 
-interface ClockProps {
-  name: string;
-}
+type Props = {
+  clockName: string;
+};
 
-interface ClockState {
-  currentTime: string;
-  hasClock: boolean;
-}
+type State = {
+  date: Date;
+};
 
-export class Clock extends React.Component<ClockProps, ClockState> {
+export class Clock extends React.Component<Props, State> {
+  timerId: number | undefined = undefined;
+
   state = {
-    currentTime: new Date().toUTCString().slice(-12, -4),
-    hasClock: true,
+    date: new Date(),
   };
 
-  clockNameInterval: NodeJS.Timeout | null = null;
-
-  clockTimeInterval: NodeJS.Timeout | null = null;
-
   componentDidMount() {
-    document.addEventListener('contextmenu', this.hideClock);
-    document.addEventListener('click', this.showClock);
-    this.startClockTimeUpdate();
+    this.startClockUpdate();
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', this.hideClock);
-    document.removeEventListener('click', this.showClock);
-    this.stopUpdatingClockTime();
+    this.stopClockUpdate();
   }
 
-  static getRandomName() {
-    const randomNum = Math.floor(Math.random() * 10);
+  startClockUpdate() {
+    this.timerId = window.setInterval(() => {
+      this.setState({ date: new Date() });
 
-    return `Clock-${randomNum}`;
+      console.info(`${this.state.date.toUTCString().slice(-12, -4)}`);
+    }, 1000);
   }
 
-  hideClock = (event: MouseEvent) => {
-    event.preventDefault();
-    this.setState({ hasClock: false });
-  };
-
-  showClock = () => {
-    this.setState({ hasClock: true });
-  };
-
-  stopUpdatingClockName = () => {
-    if (this.clockNameInterval !== null) {
-      clearInterval(this.clockNameInterval);
+  stopClockUpdate() {
+    if (this.timerId !== undefined) {
+      window.clearInterval(this.timerId);
     }
-  };
-
-  stopUpdatingClockTime = () => {
-    if (this.clockTimeInterval !== null) {
-      clearInterval(this.clockTimeInterval);
-    }
-  };
-
-  updateClockTime = () => {
-    const newTime = new Date().toUTCString().slice(-12, -4);
-
-    this.setState({ currentTime: newTime });
-  };
-
-  startClockTimeUpdate() {
-    this.clockTimeInterval = setInterval(this.updateClockTime.bind(this), 1000);
   }
 
   render() {
-    const { currentTime } = this.state;
-    const { name } = this.props;
-
-    if (!this.state.hasClock) {
-      return null;
-    }
+    const { clockName } = this.props;
+    const { date } = this.state;
 
     return (
       <div className="Clock">
-        <strong>{name}</strong>
-        {' '}
-        time is
-        {' '}
-        {currentTime}
+        <strong className="Clock__name">{clockName}</strong>
+        {' time is '}
+        <span className="Clock__time">{date.toUTCString().slice(-12, -4)}</span>
       </div>
     );
   }
