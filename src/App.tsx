@@ -1,5 +1,8 @@
+/* eslint-disable no-console */
+/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/clock/clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +10,48 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component {
+  state = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  componentDidMount(): void {
+    window.setInterval(() => {
+      const name = getRandomName();
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+      if (this.state.hasClock) {
+        console.debug(`Renamed from ${this.state.clockName} to ${name}`);
+      }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+      this.setState({ clockName: name });
+    }, 3300);
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault(); // not to show the context menu
+      this.setState({ hasClock: false });
+      // put your code here
+    });
 
-        {' time is '}
+    document.addEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  // // this code stops the timer
+  // window.clearInterval(timerId);
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {this.state.hasClock && (
+          <Clock
+            clockName={this.state.clockName}
+            hasClock={this.state.hasClock}
+          />
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
