@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './Clock';
 
-function generateClockName(): string {
+function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
 
   return `Clock-${value}`;
@@ -24,7 +24,7 @@ export class App extends React.Component<{}, State> {
   componentDidMount() {
     this.nameId = window.setInterval(() => {
       this.setState({
-        clockName: generateClockName(),
+        clockName: getRandomName(),
       });
     }, 3300);
 
