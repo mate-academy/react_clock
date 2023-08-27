@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import './App.scss';
 import { Clock } from './components/clock/clock';
@@ -28,9 +27,8 @@ export class App extends React.Component {
     }, 3300);
 
     document.addEventListener('contextmenu', (event) => {
-      event.preventDefault(); // not to show the context menu
+      event.preventDefault();
       this.setState({ hasClock: false });
-      // put your code here
     });
 
     document.addEventListener('click', () => {
@@ -38,8 +36,6 @@ export class App extends React.Component {
     });
   }
 
-  // // this code stops the timer
-  // window.clearInterval(timerId);
   render() {
     return (
       <div className="App">
