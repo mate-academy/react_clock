@@ -37,10 +37,8 @@ export class App extends Component<{}, State> {
     document.removeEventListener('click', this.showClock);
     window.clearInterval(this.state.timerId);
   }
-
+  // eslint-disable-next-line
   getRandomName(): string {
-    // eslint-disable-next-line no-console
-    console.log(this);
     const value = Date.now().toString().slice(-4);
 
     return `Clock-${value}`;
