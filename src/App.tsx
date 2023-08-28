@@ -13,10 +13,11 @@ export class App extends React.Component {
   state = {
     clockName: 'Clock-0',
     hasClock: true,
+    timerId: 0,
   };
 
   componentDidMount(): void {
-    window.setInterval(() => {
+    this.state.timerId = window.setInterval(() => {
       const name = getRandomName();
 
       if (this.state.hasClock) {
@@ -26,15 +27,26 @@ export class App extends React.Component {
       this.setState({ clockName: name });
     }, 3300);
 
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', this.handleContextMenu);
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.handleMouseClick);
   }
+
+  componentWillUnmount() {
+    window.clearInterval(this.state.timerId);
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleMouseClick);
+  }
+
+  handleMouseClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: true });
+  };
+
+  handleContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
   render() {
     return (
