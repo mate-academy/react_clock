@@ -5,41 +5,37 @@ import './App.scss';
 type State = {
   clockName: string,
   hasClock: boolean,
-  // timerId: number;
+  timerId: number;
 };
 
 export class App extends Component<{}, State> {
   state = {
     clockName: 'Clock-0',
     hasClock: true,
-    // timerId: 0,
+    timerId: 0,
   };
-
-  timerId = 0;
 
   componentDidMount() {
     document.addEventListener('contextmenu', this.hideClock);
     document.addEventListener('click', this.showClock);
 
-    this.timerId = window.setInterval(() => {
+    const NewTimerId = window.setInterval(() => {
       const newClockName = this.getRandomName();
 
-      // eslint-disable-next-line no-console
-      // console.debug(`Renamed from ${this.state.clockName} to ${newClockName}`);
       this.setState({
         clockName: newClockName,
       });
     }, 3300);
 
-    // this.setState({
-    //   timerId: NewTimerId,
-    // });
+    this.setState({
+      timerId: NewTimerId,
+    });
   }
 
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.hideClock);
     document.removeEventListener('click', this.showClock);
-    window.clearInterval(this.timerId);
+    window.clearInterval(this.state.timerId);
   }
 
   getRandomName(): string {
