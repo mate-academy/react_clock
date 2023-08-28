@@ -20,7 +20,7 @@ export class Clock extends Component<Props, State> {
       const currentTime = new Date().toUTCString().slice(-12, -4);
 
       // eslint-disable-next-line no-console
-      console.info(`Current time: ${currentTime}`);
+      console.info(`${currentTime}`);
       this.setState({
         currentTime,
       });
