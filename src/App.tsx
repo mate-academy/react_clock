@@ -36,14 +36,7 @@ export class App extends React.Component<{}, State> {
     document.removeEventListener('click', this.showClock);
   }
 
-  startTimer = () => {
-    this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
-  };
-
-  hideClock = (event: MouseEvent) => {
-    event.preventDefault();
+  hideClock = () => {
     this.setState({ hasClock: false });
   };
 
