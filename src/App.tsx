@@ -17,7 +17,7 @@ export class App extends React.Component {
   };
 
   componentDidMount(): void {
-    this.state.timerId = window.setInterval(() => {
+    const timerId = window.setInterval(() => {
       const name = getRandomName();
 
       if (this.state.hasClock) {
@@ -27,6 +27,7 @@ export class App extends React.Component {
       this.setState({ clockName: name });
     }, 3300);
 
+    this.setState({ timerId });
     document.addEventListener('contextmenu', this.handleContextMenu);
 
     document.addEventListener('click', this.handleMouseClick);
