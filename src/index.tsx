@@ -1,7 +1,10 @@
 import ReactDOM from 'react-dom';
 import { App } from './App';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root'),
-);
+const initialState = {
+  clockName: 'Clock-0',
+  hasClock: true,
+  timerId: 0,
+};
+
+ReactDOM.render(<App {...initialState} />, document.getElementById('root'));
