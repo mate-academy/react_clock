@@ -9,15 +9,16 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
+let timerId: number;
+
 export class App extends React.Component {
   state = {
     clockName: 'Clock-0',
     hasClock: true,
-    timerId: 0,
   };
 
   componentDidMount(): void {
-    const timerId = window.setInterval(() => {
+    const timerIdInternal = window.setInterval(() => {
       const name = getRandomName();
 
       if (this.state.hasClock) {
@@ -27,14 +28,14 @@ export class App extends React.Component {
       this.setState({ clockName: name });
     }, 3300);
 
-    this.setState({ timerId });
+    timerId = timerIdInternal;
     document.addEventListener('contextmenu', this.handleContextMenu);
 
     document.addEventListener('click', this.handleMouseClick);
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.state.timerId);
+    window.clearInterval(timerId);
     document.removeEventListener('contextmenu', this.handleContextMenu);
     document.removeEventListener('click', this.handleMouseClick);
   }
@@ -57,7 +58,6 @@ export class App extends React.Component {
         {this.state.hasClock && (
           <Clock
             clockName={this.state.clockName}
-            hasClock={this.state.hasClock}
           />
         )}
       </div>

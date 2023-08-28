@@ -3,26 +3,26 @@ import React from 'react';
 
 type Props = {
   clockName: string,
-  hasClock: boolean,
 };
+
+let timerId: number;
 
 export class Clock extends React.Component<Props> {
   state = {
     time: new Date(),
-    timerId: 0,
   };
 
   componentDidMount(): void {
-    const timerId = window.setInterval(() => {
+    const timerIdInternal = window.setInterval(() => {
       this.setState({ time: new Date() });
       console.info(this.state.time.toUTCString().slice(-12, -4));
     }, 1000);
 
-    this.setState({ timerId });
+    timerId = timerIdInternal;
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.state.timerId);
+    window.clearInterval(timerId);
   }
 
   render() {
