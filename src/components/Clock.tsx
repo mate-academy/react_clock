@@ -31,9 +31,16 @@ export class Clock extends Component<Props, State> {
     });
   }
 
+  componentDidUpdate(prevProps: Readonly<Props>) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
   componentWillUnmount() {
     if (this.state.timerId !== null) {
-      clearInterval(this.state.timerId);
+      window.clearInterval(this.state.timerId);
     }
   }
 
