@@ -23,7 +23,7 @@ export class App extends React.Component<{}, State> {
 
   componentDidMount(): void {
     document.addEventListener('contextmenu', this.handleDocumentContextMenu);
-    document.addEventListener('click', this.removeClock);
+    document.addEventListener('click', this.emoveClock);
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -32,11 +32,11 @@ export class App extends React.Component<{}, State> {
 
   componentWillUnmount(): void {
     document.removeEventListener('contextmenu', this.handleDocumentContextMenu);
-    document.removeEventListener('click', this.removeClock);
+    document.removeEventListener('click', this.emoveClock);
     window.clearInterval(this.timerId);
   }
 
-  removeClock = () => {
+  addClock = () => {
     this.setState({ hasClock: true });
   };
 
