@@ -18,14 +18,21 @@ export class Clock extends React.Component<ClockProps, State> {
 
   componentDidMount() {
     this.intervalId = window.setInterval(() => {
-      this.setState({ today: new Date() });
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      const today = new Date();
+
+      this.setState({ today });
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Readonly<ClockProps>): void {
+  componentDidUpdate(
+    prevProps: Readonly<ClockProps>, prevState: Readonly<State>,
+  ) {
     if (prevProps.name !== this.props.name) {
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+
+    if (prevState.today !== this.state.today) {
+      console.info(this.state.today.toUTCString().slice(-12, -4));
     }
   }
 
