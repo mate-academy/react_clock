@@ -26,7 +26,6 @@ export class App extends React.Component {
       event.preventDefault();
 
       this.setState({ hasClock: false });
-      clearInterval(this.timerId);
     });
 
     document.addEventListener('click', () => {
@@ -43,12 +42,13 @@ export class App extends React.Component {
       event.preventDefault();
 
       this.setState({ hasClock: false });
-      clearInterval(this.timerId);
     });
 
     document.removeEventListener('click', () => {
       this.setState({ hasClock: true });
     });
+
+    clearInterval(this.timerId);
   }
 
   render() {
