@@ -46,7 +46,7 @@ export class Clock extends React.Component<Props, State> {
           {this.props.name}
         </strong>
 
-        {' time is '}
+        <span> time is </span>
 
         <span className="Clock__time">
           {avoidTimezoneIssues(this.state.today)}
