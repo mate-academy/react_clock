@@ -38,13 +38,13 @@ export class App extends Component<{}, State> {
   }
 
   removeClock = () => {
-    this.setState({ hasClock: true });
+    this.setState({ hasClock: false });
   };
 
   handleDocumentContextMenu = (event: MouseEvent) => {
     event.preventDefault();
 
-    this.setState({ hasClock: false });
+    this.setState({ hasClock: true });
   };
 
   render(): React.ReactNode {
