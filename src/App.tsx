@@ -23,7 +23,7 @@ export class App extends Component<{}, State> {
 
   componentDidMount(): void {
     document.addEventListener('contextmenu', this.handleDocumentContextMenu);
-    document.addEventListener('click', this.removeClock);
+    document.addEventListener('click', this.addClock);
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -37,6 +37,10 @@ export class App extends Component<{}, State> {
     window.clearInterval(this.timerId);
   }
 
+  addClock = () => {
+    this.setState({ hasClock: true });
+  };
+
   removeClock = () => {
     this.setState({ hasClock: false });
   };
@@ -44,7 +48,7 @@ export class App extends Component<{}, State> {
   handleDocumentContextMenu = (event: MouseEvent) => {
     event.preventDefault();
 
-    this.setState({ hasClock: true });
+    this.setState({ hasClock: false });
   };
 
   render(): React.ReactNode {
