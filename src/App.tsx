@@ -38,6 +38,14 @@ export class App extends React.Component<{}, State> {
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+      this.setState({ showClock: false });
+    });
+
+    document.removeEventListener('click', () => {
+      this.setState({ showClock: true });
+    });
   }
 
   render() {
