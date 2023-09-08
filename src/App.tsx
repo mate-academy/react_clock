@@ -27,7 +27,7 @@ export class App extends React.Component<{}, State> {
       // eslint-disable-next-line no-console
     }, 3300);
     document.addEventListener('contextmenu', this.handleRightClick);
-    document.addEventListener('contextmenu', this.handleLeftClick);
+    document.addEventListener('click', this.handleLeftClick);
   }
 
   componentDidUpdate(_prevProps: {}, prevState: State): void {
