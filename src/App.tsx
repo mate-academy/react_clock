@@ -18,16 +18,8 @@ export class App extends PureComponent<{}, State> {
   value = Date.now().toString().slice(-4);
 
   componentDidMount() {
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
-
-    document.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault();
-
-      this.setState({ hasClock: false });
-    });
-
+    document.addEventListener('click', this.showClock);
+    document.addEventListener('contextmenu', this.hideClock);
     this.timerIdName = window.setInterval(() => {
       this.setState({ clockName: this.getRandomName() });
     }, 3300);
@@ -41,11 +33,27 @@ export class App extends PureComponent<{}, State> {
     }
   }
 
+  componentWillUnmount() {
+    window.clearInterval(this.timerIdName);
+    document.removeEventListener('click', this.showClock);
+    document.removeEventListener('contextmenu', this.hideClock);
+  }
+
   getRandomName() {
     this.value = Date.now().toString().slice(-4);
 
     return `Clock-${this.value}`;
   }
+
+  hideClock = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: false });
+  };
+
+  showClock = () => {
+    this.setState({ hasClock: true });
+  };
 
   render() {
     const { hasClock, clockName } = this.state;
