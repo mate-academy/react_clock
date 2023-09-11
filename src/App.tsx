@@ -29,8 +29,11 @@ export class App extends React.Component<State> {
   componentDidMount() {
     this.interval = window.setInterval(() => {
       this.setState({ date: new Date() });
-      // eslint-disable-next-line no-console
-      console.info(this.state.date.toUTCString().slice(-12, -4));
+
+      if (this.state.showClock) {
+        // eslint-disable-next-line no-console
+        console.info(this.state.date.toUTCString().slice(-12, -4));
+      }
     }, 1000);
 
     this.timerId = window.setInterval(() => {
@@ -51,7 +54,7 @@ export class App extends React.Component<State> {
     const newName = this.state.clockName;
     const oldName = prevState.clockName;
 
-    if (oldName !== newName) {
+    if (oldName !== newName && this.state.showClock) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${oldName} to ${newName}`);
     }
