@@ -9,7 +9,6 @@ interface State {
 }
 
 export class Clock extends Component<Props, State> {
-  // private interval: ;
   state = {
     time: new Date(),
   };
