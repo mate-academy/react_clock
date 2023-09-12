@@ -34,14 +34,18 @@ export class App extends React.Component<{}, State> {
   }
 
   render() {
+    const { hasClock, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock && (
+        {hasClock && (
           <Clock
-            setHasClock={(hasClock) => this.setState({ hasClock })}
-            clockName={this.state.clockName}
+            setHasClock={(hasClockProps) => this.setState({
+              hasClock: hasClockProps,
+            })}
+            clockName={clockName}
           />
         )}
       </div>

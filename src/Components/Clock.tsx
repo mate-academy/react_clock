@@ -1,13 +1,17 @@
 import React from 'react';
 
 type Props = {
-  setHasClock: (hasClock: boolean) => void;
+  setHasClock: (hasClockProps: boolean) => void;
   clockName: string;
 };
 
 type State = {
   time: Date;
 };
+
+function timeActualy(time: Date): string {
+  return time.toUTCString().slice(-12, -4);
+}
 
 export class Clock extends React.Component<Props, State> {
   state = {
@@ -24,7 +28,7 @@ export class Clock extends React.Component<Props, State> {
       const newTime = new Date();
 
       // eslint-disable-next-line no-console
-      console.info(newTime.toUTCString().slice(-12, -4));
+      console.info(timeActualy(newTime));
       this.setState({ time: newTime });
     }, 1000);
   }
@@ -54,16 +58,19 @@ export class Clock extends React.Component<Props, State> {
   };
 
   render(): React.ReactNode {
+    const { time } = this.state;
+    const { clockName } = this.props;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.clockName}
+          {clockName}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.time.toUTCString().slice(-12, -4)}
+          {timeActualy(time)}
         </span>
       </div>
     );
