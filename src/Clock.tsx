@@ -9,6 +9,10 @@ type State = {
 };
 
 export class Clock extends React.Component<Props, State> {
+  static formatTime(date: Date): string {
+    return date.toUTCString().slice(-12, -4);
+  }
+
   state: State = {
     nowDate: new Date(),
   };
@@ -20,7 +24,7 @@ export class Clock extends React.Component<Props, State> {
       const newValue = new Date();
 
       // eslint-disable-next-line no-console
-      console.info(newValue.toUTCString().slice(-12, -4));
+      console.info(Clock.formatTime(newValue));
 
       this.setState({ nowDate: newValue });
     }, 1000);
@@ -32,6 +36,7 @@ export class Clock extends React.Component<Props, State> {
 
   render() {
     const { nowDate } = this.state;
+    const formattedTime = Clock.formatTime(nowDate);
 
     return (
       <div className="Clock">
@@ -42,7 +47,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {nowDate.toUTCString().slice(-12, -4)}
+          {formattedTime}
         </span>
       </div>
     );

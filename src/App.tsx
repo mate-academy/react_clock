@@ -1,10 +1,11 @@
 import React from 'react';
+
 import './App.scss';
 import { Clock } from './Clock';
 
 type State = {
   clockName: string,
-  hasClockName: boolean,
+  hasClock: boolean,
 };
 
 function getRandomName(): string {
@@ -16,7 +17,7 @@ function getRandomName(): string {
 export class App extends React.Component {
   state: State = {
     clockName: 'Clock-0',
-    hasClockName: true,
+    hasClock: true,
   };
 
   timerId = 0;
@@ -36,22 +37,22 @@ export class App extends React.Component {
   }
 
   handleLeftClick = () => {
-    this.setState({ hasClockName: true });
+    this.setState({ hasClock: true });
   };
 
   handleDocumentRightClick = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({ hasClockName: false });
+    this.setState({ hasClock: false });
   };
 
   render() {
-    const { hasClockName } = this.state;
+    const { hasClock } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClockName && (
+        {hasClock && (
           <Clock clockName={this.state.clockName} />
         )}
       </div>
