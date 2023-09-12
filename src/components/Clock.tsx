@@ -6,6 +6,8 @@ function formatedTime(time: Date) {
 
 type Props = {
   name: string,
+  handleRightClick: (event: MouseEvent) => void,
+  handleLeftClick: (event: MouseEvent) => void,
 };
 
 type State = {
@@ -20,6 +22,9 @@ export class Clock extends React.PureComponent<Props, State> {
   timerId = 0;
 
   componentDidMount(): void {
+    document.addEventListener('contextmenu', this.props.handleRightClick);
+    document.removeEventListener('click', this.props.handleLeftClick);
+
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
       // eslint-disable-next-line no-console
@@ -36,6 +41,8 @@ export class Clock extends React.PureComponent<Props, State> {
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
+    document.addEventListener('click', this.props.handleLeftClick);
+    document.removeEventListener('contextmenu', this.props.handleRightClick);
   }
 
   render() {

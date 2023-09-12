@@ -26,12 +26,6 @@ export class App extends React.PureComponent<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
     document.addEventListener('contextmenu', this.handleRightClick);
-    document.addEventListener('click', this.handleLeftClick);
-  }
-
-  componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
-    document.removeEventListener('contextmenu', this.handleRightClick);
   }
 
   handleRightClick = (event: MouseEvent) => {
@@ -51,7 +45,13 @@ export class App extends React.PureComponent<{}, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && <Clock name={clockName} />}
+        {hasClock && (
+          <Clock
+            name={clockName}
+            handleRightClick={this.handleRightClick}
+            handleLeftClick={this.handleLeftClick}
+          />
+        )}
       </div>
     );
   }
