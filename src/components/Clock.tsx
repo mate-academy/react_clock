@@ -1,28 +1,28 @@
 import React from 'react';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
-
 type State = {
-  clockName: string,
   today: Date
 };
 
-export class Clock extends React.Component<{}, State> {
+type Props = {
+  clockName: string,
+};
+
+export class Clock extends React.Component<Props, State> {
   state = {
-    clockName: 'Clock-0',
     today: new Date(),
   };
 
-  timerId = window.setInterval(() => {
-    this.setState({
-      clockName: getRandomName(),
-      today: new Date(),
-    });
-  }, 1000);
+  timerId: number | undefined;
+
+  componentDidMount() {
+    this.timerId = window.setInterval(() => {
+      this.setState({ today: new Date() });
+
+      // eslint-disable-next-line no-console
+      console.info(this.state.today.toUTCString().slice(-12, -4));
+    }, 1000);
+  }
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
@@ -32,7 +32,7 @@ export class Clock extends React.Component<{}, State> {
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.state.clockName}
+          {this.props.clockName}
         </strong>
 
         {' time is '}
