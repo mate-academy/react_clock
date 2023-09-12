@@ -19,11 +19,13 @@ export class Clock extends Component<Props, State> {
     this.timerId = window.setInterval(this.updateTime, 1000);
   }
 
-  componentDidUpdate(prevProps: Props) {
-    // eslint-disable-next-line no-console
-    console.info(this.getTime());
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    if (this.state.time !== prevState.time) {
+      // eslint-disable-next-line no-console
+      console.info(this.getTime());
+    }
 
-    if (prevProps.name !== this.props.name) {
+    if (this.props.name !== prevProps.name) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
