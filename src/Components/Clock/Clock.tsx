@@ -19,7 +19,7 @@ export class Clock extends React.Component<Props, State> {
 
   componentDidMount(): void {
     this.timerIdClockValue = window.setInterval(() => {
-      this.setState(prevState => ({ ...prevState, today: new Date() }));
+      this.setState({ today: new Date() });
 
       // eslint-disable-next-line no-console
       console.info(normalizedDate(this.state.today));
