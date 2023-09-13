@@ -8,9 +8,13 @@ type Props = {
   clockName: string
 };
 
+function getTime() {
+  return new Date().toUTCString().slice(-12, -4);
+}
+
 export class Clock extends React.Component<Props, State> {
   state: State = {
-    time: new Date().toUTCString().slice(-12, -4),
+    time: getTime(),
   };
 
   interval = 0;
@@ -24,7 +28,7 @@ export class Clock extends React.Component<Props, State> {
   }
 
   updateTime = () => {
-    const newTime = new Date().toUTCString().slice(-12, -4);
+    const newTime = getTime();
 
     this.setState({ time: newTime });
 
