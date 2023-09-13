@@ -6,20 +6,30 @@ import { getRandomName } from './helpers';
 interface State {
   hasClock: boolean;
   clockName: string;
+  clockNameId: number;
 }
 
 export class App extends React.PureComponent<{}, State> {
   state: State = {
     hasClock: true,
     clockName: 'Clock-0',
+    clockNameId: 0,
   };
 
   componentDidMount(): void {
-    window.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
-    window.setInterval(() => {
+    const nameId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
+
+    this.setState({ clockNameId: nameId });
+  }
+
+  componentWillUnmount(): void {
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+    window.clearInterval(this.state.clockNameId);
   }
 
   handleRightClick = (event: MouseEvent) => {
