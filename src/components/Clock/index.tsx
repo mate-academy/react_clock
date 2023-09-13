@@ -25,6 +25,16 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    const { clockName: oldClockName } = prevProps;
+    const { clockName: currentClockName } = this.props;
+
+    if (oldClockName !== currentClockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${oldClockName} to ${currentClockName}`);
+    }
+  }
+
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
   }
