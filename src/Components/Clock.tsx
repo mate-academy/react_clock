@@ -2,7 +2,7 @@
 import React from 'react';
 
 type State = {
-  today: Date,
+  currentDate: Date,
 };
 
 type Props = {
@@ -11,16 +11,16 @@ type Props = {
 
 export class Clock extends React.Component<Props> {
   state: State = {
-    today: new Date(),
+    currentDate: new Date(),
   };
 
   timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({ currentDate: new Date() });
 
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(this.getCorrectData(this.state.currentDate));
     }, 1000);
   }
 
@@ -34,8 +34,12 @@ export class Clock extends React.Component<Props> {
     clearInterval(this.timerId);
   }
 
+  getCorrectData = (currentDate: Date) => {
+    return currentDate.toUTCString().slice(-12, -4);
+  };
+
   render() {
-    const { today } = this.state;
+    const { currentDate } = this.state;
     const { clockName } = this.props;
 
     return (
@@ -47,7 +51,7 @@ export class Clock extends React.Component<Props> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {this.getCorrectData(currentDate)}
         </span>
       </div>
     );
