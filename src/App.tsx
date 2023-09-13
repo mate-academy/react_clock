@@ -2,8 +2,7 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Props = any;
+type Props = {};
 
 type State = {
   hasClock: boolean;
