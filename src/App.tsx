@@ -59,7 +59,7 @@ export class App extends Component<{}, AppState> {
     this.timerId = window.setInterval(() => {
       const newName = getRandomName();
 
-      this.setState({ clockName: newName });git checkout -b develop
+      this.setState({ clockName: newName });
     }, 3300);
   }
 
