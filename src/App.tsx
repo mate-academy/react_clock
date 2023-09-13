@@ -33,12 +33,12 @@ export class App extends React.Component<{}, State> {
     document.removeEventListener('click', this.ShowClock);
   }
 
-  RemoveClock = (event: MouseEvent) => {
+  removeClock = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
 
-  ShowClock = () => {
+  showClock = () => {
     this.setState({ hasClock: true });
   };
 
