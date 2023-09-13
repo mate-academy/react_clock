@@ -56,11 +56,3 @@ export class App extends React.PureComponent<{}, State> {
     );
   }
 }
-
-/* const today = new Date();
-let clockName = 'Clock-0';
-
-// This code starts a timer
-
-// this code stops the timer
-window.clearInterval(timerId); */
