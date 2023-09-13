@@ -7,12 +7,12 @@ type Props = {
 };
 
 type State = {
-  today: Date;
+  currentDate: Date;
 };
 
 export class Clock extends React.PureComponent<Props, State> {
   state: State = {
-    today: new Date(),
+    currentDate: new Date(),
   };
 
   timeChangeTimerId = 0;
@@ -30,9 +30,9 @@ export class Clock extends React.PureComponent<Props, State> {
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
 
-    if (prevState.today !== this.state.today) {
+    if (prevState.currentDate !== this.state.currentDate) {
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(this.state.currentDate.toUTCString().slice(-12, -4));
     }
   }
 
@@ -42,13 +42,13 @@ export class Clock extends React.PureComponent<Props, State> {
 
   startTimeChangeTimer() {
     this.timeChangeTimerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({ currentDate: new Date() });
     }, TIME_CHANGE_DELAY);
   }
 
   render(): React.ReactNode {
     const { name } = this.props;
-    const { today } = this.state;
+    const { currentDate } = this.state;
 
     return (
       <div className="Clock">
@@ -59,7 +59,7 @@ export class Clock extends React.PureComponent<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {currentDate.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );

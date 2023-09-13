@@ -17,8 +17,8 @@ function getRandomName(): string {
 
 export class App extends React.PureComponent<{}, State> {
   state: State = {
-    hasClock: true,
     clockName: 'Clock-0',
+    hasClock: true,
   };
 
   nameChangeTimerId = 0;
@@ -47,8 +47,7 @@ export class App extends React.PureComponent<{}, State> {
 
   handleClockVisibilityOff = (event: MouseEvent) => {
     event.preventDefault();
-
-    return this.setState({ hasClock: false });
+    this.setState({ hasClock: false });
   };
 
   render(): React.ReactNode {
