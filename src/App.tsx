@@ -32,9 +32,9 @@ export class App extends React.Component<{}, AppState> {
   }
 
   static getRandomName() {
-    const randomNumber = Math.floor(Math.random() * 10000);
+    const value = Date.now().toString().slice(-4);
 
-    return `Clock-${randomNumber}`;
+    return `Clock-${value}`;
   }
 
   updateClockName = () => {
