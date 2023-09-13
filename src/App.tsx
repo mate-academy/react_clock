@@ -14,16 +14,12 @@ type State = {
 };
 
 export class App extends React.Component<{}, State> {
-  clockName = 'Clock-0';
-
   state: State = {
-    clockName: this.clockName,
+    clockName: 'Clock-0',
     showClock: true,
   };
 
   timerId = 0;
-
-  interval = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
@@ -46,13 +42,13 @@ export class App extends React.Component<{}, State> {
   }
 
   render() {
-    const { clockName } = this.state;
+    const { clockName, showClock } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.showClock && (
+        {showClock && (
           <Clock clockName={clockName} />
         )}
       </div>
