@@ -11,20 +11,20 @@ function getRandomName(): string {
 type State = {
   clockName: string,
   hasClock: boolean,
-}
+};
 
 export class App extends React.Component<{}, State> {
   state: State = {
     clockName: 'Clock-0',
     hasClock: true,
-  }
+  };
 
   currentTime = 0;
 
   componentDidMount(): void {
     this.currentTime = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() })
-    }, 3300)
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
 
     document.addEventListener('contextmenu', this.handleHideclock);
     document.addEventListener('click', this.handleShowClock);
@@ -38,20 +38,12 @@ export class App extends React.Component<{}, State> {
   handleHideclock = (event: MouseEvent) => {
     event.preventDefault();
 
-    if (this.state.hasClock === false) {
-      return;
-    }
-
-    this.setState({ hasClock: true });
-  }
+    this.setState({ hasClock: false });
+  };
 
   handleShowClock = () => {
-    if (this.state.hasClock === true) {
-      return;
-    }
-
     this.setState({ hasClock: true });
-  }
+  };
 
   render() {
     return (
@@ -66,4 +58,4 @@ export class App extends React.Component<{}, State> {
       </div>
     );
   }
-};
+}
