@@ -5,12 +5,16 @@ interface Props {
 }
 
 interface State {
-  time: Date;
+  time: string;
 }
 
 export class Clock extends Component<Props, State> {
+  static getCurrentTime(): string {
+    return new Date().toUTCString().slice(-12, -4);
+  }
+
   state = {
-    time: new Date(),
+    time: Clock.getCurrentTime(),
   };
 
   intervalId = 0;
@@ -20,7 +24,7 @@ export class Clock extends Component<Props, State> {
       // eslint-disable-next-line no-console
       console.info(new Date().toUTCString().slice(-12, -4));
       this.setState({
-        time: new Date(),
+        time: Clock.getCurrentTime(),
       });
     }, 1000);
   }
@@ -51,7 +55,7 @@ export class Clock extends Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {time.toUTCString().slice(-12, -4)}
+          {time}
         </span>
       </div>
     );
