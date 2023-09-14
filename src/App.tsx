@@ -31,6 +31,7 @@ export class App extends React.Component {
     document.addEventListener('click', this.handleLeftClick);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   componentDidUpdate(_props: any, prevState: State): void {
     if (this.state.hasClock && prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
