@@ -6,7 +6,6 @@ interface Props {
 
 interface State {
   currentTime: string;
-  previousName: string;
 }
 
 export class Clock extends React.Component<Props, State> {
@@ -14,7 +13,6 @@ export class Clock extends React.Component<Props, State> {
 
   state = {
     currentTime: Clock.getCurrentTime(),
-    previousName: this.props.name,
   };
 
   static getDerivedStateFromProps(
@@ -37,10 +35,10 @@ export class Clock extends React.Component<Props, State> {
     this.timerID = window.setInterval(() => this.tick(), 1000);
   }
 
-  componentDidUpdate(prevProps: Props) {
-    if (this.state.previousName && prevProps.name !== this.props.name) {
+  componentDidUpdate(prevProps: Props): void {
+    if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${this.state.previousName} to ${this.props.name}`);
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
 
