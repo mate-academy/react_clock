@@ -15,22 +15,6 @@ export class Clock extends React.Component<Props, State> {
     currentTime: Clock.getCurrentTime(),
   };
 
-  static getDerivedStateFromProps(
-    nextProps: Props,
-    prevState: State,
-  ) {
-    if (nextProps.name !== prevState.currentTime.split(' ')[0]) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevState.currentTime.split(' ')[0]} to ${nextProps.name}`);
-
-      return {
-        time: `${nextProps.name} ${Clock.getCurrentTime()}`,
-      };
-    }
-
-    return null;
-  }
-
   componentDidMount() {
     this.timerID = window.setInterval(() => this.tick(), 1000);
   }
