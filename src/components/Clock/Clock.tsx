@@ -9,6 +9,10 @@ type TState = {
   today: Date;
 };
 
+function getTodayInUTC(today: Date) {
+  return today.toUTCString().slice(-12, -4);
+}
+
 export class Clock extends React.PureComponent<TClockProps, TState> {
   state = {
     today: new Date(),
@@ -24,14 +28,17 @@ export class Clock extends React.PureComponent<TClockProps, TState> {
     prevProps: Readonly<TClockProps>,
     prevState: Readonly<TState>,
   ): void {
-    if (prevProps.clockName !== this.props.clockName) {
+    const { clockName } = this.props;
+    const { today } = this.state;
+
+    if (prevProps.clockName !== clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+      console.debug(`Renamed from ${prevProps.clockName} to ${clockName}`);
     }
 
-    if (prevState.today !== this.state.today) {
+    if (prevState.today !== today) {
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(getTodayInUTC(today));
     }
   }
 
@@ -57,7 +64,7 @@ export class Clock extends React.PureComponent<TClockProps, TState> {
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.today.toUTCString().slice(-12, -4)}
+          {getTodayInUTC(this.state.today)}
         </span>
       </div>
     );

@@ -32,6 +32,7 @@ export class App extends React.PureComponent<{}, TState> {
   componentWillUnmount(): void {
     document.removeEventListener('contextmenu', this.handleContextmenu);
     document.removeEventListener('click', this.handleDocumentClickToShowClock);
+    window.clearInterval(this.timerId);
   }
 
   startTimerName = () => {
