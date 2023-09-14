@@ -19,7 +19,7 @@ export class App extends React.Component<{}, State> {
     clockName: 'Clock-0',
   };
 
-  timerId: number | undefined = 0;
+  timerId = 0;
 
   componentDidMount(): void {
     document.addEventListener('contextmenu', this.handleHideClock);
@@ -31,9 +31,11 @@ export class App extends React.Component<{}, State> {
   }
 
   componentDidUpdate(_: never, prevState: Readonly<State>): void {
-    if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
+    const { clockName, hasClock } = this.state;
+
+    if (prevState.clockName !== clockName && hasClock) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+      console.debug(`Renamed from ${prevState.clockName} to ${clockName}`);
     }
   }
 
@@ -55,12 +57,14 @@ export class App extends React.Component<{}, State> {
   };
 
   render() {
+    const { clockName, hasClock } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock && (
-          <Clock clockName={this.state.clockName} />
+        {hasClock && (
+          <Clock clockName={clockName} />
         )}
       </div>
     );
