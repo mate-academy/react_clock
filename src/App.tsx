@@ -31,7 +31,7 @@ export class App extends React.Component {
     document.addEventListener('click', this.handleLeftClick);
   }
 
-  componentDidUpdate(_: any, prevState: State): void {
+  componentDidUpdate(prevState: State): void {
     if (this.state.hasClock && prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
