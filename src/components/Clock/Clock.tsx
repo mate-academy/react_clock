@@ -20,14 +20,19 @@ export class Clock extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    if (this.state.time !== prevState.time) {
+    const { time: prevTime } = prevState;
+    const { time: currentTime } = this.state;
+    const { name: prevName } = prevProps;
+    const { name: currentName } = this.props;
+
+    if (currentTime !== prevTime) {
       // eslint-disable-next-line no-console
       console.info(this.getTime());
     }
 
-    if (this.props.name !== prevProps.name) {
+    if (currentName !== prevName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      console.debug(`Renamed from ${prevName} to ${currentName}`);
     }
   }
 
