@@ -5,30 +5,37 @@ type Props = {
 };
 
 type State = {
-  date: Date;
+  today: Date;
 };
+
+function getFormattedDate(today: Date) {
+  return today.toUTCString().slice(-12, -4);
+}
 
 export class Clock extends React.PureComponent<Props, State> {
   state: State = {
-    date: new Date(),
+    today: new Date(),
   };
 
   timerId = 0;
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ date: new Date() });
+      this.setState({ today: new Date() });
       // eslint-disable-next-line no-console
-      console.info(this.state.date.toUTCString().slice(-12, -4));
+      console.info(getFormattedDate(this.state.today));
     }, 1000);
   }
 
   componentDidUpdate(
     prevProps: Readonly<Props>,
   ): void {
-    if (prevProps.name !== this.props.name) {
+    const { name: prevName } = prevProps;
+    const { name } = this.props;
+
+    if (prevName !== name) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      console.debug(`Renamed from ${prevName} to ${name}`);
     }
   }
 
@@ -37,7 +44,7 @@ export class Clock extends React.PureComponent<Props, State> {
   }
 
   render(): React.ReactNode {
-    const { date } = this.state;
+    const { today } = this.state;
     const { name } = this.props;
 
     return (
@@ -49,7 +56,7 @@ export class Clock extends React.PureComponent<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {date.toUTCString().slice(-12, -4)}
+          {getFormattedDate(today)}
         </span>
       </div>
     );

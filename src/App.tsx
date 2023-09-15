@@ -46,13 +46,14 @@ export class App extends React.PureComponent<{}, State> {
 
   render(): React.ReactNode {
     const { hasClock } = this.state;
+    const { clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
         {hasClock && (
-          <Clock name={this.state.clockName} />
+          <Clock name={clockName} />
         )}
       </div>
     );
