@@ -1,4 +1,5 @@
 import { PureComponent } from 'react';
+import { getRandomName } from './utils/helpers';
 import { Clock } from './components/Clock';
 import './App.scss';
 
@@ -39,14 +40,8 @@ export class App extends PureComponent<{}, State> {
     this.setState({ hasClock: false });
   };
 
-  getRandomName = (): string => {
-    const value = Date.now().toString().slice(-4);
-
-    return `Clock-${value}`;
-  };
-
   updateClockName = () => {
-    this.setState({ clockName: this.getRandomName() });
+    this.setState({ clockName: getRandomName() });
   };
 
   render() {
