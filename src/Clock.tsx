@@ -8,18 +8,22 @@ type State = {
   today: Date;
 };
 
-let timerId: number;
+function formatDate(date: Date): string {
+  return date.toUTCString().slice(-12, -4);
+}
 
 export class Clock extends React.PureComponent<Props, State> {
+  timerId = 0;
+
   state = {
     today: new Date(),
   };
 
   componentDidMount(): void {
-    timerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(formatDate(this.state.today));
     }, 1000);
   }
 
@@ -31,20 +35,23 @@ export class Clock extends React.PureComponent<Props, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(timerId);
+    window.clearInterval(this.timerId);
   }
 
   render() {
+    const { name } = this.props;
+    const { today } = this.state;
+
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {this.props.name}
+          {name}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.today.toUTCString().slice(-12, -4)}
+          {formatDate(today)}
         </span>
       </div>
     );

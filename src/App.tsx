@@ -13,18 +13,18 @@ type State = {
   clockName: string,
 };
 
-const clockName = 'Clock-0';
-
-let timerId: number;
+const startClockName = 'Clock-0';
 
 export class App extends React.PureComponent<{}, State> {
+  timerId = 0;
+
   state = {
     hasClock: true,
-    clockName,
+    clockName: startClockName,
   };
 
   componentDidMount(): void {
-    timerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
@@ -33,7 +33,7 @@ export class App extends React.PureComponent<{}, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(timerId);
+    window.clearInterval(this.timerId);
 
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
@@ -52,11 +52,13 @@ export class App extends React.PureComponent<{}, State> {
   };
 
   render() {
+    const { clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
         {this.state.hasClock
-          && <Clock name={this.state.clockName} /> }
+          && <Clock name={clockName} /> }
       </div>
     );
   }
