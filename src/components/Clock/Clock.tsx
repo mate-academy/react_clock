@@ -9,21 +9,21 @@ type Props = {
 };
 
 type State = {
-  today: string,
+  currentDate: string,
 };
 
 export class Clock extends React.Component<Props, State> {
   state = {
-    today: avoidTimezoneIssues(new Date()),
+    currentDate: avoidTimezoneIssues(new Date()),
   };
 
   intervalId = 0;
 
   componentDidMount(): void {
     this.intervalId = window.setInterval(() => {
-      this.setState({ today: avoidTimezoneIssues(new Date()) });
+      this.setState({ currentDate: avoidTimezoneIssues(new Date()) });
       // eslint-disable-next-line no-console
-      console.info(this.state.today);
+      console.info(this.state.currentDate);
     }, 1000);
   }
 
@@ -44,9 +44,7 @@ export class Clock extends React.Component<Props, State> {
   render() {
     const { name } = this.props;
 
-    // this.setState({ clockName: this.props.name });
-
-    const { today } = this.state;
+    const { currentDate } = this.state;
 
     return (
       <div className="Clock">
@@ -57,7 +55,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today}
+          {currentDate}
         </span>
       </div>
     );

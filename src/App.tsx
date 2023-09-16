@@ -1,12 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
-
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
+import { getRandomName } from './utils';
 
 type State = {
   hasClock: boolean,
@@ -38,7 +33,7 @@ export class App extends React.Component<{}, State> {
   handleHideClock = (event: MouseEvent) => {
     event.preventDefault();
 
-    if (this.state.hasClock === false) {
+    if (!this.state.hasClock) {
       return;
     }
 
@@ -46,7 +41,7 @@ export class App extends React.Component<{}, State> {
   };
 
   handleShowClock = () => {
-    if (this.state.hasClock === true) {
+    if (this.state.hasClock) {
       return;
     }
 
