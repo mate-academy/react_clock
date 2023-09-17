@@ -5,7 +5,7 @@ type Props = {
 };
 
 type State = {
-  nowDate: Date;
+  today: Date;
 };
 
 function formatTime(date: Date): string {
@@ -14,7 +14,7 @@ function formatTime(date: Date): string {
 
 export class Clock extends React.Component<Props, State> {
   state: State = {
-    nowDate: new Date(),
+    today: new Date(),
   };
 
   timerId = 0;
@@ -26,7 +26,7 @@ export class Clock extends React.Component<Props, State> {
       // eslint-disable-next-line no-console
       console.info(formatTime(newValue));
 
-      this.setState({ nowDate: newValue });
+      this.setState({ today: newValue });
     }, 1000);
   }
 
@@ -42,8 +42,8 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
-    const { nowDate } = this.state;
-    const formattedTime = formatTime(nowDate);
+    const { today } = this.state;
+    const formattedTime = formatTime(today);
 
     return (
       <div className="Clock">
