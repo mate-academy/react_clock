@@ -1,18 +1,18 @@
 import React from 'react';
 
 type Props = {
-  clockName: string
+  clockName: string;
 };
 
 type State = {
   nowDate: Date;
 };
 
-export class Clock extends React.Component<Props, State> {
-  static formatTime(date: Date): string {
-    return date.toUTCString().slice(-12, -4);
-  }
+function formatTime(date: Date): string {
+  return date.toUTCString().slice(-12, -4);
+}
 
+export class Clock extends React.Component<Props, State> {
   state: State = {
     nowDate: new Date(),
   };
@@ -24,10 +24,17 @@ export class Clock extends React.Component<Props, State> {
       const newValue = new Date();
 
       // eslint-disable-next-line no-console
-      console.info(Clock.formatTime(newValue));
+      console.info(formatTime(newValue));
 
       this.setState({ nowDate: newValue });
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+    }
   }
 
   componentWillUnmount(): void {
@@ -36,19 +43,13 @@ export class Clock extends React.Component<Props, State> {
 
   render() {
     const { nowDate } = this.state;
-    const formattedTime = Clock.formatTime(nowDate);
+    const formattedTime = formatTime(nowDate);
 
     return (
       <div className="Clock">
-        <strong className="Clock__name">
-          {this.props.clockName}
-        </strong>
-
+        <strong className="Clock__name">{this.props.clockName}</strong>
         {' time is '}
-
-        <span className="Clock__time">
-          {formattedTime}
-        </span>
+        <span className="Clock__time">{formattedTime}</span>
       </div>
     );
   }

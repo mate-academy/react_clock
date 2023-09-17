@@ -1,21 +1,9 @@
-import React from 'react';
-
+import { Component } from 'react';
 import './App.scss';
 import { Clock } from './Clock';
 
-type State = {
-  clockName: string,
-  hasClock: boolean,
-};
-
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
-
-export class App extends React.Component {
-  state: State = {
+export class App extends Component {
+  state = {
     clockName: 'Clock-0',
     hasClock: true,
   };
@@ -26,7 +14,7 @@ export class App extends React.Component {
     document.addEventListener('click', this.handleLeftClick);
     document.addEventListener('contextmenu', this.handleDocumentRightClick);
     this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
+      this.setState({ clockName: this.getRandomName() });
     }, 3300);
   }
 
@@ -36,25 +24,28 @@ export class App extends React.Component {
     window.clearInterval(this.timerId);
   }
 
+  getRandomName = () => {
+    const value = Date.now().toString().slice(-4);
+
+    return `Clock-${value}`;
+  };
+
   handleLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
-  handleDocumentRightClick = (event: MouseEvent) => {
+  handleDocumentRightClick = (event:MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
 
   render() {
-    const { hasClock } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-
-        {hasClock && (
-          <Clock clockName={this.state.clockName} />
-        )}
+        {hasClock && <Clock clockName={clockName} />}
       </div>
     );
   }
