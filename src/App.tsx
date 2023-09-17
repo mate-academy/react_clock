@@ -7,10 +7,10 @@ interface State {
   clockName: number,
 }
 
-function getRandomName(): string {
+function getRandomValue(): number {
   const value = Date.now().toString().slice(-4);
 
-  return value;
+  return +value;
 }
 
 export class App extends React.Component<{}, State> {
@@ -23,7 +23,7 @@ export class App extends React.Component<{}, State> {
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ clockName: +getRandomName() });
+      this.setState({ clockName: getRandomValue() });
     }, 3300);
 
     document.addEventListener('contextmenu', this.handleRightClick);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatTime } from '../../helpers/helpers';
 
 interface Props {
   name: number
@@ -6,21 +7,21 @@ interface Props {
 }
 
 interface State {
-  today: Date,
+  currentDate: Date,
 }
 
 export class Clock extends React.Component<Props, State> {
   state = {
-    today: new Date(),
+    currentDate: new Date(),
   };
 
   timerId = 0;
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({ currentDate: new Date() });
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(formatTime(this.state.currentDate));
     }, 1000);
   }
 
@@ -33,9 +34,9 @@ export class Clock extends React.Component<Props, State> {
     if (prevProps.hasClock !== this.props.hasClock) {
       if (this.props.hasClock) {
         this.timerId = window.setInterval(() => {
-          this.setState({ today: new Date() });
+          this.setState({ currentDate: new Date() });
           // eslint-disable-next-line no-console
-          console.info(this.state.today.toUTCString().slice(-12, -4));
+          console.info(formatTime(this.state.currentDate));
         }, 1000);
       } else {
         window.clearInterval(this.timerId);
@@ -49,7 +50,7 @@ export class Clock extends React.Component<Props, State> {
 
   render() {
     const { name } = this.props;
-    const { today } = this.state;
+    const { currentDate } = this.state;
 
     return (
       <div className="Clock">
@@ -60,7 +61,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {formatTime(currentDate)}
         </span>
       </div>
     );
