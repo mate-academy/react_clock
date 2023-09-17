@@ -1,4 +1,5 @@
 import React from 'react';
+import { getNewDate } from '../../helpers/getCurrentTime';
 
 type Props = {
   name: string,
@@ -10,23 +11,26 @@ type State = {
 
 export class Clock extends React.Component<Props, State> {
   state: State = {
-    time: new Date().toUTCString().slice(-12, -4),
+    time: getNewDate(),
   };
 
   timerId = 0;
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ time: new Date().toUTCString().slice(-12, -4) });
+      this.setState({ time: getNewDate() });
       // eslint-disable-next-line no-console
       console.info(this.state.time);
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    if (prevProps.name !== this.props.name) {
+    const { name: prevName } = prevProps;
+    const { name: newName } = this.props;
+
+    if (prevName !== newName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      console.debug(`Renamed from ${prevName} to ${newName}`);
     }
   }
 
