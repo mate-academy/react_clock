@@ -8,6 +8,10 @@ interface State {
   date: Date;
 }
 
+function fromDateToString(date: Date): string {
+  return date.toUTCString().slice(-12, -4);
+}
+
 export class Clock extends React.Component<Props, State> {
   state: State = {
     date: new Date(),
@@ -29,7 +33,7 @@ export class Clock extends React.Component<Props, State> {
 
     if (prevState.date !== this.state.date) {
       // eslint-disable-next-line no-console
-      console.info(this.state.date.toUTCString().slice(-12, -4));
+      console.info(fromDateToString(this.state.date));
     }
   }
 
@@ -50,7 +54,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {date.toUTCString().slice(-12, -4)}
+          {fromDateToString(date)}
         </span>
       </div>
     );
