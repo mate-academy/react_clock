@@ -20,9 +20,11 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props): void {
-    if (prevProps.name !== this.props.name) {
+    const { name } = this.props;
+
+    if (prevProps.name !== name) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      console.debug(`Renamed from ${prevProps.name} to ${name}`);
     }
   }
 
