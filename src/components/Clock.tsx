@@ -8,6 +8,12 @@ type State = {
   today: Date;
 };
 
+const sliceStart = -12;
+const sliceEnd = -4;
+
+const normalizedDate = (date: Date) => date
+  .toUTCString().slice(sliceStart, sliceEnd);
+
 export class Clock extends React.Component<Props, State> {
   state: State = {
     today: new Date(),
@@ -19,7 +25,7 @@ export class Clock extends React.Component<Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
       // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      console.info(normalizedDate(this.state.today));
     }, 1000);
   }
 
@@ -31,10 +37,12 @@ export class Clock extends React.Component<Props, State> {
       || nextState.today !== this.state.today;
   }
 
-  componentDidUpdate(prevProps: Props): void {
-    if (prevProps.name !== this.props.name) {
+  componentDidUpdate({ name: prevName }: Props): void {
+    const { name } = this.props;
+
+    if (prevName !== name) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      console.debug(`Renamed from ${prevName} to ${name}`);
     }
   }
 
@@ -55,7 +63,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {normalizedDate(today)}
         </span>
       </div>
     );
