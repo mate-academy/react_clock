@@ -22,15 +22,15 @@ export class App extends React.Component<{}, State> {
   renamedId = 0;
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.handleHideClock.bind(this));
-    document.addEventListener('click', this.handleShowClock.bind(this));
+    document.addEventListener('contextmenu', this.handleHideClock);
+    document.addEventListener('click', this.handleShowClock);
     this.updateClockName();
   }
 
   componentWillUnmount() {
     window.clearInterval(this.renamedId);
-    document.removeEventListener('contextmenu', () => {});
-    document.removeEventListener('click', () => {});
+    document.removeEventListener('contextmenu', this.handleHideClock);
+    document.removeEventListener('click', this.handleShowClock);
   }
 
   updateClockName = () => {
@@ -38,9 +38,11 @@ export class App extends React.Component<{}, State> {
       if (this.state.hasClock) {
         const newClockName = getRandomName();
 
+        if (this.state.clockName !== newClockName) {
         // eslint-disable-next-line no-console
-        console.debug(`Renamed from ${this.state.clockName} to ${newClockName}`);
-        this.setState({ clockName: newClockName });
+          console.debug(`Renamed from ${this.state.clockName} to ${newClockName}`);
+          this.setState({ clockName: newClockName });
+        }
       }
     }, 3300);
   };
