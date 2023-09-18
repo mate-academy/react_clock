@@ -8,6 +8,10 @@ type State = {
   date: Date;
 };
 
+function getFormattedDate(date: Date) {
+  return date.toUTCString().slice(-12, -4);
+}
+
 export class Clock extends React.PureComponent<Props, State> {
   state: State = {
     date: new Date(),
@@ -19,7 +23,7 @@ export class Clock extends React.PureComponent<Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ date: new Date() });
       // eslint-disable-next-line no-console
-      console.info(this.state.date.toUTCString().slice(-12, -4));
+      console.info(getFormattedDate(this.state.date));
     }, 1000);
   }
 
@@ -49,7 +53,7 @@ export class Clock extends React.PureComponent<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {date.toUTCString().slice(-12, -4)}
+          {getFormattedDate(date)}
         </span>
       </div>
     );
