@@ -1,7 +1,7 @@
 import React from 'react';
 
 type State = {
-  time: Date;
+  currentDate: Date;
 };
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 
 export class Clock extends React.Component<Props, State> {
   state = {
-    time: new Date(),
+    currentDate: new Date(),
   };
 
   timerId = 0;
@@ -21,11 +21,11 @@ export class Clock extends React.Component<Props, State> {
     document.removeEventListener('click', this.handleClick);
 
     this.timerId = window.setInterval(() => {
-      const newTime = new Date();
+      const date = new Date();
 
       // eslint-disable-next-line no-console
-      console.info(newTime.toUTCString().slice(-12, -4));
-      this.setState({ time: newTime });
+      console.info(this.getDateString(date));
+      this.setState({ currentDate: date });
     }, 1000);
   }
 
@@ -41,6 +41,11 @@ export class Clock extends React.Component<Props, State> {
     document.removeEventListener('contextmenu', this.handleContextMenu);
 
     clearInterval(this.timerId);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getDateString(date: Date): string {
+    return date.toUTCString().slice(-12, -4);
   }
 
   handleContextMenu = (event: MouseEvent) => {
@@ -63,7 +68,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.time.toUTCString().slice(-12, -4)}
+          {this.getDateString(this.state.currentDate)}
         </span>
       </div>
     );
