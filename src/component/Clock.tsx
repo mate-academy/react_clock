@@ -1,7 +1,7 @@
 import React from 'react';
 
 type State = {
-  today: Date,
+  currentDate: Date,
 };
 
 type Props = {
@@ -14,20 +14,20 @@ function formatToTimeZone(date: Date) {
 
 export class Clock extends React.PureComponent<Props, State> {
   state: State = {
-    today: new Date(),
+    currentDate: new Date(),
   };
 
   timerId = 0;
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({ currentDate: new Date() });
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props): void {
     // eslint-disable-next-line no-console
-    console.info(`${formatToTimeZone(this.state.today)}`);
+    console.info(`${formatToTimeZone(this.state.currentDate)}`);
 
     if (this.props.name !== prevProps.name) {
       // eslint-disable-next-line no-console
@@ -40,7 +40,7 @@ export class Clock extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { today } = this.state;
+    const { currentDate } = this.state;
     const { name } = this.props;
 
     return (
@@ -52,7 +52,7 @@ export class Clock extends React.PureComponent<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {formatToTimeZone(today)}
+          {formatToTimeZone(currentDate)}
         </span>
       </div>
     );
