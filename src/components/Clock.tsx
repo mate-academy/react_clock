@@ -8,6 +8,10 @@ type State = {
   todayDate: Date;
 };
 
+function toCorrectTime(currentDate: Date) {
+  return currentDate.toUTCString().slice(-12, -4);
+}
+
 export class Clock extends React.Component<Props, State> {
   state: State = {
     todayDate: new Date(),
@@ -20,7 +24,7 @@ export class Clock extends React.Component<Props, State> {
       const newValue = new Date();
 
       // eslint-disable-next-line no-console
-      console.info(newValue.toUTCString().slice(-12, -4));
+      console.info(toCorrectTime(newValue));
 
       this.setState({ todayDate: newValue });
     }, 1000);
@@ -42,7 +46,7 @@ export class Clock extends React.Component<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {todayDate.toUTCString().slice(-12, -4)}
+          {toCorrectTime(todayDate)}
         </span>
       </div>
     );
