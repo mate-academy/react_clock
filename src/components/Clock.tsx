@@ -8,6 +8,10 @@ type State = {
   currentTime: Date,
 };
 
+const normalizeTime = (currentTime: Date) => {
+  return currentTime.toUTCString().slice(-12, -4);
+};
+
 export class Clock extends React.PureComponent<Props, State> {
   state = {
     currentTime: new Date(),
@@ -22,17 +26,20 @@ export class Clock extends React.PureComponent<Props, State> {
   }
 
   componentDidUpdate(
-    { clockName }: Readonly<Props>,
-    { currentTime }: Readonly<State>,
+    { clockName: prevClockName }: Readonly<Props>,
+    { currentTime: prevCurrentTime }: Readonly<State>,
   ): void {
-    if (clockName !== this.props.clockName) {
+    const { clockName } = this.props;
+    const { currentTime } = this.state;
+
+    if (clockName !== prevClockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${clockName} to ${this.props.clockName}`);
+      console.debug(`Renamed from ${prevClockName} to ${clockName}`);
     }
 
-    if (currentTime !== this.state.currentTime) {
+    if (currentTime !== prevCurrentTime) {
       // eslint-disable-next-line no-console
-      console.info(`${this.state.currentTime.toUTCString().slice(-12, -4)}`);
+      console.info(`${normalizeTime(currentTime)}`);
     }
   }
 
@@ -53,7 +60,7 @@ export class Clock extends React.PureComponent<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {currentTime.toUTCString().slice(-12, -4)}
+          {normalizeTime(currentTime)}
         </span>
       </div>
     );
