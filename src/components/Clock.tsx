@@ -23,6 +23,13 @@ export class Clock extends React.Component<Props, State> {
     this.interval = window.setInterval(this.updateTime, 1000);
   }
 
+  componentDidUpdate(prevProps: Props): void {
+    if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+    }
+  }
+
   componentWillUnmount() {
     window.clearInterval(this.interval);
   }

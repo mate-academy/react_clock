@@ -35,15 +35,9 @@ export class App extends React.Component<{}, State> {
 
   updateClockName = () => {
     this.renamedId = window.setInterval(() => {
-      if (this.state.hasClock) {
-        const newClockName = getRandomName();
+      const newClockName = getRandomName();
 
-        if (this.state.clockName !== newClockName) {
-        // eslint-disable-next-line no-console
-          console.debug(`Renamed from ${this.state.clockName} to ${newClockName}`);
-          this.setState({ clockName: newClockName });
-        }
-      }
+      this.setState({ clockName: newClockName });
     }, 3300);
   };
 
