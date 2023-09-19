@@ -3,7 +3,6 @@ import { formatTime } from '../../helpers/helpers';
 
 interface Props {
   name: number
-  hasClock: boolean
 }
 
 interface State {
@@ -29,18 +28,6 @@ export class Clock extends React.Component<Props, State> {
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from Clock-${prevProps.name} to Clock-${this.props.name}`);
-    }
-
-    if (prevProps.hasClock !== this.props.hasClock) {
-      if (this.props.hasClock) {
-        this.timerId = window.setInterval(() => {
-          this.setState({ currentDate: new Date() });
-          // eslint-disable-next-line no-console
-          console.info(formatTime(this.state.currentDate));
-        }, 1000);
-      } else {
-        window.clearInterval(this.timerId);
-      }
     }
   }
 

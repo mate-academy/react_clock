@@ -31,10 +31,6 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.hadleLeftClick);
   }
 
-  componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
-  }
-
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
@@ -45,7 +41,7 @@ export class App extends React.Component<{}, State> {
   };
 
   render() {
-    const { hasClock } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
@@ -53,8 +49,7 @@ export class App extends React.Component<{}, State> {
 
         {hasClock && (
           <Clock
-            name={this.state.clockName}
-            hasClock={this.state.hasClock}
+            name={clockName}
           />
         )}
       </div>
