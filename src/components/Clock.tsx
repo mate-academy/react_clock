@@ -8,10 +8,16 @@ type State = {
   currentTime: Date;
 };
 
+function getFormattedDate(currentTime: Date) {
+  return currentTime.toUTCString().slice(-12, -4);
+}
+
 export class Clock extends React.PureComponent<Props, State> {
   state: State = {
     currentTime: new Date(),
   };
+
+  validTimeZone = this.state.currentTime.toUTCString().slice(-12, -4);
 
   timerId = 0;
 
@@ -19,7 +25,7 @@ export class Clock extends React.PureComponent<Props, State> {
     this.timerId = window.setInterval(() => {
       this.setState({ currentTime: new Date() });
       // eslint-disable-next-line no-console
-      console.info(this.state.currentTime.toUTCString().slice(-12, -4));
+      console.info(getFormattedDate(this.state.currentTime));
     }, 1000);
   }
 
@@ -44,7 +50,7 @@ export class Clock extends React.PureComponent<Props, State> {
         {' time is '}
 
         <span className="Clock__time">
-          {this.state.currentTime.toUTCString().slice(-12, -4)}
+          {getFormattedDate(this.state.currentTime)}
         </span>
       </div>
     );
