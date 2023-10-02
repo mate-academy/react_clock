@@ -1,4 +1,5 @@
 import React from 'react';
+import { getCurrentTime } from './services/functions';
 
 type Props = {
   name: string;
@@ -9,20 +10,16 @@ type State = {
   currentTime: string;
 };
 
-const today = new Date();
-
 export class Clock extends React.Component<Props, State> {
   state: State = {
-    currentTime: today.toUTCString().slice(-12, -4),
+    currentTime: getCurrentTime(),
   };
 
   timerValue = 0;
 
   componentDidMount(): void {
     this.timerValue = window.setInterval(() => {
-      const newTime = new Date();
-
-      this.setState({ currentTime: newTime.toUTCString().slice(-12, -4) });
+      this.setState({ currentTime: getCurrentTime() });
 
       // eslint-disable-next-line no-console
       console.info(this.state.currentTime);

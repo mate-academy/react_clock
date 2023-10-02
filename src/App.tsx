@@ -1,12 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { Clock } from './components';
-
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
+import { getRandomName } from './components/services/functions';
 
 type Style = {
   hasClock: boolean;
@@ -30,7 +25,7 @@ export class App extends React.Component<{}, Style> {
       this.setState({ hasClock: true });
     });
 
-    document.addEventListener('contextmenu', (event) => {
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
       event.preventDefault();
       this.setState({ hasClock: false });
     });
