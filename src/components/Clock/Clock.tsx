@@ -14,7 +14,7 @@ export const Clock: React.FC<Props> = ({ clockName }) => {
       setToday(currentDate);
 
       // eslint-disable-next-line no-console
-      console.info(currentDate);
+      console.info(currentDate.toUTCString().slice(-12, -4));
     }, 1000);
 
     return () => {
