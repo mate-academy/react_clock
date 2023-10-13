@@ -1,15 +1,7 @@
 import { Component } from 'react';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
-
 interface IState {
   intervalId: NodeJS.Timer | null;
-  clockNameIntervalId: NodeJS.Timer | null;
-  clockName: string;
   today: Date;
 }
 
@@ -28,8 +20,6 @@ function getCurrentTime() {
 export class Clock extends Component<IProps, IState> {
   state: IState = {
     intervalId: null,
-    clockNameIntervalId: null,
-    clockName: this.props.name || 'Clock-0',
     today: new Date(),
   };
 
@@ -37,29 +27,9 @@ export class Clock extends Component<IProps, IState> {
     this.startInterval();
   }
 
-  componentDidUpdate(prevProps: IProps) {
-    if (prevProps.name !== this.props.name) {
-      const oldName = this.state.clockName;
-      const newName = this.props.name;
-
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${oldName} to ${newName}`);
-    }
-  }
-
   componentWillUnmount() {
     this.finishInterval();
   }
-
-  changeClockName = () => {
-    const newName = getRandomName();
-    const oldName = this.state.clockName;
-
-    this.setState({ clockName: newName });
-
-    // eslint-disable-next-line no-console
-    console.debug(`Renamed from ${oldName} to ${newName}`);
-  };
 
   updateTime = () => {
     const currentTime = getCurrentTime();
@@ -72,11 +42,9 @@ export class Clock extends Component<IProps, IState> {
   startInterval = () => {
     if (this.state.intervalId === null) {
       const interval = setInterval(this.updateTime, 1000);
-      const nameInterval = setInterval(this.changeClockName, 3300);
 
       this.setState({
         intervalId: interval,
-        clockNameIntervalId: nameInterval,
       });
     }
   };
@@ -86,22 +54,18 @@ export class Clock extends Component<IProps, IState> {
       clearInterval(this.state.intervalId);
     }
 
-    if (typeof this.state.clockNameIntervalId === 'number') {
-      clearInterval(this.state.clockNameIntervalId);
-    }
-
     this.setState({
       intervalId: null,
-      clockNameIntervalId: null,
     });
   };
 
   render() {
-    const { clockName, today } = this.state;
+    const { today } = this.state;
+    const { name } = this.props;
 
     return (
       <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+        <strong className="Clock__name">{name}</strong>
 
         {' time is '}
 
