@@ -37,16 +37,20 @@ export class Clock extends React.PureComponent<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>): void {
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+    prevState: Readonly<State>,
+  ): void {
     if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
 
     if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
   }
-
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId1);
