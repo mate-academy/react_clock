@@ -42,7 +42,6 @@ export class App extends React.Component<{}, State> {
     conextMenuEvent.preventDefault();
     this.setState((prevState) => ({
       hasClock: !prevState.hasClock,
-      clockName: getRandomName(),
     }));
   };
 
@@ -50,7 +49,6 @@ export class App extends React.Component<{}, State> {
     if (mouseDownEvent.button !== 2) {
       this.setState({
         hasClock: true,
-        clockName: getRandomName(),
       });
     }
   };
