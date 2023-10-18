@@ -5,46 +5,40 @@ import { Clock } from './Components/Clock';
 type State = {
   hasClock: boolean,
   clockName: string,
-  timerId: number | undefined,
 };
 
 export class App extends React.Component<{}, State> {
   state = {
-    hasClock: false,
+    hasClock: true,
     clockName: 'Clock-0',
-    timerId: undefined,
   };
 
+  timerId = 0;
+
   componentDidMount(): void {
-    this.setState({ hasClock: true });
     document.addEventListener('contextmenu', this.hideClock);
     document.addEventListener('click', this.showClock);
     this.setClockNameTimer();
   }
 
-  setClockNameTimer = () => {
-    this.setState({
-      timerId: window.setInterval(() => {
-        const curr = this.state.clockName;
-        const newName = this.getRandomName();
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+  }
 
-        this.setState({ clockName: this.getRandomName() });
-        // eslint-disable-next-line no-console
-        console.debug(`Renamed from ${curr} to ${newName}`);
-      }, 3300),
-    });
+  setClockNameTimer = () => {
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: this.getRandomName() });
+    }, 3300);
   };
 
   hideClock = (event: globalThis.MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
-    window.clearInterval(this.state.timerId);
   };
 
   showClock = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: true });
-    this.setClockNameTimer();
   };
 
   getRandomName = () => {

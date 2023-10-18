@@ -2,8 +2,6 @@ import React from 'react';
 
 type State = {
   currentTime: Date,
-  timerId: number | undefined,
-  nameTimerId: number | undefined,
 };
 
 type Props = {
@@ -13,22 +11,28 @@ type Props = {
 export class Clock extends React.Component<Props, State> {
   state = {
     currentTime: new Date(),
-    timerId: undefined,
-    nameTimerId: undefined,
   };
 
+  timerId = 0;
+
   componentDidMount(): void {
-    this.setState({
-      timerId: window.setInterval(() => {
-        this.setState({ currentTime: new Date() });
-        this.showTime();
-      }, 1000),
-    });
+    this.timerId = window.setInterval(() => {
+      this.setState({ currentTime: new Date() });
+      this.showTime();
+    }, 1000);
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+  ): void {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.state.timerId);
-    window.clearInterval(this.state.nameTimerId);
+    window.clearInterval(this.timerId);
   }
 
   showTime = () => {
