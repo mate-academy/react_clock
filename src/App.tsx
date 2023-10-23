@@ -21,22 +21,30 @@ export class App extends React.PureComponent {
       });
     }, 3300);
 
-    document.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault();
-
-      this.setState({
-        hasClock: false,
-      });
-    });
-
-    document.addEventListener('click', (event: MouseEvent) => {
-      event.preventDefault();
-
-      this.setState({
-        hasClock: true,
-      });
-    });
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
   }
+
+  componentWillUnmount(): void {
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+  }
+
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({
+      hasClock: false,
+    });
+  };
+
+  handleLeftClick = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({
+      hasClock: true,
+    });
+  };
 
   render(): React.ReactNode {
     return (
