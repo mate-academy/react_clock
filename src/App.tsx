@@ -15,10 +15,10 @@ export const App: React.FC = () => {
   useEffect(() => {
     const timerId = window.setInterval(() => {
       setToday(new Date());
-    }, 1000);
 
-    // eslint-disable-next-line no-console
-    console.info(new Date());
+      // eslint-disable-next-line no-console
+      console.info(new Date());
+    }, 1000);
 
     return () => {
       window.clearInterval(timerId);
