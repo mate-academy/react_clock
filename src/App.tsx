@@ -28,6 +28,9 @@ export const App: React.FC = () => {
   useEffect(() => {
     const timerId = window.setInterval(() => {
       setClockName(getRandomName());
+
+      // eslint-disable-next-line no-console
+      console.info(getRandomName());
     }, 3300);
 
     return () => {
