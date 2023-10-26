@@ -44,10 +44,10 @@ export class Clock extends Component<ClockProps, ClockState> {
         <strong className="Clock__name">
           {this.props.name}
         </strong>
+        {' time is '}
         <span className="Clock__time">
-          {' time is '}
+          {this.state.time}
         </span>
-        {this.state.time}
       </div>
     );
   }
