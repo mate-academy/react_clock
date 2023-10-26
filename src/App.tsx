@@ -10,14 +10,14 @@ function getRandomName(): string {
 export const App: React.FC = () => {
   const [clockName, setClockName] = useState('Clock-0');
   const [today, setToday] = useState(new Date());
-  const [abc, setAbc] = useState(true);
+  const [isHidden, setIsHidden] = useState(true);
 
   useEffect(() => {
     const timerId = window.setInterval(() => {
       setToday(new Date());
 
       // eslint-disable-next-line no-console
-      console.info(new Date());
+      console.info(new Date().toUTCString().slice(-12, -4));
     }, 1000);
 
     return () => {
@@ -38,18 +38,18 @@ export const App: React.FC = () => {
   document.addEventListener('contextmenu', (event: MouseEvent) => {
     event.preventDefault();
 
-    setAbc(false);
+    setIsHidden(false);
   });
 
   document.addEventListener('click', () => {
-    setAbc(true);
+    setIsHidden(true);
   });
 
   return (
     <div className="App">
       <h1>React clock</h1>
 
-      {abc && (
+      {isHidden && (
         <div className="Clock">
           <strong className="Clock__name">
             {clockName}
