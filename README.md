@@ -43,7 +43,7 @@ Create a `Clock` class component that will update the time every second using a 
     Renamed from oldName to newName
     ```
 - to see `console.debug` messages enable the `verbose` level in DevTools console:
-    
+
 ![How to enable verbose level](./readme-files/enable-verbose-level.png)
 
 > check in the console that a renaming message occurs after each 3-4 time messages.
