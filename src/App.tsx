@@ -6,7 +6,6 @@ export class App extends React.Component<{}, {
   clockTime: string,
   hasClock: boolean,
   isClockVisible: boolean,
-  // lastHideTime: number
 }> {
   nameTimerId = 0;
 
@@ -17,7 +16,6 @@ export class App extends React.Component<{}, {
     clockTime: new Date().toUTCString().slice(-12, -4),
     hasClock: true,
     isClockVisible: true,
-    // lastHideTime: 0,
   };
 
   componentDidMount(): void {
@@ -28,10 +26,10 @@ export class App extends React.Component<{}, {
   }
 
   componentWillUnmount(): void {
-    // this.stopNameTimer();
-    // this.stopTimeTimer();
-    // document.removeEventListener('contextmenu', this.hideClock);
-    // document.removeEventListener('click', this.showClock);
+    this.stopNameTimer();
+    this.stopTimeTimer();
+    document.removeEventListener('contextmenu', this.hideClock);
+    document.removeEventListener('click', this.showClock);
   }
 
   getRandomName = (): string => {
@@ -44,6 +42,7 @@ export class App extends React.Component<{}, {
     if (this.state.isClockVisible) {
       event.preventDefault();
       this.setState({ isClockVisible: false });
+      this.stopTimeTimer();
     }
   };
 
@@ -61,11 +60,11 @@ export class App extends React.Component<{}, {
   startNameTimer(): void {
     this.nameTimerId = window.setInterval(() => {
       const clockName = this.getRandomName();
+      const oldName = this.state.clockName;
+
+      this.setState({ clockName: clockName });
 
       if (this.state.isClockVisible) {
-        const oldName = this.state.clockName;
-
-        this.setState({ clockName });
         // eslint-disable-next-line no-console
         console.debug(`Renamed from ${oldName} to ${clockName}`);
       }
