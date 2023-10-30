@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 
-import Timer from './components/Timer';
+import Timer from './components/Timer/Timer';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
