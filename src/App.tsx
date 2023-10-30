@@ -3,15 +3,15 @@ import './App.scss';
 
 import Timer from './components/Timer/Timer';
 
+interface State {
+  clockName: string;
+  hasClock: boolean;
+}
+
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
 
   return `Clock-${value}`;
-}
-
-interface State {
-  clockName: string;
-  hasClock: boolean;
 }
 
 export class App extends React.Component<{}, State> {
