@@ -23,7 +23,9 @@ export class App extends React.PureComponent {
 
   componentDidMount() {
     document.addEventListener('contextmenu', this.handleMouseRClick);
+
     document.addEventListener('click', this.handleMouseLClick);
+
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
@@ -31,17 +33,21 @@ export class App extends React.PureComponent {
 
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.handleMouseRClick);
+
     document.removeEventListener('click', this.handleMouseLClick);
+
     window.clearInterval(this.timerId);
   }
 
   handleMouseLClick = (event: MouseEvent) => {
     event.preventDefault();
+
     this.setState({ hasClock: true });
   };
 
   handleMouseRClick = (event: MouseEvent) => {
     event.preventDefault();
+
     this.setState({ hasClock: false });
   };
 
