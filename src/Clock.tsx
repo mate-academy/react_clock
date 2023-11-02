@@ -17,7 +17,7 @@ export class Clock extends Component {
   timerId = 0;
 
   componentDidMount() {
-    window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
 
       // eslint-disable-next-line no-console
