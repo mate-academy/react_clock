@@ -41,6 +41,7 @@ class App extends React.Component {
     const prevClockName = prevState.clockName;
 
     if (prevClockName !== this.state.clockName && this.state.hasClock) {
+      // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevClockName} to ${this.state.clockName}`);
     }
   }
