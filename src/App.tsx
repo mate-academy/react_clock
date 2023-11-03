@@ -37,7 +37,7 @@ class App extends React.Component {
     });
   }
 
-  componentDidUpdate(_prev_Props: any, prevState: State): void {
+  componentDidUpdate(_prevProps: unknown, prevState: State): void {
     const prevClockName = prevState.clockName;
 
     if (prevClockName !== this.state.clockName && this.state.hasClock) {
@@ -51,10 +51,12 @@ class App extends React.Component {
       event.preventDefault();
       this.setState({ hasClock: false });
     });
+
     document.addEventListener('click', (event: MouseEvent) => {
       event.preventDefault();
       this.setState({ hasClock: true });
     });
+
     window.clearInterval(this.timerId);
   }
 
