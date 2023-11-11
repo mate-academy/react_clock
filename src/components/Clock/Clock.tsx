@@ -9,7 +9,7 @@ type State = {
 };
 
 function getCurrentTime() {
-  return new Date().toLocaleTimeString();
+  return new Date().toUTCString().slice(-12, -4);
 }
 
 export class Clock extends React.Component<Props, State> {
