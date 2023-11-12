@@ -50,9 +50,7 @@ export class App extends React.PureComponent<Props, State> {
     if (prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
       console.debug(
-        'Renamed from %s to %s',
-        prevState.clockName,
-        this.state.clockName,
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`
       );
     }
 
