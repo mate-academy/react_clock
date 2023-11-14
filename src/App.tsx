@@ -7,33 +7,109 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+interface AppState {
+  hasClock: boolean;
+  clockName: string;
+  today: Date;
+  consoleInfoInterval: number | null;
+}
+
+export class App extends React.Component<{}, AppState> {
+  state = {
+    hasClock: true,
+    clockName: 'Clock-0',
+    today: new Date(),
+    consoleInfoInterval: null,
+    // this.timerId
+  };
+  // const today = new Date();
+  // let clockName = 'Clock-0';
 
   // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  // componentDidMount();
 
   // this code stops the timer
-  window.clearInterval(timerId);
+  //
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  // window.clearInterval(timerId);
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+  componentDidMount() {
+    if (this.state.hasClock) {
+      const consoleInfoInterval = this.printInfo();
 
-        {' time is '}
+      this.setState({ consoleInfoInterval });
+    }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+    // this.printInfo();
+
+    this.getTime();
+    this.timerId();
+
+    // this.setState({ consoleInfoInterval });
+  }
+
+  componentWillUnmount() {
+    if (!this.state.hasClock && this.state.consoleInfoInterval) {
+      clearInterval(this.state.consoleInfoInterval);
+      this.setState({ consoleInfoInterval: null });
+    }
+  }
+
+  getTime() {
+    const time = window.setInterval(() => {
+      this.setState({ today: new Date() });
+    }, 1000);
+
+    return time;
+  }
+
+  timerId() {
+    return window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+  }
+
+  printInfo() {
+    if (this.state.hasClock) {
+      return window.setInterval(() => {
+        // eslint-disable-next-line no-console
+        console.info(this.state.today);
+      }, 1000);
+    }
+
+    return null;
+  }
+
+  render() {
+    const { today, hasClock, clockName } = this.state;
+
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    });
+
+    document.addEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock && (
+          <div className="Clock">
+            <strong className="Clock__name">
+              {clockName}
+            </strong>
+
+            {' time is '}
+
+            <span className="Clock__time">
+              {today.toUTCString().slice(-12, -4)}
+            </span>
+          </div>
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
