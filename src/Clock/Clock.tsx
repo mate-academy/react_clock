@@ -1,22 +1,26 @@
 import React from 'react';
 
 interface Props {
-  today: Date,
   clockName: string,
-  hasClock: boolean,
 }
 
 interface ClockState {
-  consoleinfointerval: null | number,
+  today: Date,
 }
 
 export class Clock extends React.PureComponent<Props, ClockState> {
   state = {
-    consoleinfointerval: null,
+    today: new Date(),
   };
 
+  timerId = 0;
+
   componentDidMount(): void {
-    this.printInfo();
+    this.setTime();
+    this.timerId = window.setInterval(() => {
+      // eslint-disable-next-line no-console
+      console.info(this.state.today.toUTCString().slice(-12, -4));
+    }, 1000);
   }
 
   componentDidUpdate(prevProps: Props): void {
@@ -27,23 +31,17 @@ export class Clock extends React.PureComponent<Props, ClockState> {
   }
 
   componentWillUnmount(): void {
-    if (this.state.consoleinfointerval !== null) {
-      window.clearInterval(this.state.consoleinfointerval);
-      this.setState({ consoleinfointerval: null });
-    }
+    window.clearInterval(this.timerId);
   }
 
-  printInfo() {
-    const info = window.setInterval(() => {
-      // eslint-disable-next-line no-console
-      console.info(this.props.today);
+  setTime() {
+    return window.setInterval(() => {
+      this.setState({ today: new Date() });
     }, 1000);
-
-    this.setState({ consoleinfointerval: info });
   }
 
   render() {
-    const { clockName, today } = this.props;
+    const { clockName } = this.props;
 
     return (
       <div className="Clock">
@@ -54,7 +52,7 @@ export class Clock extends React.PureComponent<Props, ClockState> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
+          {this.state.today.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );
