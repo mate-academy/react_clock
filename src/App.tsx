@@ -1,39 +1,67 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
+interface State {
+  clockName: string,
+  hasClock: boolean,
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component<{}, State> {
+  state: State = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  timerId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount(): void {
+    this.timerId = window.setInterval(() => {
+      const newName = this.getRandomName();
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+      this.setState({
+        clockName: newName,
+      });
+    }, 3300);
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    document.addEventListener('contextmenu', this.handleContextMenu);
+    document.addEventListener('click', this.handleLeftClick);
+  }
 
-        {' time is '}
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleLeftClick);
+  }
+
+  getRandomName = () => {
+    const value = Date.now().toString().slice(-4);
+
+    return `Clock-${value}`;
+  };
+
+  handleLeftClick = (e: MouseEvent) => {
+    e.preventDefault();
+
+    this.setState({ hasClock: true });
+  };
+
+  handleContextMenu = (e: MouseEvent) => {
+    e.preventDefault();
+
+    this.setState({ hasClock: false });
+  };
+
+  render(): React.ReactNode {
+    const { clockName, hasClock } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock && <Clock clockName={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
