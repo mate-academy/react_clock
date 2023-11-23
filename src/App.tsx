@@ -26,8 +26,8 @@ export class App extends React.PureComponent<{}, State> {
       clockName: getRandomName(),
     });
 
-    document.addEventListener('contextmenu', this.handleLeftClick);
-    document.addEventListener('click', this.handleRightClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
   }
 
   componentDidUpdate(): void {
