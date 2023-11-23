@@ -13,7 +13,7 @@ ClockState> {
   private timerId: NodeJS.Timeout | null = null;
 
   state = {
-    currentTime: new Date().toUTCString().slice(-12,-4),
+    currentTime: new Date().toUTCString().slice(-12, -4),
   };
 
   componentDidMount() {
@@ -22,9 +22,10 @@ ClockState> {
 
   componentDidUpdate(prevProps: ClockProps) {
     if (prevProps.name !== this.props.name) {
+      const message = `Renamed from ${prevProps.name} to ${this.props.name}`;
+
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.name} to
-      ${this.props.name}`);
+      console.debug(message);
     }
   }
 
