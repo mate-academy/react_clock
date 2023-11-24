@@ -27,6 +27,10 @@ export class App extends React.PureComponent<{}, State> {
     document.addEventListener('click', this.handleLeftClick);
   }
 
+  componentDidUpdate(): void {
+    this.update();
+  }
+
   componentWillUnmount(): void {
     if (!this.state.hasClock) {
       window.clearInterval(this.timerId2);
