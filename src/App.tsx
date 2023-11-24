@@ -27,10 +27,6 @@ export class App extends React.PureComponent<{}, State> {
     document.addEventListener('click', this.handleLeftClick);
   }
 
-  // componentDidUpdate(): void {
-  //   this.update();
-  // }
-
   componentWillUnmount(): void {
     if (!this.state.hasClock) {
       window.clearInterval(this.timerId2);
@@ -39,7 +35,6 @@ export class App extends React.PureComponent<{}, State> {
 
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
-    // window.clearInterval(this.timerId2);
     this.setState({
       hasClock: false,
     });
@@ -53,7 +48,6 @@ export class App extends React.PureComponent<{}, State> {
   };
 
   update() {
-    // window.clearInterval(this.timerId2);
     this.timerId2 = window.setInterval(() => {
       this.setState({
         clockName: getRandomName(),
