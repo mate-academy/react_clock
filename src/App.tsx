@@ -27,9 +27,9 @@ export class App extends React.PureComponent<{}, State> {
     document.addEventListener('click', this.handleLeftClick);
   }
 
-  componentDidUpdate(): void {
-    this.update();
-  }
+  // componentDidUpdate(): void {
+  //   this.update();
+  // }
 
   componentWillUnmount(): void {
     if (!this.state.hasClock) {
@@ -53,7 +53,7 @@ export class App extends React.PureComponent<{}, State> {
   };
 
   update() {
-    window.clearInterval(this.timerId2);
+    // window.clearInterval(this.timerId2);
     this.timerId2 = window.setInterval(() => {
       this.setState({
         clockName: getRandomName(),
