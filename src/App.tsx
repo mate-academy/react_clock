@@ -22,21 +22,9 @@ export class App extends React.PureComponent<{}, State> {
   timerId2 = 0;
 
   componentDidMount(): void {
+    this.update();
     document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
-  }
-
-  componentDidUpdate(): void {
-    if (this.state.hasClock) {
-      window.clearInterval(this.timerId2);
-      this.timerId2 = window.setInterval(() => {
-        this.setState({
-          clockName: getRandomName(),
-        });
-        // eslint-disable-next-line no-console
-        console.debug('Renamed from oldName to newName');
-      }, 3300);
-    }
   }
 
   componentWillUnmount(): void {
@@ -59,6 +47,19 @@ export class App extends React.PureComponent<{}, State> {
       hasClock: true,
     });
   };
+
+  update() {
+    if (this.state.hasClock) {
+      window.clearInterval(this.timerId2);
+      this.timerId2 = window.setInterval(() => {
+        this.setState({
+          clockName: getRandomName(),
+        });
+        // eslint-disable-next-line no-console
+        console.debug('Renamed from oldName to newName');
+      }, 3300);
+    }
+  }
 
   render() {
     return (
