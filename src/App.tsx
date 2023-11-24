@@ -22,10 +22,6 @@ export class App extends React.PureComponent<{}, State> {
   timerId2 = 0;
 
   componentDidMount(): void {
-    this.setState({
-      clockName: getRandomName(),
-    });
-
     document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
   }

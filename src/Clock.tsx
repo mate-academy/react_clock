@@ -23,7 +23,7 @@ export class Clock extends React.PureComponent<Props, State> {
           time: new Date(),
         });
         // eslint-disable-next-line no-console
-        console.info(this.timerId);
+        console.info(this.state.time.toUTCString().slice(-12, -4));
       }, 1000);
     }
   }
