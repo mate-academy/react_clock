@@ -39,7 +39,7 @@ export class App extends React.PureComponent<{}, State> {
 
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
-    window.clearInterval(this.timerId2);
+    // window.clearInterval(this.timerId2);
     this.setState({
       hasClock: false,
     });
@@ -53,16 +53,12 @@ export class App extends React.PureComponent<{}, State> {
   };
 
   update() {
-    if (this.state.hasClock) {
-      window.clearInterval(this.timerId2);
-      this.timerId2 = window.setInterval(() => {
-        this.setState({
-          clockName: getRandomName(),
-        });
-        // eslint-disable-next-line no-console
-        console.debug('Renamed from oldName to newName');
-      }, 3300);
-    }
+    window.clearInterval(this.timerId2);
+    this.timerId2 = window.setInterval(() => {
+      this.setState({
+        clockName: getRandomName(),
+      });
+    }, 3300);
   }
 
   render() {
