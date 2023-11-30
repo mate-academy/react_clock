@@ -1,39 +1,63 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock/Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+type AppProps = {
+  clockName: string,
+  hasClock: boolean,
+};
 
-  return `Clock-${value}`;
-}
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component<{}, AppProps> {
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  state = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  getRandomName = (): string => {
+    const value = Date.now().toString().slice(-4);
+  
+    return `Clock-${value}`;
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  timerId = 0;
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+  addClock = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({hasClock: false})
+  }
 
-        {' time is '}
+  setClock = () => {
+    this.setState({clockName:this.getRandomName()})
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  deleteClock = () => {
+    this.setState({hasClock: true})
+  }
+
+  componentDidMount(): void {
+    this.timerId = window.setInterval(this.setClock, 3300);
+    document.addEventListener('click', this.deleteClock);
+    document.addEventListener('contextmenu', this.addClock);
+  }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {this.state.hasClock &&
+          <Clock
+            clockName={this.state.clockName}
+            hasClock={this.state.hasClock}
+          />
+        }
       </div>
-    </div>
-  );
+    );
+  };
 };
