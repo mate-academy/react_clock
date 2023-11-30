@@ -21,12 +21,6 @@ export class App extends React.Component<{}, AppProps> {
     document.addEventListener('contextmenu', this.addClock);
   }
 
-  getRandomName = (): string => {
-    const value = Date.now().toString().slice(-4);
-
-    return `Clock-${value}`;
-  };
-
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
   }
@@ -42,6 +36,12 @@ export class App extends React.Component<{}, AppProps> {
   addClock = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
+  };
+
+  getRandomName = (): string => {
+    const value = Date.now().toString().slice(-4);
+
+    return `Clock-${value}`;
   };
 
   render() {

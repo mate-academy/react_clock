@@ -29,15 +29,15 @@ export class Clock extends React.Component<ClockProps, State> {
     }
   }
 
+  componentWillUnmount(): void {
+    window.clearInterval(this.renewalData);
+  }
+
   addDate = () => {
     this.setState({ today: new Date().toUTCString().slice(-12, -4) });
     // eslint-disable-next-line no-console
     console.info(this.state.today);
   };
-
-  componentWillUnmount(): void {
-    window.clearInterval(this.renewalData);
-  }
 
   render() {
     const { clockName } = this.props;
