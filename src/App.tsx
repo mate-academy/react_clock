@@ -1,5 +1,7 @@
-import React from 'react';
-import './App.scss';
+import { Component } from 'react'; // react component
+import './App.scss'; // styles
+import { AppState } from './types'; // types
+import { Clock } from './Clock'; // clock component
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +9,47 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends Component<{}, AppState> {
+  state = {
+    hasClock: true,
+    clockName: 'Clock-0',
+    intervalId: undefined,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  componentDidMount(): void {
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    });
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+    document.addEventListener('click', (event: MouseEvent) => {
+      event.preventDefault();
+      this.setState({ hasClock: true });
+    });
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    const tempIntervalId = window.setInterval(() => {
+      const newName = getRandomName();
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${this.state.clockName} to ${newName}`);
+      this.setState({ clockName: newName });
+    }, 3300);
 
-        {' time is '}
+    this.setState({ intervalId: tempIntervalId });
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  render() {
+    const { hasClock, clockName, intervalId } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {
+          hasClock
+            ? <Clock name={clockName} intervalId={intervalId} />
+            : null
+        }
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
