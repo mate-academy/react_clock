@@ -7,34 +7,13 @@ type AppProps = {
   hasClock: boolean,
 };
 
-
 export class App extends React.Component<{}, AppProps> {
-
   state = {
     clockName: 'Clock-0',
     hasClock: true,
   };
 
-  getRandomName = (): string => {
-    const value = Date.now().toString().slice(-4);
-  
-    return `Clock-${value}`;
-  }
-
   timerId = 0;
-
-  addClock = (event: MouseEvent) => {
-    event.preventDefault();
-    this.setState({hasClock: false})
-  }
-
-  setClock = () => {
-    this.setState({clockName:this.getRandomName()})
-  }
-
-  deleteClock = () => {
-    this.setState({hasClock: true})
-  }
 
   componentDidMount(): void {
     this.timerId = window.setInterval(this.setClock, 3300);
@@ -44,6 +23,25 @@ export class App extends React.Component<{}, AppProps> {
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
+  }
+
+  setClock = () => {
+    this.setState({ clockName: this.getRandomName() });
+  };
+
+  deleteClock = () => {
+    this.setState({ hasClock: true });
+  };
+
+  addClock = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  getRandomName = (): string => {
+    const value = Date.now().toString().slice(-4);
+
+    return `Clock-${value}`;
   };
 
   render() {
@@ -51,13 +49,14 @@ export class App extends React.Component<{}, AppProps> {
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock &&
-          <Clock
-            clockName={this.state.clockName}
-            hasClock={this.state.hasClock}
-          />
-        }
+        {this.state.hasClock
+          && (
+            <Clock
+              clockName={this.state.clockName}
+              hasClock={this.state.hasClock}
+            />
+          )}
       </div>
     );
-  };
-};
+  }
+}
