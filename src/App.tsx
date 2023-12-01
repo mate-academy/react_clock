@@ -12,7 +12,6 @@ export class App extends React.Component {
   state = {
     clockName: 'Clock-0',
     hasClock: true,
-    currentDate: new Date(),
   };
 
   timerId: number | undefined = undefined;
@@ -23,10 +22,6 @@ export class App extends React.Component {
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
-
-    this.date = window.setInterval(() => {
-      this.setState({ currentDate: new Date() });
-    }, 1000);
 
     document.addEventListener('contextmenu', (event: MouseEvent) => {
       event.preventDefault(); // not to show the context menu
@@ -40,7 +35,6 @@ export class App extends React.Component {
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
-    window.clearInterval(this.date);
 
     document.removeEventListener('contextmenu', (event: MouseEvent) => {
       event.preventDefault();
@@ -60,12 +54,7 @@ export class App extends React.Component {
         <h1>React clock</h1>
 
         {hasClock
-            && (
-              <Clock
-                clockName={this.state.clockName}
-                clockDate={this.state.currentDate}
-              />
-            )}
+            && <Clock clockName={this.state.clockName} />}
       </div>
     );
   }
