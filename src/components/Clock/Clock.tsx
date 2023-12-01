@@ -26,7 +26,7 @@ export class Clock extends React.PureComponent<Props, State> {
   componentDidUpdate(prevProps: Readonly<Props>): void {
     if (prevProps.clockName !== this.props.clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+      console.info(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
     }
   }
 
