@@ -1,45 +1,48 @@
 import { Component } from 'react'; // react component
-import { ClockState, ClockProps } from './types'; // types
+import { ClockState, ClockProps } from './ClockTypes'; // types
 
 export class Clock extends Component<ClockProps, ClockState> {
   state = {
     clockId: undefined,
-    time: new Date().toUTCString().slice(-12, -4),
+    time: new Date(),
   };
 
   componentDidMount(): void {
-    this.setState({
-      clockId: window.setInterval(() => {
-        const currentDate = new Date();
-        const currentTime = currentDate.toUTCString().slice(-12, -4);
+    const tempClockId = window.setInterval(() => {
+      this.setState({ time: new Date() });
 
-        this.setState({ time: currentTime });
+      // eslint-disable-next-line no-console
+      console.info(this.state.time.toUTCString().slice(-12, -4));
+    }, 1000);
 
-        // eslint-disable-next-line no-console
-        console.info(currentTime);
-      }, 1000),
-    });
+    this.setState({ clockId: tempClockId });
+  }
+
+  componentDidUpdate(prevProps: ClockProps): void {
+    if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+    }
   }
 
   componentWillUnmount(): void {
     window.clearInterval(this.state.clockId);
-    window.clearInterval(this.props.intervalId);
   }
 
   render() {
-    const { name } = this.props;
+    const { clockName } = this.props;
     const { time } = this.state;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {name}
+          {clockName}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {time}
+          {time.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );

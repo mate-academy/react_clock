@@ -1,6 +1,6 @@
 import { Component } from 'react'; // react component
 import './App.scss'; // styles
-import { AppState } from './types'; // types
+import { AppProps, AppState } from './AppTypes'; // types
 import { Clock } from './Clock'; // clock component
 
 function getRandomName(): string {
@@ -9,45 +9,35 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class App extends Component<{}, AppState> {
+export class App extends Component<AppProps, AppState> {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
-    intervalId: undefined,
   };
 
   componentDidMount(): void {
+    window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+
     document.addEventListener('contextmenu', (event: MouseEvent) => {
       event.preventDefault();
       this.setState({ hasClock: false });
     });
 
-    document.addEventListener('click', (event: MouseEvent) => {
-      event.preventDefault();
+    document.addEventListener('click', () => {
       this.setState({ hasClock: true });
     });
-
-    const tempIntervalId = window.setInterval(() => {
-      const newName = getRandomName();
-
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${this.state.clockName} to ${newName}`);
-      this.setState({ clockName: newName });
-    }, 3300);
-
-    this.setState({ intervalId: tempIntervalId });
   }
 
   render() {
-    const { hasClock, clockName, intervalId } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
         {
-          hasClock
-            ? <Clock name={clockName} intervalId={intervalId} />
-            : null
+          hasClock && <Clock clockName={clockName} />
         }
       </div>
     );
