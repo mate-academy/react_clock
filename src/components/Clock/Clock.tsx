@@ -23,14 +23,14 @@ export class Clock extends React.PureComponent<Props> {
 
   // eslint-disable-next-line no-console
   componentDidUpdate(prevProps: Props, prevState: State): void {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+
     if (prevState.time !== this.state.time) {
       // eslint-disable-next-line no-console
       console.info(this.state.time);
-    }
-
-    if (prevProps.name !== this.props.name) {
-      // eslint-disable-next-line no-console
-      console.debug(prevProps.name, this.props.name);
     }
   }
 
