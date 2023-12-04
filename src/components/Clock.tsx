@@ -19,10 +19,10 @@ export class Clock extends React.Component<Props> {
       this.setState({
         time: new Date(),
       });
+      // eslint-disable-next-line no-console
+      console.info(this.state.time.toUTCString().slice(-12, -4));
     }, 1000);
 
-    // eslint-disable-next-line no-console
-    console.info(this.state.time.toUTCString().slice(-12, -4));
     this.setState({ timerId });
   }
 
