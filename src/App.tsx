@@ -1,5 +1,6 @@
-import React from 'react';
+import { Component } from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +8,60 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+type Props = {};
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+interface State {
+  hasClock: boolean;
+  clockName: string;
+}
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+export class App extends Component<Props, State> {
+  state: State = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount() {
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+      this.setState({
+        hasClock: false,
+      });
+    });
+    document.addEventListener('click', () => {
+      this.setState({
+        hasClock: true,
+      });
+    });
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+    window.setInterval(() => {
+      this.setState({
+        clockName: getRandomName(),
+      });
+    }, 3300);
+  }
 
-        {' time is '}
+  componentDidUpdate(_prevProp: Props, prevState: State): void {
+    if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  render() {
+    let content;
+
+    if (this.state.hasClock) {
+      content = (
+        <Clock clockName={this.state.clockName} />
+      );
+    }
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {content}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
