@@ -7,15 +7,21 @@ Create a `Clock` class component that will update the time every second using a 
 > Here is [the working version](https://mate-academy.github.io/react_clock)
 
 - print current time on the page on page load;
-  - use `.toUTCString().slice(-12, -4)` methods do awoid timezone issues;
+  - use `.toUTCString().slice(-12, -4)` methods do avoid timezone issues;
 - update the time every second using the `window.setInterval`;
-- start the timer only when the component is added to the page (`componentDidMount`).- every second print the time in the DevTools using `console.info` method (**not** the `console.log`);
+- start the timer only when the component is added to the page (`componentDidMount`).
+- every second print the time in the DevTools using `console.info` method (**not** the `console.log`);
+- add the next comment above the console.debug line to ignore linter error
+    ```js
+    // eslint-disable-next-line no-console
+    console.info('some message');
+    ```
 - make the `App` a class component;
 - add the `hasClock` property to the `App` state;
 - the `Clock` should be visible only when the `hasClock` is `true`;
 - hide the `Clock` on a right mouse click in the `document` (`contextmenu` event):
     ```js
-    document.addEventListener('contextmenu', (event) => {
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
       event.preventDefault(); // not to show the context menu
 
       // put your code here
