@@ -21,18 +21,6 @@ export class App extends React.PureComponent<{}, State> {
 
   timerId = 0;
 
-  handleDocumentRightClick = (event: MouseEvent) => {
-    event.preventDefault();
-    this.setState({ hasClock: false });
-  };
-
-  handleDocumentLeftClick = (event: MouseEvent) => {
-    event.preventDefault();
-    if (event.button === 0) {
-        this.setState({ hasClock: true });
-    }
-  };
-
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -44,6 +32,18 @@ export class App extends React.PureComponent<{}, State> {
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
   }
+
+  handleDocumentRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handleDocumentLeftClick = (event: MouseEvent) => {
+    event.preventDefault();
+    if (event.button === 0) {
+      this.setState({ hasClock: true });
+    }
+  };
 
   render() {
     return (

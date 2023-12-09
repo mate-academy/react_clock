@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type Props = {
   clockName: string;
@@ -45,7 +45,7 @@ export class Clock extends React.PureComponent<Props, State> {
       <div className="Clock">
         <strong className="Clock__name">{clockName}</strong>
 
-        {" time is "}
+        {' time is '}
 
         <span className="Clock__time">{time.toUTCString().slice(-12, -4)}</span>
       </div>
