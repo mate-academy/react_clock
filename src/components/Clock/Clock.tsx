@@ -18,7 +18,7 @@ export class Clock extends React.PureComponent<Props> {
         today: new Date(),
       }));
 
-      window.console.info(this.state.today);
+      window.console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
