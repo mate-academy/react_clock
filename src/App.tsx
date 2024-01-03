@@ -7,8 +7,14 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
+type State = {
+  today: Date,
+  clockName: string,
+  hasClock: boolean,
+};
+
 export class App extends React.PureComponent {
-  state = {
+  state: State = {
     today: new Date(),
     clockName: 'Clock-0',
     hasClock: true,
@@ -19,8 +25,13 @@ export class App extends React.PureComponent {
   timerNameId = 0;
 
   componentDidMount(): void {
+    this.setState({ today: new Date() });
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
+      if (this.state.hasClock) {
+        // eslint-disable-next-line
+        console.info(this.state.today.toUTCString().slice(-12, -4));
+      }
     }, 1000);
 
     this.timerNameId = window.setInterval(() => {
@@ -32,6 +43,17 @@ export class App extends React.PureComponent {
     document.addEventListener('click', () => {
       this.setState({ hasClock: true });
     });
+  }
+
+  componentDidUpdate(prevProps: Readonly<{}>, prevState: State): void {
+    if (prevState.clockName
+      !== this.state.clockName
+      && this.state.hasClock
+      && prevProps
+    ) {
+      // eslint-disable-next-line
+      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
   }
 
   componentWillUnmount(): void {
@@ -46,10 +68,6 @@ export class App extends React.PureComponent {
   };
 
   render(): React.ReactNode {
-    if (this.state.hasClock) {
-      // console.info(this.state.today.toUTCString().slice(-12, -4));
-    }
-
     return (
       <div className="App">
         <h1>React clock</h1>
