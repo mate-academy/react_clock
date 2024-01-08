@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom';
-import { AppClass } from './AppClass';
+import { App } from './App';
 // import { AppFC } from './AppFC';
 
 ReactDOM.render(
-  <AppClass />,
+  <App />,
   // <AppFC />,
   document.getElementById('root'),
 );

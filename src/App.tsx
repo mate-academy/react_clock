@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { ClockClass } from './components/clockClass';
+import { Clock } from './components/clock';
 
 type State = {
   hasClock: boolean;
@@ -14,7 +14,7 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class AppClass extends React.Component<{}, State> {
+export class App extends React.Component<{}, State> {
   state: State = {
     hasClock: true,
     clockName: 'Clock-0',
@@ -87,7 +87,7 @@ export class AppClass extends React.Component<{}, State> {
         <h1>React clock</h1>
 
         {hasClock && (
-          <ClockClass
+          <Clock
             clockName={clockName}
             onUpdateToday={this.onUpdateToday}
           />

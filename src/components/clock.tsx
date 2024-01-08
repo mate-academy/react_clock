@@ -9,7 +9,7 @@ type State = {
   today: Date;
 };
 
-export class ClockClass extends React.Component<ClockProps, State> {
+export class Clock extends React.Component<ClockProps, State> {
   state: State = {
     today: new Date(),
   };
