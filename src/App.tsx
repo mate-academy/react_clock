@@ -1,5 +1,13 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './component/Clock';
+
+type Props = {};
+
+type State = {
+  hasClock: boolean;
+  clockName: string,
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +15,78 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component<Props, State> {
+  state: State = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  timerId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount(): void {
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    document.addEventListener('click', this.handleClockShow);
+    document.addEventListener('contextmenu', this.handleClockHide);
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+  handleClockShow = (event: MouseEvent) => {
+    event.preventDefault();
+    if (!this.state.hasClock) {
+      this.setState({ hasClock: true });
+    }
+  };
 
-        {' time is '}
+  handleClockHide = (event: MouseEvent) => {
+    event.preventDefault();
+    if (this.state.hasClock) {
+      this.setState({ hasClock: false });
+    }
+  };
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  render() {
+    const { hasClock } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {hasClock && (
+          <Clock name={this.state.clockName} />
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+// export const App: React.FC = () => {
+//   const today = new Date();
+//   let clockName = 'Clock-0';
+
+//   // This code starts a timer
+//   const timerId = window.setInterval(() => {
+//     clockName = getRandomName();
+//   }, 3300);
+
+//   // this code stops the timer
+//   window.clearInterval(timerId);
+
+//   return (
+//     <div className="App">
+//       <h1>React clock</h1>
+
+//       <div className="Clock">
+//         <strong className="Clock__name">
+//           {clockName}
+//         </strong>
+
+//         {' time is '}
+
+//         <span className="Clock__time">
+//           {today.toUTCString().slice(-12, -4)}
+//         </span>
+//       </div>
+//     </div>
+//   );
+// };
