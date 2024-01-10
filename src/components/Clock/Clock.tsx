@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 function getRandomName(previousName: string): string {
   const value = Date.now().toString().slice(-4);
@@ -15,45 +15,58 @@ function getCurrentTime(): string {
   return currentDate.toUTCString().slice(-12, -4);
 }
 
-export const Clock: React.FC = () => {
-  const [time, setTime] = useState(getCurrentTime());
-  const [clockName, setClockName] = useState('Clock-0');
+type State = {
+  time: string;
+  clockName: string;
+};
 
-  useEffect(() => {
-    let timerId = 0;
-    let timerName = 0;
+export class Clock extends React.PureComponent {
+  state: State = {
+    time: getCurrentTime(),
+    clockName: 'Clock-0',
+  };
+
+  timerId = 0;
+
+  timerName = 0;
+
+  componentDidMount(): void {
+    const { clockName: previousName } = this.state;
 
     // This code starts a timer
-    timerName = window.setInterval(() => {
-      setClockName(getRandomName(clockName));
+    this.timerName = window.setInterval(() => {
+      this.setState({ clockName: getRandomName(previousName) });
     }, 3300);
 
-    timerId = window.setInterval(() => {
+    this.timerId = window.setInterval(() => {
       const currentTime = getCurrentTime();
 
       // eslint-disable-next-line no-console
       console.info(currentTime);
-      setTime(currentTime);
+      this.setState({ time: currentTime });
     }, 1000);
+  }
 
-    return () => {
-      window.clearInterval(timerId);
-      window.clearInterval(timerName);
-    };
-  }, [clockName]);
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+    window.clearInterval(this.timerName);
+  }
 
-  return (
-    <div className="Clock">
-      <strong className="Clock__name">
-        {clockName}
-      </strong>
+  render(): React.ReactNode {
+    const { time, clockName } = this.state;
 
-      {' time is '}
+    return (
+      <div className="Clock">
+        <strong className="Clock__name">
+          {clockName}
+        </strong>
 
-      <span className="Clock__time">
-        {time}
-      </span>
-    </div>
+        {' time is '}
 
-  );
-};
+        <span className="Clock__time">
+          {time}
+        </span>
+      </div>
+    );
+  }
+}

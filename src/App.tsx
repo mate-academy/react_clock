@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
+import { ClockFc } from './components/ClockFc';
 
 export const App: React.FC = () => {
   const [hasClock, setHasClock] = useState(true);
@@ -30,7 +31,12 @@ export const App: React.FC = () => {
       <h1>React clock</h1>
 
       {hasClock && (
-        <Clock />
+        <>
+          <p>Fuction comp:</p>
+          <ClockFc />
+          <p>Class comp:</p>
+          <Clock />
+        </>
       )}
     </div>
   );
