@@ -1,70 +1,56 @@
 import React from 'react';
 
-function getRandomName(previousName: string): string {
-  const value = Date.now().toString().slice(-4);
-
-  // eslint-disable-next-line no-console
-  console.debug(`Renamed from ${previousName} to ${value}`);
-
-  return `Clock-${value}`;
-}
-
-function getCurrentTime(): string {
-  const currentDate = new Date();
-
-  return currentDate.toUTCString().slice(-12, -4);
-}
-
-type State = {
-  time: string;
-  clockName: string;
+type Props = {
+  name: string;
 };
 
-export class Clock extends React.PureComponent {
+type State = {
+  today: Date;
+};
+
+export class Clock extends React.Component<Props, State> {
   state: State = {
-    time: getCurrentTime(),
-    clockName: 'Clock-0',
+    today: new Date(),
   };
 
   timerId = 0;
 
-  timerName = 0;
-
-  componentDidMount(): void {
-    const { clockName: previousName } = this.state;
-
-    // This code starts a timer
-    this.timerName = window.setInterval(() => {
-      this.setState({ clockName: getRandomName(previousName) });
-    }, 3300);
-
+  componentDidMount() {
     this.timerId = window.setInterval(() => {
-      const currentTime = getCurrentTime();
+      this.setState({
+        today: new Date(),
+      });
 
       // eslint-disable-next-line no-console
-      console.info(currentTime);
-      this.setState({ time: currentTime });
+      console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
-  componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
-    window.clearInterval(this.timerName);
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
   }
 
-  render(): React.ReactNode {
-    const { time, clockName } = this.state;
+  componentWillUnmount() {
+    window.clearInterval(this.timerId);
+  }
+
+  render() {
+    const { name } = this.props;
+    const { today } = this.state;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {clockName}
+          {name}
         </strong>
 
         {' time is '}
 
         <span className="Clock__time">
-          {time}
+          {today.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );

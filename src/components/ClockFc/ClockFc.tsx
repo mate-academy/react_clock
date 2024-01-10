@@ -12,6 +12,9 @@ function getRandomName(previousName: string): string {
 function getCurrentTime(): string {
   const currentDate = new Date();
 
+  // // eslint-disable-next-line no-console
+  // console.log(currentDate.toUTCString().slice(-12, -4));
+
   return currentDate.toUTCString().slice(-12, -4);
 }
 
