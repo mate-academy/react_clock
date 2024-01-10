@@ -1,18 +1,51 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from 'react';
 import './App.scss';
 import { ClockFC } from './components/clockFC';
 
-// function getRandomName(): string {
-//   const value = Date.now().toString().slice(-4);
+function getRandomName(): string {
+  const value = Date.now().toString().slice(-4);
 
-//   return `Clock-${value}`;
-// }
+  return `Clock-${value}`;
+}
+
+type State = {
+  clockName: string;
+  prevClockName: string | null;
+};
+
+type Action = { type: 'SET_CLOCK_NAME'; payload: string };
+
+const clockReducer = (
+  state: State,
+  action: Action,
+) => {
+  switch (action.type) {
+    case 'SET_CLOCK_NAME':
+      return {
+        ...state,
+        prevClockName: state.clockName,
+        clockName: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
 export const AppFC: React.FC = () => {
   const [hasClock, setHasClock] = useState(true);
-  const [clockName/* , setClockName */] = useState('Clock-0');
-  const [prevClockName/* , setPrevClockName */] = useState<string | null>(null);
   const firstRender = useRef(true);
+
+  const [state, dispatch] = useReducer(clockReducer, {
+    clockName: 'Clock-0',
+    prevClockName: null,
+  });
+
+  const { clockName, prevClockName } = state;
 
   const handleHideClock = (event: MouseEvent) => {
     event.preventDefault();
@@ -28,10 +61,14 @@ export const AppFC: React.FC = () => {
     document.addEventListener('contextmenu', handleHideClock);
     document.addEventListener('click', handleShowClock);
 
+    const printClockName = window.setInterval(() => {
+      dispatch({ type: 'SET_CLOCK_NAME', payload: getRandomName() });
+    }, 3300);
+
     return () => {
       document.removeEventListener('contextmenu', handleHideClock);
       document.removeEventListener('click', handleShowClock);
-      // console.log('closing useEffect');
+      clearInterval(printClockName);
     };
   }, []);
 
@@ -56,7 +93,6 @@ export const AppFC: React.FC = () => {
       {hasClock && (
         <ClockFC
           clockName={clockName}
-          onUpdateToday={() => { }}
         />
       )}
     </div>

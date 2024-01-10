@@ -2,29 +2,29 @@ import React, { useEffect, useState } from 'react';
 
 type ClockProps = {
   clockName: string
-  onUpdateToday: (date: Date) => void;
+  // onUpdateToday: (date: Date) => void;
 };
 
 export const ClockFC: React.FC<ClockProps> = ({
   clockName,
-  onUpdateToday,
+  // onUpdateToday,
 }) => {
   const [today, setToday] = useState(new Date());
 
-  const updatetoday = window.setInterval(() => {
-    const newDate = new Date();
-
-    // eslint-disable-next-line no-console
-    console.log('today');
-
-    setToday(newDate);
-
-    onUpdateToday(newDate);
-  }, 1000);
-
   useEffect(() => {
-    return clearInterval(updatetoday);
-  });
+    const updateToday = window.setInterval(() => {
+      const newDate = new Date();
+
+      setToday(newDate);
+
+      // eslint-disable-next-line no-console
+      console.info(newDate.toUTCString().slice(-12, -4));
+      // onUpdateToday(newDate);
+    }, 1000);
+
+    return () => clearInterval(updateToday);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="Clock">
