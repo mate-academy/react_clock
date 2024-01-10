@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unused-state */
 import React from 'react';
 import './App.scss';
-import { Clock } from './clock';
+import { Clock } from './Clock/clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
