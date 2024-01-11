@@ -24,12 +24,21 @@ export class App extends React.Component<{}, State> {
     clockName: 'Clock-0',
   };
 
+  // eslint-disable-next-line react/sort-comp
+  handlRigthClic = (event: MouseEvent): void => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handlLeftClic = (): void => {
+    this.setState({ hasClock: true });
+  };
+
   componentDidMount(): void {
     // eslint-disable-next-line no-console
     console.info(this.state.today.toLocaleTimeString());
     document.addEventListener('contextmenu', this.handlRigthClic);
     document.addEventListener('click', this.handlLeftClic);
-
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
@@ -40,24 +49,15 @@ export class App extends React.Component<{}, State> {
     document.removeEventListener('click', this.handlLeftClic);
 
     if (this.timerId !== null) {
-      window.clearInterval(this.timerId);
+      clearInterval(this.timerId);
     }
   }
-
-  handlRigthClic = (event: MouseEvent): void => {
-    event.preventDefault();
-    this.setState({ hasClock: false });
-  };
-
-  handlLeftClic = (): void => {
-    this.setState({ hasClock: true });
-  };
 
   render() {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <Clock name={this.state.clockName} />
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }
