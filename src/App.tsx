@@ -41,7 +41,7 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.handlLeftClic);
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
-    }, 3300);
+    }, 3000);
   }
 
   componentWillUnmount(): void {
