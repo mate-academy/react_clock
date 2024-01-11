@@ -12,30 +12,16 @@ function getRandomName(): string {
 type State = {
   today: Date;
   hasClock: boolean;
-  clockName: string,
+  clockName: string;
 };
 
 export class App extends React.Component<{}, State> {
+  timerId: number | null = null;
+
   state: State = {
     today: new Date(),
     hasClock: true,
     clockName: 'Clock-0',
-  };
-
-  hasClock = true;
-
-  clockName = 'Clock-0';
-
-  timerId: number | null = null;
-
-  // eslint-disable-next-line react/sort-comp
-  handlRigthClic = (event: MouseEvent): void => {
-    event.preventDefault();
-    this.setState({ hasClock: false });
-  };
-
-  handlLeftClic = (): void => {
-    this.setState({ hasClock: true });
   };
 
   componentDidMount(): void {
@@ -57,6 +43,15 @@ export class App extends React.Component<{}, State> {
       window.clearInterval(this.timerId);
     }
   }
+
+  handlRigthClic = (event: MouseEvent): void => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handlLeftClic = (): void => {
+    this.setState({ hasClock: true });
+  };
 
   render() {
     return (
