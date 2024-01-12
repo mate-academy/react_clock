@@ -1,39 +1,75 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+type State = {
+  hasClock: boolean,
+  clockName: string,
+};
 
-  return `Clock-${value}`;
+export class App extends React.PureComponent<{}, State> {
+  state: State = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
+
+  handleRightClick = document.addEventListener(
+    'contextmenu',
+    (event: MouseEvent) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    },
+  );
+
+  handleLeftClick = document.addEventListener(
+    'click',
+    () => this.setState({ hasClock: true }),
+  );
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div
+        className="App"
+        onContextMenu={this.handleRightClick}
+        onClick={this.handleLeftClick}
+      >
+        <h1>React clock</h1>
+
+        {hasClock ? (
+          <Clock name={clockName} />
+        ) : (
+          null
+        )}
+      </div>
+    );
+  }
 }
 
-export const App: React.FC = () => {
+/*
   const today = new Date();
   let clockName = 'Clock-0';
+  */
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+/*
+      return (
+      <div
+        className="App"
+        onContextMenu={(e) => {
+          e.preventDefault();
+          this.setState({ hasClock: false })
+        }}
+        onClick={() => this.setState({ hasClock: true })}
+      >
+        <h1>React clock</h1>
 
-  // this code stops the timer
-  window.clearInterval(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+        {hasClock ? (
+          <Clock name={clockName} />
+        ) : (
+          null
+        )}
       </div>
-    </div>
-  );
-};
+    );
+
+  */
