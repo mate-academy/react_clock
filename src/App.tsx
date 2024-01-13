@@ -4,41 +4,49 @@ import { Clock } from './components/Clock';
 
 type State = {
   hasClock: boolean,
-  clockName: string,
 };
 
 export class App extends React.PureComponent<{}, State> {
   state: State = {
     hasClock: true,
-    clockName: 'Clock-0',
   };
 
-  handleRightClick = document.addEventListener(
-    'contextmenu',
-    (event: MouseEvent) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    },
-  );
+  handleRightClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
-  handleLeftClick = document.addEventListener(
-    'click',
-    () => this.setState({ hasClock: true }),
-  );
+  handleLeftClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: true });
+  };
+
+  handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      this.setState({ hasClock: true });
+    }
+
+    if (event.key === ' ') {
+      this.setState({ hasClock: false });
+    }
+  };
 
   render() {
-    const { hasClock, clockName } = this.state;
+    const { hasClock } = this.state;
 
     return (
       <div
         className="App"
         onContextMenu={this.handleRightClick}
         onClick={this.handleLeftClick}
+        onKeyDown={this.handleKeyDown}
+        role="button"
+        tabIndex={0}
       >
         <h1>React clock</h1>
 
         {hasClock ? (
-          <Clock name={clockName} />
+          <Clock />
         ) : (
           null
         )}
@@ -48,9 +56,11 @@ export class App extends React.PureComponent<{}, State> {
 }
 
 /*
-  const today = new Date();
-  let clockName = 'Clock-0';
-  */
+  handleLeftClick = document.addEventListener(
+    'click',
+    () => this.setState({ hasClock: true }),
+  );
+*/
 
 /*
       return (
@@ -73,3 +83,58 @@ export class App extends React.PureComponent<{}, State> {
     );
 
   */
+
+/*
+import React from 'react';
+import './App.scss';
+import { Clock } from './components/Clock';
+
+type State = {
+  hasClock: boolean,
+};
+
+export class App extends React.PureComponent<{}, State> {
+  state: State = {
+    hasClock: true,
+  };
+
+  handleRightClick = document.addEventListener(
+    'contextmenu',
+    (event: React.MouseEvent) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    },
+  );
+
+  handleLeftClick = document.addEventListener(
+    'click',
+    (event: React.MouseEvent) => {
+      event.preventDefault();
+      this.setState({ hasClock: true });
+    },
+  );
+
+  render() {
+    const { hasClock } = this.state;
+
+    return (
+      <div
+        className="App"
+        onContextMenu={this.handleRightClick}
+        onClick={this.handleLeftClick}
+        onKeyDown={this.handleKeyDown}
+        role="button"
+        tabIndex={0}
+      >
+        <h1>React clock</h1>
+
+        {hasClock ? (
+          <Clock />
+        ) : (
+          null
+        )}
+      </div>
+    );
+  }
+}
+*/

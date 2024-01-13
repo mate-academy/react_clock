@@ -3,56 +3,54 @@ import { getRandomName } from '../services/RandomName';
 
 type State = {
   today: Date,
-  name: string,
+  startName: string;
+  endName: string,
+  timerIdForClock: number,
+  timerIdForName: number,
 };
 
-type Props = {
-  name: string,
-};
-
-export class Clock extends React.PureComponent<Props, State> {
+export class Clock extends React.PureComponent<{}, State> {
   state: State = {
     today: new Date(),
-    name: 'Clock-0',
+    startName: '',
+    endName: 'Clock-0',
+    timerIdForClock: 0,
+    timerIdForName: 0,
   };
 
-  // This code starts a timer
-  timerId = 0;
-
-  // eslint-disable-next-line no-console
   componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
+    this.state.timerIdForClock = window.setInterval(() => {
+      this.setState({ today: new Date() });
       // eslint-disable-next-line no-console
-      console.info(new Date());
-      this.state.today.toUTCString().slice(-12, -4);
+      console.info(this.state.today.toUTCString().slice(-12, -4));
     }, 1000);
-    // eslint-disable-next-line no-console
-    console.info('componentDidMount');
-  }
 
-  componentDidUpdate(
-    prevProps: Readonly<Props>,
-    prevState: Readonly<State>,
-  ): void {
-    this.timerId = window.setInterval(() => {
-      this.state.name = getRandomName();
+    this.state.timerIdForName = window.setInterval(() => {
+      this.setState(prevState => ({ startName: prevState.endName }));
+      this.setState({ endName: getRandomName() });
+
+      // eslint-disable-next-line no-console
+      console.info(`Renamed from ${this.state.startName} to ${this.state.endName}`);
     }, 3300);
+
+    // eslint-disable-next-line no-console
+    console.info('ShowClock');
   }
 
-  // this code stops the timer
   componentWillUnmount(): void {
+    window.clearInterval(this.state.timerIdForClock);
+    window.clearInterval(this.state.timerIdForName);
     // eslint-disable-next-line no-console
-    console.info('componentWilLUnmount');
-    window.clearInterval(this.timerId);
+    console.info('HideClock');
   }
 
   render() {
-    const { today, name } = this.state;
+    const { today, endName } = this.state;
 
     return (
       <div className="Clock">
         <strong className="Clock__name">
-          {name}
+          {endName}
         </strong>
 
         {' time is '}
@@ -64,84 +62,3 @@ export class Clock extends React.PureComponent<Props, State> {
     );
   }
 }
-
-/*
-   timerId = window.setInterval(() => {
-    this.state.name = getRandomName();
-  }, 3300);
-*/
-
-/*
-import React from 'react';
-import { getRandomName } from '../services/RandomName';
-
-function getToday(): string {
-  const today = new Date();
-
-  return today.toUTCString().slice(-12, -4);
-}
-
-type State = {
-  today: Date,
-  name: string,
-};
-
-type Props = {
-  name: string,
-};
-
-export class Clock extends React.PureComponent<Props, State> {
-  state: State = {
-    today: new Date(),
-    name: 'Clock-0',
-  };
-
-  // This code starts a timer
-  timerId = 0;
-
-  // eslint-disable-next-line no-console
-  componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
-      // eslint-disable-next-line no-console
-      console.info(new Date());
-      this.setState({ today: getToday() });
-    }, 1000);
-    // eslint-disable-next-line no-console
-    console.info('componentDidMount');
-  }
-
-  componentDidUpdate(
-    prevProps: Readonly<Props>,
-    prevState: Readonly<State>
-  ): void {
-    this.timerId = window.setInterval(() => {
-      this.state.name = getRandomName();
-    }, 3300);
-  }
-
-  // this code stops the timer
-  componentWillUnmount(): void {
-    // eslint-disable-next-line no-console
-    console.info('componentWilLUnmount');
-    window.clearInterval(this.timerId);
-  }
-
-  render() {
-    const { today, name } = this.state;
-
-    return (
-      <div className="Clock">
-        <strong className="Clock__name">
-          {name}
-        </strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
-    );
-  }
-}
-*/
