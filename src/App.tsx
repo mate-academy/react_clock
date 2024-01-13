@@ -35,7 +35,7 @@ export const App: React.FC = () => {
       const newName = getRandomName();
 
       if (clockName !== newName) {
-        console.debug(`prev ${clockName} new ${newName}`);
+        console.debug(`Renamed from ${clockName} to ${newName}`);
         setClockName(newName);
       }
     }, 3300);
