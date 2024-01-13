@@ -33,6 +33,7 @@ export const App: React.FC = () => {
 
     const timerClockName = window.setInterval(() => {
       const newName = getRandomName();
+
       console.debug(`Renamed from ${clockName.current} to ${newName}`);
       clockName.current = newName;
     }, 3300);
@@ -45,7 +46,7 @@ export const App: React.FC = () => {
       document.removeEventListener('click', handleClick);
       document.removeEventListener('contextmenu', handleContextMenu);
     };
-  }, []);
+  }, [hasClock]);
 
   return (
     <div className="App">
