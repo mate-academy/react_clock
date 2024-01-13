@@ -12,14 +12,12 @@ export const Clock: React.FC<Props> = React.memo(({ hasClock, clockName }) => {
   useEffect(() => {
     let timerId = 0;
 
-    if (hasClock) {
-      timerId = window.setInterval(() => {
-        const newTime = new Date();
+    timerId = window.setInterval(() => {
+      const newTime = new Date();
 
-        console.info(newTime.toUTCString().slice(-12, -4));
-        setCurrentTime(newTime);
-      }, 1000);
-    }
+      console.info(newTime.toUTCString().slice(-12, -4));
+      setCurrentTime(newTime);
+    }, 1000);
 
     return () => {
       window.clearInterval(timerId);
