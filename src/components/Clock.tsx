@@ -1,65 +1,34 @@
 /* eslint-disable no-console */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 type Props = {
-  randomName: () => string;
+  hasClock: boolean;
+  clockName: string;
 };
 
-export const Clock: React.FC<Props> = React.memo(({ randomName }) => {
-  const [hasClock, setHasClock] = useState(true);
+export const Clock: React.FC<Props> = React.memo(({ hasClock, clockName }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const clockName = useRef('Clock-0');
-  const prevClockName = useRef('');
 
   useEffect(() => {
-    const handleClick = (event: MouseEvent) => {
-      event.preventDefault();
-      setHasClock(true);
-      console.log('left button');
+    let timerId = 0;
 
-      if (event.button === 2) {
-        setHasClock(false);
-        console.log('right button');
-      }
-    };
-
-    const handleContextMenu = (event: MouseEvent) => {
-      event.preventDefault();
-      setHasClock(false);
-      console.log('right button');
-    };
-
-    const timerId = window.setInterval(() => {
-      setCurrentTime(new Date());
-      console.info(currentTime.toUTCString().slice(-12, -4));
-    }, 1000);
-
-    const timerClockName = window.setInterval(() => {
-      const newName = randomName();
-
-      if (clockName.current !== newName) {
-        console.debug(`prev ${clockName.current} new ${newName}`);
-        prevClockName.current = clockName.current;
-        clockName.current = newName;
-      }
-    }, 3300);
-
-    document.addEventListener('click', handleClick);
-    document.addEventListener('contextmenu', handleContextMenu);
+    if (hasClock) {
+      timerId = window.setInterval(() => {
+        setCurrentTime(new Date());
+        console.info(currentTime.toUTCString().slice(-12, -4));
+      }, 1000);
+    }
 
     return () => {
       window.clearInterval(timerId);
-      window.clearInterval(timerClockName);
-      document.removeEventListener('click', handleClick);
-      document.removeEventListener('contextmenu', handleContextMenu);
     };
-  }, [randomName]);
+  }, [currentTime, hasClock]);
 
   return (
     hasClock ? (
       <div className="Clock">
         <strong className="Clock__name">
-          {clockName.current}
+          {clockName}
         </strong>
         {' time is '}
         <span className="Clock__time">
