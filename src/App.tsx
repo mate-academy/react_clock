@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
@@ -12,7 +12,6 @@ function getRandomName(): string {
 export const App: React.FC = () => {
   const [hasClock, setHasClock] = useState(true);
   const [clockName, setClockName] = useState('Clock-0');
-  const prevClockName = useRef(clockName);
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
@@ -37,7 +36,6 @@ export const App: React.FC = () => {
 
       if (clockName !== newName) {
         console.debug(`prev ${clockName} new ${newName}`);
-        prevClockName.current = clockName;
         setClockName(newName);
       }
     }, 3300);

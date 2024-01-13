@@ -19,8 +19,6 @@ export const Clock: React.FC<Props> = React.memo(({ hasClock, clockName }) => {
         console.info(newTime.toUTCString().slice(-12, -4));
         setCurrentTime(newTime);
       }, 1000);
-    } else {
-      window.clearInterval(timerId);
     }
 
     return () => {
