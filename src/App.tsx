@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
@@ -11,7 +11,7 @@ function getRandomName(): string {
 
 export const App: React.FC = () => {
   const [hasClock, setHasClock] = useState(true);
-  const [clockName, setClockName] = useState('Clock-0');
+  const clockName = useRef('Clock-0');
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
@@ -33,11 +33,8 @@ export const App: React.FC = () => {
 
     const timerClockName = window.setInterval(() => {
       const newName = getRandomName();
-
-      if (clockName !== newName) {
-        console.debug(`Renamed from ${clockName} to ${newName}`);
-        setClockName(newName);
-      }
+      console.debug(`Renamed from ${clockName.current} to ${newName}`);
+      clockName.current = newName;
     }, 3300);
 
     document.addEventListener('click', handleClick);
@@ -48,14 +45,14 @@ export const App: React.FC = () => {
       document.removeEventListener('click', handleClick);
       document.removeEventListener('contextmenu', handleContextMenu);
     };
-  }, [clockName, hasClock]);
+  }, []);
 
   return (
     <div className="App">
       <h1>React clock</h1>
       <Clock
         hasClock={hasClock}
-        clockName={clockName}
+        clockName={clockName.current}
       />
     </div>
   );
