@@ -31,6 +31,7 @@ export const Clock: React.FC<Props> = React.memo(({ randomName }) => {
 
     const timerId = window.setInterval(() => {
       setCurrentTime(new Date());
+      console.info(currentTime, 'time');
     }, 1000);
 
     const timerClockName = window.setInterval(() => {
