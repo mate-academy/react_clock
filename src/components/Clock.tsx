@@ -14,15 +14,19 @@ export const Clock: React.FC<Props> = React.memo(({ hasClock, clockName }) => {
 
     if (hasClock) {
       timerId = window.setInterval(() => {
-        setCurrentTime(new Date());
-        console.info(currentTime.toUTCString().slice(-12, -4));
+        const newTime = new Date();
+
+        console.info(newTime.toUTCString().slice(-12, -4));
+        setCurrentTime(newTime);
       }, 1000);
+    } else {
+      window.clearInterval(timerId);
     }
 
     return () => {
       window.clearInterval(timerId);
     };
-  }, [currentTime, hasClock]);
+  }, [hasClock]);
 
   return (
     hasClock ? (
