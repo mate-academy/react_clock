@@ -9,7 +9,6 @@ function getRandomName(): string {
 }
 
 export const App: React.FC = () => {
-
   return (
     <div className="App">
       <h1>React clock</h1>
