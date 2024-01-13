@@ -22,7 +22,7 @@ export const Clock: React.FC<Props> = React.memo(({ hasClock, clockName }) => {
     return () => {
       window.clearInterval(timerId);
     };
-  }, [hasClock]);
+  }, []);
 
   return (
     hasClock ? (
