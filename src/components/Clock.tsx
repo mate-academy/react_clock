@@ -59,12 +59,11 @@ export class Clock extends React.Component<Props, State> {
     if (hasClock) {
       this.timerId = window.setInterval(() => {
         const newTime = new Date();
-
-        console.info(newTime.toUTCString().slice(-12, -4));
+        if (this.state.currentTime) {
+          console.info(newTime.toUTCString().slice(-12, -4));
+        }
         this.setState({ currentTime: newTime });
       }, 1000);
-    } else if (this.timerId) {
-      window.clearInterval(this.timerId);
     }
   }
 
