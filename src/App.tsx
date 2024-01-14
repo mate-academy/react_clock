@@ -51,10 +51,17 @@ export const App: React.FC = () => {
   return (
     <div className="App">
       <h1>React clock</h1>
-      <Clock
+
+      {hasClock && (
+        <Clock
+          hasClock={hasClock}
+          clockName={clockName}
+        />
+      )}
+      {/* <Clock
         hasClock={hasClock}
         clockName={clockName}
-      />
+      /> */}
     </div>
   );
 };
