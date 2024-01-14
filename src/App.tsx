@@ -108,18 +108,14 @@ export class App extends React.Component< {}, State> {
   handleClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: true });
-    console.log('left button');
-    console.log(this.state.hasClock);
     if (event.button === 2) {
       this.setState({ hasClock: false });
-      console.log('right button');
     }
   };
 
   handleContextMenu = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
-    console.log('right button');
   };
 
   render() {
