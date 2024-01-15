@@ -5,26 +5,44 @@ import { getRandomName } from './services/RandomName';
 
 type State = {
   hasClock: boolean,
-  prevName: string,
-  nextName: string,
+  oldName: string,
+  newName: string,
   timerIdForName: number,
 };
 
 export class App extends React.PureComponent<{}, State> {
   state: State = {
     hasClock: true,
-    prevName: '',
-    nextName: 'Clock-0',
+    oldName: '',
+    newName: 'Clock-0',
     timerIdForName: 0,
   };
 
-  componentDidMount(): void {
+  // componentDidMount(): void {
+  //   this.state.timerIdForName = window.setInterval(() => {
+  //     this.setState({ newName: getRandomName() });
+  // }
+
+  // componentDidUpdate(prevState: Readonly<State>): void {
+  //   this.state.timerIdForName = window.setInterval(() => {
+  //     this.setState({ newName: getRandomName() });
+  //   }, 3300);
+
+  //   if (prevState.oldName !== this.state.newName) {
+  //     this.setState({ oldName: prevState.newName });
+  //   }
+
+  //   // eslint-disable-next-line no-console
+  //   console.debug(`Renamed from ${this.state.oldName} to ${this.state.newName}`);
+  // }
+
+  componentDidUpdate(prevState: Readonly<State>): void {
     this.state.timerIdForName = window.setInterval(() => {
-      this.setState(prevState => ({ prevName: prevState.nextName }));
-      this.setState({ nextName: getRandomName() });
+      this.setState(prevState => ({ oldName: prevState.newName }));
+      this.setState({ newName: getRandomName() });
 
       // eslint-disable-next-line no-console
-      console.info(`Renamed from ${this.state.prevName} to ${this.state.nextName}`);
+      console.info(`Renamed from ${this.state.oldName} to ${this.state.newName}`);
     }, 3300);
   }
 
@@ -42,13 +60,13 @@ export class App extends React.PureComponent<{}, State> {
     event.preventDefault();
     this.setState({ hasClock: true });
 
-    this.state.timerIdForName = window.setInterval(() => {
-      this.setState(prevState => ({ prevName: prevState.nextName }));
-      this.setState({ nextName: getRandomName() });
+    // this.state.timerIdForName = window.setInterval(() => {
+    //   this.setState(prevState => ({ oldName: prevState.newName }));
+    //   this.setState({ newName: getRandomName() });
 
-      // eslint-disable-next-line no-console
-      console.info(`Renamed from ${this.state.prevName} to ${this.state.nextName}`);
-    }, 3300);
+    //   // eslint-disable-next-line no-console
+    //   console.info(`Renamed from ${this.state.oldName} to ${this.state.newName}`);
+    // }, 3300);
   };
 
   handleKeyDown = (event: React.KeyboardEvent) => {
@@ -62,7 +80,7 @@ export class App extends React.PureComponent<{}, State> {
   };
 
   render() {
-    const { hasClock, nextName } = this.state;
+    const { hasClock, newName } = this.state;
 
     return (
       <div
@@ -78,7 +96,7 @@ export class App extends React.PureComponent<{}, State> {
         {hasClock ? (
           <div className="Clock">
             <strong className="Clock__name">
-              {nextName}
+              {newName}
             </strong>
 
             {' time is '}
@@ -92,6 +110,19 @@ export class App extends React.PureComponent<{}, State> {
     );
   }
 }
+
+/*
+componentDidMount(): void {
+    this.state.timerIdForName = window.setInterval(() => {
+      this.setState(prevState => ({ oldName: prevState.newName }));
+      this.setState({ newName: getRandomName() });
+
+      // eslint-disable-next-line no-console
+      console.info(`Renamed from ${this.state.oldName} to ${this.state.newName}`);
+    }, 3300);
+  }
+
+*/
 
 /*
 import React from 'react';
