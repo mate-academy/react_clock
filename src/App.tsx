@@ -23,12 +23,12 @@ export class App extends React.PureComponent<{}, State> {
   }
 
   componentDidUpdate(
-    prevProps: Readonly<{}>,
+    _prevProps: Readonly<{}>,
     prevState: Readonly<State>,
   ): void {
     if (prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${this.state.clockName} to ${this.state.clockName}`);
+      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
   }
 
