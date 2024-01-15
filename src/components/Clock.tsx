@@ -1,4 +1,43 @@
 import React from 'react';
+import { getDate } from '../services/GetDate';
+
+type State = {
+  today: string,
+  timerIdForClock: number,
+};
+
+export class Clock extends React.PureComponent<{}, State> {
+  state: State = {
+    today: getDate(),
+    timerIdForClock: 0,
+  };
+
+  componentDidMount(): void {
+    this.state.timerIdForClock = window.setInterval(() => {
+      this.setState({ today: getDate() });
+      // eslint-disable-next-line no-console
+      console.info(`${this.state.today}`);
+    }, 1000);
+  }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.state.timerIdForClock);
+  }
+
+  render() {
+    const { today } = this.state;
+
+    return (
+      <span className="Clock__time">
+        {today}
+      </span>
+    );
+  }
+}
+
+/*
+
+import React from 'react';
 import { getRandomName } from '../services/RandomName';
 
 type State = {
@@ -7,6 +46,7 @@ type State = {
   endName: string,
   timerIdForClock: number,
   timerIdForName: number,
+  // timerId: number,
 };
 
 export class Clock extends React.PureComponent<{}, State> {
@@ -16,6 +56,7 @@ export class Clock extends React.PureComponent<{}, State> {
     endName: 'Clock-0',
     timerIdForClock: 0,
     timerIdForName: 0,
+    // timerId: 0,
   };
 
   componentDidMount(): void {
@@ -62,3 +103,5 @@ export class Clock extends React.PureComponent<{}, State> {
     );
   }
 }
+
+*/
