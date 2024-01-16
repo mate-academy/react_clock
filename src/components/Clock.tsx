@@ -5,7 +5,11 @@ type State = {
   today: string,
 };
 
-export class Clock extends React.PureComponent<{}, State> {
+type Props = {
+  clockName: string,
+};
+
+export class Clock extends React.PureComponent<Props> {
   state: State = {
     today: getDate(),
   };
@@ -20,17 +24,36 @@ export class Clock extends React.PureComponent<{}, State> {
     }, 1000);
   }
 
+  componentDidUpdate(
+    prevProps: Props,
+    // prevState: Readonly<State>,
+  ): void {
+    if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.clockName} to ${this.props.clockName}`);
+    }
+  }
+
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
   }
 
   render() {
     const { today } = this.state;
+    const { clockName } = this.props;
 
     return (
-      <span className="Clock__time">
-        {today}
-      </span>
+      <div className="Clock">
+        <strong className="Clock__name">
+          {clockName}
+        </strong>
+
+        {' time is '}
+
+        <span className="Clock__time">
+          {today}
+        </span>
+      </div>
     );
   }
 }
