@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +8,56 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+type State = {
+  hasClock: boolean;
+  clockName: string,
+};
+
+export class App extends React.Component<{}, State> {
+  timerId = 0;
+
+  state: State = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
   // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  componentDidMount(): void {
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+
+    document.addEventListener('click', this.handleDocumentLeftClick);
+    document.addEventListener('contextmenu', this.handleDocumentRightClick);
+  }
 
   // this code stops the timer
-  window.clearInterval(timerId);
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+    document.removeEventListener('click', this.handleDocumentLeftClick);
+    document.removeEventListener('contextmenu', this.handleDocumentRightClick);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  handleDocumentLeftClick = (): void => {
+    this.setState({ hasClock: true });
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+  handleDocumentRightClick = (event: MouseEvent) => {
+    event.preventDefault();
 
-        {' time is '}
+    this.setState({ hasClock: false });
+  };
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {hasClock && (
+          <Clock name={clockName} />
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
