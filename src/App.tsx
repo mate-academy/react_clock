@@ -1,18 +1,9 @@
 import React, { useState } from 'react';
 import { Clock } from './components/Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
-
 export const App: React.FC = () => {
   const [hasClock, setHasClock] = useState(true);
-  const [isfirstMount, setIsfirstMount] = useState(true);
-  const [clockName, setClockName] = useState(
-    isfirstMount ? 'Clock-0' : getRandomName(),
-  );
+  const [clockName, setClockName] = useState('Clock-0');
 
   document.addEventListener('contextmenu', (event: MouseEvent) => {
     event.preventDefault();
@@ -24,7 +15,6 @@ export const App: React.FC = () => {
     setHasClock(true);
   });
 
-  const saveMount = (m: boolean) => setIsfirstMount(m);
   const saveClockName = (name: string) => setClockName(name);
 
   return (
@@ -33,8 +23,6 @@ export const App: React.FC = () => {
 
       {hasClock && (
         <Clock
-          isfirstMount={isfirstMount}
-          saveMount={saveMount}
           clockName={clockName}
           saveClockName={saveClockName}
         />

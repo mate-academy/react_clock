@@ -7,9 +7,7 @@ function getRandomName(): string {
 }
 
 type Props = {
-  isfirstMount: boolean;
   clockName: string;
-  saveMount: (m: boolean) => void;
   saveClockName: (name: string) => void;
 };
 
@@ -48,7 +46,6 @@ export class Clock extends React.Component<Props, State> {
 
   componentWillUnmount(): void {
     this.props.saveClockName(getRandomName());
-    this.props.saveMount(false);
     window.clearInterval(this.timerId);
     window.clearInterval(this.timerId2);
   }
