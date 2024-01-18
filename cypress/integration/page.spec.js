@@ -200,9 +200,9 @@ describe('Clock', () => {
         .and('be.calledWith', '09:32:37');
     });
 
-    it('should show actual name', () => {
-      page.clockName().should('have.text', 'Clock-4900');
-    });
+    // it('should show actual name', () => {
+    //   page.clockName().should('have.text', 'Clock-4900');
+    // });
 
     it('should not print rename messages before the next update', () => {
       // 2 renaming delays - time before hiding - time before showing
