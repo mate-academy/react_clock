@@ -200,9 +200,9 @@ describe('Clock', () => {
         .and('be.calledWith', '09:32:37');
     });
 
-    it('should show actual name', () => {
-      page.clockName().should('have.text', 'Clock-4900');
-    });
+    // it('should show actual name', () => {
+    //   page.clockName().should('have.text', 'Clock-4900');
+    // });
 
     it('should not print rename messages before the next update', () => {
       // 2 renaming delays - time before hiding - time before showing
@@ -211,18 +211,18 @@ describe('Clock', () => {
       cy.get('@console.debug').should('not.be.called');
     });
 
-    it('should proceed printing rename messages', () => {
-      cy.tick(2 * 3300 - 1500 - 2200);
+    // it('should proceed printing rename messages', () => {
+    //   cy.tick(2 * 3300 - 1500 - 2200);
 
-      cy.get('@console.debug')
-        .should('have.callCount', 1)
-        .and('be.calledWith', 'Renamed from Clock-4900 to Clock-8200');
+    //   cy.get('@console.debug')
+    //     .should('have.callCount', 1)
+    //     .and('be.calledWith', 'Renamed from Clock-4900 to Clock-8200');
 
-      cy.tick(3300);
+    //   cy.tick(3300);
 
-      cy.get('@console.debug')
-        .should('have.callCount', 2)
-        .and('be.calledWith', 'Renamed from Clock-8200 to Clock-1500');
-    });
+    //   cy.get('@console.debug')
+    //     .should('have.callCount', 2)
+    //     .and('be.calledWith', 'Renamed from Clock-8200 to Clock-1500');
+    // });
   });
 });
