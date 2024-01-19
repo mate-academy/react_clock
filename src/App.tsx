@@ -29,8 +29,13 @@ export class App extends React.PureComponent {
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock
-          && <Clock name={this.state.clockName} />}
+        {this.state.hasClock && (
+          <Clock
+            name={this.state.clockName}
+            callback={(value) => this.setState({ clockName: value })}
+          />
+        )}
+
       </div>
     );
   }
