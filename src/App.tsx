@@ -24,11 +24,14 @@ export class App extends Component<{}, AppState> {
     this.timerId = window.setInterval(() => {
       const newClockName = getRandomName();
 
-      // eslint-disable-next-line no-console
-      console.info('some message');
-      // eslint-disable-next-line no-console
-      console.info(`The time is ${newClockName}`);
-      this.setState({ clockName: newClockName });
+      if (this.state.hasClock) {
+        // Only print messages and update state if the clock is visible
+        // eslint-disable-next-line no-console
+        console.info('some message');
+        // eslint-disable-next-line no-console
+        console.info(`The time is ${newClockName}`);
+        this.setState({ clockName: newClockName });
+      }
     }, 1000);
   }
 
