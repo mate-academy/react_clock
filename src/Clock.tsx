@@ -1,14 +1,7 @@
 import React, { ReactNode } from 'react';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
-
 interface Props {
   name: string;
-  callback: (value: string) => void;
 }
 
 interface State {
@@ -22,16 +15,9 @@ export class Clock extends React.PureComponent<Props> {
     today: new Date(),
   };
 
-  timerId = 0;
-
   timer = 0;
 
   componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-      this.props.callback(this.state.clockName);
-    }, 3300);
-
     this.timer = window.setInterval(() => {
       this.setState({ today: new Date() });
       // eslint-disable-next-line no-console
@@ -40,18 +26,17 @@ export class Clock extends React.PureComponent<Props> {
   }
 
   componentDidUpdate(
-    _prevProps: Readonly<Props>,
-    prevState: Readonly<State>,
+    prevProps: Readonly<Props>,
   ): void {
-    if (prevState.clockName !== this.state.clockName) {
+    if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
 
   componentWillUnmount(): void {
     window.clearInterval(this.timer);
-    window.clearInterval(this.timerId);
+    // window.clearInterval(this.timerId);
   }
 
   render(): ReactNode {
@@ -60,7 +45,7 @@ export class Clock extends React.PureComponent<Props> {
         className="Clock"
       >
         <strong className="Clock__name">
-          {this.props.name}
+          {this.state.clockName}
         </strong>
 
         {' time is '}
