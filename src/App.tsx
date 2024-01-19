@@ -24,13 +24,15 @@ export class App extends Component<{}, AppState> {
     this.timerId = window.setInterval(() => {
       const newClockName = getRandomName();
 
-      // Add a delay before logging to console.info
-      setTimeout(() => {
-        // eslint-disable-next-line no-console
-        console.info('some message');
+      // Move the following line outside the if condition
+      // to ensure console.info is called every second
+      // eslint-disable-next-line no-console
+      console.info('some message');
+
+      if (this.state.hasClock) {
         // eslint-disable-next-line no-console
         console.info(`The time is ${newClockName}`);
-      }, 100); // Adjust the delay as needed
+      }
 
       this.setState({ clockName: newClockName });
     }, 1000);
