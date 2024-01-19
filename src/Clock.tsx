@@ -5,13 +5,11 @@ interface Props {
 }
 
 interface State {
-  clockName: string;
   today: Date;
 }
 
 export class Clock extends React.PureComponent<Props> {
   state: State = {
-    clockName: this.props.name,
     today: new Date(),
   };
 
@@ -45,7 +43,7 @@ export class Clock extends React.PureComponent<Props> {
         className="Clock"
       >
         <strong className="Clock__name">
-          {this.state.clockName}
+          {this.props.name}
         </strong>
 
         {' time is '}
