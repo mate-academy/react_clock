@@ -27,11 +27,11 @@ export class App extends Component<{}, AppState> {
       // Move the following line outside the if condition
       // to ensure console.info is called every second
       // eslint-disable-next-line no-console
-      console.info('some message');
+      console.info(`The time is ${newClockName}`);
 
       if (this.state.hasClock) {
         // eslint-disable-next-line no-console
-        console.info(`The time is ${newClockName}`);
+        console.info('some message');
       }
 
       this.setState({ clockName: newClockName });
