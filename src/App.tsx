@@ -13,19 +13,18 @@ type AppState = {
 };
 
 export class App extends Component<{}, AppState> {
+  private timerId: number | undefined;
+
   state: Readonly<AppState> = {
     hasClock: true,
     clockName: 'Clock-0',
   };
 
-  private timerId: number | undefined;
-
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       const newClockName = getRandomName();
 
-      // Move the following line outside the if condition
-      // to ensure console.info is called every second
+      // Ensure console.info is called every second
       // eslint-disable-next-line no-console
       console.info(`The time is ${newClockName}`);
 
@@ -34,8 +33,16 @@ export class App extends Component<{}, AppState> {
         console.info('some message');
       }
 
+      // Move this line outside the if condition to ensure setState is called every second
       this.setState({ clockName: newClockName });
     }, 1000);
+  }
+
+  componentDidUpdate(_: {}, prevState: AppState) {
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
   }
 
   componentWillUnmount() {
