@@ -24,7 +24,6 @@ export class App extends Component<{}, AppState> {
     this.timerId = window.setInterval(() => {
       const newClockName = getRandomName();
 
-      // Ensure console.info is called every second
       // eslint-disable-next-line no-console
       console.info(`The time is ${newClockName}`);
 
@@ -33,7 +32,6 @@ export class App extends Component<{}, AppState> {
         console.info('some message');
       }
 
-      // Move this line outside the if condition to ensure setState is called every second
       this.setState({ clockName: newClockName });
     }, 1000);
   }
