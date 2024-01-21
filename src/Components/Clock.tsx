@@ -50,4 +50,3 @@ export class Clock extends React.PureComponent<Props> {
     );
   }
 }
-// as
