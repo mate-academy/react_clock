@@ -25,7 +25,7 @@ export class App extends Component<{}, AppState> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       const newClockName = getRandomName();
-      const newClockMessage = 'Your custom message here';
+      const newClockMessage = '';
 
       this.setState({ clockName: newClockName, clockMessage: newClockMessage });
 
