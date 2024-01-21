@@ -10,7 +10,7 @@ function getRandomName(): string {
 type AppState = {
   hasClock: boolean;
   clockName: string;
-  currentTime: string;
+  clockMessage: string;
 };
 
 export class App extends Component<{}, AppState> {
@@ -19,31 +19,21 @@ export class App extends Component<{}, AppState> {
   state: Readonly<AppState> = {
     hasClock: true,
     clockName: 'Clock-0',
-    currentTime: new Date().toLocaleTimeString(),
+    clockMessage: '',
   };
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       const newClockName = getRandomName();
-      const newCurrentTime = new Date().toLocaleTimeString();
+      const newClockMessage = 'Your custom message here';
 
-      // eslint-disable-next-line no-console
-      console.info(`The time is ${newClockName}`);
+      this.setState({ clockName: newClockName, clockMessage: newClockMessage });
 
-      if (this.state.hasClock) {
+      if (this.state.hasClock && new Date().getSeconds() % 3 === 0) {
         // eslint-disable-next-line no-console
-        console.info('some message');
+        console.info(`The time is ${newClockName}`);
       }
-
-      this.setState({ clockName: newClockName, currentTime: newCurrentTime });
-    }, 3000);
-  }
-
-  componentDidUpdate(_: {}, prevState: AppState) {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
+    }, 1000);
   }
 
   componentWillUnmount() {
@@ -62,7 +52,7 @@ export class App extends Component<{}, AppState> {
   };
 
   render() {
-    const { hasClock, clockName, currentTime } = this.state;
+    const { hasClock, clockName, clockMessage } = this.state;
 
     return (
       <div
@@ -82,7 +72,11 @@ export class App extends Component<{}, AppState> {
           <div className="Clock">
             <strong className="Clock__name">{clockName}</strong>
             {' time is '}
-            <span className="Clock__time">{currentTime}</span>
+            <span className="Clock__time">
+              {new Date().toUTCString().slice(-12, -4)}
+            </span>
+            {' - '}
+            <span className="Clock__message">{clockMessage}</span>
           </div>
         )}
       </div>
