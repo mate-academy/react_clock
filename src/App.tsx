@@ -1,5 +1,16 @@
+/* eslint-disable no-console */
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
+
+type Props = {
+  hasClock: boolean
+};
+
+type State = {
+  hasClock: boolean
+  clockName: string
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +18,70 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.PureComponent<Props, State> {
+  state: State = {
+    hasClock: this.props.hasClock,
+    clockName: 'Clock-0',
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  clockNameTimerId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount(): void {
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleClick);
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    this.enableClockNameTimer();
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+  componentWillUnmount(): void {
+    document.removeEventListener('click', this.handleClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    window.clearInterval(this.clockNameTimerId);
+  }
 
-        {' time is '}
+  enableClockNameTimer = () => {
+    this.clockNameTimerId = window.setInterval(() => {
+      const newName = getRandomName();
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+      if (this.state.hasClock) {
+        console.debug(`Renamed from ${this.state.clockName} to ${newName}`);
+      }
+
+      this.setState({ clockName: newName });
+    }, 3300);
+  };
+
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+
+    if (this.state.hasClock) {
+      this.setState({
+        hasClock: false,
+      });
+    }
+  };
+
+  handleClick = () => {
+    if (!this.state.hasClock) {
+      this.setState({
+        hasClock: true,
+      });
+    }
+  };
+
+  render() {
+    const { hasClock } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock && (
+          <Clock
+            name={this.state.clockName}
+          />
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
