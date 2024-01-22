@@ -1,39 +1,49 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Clock/Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+type Props = {};
 
-  return `Clock-${value}`;
-}
-
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
-
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
-
-  // this code stops the timer
-  window.clearInterval(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
-    </div>
-  );
+type State = {
+  hasClock: boolean
 };
+
+export class App extends React.Component<Props, State> {
+  state = {
+    hasClock: false,
+  };
+
+  componentDidMount(): void {
+    document.addEventListener('mousedown', () => {
+      this.setState({ hasClock: true });
+    });
+
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    });
+  }
+
+  componentWillUnmount(): void {
+    document.removeEventListener('mousedown', () => {
+      this.setState({ hasClock: true });
+    });
+
+    document.removeEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {this.state.hasClock ? (
+          <Clock />
+        ) : ('')}
+      </div>
+    );
+  }
+}
