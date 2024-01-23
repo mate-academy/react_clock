@@ -26,11 +26,13 @@ export class Clock extends React.Component<ClocksProps, State> {
   componentDidUpdate(prevProps: Readonly<ClocksProps>,
     prevState: Readonly<State>) {
     if (prevProps.name !== this.props.name) {
-      // console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
 
     if (prevState.today !== this.state.today) {
-      // console.info(this.state.today.toUTCString().slice(-12, -4));
+      // eslint-disable-next-line no-console
+      console.info(this.state.today.toUTCString().slice(-12, -4));
     }
   }
 
