@@ -17,13 +17,13 @@ export class App extends React.PureComponent {
   state: State = {
     hasClock: true,
     name: 'Clock-0',
-  }
-  
+  };
+
   timerId = 0;
-  
+
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ name: getRandomName() }); 
+      this.setState({ name: getRandomName() });
     }, 3300);
 
     document.addEventListener('contextmenu', this.handleContextMenu);
@@ -40,13 +40,12 @@ export class App extends React.PureComponent {
   };
 
   render() {
-
     return (
       <div className="App">
         <h1>React clock</h1>
-  
+
         {this.state.hasClock && (
-          <Clock name={this.state.name}/>
+          <Clock name={this.state.name} />
         )}
       </div>
     );
