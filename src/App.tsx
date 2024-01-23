@@ -26,7 +26,9 @@ export class App extends React.Component<{}, State> {
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
+      if (this.state.hasClock) {
+        this.setState({ clockName: getRandomName() });
+      }
     }, 3300);
 
     this.timerTwo = window.setInterval(() => {
@@ -47,7 +49,8 @@ export class App extends React.Component<{}, State> {
     });
   }
 
-  componentDidUpdate(_prevProps: Readonly<{ }>, prevState: Readonly<State>): void {
+  componentDidUpdate(_prevProps: Readonly<{}>,
+    prevState: Readonly<State>): void {
     if (prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
