@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.scss';
 
 function getRandomName(): string {
@@ -7,33 +7,78 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+interface AppState {
+  hasClock: boolean;
+  clockName: string;
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+class App extends Component<{}, AppState> {
+  private timerId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  state: AppState = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount() {
+    this.timerId = window.setInterval(() => {
+      this.setState({
+        clockName: getRandomName(),
+      });
+    }, 3300);
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+  componentDidUpdate(prevProps: {}, prevState: AppState) {
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
+  }
 
-        {' time is '}
+  componentWillUnmount() {
+    window.clearInterval(this.timerId);
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  handleContextMenu = (event: React.MouseEvent) => {
+    event.preventDefault();
+    this.setState({
+      hasClock: false,
+    });
+  };
+
+  handleLeftClick = () => {
+    this.setState({
+      hasClock: true,
+    });
+  };
+
+  render() {
+    const { hasClock, clockName } = this.state;
+    const today = new Date();
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock && (
+          <div
+            className="Clock"
+            onContextMenu={this.handleContextMenu}
+            onClick={this.handleLeftClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={this.handleKeyDown}
+          >
+            <strong className="Clock__name">{clockName}</strong>
+            {' time is '}
+            <span className="Clock__time">
+              {today.toUTCString().slice(-12, -4)}
+            </span>
+          </div>
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+export default App;
