@@ -1,11 +1,6 @@
 import React from 'react';
 import './App.scss';
-
-type State = {
-  today: Date,
-  clockName: string,
-  hasClock: boolean,
-};
+import { Clock } from './Components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -13,77 +8,54 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
+type State = {
+  clockName: string,
+  hasClock: boolean;
+
+};
+
 export class App extends React.Component<{}, State> {
+  timerId = 0;
+
   state: State = {
-    today: new Date(),
     clockName: 'Clock-0',
     hasClock: true,
   };
 
-  timerId = 0;
-
-  timerTwo = 0;
-
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      if (this.state.hasClock) {
-        this.setState({ clockName: getRandomName() });
-      }
+      this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    this.timerTwo = window.setInterval(() => {
-      const nextValue = new Date();
-
-      this.setState({ today: nextValue });
-      if (this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.info(nextValue.toUTCString().slice(-12, -4));
-      }
-    }, 1000);
-
-    document.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
-
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
-  }
-
-  componentDidUpdate(_prevProps: Readonly<{}>,
-    prevState: Readonly<State>): void {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
+    document.addEventListener('click', this.handleDocumentLeftClick);
+    document.addEventListener('contextmenu', this.handleDocumentRightClick);
   }
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
-    window.clearInterval(this.timerTwo);
+    document.removeEventListener('click', this.handleDocumentLeftClick);
+    document.removeEventListener('contextmenu', this.handleDocumentRightClick);
   }
 
+  handleDocumentLeftClick = (): void => {
+    this.setState({ hasClock: true });
+  };
+
+  handleDocumentRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: false });
+  };
+
   render() {
+    const { hasClock, clockName } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-
-        {
-          this.state.hasClock && (
-            <div className="Clock">
-              <strong className="Clock__name">
-                {this.state.clockName}
-              </strong>
-
-              {' time is '}
-
-              <span className="Clock__time">
-                {this.state.today.toUTCString().slice(-12, -4)}
-              </span>
-            </div>
-          )
-        }
+        {hasClock && (
+          <Clock clockName={clockName} />
+        )}
       </div>
     );
   }
