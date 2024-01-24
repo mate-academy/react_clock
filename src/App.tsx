@@ -32,8 +32,8 @@ export class App extends React.Component<{}, State> {
     }, 3300);
 
     this.timerTwo = window.setInterval(() => {
+      this.setState({ today: new Date() });
       if (this.state.hasClock) {
-        this.setState({ today: new Date() });
         // eslint-disable-next-line no-console
         console.info(this.state.today.toUTCString().slice(-12, -4));
       }
