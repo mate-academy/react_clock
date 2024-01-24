@@ -59,7 +59,7 @@ class App extends React.Component {
       this.setState({ hasClock: true });
     });
     this.timerId = window.setInterval(() => {
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
