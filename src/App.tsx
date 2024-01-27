@@ -30,8 +30,10 @@ export class App extends React.Component<{}, AppState> {
       const oldName = this.state.clockName;
       const newName = getRandomName();
 
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${oldName} to ${newName}`);
+      if (this.state.hasClock) {
+        // eslint-disable-next-line no-console
+        console.debug(`Renamed from ${oldName} to ${newName}`);
+      }
 
       this.setState({ clockName: newName });
     }, 3300);
