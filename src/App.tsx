@@ -9,7 +9,6 @@ function getRandomName(): string {
 }
 
 interface AppState {
-  today: Date;
   clockName: string;
   hasClock: boolean;
 }
@@ -20,32 +19,14 @@ export class App extends React.Component<{}, AppState> {
   private intervalTime: NodeJS.Timeout | null = null;
 
   state: AppState = {
-    today: new Date(),
     clockName: 'Clock-0',
     hasClock: true,
   };
 
   componentDidMount() {
     this.intervalName = setInterval(() => {
-      const oldName = this.state.clockName;
-      const newName = getRandomName();
-
-      if (this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.debug(`Renamed from ${oldName} to ${newName}`);
-      }
-
-      this.setState({ clockName: newName });
+      this.setState({ clockName: getRandomName() });
     }, 3300);
-
-    this.intervalTime = setInterval(() => {
-      this.setState({ today: new Date() });
-
-      if (this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.info(this.state.today.toUTCString().slice(-12, -4));
-      }
-    }, 1000);
 
     document.addEventListener('contextmenu', (event: MouseEvent) => {
       event.preventDefault();
@@ -68,14 +49,14 @@ export class App extends React.Component<{}, AppState> {
   }
 
   render() {
-    const { clockName, today, hasClock } = this.state;
+    const { clockName, hasClock } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
         {hasClock && (
-          <Clock name={clockName} today={today} />
+          <Clock name={clockName} />
         )}
       </div>
     );
