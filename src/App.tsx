@@ -1,29 +1,40 @@
 // eslint-disable-next-line max-classes-per-file
 import React from 'react';
 
-class Clock extends React.Component {
-  state = {
+interface ClockProps {
+  name: string;
+  visible: boolean;
+}
+
+interface ClockState {
+  time: string;
+}
+
+class Clock extends React.Component<ClockProps, ClockState> {
+  timerId: number | null = null;
+
+  state: ClockState = {
     time: new Date().toUTCString().slice(-12, -4),
   };
 
-  timerId = null;
-
   componentDidMount() {
     this.timerId = window.setInterval(() => {
+      const currentTime = new Date().toUTCString().slice(-12, -4);
       this.setState({
-        time: new Date().toUTCString().slice(-12, -4),
+        time: currentTime,
       });
       // eslint-disable-next-line no-console
-      console.info('some message');
+      console.info(currentTime);
     }, 1000);
   }
 
-  // eslint-disable-next-line react/sort-comp
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    if (this.timerId !== null) {
+      clearInterval(this.timerId);
+    }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: ClockProps) {
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
@@ -41,13 +52,18 @@ class Clock extends React.Component {
   }
 }
 
-class App extends React.Component {
-  state = {
+interface AppState {
+  hasClock: boolean;
+  clockName: string;
+}
+
+class App extends React.Component<{}, AppState> {
+  timerId: number | null = null;
+
+  state: AppState = {
     hasClock: true,
     clockName: 'Clock-0',
   };
-
-  timerId = null;
 
   componentDidMount() {
     document.addEventListener('contextmenu', (event) => {
@@ -58,14 +74,14 @@ class App extends React.Component {
     document.addEventListener('click', () => {
       this.setState({ hasClock: true });
     });
+
     this.timerId = window.setInterval(() => {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
+    clearInterval(this.timerId ?? 0);
   }
 
   render() {
@@ -80,8 +96,7 @@ class App extends React.Component {
 
 function getRandomName() {
   const value = Date.now().toString().slice(-4);
-
   return `Clock-${value}`;
 }
 
-export default App;
+export { App };
