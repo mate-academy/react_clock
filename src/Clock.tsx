@@ -1,75 +1,51 @@
-import { Component } from 'react';
+import React from 'react';
 
-interface IState {
-  intervalId: NodeJS.Timer | null;
+type State = {
   today: Date;
-}
+};
 
-interface IProps {
+type Props = {
   name: string;
-}
+};
 
-function getReadableDate(time: Date) {
-  return time.toUTCString().slice(-12, -4);
-}
-
-function getCurrentTime() {
-  return new Date();
-}
-
-export class Clock extends Component<IProps, IState> {
-  state: IState = {
-    intervalId: null,
+export class Clock extends React.PureComponent<Props> {
+  state: State = {
     today: new Date(),
   };
 
-  componentDidMount() {
-    this.startInterval();
+  timerID = 0;
+
+  componentDidMount(): void {
+    this.timerID = window.setInterval(() => {
+      this.setState({ today: new Date() });
+      // eslint-disable-next-line no-console
+      console.info(this.state.today.toUTCString().slice(-12, -4));
+    }, 1000);
   }
 
-  componentWillUnmount() {
-    this.finishInterval();
-  }
-
-  updateTime = () => {
-    const currentTime = getCurrentTime();
-
-    this.setState({ today: currentTime });
-    // eslint-disable-next-line no-console
-    console.info(getReadableDate(currentTime));
-  };
-
-  startInterval = () => {
-    if (this.state.intervalId === null) {
-      const interval = setInterval(this.updateTime, 1000);
-
-      this.setState({
-        intervalId: interval,
-      });
-    }
-  };
-
-  finishInterval = () => {
-    if (typeof this.state.intervalId === 'number') {
-      clearInterval(this.state.intervalId);
-    }
-
-    this.setState({
-      intervalId: null,
-    });
-  };
-
-  render() {
-    const { today } = this.state;
+  componentDidUpdate(prevProps: Readonly<Props>): void {
     const { name } = this.props;
 
+    if (prevProps.name !== name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${name}`);
+    }
+  }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerID);
+  }
+
+  render(): React.ReactNode {
     return (
       <div className="Clock">
-        <strong className="Clock__name">{name}</strong>
+        <strong className="Clock__name">{this.props.name}</strong>
 
         {' time is '}
 
-        <span className="Clock__time">{getReadableDate(today)}</span>
+        <span className="Clock__time">
+          {this.state.today.toUTCString().slice(-12, -4)}
+        </span>
       </div>
     );
   }

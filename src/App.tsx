@@ -1,12 +1,6 @@
-import { Component } from 'react';
+import React from 'react';
 import './App.scss';
 import { Clock } from './Clock';
-
-interface IState {
-  hasClock: boolean,
-  intervalClockNameId: NodeJS.Timer | null,
-  clockName: string,
-}
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -14,69 +8,42 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class App extends Component<{}, IState> {
-  state: IState = {
+type State = {
+  hasClock: boolean;
+  clockName: string;
+};
+
+export class App extends React.Component {
+  state: State = {
     hasClock: true,
     clockName: 'Clock-0',
-    intervalClockNameId: null,
   };
 
-  componentDidMount() {
-    document.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-      this.onHide();
+  timerId = 0;
+
+  componentDidMount(): void {
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault(); // not to show the context menu
+      this.setState({ hasClock: false });
     });
 
-    document.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.onShow();
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+
+    document.addEventListener('click', () => {
+      this.setState({ hasClock: true });
     });
-    this.startChangeNameTimer();
   }
 
-  changeClockName = () => {
-    const newName = getRandomName();
-    const oldName = this.state.clockName;
-
-    this.setState({ clockName: newName });
-
-    // eslint-disable-next-line no-console
-    console.debug(`Renamed from ${oldName} to ${newName}`);
-  };
-
-  onShow = () => {
-    this.setState({ hasClock: true });
-    this.startChangeNameTimer();
-  };
-
-  onHide = () => {
-    this.setState({ hasClock: false });
-    this.endChangeNameTimer();
-  };
-
-  startChangeNameTimer = () => {
-    if (this.state.intervalClockNameId === null) {
-      const intervalID = setInterval(this.changeClockName, 3300);
-
-      this.setState({ intervalClockNameId: intervalID });
-    }
-  };
-
-  endChangeNameTimer = () => {
-    if (typeof this.state.intervalClockNameId === 'number') {
-      clearInterval(this.state.intervalClockNameId);
-      this.setState({ intervalClockNameId: null });
-    }
-  };
+  // This code starts a timer
 
   render() {
-    const { hasClock } = this.state;
-
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && <Clock name={this.state.clockName} />}
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }
