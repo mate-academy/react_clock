@@ -47,7 +47,7 @@ export class Clock extends React.PureComponent<ClockProps, ClockState> {
         {' time is '}
 
         <span className="Clock__time">
-          {currentTime}
+          {currentTime.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );
