@@ -6,7 +6,6 @@ function getRandomName(): string {
 
   return `Clock-${value}`;
 }
-
 type Props = {};
 
 type State = {
