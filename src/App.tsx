@@ -1,5 +1,6 @@
-import React from 'react';
+import { Component } from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,33 +8,54 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+interface AppState {
+  hasClock: boolean;
+  clockName: string;
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+export class App extends Component<{}, AppState> {
+  private timerId: number | null = null;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  state: AppState = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  UNSAFE_componentWillMount(): void {
+    if (this.timerId !== null) {
+      window.clearInterval(this.timerId);
+    }
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+  componentDidMount(): void {
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+      console.log(new Date().toUTCString().slice(-12, -4));
+    }, 1000);
 
-        {' time is '}
+    document.addEventListener('contextmenu', this.handleContextMenu);
+    document.addEventListener('click', this.handleLeftClick);
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  handleContextMenu = (event: MouseEvent): void => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handleLeftClick = (): void => {
+    this.setState({ hasClock: true });
+  };
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock
+          && <Clock name={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
