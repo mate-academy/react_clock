@@ -21,17 +21,14 @@ export class App extends Component<{}, AppState> {
     clockName: 'Clock-0',
   };
 
-  UNSAFE_componentWillMount(): void {
-    if (this.timerId !== null) {
-      window.clearInterval(this.timerId);
-    }
-  }
-
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
+      const newClockName = getRandomName();
+
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${this.state.clockName} to ${newClockName}`);
       this.setState({ clockName: getRandomName() });
-      console.log(new Date().toUTCString().slice(-12, -4));
-    }, 1000);
+    }, 3300);
 
     document.addEventListener('contextmenu', this.handleContextMenu);
     document.addEventListener('click', this.handleLeftClick);
@@ -39,11 +36,41 @@ export class App extends Component<{}, AppState> {
 
   handleContextMenu = (event: MouseEvent): void => {
     event.preventDefault();
+    this.stopClock();
+  };
+
+  handleLeftClick = (event: MouseEvent): void => {
+    if (event.button === 0) {
+      this.startClock();
+    }
+  };
+
+  stopClock = (): void => {
+    if (this.timerId !== null) {
+      window.clearInterval(this.timerId);
+      this.timerId = null;
+    }
+
     this.setState({ hasClock: false });
   };
 
-  handleLeftClick = (): void => {
-    this.setState({ hasClock: true });
+  startClock = (): void => {
+    if (this.timerId === null) {
+      const newClockName = getRandomName();
+
+      this.timerId = window.setInterval(() => {
+        const updatedClockName = getRandomName();
+
+        // eslint-disable-next-line no-console
+        console.debug(`Renamed from ${newClockName} to ${updatedClockName}`);
+        this.setState({ clockName: updatedClockName });
+      }, 3300);
+
+      this.setState({
+        hasClock: true,
+        clockName: newClockName,
+      });
+    }
   };
 
   render() {
