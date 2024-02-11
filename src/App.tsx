@@ -21,8 +21,6 @@ export class App extends React.Component<{}, State> {
 
   timerId = 0;
 
-  value = new Date().toString().slice(-12, -4);
-
   componentDidMount() {
     this.timerId = window.setInterval(this.updateClockName, 3300);
     document.addEventListener('contextmenu', this.handleContext);
@@ -40,9 +38,7 @@ export class App extends React.Component<{}, State> {
   };
 
   handleClick = () => {
-    this.setState({
-      hasClock: true,
-    });
+    this.setState({ hasClock: true });
   };
 
   handleContext = (event: MouseEvent) => {

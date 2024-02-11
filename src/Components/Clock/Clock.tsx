@@ -42,7 +42,7 @@ export class Clock extends React.Component<Props, State> {
     window.clearInterval(this.timerId);
   }
 
-  render(): React.ReactNode {
+  render() {
     const { clockName } = this.props;
     const { currentTime } = this.state;
 
