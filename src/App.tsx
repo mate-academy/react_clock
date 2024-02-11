@@ -32,7 +32,7 @@ export class App extends React.Component {
 
   componentDidUpdate(
     _: never,
-    prevState: Readonly<State>,
+    prevState: State,
   ): void {
     if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
       // eslint-disable-next-line no-console
@@ -45,10 +45,6 @@ export class App extends React.Component {
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
   }
-
-  updateClockName = () => {
-    this.setState({ clockName: getRandomName() });
-  };
 
   handleLeftClick = (event: MouseEvent) => {
     event.preventDefault();
