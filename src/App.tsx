@@ -1,102 +1,53 @@
-// eslint-disable-next-line max-classes-per-file
-import React from 'react';
+import { PureComponent } from 'react';
+import './App.scss';
+import { Clock } from './components/Clock';
 
-interface ClockProps {
-  name: string;
-  visible: boolean;
+function getRandomName(): string {
+  const value = Date.now().toString().slice(-4);
+
+  return `Clock-${value}`;
 }
 
-interface ClockState {
-  time: string;
-}
-
-class Clock extends React.Component<ClockProps, ClockState> {
-  timerId: number | null = null;
-
-  state: ClockState = {
-    time: new Date().toUTCString().slice(-12, -4),
-  };
-
-  componentDidMount() {
-    this.timerId = window.setInterval(() => {
-      const currentTime = new Date().toUTCString().slice(-12, -4);
-      this.setState({
-        time: currentTime,
-      });
-      // eslint-disable-next-line no-console
-      console.info(currentTime);
-    }, 1000);
-  }
-
-  componentWillUnmount() {
-    if (this.timerId !== null) {
-      clearInterval(this.timerId);
-    }
-  }
-
-  componentDidUpdate(prevProps: ClockProps) {
-    if (prevProps.name !== this.props.name) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
-    }
-  }
-
-  render() {
-    return this.props.visible ? (
-      <div className="Clock">
-        <strong className="Clock__name">{this.props.name}</strong>
-        {' time is '}
-        <span className="Clock__time">{this.state.time}</span>
-      </div>
-    ) : null;
-  }
-}
-
-interface AppState {
+interface State {
   hasClock: boolean;
   clockName: string;
 }
 
-class App extends React.Component<{}, AppState> {
-  timerId: number | null = null;
-
-  state: AppState = {
+export class App extends PureComponent {
+  state: State = {
     hasClock: true,
     clockName: 'Clock-0',
   };
 
-  componentDidMount() {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      this.setState({ hasClock: false });
-    });
+  nameTimerId = 0;
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
-
-    this.timerId = window.setInterval(() => {
+  componentDidMount(): void {
+    this.nameTimerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
+
+    document.addEventListener('contextmenu', this.handleContextMenu);
+    document.addEventListener('click', this.handleClick);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timerId ?? 0);
-  }
+  handleContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handleClick = () => {
+    this.setState({ hasClock: true });
+  };
 
   render() {
     return (
       <div className="App">
         <h1>React clock</h1>
-        <Clock name={this.state.clockName} visible={this.state.hasClock} />
+
+        {this.state.hasClock && (
+          <Clock clockName={this.state.clockName} />
+        )}
       </div>
     );
   }
 }
-
-function getRandomName() {
-  const value = Date.now().toString().slice(-4);
-  return `Clock-${value}`;
-}
-
-export { App };
