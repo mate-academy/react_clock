@@ -24,9 +24,7 @@ export const App: React.FC = () => {
       <h1>React clock</h1>
 
       <div className="Clock">
-        <strong className="Clock__name">
-          {clockName}
-        </strong>
+        <strong className="Clock__name">{clockName}</strong>
 
         {' time is '}
 
