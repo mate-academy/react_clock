@@ -17,18 +17,8 @@ export class App extends PureComponent {
     console.info(`Renamed from ${oldName} to ${this.state.clockName}`);
   }, 3300);
 
-  handleClock = window.setInterval(() => {
-    this.setState(curState => ({
-      ...curState,
-      today: new Date(),
-    }));
-
-    // eslint-disable-next-line no-console
-    console.info(this.state.today.toUTCString().slice(-12, -4));
-  }, 1000);
-
   componentDidMount(): void {
-    // this.handleClick;
+    this.handleClick();
     // this.handleClock;
     window.addEventListener('contextmenu', this.handleContextMenu);
     window.addEventListener('click', this.handleClick);
@@ -41,6 +31,16 @@ export class App extends PureComponent {
     window.clearInterval(this.handleClock);
   }
 
+  handleClock = window.setInterval(() => {
+    this.setState(curState => ({
+      ...curState,
+      today: new Date(),
+    }));
+
+    // eslint-disable-next-line no-console
+    console.info(this.state.today.toUTCString().slice(-12, -4));
+  }, 1000);
+
   handleContextMenu = (_event: MouseEvent) => {
     _event.preventDefault();
     this.setState((curState) => {
@@ -51,7 +51,7 @@ export class App extends PureComponent {
     });
   };
 
-  handleClick = (event: MouseEvent) => {
+  handleClick = (event?: MouseEvent) => {
     event?.preventDefault();
 
     if (event?.button === 0) {
