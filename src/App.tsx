@@ -19,7 +19,6 @@ export class App extends PureComponent {
 
   componentDidMount(): void {
     this.handleClick();
-    // this.handleClock;
     window.addEventListener('contextmenu', this.handleContextMenu);
     window.addEventListener('click', this.handleClick);
   }
@@ -41,8 +40,8 @@ export class App extends PureComponent {
     console.info(this.state.today.toUTCString().slice(-12, -4));
   }, 1000);
 
-  handleContextMenu = (_event: MouseEvent) => {
-    _event.preventDefault();
+  handleContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
     this.setState((curState) => {
       return {
         ...curState,
@@ -51,10 +50,10 @@ export class App extends PureComponent {
     });
   };
 
-  handleClick = (event?: MouseEvent) => {
-    event?.preventDefault();
+  handleClick = (event: MouseEvent) => {
+    event.preventDefault();
 
-    if (event?.button === 0) {
+    if (event.button === 0) {
       this.setState((curState) => {
         return {
           ...curState,
