@@ -34,7 +34,6 @@ export class App extends PureComponent {
     window.addEventListener('click', this.handleClick);
   }
 
-  // this code stops the timer
   componentWillUnmount(): void {
     document.removeEventListener('click', this.handleClick);
     document.removeEventListener('contextmenu', this.handleContextMenu);
