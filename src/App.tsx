@@ -18,7 +18,6 @@ export class App extends PureComponent {
   }, 3300);
 
   componentDidMount(): void {
-    // this.handleClick();
     window.addEventListener('contextmenu', this.handleContextMenu);
     window.addEventListener('click', this.handleClick);
   }
