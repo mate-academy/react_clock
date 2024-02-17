@@ -43,7 +43,7 @@ Create a `Clock` class component that will update the time every second using a 
     Renamed from oldName to newName
     ```
 - to see `console.debug` messages enable the `verbose` level in DevTools console:
-    
+
 ![How to enable verbose level](./readme-files/enable-verbose-level.png)
 
 > check in the console that a renaming message occurs after each 3-4 time messages.
@@ -51,7 +51,7 @@ Create a `Clock` class component that will update the time every second using a 
 ![Expected console output](./readme-files/expected-console-output.png)
 
 ## Instructions
-
+- Install Prettier Extention and use this [VSCode settings](https://mate-academy.github.io/fe-program/tools/vscode/settings.json) to enable format on save.
 - Implement a solution following the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
 - Use the [React TypeScript cheatsheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript).
 - Open one more terminal and run tests with `npm test` to ensure your solution is correct.
