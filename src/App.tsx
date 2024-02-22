@@ -1,10 +1,10 @@
-import React from "react";
-import "./App.scss";
+import React from 'react';
+import './App.scss';
 import { Clock } from './Components/Clock';
 
 interface State {
-  clockName: string,
-  hasClock: boolean,
+  clockName: string;
+  hasClock: boolean;
 }
 
 type Props = {};
@@ -24,13 +24,13 @@ export class App extends React.Component<Props, State> {
   timerId = 0;
 
   componentDidMount(): void {
-    document.addEventListener('contextmenu', (event) => {
+    document.addEventListener('contextmenu', event => {
       event.preventDefault();
 
       this.setState({ hasClock: false });
     });
 
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', event => {
       event.preventDefault();
 
       this.setState({ hasClock: true });
@@ -49,7 +49,9 @@ export class App extends React.Component<Props, State> {
   ): void {
     if (this.state.hasClock && prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+      console.debug(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
     }
   }
 
@@ -60,14 +62,7 @@ export class App extends React.Component<Props, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {
-          hasClock && (
-            <Clock
-              name={clockName}
-            />
-          )
-        }
-
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }
