@@ -9,14 +9,14 @@ type State = {
 };
 
 export class Clock extends React.Component<Props, State> {
-  state: Readonly<State> = {
+  state: State = {
     today: new Date(),
   };
 
-  timerId = 0;
+  intervalId: number | null = null;
 
   componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
+    this.intervalId = window.setInterval(() => {
       this.setState({ today: new Date() });
     }, 1000);
   }
@@ -25,7 +25,7 @@ export class Clock extends React.Component<Props, State> {
     prevProps: Readonly<Props>,
     prevState: Readonly<State>,
   ): void {
-    if (prevProps.name !== this.props.name) {
+    if (this.props.name !== prevProps.name) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
@@ -37,7 +37,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
+    if (this.intervalId) {
+      window.clearInterval(this.intervalId);
+    }
   }
 
   render() {
