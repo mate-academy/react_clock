@@ -1,29 +1,46 @@
 import React from 'react';
+import './App.scss';
 
-interface Props {
+type Props = {
   name: string;
-}
+};
 
-export class Clock extends React.PureComponent<Props> {
-  state = {
+type State = {
+  today: Date;
+};
+
+export class Clock extends React.Component<Props, State> {
+  state: State = {
     today: new Date(),
   };
 
-  timerId = 0;
+  intervalId: number | null = null;
 
   componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
-      this.setState({
-        today: new Date(),
-      });
-
-      // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+    this.intervalId = window.setInterval(() => {
+      this.setState({ today: new Date() });
     }, 1000);
   }
 
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+    prevState: Readonly<State>,
+  ): void {
+    if (this.props.name !== prevProps.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+
+    if (this.state.today !== prevState.today) {
+      // eslint-disable-next-line no-console
+      console.log(this.state.today.toUTCString().slice(-12, -4));
+    }
+  }
+
   componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
+    if (this.intervalId) {
+      window.clearInterval(this.intervalId);
+    }
   }
 
   render() {
