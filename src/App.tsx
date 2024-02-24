@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './component/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -33,6 +34,9 @@ export class App extends React.Component<{}, State> {
   // this code stops the timer
   componentWillUnmount() {
     window.clearInterval(this.timerId);
+
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleLeftClick);
   }
 
   handleContextMenu = (event: MouseEvent) => {
@@ -41,26 +45,16 @@ export class App extends React.Component<{}, State> {
   };
 
   handleLeftClick = () => {
-    this.setState(prevState => ({ hasClock: !prevState.hasClock }));
+    this.setState({ hasClock: true });
   };
 
   render() {
-    const { clockName } = this.state;
-    const today = new Date();
+    const { clockName, hasClock } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-
-        <div className={`Clock ${this.state.hasClock ? 'visible' : 'hidden'}`}>
-          <strong className="Clock__name">{clockName}</strong>
-
-          {' time is '}
-
-          <span className="Clock__time">
-            {today.toUTCString().slice(-12, -4)}
-          </span>
-        </div>
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }
