@@ -1,20 +1,22 @@
 import { PureComponent } from 'react';
 
-type Props = {
+export type Props = {
   hasClock: boolean;
   clockName: string;
-  today: Date;
 };
 
 export class Clock extends PureComponent<Props> {
+  state = {
+    today: new Date(),
+  };
+
   handleClock = window.setInterval(() => {
-    this.setState(curState => ({
-      ...curState,
-      // eslint-disable-next-line react/no-unused-state
-      today: new Date(),
-    }));
+    const today = new Date();
+
+    this.setState({ today: new Date() });
+
     // eslint-disable-next-line no-console
-    console.log(this.props.today.toUTCString().slice(-12, -4));
+    console.log(today.toUTCString().slice(-12, -4));
   }, 1000);
 
   componentWillUnmount(): void {
@@ -22,7 +24,7 @@ export class Clock extends PureComponent<Props> {
   }
 
   render() {
-    const { hasClock, clockName, today } = this.props;
+    const { hasClock, clockName } = this.props;
 
     return (
       <>
@@ -33,7 +35,7 @@ export class Clock extends PureComponent<Props> {
             {' time is '}
 
             <span className="Clock__time">
-              {today.toUTCString().slice(-12, -4)}
+              {this.state.today.toUTCString().slice(-12, -4)}
             </span>
           </div>
         )}
