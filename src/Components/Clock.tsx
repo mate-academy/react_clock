@@ -14,9 +14,12 @@ export class Clock extends React.Component<Props> {
   componentDidMount(): void {
     this.intervalValue = window.setInterval(() => {
       this.setState({ date: new Date() });
+      const today = new Date();
 
-      // eslint-disable-next-line no-console
-      console.info(this.getTimeFromDate(new Date()));
+      if (this.state.date !== today) {
+        // eslint-disable-next-line no-console
+        console.log(this.getTimeFromDate(this.state.date));
+      }
     }, 1000);
   }
 
