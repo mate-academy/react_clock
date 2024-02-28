@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.scss';
-import { Clock } from './Clock';
+import { Clock } from './Component/Clock/Clock';
+
+type Props = {};
 
 type State = {
-  hasClock: boolean;
   clockName: string;
+  hasClock: boolean;
 };
 
 function getRandomName(): string {
@@ -13,58 +15,44 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class App extends React.PureComponent<{}, State> {
-  state = {
-    hasClock: true,
+export class App extends React.Component<Props, State> {
+  state: State = {
     clockName: 'Clock-0',
+    hasClock: true,
   };
-
-  today = new Date();
 
   timerId = 0;
 
   componentDidMount(): void {
-    document.addEventListener('contextmenu', this.handleContextMenu);
-    document.addEventListener('click', this.handleClick);
-
     this.timerId = window.setInterval(() => {
-      this.setState({
-        clockName: getRandomName(),
-      });
+      this.setState({ clockName: getRandomName() });
     }, 3300);
+
+    document.addEventListener('click', this.handleClockShow);
+    document.addEventListener('contextmenu', this.handleClockHide);
   }
 
-  handleContextMenu = (event: MouseEvent): void => {
+  handleClockShow = (event: MouseEvent) => {
     event.preventDefault();
     if (!this.state.hasClock) {
-      return;
+      this.setState({ hasClock: true });
     }
-
-    this.setState({
-      hasClock: false,
-    });
   };
 
-  handleClick = (event: MouseEvent): void => {
+  handleClockHide = (event: MouseEvent) => {
     event.preventDefault();
-
     if (this.state.hasClock) {
-      return;
+      this.setState({ hasClock: false });
     }
-
-    this.setState({
-      hasClock: true,
-    });
   };
 
   render() {
-    const { hasClock, clockName } = this.state;
+    const { hasClock } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-
-        {hasClock && <Clock name={clockName} />}
+        {hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }
