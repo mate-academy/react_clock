@@ -16,7 +16,7 @@ export class Clock extends React.Component<Props> {
       this.setState({ today: new Date() });
 
       // eslint-disable-next-line no-console
-      console.info(new Date().toUTCString().slice(-12, -4));
+      console.log(new Date().toUTCString().slice(-12, -4));
     }, 1000);
   }
 
