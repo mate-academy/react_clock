@@ -1,3 +1,4 @@
+// App.tsx
 import React from 'react';
 import './App.scss';
 import { Clock } from './Components/Clock';
@@ -7,7 +8,7 @@ interface State {
   clockName: string;
 }
 
-export class App extends React.Component {
+export class App extends React.Component<{}, State> {
   state: State = {
     hasClock: true,
     clockName: 'Clock-0',
@@ -38,13 +39,11 @@ export class App extends React.Component {
 
   hideClock = (event: MouseEvent) => {
     event.preventDefault();
-
     this.setState({ hasClock: false });
   };
 
   showClock = (event: MouseEvent) => {
     event.preventDefault();
-
     this.setState({ hasClock: true });
   };
 
@@ -54,8 +53,7 @@ export class App extends React.Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-
-        {hasClock && <Clock name={clockName} />}
+        {hasClock && <Clock name={clockName} isVisible={hasClock} />}
       </div>
     );
   }

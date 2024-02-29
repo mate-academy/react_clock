@@ -1,11 +1,17 @@
+// Clock.tsx
 import React from 'react';
 
 type Props = {
   name: string;
+  isVisible: boolean;
 };
 
-export class Clock extends React.Component<Props> {
-  state = {
+type State = {
+  date: Date;
+};
+
+export class Clock extends React.Component<Props, State> {
+  state: State = {
     date: new Date(),
   };
 
@@ -14,9 +20,7 @@ export class Clock extends React.Component<Props> {
   componentDidMount(): void {
     this.intervalValue = window.setInterval(() => {
       this.setState({ date: new Date() });
-      const today = new Date();
-
-      if (this.state.date !== today) {
+      if (this.props.isVisible) {
         // eslint-disable-next-line no-console
         console.log(this.getTimeFromDate(this.state.date));
       }
@@ -48,9 +52,7 @@ export class Clock extends React.Component<Props> {
     return (
       <div className="Clock">
         <strong className="Clock__name">{name}</strong>
-
         {' time is '}
-
         <span className="Clock__time">{this.getTimeFromDate(date)}</span>
       </div>
     );
