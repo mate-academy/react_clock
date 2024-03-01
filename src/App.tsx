@@ -24,14 +24,15 @@ export class App extends React.Component<{}, State> {
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
-      document.addEventListener('click', this.handleClick);
-      document.addEventListener('contextmenu', this.handleContextMenuClick);
     }, 3300);
+    document.addEventListener('click', this.handleClick);
+    document.addEventListener('contextmenu', this.handleContextMenuClick);
   }
 
-  componentDidUpdate(_:{}, prevState: State): void {
+  componentDidUpdate(_: {}, prevState: State): void {
     if (this.state.hasClock && prevState.clockName !== this.state.clockName) {
-      console.info(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
     }
   }
 
@@ -41,13 +42,13 @@ export class App extends React.Component<{}, State> {
     document.removeEventListener('contextmenu', this.handleContextMenuClick);
   }
 
-  handleClick = (event: MouseEvent): void => {
+  handleClick = (event: MouseEvent) => {
     event.preventDefault();
 
     this.setState({ hasClock: true });
   };
 
-  handleContextMenuClick = (event: MouseEvent): void => {
+  handleContextMenuClick = (event: MouseEvent) => {
     event.preventDefault();
 
     this.setState({ hasClock: false });
