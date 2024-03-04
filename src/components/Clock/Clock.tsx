@@ -41,10 +41,15 @@ export class Clock extends React.Component<Props> {
     document.removeEventListener('click', this.changeClockStatus);
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{clockName: string}>): void {
-    if (prevState.clockName !== this.state.clockName) {
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+    prevState: Readonly<{ clockName: string }>,
+  ): void {
+    if (prevState.clockName !== this.state.clockName && prevProps) {
       // eslint-disable-next-line no-console
-      console.log(`renamed from ${prevState.clockName} to ${this.state.clockName}`)
+      console.log(
+        `renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
     }
   }
 
