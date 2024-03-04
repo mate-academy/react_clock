@@ -41,6 +41,13 @@ export class Clock extends React.Component<Props> {
     document.removeEventListener('click', this.changeClockStatus);
   }
 
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{clockName: string}>): void {
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.log(`renamed from ${prevState.clockName} to ${this.state.clockName}`)
+    }
+  }
+
   // this code stops the timer
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
