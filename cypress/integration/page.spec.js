@@ -32,12 +32,14 @@ describe('Clock', () => {
 
     it('should be hidden after a right click', () => {
       cy.get('body').rightclick();
+
       page.clock().should('not.exist');
     });
 
     it('should appear after a left click', () => {
       cy.get('body').rightclick();
       cy.get('body').click();
+
       page.clock().should('exist');
     });
 
@@ -191,7 +193,6 @@ describe('Clock', () => {
     });
 
     it('should not print rename messages before the next update', () => {
-      // 2 renaming delays - time before hiding - time before showing
       cy.tick(2 * 3300 - 1500 - 2200 - 1);
 
       cy.get('@console.debug').should('not.be.called');
