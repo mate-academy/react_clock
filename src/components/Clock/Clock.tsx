@@ -6,7 +6,9 @@ type State = {
 };
 
 type Props = {
+  changeClockName: (newName: string) => void;
   changeClockStatus: (event: MouseEvent) => void;
+  currentClockName: string;
 };
 
 function getRandomName(): string {
@@ -18,11 +20,10 @@ function getRandomName(): string {
 export class Clock extends React.Component<Props> {
   state: State = {
     today: new Date(),
-    clockName: getRandomName(),
+    clockName: this.props.currentClockName,
   };
 
   timerId = 0;
-
   timerId2 = 0;
 
   changeClockStatus = this.props.changeClockStatus;
@@ -30,12 +31,15 @@ export class Clock extends React.Component<Props> {
   // This code starts a timer
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
+      this.setState({ clockName: getRandomName() }, () => {
+        this.props.changeClockName(this.state.clockName);
+      });
     }, 3300);
     this.timerId2 = window.setInterval(() => {
-      // eslint-disable-next-line no-console
-      console.log(this.state.today.toUTCString().slice(-12, -4));
-      this.setState({ today: new Date() });
+      this.setState({ today: new Date(this.state.today.getTime() + 1000) }, () => {
+          // eslint-disable-next-line no-console
+          console.log(this.state.today.toUTCString().slice(-12, -4));
+      });
     }, 1000);
     document.addEventListener('contextmenu', this.changeClockStatus);
     document.removeEventListener('click', this.changeClockStatus);
@@ -46,8 +50,9 @@ export class Clock extends React.Component<Props> {
     prevState: Readonly<{ clockName: string }>,
   ): void {
     if (prevState.clockName !== this.state.clockName && prevProps) {
+      // this.props.changeClockName(this.state.clockName);
       // eslint-disable-next-line no-console
-      console.log(
+      console.debug(
         `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
       );
     }
@@ -64,7 +69,7 @@ export class Clock extends React.Component<Props> {
   render() {
     return (
       <div className="Clock">
-        <strong className="Clock__name">{this.state.clockName}</strong>
+        <strong className="Clock__name">{this.props.currentClockName}</strong>
 
         {' time is '}
 

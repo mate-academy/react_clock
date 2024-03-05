@@ -4,12 +4,18 @@ import { Clock } from './components/Clock/Clock';
 
 type State = {
   hasClock: boolean;
+  currentClockName: string;
 };
 
 export class App extends React.Component {
   state: State = {
     hasClock: true,
+    currentClockName: 'Clock-0',
   };
+
+  handelnClockNameChenger = (newName: string) => {
+    this.setState({ currentClockName: newName });
+  }
 
   hendlerClockSwitcher = (event: MouseEvent) => {
     event.preventDefault();
@@ -24,9 +30,13 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>React clock</h1>
+        <h1>React clock {this.state.currentClockName}</h1>
         {this.state.hasClock && (
-          <Clock changeClockStatus={this.hendlerClockSwitcher} />
+          <Clock
+            changeClockName={this.handelnClockNameChenger}
+            changeClockStatus={this.hendlerClockSwitcher}
+            currentClockName={this.state.currentClockName}
+          />
         )}
       </div>
     );
