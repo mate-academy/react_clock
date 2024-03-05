@@ -65,6 +65,7 @@ describe('Clock', () => {
 
     it('should print the time with console.log every second', () => {
       cy.tick(1000);
+
       cy.get('@console.log').should('be.calledOnceWith', Cypress.sinon.match.string);
 
       cy.tick(1000);
@@ -72,6 +73,7 @@ describe('Clock', () => {
 
       cy.tick(1000);
       cy.get('@console.log').should('have.callCount', 3).and('be.calledWith', Cypress.sinon.match.string);
+
     });
 
     it('should not call console.log before the first time update', () => {
@@ -119,6 +121,7 @@ describe('Clock', () => {
   describe('after it was hidden', () => {
     it('should not call console.log', () => {
       cy.tick(1999);
+
       cy.get('body').rightclick();
       cy.tick(3000);
 
@@ -182,10 +185,12 @@ describe('Clock', () => {
 
     it('should proceed printing time to the console every second', () => {
       cy.tick(1000);
+
       cy.get('@console.log').should('have.callCount', 2).and('be.calledWith', Cypress.sinon.match.string);
 
       cy.tick(1000);
       cy.get('@console.log').should('have.callCount', 3).and('be.calledWith', Cypress.sinon.match.string);
+
     });
 
     it('should show actual name', () => {

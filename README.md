@@ -9,12 +9,12 @@ Create a `Clock` class component that will update the time every second using a 
 - print current time on the page on page load;
   - use `.toUTCString().slice(-12, -4)` methods do avoid timezone issues;
 - update the time every second using the `window.setInterval`;
-- start the timer only when the component is added to the page (`componentDidMount`).
-- every second print the time in the DevTools using `console.info` method (**not** the `console.log`);
+- start the timer only when the component is added to the page (`componentDidMount`);
+- every second print the time in the DevTools using `console.log` method;
 - add the next comment above the console.debug line to ignore linter error
     ```js
     // eslint-disable-next-line no-console
-    console.info('some message');
+    console.log('some message');
     ```
 - make the `App` a class component;
 - add the `hasClock` property to the `App` state;
