@@ -17,9 +17,15 @@ export class Clock extends React.PureComponent<Props> {
 
   componentDidMount() {
     this.timeId = window.setInterval(() => {
-      this.setState({ today: new Date() });
-      // eslint-disable-next-line no-console
-      console.log('message');
+      // eslint-disable-next-line
+      this.setState(prevState => {
+        const newToday = new Date();
+
+        // eslint-disable-next-line no-console
+        console.log(newToday.toUTCString().slice(-12, -4));
+
+        return { today: newToday };
+      });
     }, 1000);
   }
 
