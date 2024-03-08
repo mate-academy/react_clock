@@ -2,34 +2,22 @@
 import React from 'react';
 import './App.scss';
 
+import { Clock } from './components/Clock';
+
 type State = {
   hasClock: boolean;
   clockName: string;
-  currentTime: string;
 };
 
 export class App extends React.Component {
-  timerId: number | undefined;
-
-  nameTimerId: number | undefined;
+  nameTimerId = 0;
 
   state: State = {
     hasClock: true,
     clockName: 'Clock-0',
-    currentTime: new Date().toUTCString().slice(-12, -4),
   };
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
-      const currentTime = new Date().toUTCString().slice(-12, -4);
-
-      this.setState({ currentTime });
-
-      if (this.state.hasClock) {
-        console.log(currentTime);
-      }
-    }, 1000);
-
     this.nameTimerId = window.setInterval(() => {
       this.setState({ clockName: this.getRandomName() });
     }, 3300);
@@ -47,13 +35,7 @@ export class App extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.timerId) {
-      clearInterval(this.timerId);
-    }
-
-    if (this.nameTimerId) {
-      clearInterval(this.nameTimerId);
-    }
+    window.clearInterval(this.nameTimerId);
 
     document.removeEventListener('contextmenu', this.hideClock);
     document.removeEventListener('click', this.showClock);
@@ -75,18 +57,12 @@ export class App extends React.Component {
   };
 
   render() {
-    const { hasClock, currentTime, clockName } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">{clockName}</strong>
-            {' time is '}
-            <span className="Clock__time">{currentTime}</span>
-          </div>
-        )}
+        {hasClock && <Clock clockName={clockName} />}
       </div>
     );
   }
