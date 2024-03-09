@@ -1,69 +1,71 @@
 import React from 'react';
 
-type State = {
-  today: Date;
-  clockName: string;
-};
-
 type Props = {
-  changeClockName: (newName: string) => void;
-  changeClockStatus: (event: MouseEvent) => void;
+  timerStart: () => void;
+  timerStop: () => void;
+  clockSwitcher: (value: boolean) => void;
+  hasClock: boolean;
   currentClockName: string;
 };
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
+type State = {
+  today: Date
 }
 
 export class Clock extends React.Component<Props> {
   state: State = {
     today: new Date(),
-    clockName: this.props.currentClockName,
-  };
+  }
 
   timerId = 0;
-  timerId2 = 0;
 
-  changeClockStatus = this.props.changeClockStatus;
-
-  // This code starts a timer
-  componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() }, () => {
-        this.props.changeClockName(this.state.clockName);
-      });
-    }, 3300);
-    this.timerId2 = window.setInterval(() => {
-      this.setState({ today: new Date(this.state.today.getTime() + 1000) }, () => {
+  timeChanger = () => {
+    this.timerId = window.setInterval(
+      () => {
+        this.setState(() => this.setState({ today: new Date() }), () => {
           // eslint-disable-next-line no-console
-          console.log(this.state.today.toUTCString().slice(-12, -4));
-      });
-    }, 1000);
-    document.addEventListener('contextmenu', this.changeClockStatus);
-    document.removeEventListener('click', this.changeClockStatus);
+          //console.log(this.state.today.toUTCString().slice(-12, -4));
+        },
+        );
+      }, 1000);
+  };
+
+  timerCleaner = () => {
+    window.clearInterval(this.timerId);
+  }
+
+  rightButtonClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.props.clockSwitcher(false);
+  };
+
+  leftButtonClick = () => {
+    this.props.clockSwitcher(true);
+  }
+
+  componentDidMount(): void {
+    addEventListener('contextmenu', this.rightButtonClick);
+    removeEventListener('click', this.leftButtonClick);
+    this.props.timerStart();
+    this.timeChanger();
   }
 
   componentDidUpdate(
-    prevProps: Readonly<Props>,
-    prevState: Readonly<{ clockName: string }>,
+    prevProps: Readonly<Props>
   ): void {
-    if (prevState.clockName !== this.state.clockName && prevProps) {
-      // this.props.changeClockName(this.state.clockName);
+    if (prevProps.currentClockName !== this.props.currentClockName) {
       // eslint-disable-next-line no-console
       console.debug(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+        `Renamed from ${prevProps.currentClockName} to ${this.props.currentClockName}`,
       );
     }
   }
 
-  // this code stops the timer
   componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
-    window.clearInterval(this.timerId2);
-    document.addEventListener('click', this.changeClockStatus);
-    document.removeEventListener('contextmenu', this.changeClockStatus);
+    removeEventListener('contextmenu', this.rightButtonClick);
+    addEventListener('click', this.leftButtonClick);
+    this.props.timerStop();
+    this.timerCleaner();
   }
 
   render() {
