@@ -4,44 +4,19 @@ type Props = {
   timerStart: () => void;
   timerStop: () => void;
   clockSwitcher: (value: boolean) => void;
-  hasClock: boolean;
   currentClockName: string;
 };
 
 type State = {
-  today: Date
-}
+  today: Date;
+};
 
 export class Clock extends React.Component<Props> {
   state: State = {
     today: new Date(),
-  }
+  };
 
   timerId = 0;
-
-  timeChanger = () => {
-    this.timerId = window.setInterval(
-      () => {
-        this.setState(() => this.setState({ today: new Date() }), () => {
-          // eslint-disable-next-line no-console
-          //console.log(this.state.today.toUTCString().slice(-12, -4));
-        },
-        );
-      }, 1000);
-  };
-
-  timerCleaner = () => {
-    window.clearInterval(this.timerId);
-  }
-
-  rightButtonClick = (event: MouseEvent) => {
-    event.preventDefault();
-    this.props.clockSwitcher(false);
-  };
-
-  leftButtonClick = () => {
-    this.props.clockSwitcher(true);
-  }
 
   componentDidMount(): void {
     addEventListener('contextmenu', this.rightButtonClick);
@@ -50,9 +25,7 @@ export class Clock extends React.Component<Props> {
     this.timeChanger();
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<Props>
-  ): void {
+  componentDidUpdate(prevProps: Readonly<Props>): void {
     if (prevProps.currentClockName !== this.props.currentClockName) {
       // eslint-disable-next-line no-console
       console.debug(
@@ -67,6 +40,31 @@ export class Clock extends React.Component<Props> {
     this.props.timerStop();
     this.timerCleaner();
   }
+
+  timeChanger = () => {
+    this.timerId = window.setInterval(() => {
+      this.setState(
+        () => this.setState({ today: new Date() }),
+        () => {
+          // eslint-disable-next-line no-console
+          console.log(this.state.today.toUTCString().slice(-12, -4));
+        },
+      );
+    }, 1000);
+  };
+
+  timerCleaner = () => {
+    window.clearInterval(this.timerId);
+  };
+
+  rightButtonClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.props.clockSwitcher(false);
+  };
+
+  leftButtonClick = () => {
+    this.props.clockSwitcher(true);
+  };
 
   render() {
     return (

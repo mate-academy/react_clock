@@ -21,21 +21,24 @@ export class App extends React.Component {
 
   timerId = 0;
 
-  clockName = this.state.currentClockName === 'Clock-0' ? 'Clock-0' : getRandomName();
+  clockName =
+    this.state.currentClockName === 'Clock-0' ? 'Clock-0' : getRandomName();
 
   handelnClockNameChenger = (newName: string) => {
     this.setState({ currentClockName: newName });
-    this.clockName =  newName;
+    this.clockName = newName;
   };
 
   handelnTimerStart = () => {
     this.timerId = window.setInterval(
-      () => this.handelnClockNameChenger(getRandomName()), 3300);
+      () => this.handelnClockNameChenger(getRandomName()),
+      3300,
+    );
   };
 
   handelnTimerStop = () => {
     window.clearInterval(this.timerId);
-  }
+  };
 
   hendlerClockSwitcher = (value: boolean) => {
     this.setState({ hasClock: value });
@@ -44,10 +47,6 @@ export class App extends React.Component {
       this.handelnTimerStop();
     }
   };
-
-  componentDidUpdate(prevState: Readonly<{currentClockName: string}>): void {
-    console.log(prevState.currentClockName, this.state.currentClockName);
-  }
 
   render() {
     return (
@@ -60,7 +59,6 @@ export class App extends React.Component {
             clockSwitcher={(value: boolean) => {
               this.hendlerClockSwitcher(value);
             }}
-            hasClock={this.state.hasClock}
             currentClockName={this.clockName}
           />
         )}
