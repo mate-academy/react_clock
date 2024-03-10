@@ -43,6 +43,7 @@ export class App extends React.Component {
 
   render(): React.ReactNode {
     const { hasClock } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
