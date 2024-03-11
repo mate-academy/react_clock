@@ -3,8 +3,9 @@ import React from 'react';
 type Props = {
   timerStart: () => void;
   timerStop: () => void;
-  clockSwitcher: (value: boolean) => void;
   currentClockName: string;
+  count: number;
+  appearNameHook: () => void;
 };
 
 type State = {
@@ -18,25 +19,16 @@ export class Clock extends React.Component<Props> {
 
   timerId = 0;
 
+
   componentDidMount(): void {
-    addEventListener('contextmenu', this.rightButtonClick);
-    removeEventListener('click', this.leftButtonClick);
     this.props.timerStart();
     this.timeChanger();
-  }
-
-  componentDidUpdate(prevProps: Readonly<Props>): void {
-    if (prevProps.currentClockName !== this.props.currentClockName) {
-      // eslint-disable-next-line no-console
-      console.debug(
-        `Renamed from ${prevProps.currentClockName} to ${this.props.currentClockName}`,
-      );
+    if (this.props.count === 1) {
+      this.props.appearNameHook();
     }
   }
 
   componentWillUnmount(): void {
-    removeEventListener('contextmenu', this.rightButtonClick);
-    addEventListener('click', this.leftButtonClick);
     this.props.timerStop();
     this.timerCleaner();
   }
@@ -55,15 +47,6 @@ export class Clock extends React.Component<Props> {
 
   timerCleaner = () => {
     window.clearInterval(this.timerId);
-  };
-
-  rightButtonClick = (event: MouseEvent) => {
-    event.preventDefault();
-    this.props.clockSwitcher(false);
-  };
-
-  leftButtonClick = () => {
-    this.props.clockSwitcher(true);
   };
 
   render() {
