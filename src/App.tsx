@@ -1,5 +1,11 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock/Clock';
+
+type State = {
+  hasClock: boolean;
+  currentClockName: string;
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +13,41 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component {
+  state: State = {
+    hasClock: true,
+    currentClockName: 'Clock-0',
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  timerId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount(): void {
+    this.timerId = window.setInterval(() => {
+      this.setState({ currentClockName: getRandomName() });
+    }, 3300);
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    window.addEventListener('contextmenu', this.rightButtonClick);
+    window.addEventListener('click', this.leftButtonClick);
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  rightButtonClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
-        {' time is '}
+  leftButtonClick = () => {
+    this.setState({ hasClock: true });
+  };
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  render() {
+    const { hasClock, currentClockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {hasClock && <Clock name={currentClockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
