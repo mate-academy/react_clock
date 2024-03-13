@@ -8,7 +8,7 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class App extends React.PureComponent {
+export class App extends React.Component {
   state = {
     hasClock: true,
     clockName: 'Clock-0',
@@ -47,7 +47,7 @@ export class App extends React.PureComponent {
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock && <Clock name={this.state.clockName} />}
+        {this.state.hasClock && <Clock clockName={this.state.clockName} />}
       </div>
     );
   }
