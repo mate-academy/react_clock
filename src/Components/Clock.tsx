@@ -6,7 +6,11 @@ type Props = {
   name: string;
 };
 
-export class Clock extends React.PureComponent<Props> {
+type State = {
+  today: Date;
+};
+
+export class Clock extends React.PureComponent<Props, State> {
   state = {
     today: new Date(),
   };
