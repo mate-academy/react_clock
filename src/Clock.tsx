@@ -6,7 +6,7 @@ type Props = {
 
 export class Clock extends React.Component<Props> {
   state = {
-    currentTime: new Date().toUTCString().slice(-12, -4),
+    currentTime: new Date(),
   };
 
   timerLog = 0;
@@ -39,7 +39,9 @@ export class Clock extends React.Component<Props> {
 
         {' time is '}
 
-        <span className="Clock__time">{this.state.currentTime}</span>
+        <span className="Clock__time">
+          {this.state.currentTime.toUTCString().slice(-12, -4)}
+        </span>
       </div>
     );
   }
