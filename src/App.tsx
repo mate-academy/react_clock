@@ -39,6 +39,14 @@ export class App extends React.Component {
 
   componentWillUnmount(): void {
     clearInterval(this.timerId);
+
+    document.removeEventListener('contextmenu', (event: MouseEvent) => {
+      this.handleDocumentRightClick(event);
+    });
+
+    document.removeEventListener('click', (event: MouseEvent) => {
+      this.handleDocumentLeftClick(event);
+    });
   }
 
   handleDocumentRightClick = (event: MouseEvent) => {

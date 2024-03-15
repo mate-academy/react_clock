@@ -5,21 +5,21 @@ type Props = {
 };
 
 type State = {
-  today: Date;
+  today: string;
 };
 
 export class Clock extends React.Component<Props, State> {
   state: State = {
-    today: new Date(),
+    today: new Date().toUTCString().slice(-12, -4),
   };
 
   timerId = 0;
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      this.setState({ today: new Date().toUTCString().slice(-12, -4) });
       // eslint-disable-next-line no-console
-      console.log(this.state.today.toUTCString().slice(-12, -4));
+      console.log(this.state.today);
     }, 1000);
   }
 
@@ -35,10 +35,6 @@ export class Clock extends React.Component<Props, State> {
   }
 
   render() {
-    return (
-      <span className="Clock__time">
-        {this.state.today.toUTCString().slice(-12, -4)}
-      </span>
-    );
+    return <span className="Clock__time">{this.state.today}</span>;
   }
 }
