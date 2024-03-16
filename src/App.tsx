@@ -17,7 +17,7 @@ export class App extends React.Component {
   state: State = {
     hasClock: true,
     clockName: 'Clock-0',
-  }
+  };
 
   componentDidMount(): void {
     document.addEventListener('contextmenu', this.hideClock);
@@ -38,7 +38,7 @@ export class App extends React.Component {
   showClock = () => {
     this.setState({ hasClock: true });
   };
-  
+
   updateClockName = () => {
     setInterval(() => {
       this.setState({ clockName: getRandomName() });
@@ -51,6 +51,6 @@ export class App extends React.Component {
         <h1>React clock</h1>
         {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
-    )
+    );
   }
-};
+}
