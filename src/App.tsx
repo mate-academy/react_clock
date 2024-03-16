@@ -1,4 +1,4 @@
-/*eslint-disable*/
+/* eslint-disable */
 import React from 'react';
 import './App.scss';
 import { Clock } from './Clock';
@@ -21,7 +21,7 @@ export class App extends React.PureComponent {
     this.setState({
       hasClock: true,
     });
-  }
+  };
 
   rightClick = (event: MouseEvent) => {
     event.preventDefault();
@@ -29,7 +29,7 @@ export class App extends React.PureComponent {
     this.setState({
       hasClock: false,
     });
-  }
+  };
 
   componentDidMount(): void {
     document.addEventListener('click', this.leftClick);
@@ -37,18 +37,20 @@ export class App extends React.PureComponent {
     this.timerId = window.setInterval(() => {
       this.setState({
         clockName: getRandomName(),
-      })
+      });
     }, 3300);
   }
 
   componentWillUnmount(): void {
-    document.removeEventListener('click', this.leftClick)
-    document.removeEventListener('contextmenu', this.rightClick)
-    window.clearInterval(this.timerId)
+    document.removeEventListener('click', this.leftClick);
+    document.removeEventListener('contextmenu', this.rightClick);
+    window.clearInterval(this.timerId);
     this.setState({
       clockName: 'Clock-0',
-    })
+    });
   }
+
+
 
   render(): React.ReactNode {
     return this.state.hasClock && <Clock name={this.state.clockName} />;
