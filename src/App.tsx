@@ -29,19 +29,27 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.handleLeftButton);
     this.clockTimerId = window.setInterval(() => {
       this.setState({ today: new Date() });
-      // eslint-disable-next-line no-console
-      console.log(
-        `${String(new Date().getHours()).padStart(2, '0')}:${String(new Date().getMinutes()).padStart(2, '0')}:${String(new Date().getSeconds()).padStart(2, '0')}`,
-      );
     }, 1000);
 
     this.randomTimerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
+    }, 3300);
+  }
+
+  componentDidUpdate(prevState: State) {
+    if (this.state.today !== prevState.today) {
+      // eslint-disable-next-line no-console
+      console.log(
+        `${String(this.state.today.getHours()).padStart(2, '0')}:${String(this.state.today.getMinutes()).padStart(2, '0')}:${String(this.state.today.getSeconds()).padStart(2, '0')}`,
+      );
+    }
+
+    if (this.state.clockName !== prevState.clockName) {
       // eslint-disable-next-line no-console
       console.debug(
-        `Renamed from ${this.state.clockName} to ${getRandomName()}`,
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
       );
-    }, 3300);
+    }
   }
 
   componentWillUnmount() {
