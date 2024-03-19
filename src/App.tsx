@@ -21,7 +21,8 @@ export class App extends React.Component<{}, State> {
     return `Clock-${value}`;
   }
 
-  handleDocumentRightClick = () => {
+  handleDocumentRightClick = (event: MouseEvent) => {
+    event.preventDefault();
     this.setState({ hasClock: false });
   };
 
