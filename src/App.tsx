@@ -43,28 +43,10 @@ export class App extends React.Component<State> {
     }, 3300);
 
     window.setInterval(() => {
-      // const currentTime = new Date();
-      if (this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.log(new Date().toUTCString().slice(-12, -4));
-      }
-
       this.setState({ today: new Date() });
     }, 1000);
 
     this.setState({ hasClock: true });
-  }
-
-  componentDidUpdate(
-    prevProps: Readonly<{}>,
-    prevState: Readonly<State>,
-  ): void {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.debug(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-      );
-    }
   }
 
   componentWillUnmount() {
@@ -81,7 +63,7 @@ export class App extends React.Component<State> {
         <h1>React clock</h1>
 
         {this.state.hasClock && (
-          <Clock name={this.state.clockName} today={this.state.today} />
+          <Clock name={this.state.clockName} today={this.state.today} hasClock={this.state.hasClock} timerId={this.timerId} />
         )}
       </div>
     );
