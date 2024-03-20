@@ -35,20 +35,17 @@ export class Clock extends Component<Props, State> {
     window.clearInterval(this.interval);
   }
 
-  render() {
+  render(): React.ReactNode {
     const { name } = this.props;
 
     return (
-      <>
-        <h1>React clock</h1>
-        <div className="Clock">
-          <strong className="Clock__name">{name}</strong>
+      <div className="Clock">
+        <strong className="Clock__name">{name}</strong>
 
-          {' time is '}
+        {' time is '}
 
-          <span className="Clock__time">{this.state.today}</span>
-        </div>
-      </>
+        <span className="Clock__time">{this.state.today}</span>
+      </div>
     );
   }
 }
