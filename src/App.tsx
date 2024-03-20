@@ -17,7 +17,6 @@ type State = {
 export class App extends React.Component<State> {
   state = {
     clockName: 'Clock-0',
-    today: new Date(),
     hasClock: false,
   };
 
@@ -42,10 +41,6 @@ export class App extends React.Component<State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    window.setInterval(() => {
-      this.setState({ today: new Date() });
-    }, 1000);
-
     this.setState({ hasClock: true });
   }
 
@@ -63,7 +58,10 @@ export class App extends React.Component<State> {
         <h1>React clock</h1>
 
         {this.state.hasClock && (
-          <Clock name={this.state.clockName} today={this.state.today} hasClock={this.state.hasClock} timerId={this.timerId} />
+          <Clock
+            name={this.state.clockName}
+            hasClock={this.state.hasClock}
+          />
         )}
       </div>
     );

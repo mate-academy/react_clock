@@ -2,21 +2,24 @@ import React from 'react';
 
 type Props = {
   name: string;
-  today: Date;
   hasClock: boolean;
-  timerId: number;
 };
 
 export class Clock extends React.Component<Props> {
+  state = {
+    today: new Date(),
+  };
+
   timerId = 0;
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      // const currentTime = new Date();
       if (this.props.hasClock) {
         // eslint-disable-next-line no-console
         console.log(new Date().toUTCString().slice(-12, -4));
       }
+
+      this.setState({ today: new Date() });
     }, 1000);
   }
 
@@ -40,7 +43,7 @@ export class Clock extends React.Component<Props> {
         {' time is '}
 
         <span className="Clock__time">
-          {this.props.today.toUTCString().slice(-12, -4)}
+          {this.state.today.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );
