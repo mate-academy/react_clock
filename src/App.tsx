@@ -40,7 +40,7 @@ export class App extends React.Component<{}, State> {
       this.setState({
         clockName: getRandomName(),
       });
-    }, 3000);
+    }, 3300);
     document.addEventListener('contextmenu', this.hideClock);
     document.addEventListener('click', this.showClock);
   }

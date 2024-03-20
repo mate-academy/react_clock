@@ -15,19 +15,19 @@ export class Clock extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    this.timerID = window.setInterval(() => this.tick(), 1000);
+    this.timerID = window.setInterval(() => {
+      const date = new Date();
+
+      // eslint-disable-next-line no-console
+      console.log(date.toUTCString().slice(-12, -4));
+      this.setState({
+        date,
+      });
+    }, 1000);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timerID);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date(),
-    });
-    // eslint-disable-next-line no-console
-    console.log(this.state.date.toUTCString().slice(-12, -4));
   }
 
   render() {
