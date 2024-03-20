@@ -1,55 +1,51 @@
-/* eslint-disable no-console */
-import React from 'react';
+import { Component } from 'react';
 
 type Props = {
   name: string;
 };
+type State = {
+  today: string;
+};
+export class Clock extends Component<Props, State> {
+  interval = 0;
 
-export class Clock extends React.PureComponent<Props> {
-  state = {
-    today: new Date(),
+  state: State = {
+    today: new Date().toUTCString().slice(-12, -4),
   };
 
-  timerId = 0;
-
   componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
-      this.setState({
-        today: new Date(),
-      });
+    this.interval = window.setInterval(() => {
+      this.updateTime();
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props, prevState: Readonly<{}>): void {
-    const { name } = prevProps;
-
-    if (prevState !== this.state) {
-      console.log(this.state.today.toUTCString().slice(-12, -4));
-    }
-
-    if (prevProps !== this.props) {
-      console.debug(`Renamed from ${name} to ${this.props.name}`);
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
+    window.clearInterval(this.interval);
   }
 
-  render() {
+  updateTime = () => {
+    // eslint-disable-next-line no-console
+    console.log(new Date().toUTCString().slice(-12, -4));
+    this.setState({ today: new Date().toUTCString().slice(-12, -4) });
+  };
+
+  render(): React.ReactNode {
+    const { name } = this.props;
+
     return (
-      <div className="App">
-        <h1>React clock</h1>
+      <div className="Clock">
+        <strong className="Clock__name">{name}</strong>
 
-        <div className="Clock">
-          <strong className="Clock__name">{this.props.name}</strong>
+        {' time is '}
 
-          {' time is '}
-
-          <span className="Clock__time">
-            {this.state.today.toUTCString().slice(-12, -4)}
-          </span>
-        </div>
+        <span className="Clock__time">{this.state.today}</span>
       </div>
     );
   }
