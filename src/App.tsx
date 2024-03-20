@@ -10,11 +10,10 @@ function getRandomName(): string {
 
 type State = {
   clockName: string;
-  today: Date;
   hasClock: boolean;
 };
 
-export class App extends React.Component<State> {
+export class App extends React.Component<{}, State> {
   state = {
     clockName: 'Clock-0',
     hasClock: false,
@@ -27,7 +26,7 @@ export class App extends React.Component<State> {
 
   handleLeftClick = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({ hasClock: true, today: new Date() });
+    this.setState({ hasClock: true });
   };
 
   timerId = 0;
@@ -58,10 +57,7 @@ export class App extends React.Component<State> {
         <h1>React clock</h1>
 
         {this.state.hasClock && (
-          <Clock
-            name={this.state.clockName}
-            hasClock={this.state.hasClock}
-          />
+          <Clock name={this.state.clockName} hasClock={this.state.hasClock} />
         )}
       </div>
     );
