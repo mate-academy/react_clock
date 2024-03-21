@@ -38,18 +38,16 @@ export class App extends React.Component<{}, State> {
     });
   }
 
-  componentDidUpdate(_prevProps: {}, prevState: State) {
-    if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
-      // eslint-disable-next-line no-console
-      console.log(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-      );
-    }
-  }
-
   componentWillUnmount() {
-    // this code stops the timer
-    window.clearInterval(this.timerId);
+    document.removeEventListener('click', () => {
+      this.setState({ hasClock: true });
+    });
+
+    document.removeEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+
+      this.setState({ hasClock: false });
+    });
   }
 
   render() {
