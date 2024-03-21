@@ -37,7 +37,7 @@ export class App extends React.Component<{}, State> {
     }, 3300);
   }
 
-  componentDidUpdate(_: any, prevState: State) {
+  componentDidUpdate(_: string, prevState: State) {
     if (this.state.today !== prevState.today) {
       // eslint-disable-next-line no-console
       console.log(
