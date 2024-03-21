@@ -13,7 +13,7 @@ type State = {
   clockName: string;
 };
 
-export class App extends React.Component<State> {
+export class App extends React.Component<{}, State> {
   state: State = {
     hasClock: true,
     clockName: 'Clock-0',
