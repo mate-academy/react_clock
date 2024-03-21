@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -14,15 +15,15 @@ type State = {
 };
 
 export class App extends React.Component<{}, State> {
+  clockTimerId = 0;
+
+  randomTimerId = 0;
+
   state: State = {
     today: new Date(),
     clockName: 'Clock-0',
     hasClock: true,
   };
-
-  clockTimerId = 0;
-
-  randomTimerId = 0;
 
   componentDidMount() {
     document.addEventListener('contextmenu', this.handleRightButton);
@@ -36,7 +37,7 @@ export class App extends React.Component<{}, State> {
     }, 3300);
   }
 
-  componentDidUpdate(prevState: State) {
+  componentDidUpdate(_: any, prevState: State) {
     if (this.state.today !== prevState.today) {
       // eslint-disable-next-line no-console
       console.log(
@@ -74,18 +75,11 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-
-        {this.state.hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">{this.state.clockName}</strong>
-
-            {' time is '}
-
-            <span className="Clock__time">
-              {this.state.today.toUTCString().slice(-12, -4)}
-            </span>
-          </div>
-        )}
+        <Clock
+          hasClock={this.state.hasClock}
+          clockName={this.state.clockName}
+          today={this.state.today}
+        />
       </div>
     );
   }
