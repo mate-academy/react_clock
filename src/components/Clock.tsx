@@ -50,7 +50,7 @@ export class Clock extends React.Component<Props, State> {
     const currentTime = `${hours}:${minutes}:${seconds}`;
 
     // eslint-disable-next-line no-console
-    console.log(currentTime);
+    console.debug(currentTime);
 
     return (
       <div className="Clock">

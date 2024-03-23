@@ -11,6 +11,7 @@ function getRandomName(): string {
 
 interface State {
   today: Date;
+  prevClockName: string;
   clockName: string;
   hasClock: boolean;
 }
@@ -20,6 +21,7 @@ export class App extends React.Component<{}, State> {
 
   state: State = {
     today: new Date(),
+    prevClockName: '',
     clockName: 'Clock-0',
     hasClock: true,
   };
@@ -28,9 +30,20 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('click', this.handleClick);
     document.addEventListener('contextmenu', this.handleContextMenu);
 
+    const { prevClockName, clockName } = this.state;
+
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
+
+      // eslint-disable-next-line no-console
+      console.log(`Renamed from ${prevClockName} to ${clockName}`);
     }, 3300);
+  }
+
+  componentDidUpdate(_prevProps: {}, prevState: State): void {
+    if (prevState.clockName !== this.state.clockName) {
+      this.setState({ prevClockName: prevState.clockName });
+    }
   }
 
   componentWillUnmount(): void {
