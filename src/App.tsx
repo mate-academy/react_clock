@@ -19,6 +19,8 @@ export const App: React.FC = () => {
   // this code stops the timer
   window.clearInterval(timerId);
 
+  console.log(timerId)
+
   return (
     <div className="App">
       <h1>React clock</h1>
