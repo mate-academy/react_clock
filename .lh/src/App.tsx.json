@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/App.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1711370871037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711370927534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,11 @@\n   const today = new Date();\n   let clockName = 'Clock-0';\n \n   // This code starts a timer\n-  \n+  componentDidMonut() {\n+    \n+  }\n   const timerId = window.setInterval(() => {\n     clockName = getRandomName();\n   }, 3300);\n \n"
+                },
+                {
+                    "date": 1711370957890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,19 +11,19 @@\n   const today = new Date();\n   let clockName = 'Clock-0';\n \n   // This code starts a timer\n-  componentDidMonut() {\n-    \n-  }\n   const timerId = window.setInterval(() => {\n     clockName = getRandomName();\n   }, 3300);\n \n   // this code stops the timer\n   window.clearInterval(timerId);\n \n   return (\n+      componentDidMonut() {\n+\n+      }\n     <div className=\"App\">\n       <h1>React clock</h1>\n \n       <div className=\"Clock\">\n"
+                },
+                {
+                    "date": 1711370975365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n   return `Clock-${value}`;\n }\n \n-export const App: React.FC = () => {\n+export class App: React.FC = () => {\n   const today = new Date();\n   let clockName = 'Clock-0';\n \n   // This code starts a timer\n"
+                },
+                {
+                    "date": 1711371003814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n   return `Clock-${value}`;\n }\n \n-export class App: React.FC = () => {\n+export class App React.FC = () => {\n   const today = new Date();\n   let clockName = 'Clock-0';\n \n   // This code starts a timer\n"
+                },
+                {
+                    "date": 1711371009440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n   return `Clock-${value}`;\n }\n \n-export class App ex React.FC = () => {\n+export class App extends React.Component React.FC = () => {\n   const today = new Date();\n   let clockName = 'Clock-0';\n \n   // This code starts a timer\n"
+                },
+                {
+                    "date": 1711371090591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n \n   componentDidMonut() {\n \n   },\n+  \n   // This code starts a timer\n   const timerId = window.setInterval(() => {\n     clockName = getRandomName();\n   }, 3300);\n"
+                }
+            ],
+            "date": 1711370871037,
+            "name": "Commit-0",
+            "content": "import React from 'react';\nimport './App.scss';\n\nfunction getRandomName(): string {\n  const value = Date.now().toString().slice(-4);\n\n  return `Clock-${value}`;\n}\n\nexport const App: React.FC = () => {\n  const today = new Date();\n  let clockName = 'Clock-0';\n\n  // This code starts a timer\n  \n  const timerId = window.setInterval(() => {\n    clockName = getRandomName();\n  }, 3300);\n\n  // this code stops the timer\n  window.clearInterval(timerId);\n\n  return (\n    <div className=\"App\">\n      <h1>React clock</h1>\n\n      <div className=\"Clock\">\n        <strong className=\"Clock__name\">{clockName}</strong>\n\n        {' time is '}\n\n        <span className=\"Clock__time\">\n          {today.toUTCString().slice(-12, -4)}\n        </span>\n      </div>\n    </div>\n  );\n};\n"
+        }
+    ]
+}
