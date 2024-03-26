@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/Components/Clock.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1711371929715,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711371934818,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,19 @@\n-ccc\n+interface Props {\n+\n+}\n+\n+interface State {\n+\n+}\n+\n+class  extends React.Component<Props, State> {\n+  constructor(props: Props) {\n+    super(props);\n+    this.state = { :  };\n+  }\n+  render() {\n+    return (  );\n+  }\n+}\n+\n+export default ;\n"
+                },
+                {
+                    "date": 1711371941400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,16 @@\n-interface Props {\n+interface ClockProps {\n \n }\n \n-interface State {\n+interface ClockState {\n \n }\n \n-class  extends React.Component<Props, State> {\n-  constructor(props: Props) {\n-    super(props);\n-    this.state = { :  };\n-  }\n+class Clock extends React.Component<ClockProps, ClockState> {\n+  state = { :  }\n   render() {\n     return (  );\n   }\n }\n \n-export default ;\n+export default Clock;\n"
+                },
+                {
+                    "date": 1711371949331,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+\n+\n interface ClockProps {\n \n }\n \n"
+                },
+                {
+                    "date": 1711371968716,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n+import React from 'react';\n \n \n interface ClockProps {\n+  \n \n }\n \n interface ClockState {\n"
+                },
+                {
+                    "date": 1711371975261,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from 'react';\n \n \n interface ClockProps {\n-  name: string\n+  name: string;\n }\n \n interface ClockState {\n \n"
+                },
+                {
+                    "date": 1711371984180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   name: string;\n }\n \n interface ClockState {\n-  time: string\n+  time: string;\n }\n \n class Clock extends React.Component<ClockProps, ClockState> {\n   state = { :  }\n"
+                }
+            ],
+            "date": 1711371929715,
+            "name": "Commit-0",
+            "content": "ccc\n"
+        }
+    ]
+}
