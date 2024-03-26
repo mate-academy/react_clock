@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 import React from 'react';
+import { Clock } from './Clock';
 import './App.scss';
 
 function getRandomName(): string {
@@ -7,31 +9,54 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export interface AppState {
+  hasClock: boolean;
+  clockName: string;
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+export class App extends React.Component<{}, AppState> {
+  state: AppState = {
+    hasClock: false,
+    clockName: 'Clock-0',
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  timerId: number | undefined;
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount() {
+    this.setState({ hasClock: true });
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+  }
 
-        {' time is '}
+  componentWillUnmount() {
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  handleContextMenu: React.MouseEventHandler<HTMLDivElement> = (
+    event: React.MouseEvent<HTMLDivElement>,
+  ) => {
+    event.preventDefault();
+    this.setState({ hasClock: !this.state.hasClock });
+  };
+
+  handleClick = () => {
+    this.setState({ hasClock: !this.state.hasClock });
+  };
+
+  render() {
+    return (
+      <div
+        className="App"
+        onContextMenu={this.handleContextMenu}
+        onClick={this.handleClick}
+      >
+        <h1>React clock</h1>
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
