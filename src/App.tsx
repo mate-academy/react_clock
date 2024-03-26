@@ -1,5 +1,15 @@
 import React from 'react';
 import './App.scss';
+import Clock from './Clock';
+
+interface AppState {
+  hasClock: boolean;
+  clockName: string;
+}
+
+interface AppProps {
+  getName?: () => string;
+}
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +17,73 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+class App extends React.Component<AppProps, AppState> {
+  state: AppState = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  nameInterval: NodeJS.Timeout | null = null;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount() {
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
+    this.startRenamingProcess();
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+    this.clearRenamingProcess();
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  componentDidUpdate(_: {}, prevState: AppState) {
+    if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.debug(
+          `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+        );
+      }
+    }
+  }
 
-        {' time is '}
+  startRenamingProcess = () => {
+    if (this.nameInterval === null) {
+      this.nameInterval = setInterval(() => {
+        const newName = this.getName();
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+        this.setState({ clockName: newName });
+      }, 3300);
+    }
+  };
+
+  clearRenamingProcess = () => {
+    if (this.nameInterval !== null) {
+      clearInterval(this.nameInterval);
+      this.nameInterval = null;
+    }
+  };
+
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handleLeftClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  getName = this.props.getName || getRandomName;
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React Clock</h1>
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+export default App;
