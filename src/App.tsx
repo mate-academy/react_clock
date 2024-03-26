@@ -46,9 +46,6 @@ export class App extends React.Component<{}, State> {
     this.setState({ hasCLock: true });
   };
 
-  handleRightClick = (event: MouseEvent) => {
-    event.preventDefault();
-
     this.setState({ hasCLock: false });
   };
 
