@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/App.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1711465704558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711465711106,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n   return `Clock-${value}`;\n }\n \n-type State\n+type State \n \n export const App: React.FC = () => {\n   const today = new Date();\n   let clockName = 'Clock-0';\n"
+                },
+                {
+                    "date": 1711465779404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   clockName: string;\n   hasClock: boolean;\n }\n \n-export class App extends  = () => {\n+export class App extends Re = () => {\n   const today = new Date();\n   let clockName = 'Clock-0';\n \n   // This code starts a timer\n"
+                }
+            ],
+            "date": 1711465704558,
+            "name": "Commit-0",
+            "content": "import React from 'react';\nimport './App.scss';\n\nfunction getRandomName(): string {\n  const value = Date.now().toString().slice(-4);\n\n  return `Clock-${value}`;\n}\n\nty\n\nexport const App: React.FC = () => {\n  const today = new Date();\n  let clockName = 'Clock-0';\n\n  // This code starts a timer\n  const timerId = window.setInterval(() => {\n    clockName = getRandomName();\n  }, 3300);\n\n  // this code stops the timer\n  window.clearInterval(timerId);\n\n  return (\n    <div className=\"App\">\n      <h1>React clock</h1>\n\n      <div className=\"Clock\">\n        <strong className=\"Clock__name\">{clockName}</strong>\n\n        {' time is '}\n\n        <span className=\"Clock__time\">\n          {today.toUTCString().slice(-12, -4)}\n        </span>\n      </div>\n    </div>\n  );\n};\n"
+        }
+    ]
+}

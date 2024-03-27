@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/Components/Clock.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1711524782623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1711524788447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,4 @@\n+export defau\n+lt\n+class\n+Clock \n"
+                },
+                {
+                    "date": 1711524796147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,6 @@\n+export defau\n+lt\n+class\n+Clock\n+extends\n+ \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1711524802131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,6 @@\n lt\n class\n Clock\n extends\n- \n-export defau\n-lt\n-class\n-Clock \n-export defau\n-lt \n\\ No newline at end of file\n+ React \n+\n"
+                },
+                {
+                    "date": 1711524812914,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n-export defau\n-lt\n+export default\n class\n Clock\n extends\n- React \n+ React\n \n"
+                },
+                {
+                    "date": 1711524819474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n-export default classClock\n+export default class Clock\n extends\n  React\n \n"
+                },
+                {
+                    "date": 1711524825602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n-export default class Clockextends\n+export default class Clock extends\n  React\n \n"
+                }
+            ],
+            "date": 1711524782623,
+            "name": "Commit-0",
+            "content": "export defau\nlt "
+        }
+    ]
+}
