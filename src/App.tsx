@@ -3,7 +3,6 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 type State = {
-  today: Date;
   clockName: string;
   hasCLock: boolean;
 };
@@ -16,42 +15,43 @@ function getRandomName(): string {
 
 export class App extends React.Component<{}, State> {
   state: State = {
-    // eslint-disable-next-line react/no-unused-state
-    today: new Date(),
     clockName: 'Clock-0',
     hasCLock: true,
   };
 
   timerId = 0;
 
+  handleSwitchState(state: boolean) {
+    this.setState({
+      hasCLock: state,
+    });
+  }
+
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      // eslint-disable-next-line react/no-direct-mutation-state
-      this.state.clockName = getRandomName();
+      this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('click', this.handleLeftClick);
-    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', () => {
+      this.handleSwitchState(true);
+    });
+
+    document.addEventListener('contextmenu', () => {
+      this.handleSwitchState(false);
+    });
   }
 
   componentWillUnmount(): void {
+    document.removeEventListener('click', () => {
+      this.handleSwitchState(true);
+    });
+
+    document.removeEventListener('contextmenu', () => {
+      this.handleSwitchState(false);
+    });
+
     window.clearInterval(this.timerId);
-
-    document.removeEventListener('click', this.handleLeftClick);
-    document.removeEventListener('contextmenu', this.handleRightClick);
   }
-
-  handleLeftClick = (event: MouseEvent) => {
-    event.preventDefault();
-
-    this.setState({ hasCLock: true });
-  };
-
-  handleRightClick = (event: MouseEvent) => {
-    event.preventDefault();
-
-    this.setState({ hasCLock: false });
-  };
 
   render() {
     const { clockName, hasCLock } = this.state;
@@ -60,15 +60,7 @@ export class App extends React.Component<{}, State> {
       <div className="app">
         <h1>React clock</h1>
 
-        {hasCLock && (
-          <div className="clock">
-            <strong className="clock__name">{clockName}</strong>
-
-            {' time is '}
-
-            <Clock clockName={clockName} />
-          </div>
-        )}
+        {hasCLock && <Clock clockName={clockName} />}
       </div>
     );
   }
