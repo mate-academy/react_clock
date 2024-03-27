@@ -1,38 +1,40 @@
 import React from 'react';
 
 interface Props {
-  today: Date;
   clockName: string;
 }
 
 interface State {
-  today: Date;
-  hours: string;
-  minutes: string;
-  seconds: string;
+  currentTime: string;
 }
 
 export class Clock extends React.Component<Props, State> {
   timerId = 0;
 
   state: State = {
-    today: this.props.today,
-    hours: String(new Date().getHours()),
-    minutes: String(new Date().getMinutes()),
-    seconds: String(new Date().getSeconds()),
+    currentTime: new Date().toUTCString().slice(-12, -4),
   };
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      const today = new Date();
+      const newTime = new Date().toUTCString().slice(-12, -4);
 
       this.setState({
-        today: this.props.today,
-        hours: String(today.getHours()),
-        minutes: String(today.getMinutes()),
-        seconds: String(today.getSeconds()),
+        currentTime: newTime,
       });
+
+      // eslint-disable-next-line no-console
+      console.log(newTime);
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Readonly<Props>): void {
+    if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(
+        `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
+      );
+    }
   }
 
   componentWillUnmount(): void {
@@ -41,16 +43,7 @@ export class Clock extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     const { clockName } = this.props;
-    let { hours, minutes, seconds } = this.state;
-
-    hours = (Number(hours) < 10 ? '0' : '') + hours;
-    minutes = (Number(minutes) < 10 ? '0' : '') + minutes;
-    seconds = (Number(seconds) < 10 ? '0' : '') + seconds;
-
-    const currentTime = `${hours}:${minutes}:${seconds}`;
-
-    // eslint-disable-next-line no-console
-    console.debug(currentTime);
+    const { currentTime } = this.state;
 
     return (
       <div className="Clock">
