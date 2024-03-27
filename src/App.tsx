@@ -1,6 +1,6 @@
-import React from "react";
-import "./App.scss";
-import { Clock } from "./components/Clock";
+import React from 'react';
+import './App.scss';
+import { Clock } from './components/Clock';
 
 type State = {
   today: Date;
@@ -18,7 +18,7 @@ export class App extends React.Component<{}, State> {
   state: State = {
     // eslint-disable-next-line react/no-unused-state
     today: new Date(),
-    clockName: "Clock-0",
+    clockName: 'Clock-0',
     hasCLock: true,
   };
 
@@ -30,15 +30,15 @@ export class App extends React.Component<{}, State> {
       this.state.clockName = getRandomName();
     }, 3300);
 
-    document.addEventListener("click", this.handleLeftClick);
-    document.addEventListener("contextmenu", this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
   }
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
 
-    document.removeEventListener("click", this.handleLeftClick);
-    document.removeEventListener("contextmenu", this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
   }
 
   handleLeftClick = (event: MouseEvent) => {
@@ -64,7 +64,7 @@ export class App extends React.Component<{}, State> {
           <div className="clock">
             <strong className="clock__name">{clockName}</strong>
 
-            {" time is "}
+            {' time is '}
 
             <Clock clockName={clockName} />
           </div>

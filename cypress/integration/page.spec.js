@@ -19,7 +19,7 @@ describe('Clock', () => {
 
     cy.visit('/', {
       onBeforeLoad(win) {
-        cy.spy(win.console, 'info').as('console.info');
+        cy.spy(win.console, 'log').as('console.log');
         cy.spy(win.console, 'debug').as('console.debug');
       },
     });
@@ -63,24 +63,24 @@ describe('Clock', () => {
       page.clockTime().should('have.text', '09:32:31');
     });
 
-    it('should print the time with console.info every second', () => {
+    it('should print the time with console.log every second', () => {
       cy.tick(1000);
-      cy.get('@console.info').should('be.calledOnceWithExactly', '09:32:32')
+      cy.get('@console.log').should('be.calledOnceWithExactly', '09:32:32')
 
       cy.tick(1000);
-      cy.get('@console.info')
+      cy.get('@console.log')
         .should('have.callCount', 2)
         .and('be.calledWith', '09:32:33');
 
       cy.tick(1000);
-      cy.get('@console.info')
+      cy.get('@console.log')
         .should('have.callCount', 3)
         .and('be.calledWith', '09:32:34');
     });
 
-    it('should not call console.info before the first time update', () => {
+    it('should not call console.log before the first time update', () => {
       cy.tick(999);
-      cy.get('@console.info').should('not.be.called');
+      cy.get('@console.log').should('not.be.called');
     });
 
     it('should have the default name', () => {
@@ -125,12 +125,12 @@ describe('Clock', () => {
   });
 
   describe('after it was hidden', () => {
-    it('should not call console.info', () => {
+    it('should not call console.log', () => {
       cy.tick(1999)
       cy.get('body').rightclick();
       cy.tick(3000);
 
-      cy.get('@console.info').should('have.callCount', 1);
+      cy.get('@console.log').should('have.callCount', 1);
     });
 
     it('should not print name updates in the console', () => {
@@ -185,17 +185,17 @@ describe('Clock', () => {
 
     it('should not print time again to the console before 1s has passed', () => {
       cy.tick(999);
-      cy.get('@console.info').should('have.callCount', 1);
+      cy.get('@console.log').should('have.callCount', 1);
     });
 
     it('should proceed printing time to the console every second', () => {
       cy.tick(1000);
-      cy.get('@console.info')
+      cy.get('@console.log')
         .should('have.callCount', 2)
         .and('be.calledWith', '09:32:36');
 
       cy.tick(1000);
-      cy.get('@console.info')
+      cy.get('@console.log')
         .should('have.callCount', 3)
         .and('be.calledWith', '09:32:37');
     });
