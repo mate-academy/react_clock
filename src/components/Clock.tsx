@@ -24,9 +24,7 @@ export class Clock extends React.Component<Props, State> {
     console.log(new Date().toUTCString().slice(-12, -4));
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<Props>,
-  ): void {
+  componentDidUpdate(prevProps: Readonly<Props>): void {
     if (prevProps.clockName !== this.props.clockName) {
       // eslint-disable-next-line no-console
       console.debug(
