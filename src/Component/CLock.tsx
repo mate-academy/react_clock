@@ -19,6 +19,7 @@ export class Clock extends React.Component<Props> {
 
       this.setState({ date: newDate });
 
+      /* eslint-disable-next-line */
       console.log(this.getTimeFromDate(newDate));
     }, 1000);
   }
@@ -28,6 +29,7 @@ export class Clock extends React.Component<Props> {
     const currentName = this.props.name;
 
     if (currentName !== prevName) {
+      /* eslint-disable-next-line */
       console.debug(`Renamed from ${prevName} to ${currentName}`);
     }
   }

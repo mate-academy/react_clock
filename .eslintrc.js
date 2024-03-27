@@ -8,11 +8,5 @@ module.exports = {
     react: {
       version: 'detect',
     },
-  },
-  'prettier/prettier': [
-    'error',
-    {
-      endOfLine: 'auto',
-    },
-  ],
+  }
 };
