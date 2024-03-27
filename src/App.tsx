@@ -1,11 +1,11 @@
-import React from 'react';
-import './App.scss';
-import { Clock } from './components/Clock';
+import React from "react";
+import "./App.scss";
+import { Clock } from "./components/Clock";
 
 type State = {
-  today: Date,
-  clockName: string,
-  hasCLock: boolean,
+  today: Date;
+  clockName: string;
+  hasCLock: boolean;
 };
 
 function getRandomName(): string {
@@ -18,7 +18,7 @@ export class App extends React.Component<{}, State> {
   state: State = {
     // eslint-disable-next-line react/no-unused-state
     today: new Date(),
-    clockName: 'Clock-0',
+    clockName: "Clock-0",
     hasCLock: true,
   };
 
@@ -26,18 +26,19 @@ export class App extends React.Component<{}, State> {
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
+      // eslint-disable-next-line react/no-direct-mutation-state
       this.state.clockName = getRandomName();
     }, 3300);
 
-    document.addEventListener('click', this.handleLeftClick);
-    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener("click", this.handleLeftClick);
+    document.addEventListener("contextmenu", this.handleRightClick);
   }
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
 
-    document.removeEventListener('click', this.handleLeftClick);
-    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener("click", this.handleLeftClick);
+    document.removeEventListener("contextmenu", this.handleRightClick);
   }
 
   handleLeftClick = (event: MouseEvent) => {
@@ -56,18 +57,16 @@ export class App extends React.Component<{}, State> {
     const { clockName, hasCLock } = this.state;
 
     return (
-      <div className="App">
+      <div className="app">
         <h1>React clock</h1>
 
         {hasCLock && (
-          <div className="Clock">
-            <strong className="Clock__name">{clockName}</strong>
+          <div className="clock">
+            <strong className="clock__name">{clockName}</strong>
 
-            {' time is '}
+            {" time is "}
 
-            <Clock
-              clockName={clockName}
-            />
+            <Clock clockName={clockName} />
           </div>
         )}
       </div>
