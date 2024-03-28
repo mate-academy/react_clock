@@ -6,11 +6,11 @@ interface ClockProps {
 }
 
 export class Clock extends React.Component<ClockProps> {
-  private intervalId: number | undefined;
-
   state = {
     time: new Date().toUTCString().slice(-12, -4),
   };
+
+  intervalId = 0;
 
   componentDidMount() {
     this.intervalId = window.setInterval(() => {
