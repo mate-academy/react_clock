@@ -2,15 +2,10 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './Components/Clock';
 
-interface State {
-  hasClock: boolean;
-  clockName: string;
-}
+export class App extends React.Component {
+  private intervalId: number | undefined;
 
-export class App extends React.Component<{}, State> {
-  private intervalId: NodeJS.Timeout | null = null;
-
-  state: State = {
+  state = {
     hasClock: true,
     clockName: 'Clock-0',
   };
@@ -19,12 +14,8 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('contextmenu', this.handleContextMenu);
     document.addEventListener('click', this.handleClick);
 
-    this.intervalId = setInterval(() => {
-      const newName = this.getRandomName();
-
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${this.state.clockName} to ${newName}`);
-      this.setState({ clockName: newName });
+    this.intervalId = window.setInterval(() => {
+      this.setState({ clockName: this.getRandomName() });
     }, 3300);
   }
 
@@ -47,9 +38,6 @@ export class App extends React.Component<{}, State> {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
-
-    document.removeEventListener('contextmenu', this.handleContextMenu);
-    document.removeEventListener('click', this.handleClick);
   }
 
   render() {

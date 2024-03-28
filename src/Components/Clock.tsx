@@ -5,35 +5,33 @@ interface ClockProps {
   name: string;
 }
 
-interface ClockState {
-  time: string;
-}
+export class Clock extends React.Component<ClockProps> {
+  private intervalId: number | undefined;
 
-export class Clock extends React.Component<ClockProps, ClockState> {
-  private intervalId: NodeJS.Timeout | null = null;
-
-  state: ClockState = {
+  state = {
     time: new Date().toUTCString().slice(-12, -4),
   };
 
   componentDidMount() {
-    this.intervalId = setInterval(() => {
-      this.cycle();
+    this.intervalId = window.setInterval(() => {
+      const currentTime = new Date();
+
+      //eslint-disable-next-line no-console
+      console.log(currentTime.toUTCString().slice(-12, -4));
+
+      this.setState({ currentTime });
     }, 1000);
   }
 
-  cycle() {
-    const currentTime = new Date().toUTCString().slice(-12, -4);
-
-    this.setState({ time: currentTime });
-    // eslint-disable-next-line no-console
-    console.log(currentTime);
+  componentDidUpdate(prevProps: ClockProps) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+    clearInterval(this.intervalId);
   }
 
   render() {
