@@ -2,10 +2,16 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
+function getRandomName(): string {
+  const value = Date.now().toString().slice(-4);
+
+  return `Clock-${value}`;
+}
+
 export class App extends React.Component {
   state = {
-    hasClock: true,
     clockName: 'Clock-0',
+    hasClock: true,
   };
 
   componentDidMount() {
@@ -14,7 +20,7 @@ export class App extends React.Component {
   }
 
   intervalId = window.setInterval(() => {
-    this.setState({ clockName: this.getRandomName() });
+    this.setState({ clockName: getRandomName() });
   }, 3300);
 
   handleContextMenu = (event: MouseEvent) => {
@@ -25,12 +31,6 @@ export class App extends React.Component {
   handleClick = () => {
     this.setState({ hasClock: true });
   };
-
-  getRandomName(): string {
-    const value = Date.now().toString().slice(-4);
-
-    return `Clock-${value}`;
-  }
 
   render() {
     const { hasClock, clockName } = this.state;

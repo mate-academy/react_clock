@@ -7,7 +7,7 @@ interface ClockProps {
 
 export class Clock extends React.Component<ClockProps> {
   state = {
-    time: new Date().toUTCString().slice(-12, -4),
+    time: new Date(),
   };
 
   intervalId = 0;
@@ -39,7 +39,9 @@ export class Clock extends React.Component<ClockProps> {
       <div className="Clock">
         <strong className="Clock__name">{this.props.name}</strong>
         {' time is '}
-        <span className="Clock__time">{this.state.time}</span>
+        <span className="Clock__time">
+          {this.state.time.toUTCString().slice(-12, -4)}
+        </span>
       </div>
     );
   }
