@@ -39,12 +39,9 @@ class Clock extends Component<ClockProps> {
   }
 
   componentDidUpdate(prevProps: ClockProps) {
-    // eslint-disable-next-line no-console
-    console.log('prevProps', prevProps, 'this;', this.props.name);
-
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps} to ${this.props.name}`);
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
 
@@ -102,9 +99,6 @@ export class App extends Component {
 
   render() {
     const { hasClock, clockName } = this.state;
-
-    // eslint-disable-next-line no-console
-    console.debug('Ignoring linting error');
 
     return (
       <div className="App">
