@@ -25,13 +25,21 @@ export class Clock extends React.Component<Props, State> {
 
   timerTimeUpdate = 0;
 
+  prevClockName = 'Clock-0';
+
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
+      const prevName = this.prevClockName;
+      const newName = getRandomName();
+
+      this.setState({ clockName: newName });
+      console.debug(`Renamed from ${prevName} to ${newName}`);
+
+      this.prevClockName = newName;
     }, 3300);
 
     this.timerTimeUpdate = window.setInterval(() => {
-      console.log(this.state.today.toUTCString().slice(-12, -4));
+      console.log(new Date().toUTCString().slice(-12, -4));
       this.setState({ today: new Date() });
     }, 1000);
   }

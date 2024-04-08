@@ -9,6 +9,10 @@ export const App = () => {
     setIsHidden(true);
   });
 
+  document.addEventListener('click', () => {
+    setIsHidden(false);
+  });
+
   return (
     <div className="App">{!isHidden ? <Clock /> : <h1>React clock</h1>}</div>
   );
