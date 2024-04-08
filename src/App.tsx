@@ -1,37 +1,81 @@
 import React from 'react';
 import './App.scss';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+export class App extends React.Component {
+  intervalId1 = 0;
 
-  return `Clock-${value}`;
-}
+  intervalId2 = 0;
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+  state = {
+    clockName: 'Сlock-0',
+    today: new Date(),
+    hasClock: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  getRandomName = (): string => {
+    const value = Date.now().toString().slice(-4);
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+    return `Clock-${value}`;
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  handlerRightClick = (e: MouseEvent) => {
+    e.preventDefault();
+    this.setState({
+      hasClock: false,
+    });
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  // eslint-disable-next-line
+  handlerLeftClick = () => {
+    this.setState({
+      hasClock: true,
+    });
+  };
 
-        {' time is '}
+  componentDidMount(): void {
+    this.intervalId1 = window.setInterval(() => {
+      this.setState({
+        clockName: this.getRandomName(),
+      });
+    }, 3300);
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+    this.intervalId2 = window.setInterval(() => {
+      const time = new Date();
+
+      this.setState({
+        today: time,
+      });
+      if (this.state.hasClock) {
+        // eslint-disable-next-line no-console
+        console.log(time.toUTCString().slice(-12, -4));
+      }
+    }, 1000);
+
+    document.addEventListener('contextmenu', this.handlerRightClick);
+    document.addEventListener('click', this.handlerLeftClick);
+  }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.intervalId1);
+    window.clearInterval(this.intervalId2);
+    document.removeEventListener('contextmenu', this.handlerRightClick);
+    document.removeEventListener('click', this.handlerLeftClick);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.hasClock && (
+          <div className="Clock">
+            <strong className="Clock__name">{this.state.clockName}</strong>
+            {' time is '}
+            <span className="Clock__time">
+              {this.state.today.toUTCString().slice(-12, -4)}
+            </span>
+          </div>
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
