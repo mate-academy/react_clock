@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +8,59 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component {
+  state = {
+    clockName: 'Clock-0',
+    openClock: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  timerClockNameId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  openClockTable = (event: MouseEvent) => {
+    event.preventDefault();
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    this.setState({
+      openClock: false,
+    });
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  closeClockTable = (event: MouseEvent) => {
+    event.preventDefault();
 
-        {' time is '}
+    this.setState({
+      openClock: true,
+    });
+  };
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  componentDidMount() {
+    this.timerClockNameId = window.setInterval(() => {
+      const rName = getRandomName();
+
+      this.setState({
+        clockName: rName,
+      });
+    }, 3300);
+
+    document.addEventListener('contextmenu', this.openClockTable);
+    document.addEventListener('click', this.closeClockTable);
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.timerClockNameId);
+
+    document.removeEventListener('contextmenu', this.openClockTable);
+    document.removeEventListener('click', this.closeClockTable);
+  }
+
+  render() {
+    const { clockName, openClock } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {openClock && <Clock clockName={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
