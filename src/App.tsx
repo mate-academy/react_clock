@@ -29,6 +29,12 @@ export class App extends React.Component {
     this.setState({ hasClock: true });
   };
 
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.handleCloseClock);
+    document.removeEventListener('click', this.handleOpenClock);
+  }
+
   render() {
     const { clockName, hasClock } = this.state;
 

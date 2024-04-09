@@ -6,7 +6,7 @@ type Props = {
   timerId: number;
 };
 
-export class Clock extends React.PureComponent<Props> {
+export class Clock extends React.Component<Props> {
   state = {
     newDate: new Date().toUTCString().slice(-12, -4),
   };
@@ -39,7 +39,6 @@ export class Clock extends React.PureComponent<Props> {
 
   componentWillUnmount() {
     window.clearInterval(this.today);
-    window.clearInterval(this.props.timerId);
   }
 
   render() {
