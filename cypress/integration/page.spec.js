@@ -174,13 +174,13 @@ describe('Clock', () => {
 
     it('should proceed updating time every second', () => {
       cy.tick(1000);
+      page.clockTime().should('have.text', '09:32:35');
+
+      cy.tick(1000);
       page.clockTime().should('have.text', '09:32:36');
 
       cy.tick(1000);
       page.clockTime().should('have.text', '09:32:37');
-
-      cy.tick(1000);
-      page.clockTime().should('have.text', '09:32:38');
     });
 
     it('should not print time again to the console before 1s has passed', () => {
@@ -192,12 +192,12 @@ describe('Clock', () => {
       cy.tick(1000);
       cy.get('@console.log')
         .should('have.callCount', 2)
-        .and('be.calledWith', '09:32:36');
+        .and('be.calledWith', '09:32:35');
 
       cy.tick(1000);
       cy.get('@console.log')
         .should('have.callCount', 3)
-        .and('be.calledWith', '09:32:37');
+        .and('be.calledWith', '09:32:36');
     });
 
     it('should show actual name', () => {
