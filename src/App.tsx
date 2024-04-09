@@ -9,6 +9,7 @@ interface State {
 
 export class App extends React.Component {
   intervalId1 = 0;
+
   intervalId2 = 0;
 
   state: State = {
@@ -31,6 +32,7 @@ export class App extends React.Component {
         },
         () => {
           if (this.state.hasClock) {
+            // eslint-disable-next-line no-console
             console.log(this.state.today.toUTCString().slice(-12, -4));
           }
         },
@@ -43,6 +45,7 @@ export class App extends React.Component {
 
   componentDidUpdate(_: {}, prevState: State): void {
     if (this.state.hasClock && prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
       console.debug(
         `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
       );
