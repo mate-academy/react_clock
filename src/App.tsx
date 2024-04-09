@@ -1,16 +1,61 @@
 import React from 'react';
 import './App.scss';
 
+interface State {
+  clockName: string;
+  today: Date;
+  hasClock: boolean;
+}
+
 export class App extends React.Component {
   intervalId1 = 0;
-
   intervalId2 = 0;
 
-  state = {
-    clockName: 'Сlock-0',
+  state: State = {
+    clockName: 'Clock-0',
     today: new Date(),
     hasClock: true,
   };
+
+  componentDidMount(): void {
+    this.intervalId1 = window.setInterval(() => {
+      this.setState({
+        clockName: this.getRandomName(),
+      });
+    }, 3300);
+
+    this.intervalId2 = window.setInterval(() => {
+      this.setState(
+        {
+          today: new Date(),
+        },
+        () => {
+          if (this.state.hasClock) {
+            console.log(this.state.today.toUTCString().slice(-12, -4));
+          }
+        },
+      );
+    }, 1000);
+
+    document.addEventListener('contextmenu', this.handlerRightClick);
+    document.addEventListener('click', this.handlerLeftClick);
+  }
+
+  componentDidUpdate(_: {}, prevState: State): void {
+    if (this.state.hasClock && prevState.clockName !== this.state.clockName) {
+      console.debug(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
+    }
+  }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.intervalId1);
+    window.clearInterval(this.intervalId2);
+
+    document.removeEventListener('contextmenu', this.handlerRightClick);
+    document.removeEventListener('click', this.handlerLeftClick);
+  }
 
   getRandomName = (): string => {
     const value = Date.now().toString().slice(-4);
@@ -25,42 +70,12 @@ export class App extends React.Component {
     });
   };
 
-  // eslint-disable-next-line
   handlerLeftClick = () => {
     this.setState({
       hasClock: true,
+      today: new Date(),
     });
   };
-
-  componentDidMount(): void {
-    this.intervalId1 = window.setInterval(() => {
-      this.setState({
-        clockName: this.getRandomName(),
-      });
-    }, 3300);
-
-    this.intervalId2 = window.setInterval(() => {
-      const time = new Date();
-
-      this.setState({
-        today: time,
-      });
-      if (this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.log(time.toUTCString().slice(-12, -4));
-      }
-    }, 1000);
-
-    document.addEventListener('contextmenu', this.handlerRightClick);
-    document.addEventListener('click', this.handlerLeftClick);
-  }
-
-  componentWillUnmount(): void {
-    window.clearInterval(this.intervalId1);
-    window.clearInterval(this.intervalId2);
-    document.removeEventListener('contextmenu', this.handlerRightClick);
-    document.removeEventListener('click', this.handlerLeftClick);
-  }
 
   render() {
     return (
