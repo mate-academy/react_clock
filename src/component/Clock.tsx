@@ -28,7 +28,7 @@ export class Clock extends React.Component<Props> {
       this.updateTime();
     }
 
-    if (prevProps.name !== this.props.name) {
+    if (prevProps.name !== this.props.name && this.props.visible) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
     } else if (this.props.visible) {
