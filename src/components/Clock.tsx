@@ -7,7 +7,10 @@ type State = {
   clockName: string;
 };
 
-type Props = {};
+type Props = {
+  clockNameProp: string;
+  setClockNameProp: React.Dispatch<React.SetStateAction<string>>;
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -18,7 +21,7 @@ function getRandomName(): string {
 export class Clock extends React.Component<Props, State> {
   state: State = {
     today: new Date(),
-    clockName: 'Clock-0',
+    clockName: this.props.clockNameProp,
   };
 
   timerId = 0;
@@ -47,6 +50,7 @@ export class Clock extends React.Component<Props, State> {
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
     window.clearInterval(this.timerTimeUpdate);
+    this.props.setClockNameProp(this.state.clockName);
   }
 
   render() {

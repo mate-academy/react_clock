@@ -4,6 +4,7 @@ import './App.scss';
 
 export const App = () => {
   const [isHidden, setIsHidden] = useState(false);
+  const [clockName, setClockName] = useState('Clock-0');
 
   document.addEventListener('contextmenu', () => {
     setIsHidden(true);
@@ -14,6 +15,12 @@ export const App = () => {
   });
 
   return (
-    <div className="App">{!isHidden ? <Clock /> : <h1>React clock</h1>}</div>
+    <div className="App">
+      {!isHidden ? (
+        <Clock clockNameProp={clockName} setClockNameProp={setClockName} />
+      ) : (
+        <h1>React clock</h1>
+      )}
+    </div>
   );
 };
