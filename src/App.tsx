@@ -42,7 +42,7 @@ export class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
 
-        <Clock name={clockName} visible={hasClock} timerId={this.timerId} />
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }

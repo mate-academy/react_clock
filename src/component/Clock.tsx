@@ -2,11 +2,9 @@ import React from 'react';
 
 type Props = {
   name: string;
-  visible: boolean;
-  timerId: number;
 };
 
-export class Clock extends React.Component<Props> {
+export class Clock extends React.PureComponent<Props> {
   state = {
     newDate: new Date().toUTCString().slice(-12, -4),
   };
@@ -20,20 +18,18 @@ export class Clock extends React.Component<Props> {
   };
 
   componentDidMount(): void {
-    this.today = window.setInterval(this.updateTime, 1000);
+    this.today = window.setInterval(() => {
+      this.updateTime();
+
+      // eslint-disable-next-line no-console
+      console.log(new Date().toUTCString().slice(-12, -4));
+    }, 1000);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    if (!prevProps.visible) {
-      this.updateTime();
-    }
-
-    if (prevProps.name !== this.props.name && this.props.visible) {
+    if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
-    } else if (this.props.visible) {
-      // eslint-disable-next-line no-console
-      console.log(this.state.newDate);
     }
   }
 
@@ -42,18 +38,16 @@ export class Clock extends React.Component<Props> {
   }
 
   render() {
-    const { name, visible } = this.props;
+    const { name } = this.props;
 
     return (
-      visible && (
-        <div className="Clock">
-          <strong className="Clock__name">{name}</strong>
+      <div className="Clock">
+        <strong className="Clock__name">{name}</strong>
 
-          {' time is '}
+        {' time is '}
 
-          <span className="Clock__time">{this.state.newDate}</span>
-        </div>
-      )
+        <span className="Clock__time">{this.state.newDate}</span>
+      </div>
     );
   }
 }
