@@ -1,11 +1,6 @@
 import React from 'react';
+import { Clock } from './components/Clock';
 import './App.scss';
-
-type Props = {
-  clockName: string;
-  today: Date;
-  hasClock: boolean;
-};
 
 type State = {
   clockName: string;
@@ -47,25 +42,6 @@ export class App extends React.Component {
     });
   }
 
-  componentDidUpdate(
-    _prevProps: Readonly<Props>,
-    prevState: Readonly<State>,
-  ): void {
-    if (this.state.hasClock) {
-      if (this.state.today !== prevState.today) {
-        // eslint-disable-next-line no-console
-        console.log(this.state.today.toUTCString().slice(-12, -4));
-      }
-
-      if (this.state.clockName !== prevState.clockName) {
-        // eslint-disable-next-line no-console
-        console.debug(
-          `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-        );
-      }
-    }
-  }
-
   componentWillUnmount(): void {
     // this code stops the timer
     window.clearInterval(this.timerIdClockName);
@@ -86,17 +62,7 @@ export class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">{clockName}</strong>
-
-            {' time is '}
-
-            <span className="Clock__time">
-              {today.toUTCString().slice(-12, -4)}
-            </span>
-          </div>
-        )}
+        {hasClock && <Clock name={clockName} currentTime={today} />}
       </div>
     );
   }
