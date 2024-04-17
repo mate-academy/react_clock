@@ -8,14 +8,19 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
+interface State {
+  hasClock: boolean,
+  clockName: string,
+  timerId: number,
+};
+
 class App extends React.PureComponent {
-  state = {
-    currentTime: '',
-    today: new Date().toString().slice(16, -42),
+  state: State = {
+    hasClock: true,
     clockName: 'Clock-0',
     timerId: 0,
-    timer: 0,
   };
+
 
   componentDidMount() {
     this.setState({
@@ -23,17 +28,29 @@ class App extends React.PureComponent {
         this.setState({ clockName: getRandomName() });
       }, 3300),
     });
+
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    });
+
+    document.addEventListener('click', (event: MouseEvent) => {
+      event.preventDefault();
+      this.setState({ hasClock: true });
+    });
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.timerId);
+    window.clearInterval(this.state.timerId);
   }
 
   render() {
+    const { hasClock } = this.state;
+
     return (
       <div className="App">
         <h1>React clock</h1>
-        <Clock name={this.state.clockName} />
+        {hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }
