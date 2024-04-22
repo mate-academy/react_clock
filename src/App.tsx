@@ -1,37 +1,71 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+export class App extends React.Component {
+  state = {
+    today: new Date(),
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-  return `Clock-${value}`;
-}
+  timerIdClock = 0;
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+  timerId = 0;
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  getRandomName(): string | undefined {
+    const value = Date.now().toString().slice(-4);
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+    if (this.state.hasClock) {
+      return `Clock-${value}`;
+    } else {
+      return;
+    }
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  handlePageClick = () => {
+    this.setState({ hasClock: true });
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  handlePageRightClick = (event: MouseEvent) => {
+    event.preventDefault();
 
-        {' time is '}
+    this.setState({ hasClock: false });
+  };
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  componentDidMount(): void {
+    document.addEventListener('contextmenu', this.handlePageRightClick);
+
+    document.addEventListener('click', this.handlePageClick);
+
+    this.timerIdClock = window.setInterval(() => {
+      this.setState({ clockName: this.getRandomName() });
+    }, 3300);
+
+    this.timerId = window.setInterval(() => {
+      this.setState({ today: new Date() });
+    }, 1000);
+  }
+
+  componentWillUnmount(): void {
+    document.removeEventListener('click', this.handlePageClick);
+    document.removeEventListener('contextmenu', this.handlePageRightClick);
+
+    window.clearInterval(this.timerIdClock);
+    window.clearInterval(this.timerId);
+  }
+
+  render() {
+    const { hasClock } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock && (
+          <Clock name={this.state.clockName} date={this.state.today} />
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
