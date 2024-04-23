@@ -29,7 +29,6 @@ export class Clock extends React.Component<ClockProps, ClockState> {
 
     this.timerId = window.setInterval(() => {
       // eslint-disable-next-line
-      console.log(this.state.today.toUTCString().slice(-12, -4));
       this.setState({ today: new Date() });
     }, defaultDelayTime);
   }
@@ -41,6 +40,9 @@ export class Clock extends React.Component<ClockProps, ClockState> {
   }
 
   componentDidUpdate(prevProps: Readonly<ClockProps>): void {
+    // eslint-disable-next-line
+    console.log(this.state.today.toUTCString().slice(-12, -4));
+
     if (prevProps.clockName !== this.props.clockName) {
       // eslint-disable-next-line
       console.debug(
