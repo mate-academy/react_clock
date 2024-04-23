@@ -4,18 +4,14 @@ import './App.scss';
 import { Clock } from './components/Clock';
 
 type TState = {
-  time: Date;
   hasClock: boolean;
   clockName: string;
 };
 
 export class App extends React.Component<{}, TState> {
-  timerId = 0;
-
   timerNameId = 0;
 
   state: TState = {
-    time: new Date(),
     hasClock: true,
     clockName: 'Clock-0',
   };
@@ -36,7 +32,6 @@ export class App extends React.Component<{}, TState> {
   };
 
   componentDidMount() {
-    this.timerId = window.setInterval(this.tick, 1000);
     this.timerNameId = window.setInterval(this.tickName, 3300);
 
     document.addEventListener('contextmenu', this.handleContextMenu);
@@ -44,23 +39,11 @@ export class App extends React.Component<{}, TState> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerId);
     clearInterval(this.timerNameId);
 
     document.removeEventListener('contextmenu', this.handleContextMenu);
     document.removeEventListener('click', this.handleLeftClick);
   }
-
-  tick = () => {
-    this.setState({
-      time: new Date(),
-    });
-
-    if (this.state.hasClock) {
-      // eslint-disable-next-line no-console
-      console.log(new Date().toUTCString().slice(-12, -4));
-    }
-  };
 
   tickName = () => {
     this.setState({
@@ -69,12 +52,12 @@ export class App extends React.Component<{}, TState> {
   };
 
   render() {
-    const { time, hasClock, clockName } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock && <Clock time={time} clockName={clockName} />}
+        {hasClock && <Clock clockName={clockName} />}
       </div>
     );
   }
