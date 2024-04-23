@@ -22,20 +22,20 @@ export class Clock extends React.Component<ClockProps, ClockState> {
     today: new Date(),
   };
 
-  timePoint = 0;
+  timerId = 0;
 
   componentDidMount(): void {
     document.addEventListener('contextmenu', this.props.onNotActive);
 
-    this.timePoint = window.setInterval(() => {
-      this.setState({ today: new Date() });
+    this.timerId = window.setInterval(() => {
       // eslint-disable-next-line
       console.log(this.state.today.toUTCString().slice(-12, -4));
+      this.setState({ today: new Date() });
     }, defaultDelayTime);
   }
 
   componentWillUnmount(): void {
-    clearInterval(this.timePoint);
+    clearInterval(this.timerId);
 
     document.removeEventListener('contextmenu', this.props.onNotActive);
   }
