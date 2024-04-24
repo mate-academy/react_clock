@@ -59,7 +59,7 @@ export class App extends React.Component<{}, State> {
     this.timerId = window.setInterval(() => {
       if (this.state.hasClock) {
         // eslint-disable-next-line no-console
-        console.log(new Date().toLocaleTimeString());
+        console.log(this.state.time.toLocaleTimeString());
         this.setState({ time: new Date() });
       }
     }, 1000);
