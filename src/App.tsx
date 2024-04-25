@@ -3,7 +3,6 @@ import './App.scss';
 import { Clock } from './components/Clock/Clock';
 
 type State = {
-  time: Date;
   hasClock: boolean;
   clockName: string;
 };
@@ -16,7 +15,6 @@ function getRandomName(): string {
 
 export class App extends React.Component<{}, State> {
   state = {
-    time: new Date(),
     hasClock: true,
     clockName: 'Clock-0',
   };
@@ -32,8 +30,6 @@ export class App extends React.Component<{}, State> {
   showClock = () => {
     this.setState({ hasClock: true });
   };
-
-  timerId = 0;
 
   nameTimerId = 0;
 
@@ -55,20 +51,11 @@ export class App extends React.Component<{}, State> {
     this.nameTimerId = window.setInterval(() => {
       this.randomClockName();
     }, 3300);
-
-    this.timerId = window.setInterval(() => {
-      if (this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.log(this.state.time.toLocaleTimeString());
-        this.setState({ time: new Date() });
-      }
-    }, 1000);
   }
 
   componentWillUnmount(): void {
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
-    window.clearInterval(this.timerId);
     window.clearInterval(this.nameTimerId);
   }
 
@@ -78,7 +65,6 @@ export class App extends React.Component<{}, State> {
         <h1>React clock</h1>
         {this.state.hasClock && (
           <Clock
-            time={this.state.time}
             clockName={this.state.clockName}
             hasClock={this.state.hasClock}
           />
