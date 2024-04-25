@@ -4,14 +4,11 @@ import { Clock } from './components/Clock';
 
 export class App extends React.Component {
   state = {
-    today: new Date(),
     clockName: 'Clock-0',
     hasClock: true,
   };
 
   timerIdClock = 0;
-
-  timerId = 0;
 
   getRandomName(): string | undefined {
     const value = Date.now().toString().slice(-4);
@@ -41,10 +38,6 @@ export class App extends React.Component {
     this.timerIdClock = window.setInterval(() => {
       this.setState({ clockName: this.getRandomName() });
     }, 3300);
-
-    this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
-    }, 1000);
   }
 
   componentWillUnmount(): void {
@@ -52,7 +45,6 @@ export class App extends React.Component {
     document.removeEventListener('contextmenu', this.handlePageRightClick);
 
     window.clearInterval(this.timerIdClock);
-    window.clearInterval(this.timerId);
   }
 
   render() {
@@ -63,7 +55,7 @@ export class App extends React.Component {
         <h1>React clock</h1>
 
         {hasClock && (
-          <Clock name={this.state.clockName} date={this.state.today} />
+          <Clock name={this.state.clockName} />
         )}
       </div>
     );
