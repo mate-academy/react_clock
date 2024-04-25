@@ -2,30 +2,58 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
-interface AppState {
-  hasClock: boolean;
-  today: Date;
-  clockName: string;
-}
-
 export class App extends React.Component {
-  state: AppState = {
-    hasClock: true,
+  state = {
     today: new Date(),
     clockName: 'Clock-0',
+    hasClock: true,
   };
 
-  toggleClock = (clock: boolean) => {
-    this.setState({ hasClock: clock });
+  timerIdClock = 0;
+
+  timerId = 0;
+
+  getRandomName(): string | undefined {
+    const value = Date.now().toString().slice(-4);
+
+    if (this.state.hasClock) {
+      return `Clock-${value}`;
+    } else {
+      return;
+    }
+  }
+
+  handlePageClick = () => {
+    this.setState({ hasClock: true });
   };
 
-  toggleName = (value: string) => {
-    this.setState({ clockName: value });
+  handlePageRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: false });
   };
 
-  toggleDate = (value: Date) => {
-    this.setState({ today: value });
-  };
+  componentDidMount(): void {
+    document.addEventListener('contextmenu', this.handlePageRightClick);
+
+    document.addEventListener('click', this.handlePageClick);
+
+    this.timerIdClock = window.setInterval(() => {
+      this.setState({ clockName: this.getRandomName() });
+    }, 3300);
+
+    this.timerId = window.setInterval(() => {
+      this.setState({ today: new Date() });
+    }, 1000);
+  }
+
+  componentWillUnmount(): void {
+    document.removeEventListener('click', this.handlePageClick);
+    document.removeEventListener('contextmenu', this.handlePageRightClick);
+
+    window.clearInterval(this.timerIdClock);
+    window.clearInterval(this.timerId);
+  }
 
   render() {
     const { hasClock } = this.state;
@@ -35,13 +63,7 @@ export class App extends React.Component {
         <h1>React clock</h1>
 
         {hasClock && (
-          <Clock
-            toggleClock={this.toggleClock}
-            toggleName={this.toggleName}
-            toggleDate={this.toggleDate}
-            name={this.state.clockName}
-            date={this.state.today}
-          />
+          <Clock name={this.state.clockName} date={this.state.today} />
         )}
       </div>
     );
