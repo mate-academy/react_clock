@@ -13,11 +13,7 @@ export class App extends React.Component {
   getRandomName(): string | undefined {
     const value = Date.now().toString().slice(-4);
 
-    if (this.state.hasClock) {
-      return `Clock-${value}`;
-    } else {
-      return;
-    }
+    return `Clock-${value}`;
   }
 
   handlePageClick = () => {
@@ -54,9 +50,7 @@ export class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && (
-          <Clock name={this.state.clockName} />
-        )}
+        {hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }
