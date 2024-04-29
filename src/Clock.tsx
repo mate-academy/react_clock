@@ -6,21 +6,27 @@ type Props = {
 
 type State = {
   today: Date;
+  initialized: boolean;
 };
 
 export class Clock extends PureComponent<Props, State> {
-  state = {
+  state: State = {
     today: new Date(),
+    initialized: false,
   };
 
   timerId = 0;
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      const today = new Date();
 
-      // eslint-disable-next-line no-console
-      console.info(this.state.today.toUTCString().slice(-12, -4));
+      this.setState({ today, initialized: true }, () => {
+        if (this.state.initialized) {
+          // eslint-disable-next-line no-console
+          console.log(today.toUTCString().slice(-12, -4));
+        }
+      });
     }, 1000);
   }
 
