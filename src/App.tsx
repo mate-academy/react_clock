@@ -14,10 +14,12 @@ type State = {
 };
 
 export class App extends React.Component {
-  state = {
+  state: State = {
     hasClock: true,
     clockName: 'Clock-0',
   };
+
+  timerId = 0;
 
   constructor() {
     super([]);
@@ -44,17 +46,15 @@ export class App extends React.Component {
   };
 
   componentDidMount(): void {
+    this.timerId = window.setInterval(this.changeClockName, 3300);
+
     document.addEventListener('contextmenu', this.hideClock);
     document.addEventListener('click', this.showClock);
   }
 
-  componentDidUpdate(_: {}, prevState: State): void {
-    console.debug(
-      `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-    );
-  }
-
   componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+
     document.removeEventListener('contextmenu', this.hideClock);
     document.removeEventListener('click', this.showClock);
   }
@@ -65,23 +65,7 @@ export class App extends React.Component {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock && (
-          <Clock
-            clockName={clockName}
-            onClockNameChange={this.changeClockName}
-          />
-        )}
-        {/*         {hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">{clockName}</strong>
-
-            {' time is '}
-
-            <span className="Clock__time">
-              {today.toUTCString().slice(-12, -4)}
-            </span>
-          </div>
-        )} */}
+        {hasClock && <Clock clockName={clockName} />}
       </div>
     );
   }

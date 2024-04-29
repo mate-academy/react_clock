@@ -2,38 +2,38 @@ import React from 'react';
 
 type Props = {
   clockName: string;
-  onClockNameChange: () => void;
 };
 
-export class Clock extends React.Component<Props> {
-  state = { today: new Date() };
+type State = {
+  today: Date;
+};
+
+export class Clock extends React.Component<Props, State> {
+  state: State = { today: new Date() };
 
   timeId = 0;
 
-  timerId = 0;
-
-  constructor() {
-    super();
-
-    this.changeTimeEverySec = this.changeTimeEverySec.bind(this);
+  componentDidMount(): void {
+    this.timeId = window.setInterval(() => {
+      this.setState({ today: new Date() });
+    }, 1000);
   }
 
-  changeTimeEverySec = () => {
-    this.setState({ today: new Date() });
+  componentDidUpdate(prevProps: Props, prevState: State): void {
+    if (this.props.clockName !== prevProps.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(
+        `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
+      );
+    }
 
-    // eslint-disable-next-line no-console
-    console.log(this.state.today.toUTCString().slice(-12, -4));
-  };
-
-  componentDidMount(): void {
-    this.timerId = window.setInterval(this.props.onClockNameChange, 3300);
-
-    this.timeId = window.setInterval(this.changeTimeEverySec, 1000);
+    if (this.state.today !== prevState.today) {
+      // eslint-disable-next-line no-console
+      console.log(this.state.today.toUTCString().slice(-12, -4));
+    }
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timerId);
-
     window.clearInterval(this.timeId);
   }
 
