@@ -25,19 +25,16 @@ export class App extends React.Component<State> {
     this.setState({ clockName: getRandomName() });
   };
 
-  // hide
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
 
-  // show
   handleLeftClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: true });
   };
 
-  // show
   componentDidMount(): void {
     this.timer3300 = window.setInterval(this.changeClockName, 3300);
 
@@ -45,7 +42,6 @@ export class App extends React.Component<State> {
     document.addEventListener('click', this.handleLeftClick);
   }
 
-  //hide
   componentWillUnmount(): void {
     window.clearInterval(this.timer3300);
 
