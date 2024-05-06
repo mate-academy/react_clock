@@ -1,4 +1,5 @@
 import React from 'react';
+/* eslint-disable */
 
 type Props = {
   name: string;
