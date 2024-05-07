@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
+import { Clock } from './components/Clock/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -10,14 +11,12 @@ function getRandomName(): string {
 type AppState = {
   hasClock: boolean;
   clockName: string;
-  currentTime: string;
 };
 
 export class App extends Component<{}, AppState> {
   state: AppState = {
     hasClock: true,
-    clockName: 'Clock-0',
-    currentTime: '',
+    clockName: 'Clock-0', // Initialize with random name
   };
 
   clockNameTimerId = 0;
@@ -32,25 +31,12 @@ export class App extends Component<{}, AppState> {
       const newClockName = getRandomName();
 
       this.setState({ clockName: newClockName });
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${this.state.clockName} to ${newClockName}`);
     }, 3300);
-
-    this.currentTimeTimerId = window.setInterval(() => {
-      const today = new Date();
-      const currentTime = today.toUTCString().slice(-12, -4);
-
-      // eslint-disable-next-line no-console
-      console.log(currentTime);
-
-      this.setState({ currentTime: currentTime });
-    }, 1000);
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.clockNameTimerId);
-    window.clearInterval(this.currentTimeTimerId);
-
+    clearInterval(this.clockNameTimerId);
+    clearInterval(this.currentTimeTimerId);
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
   }
@@ -65,24 +51,12 @@ export class App extends Component<{}, AppState> {
   };
 
   render() {
-    const { clockName } = this.state;
-    const today = new Date();
+    const { hasClock, clockName } = this.state;
 
     return (
-      <div className="App">
+      <div>
         <h1>React clock</h1>
-
-        {this.state.hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">{clockName}</strong>
-
-            {' time is '}
-
-            <span className="Clock__time">
-              {today.toUTCString().slice(-12, -4)}
-            </span>
-          </div>
-        )}
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }
