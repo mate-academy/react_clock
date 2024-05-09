@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import './App.scss';
-import {Clock} from "./components/Clock";
+import { Clock } from './components/Clock';
+/* eslint-disable */
+
 
 interface AppState {
   hasClock: boolean;
@@ -9,14 +11,14 @@ interface AppState {
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
+
   return `Clock-${value}`;
 }
-
 
 export class App extends Component<{}, AppState> {
   state: AppState = {
     hasClock: true,
-    clockName: 'Clock-0'
+    clockName: 'Clock-0',
   };
 
   intervalId: NodeJS.Timeout | undefined;
@@ -26,13 +28,16 @@ export class App extends Component<{}, AppState> {
     document.addEventListener('click', this.showClock);
     this.intervalId = setInterval(() => {
       this.setState({
-        clockName: getRandomName()
+        clockName: getRandomName(),
       });
     }, 3300);
   }
 
   componentWillUnmount() {
-    if (this.intervalId) clearInterval(this.intervalId);
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+
     document.removeEventListener('contextmenu', this.hideClock);
     document.removeEventListener('click', this.showClock);
   }
