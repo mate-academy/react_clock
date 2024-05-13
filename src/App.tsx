@@ -1,6 +1,7 @@
 import React from 'react';
+
 import './App.scss';
-import { Clock } from './components/clock';
+import { Clock } from './component/clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -8,51 +9,39 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-type State = {
+interface State {
   hasClock: boolean;
   clockName: string;
-};
+}
 
-export class App extends React.Component<State> {
-  state: Readonly<State> = {
+export class App extends React.Component<{}, State> {
+  state: State = {
     hasClock: true,
     clockName: 'Clock-0',
   };
 
-  timer = 0;
+  componentDidMount() {
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
 
-  onShowLeftClick = () => {
-    this.setState({ hasClock: true });
-  };
+      this.setState({ hasClock: false });
+    });
 
-  onHideRightClick = (event: MouseEvent) => {
-    event.preventDefault();
+    document.addEventListener('click', () => this.setState({ hasClock: true }));
 
-    this.setState({ hasClock: false });
-  };
-
-  componentDidMount(): void {
-    this.timer = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
-
-    document.addEventListener('click', this.onShowLeftClick);
-    document.addEventListener('contextmenu', this.onHideRightClick);
-  }
-
-  componentWillUnmount(): void {
-    clearInterval(this.timer);
-
-    document.removeEventListener('click', this.onShowLeftClick);
-    document.removeEventListener('contextmenu', this.onHideRightClick);
+    window.setInterval(
+      () => this.setState({ clockName: getRandomName() }),
+      3300,
+    );
   }
 
   render() {
-    const { clockName, hasClock } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
+
         {hasClock && <Clock clockName={clockName} />}
       </div>
     );
