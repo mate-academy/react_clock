@@ -26,7 +26,7 @@ export class App extends React.Component {
   }
 
   componentDidUpdate(
-    prevProps: Readonly<StateType>,
+    _prevProps: Readonly<StateType>,
     prevState: Readonly<StateType>,
   ): void {
     if (this.state.hasClock && prevState.clockName !== this.state.clockName) {
