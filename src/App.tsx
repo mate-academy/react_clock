@@ -52,9 +52,9 @@ export class App extends React.Component<{}, State> {
       clearInterval(this.currentDate);
     }
 
-    if (this.timerId) {
-      window.clearInterval(this.timerId);
-    }
+    // if (this.timerId) {
+    //   window.clearInterval(this.timerId);
+    // }
   };
 
   handleContextMenu = (event: MouseEvent) => {
@@ -68,7 +68,7 @@ export class App extends React.Component<{}, State> {
       {
         hasClock: true,
         today: new Date(),
-        clockName: 'Clock-4900',
+        // clockName: 'Clock-4900',
       },
       () => {
         this.startTimers();
