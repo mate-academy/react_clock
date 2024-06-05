@@ -21,25 +21,31 @@ export class App extends React.Component<{}, State> {
 
   timerId = 0;
 
+  hideClock = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: false });
+  };
+
+  appearClock = () => {
+    this.setState({ hasClock: true });
+  };
+
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.body.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault();
-
-      this.setState({ hasClock: false });
-    });
+    document.addEventListener('contextmenu', (event: MouseEvent) =>
+      this.hideClock(event),
+    );
 
     // eslint-disable-next-line max-len
-    document.body.addEventListener('click', () =>
-      this.setState({ hasClock: true }),
-    );
+    document.addEventListener('click', () => this.appearClock());
   }
 
   componentDidUpdate(_: {}, prevState: Readonly<State>): void {
-    if (this.state.hasClock) {
+    if (this.state.hasClock && prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
       console.debug(
         `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
@@ -50,11 +56,17 @@ export class App extends React.Component<{}, State> {
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
 
-    // document.removeEventListener();
-    // document.removeEventListener()
+    document.removeEventListener('contextmenu', this.hideClock);
+    document.removeEventListener('click', this.appearClock);
   }
 
   render() {
-    return this.state.hasClock && <Clock name={this.state.clockName} />;
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
+      </div>
+    );
   }
 }
