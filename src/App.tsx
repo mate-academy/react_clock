@@ -23,18 +23,12 @@ export class App extends React.PureComponent<State> {
 
   handleLeftClick = () => {
     this.setState({ hasClock: true });
-
-    // this.timerId = window.setInterval(() => {
-    //   this.setState({ clockName: getRandomName() });
-    // }, 3300);
   };
 
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
 
     this.setState({ hasClock: false });
-
-    // window.clearInterval(this.timerId);
   };
 
   componentDidMount() {
@@ -50,7 +44,7 @@ export class App extends React.PureComponent<State> {
   componentDidUpdate(_: {}, prevState: Readonly<State>): void {
     const itemsChanged = prevState.clockName !== this.state.clockName;
 
-    if (itemsChanged) {
+    if (itemsChanged && this.state.hasClock) {
       // eslint-disable-next-line no-console
       console.debug(
         `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
