@@ -46,6 +46,11 @@ export class App extends React.Component<Props, State> {
       // eslint-disable-next-line no-console
       // console.debug(newClockName);
     }, 3300);
+    document.addEventListener(
+      'contextmenu',
+      this.handleContextMenu as unknown as EventListener,
+    );
+    document.addEventListener('click', this.handleClick as EventListener);
   }
 
   componentWillUnmount() {
