@@ -29,14 +29,6 @@ export class Clock extends Component<Props, State> {
       // eslint-disable-next-line no-console
       console.log(currentTime);
     }, 1000);
-
-    this.clockNameTimerId = window.setInterval(() => {
-      const newClockName = this.getRandomName();
-
-      this.setState({ clockName: newClockName });
-      // eslint-disable-next-line no-console
-      console.debug(newClockName);
-    }, 3300);
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
@@ -56,18 +48,13 @@ export class Clock extends Component<Props, State> {
     }
   }
 
-  getRandomName = (): string => {
-    const value = Date.now().toString().slice(-4);
-
-    return `Clock-${value}`;
-  };
-
   render() {
-    const { currentTime, clockName } = this.state;
+    const { currentTime } = this.state;
+    const { name } = this.props;
 
     return (
       <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+        <strong className="Clock__name">{name}</strong>
         {' time is '}
         <span className="Clock__time">{currentTime}</span>
       </div>
