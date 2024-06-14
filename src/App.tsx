@@ -47,10 +47,7 @@ export class App extends React.Component<{}, State> {
     document.removeEventListener('contextmenu', this.turnOffTimer);
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<{}>,
-    prevState: Readonly<State>,
-  ): void {
+  componentDidUpdate({}, prevState: Readonly<State>): void {
     if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
       // eslint-disable-next-line no-console
       console.debug(
