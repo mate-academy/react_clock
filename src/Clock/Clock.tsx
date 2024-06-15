@@ -45,14 +45,14 @@ export class Clock extends React.Component<Props, State> {
       });
     }, 1000);
     // eslint-disable-next-line no-console
-    console.log(this.state.today.toUTCString().slice(-12, -4));
+    // console.log(this.state.today.toUTCString().slice(-12, -4));
   }
 
   componentDidUpdate(prevProps: Readonly<State>,
     prevState: Readonly<{}>): void {
     if (prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
-      console.log(
+      console.debug(
         `Renamed from ${prevState.clockName} to ${this.state.clockName}`
       );
     }
@@ -69,7 +69,6 @@ export class Clock extends React.Component<Props, State> {
   render() {
     return (
       <div className="App">
-        <h1>React clock</h1>
 
         <div className="Clock">
           <strong className="Clock__name">{this.state.clockName}</strong>
