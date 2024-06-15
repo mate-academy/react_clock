@@ -13,23 +13,15 @@ export class Clock extends React.Component<Props, State> {
     today: new Date(),
   };
 
-  timerId1 = 0;
-
   timerId2 = 0;
 
   componentDidMount(): void {
     this.timerId2 = window.setInterval(() => {
-      this.setState(() => {
-        return {
-          today: new Date(),
-        };
-      });
+      this.setState({ today: new Date() });
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Readonly<State>,
-    prevState: Readonly<{}>): void {
-
+  componentDidUpdate(): void {
     // eslint-disable-next-line no-console
     console.log(this.state.today.toUTCString().slice(-12, -4));
   }
@@ -41,7 +33,6 @@ export class Clock extends React.Component<Props, State> {
   render() {
     return (
       <div className="App">
-
         <div className="Clock">
           <strong className="Clock__name">{this.props.name}</strong>
 
