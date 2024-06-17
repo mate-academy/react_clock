@@ -32,14 +32,10 @@ export class Clock extends React.Component<Props, State> {
     const { clockName } = this.props;
 
     return (
-      <div className="App">
-        <div className="Clock">
-          <strong className="Clock__name">{clockName}</strong>
-
-          {' time is '}
-
-          <span className="Clock__time">{this.state.time}</span>
-        </div>
+      <div className="Clock">
+        <strong className="Clock__name">{clockName}</strong>
+        {' time is '}
+        <span className="Clock__time">{this.state.time}</span>
       </div>
     );
   }

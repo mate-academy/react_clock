@@ -9,8 +9,8 @@ function getRandomName(): string {
 }
 
 type State = {
-  clockName: string;
   hasClock: boolean;
+  clockName: string;
 };
 
 export class App extends React.Component<{}, State> {
@@ -43,8 +43,8 @@ export class App extends React.Component<{}, State> {
   componentWillUnmount(): void {
     window.clearInterval(this.currentTime);
 
-    document.addEventListener('click', this.hiddeClock);
-    document.addEventListener('contextmenu', this.showClock);
+    document.removeEventListener('click', this.showClock);
+    document.removeEventListener('contextmenu', this.hiddeClock);
   }
 
   componentDidUpdate({}, prevState: Readonly<State>): void {
@@ -60,12 +60,7 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-
-        <div className="Clock">
-          <strong className="Clock__name">
-            {this.state.hasClock && <Clock clockName={this.state.clockName} />}
-          </strong>
-        </div>
+        {this.state.hasClock && <Clock clockName={this.state.clockName} />}
       </div>
     );
   }
