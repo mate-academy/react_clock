@@ -18,9 +18,10 @@ export class Clock extends Component<ClockProps, ClockState> {
   // Start the timer
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ time: new Date().toUTCString().slice(-12, -4) });
       // eslint-disable-next-line no-console
-      console.log(this.state.time);
+      console.log(new Date().toUTCString().slice(-12, -4));
+
+      this.setState({ time: new Date().toUTCString().slice(-12, -4) });
     }, 1000);
   }
 
