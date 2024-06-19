@@ -5,6 +5,10 @@
   ],
   "compilerOptions": {
     "sourceMap": false,
-    "types": ["node", "cypress"]
+    "types": ["node", "cypress"],
+    "jsx": "react-jsx",  // Use "react" if you are using React 16 or below.
+    "esModuleInterop": true, // Recommended for compatibility with React imports.
+    "allowJs": true, // Allows JavaScript files to be compiled.
+    "checkJs": true
   }
 }
