@@ -14,24 +14,35 @@ export class Clock extends React.Component<Props, State> {
   };
 
   timerIdDate = 0;
+  //#region handles
 
-  handleTimers() {
+  handleTimer() {
     this.timerIdDate = window.setInterval(() => {
-      this.setState(prev => ({ ...prev, today: new Date() }));
+      this.setState({ today: new Date() });
     }, 1000);
   }
 
-  componentDidUpdate(): void {
+  handleClearTimer() {
+    window.clearInterval(this.timerIdDate);
+  }
+  //#endregion
+
+  componentDidUpdate(prevProps: Props): void {
+    if (this.props.name !== prevProps.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+
     // eslint-disable-next-line no-console
     console.log(this.state.today.toUTCString().slice(-12, -4));
   }
 
   componentDidMount(): void {
-    this.handleTimers();
+    this.handleTimer();
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timerIdDate);
+    this.handleClearTimer();
   }
 
   render() {

@@ -21,51 +21,47 @@ export class App extends React.Component<{}, Readonly<State>> {
 
   timerIdName = 0;
 
+  //#region handles
+  handleShowClock() {
+    document.addEventListener('click', () => {
+      if (!this.state.hasClock) {
+        this.setState({ hasClock: true });
+      }
+    });
+  }
+
   handleHideClock() {
     document.addEventListener('contextmenu', (event: MouseEvent) => {
       event.preventDefault(); // not to show the context menu
-      this.setState(prev => ({ ...prev, hasClock: false }));
+      this.setState({ hasClock: false });
     });
   }
 
-  handleShowClock() {
-    document.addEventListener('click', () => {
-      this.setState(prev => ({ ...prev, hasClock: true }));
-    });
-  }
-
-  handleTimers() {
+  handleTimer() {
     this.timerIdName = window.setInterval(() => {
-      this.setState(prev => ({ ...prev, clockName: getRandomName() }));
+      this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
-  handleClearTimers() {
+  handleClearTimer() {
     window.clearInterval(this.timerIdName);
   }
+
+  handleClearEvents() {
+    document.removeEventListener('click', this.handleShowClock);
+    document.removeEventListener('contextmenu', this.handleShowClock);
+  }
+  //#endregion
 
   componentDidMount(): void {
     this.handleShowClock();
     this.handleHideClock();
-    this.handleTimers();
-  }
-
-  componentDidUpdate(
-    _prevProps: Readonly<{}>,
-    prevState: Readonly<Readonly<State>>,
-  ): void {
-    if (this.state.hasClock) {
-      // eslint-disable-next-line no-console
-      console.debug(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-      );
-    }
+    this.handleTimer();
   }
 
   componentWillUnmount(): void {
-    this.handleClearTimers();
-    document.removeEventListener('click', this.handleShowClock);
-    document.removeEventListener('contextmenu', this.handleShowClock);
+    this.handleClearTimer();
+    this.handleClearEvents();
   }
 
   render() {
