@@ -8,7 +8,6 @@ function getRandomName(): string {
 }
 
 export const App: React.FC = () => {
-  // const today = new Date();
   const initialName = 'Clock-0';
 
   const [today, setToday] = useState(new Date());
@@ -17,22 +16,25 @@ export const App: React.FC = () => {
 
   const prevClockNameRef = useRef(initialName);
 
+  const handleContextmenu = (event: MouseEvent) => {
+    event.preventDefault();
+    setHasClock(false);
+  };
+
+  const handleClick = (event: MouseEvent) => {
+    event.preventDefault();
+    setHasClock(true);
+  };
+
   useEffect(() => {
     const timerIdToday = window.setInterval(() => {
       setToday(new Date());
-      // eslint-disable-next-line no-console
-      console.log(new Date().toUTCString().slice(-12, -4));
+
+      if (hasClock) {
+        // eslint-disable-next-line no-console
+        console.log(new Date().toUTCString().slice(-12, -4));
+      }
     }, 1000);
-
-    const handleContextmenu = (event: MouseEvent) => {
-      event.preventDefault();
-      setHasClock(false);
-    };
-
-    const handleClick = (event: MouseEvent) => {
-      event.preventDefault();
-      setHasClock(true);
-    };
 
     document.addEventListener('contextmenu', handleContextmenu);
 
@@ -40,9 +42,15 @@ export const App: React.FC = () => {
 
     const timerIdClockName = window.setInterval(() => {
       setClockName(getRandomName());
-      prevClockNameRef.current = clockName;
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevClockNameRef.current} to ${clockName}`);
+
+      if (hasClock) {
+        // eslint-disable-next-line no-console
+        console.debug(
+          `Renamed from ${prevClockNameRef.current} to ${getRandomName()}`,
+        );
+      }
+
+      prevClockNameRef.current = getRandomName();
     }, 3300);
 
     return () => {
@@ -51,7 +59,7 @@ export const App: React.FC = () => {
       document.removeEventListener('click', handleClick);
       window.clearInterval(timerIdClockName);
     };
-  }, [clockName]);
+  }, [hasClock]);
 
   return (
     <div className="App">
