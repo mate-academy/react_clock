@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './App.scss';
+import { Clock } from './components/clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -10,7 +11,6 @@ function getRandomName(): string {
 export const App: React.FC = () => {
   const initialName = 'Clock-0';
 
-  const [today, setToday] = useState(new Date());
   const [hasClock, setHasClock] = useState(true);
   const [clockName, setClockName] = useState(initialName);
 
@@ -27,15 +27,6 @@ export const App: React.FC = () => {
   };
 
   useEffect(() => {
-    const timerIdToday = window.setInterval(() => {
-      setToday(new Date());
-
-      if (hasClock) {
-        // eslint-disable-next-line no-console
-        console.log(new Date().toUTCString().slice(-12, -4));
-      }
-    }, 1000);
-
     document.addEventListener('contextmenu', handleContextmenu);
 
     document.addEventListener('click', handleClick);
@@ -43,18 +34,18 @@ export const App: React.FC = () => {
     const timerIdClockName = window.setInterval(() => {
       setClockName(getRandomName());
 
-      if (hasClock) {
-        // eslint-disable-next-line no-console
-        console.debug(
-          `Renamed from ${prevClockNameRef.current} to ${getRandomName()}`,
-        );
-      }
+      // if (hasClock) {
+      //   // eslint-disable-next-line no-console
+      //   console.debug(
+      //     `Renamed from ${prevClockNameRef.current} to ${getRandomName()}`,
+      //   );
+      // }
 
       prevClockNameRef.current = getRandomName();
     }, 3300);
 
     return () => {
-      window.clearInterval(timerIdToday);
+      // window.clearInterval(timerIdToday);
       document.removeEventListener('contextmenu', handleContextmenu);
       document.removeEventListener('click', handleClick);
       window.clearInterval(timerIdClockName);
@@ -71,9 +62,7 @@ export const App: React.FC = () => {
 
           {' time is '}
 
-          <span className="Clock__time">
-            {today.toUTCString().slice(-12, -4)}
-          </span>
+          <Clock clockName="clockName" prevClockNameRef="prevClockNameRef" />
         </div>
       )}
     </div>
