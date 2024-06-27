@@ -1,37 +1,58 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
+import { AppState } from './types/types';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+export class App extends React.Component {
+  state: AppState = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-  return `Clock-${value}`;
-}
+  nameInterval = 0;
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+  componentDidMount() {
+    this.nameInterval = window.setInterval(() => {
+      this.setState({ clockName: this.getRandomName() });
+    }, 3300);
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+    window.addEventListener('contextmenu', this.rightClickHandler);
+    window.addEventListener('click', this.leftClickHandler);
+  }
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentWillUnmount() {
+    window.clearInterval(this.nameInterval);
+    window.removeEventListener('contextmenu', this.rightClickHandler);
+    window.removeEventListener('click', this.leftClickHandler);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  getRandomName = () => {
+    const value: string = Date.now().toString().slice(-4);
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+    return `Clock-${value}`;
+  };
 
-        {' time is '}
+  rightClickHandler = (event: MouseEvent) => {
+    event.preventDefault();
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+    this.setState({ hasClock: false });
+  };
+
+  leftClickHandler = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: true });
+  };
+
+  render() {
+    const { hasClock } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock && <Clock {...this.state} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
