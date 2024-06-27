@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { Clock } from './components/Clock';
+import { Clock } from './Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -9,36 +9,24 @@ function getRandomName(): string {
 }
 
 type State = {
-  today: Date;
+  today: string;
   clockName: string;
   hasClock: boolean;
 };
 
 export class App extends React.Component {
   state: State = {
-    today: new Date(),
+    today: new Date().toUTCString().slice(-12, -4),
     clockName: 'Clock-0',
     hasClock: true,
   };
 
   timerId = 0;
 
-  handleClick = (): void => {
-    this.setState({ hasClock: true });
-  };
-
-  handleContextMenu = (event: MouseEvent): void => {
-    event.preventDefault();
-    this.setState({ hasClock: false });
-  };
-
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      const clockName = getRandomName();
-
-      this.setState({ clockName });
+      this.setState({ clockName: getRandomName() });
     }, 3300);
-
     document.addEventListener('click', this.handleClick);
     document.addEventListener('contextmenu', this.handleContextMenu);
   }
@@ -49,6 +37,15 @@ export class App extends React.Component {
     document.removeEventListener('contextmenu', this.handleContextMenu);
   }
 
+  handleClick = (): void => {
+    this.setState({ hasClock: true });
+  };
+
+  handleContextMenu = (event: MouseEvent): void => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
   render() {
     const { clockName, hasClock } = this.state;
 
@@ -56,17 +53,7 @@ export class App extends React.Component {
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">{clockName}</strong>
-
-            {' time is '}
-
-            <span className="Clock__time">
-              <Clock name={this.state.clockName} />
-            </span>
-          </div>
-        )}
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }
