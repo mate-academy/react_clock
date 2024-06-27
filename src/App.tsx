@@ -29,7 +29,7 @@ export class App extends React.Component {
       const newRandomClockName = getRandomName();
 
       this.setState({ clockName: newRandomClockName });
-    }, 3000);
+    }, 3300);
   }
 
   componentWillUnmount(): void {
