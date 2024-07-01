@@ -18,8 +18,6 @@ export class Clock extends React.PureComponent<Props, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date().toUTCString().slice(-12, -4) });
-      /* // eslint-disable-next-line no-console
-       console.log(this.state.today); */
     }, 1000);
   }
 
