@@ -18,6 +18,7 @@ export class App extends React.Component<{}, AppState> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       const newClockName = this.getRandomName();
+
       this.setState({ clockName: newClockName });
     }, 3300);
 
@@ -29,15 +30,17 @@ export class App extends React.Component<{}, AppState> {
     if (this.timerId) {
       window.clearInterval(this.timerId);
     }
+
     document.removeEventListener('contextmenu', this.handleContextMenu);
     document.removeEventListener('click', this.handleClick);
   }
 
-  componentDidUpdate({ }, prevState: Readonly<AppState>) {
-
+  componentDidUpdate({}, prevState: Readonly<AppState>) {
     if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
-       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+      // eslint-disable-next-line no-console
+      console.debug(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
     }
   }
 
@@ -52,6 +55,7 @@ export class App extends React.Component<{}, AppState> {
 
   getRandomName(): string {
     const value = Date.now().toString().slice(-4);
+
     return `Clock-${value}`;
   }
 
@@ -60,7 +64,7 @@ export class App extends React.Component<{}, AppState> {
   }
 
   render() {
-    const { hasClock, clockName} = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">

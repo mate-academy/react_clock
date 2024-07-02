@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 interface ClockState {
   currentTime: string;
@@ -40,6 +40,7 @@ export default class Clock extends Component<ClockProps> {
   render() {
     return (
       <div className="Clock">
+        {/* eslint-disable-next-line no-console, max-len */}
         <strong className="Clock__name">{this.props.clockName}</strong> time is{' '}
         <span className="Clock__time">{this.state.currentTime}</span>
       </div>
