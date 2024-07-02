@@ -9,14 +9,12 @@ function getRandomName(): string {
 }
 
 type State = {
-  today: string;
   clockName: string;
   hasClock: boolean;
 };
 
-export class App extends React.Component<State> {
+export class App extends React.Component<{}, State> {
   state: State = {
-    today: new Date().toUTCString().slice(-12, -4),
     clockName: 'Clock-0',
     hasClock: true,
   };
@@ -24,15 +22,13 @@ export class App extends React.Component<State> {
   timerId = 0;
 
   handleDocumentLeftClick = (event: MouseEvent) => {
-    event.preventDefault(); // not to show the context menu
+    event.preventDefault();
     this.setState({ hasClock: false });
-    // put your code here
   };
 
   handleDocumentRightClick = (event: MouseEvent) => {
-    event.preventDefault(); // not to show the context menu
+    event.preventDefault();
     this.setState({ hasClock: true });
-    // put your code here
   };
 
   componentDidMount(): void {
