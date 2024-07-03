@@ -22,7 +22,7 @@ class Clock extends Component<ClockProps, ClockState> {
 
   componentDidUpdate(prevProps: ClockProps) {
     // eslint-disable-next-line no-console
-    console.log("Hello", prevProps, this.props);
+    console.log('Hello', prevProps, this.props);
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
