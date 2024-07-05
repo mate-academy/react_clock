@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 interface ClockProps {
   name: string;
-  hasClock: boolean;
 }
 
 interface ClockState {
@@ -20,9 +19,12 @@ class Clock extends Component<ClockProps, ClockState> {
     this.startClock();
   }
 
-  componentDidUpdate(prevProps: ClockProps) {
-    // eslint-disable-next-line no-console
-    console.log('Hello', prevProps, this.props);
+  componentDidUpdate(prevProps: ClockProps, prevState: ClockState) {
+    if (prevState.currentTime !== this.state.currentTime) {
+      // eslint-disable-next-line no-console
+      console.log(this.state.currentTime);
+    }
+
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
@@ -39,14 +41,11 @@ class Clock extends Component<ClockProps, ClockState> {
       const currentTime = new Date().toUTCString().slice(-12, -4);
 
       this.setState({ currentTime });
-
-      // eslint-disable-next-line no-console
-      console.log(currentTime);
     }, 1000);
   };
 
   clearClock = () => {
-    if (this.timerId) {
+    if (this.timerId !== undefined) {
       window.clearInterval(this.timerId);
       this.timerId = undefined;
     }

@@ -36,11 +36,11 @@ class App extends Component<{}, AppState> {
 
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({ hasClock: false }, this.clearNameUpdateTimer);
+    this.setState({ hasClock: false });
   };
 
   handleLeftClick = () => {
-    this.setState({ hasClock: true }, this.startNameUpdateTimer);
+    this.setState({ hasClock: true });
   };
 
   startNameUpdateTimer = () => {
@@ -49,7 +49,7 @@ class App extends Component<{}, AppState> {
   };
 
   clearNameUpdateTimer = () => {
-    if (this.timerId) {
+    if (this.timerId !== undefined) {
       window.clearInterval(this.timerId);
       this.timerId = undefined;
     }
@@ -65,9 +65,7 @@ class App extends Component<{}, AppState> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock && (
-          <Clock name={this.state.clockName} hasClock={this.state.hasClock} />
-        )}
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }
