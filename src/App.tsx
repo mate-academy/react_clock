@@ -9,16 +9,20 @@ function getRandomName(): string {
 
 type State = {
   clockName: string;
-  today: string | number;
-  timerId: number | undefined;
+  today: string;
+  timerId?: number;
+  todayId?: number;
+  outputTime?: number;
   hasClock: boolean;
 };
 
-export class App extends React.Component {
+export class App extends React.Component<{}, State> {
   state: State = {
     today: new Date().toUTCString().slice(-12, -4),
     hasClock: true,
     timerId: undefined,
+    todayId: undefined,
+    outputTime: undefined,
     clockName: `Clock-0`,
   };
 
@@ -27,7 +31,7 @@ export class App extends React.Component {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    const today = window.setInterval(() => {
+    const todayId = window.setInterval(() => {
       this.setState({
         today: new Date().toUTCString().slice(-12, -4),
       });
@@ -38,28 +42,48 @@ export class App extends React.Component {
       console.log(this.state.today);
     }, 1000);
 
-    this.setState({ outputTime, timerId, today });
+    this.setState({ timerId, todayId, outputTime });
+
+    document.addEventListener('contextmenu', this.handleContextMenu);
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.state.timerId);
-    window.clearInterval(this.state.today);
+    if (this.state.timerId) {
+      window.clearInterval(this.state.timerId);
+    }
+
+    if (this.state.todayId) {
+      window.clearInterval(this.state.todayId);
+    }
+
+    if (this.state.outputTime) {
+      window.clearInterval(this.state.outputTime);
+    }
+
+    document.removeEventListener('contextmenu', this.handleContextMenu);
   }
 
+  handleContextMenu = (event: Event): void => {
+    event.preventDefault();
+    this.setState(prevState => ({
+      hasClock: !prevState.hasClock,
+    }));
+  };
+
   render() {
-    const { clockName, today } = this.state;
+    const { clockName, today, hasClock } = this.state;
 
     return (
       <div className="App">
-        <h1>React clock</h1>
+        <h1>React Clock</h1>
 
-        <div className="Clock">
-          <strong className="Clock__name">{clockName}</strong>
-
-          {' time is '}
-
-          <span className="Clock__time">{today}</span>
-        </div>
+        {hasClock && (
+          <div className="Clock">
+            <strong className="Clock__name">{clockName}</strong>
+            {' time is '}
+            <span className="Clock__time">{today}</span>
+          </div>
+        )}
       </div>
     );
   }
