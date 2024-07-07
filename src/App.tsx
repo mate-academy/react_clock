@@ -20,7 +20,7 @@ export class App extends React.Component {
     hasClock: true,
     timerId: undefined,
     clockName: `Clock-0`,
-  }
+  };
 
   componentDidMount(): void {
     const timerId = window.setInterval(() => {
@@ -34,6 +34,7 @@ export class App extends React.Component {
     }, 1000);
 
     const outputTime = window.setInterval(() => {
+      // eslint-disable-next-line no-console
       console.log(this.state.today);
     }, 1000);
 
@@ -44,8 +45,6 @@ export class App extends React.Component {
     window.clearInterval(this.state.timerId);
     window.clearInterval(this.state.today);
   }
-
-
 
   render() {
     const { clockName, today } = this.state;
@@ -59,11 +58,9 @@ export class App extends React.Component {
 
           {' time is '}
 
-          <span className="Clock__time">
-            {today}
-          </span>
+          <span className="Clock__time">{today}</span>
         </div>
       </div>
     );
   }
-};
+}
