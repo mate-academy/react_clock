@@ -1,89 +1,75 @@
 import React from 'react';
 import './App.scss';
+import Clock from './Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
+interface AppState {
+  hasClock: boolean;
+  clockName: string;
 }
 
-type State = {
-  clockName: string;
-  today: string;
-  timerId?: number;
-  todayId?: number;
-  outputTime?: number;
-  hasClock: boolean;
-};
+export class App extends React.Component<{}, AppState> {
+  private timerId: number | undefined;
 
-export class App extends React.Component<{}, State> {
-  state: State = {
-    today: new Date().toUTCString().slice(-12, -4),
+  state = {
     hasClock: true,
-    timerId: undefined,
-    todayId: undefined,
-    outputTime: undefined,
-    clockName: `Clock-0`,
+    clockName: 'Clock-0',
   };
 
-  componentDidMount(): void {
-    const timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
+  componentDidMount() {
+    this.timerId = window.setInterval(() => {
+      const newClockName = this.getRandomName();
+
+      this.setState({ clockName: newClockName });
     }, 3300);
 
-    const todayId = window.setInterval(() => {
-      this.setState({
-        today: new Date().toUTCString().slice(-12, -4),
-      });
-    }, 1000);
-
-    const outputTime = window.setInterval(() => {
-      // eslint-disable-next-line no-console
-      console.log(this.state.today);
-    }, 1000);
-
-    this.setState({ timerId, todayId, outputTime });
-
     document.addEventListener('contextmenu', this.handleContextMenu);
+    document.addEventListener('click', this.handleClick);
   }
 
-  componentWillUnmount(): void {
-    if (this.state.timerId) {
-      window.clearInterval(this.state.timerId);
-    }
-
-    if (this.state.todayId) {
-      window.clearInterval(this.state.todayId);
-    }
-
-    if (this.state.outputTime) {
-      window.clearInterval(this.state.outputTime);
+  componentWillUnmount() {
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
     }
 
     document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleClick);
   }
 
-  handleContextMenu = (event: Event): void => {
+  componentDidUpdate({}, prevState: Readonly<AppState>) {
+    if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
+      // eslint-disable-next-line no-console
+      console.debug(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
+    }
+  }
+
+  handleContextMenu = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState(prevState => ({
-      hasClock: !prevState.hasClock,
-    }));
+    this.setState({ hasClock: false });
   };
 
+  handleClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  getRandomName(): string {
+    const value = Date.now().toString().slice(-4);
+
+    return `Clock-${value}`;
+  }
+
+  getCurrentTime(): string {
+    return new Date().toUTCString().slice(-12, -4);
+  }
+
   render() {
-    const { clockName, today, hasClock } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
-        <h1>React Clock</h1>
-
-        {hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">{clockName}</strong>
-            {' time is '}
-            <span className="Clock__time">{today}</span>
-          </div>
-        )}
+        <h1>React clock</h1>
+        {hasClock && <Clock clockName={clockName} />}
       </div>
     );
   }
