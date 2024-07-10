@@ -6,7 +6,7 @@ const page = {
 
 let failed = false;
 
-Cypress.on('fail', (e) => {
+Cypress.on('fail', e => {
   failed = true;
   throw e;
 });
@@ -65,7 +65,7 @@ describe('Clock', () => {
 
     it('should print the time with console.log every second', () => {
       cy.tick(1000);
-      cy.get('@console.log').should('be.calledOnceWithExactly', '09:32:32')
+      cy.get('@console.log').should('be.calledOnceWithExactly', '09:32:32');
 
       cy.tick(1000);
       cy.get('@console.log')
@@ -110,7 +110,10 @@ describe('Clock', () => {
 
     it('should print new name with console.debug each time it is updated', () => {
       cy.tick(3300);
-      cy.get('@console.debug').should('be.calledOnceWithExactly', 'Renamed from Clock-0 to Clock-4900');
+      cy.get('@console.debug').should(
+        'be.calledOnceWithExactly',
+        'Renamed from Clock-0 to Clock-4900',
+      );
 
       cy.tick(3300);
       cy.get('@console.debug')
@@ -126,7 +129,7 @@ describe('Clock', () => {
 
   describe('after it was hidden', () => {
     it('should not call console.log', () => {
-      cy.tick(1999)
+      cy.tick(1999);
       cy.get('body').rightclick();
       cy.tick(3000);
 
