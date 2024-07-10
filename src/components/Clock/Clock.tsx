@@ -33,8 +33,10 @@ export class Clock extends React.Component<ClockProps, ClockState> {
   }
 
   componentDidUpdate(prevProps: Readonly<ClockProps>) {
-    // eslint-disable-next-line no-console
-    console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
