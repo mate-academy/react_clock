@@ -20,7 +20,9 @@ describe('Clock', () => {
     cy.visit('/', {
       onBeforeLoad(win) {
         cy.spy(win.console, 'log').as('console.log');
-        cy.spy(win.console, 'debug').as('console.debug');
+        cy.spy(win.console, 'warn').as('console.warn');
+
+
       },
     });
   });
@@ -103,22 +105,22 @@ describe('Clock', () => {
       page.clockName().should('have.text', 'Clock-0');
     });
 
-    it('should not call console.debug before the 1st name update', () => {
+    it('should not call console.warn before the 1st name update', () => {
       cy.tick(3299);
-      cy.get('@console.debug').should('not.be.called');
+      cy.get('@console.warn').should('have.callCount', 0);
     });
 
-    it('should print new name with console.debug each time it is updated', () => {
+    it('should print new name with console.warn each time it is updated', () => {
       cy.tick(3300);
-      cy.get('@console.debug').should('be.calledOnceWithExactly', 'Renamed from Clock-0 to Clock-4900');
+      cy.get('@console.warn').should('be.calledOnceWithExactly', 'Renamed from Clock-0 to Clock-4900');
 
       cy.tick(3300);
-      cy.get('@console.debug')
+      cy.get('@console.warn')
         .should('have.callCount', 2)
         .and('be.calledWith', 'Renamed from Clock-4900 to Clock-8200');
 
       cy.tick(3300);
-      cy.get('@console.debug')
+      cy.get('@console.warn')
         .should('have.callCount', 3)
         .and('be.calledWith', 'Renamed from Clock-8200 to Clock-1500');
     });
@@ -138,7 +140,7 @@ describe('Clock', () => {
       cy.get('body').rightclick();
       cy.tick(10000);
 
-      cy.get('@console.debug').should('have.callCount', 1);
+      cy.get('@console.warn').should('have.callCount', 1);
     });
 
     it('should not show clock before document click', () => {
@@ -208,19 +210,19 @@ describe('Clock', () => {
       // 2 renaming delays - time before hiding - time before showing
       cy.tick(2 * 3300 - 1500 - 2200 - 1);
 
-      cy.get('@console.debug').should('not.be.called');
+      cy.get('@console.warn').should('not.be.called');
     });
 
     it('should proceed printing rename messages', () => {
       cy.tick(2 * 3300 - 1500 - 2200);
 
-      cy.get('@console.debug')
+      cy.get('@console.warn')
         .should('have.callCount', 1)
         .and('be.calledWith', 'Renamed from Clock-4900 to Clock-8200');
 
       cy.tick(3300);
 
-      cy.get('@console.debug')
+      cy.get('@console.warn')
         .should('have.callCount', 2)
         .and('be.calledWith', 'Renamed from Clock-8200 to Clock-1500');
     });
