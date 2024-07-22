@@ -4,26 +4,21 @@ import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
-
   return `Clock-${value}`;
 }
 
 type Props = {};
 
 type State = {
-  today: Date;
   clockName: string;
   hasClock: boolean;
 };
 
 export class App extends React.Component<Props, State> {
   state: Readonly<State> = {
-    today: new Date(),
     clockName: 'Clock-0',
     hasClock: true,
   };
-
-  timeTimerId: number | undefined;
 
   nameTimerId: number | undefined;
 
@@ -33,27 +28,12 @@ export class App extends React.Component<Props, State> {
   };
 
   handleClick = (): void => {
-    this.setState({
-      hasClock: true,
-      today: new Date(),
-    });
+    this.setState({ hasClock: true });
   };
 
   componentDidMount(): void {
-    this.timeTimerId = window.setInterval(() => {
-      const now = new Date();
-
-      this.setState({ today: now });
-
-      if (this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.log(now.toUTCString().slice(-12, -4));
-      }
-    }, 1000);
-
     this.nameTimerId = window.setInterval(() => {
       const newName = getRandomName();
-
       this.setState({ clockName: newName });
     }, 3300);
 
@@ -74,23 +54,22 @@ export class App extends React.Component<Props, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timeTimerId);
-    window.clearInterval(this.nameTimerId);
+    if (this.nameTimerId !== undefined) {
+      window.clearInterval(this.nameTimerId);
+    }
 
     document.removeEventListener('contextmenu', this.handleContextMenu);
     document.removeEventListener('click', this.handleClick);
   }
 
   render() {
-    const { clockName, today, hasClock } = this.state;
+    const { clockName, hasClock } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && (
-          <Clock name={clockName} time={today.toUTCString().slice(-12, -4)} />
-        )}
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }
