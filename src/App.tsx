@@ -29,6 +29,8 @@ export class App extends React.PureComponent<{}, State> {
     }, 3300);
 
     this.timerToday = window.setInterval(() => {
+      console.log(this.state.today);
+
       this.setState({ today: new Date() });
     }, 1000);
 
@@ -60,7 +62,7 @@ export class App extends React.PureComponent<{}, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        <Clock name={clockName} today={today} hasClock={hasClock} />
+        {hasClock && <Clock name={clockName} today={today} />}
       </div>
     );
   }
