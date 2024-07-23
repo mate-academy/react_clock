@@ -4,10 +4,9 @@ type Props = {
   name: string;
   today: Date;
   hasClock: boolean;
-}
+};
 
 export class Clock extends React.Component<Props> {
-
   render() {
     const { name, today, hasClock } = this.props;
 
