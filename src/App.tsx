@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 
 function getRandomName(): string {
@@ -8,30 +8,69 @@ function getRandomName(): string {
 }
 
 export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+  const [today, setToday] = useState(new Date().toUTCString().slice(-12, -4));
+  const [clockName, setClockName] = useState('Clock-0');
+  const [isClockDisplayed, setIsClockDisplayed] = useState(true);
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log(today.slice());
+  }, [today]);
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  document.addEventListener('contextmenu', event => {
+    event.preventDefault();
+    setIsClockDisplayed(false);
+  });
+
+  document.addEventListener('click', event => {
+    event.preventDefault();
+    setIsClockDisplayed(true);
+  });
+
+  useEffect(() => {
+    if (!isClockDisplayed) {
+      return;
+    }
+
+    const timerIdToday = window.setInterval(() => {
+      setToday(new Date().toUTCString().slice(-12, -4));
+    });
+
+    return () => {
+      window.clearInterval(timerIdToday);
+    };
+  }, [isClockDisplayed, today]);
+
+  useEffect(() => {
+    if (!isClockDisplayed) {
+      return;
+    }
+
+    const timerIdName = window.setInterval(() => {
+      const newClockName = getRandomName();
+
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${clockName} to ${newClockName}`);
+
+      setClockName(newClockName);
+    }, 3300);
+
+    return () => window.clearInterval(timerIdName);
+  }, [clockName, isClockDisplayed]);
 
   return (
     <div className="App">
       <h1>React clock</h1>
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+      {isClockDisplayed ? (
+        <div className="Clock">
+          <strong className="Clock__name">{clockName}</strong>
 
-        {' time is '}
+          {' time is '}
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
+          <span className="Clock__time">{today}</span>
+        </div>
+      ) : null}
     </div>
   );
 };
