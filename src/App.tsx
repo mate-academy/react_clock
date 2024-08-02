@@ -47,10 +47,10 @@ export class App extends React.Component<{}, State> {
   setIntervals = (): void => {
     this.timerId = window.setInterval(this.setCurrentTime, this.TIME_INTERVAL);
 
-    this.timerNameId = window.setInterval(
-      this.setRandomClockName,
-      this.NAME_INTERVAL,
-    );
+    // this.timerNameId = window.setInterval(
+    //   this.setRandomClockName,
+    //   this.NAME_INTERVAL,
+    // );
   };
 
   clearIntervals = (): void => {
@@ -79,6 +79,10 @@ export class App extends React.Component<{}, State> {
 
   componentDidMount = (): void => {
     this.setIntervals();
+    this.timerNameId = window.setInterval(
+      this.setRandomClockName,
+      this.NAME_INTERVAL,
+    );
 
     document.addEventListener('contextmenu', this.handleMouseRightClick);
     document.addEventListener('click', this.handleMouseLeftClick);
