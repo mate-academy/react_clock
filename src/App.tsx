@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -8,30 +9,67 @@ function getRandomName(): string {
 }
 
 export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+  const [visible, setVisible] = useState(true);
+  const [today, setToday] = useState(new Date());
+  const [name, setName] = useState('Clock-0');
+  const [previousName, setPreviousName] = useState('');
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  const handleClikcForTrue = (e: MouseEvent) => {
+    e.preventDefault();
+    setVisible(false);
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  const handleClikcForFalse = (e: MouseEvent) => {
+    e.preventDefault();
+    setVisible(true);
+  };
+
+  useEffect(() => {
+    document.addEventListener('contextmenu', handleClikcForTrue);
+
+    return () => {
+      document.removeEventListener('contextmenu', handleClikcForTrue);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClikcForFalse);
+
+    return () => {
+      document.removeEventListener('click', handleClikcForFalse);
+    };
+  }, []);
+
+  useEffect(() => {
+    const setTodayInteval = window.setInterval(() => {
+      setToday(new Date());
+    }, 1000);
+
+    return () => {
+      clearInterval(setTodayInteval);
+    };
+  }, []);
+
+  useEffect(() => {
+    const setNameInteval = window.setInterval(() => {
+      setPreviousName(name);
+      setName(getRandomName());
+    }, 3300);
+
+    return () => {
+      clearInterval(setNameInteval);
+    };
+  }, [name]);
 
   return (
     <div className="App">
       <h1>React clock</h1>
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
+      {visible ? (
+        <Clock name={name} today={today} previousName={previousName} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
