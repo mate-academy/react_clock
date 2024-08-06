@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.scss';
-import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -8,53 +7,90 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const [visible, setVisible] = useState(true);
-  const [name, setName] = useState('Clock-0');
-  const [previousName, setPreviousName] = useState('');
+type ClockProps = {
+  name: string;
+};
 
-  const handleClikcForTrue = (e: MouseEvent) => {
-    e.preventDefault();
-    setVisible(false);
+type ClockState = {
+  currentTime: Date;
+};
+
+class Clock extends React.Component<ClockProps, ClockState> {
+  state: ClockState = {
+    currentTime: new Date(),
   };
 
-  const handleClikcForFalse = (e: MouseEvent) => {
-    e.preventDefault();
-    setVisible(true);
+  timer: NodeJS.Timeout | null = null;
+
+  componentDidMount(): void {
+    this.timer = setInterval(() => {
+      this.setState({ currentTime: new Date() }, () => {
+        // eslint-disable-next-line no-console
+        console.log(this.state.currentTime.toUTCString().slice(-12, -4));
+      });
+    }, 1000);
+  }
+
+  componentWillUnmount(): void {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  }
+
+  componentDidUpdate(prevProps: ClockProps) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
+  render() {
+    return (
+      <div className="Clock">
+        <strong className="Clock__name">{this.props.name}</strong>
+        {' time is '}
+        <span className="Clock__time">
+          {this.state.currentTime.toUTCString().slice(-12, -4)}
+        </span>
+      </div>
+    );
+  }
+}
+
+class App extends React.Component {
+  state = {
+    hasClock: true,
+    clockName: 'Clock-0',
   };
 
-  useEffect(() => {
-    document.addEventListener('contextmenu', handleClikcForTrue);
-
-    return () => {
-      document.removeEventListener('contextmenu', handleClikcForTrue);
-    };
-  }, []);
-
-  useEffect(() => {
-    document.addEventListener('click', handleClikcForFalse);
-
-    return () => {
-      document.removeEventListener('click', handleClikcForFalse);
-    };
-  }, []);
-
-  useEffect(() => {
-    const setNameInteval = window.setInterval(() => {
-      setPreviousName(name);
-      setName(getRandomName());
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        clockName: getRandomName(),
+      });
     }, 3300);
 
-    return () => {
-      clearInterval(setNameInteval);
-    };
-  }, [name]);
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
-      {visible ? <Clock name={name} previousName={previousName} /> : <></>}
-    </div>
-  );
-};
+  handleLeftClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React Clock</h1>
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
+      </div>
+    );
+  }
+}
+
+export default App;
