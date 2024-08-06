@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 type Props = {
   name: string;
-  today: Date;
   previousName: string;
 };
 
-export const Clock: React.FC<Props> = ({ name, today, previousName }) => {
+export const Clock: React.FC<Props> = ({ name, previousName }) => {
+  const [today, setToday] = useState(new Date());
   const isFirstRenderName = useRef(true);
   const isFirstRenderTime = useRef(true);
 
@@ -18,6 +18,16 @@ export const Clock: React.FC<Props> = ({ name, today, previousName }) => {
       console.debug(`Renamed from ${previousName} to ${name}`);
     }
   }, [name, previousName]);
+
+  useEffect(() => {
+    const setTodayInteval = window.setInterval(() => {
+      setToday(new Date());
+    }, 1000);
+
+    return () => {
+      clearInterval(setTodayInteval);
+    };
+  }, []);
 
   useEffect(() => {
     if (isFirstRenderTime.current) {

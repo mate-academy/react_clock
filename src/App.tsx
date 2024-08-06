@@ -10,7 +10,6 @@ function getRandomName(): string {
 
 export const App: React.FC = () => {
   const [visible, setVisible] = useState(true);
-  const [today, setToday] = useState(new Date());
   const [name, setName] = useState('Clock-0');
   const [previousName, setPreviousName] = useState('');
 
@@ -41,16 +40,6 @@ export const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const setTodayInteval = window.setInterval(() => {
-      setToday(new Date());
-    }, 1000);
-
-    return () => {
-      clearInterval(setTodayInteval);
-    };
-  }, []);
-
-  useEffect(() => {
     const setNameInteval = window.setInterval(() => {
       setPreviousName(name);
       setName(getRandomName());
@@ -65,11 +54,7 @@ export const App: React.FC = () => {
     <div className="App">
       <h1>React clock</h1>
 
-      {visible ? (
-        <Clock name={name} today={today} previousName={previousName} />
-      ) : (
-        <></>
-      )}
+      {visible ? <Clock name={name} previousName={previousName} /> : <></>}
     </div>
   );
 };
