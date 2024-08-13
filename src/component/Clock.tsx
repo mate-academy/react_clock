@@ -11,18 +11,20 @@ export class Clock extends React.Component<ClockProps, ClockState> {
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
+      const now = new Date();
+
       this.setState({
-        today: new Date(),
+        today: now,
       });
+
+      // eslint-disable-next-line no-console
+      console.log(now.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
   componentWillUnmount() {
     if (this.timerId) {
       window.clearInterval(this.timerId);
-
-      // eslint-disable-next-line no-console
-      console.log(this.timerId);
     }
   }
 
@@ -37,7 +39,7 @@ export class Clock extends React.Component<ClockProps, ClockState> {
         {' time is '}
 
         <span className="Clock__time">
-          {today.toLocaleTimeString().slice(-12)}
+          {today.toUTCString().slice(-12, -4)}
         </span>
       </div>
     );
