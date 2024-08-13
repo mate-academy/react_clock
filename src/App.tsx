@@ -38,14 +38,6 @@ export class App extends React.Component<{}, AppState> {
     document.addEventListener('click', this.handleClick);
   }
 
-  componentDidUpdate(_: {}, prevState: AppState) {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from
-        ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
-
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.handleContextMenu);
     document.removeEventListener('click', this.handleClick);
