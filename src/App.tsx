@@ -14,7 +14,7 @@ function getRandomName(): string {
 }
 
 export class App extends React.Component<State> {
-  state: Readonly<State> = {
+  state: State = {
     hasClock: true,
     clockName: 'Clock-0',
   };
