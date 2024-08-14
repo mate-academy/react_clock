@@ -1,5 +1,13 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Clock';
+
+type Props = {};
+
+type State = {
+  clockName: string;
+  hasClock: boolean;
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +15,50 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component<Props, State> {
+  state: Readonly<State> = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  nameTimerId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount = () => {
+    this.nameTimerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    document.addEventListener('contextmenu', this.handleContextMenuClick);
+    document.addEventListener('click', this.handleClick);
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  componentWillUnmount = () => {
+    window.clearInterval(this.nameTimerId);
 
-        {' time is '}
+    document.removeEventListener('contextmenu', this.handleContextMenuClick);
+    document.removeEventListener('click', this.handleClick);
+  };
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  handleContextMenuClick = (event: MouseEvent) => {
+    if (this.state.hasClock) {
+      event.preventDefault();
+      this.setState({ hasClock: false });
+    }
+  };
+
+  handleClick = () => {
+    if (!this.state.hasClock) {
+      this.setState({ hasClock: true });
+    }
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
