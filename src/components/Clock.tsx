@@ -8,7 +8,7 @@ type State = {
 };
 
 export class Clock extends React.Component<Props, State> {
-  state: State = {
+  state: Readonly<State> = {
     today: new Date(),
   };
 
@@ -26,7 +26,7 @@ export class Clock extends React.Component<Props, State> {
     window.clearInterval(this.timerId);
   }
 
-  componentDidUpdate(prevProps: Props): void {
+  componentDidUpdate(prevProps: Readonly<Props>): void {
     if (prevProps.clockName !== this.props.clockName) {
       // eslint-disable-next-line no-console
       console.debug(

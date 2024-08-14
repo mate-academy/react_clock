@@ -13,8 +13,8 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class App extends React.Component<State> {
-  state: State = {
+export class App extends React.Component<{}, State> {
+  state: Readonly<State> = {
     hasClock: true,
     clockName: 'Clock-0',
   };
