@@ -5,8 +5,8 @@ import { Clock } from './component/Clock';
 type State = {
   isClock: boolean;
   clockName: string;
-  today: Date;
-  currentTime: string;
+  // today: Date;
+  // currentTime: string;
 };
 
 export class App extends React.Component<{}, State> {
@@ -17,89 +17,87 @@ export class App extends React.Component<{}, State> {
   state = {
     isClock: true,
     clockName: 'Clock-0',
-    today: new Date(),
-    currentTime: this.getCurrentTime(new Date()),
   };
 
-  clockNameTimerId = 0;
+  // today: new Date(),
+  // currentTime: this.getCurrentTime(new Date()),
 
-  updateTimeTimerId = 0;
+  nameTimerId = 0;
+
+  // timerId = 0;
 
   componentDidMount(): void {
-    this.startTimers();
+    // this.timerId = window.setInterval(this.updateTime, 1000);
+    this.nameTimerId = window.setInterval(() => {
+      this.setState({ clockName: `Clock-${Date.now().toString().slice(-4)}` });
+    }, 3300);
     document.addEventListener('click', this.documentClickHandler);
     document.addEventListener('contextmenu', this.contextMenuHandler);
   }
 
-  componentDidUpdate(
-    _prevProps: Readonly<{}>,
-    prevState: Readonly<State>,
-  ): void {
-    if (this.state.isClock && !prevState.isClock) {
-      this.updateTime();
-      setTimeout(() => {
-        this.updateTime();
-      }, 1000);
-    }
-
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.debug(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-      );
-    }
-  }
+  // componentDidUpdate(
+  //   _prevProps: Readonly<{}>,
+  //   prevState: Readonly<State>,
+  // ): void {
+  //   if (prevState.clockName !== this.state.clockName) {
+  //     // eslint-disable-next-line no-console
+  //     console.debug(
+  //       `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+  //     );
+  //   }
+  // }
 
   componentWillUnmount(): void {
-    this.clearTimers();
+    // this.clearTimers();
+    // clearInterval(this.updateTimeTimerId);
+    clearInterval(this.nameTimerId);
     document.removeEventListener('click', this.documentClickHandler);
     document.removeEventListener('contextmenu', this.contextMenuHandler);
   }
 
-  startTimers = () => {
-    this.updateTimeTimerId = window.setInterval(this.updateTime, 1000);
-    this.clockNameTimerId = window.setInterval(this.setClockName, 3300);
-  };
+  // startTimers = () => {
+  //   this.updateTimeTimerId = window.setInterval(this.updateTime, 1000);
+  //   this.clockNameTimerId = window.setInterval(this.setClockName, 3300);
+  // };
 
-  clearTimers = () => {
-    clearInterval(this.updateTimeTimerId);
-    clearInterval(this.clockNameTimerId);
-  };
+  // clearTimers = () => {
+  //   clearInterval(this.updateTimeTimerId);
+  //   clearInterval(this.clockNameTimerId);
+  // };
 
-  setClockName = () => {
-    this.setState({ clockName: `Clock-${Date.now().toString().slice(-4)}` });
-  };
+  setClockName = () => {};
 
-  documentClickHandler = (e: MouseEvent) => {
-    if (e.button === 0) {
+  documentClickHandler = () => {
+    if (!this.state.isClock) {
       this.setState({ isClock: true });
     }
   };
 
-  contextMenuHandler = (e: MouseEvent) => {
-    e.preventDefault();
-    this.setState({ isClock: false });
-  };
-
-  updateTime = () => {
-    const currentTime = this.getCurrentTime(new Date());
-
-    this.setState({ currentTime });
-
+  contextMenuHandler = () => {
     if (this.state.isClock) {
-      // eslint-disable-next-line no-console
-      console.log(currentTime);
+      this.setState({ isClock: false });
     }
   };
 
+  // updateTime = () => {
+  //   const currentTime = this.getCurrentTime(new Date());
+
+  //   this.setState({ currentTime });
+
+  //   if (this.state.isClock) {
+  //     // eslint-disable-next-line no-console
+  //     console.log(currentTime);
+  //   }
+  // };
+
   render() {
-    const { clockName, isClock, currentTime } = this.state;
+    const { clockName, isClock } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {isClock && <Clock clockName={clockName} currentTime={currentTime} />}
+        {isClock && <Clock clockName={clockName} />}
       </div>
     );
   }
