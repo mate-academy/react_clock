@@ -8,16 +8,12 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-type Props = {
-  name: string;
-};
-
 type State = {
   hasClock: boolean;
   clockName: string;
 };
 
-export class App extends React.Component<Props, State> {
+export class App extends React.Component<{}, State> {
   state: State = {
     hasClock: true,
     clockName: 'Clock-0',
