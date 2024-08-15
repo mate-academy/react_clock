@@ -1,9 +1,4 @@
 import React from 'react';
-import './Clock.scss';
-
-// getCurrentTime = (date: Date) => {
-//   return date.toUTCString().slice(-12, -4);
-// };
 
 type Props = {
   clockName: string;

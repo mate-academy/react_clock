@@ -5,8 +5,6 @@ import { Clock } from './component/Clock';
 type State = {
   isClock: boolean;
   clockName: string;
-  // today: Date;
-  // currentTime: string;
 };
 
 export class App extends React.Component<{}, State> {
@@ -19,12 +17,7 @@ export class App extends React.Component<{}, State> {
     clockName: 'Clock-0',
   };
 
-  // today: new Date(),
-  // currentTime: this.getCurrentTime(new Date()),
-
   nameTimerId = 0;
-
-  // timerId = 0;
 
   componentDidMount(): void {
     // this.timerId = window.setInterval(this.updateTime, 1000);
