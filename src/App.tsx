@@ -1,5 +1,12 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Clock';
+
+type State = {
+  clockName: string;
+  timerNameId: number;
+  hasClock: boolean;
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +14,54 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component<{}, State> {
+  state: Readonly<State> = {
+    clockName: 'Clock-0',
+    timerNameId: 0,
+    hasClock: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  componentDidMount(): void {
+    this.setState({
+      timerNameId: window.setInterval(() => {
+        this.setState({
+          clockName: getRandomName(),
+        });
+      }, 3300),
+    });
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+    document.addEventListener('contextmenu', this.handleContextMenu);
+    document.addEventListener('click', this.handleMouseDown);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentWillUnmount(): void {
+    window.clearInterval(this.state.timerNameId);
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleMouseDown);
+  }
 
-        {' time is '}
+  handleContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+    if (event.button === 2) {
+      this.setState({ hasClock: false });
+    }
+  };
+
+  handleMouseDown = (event: MouseEvent) => {
+    if (event.button === 0) {
+      this.setState({ hasClock: true });
+    }
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
