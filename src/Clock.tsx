@@ -17,13 +17,16 @@ export class Clock extends React.Component<Props, State> {
 
   componentDidMount(): void {
     this.todayIntervalId = window.setInterval(() => {
-      // eslint-disable-next-line no-console
-      console.log(this.state.today.toUTCString().slice(-12, -4));
       this.setState({ today: new Date() });
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>) {
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>) {
+    if (prevState.today !== this.state.today) {
+      // eslint-disable-next-line no-console
+      console.log(this.state.today.toUTCString().slice(-12, -4));
+    }
+
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
