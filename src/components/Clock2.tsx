@@ -1,20 +1,15 @@
-import { Component } from 'react';
-
+import React from 'react';
 type Props = {
   clockName: string;
 };
-
 type State = {
   today: string;
 };
-
-export default class Clock extends Component<Props, State> {
+export class Clock extends React.PureComponent<Props, State> {
   state: State = {
     today: new Date().toUTCString().slice(-12, -4),
   };
-
   timerId = 0;
-
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
       this.setState({ today: new Date().toUTCString().slice(-12, -4) });
@@ -22,7 +17,6 @@ export default class Clock extends Component<Props, State> {
       console.log(this.state.today); */
     }, 1000);
   }
-
   componentDidUpdate(
     prevProps: Readonly<Props>,
     prevState: Readonly<State>,
@@ -33,26 +27,20 @@ export default class Clock extends Component<Props, State> {
         `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
       );
     }
-
     if (prevState.today !== this.state.today) {
       // eslint-disable-next-line no-console
       console.log(this.state.today);
     }
   }
-
-  componentWillUnmount(): void {
+  componentWilUnmount(): void {
     window.clearInterval(this.timerId);
   }
-
   render() {
-    const { clockName } = this.props;
-    const { today } = this.state;
-
     return (
       <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+        <strong className="Clock__name">{this.props.clockName}</strong>
         {' time is '}
-        <span className="Clock__time">{today}</span>
+        <span className="Clock__time">{this.state.today}</span>
       </div>
     );
   }
