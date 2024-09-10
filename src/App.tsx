@@ -40,7 +40,7 @@ export class App extends React.Component<{}, State> {
     });
   }
 
-  componentDidUpdate(prevProps: {}, prevState: State) {
+  componentDidUpdate(_prevProps: {}, prevState: State) {
     if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
       // eslint-disable-next-line no-console
       console.debug(
