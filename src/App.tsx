@@ -2,58 +2,70 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './Clock';
 
+type State = {
+  hasClock: boolean;
+  clockName: string;
+};
+
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
 
   return `Clock-${value}`;
 }
 
-type State = {
-  clockName: string;
-  isClock: boolean;
-};
-
 export class App extends React.Component<{}, State> {
-  state: State = {
+  state: Readonly<State> = {
     clockName: 'Clock-0',
-    isClock: true,
+    hasClock: true,
   };
 
-  nameTimerId = 0;
-
-  handleDocumentClick = (event: MouseEvent) => {
-    event.preventDefault();
-    if (event.button === 2) {
-      this.setState({ isClock: false });
-    } else if (event.button === 0) {
-      this.setState({ isClock: true });
-    }
-  };
+  timerId: number | undefined;
 
   componentDidMount() {
-    this.nameTimerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
+    this.timerId = window.setInterval(() => {
+      const newClockName = getRandomName();
+
+      // eslint-disable-next-line react/no-is-mounted
+      this.setState(() => ({
+        clockName: newClockName,
+      }));
     }, 3300);
 
-    document.addEventListener('contextmenu', this.handleDocumentClick);
-    document.addEventListener('mousedown', this.handleDocumentClick);
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+      // eslint-disable-next-line react/no-is-mounted
+      this.setState({ hasClock: false });
+    });
+
+    document.addEventListener('click', () => {
+      // eslint-disable-next-line react/no-is-mounted
+      this.setState({ hasClock: true });
+    });
+  }
+
+  componentDidUpdate(_prevProps: {}, prevState: State) {
+    if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
+    }
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.nameTimerId);
-    document.removeEventListener('contextmenu', this.handleDocumentClick);
-    document.removeEventListener('mousedown', this.handleDocumentClick);
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
   }
 
   render() {
-    const { clockName, isClock } = this.state;
+    const { clockName, hasClock } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
-        {isClock && <Clock clockName={clockName} />}
+        {hasClock && <Clock clockName={clockName} />}
       </div>
     );
   }
 }
-export default App;
