@@ -38,7 +38,6 @@ export class App extends React.Component<{}, State> {
       window.clearInterval(this.clockNameTimerId);
     }
 
-    // Удалить обработчики событий
     document.removeEventListener('click', this.showClock);
     document.removeEventListener('contextmenu', this.hideClock);
   }
