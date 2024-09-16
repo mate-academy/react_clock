@@ -1,17 +1,29 @@
 import React from 'react';
 
-export class Clock extends React.Component<{ clockName: string }> {
+type ClockProps = {
+  clockName: string;
+};
+
+type ClockState = {
+  currentTime: string;
+};
+
+export class Clock extends React.Component<ClockProps, ClockState> {
   state = {
-    time: new Date().toUTCString().slice(-12, -4),
+    currentTime: new Date().toUTCString().slice(-12, -4),
   };
 
   timeId = 0;
 
   componentDidMount(): void {
     this.timeId = window.setInterval(() => {
-      this.setState({ time: new Date().toUTCString().slice(-12, -4) });
-      // eslint-disable-next-line no-console
-      console.log(this.state.time);
+      this.setState(
+        { currentTime: new Date().toUTCString().slice(-12, -4) },
+        () => {
+          // eslint-disable-next-line no-console
+          console.log(this.state.currentTime);
+        },
+      );
     }, 1000);
   }
 
@@ -21,7 +33,7 @@ export class Clock extends React.Component<{ clockName: string }> {
 
   render() {
     const { clockName } = this.props;
-    const { time } = this.state;
+    const { currentTime } = this.state;
 
     return (
       <div className="Clock">
@@ -29,7 +41,7 @@ export class Clock extends React.Component<{ clockName: string }> {
 
         {' time is '}
 
-        <span className="Clock__time">{time}</span>
+        <span className="Clock__time">{currentTime}</span>
       </div>
     );
   }
