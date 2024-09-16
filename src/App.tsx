@@ -1,5 +1,11 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
+
+type State = {
+  clockName: string;
+  hasCLock: boolean;
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +13,55 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component<{}, State> {
+  state: State = {
+    clockName: 'Clock-0',
+    hasCLock: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  timerId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  handleSwitchState(state: boolean) {
+    this.setState({
+      hasCLock: state,
+    });
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount(): void {
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+    document.addEventListener('click', () => {
+      this.handleSwitchState(true);
+    });
 
-        {' time is '}
+    document.addEventListener('contextmenu', () => {
+      this.handleSwitchState(false);
+    });
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  componentWillUnmount(): void {
+    document.removeEventListener('click', () => {
+      this.handleSwitchState(true);
+    });
+
+    document.removeEventListener('contextmenu', () => {
+      this.handleSwitchState(false);
+    });
+
+    window.clearInterval(this.timerId);
+  }
+
+  render() {
+    const { clockName, hasCLock } = this.state;
+
+    return (
+      <div className="app">
+        <h1>React clock</h1>
+
+        {hasCLock && <Clock clockName={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
