@@ -13,10 +13,12 @@ export class Clock extends React.Component<ClockProps, ClockState> {
     currentTime: new Date().toUTCString().slice(-12, -4),
   };
 
-  timeId = 0;
+  currentTimeId = 0;
+
+  clockNameId = 0;
 
   componentDidMount(): void {
-    this.timeId = window.setInterval(() => {
+    this.currentTimeId = window.setInterval(() => {
       this.setState(
         { currentTime: new Date().toUTCString().slice(-12, -4) },
         () => {
@@ -28,7 +30,7 @@ export class Clock extends React.Component<ClockProps, ClockState> {
   }
 
   componentWillUnmount(): void {
-    clearInterval(this.timeId);
+    clearInterval(this.currentTimeId);
   }
 
   render() {

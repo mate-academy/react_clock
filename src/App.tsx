@@ -8,15 +8,22 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export class App extends React.Component {
+type AppState = {
+  clockName: string;
+  hasClock: boolean;
+};
+
+export class App extends React.Component<{}, AppState> {
   // const today = new Date();
   state = {
     clockName: 'Clock-0',
     hasClock: true,
   };
 
+  clockNameId = 0;
+
   componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
+    this.clockNameId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
@@ -30,10 +37,17 @@ export class App extends React.Component {
     });
   }
 
-  // This code starts a timer
-  timerId = window.setInterval(() => {
-    this.setState({ clockName: getRandomName() });
-  }, 3300);
+  componentDidUpdate(
+    _prevProps: Readonly<{}>,
+    prevState: Readonly<AppState>,
+  ): void {
+    if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
+    }
+  }
 
   // this code stops the timer
   // window.clearInterval(timerId);
