@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
+import { Clock } from './components/Clock';
 import './App.scss';
 
 function getRandomName(): string {
@@ -7,63 +8,53 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const [today, setTime] = useState(new Date());
-  const [clockName, setClockName] = useState('Clock-0');
-  const [oldClockName, setOldClockName] = useState('Clock-0');
-  const [isClockVisble, setIsClockVisble] = useState(true);
+interface AppState {
+  hasClock: boolean;
+  clockName: string;
+}
 
-  document.addEventListener('contextmenu', (event: MouseEvent) => {
+export class App extends Component<{}, AppState> {
+  state: AppState = {
+    hasClock: true, // Часы отображаются сразу
+    clockName: 'Clock-0',
+  };
+
+  componentDidMount() {
+    document.addEventListener('contextmenu', this.hideClock); // Скрываем часы при правом клике
+    document.addEventListener('click', this.showClock); // Показываем часы при левом клике
+    this.startClockNameUpdate();
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.hideClock);
+    document.removeEventListener('click', this.showClock);
+  }
+
+  hideClock = (event: MouseEvent) => {
     event.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
-    setIsClockVisble(false);
-  });
+  showClock = () => {
+    this.setState({ hasClock: true });
+  };
 
-  document.addEventListener('click', () => {
-    setIsClockVisble(true);
-  });
-
-  useEffect(() => {
-    if (isClockVisble) {
-      const intervalId = setInterval(() => {
-        setTime(new Date());
-        // eslint-disable-next-line no-console
-        console.log(new Date().toUTCString().slice(-12, -4));
-      }, 1000);
-
-      return () => clearInterval(intervalId);
-    }
-  }, [isClockVisble]);
-
-  useEffect(() => {
-    if (isClockVisble) {
-      const timerId = window.setInterval(() => {
-        setOldClockName(clockName);
-        setClockName(getRandomName());
+  startClockNameUpdate() {
+    setInterval(() => {
+      this.setState(prevState => {
+        const newClockName = getRandomName();
 
         // eslint-disable-next-line no-console
-        console.log(`Renamed from ${oldClockName} to ${clockName}`);
-      }, 3300);
+        console.warn(`Renamed from ${prevState.clockName} to ${newClockName}`);
 
-      return () => window.clearInterval(timerId);
-    }
-  }, [isClockVisble]);
+        return { clockName: newClockName };
+      });
+    }, 3300);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  render() {
+    const { hasClock, clockName } = this.state;
 
-      {isClockVisble && (
-        <div className="Clock">
-          <strong className="Clock__name">{clockName}</strong>
-
-          {' time is '}
-
-          <span className="Clock__time">
-            {today.toUTCString().slice(-12, -4)}
-          </span>
-        </div>
-      )}
-    </div>
-  );
-};
+    return <div>{hasClock && <Clock name={clockName} />}</div>;
+  }
+}
