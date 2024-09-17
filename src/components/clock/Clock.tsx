@@ -1,36 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 type Props = {
   clockName: string;
-  prevClockNameRef: {
-    current: string;
-  };
 };
 
-export const Clock: React.FC<Props> = ({ clockName, prevClockNameRef }) => {
+export const Clock: React.FC<Props> = ({ clockName }) => {
   const [today, setToday] = useState(new Date());
+  const firstRender = useRef(true);
 
   useEffect(() => {
-    if (clockName !== prevClockNameRef.current) {
-      // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevClockNameRef.current} to ${clockName}`);
-    }
-
     const timerIdToday = window.setInterval(() => {
       setToday(new Date());
 
-      // if (hasClock) {
       // eslint-disable-next-line no-console
       console.log(new Date().toUTCString().slice(-12, -4));
-      // }
     }, 1000);
 
     return () => {
       window.clearInterval(timerIdToday);
     };
-  }, [clockName, prevClockNameRef]);
+  }, []);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+
+      return;
+    }
+
+    // eslint-disable-next-line no-console
+    console.debug(`Renamed from ${clockName} to ${clockName}`);
+  }, [clockName]);
 
   return (
-    <span className="Clock__time">{today.toUTCString().slice(-12, -4)}</span>
+    <div className="Clock">
+      <strong className="Clock__name">{clockName}</strong>
+
+      {' time is '}
+
+      <span className="Clock__time">{today.toUTCString().slice(-12, -4)}</span>
+    </div>
   );
 };
