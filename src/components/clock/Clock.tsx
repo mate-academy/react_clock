@@ -38,11 +38,10 @@ export const Clock: React.FC<Props> = ({ clockName }) => {
 
       return;
     }
-    // console.log(1);
 
     if (prevClockName !== clockName) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevClockName?.clockName} to ${clockName}`);
+      console.warn(`Renamed from ${prevClockName?.clockName} to ${clockName}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clockName]);
