@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Clock } from './components/Clock';
+import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -8,53 +8,64 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-interface AppState {
-  hasClock: boolean;
+type State = {
+  today: Date;
   clockName: string;
-}
+  hasClock: boolean;
+};
 
-export class App extends Component<{}, AppState> {
-  state: AppState = {
-    hasClock: true, // Часы отображаются сразу
+export class App extends React.Component<{}, State> {
+  state: State = {
+    today: new Date(),
     clockName: 'Clock-0',
+    hasClock: true,
   };
 
-  componentDidMount() {
-    document.addEventListener('contextmenu', this.hideClock); // Скрываем часы при правом клике
-    document.addEventListener('click', this.showClock); // Показываем часы при левом клике
-    this.startClockNameUpdate();
+  timerId: number = 0;
+
+  componentDidMount(): void {
+    this.timerId = window.setInterval(() => {
+      const oldName = this.state.clockName;
+      const newName = getRandomName();
+
+      if (this.state.hasClock) {
+        this.setState({ clockName: newName }, () => {
+          // eslint-disable-next-line no-console
+          console.warn(`Renamed from ${oldName} to ${newName}`);
+        });
+      } else {
+        this.setState({ clockName: newName });
+      }
+    }, 3300);
+
+    document.addEventListener('contextmenu', this.handleContextMenu);
+    document.addEventListener('click', this.handleClick);
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('contextmenu', this.hideClock);
-    document.removeEventListener('click', this.showClock);
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleClick);
   }
 
-  hideClock = (event: MouseEvent) => {
+  handleContextMenu = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
 
-  showClock = () => {
+  handleClick = () => {
     this.setState({ hasClock: true });
   };
-
-  startClockNameUpdate() {
-    setInterval(() => {
-      this.setState(prevState => {
-        const newClockName = getRandomName();
-
-        // eslint-disable-next-line no-console
-        console.warn(`Renamed from ${prevState.clockName} to ${newClockName}`);
-
-        return { clockName: newClockName };
-      });
-    }, 3300);
-  }
 
   render() {
     const { hasClock, clockName } = this.state;
 
-    return <div>{hasClock && <Clock name={clockName} />}</div>;
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock && <Clock name={clockName} />}
+      </div>
+    );
   }
 }
