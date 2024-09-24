@@ -36,7 +36,7 @@ export class App extends React.Component<{}, State> {
     document.removeEventListener('click', this.handleClick);
   }
 
-  componentDidUpdate(prevProp, prevState: State) {
+  componentDidUpdate(_: {}, prevState: State) {
     if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
       //eslint-disable-next-line no-console
       console.debug(
