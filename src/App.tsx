@@ -1,5 +1,11 @@
-import React from 'react';
+import { Component } from 'react';
 import './App.scss';
+import Clock from './components/Clock';
+
+type State = {
+  clockName: string;
+  hasClock: boolean;
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +13,66 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends Component<{}, State> {
+  state: State = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  timerId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  hendleHideClock = (event: MouseEvent) => {
+    event.preventDefault(); // not to show the context menu
+    this.setState({
+      hasClock: event.button === 0,
+    });
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  hendleShowClock = (event: MouseEvent) => {
+    event.preventDefault(); // not to show the context menu
+    this.setState({
+      hasClock: event.button !== 1,
+    });
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  componentDidMount() {
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
 
-        {' time is '}
+    document.addEventListener('contextmenu', this.hendleHideClock);
+    document.addEventListener('click', this.hendleShowClock);
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  shouldComponentUpdate(
+    _nexProps: Readonly<State>,
+    nextState: Readonly<State>,
+  ): boolean {
+    return this.state.hasClock || nextState.hasClock;
+  }
+
+  componentDidUpdate(
+    _prevState: Readonly<State>,
+    nexState: Readonly<State>,
+  ): void {
+    if (nexState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(
+        `Renamed from ${nexState.clockName} to ${this.state.clockName}`,
+      );
+    }
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.timerId);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.hasClock && <Clock clockName={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
