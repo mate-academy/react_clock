@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { Clock } from './components/Clock/Clock';
+import { Clock } from './components/Clock';
 
 type State = {
   hasClock: boolean;
@@ -30,7 +30,7 @@ export class App extends React.Component {
     this.setState({ hasClock: false });
   };
 
-  componentDidCatch() {
+  componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
