@@ -30,13 +30,22 @@ export class App extends React.Component<{}, State> {
   handleTimeChange = () => {
     this.today = new Date().toUTCString().slice(-12, -4); // set new time
 
-    // eslint-disable-next-line no-console
-    console.log(this.today);
+    if (this.timeId) {
+      // eslint-disable-next-line no-console
+      console.log(this.today);
+    }
+
     this.setState({ currentTime: this.today });
   };
 
   handleClocknameChange = () => {
-    this.setState({ clockName: this.getRandomName() });
+    const { clockName } = this.state;
+
+    const randomName = this.getRandomName();
+
+    // eslint-disable-next-line no-console
+    console.warn(`Renamed from ${clockName} to ${randomName}`);
+    this.setState({ clockName: randomName });
   };
 
   handleDocumentRightClick = (event: MouseEvent) => {
@@ -47,6 +56,11 @@ export class App extends React.Component<{}, State> {
       this.timeId = null;
     }
 
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+      this.timerId = null;
+    }
+
     this.setState({ hasClock: false });
   };
 
@@ -54,7 +68,12 @@ export class App extends React.Component<{}, State> {
     event.preventDefault();
 
     if (!this.timeId) {
-      this.timeId = window.setInterval(this.handleDocumentLeftClick, 1000);
+      this.handleTimeChange();
+      this.timeId = window.setInterval(this.handleTimeChange, 1000);
+    }
+
+    if (!this.timerId) {
+      this.timerId = window.setInterval(this.handleClocknameChange, 3300);
     }
 
     this.setState({ hasClock: true });
