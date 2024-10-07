@@ -1,60 +1,57 @@
 import React from 'react';
 
-type Props = {
+interface Props {
   name: string;
-};
+}
 
-type State = {
+interface State {
   today: Date;
-};
-
-const toCurrentTimeZone = (time: Date) => time.toUTCString().slice(-12, -4);
+  hasClock: boolean;
+  ticker: undefined | number;
+}
 
 export class Clock extends React.Component<Props, State> {
   state: Readonly<State> = {
     today: new Date(),
+    hasClock: true,
+    ticker: undefined,
   };
 
-  timerId = 0;
-
-  componentDidMount = () => {
-    this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
-    }, 1000);
+  handleTime = () => {
+    this.setState({ today: new Date() });
   };
 
-  componentWillUnmount = () => {
-    window.clearInterval(this.timerId);
-  };
+  componentDidMount(): void {
+    this.setState({ ticker: window.setInterval(this.handleTime, 1000) });
+  }
 
-  componentDidUpdate = (
+  componentDidUpdate(
     prevProps: Readonly<Props>,
     prevState: Readonly<State>,
-  ) => {
-    if (
-      toCurrentTimeZone(prevState.today) !== toCurrentTimeZone(this.state.today)
-    ) {
+  ): void {
+    if (prevState.today !== this.state.today) {
       // eslint-disable-next-line no-console
-      console.log(toCurrentTimeZone(this.state.today));
+      console.log(this.state.today.toUTCString().slice(-12, -4));
     }
 
-    if (this.props.name !== prevProps.name) {
+    if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
-  };
+  }
 
-  render() {
-    const { name } = this.props;
-    const { today } = this.state;
+  componentWillUnmount(): void {
+    window.clearInterval(this.state.ticker);
+  }
 
+  render(): React.ReactNode {
     return (
       <div className="Clock">
-        <strong className="Clock__name">{name}</strong>
-
+        <strong className="Clock__name">{this.props.name}</strong>
         {' time is '}
-
-        <span className="Clock__time">{toCurrentTimeZone(today)}</span>
+        <span className="Clock__time">
+          {this.state.today.toUTCString().slice(-12, -4)}
+        </span>
       </div>
     );
   }
