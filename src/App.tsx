@@ -32,7 +32,6 @@ export class App extends React.Component<{}, State> {
 
   componentDidMount() {
     this.clockNameIntervalId = window.setInterval(() => {
-      const oldClockName = this.state.clockName;
       const newClockName = getRandomName();
 
       this.setState({ clockName: newClockName });
@@ -43,7 +42,7 @@ export class App extends React.Component<{}, State> {
   }
 
   componentDidUpdate(
-    prevProps: Readonly<{}>,
+    _prevProps: Readonly<{}>,
     prevState: Readonly<State>,
   ): void {
     if (this.state.clockName !== prevState.clockName && this.state.hasClock) {

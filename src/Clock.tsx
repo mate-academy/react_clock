@@ -17,17 +17,21 @@ export class Clock extends React.Component<ClockProps, ClockState> {
 
   timerId: number | undefined;
 
-  clockNameId: number | undefined;
-
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
       const currentTime = new Date().toUTCString().slice(-12, -4);
 
       this.setState({ time: currentTime });
-
       // eslint-disable-next-line no-console
       console.log(currentTime);
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps: ClockProps): void {
+    // Перевірка на зміну пропса name
+    if (this.props.name !== prevProps.name) {
+      this.setState({ clockName: this.props.name });
+    }
   }
 
   componentWillUnmount() {
