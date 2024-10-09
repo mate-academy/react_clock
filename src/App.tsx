@@ -1,5 +1,8 @@
+/* eslint-disable no-console */
 import React from 'react';
 import './App.scss';
+
+import { Clock } from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +10,79 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+type State = {
+  isClock: boolean;
+  clockName: string;
+};
+
+export class App extends React.Component<State> {
+  state: State = {
+    isClock: true,
+    clockName: 'Clock-0',
+  };
+
+  timerId: number = 0;
+
+  cleanupListeners: () => void = () => {};
 
   // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  componentDidMount(): void {
+    this.timerId = window.setInterval(() => {
+      const clockName = getRandomName();
+
+      this.setState(() => ({
+        clockName,
+      }));
+    }, 3300);
+
+    const handleContextMenu = (event: MouseEvent) => {
+      event.preventDefault();
+
+      this.setState({ isClock: false });
+    };
+
+    const handleClick = () => {
+      this.setState({ isClock: true });
+    };
+
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('click', handleClick);
+
+    this.cleanupListeners = () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('click', handleClick);
+    };
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<State>,
+    prevState: Readonly<State>,
+  ): void {
+    if (prevState.clockName !== this.state.clockName && this.state.isClock) {
+      console.warn(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
+    }
+  }
 
   // this code stops the timer
-  window.clearInterval(timerId);
+  componentWillUnmount(): void {
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    this.cleanupListeners();
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  render() {
+    const { clockName, isClock } = this.state;
 
-        {' time is '}
+    return (
+      <div className="App">
+        <h1>React clock</h1>
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+        {isClock && <Clock clockName={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
