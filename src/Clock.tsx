@@ -6,7 +6,6 @@ type Props = {
 
 type State = {
   time: string;
-  clockNewName: string;
 };
 
 function getData(): string {
@@ -18,7 +17,6 @@ export class Clock extends React.Component<Props, State> {
 
   state: Readonly<State> = {
     time: getData(),
-    clockNewName: '',
   };
 
   handleTimerChange = () => {
@@ -57,15 +55,11 @@ export class Clock extends React.Component<Props, State> {
 
   render(): React.ReactNode {
     const { name } = this.props;
-    const { time, clockNewName } = this.state;
+    const { time } = this.state;
 
     return (
       <div className="Clock">
-        {clockNewName ? (
-          <strong className="Clock__name">Clock-{clockNewName}</strong>
-        ) : (
-          <strong className="Clock__name">{name}</strong>
-        )}
+        <strong className="Clock__name">{name}</strong>
 
         {' time is '}
 
