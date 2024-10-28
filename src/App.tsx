@@ -47,6 +47,7 @@ export default class App extends React.Component {
     prevState: Readonly<State>,
   ): void {
     if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
+      // eslint-disable-next-line no-console
       console.warn(
         `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
       );
