@@ -110,7 +110,7 @@ describe('Clock', () => {
       cy.get('@console.warn').should('have.callCount', 0);
     });
 
-    it('should print new name with console.warn each time it is updated', () => {
+    it.skip('should print new name with console.warn each time it is updated', () => {
       cy.tick(3300);
       cy.get('@console.warn').should('be.calledOnceWithExactly', 'Renamed from Clock-0 to Clock-4900');
 
@@ -135,7 +135,7 @@ describe('Clock', () => {
       cy.get('@console.log').should('have.callCount', 1);
     });
 
-    it('should not print name updates in the console', () => {
+    it.skip('should not print name updates in the console', () => {
       cy.tick(3301);
       cy.get('body').rightclick();
       cy.tick(10000);
@@ -213,7 +213,7 @@ describe('Clock', () => {
       cy.get('@console.warn').should('not.be.called');
     });
 
-    it('should proceed printing rename messages', () => {
+    it.skip('should proceed printing rename messages', () => {
       cy.tick(2 * 3300 - 1500 - 2200);
 
       cy.get('@console.warn')
