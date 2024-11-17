@@ -41,6 +41,7 @@ class App extends Component<{}, AppState> {
 
   updateClockName = () => {
     const newClockName = getRandomName();
+
     if (newClockName !== this.state.clockName) {
       this.setState({ clockName: newClockName });
     }
