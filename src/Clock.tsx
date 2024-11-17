@@ -3,7 +3,6 @@ import './App.scss';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
-
   return `Clock-${value}`;
 }
 
@@ -18,27 +17,23 @@ interface ClockState {
 class Clock extends Component<ClockProps, ClockState> {
   timerId: number | undefined;
 
-  constructor(props: ClockProps) {
-    super(props);
-    this.state = {
-      time: new Date().toUTCString().slice(-12, -4),
-    };
-  }
+  state: ClockState = {
+    time: new Date().toUTCString().slice(-12, -4),
+  };
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       const newTime = new Date().toUTCString().slice(-12, -4);
+      this.setState({ time: newTime });
 
-      this.setState({
-        time: newTime,
-      });
-
+      // eslint-disable-next-line no-console
       console.log(`${newTime}`);
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Readonly<ClockProps>): void {
     if (this.props.name !== prevProps.name) {
+      // eslint-disable-next-line no-console
       console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }

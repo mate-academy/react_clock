@@ -40,12 +40,9 @@ class App extends Component<{}, AppState> {
   };
 
   updateClockName = () => {
-    try {
-      const newClockName = getRandomName();
-
+    const newClockName = getRandomName();
+    if (newClockName !== this.state.clockName) {
       this.setState({ clockName: newClockName });
-    } catch (error) {
-      console.error('Error updating clock name:', error);
     }
   };
 
