@@ -35,6 +35,12 @@ class Clock extends Component<ClockProps, ClockState> {
     }, 1000);
   }
 
+  componentDidUpdate(prevProps: Readonly<ClockProps>): void {
+    if (this.props.name !== prevProps.name) {
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
   componentWillUnmount() {
     if (this.timerId) {
       clearInterval(this.timerId);

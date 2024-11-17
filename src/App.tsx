@@ -10,37 +10,43 @@ interface AppState {
 class App extends Component<{}, AppState> {
   nameTimerId: number | undefined;
 
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      clockName: 'Clock-0',
-      hasClock: true,
-    };
-  }
+  state: AppState = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
   componentDidMount() {
-    this.nameTimerId = window.setInterval(() => {
-      const oldClockName = this.state.clockName;
-      const newClockName = getRandomName();
-
-      console.warn(
-        `Renamed from ${oldClockName} to ${newClockName}`,
-      );
-      this.setState({ clockName: newClockName });
-    }, 3300);
+    this.startNameUpdateTimer();
 
     document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
   }
 
   componentWillUnmount() {
-    if (this.nameTimerId) {
-      clearInterval(this.nameTimerId);
-    }
+    this.clearNameUpdateTimer();
 
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
   }
+
+  startNameUpdateTimer = () => {
+    this.nameTimerId = window.setInterval(this.updateClockName, 3300);
+  };
+
+  clearNameUpdateTimer = () => {
+    if (this.nameTimerId) {
+      clearInterval(this.nameTimerId);
+    }
+  };
+
+  updateClockName = () => {
+    try {
+      const newClockName = getRandomName();
+      this.setState({ clockName: newClockName });
+    } catch (error) {
+      console.error('Error updating clock name:', error);
+    }
+  };
 
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
