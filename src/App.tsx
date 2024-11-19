@@ -1,5 +1,11 @@
 import React from 'react';
 import './App.scss';
+import ClockTime from './components/clock-time.tsx/ClockTime';
+
+type State = {
+  clockName: string;
+  hasShowClock: boolean;
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +13,62 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component {
+  // today = new Date();
+  state: State = {
+    clockName: 'Clock-0',
+    hasShowClock: true,
+  };
+  timerId: number | undefined;
 
+  componentDidMount(): void {
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+
+    document.addEventListener('contextmenu', (event: MouseEvent) => {
+      event.preventDefault();
+      this.setState({ hasShowClock: false });
+    });
+
+    document.addEventListener('click', (event: MouseEvent) => {
+      event.preventDefault();
+      this.setState({ hasShowClock: true });
+    });
+  }
   // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
 
   // this code stops the timer
-  window.clearInterval(timerId);
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+  }
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidUpdate({}, prevState: State): void {
+    if (
+      this.state.hasShowClock &&
+      prevState.clockName !== this.state.clockName
+    ) {
+      // eslint-disable-next-line no-console
+      console.debug(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
+    }
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
 
-        {' time is '}
+        {this.state.hasShowClock && (
+          <div className="Clock">
+            <strong className="Clock__name">{this.state.clockName}</strong>
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+            {' time is '}
+            <ClockTime />
+          </div>
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
