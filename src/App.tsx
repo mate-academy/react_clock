@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './component/Clock/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +8,51 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component {
+  state = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  timerId: number | null = null;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount() {
+    document.addEventListener('contextmenu', this.handleContextMenu);
+    document.addEventListener('click', this.handleClick);
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    this.timerId = window.setInterval(() => {
+      const newName = getRandomName();
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+      this.setState({ clockName: newName });
+    }, 3300);
+  }
 
-        {' time is '}
+  componentWillUnmount() {
+    if (this.timerId !== null) {
+      window.clearInterval(this.timerId);
+    }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleClick);
+  }
+
+  handleContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handleClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {hasClock && <Clock getRandomName={getRandomName} name={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
