@@ -7,31 +7,105 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+interface State {
+  hasClock: boolean;
+  clockName: string;
+  time: string;
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+class Clock extends React.Component<{ name: string }, { time: string }> {
+  state = {
+    time: new Date().toUTCString().slice(-12, -4),
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  private timerId: number | undefined;
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount() {
+    this.timerId = window.setInterval(() => {
+      const currentTime = new Date().toUTCString().slice(-12, -4);
 
+      this.setState({ time: currentTime });
+
+      // eslint-disable-next-line no-console
+      console.log(currentTime);
+    }, 1000);
+  }
+
+  componentDidUpdate(prevProps: { name: string }) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
+  }
+
+  render() {
+    const { name } = this.props;
+    const { time } = this.state;
+
+    return (
       <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
-
+        <strong className="Clock__name">{name}</strong>
         {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+        <span className="Clock__time">{time}</span>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+export class App extends React.Component<State> {
+  state: State = {
+    hasClock: true,
+    clockName: 'Clock-0',
+    time: new Date().toUTCString().slice(-12, -4),
+  };
+
+  private clockNameTimerId: number | undefined;
+
+  componentDidMount() {
+    this.clockNameTimerId = window.setInterval(() => {
+      const newClockName = getRandomName();
+
+      this.setState(() => ({
+        clockName: newClockName,
+      }));
+    }, 3300);
+
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
+  }
+
+  componentWillUnmount() {
+    if (this.clockNameTimerId) {
+      window.clearInterval(this.clockNameTimerId);
+    }
+
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+  }
+
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handleLeftClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {hasClock && <Clock name={clockName} />}
+      </div>
+    );
+  }
+}
