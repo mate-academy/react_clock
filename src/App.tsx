@@ -1,37 +1,78 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
-
-  return `Clock-${value}`;
-}
-
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
-
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
-
-  // this code stops the timer
-  window.clearInterval(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
-    </div>
-  );
+type State = {
+  hasClock: boolean;
+  clockName: string;
 };
+
+type Props = {};
+
+export class App extends React.Component<Props, State> {
+  state: State = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
+
+  timeClockNameId: number | undefined;
+
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  handleLeftClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: true });
+  };
+
+  componentDidMount(): void {
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
+
+    this.timeClockNameId = window.setInterval(() => {
+      const currentClockName = this.getRandomName();
+
+      this.setState({ clockName: currentClockName });
+    }, 3300);
+  }
+
+  componentDidUpdate(_: Readonly<Props>, prevState: Readonly<State>) {
+    const oldName = prevState.clockName;
+    const newName = this.state.clockName;
+
+    const clockNameChanged = prevState.clockName !== this.state.clockName;
+
+    if (clockNameChanged) {
+      if (this.state.hasClock) {
+        // eslint-disable-next-line no-console
+        console.warn(`Renamed from ${oldName} to ${newName}`);
+      }
+    }
+  }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.timeClockNameId);
+
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+  }
+
+  getRandomName(): string {
+    const value = Date.now().toString().slice(-4);
+
+    return `Clock-${value}`;
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.hasClock && (
+          <Clock name={this.state.clockName} hasClock={this.state.hasClock} />
+        )}
+      </div>
+    );
+  }
+}
