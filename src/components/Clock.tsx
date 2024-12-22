@@ -28,6 +28,8 @@ export class Clock extends React.Component<Props, State> {
 
   handleTimer() {
     this.timerIdDate = window.setInterval(() => {
+      // eslint-disable-next-line no-console
+      console.log("new Date().toUTCString().slice(-12, -4)")
       this.setState({ today: new Date() });
     }, 1000);
   }
@@ -42,10 +44,15 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Props): void {
+  componentDidUpdate(prevProps: Props, prevState: State): void {
     if (this.props.name !== prevProps.name) {
       // eslint-disable-next-line no-console
-      console.debug(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+
+    if (prevState.today !== this.state.today) {
+      // eslint-disable-next-line no-console
+      console.log(this.state.today.toUTCString().slice(-12, -4));
     }
   }
 
