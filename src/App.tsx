@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 import React from 'react';
+import { Clock } from './Clock';
 import './App.scss';
 
 function getRandomName(): string {
@@ -39,7 +41,6 @@ export class App extends React.PureComponent<{}, State> {
 
     this.visibleRight = (event: MouseEvent) => {
       event.preventDefault();
-
       this.setState({ hasClock: false });
     };
 
@@ -66,12 +67,10 @@ export class App extends React.PureComponent<{}, State> {
     prevState: Readonly<State>,
   ): void {
     if (prevState.today !== this.state.today && this.state.hasClock) {
-      // eslint-disable-next-line no-console
       console.log(this.state.today);
     }
 
     if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
       console.warn(
         `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
       );
@@ -84,13 +83,7 @@ export class App extends React.PureComponent<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">{clockName}</strong>
-            {' time is '}
-            <span className="Clock__time">{today}</span>
-          </div>
-        )}
+        {hasClock && <Clock name={clockName} time={today} />}
       </div>
     );
   }
