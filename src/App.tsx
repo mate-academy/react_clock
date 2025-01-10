@@ -7,31 +7,91 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
-
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
-
-  // this code stops the timer
-  window.clearInterval(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
-    </div>
-  );
+type State = {
+  today: string;
+  clockName: string;
+  hasClock: boolean;
 };
+
+export class App extends React.PureComponent<{}, State> {
+  state: State = {
+    today: new Date().toUTCString().slice(-12, -4),
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
+
+  timerId: number | null = null;
+
+  clockLive: number | null = null;
+
+  visibleRight: ((event: MouseEvent) => void) | null = null;
+
+  visibleLeft: ((event: MouseEvent) => void) | null = null;
+
+  componentDidMount(): void {
+    this.clockLive = window.setInterval(() => {
+      this.setState({ today: new Date().toUTCString().slice(-12, -4) });
+    }, 1000);
+
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+
+    this.visibleRight = (event: MouseEvent) => {
+      event.preventDefault();
+
+      this.setState({ hasClock: false });
+    };
+
+    this.visibleLeft = () => {
+      this.setState({ hasClock: true });
+    };
+
+    document.addEventListener('contextmenu', this.visibleRight);
+    document.addEventListener('click', this.visibleLeft);
+  }
+
+  componentWillUnmount(): void {
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
+
+    if (this.clockLive) {
+      window.clearInterval(this.clockLive);
+    }
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<{}>,
+    prevState: Readonly<State>,
+  ): void {
+    if (prevState.today !== this.state.today && this.state.hasClock) {
+      // eslint-disable-next-line no-console
+      console.log(this.state.today);
+    }
+
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
+    }
+  }
+
+  render() {
+    const { today, clockName, hasClock } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {hasClock && (
+          <div className="Clock">
+            <strong className="Clock__name">{clockName}</strong>
+            {' time is '}
+            <span className="Clock__time">{today}</span>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
