@@ -41,11 +41,25 @@ export class App extends React.PureComponent<{}, State> {
 
     this.visibleRight = (event: MouseEvent) => {
       event.preventDefault();
-      this.setState({ hasClock: false });
+      this.setState({ hasClock: false }, () => {
+        if (this.clockLive) {
+          window.clearInterval(this.clockLive);
+          this.clockLive = null;
+        }
+      });
     };
 
     this.visibleLeft = () => {
-      this.setState({ hasClock: true });
+      this.setState(
+        { hasClock: true, today: new Date().toUTCString().slice(-12, -4) },
+        () => {
+          if (!this.clockLive) {
+            this.clockLive = window.setInterval(() => {
+              this.setState({ today: new Date().toUTCString().slice(-12, -4) });
+            }, 1000);
+          }
+        },
+      );
     };
 
     document.addEventListener('contextmenu', this.visibleRight);
@@ -66,14 +80,14 @@ export class App extends React.PureComponent<{}, State> {
     prevProps: Readonly<{}>,
     prevState: Readonly<State>,
   ): void {
-    if (prevState.today !== this.state.today && this.state.hasClock) {
-      console.log(this.state.today);
+    const { today, clockName, hasClock } = this.state;
+
+    if (hasClock && prevState.today !== today && prevState.hasClock) {
+      console.log(today);
     }
 
-    if (prevState.clockName !== this.state.clockName) {
-      console.warn(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-      );
+    if (prevState.clockName !== clockName && hasClock && prevState.hasClock) {
+      console.warn(`Renamed from ${prevState.clockName} to ${clockName}`);
     }
   }
 
