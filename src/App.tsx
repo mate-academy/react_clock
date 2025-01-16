@@ -1,5 +1,6 @@
-import React from 'react';
+import { Component } from 'react';
 import './App.scss';
+import Clock from './components/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +8,59 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+interface AppState {
+  hasClock: boolean;
+  clockName: string;
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+export class App extends Component<{}, AppState> {
+  nameTimerId: number | null = null;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  state: AppState = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  componentDidMount() {
+    this.nameTimerId = window.setInterval(() => {
+      this.setState({
+        clockName: getRandomName(),
+      });
+    }, 3300);
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+    document.addEventListener('click', this.showClock);
+    document.addEventListener('contextmenu', this.hideClock);
+  }
 
-        {' time is '}
+  componentWillUnmount() {
+    if (this.nameTimerId) {
+      window.clearInterval(this.nameTimerId);
+    }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+    document.removeEventListener('click', this.showClock);
+    document.removeEventListener('contextmenu', this.hideClock);
+  }
+
+  showClock = () => {
+    this.setState({ hasClock: true });
+  };
+
+  hideClock = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock && <Clock name={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+export default App;
