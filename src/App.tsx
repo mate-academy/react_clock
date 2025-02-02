@@ -11,18 +11,15 @@ interface State {
   time: string;
 }
 
-export class App extends Component<{}, State> {
+class App extends Component<{}, State> {
   private timerId: number | null = null;
   private nameInterval: number | null = null;
 
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      hasClock: true,
-      clockName: 'Clock-0',
-      time: new Date().toUTCString().slice(-12, -4),
-    };
-  }
+  state: State = {
+    hasClock: true,
+    clockName: 'Clock-0',
+    time: new Date().toUTCString().slice(-12, -4),
+  };
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
