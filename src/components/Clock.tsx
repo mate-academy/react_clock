@@ -5,16 +5,15 @@ export class Clock extends Component<{ name: string }> {
     time: new Date().toUTCString().slice(-12, -4),
   };
 
-  timerId = 0;
+  private timerId: number | undefined;
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      this.setState({
-        time: new Date().toUTCString().slice(-12, -4),
-      });
+      const newTime = new Date().toUTCString().slice(-12, -4);
+      this.setState({ time: newTime });
 
       // eslint-disable-next-line no-console
-      console.log('Current time:', this.state.time);
+      console.log(newTime);
     }, 1000);
   }
 
@@ -26,10 +25,9 @@ export class Clock extends Component<{ name: string }> {
   }
 
   componentWillUnmount(): void {
-    if (this.timerId) {
-      window.clearInterval(this.timerId);
-    }
+    window.clearInterval(this.timerId);
   }
+
   render() {
     return (
       <div className="Clock">

@@ -14,7 +14,7 @@ export class App extends Component {
     hasClock: true,
   };
 
-  timerId = 0;
+  private timerId: number | undefined;
 
   componentDidMount(): void {
     document.addEventListener('contextmenu', (event: MouseEvent) => {
@@ -32,22 +32,8 @@ export class App extends Component {
   }
 
   componentWillUnmount(): void {
-    document.removeEventListener('click', this.handleShowClock);
-    document.removeEventListener('contextmenu', this.handleHideClock);
-
-    if (this.timerId) {
-      window.clearInterval(this.timerId);
-    }
+    window.clearInterval(this.timerId);
   }
-
-  handleShowClock = () => {
-    this.setState({ hasClock: true });
-  };
-
-  handleHideClock = (event: MouseEvent) => {
-    event.preventDefault();
-    this.setState({ hasClock: false });
-  };
 
   render() {
     return (
