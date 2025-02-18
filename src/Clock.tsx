@@ -1,0 +1,54 @@
+import React from 'react';
+
+type Props = {
+  clockName: string;
+};
+
+type State = {
+  today: Date;
+};
+
+export class Clock extends React.Component<Props> {
+  state: State = {
+    today: new Date(),
+  };
+
+  timerId: number | undefined;
+
+  componentDidMount() {
+    this.timerId = window.setInterval(() => {
+      // eslint-disable-next-line no-console
+      console.log(new Date().toUTCString().slice(-12, -4));
+      this.setState({ today: new Date() });
+    }, 1000);
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line no-console
+      console.debug(
+        `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
+      );
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
+
+  render() {
+    const { clockName } = this.props;
+
+    return (
+      <div className="Clock">
+        <strong className="Clock__name">{clockName}</strong>
+
+        {' time is '}
+
+        <span className="Clock__time">
+          {this.state.today.toUTCString().slice(-12, -4)}
+        </span>
+      </div>
+    );
+  }
+}
