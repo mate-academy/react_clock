@@ -30,7 +30,10 @@ class Clock extends Component<ClockProps, ClockState> {
       this.setState({ time: new Date() });
       // Log the time every second to the console
       // eslint-disable-next-line no-console
-      console.log(this.state.time.toUTCString().slice(-12, -4));
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.log(this.state.time.toUTCString().slice(-12, -4));
+      }
     }, 1000);
   }
 
@@ -42,14 +45,20 @@ class Clock extends Component<ClockProps, ClockState> {
 
     // Ensure no time is logged when the Clock is hidden
     // eslint-disable-next-line no-console
-    console.log('Clock is hidden, timer stopped');
+    if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line no-console
+      console.log('Clock is hidden, timer stopped');
+    }
   }
 
   componentDidUpdate(prevProps: ClockProps) {
     // If the clock name has changed, log a message
     if (this.props.name !== prevProps.name) {
       // eslint-disable-next-line no-console
-      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line no-console
+        console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      }
     }
   }
 
@@ -73,6 +82,8 @@ interface AppState {
 }
 
 class App extends Component<{}, AppState> {
+  intervalId: NodeJS.Timeout | null = null;
+
   // Initialize state as a class property
   state: AppState = {
     hasClock: true, // Start with the Clock visible
@@ -86,7 +97,7 @@ class App extends Component<{}, AppState> {
     document.addEventListener('click', this.showClock);
 
     // Start a timer to change clockName every 3300ms
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
@@ -95,6 +106,11 @@ class App extends Component<{}, AppState> {
     // Clean up event listeners when the component is unmounted
     document.removeEventListener('contextmenu', this.hideClock);
     document.removeEventListener('click', this.showClock);
+
+    // Clear the interval to avoid memory leaks
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
   hideClock = (event: MouseEvent) => {
