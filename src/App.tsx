@@ -10,11 +10,13 @@ type State = {
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
+
   return `Clock-${value}`;
 }
 
 export class App extends React.Component {
   private clockTimerId: number | undefined;
+
   private RenameTimerId: number | undefined;
 
   state: Readonly<State> = {
@@ -41,7 +43,7 @@ export class App extends React.Component {
   componentDidMount(): void {
     this.clockTimerId = window.setInterval(() => {
       this.setState({ time: new Date().toUTCString().slice(-12, -4) });
-      
+
       if (this.state.hasClock) {
         // eslint-disable-next-line no-console
         console.log(this.state.time);
@@ -68,6 +70,7 @@ export class App extends React.Component {
     document.removeEventListener('contextmenu', this.handleContextmenu);
     document.removeEventListener('click', this.handleClick);
   }
+
   render() {
     return (
       <div className="App">
