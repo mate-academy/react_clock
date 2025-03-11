@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.scss';
 
 function getRandomName(): string {
@@ -15,14 +15,12 @@ type ClockProps = {
 type ClockState = {
   today: Date;
   timeTimerId: number;
-  nameTimerId: number;
 };
 
-export class Clock extends React.Component<ClockProps, ClockState> {
+export class Clock extends Component<ClockProps, ClockState> {
   state: Readonly<ClockState> = {
     today: new Date(),
     timeTimerId: 0,
-    nameTimerId: 0,
   };
 
   updateTime = () => {
@@ -39,9 +37,7 @@ export class Clock extends React.Component<ClockProps, ClockState> {
   componentDidMount(): void {
     const timeTimerId = window.setInterval(this.updateTime, 1000);
 
-    this.setState({
-      timeTimerId: timeTimerId,
-    });
+    this.setState({ timeTimerId });
   }
 
   componentWillUnmount(): void {
@@ -64,46 +60,47 @@ export class Clock extends React.Component<ClockProps, ClockState> {
   }
 }
 
-type State = {
+type AppState = {
   hasClock: boolean;
   clockName: string;
+  nameTimerId: number;
 };
 
-export class App extends React.Component<State> {
-  state: Readonly<State> = {
+export class App extends Component<{}, AppState> {
+  state: Readonly<AppState> = {
     hasClock: true,
     clockName: 'Clock-0',
+    nameTimerId: 0,
   };
 
-  hideClockOnRightClick() {
-    document.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault();
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
-      this.setState({ hasClock: false });
-    });
-  }
-
-  showClockOnLeftClick() {
-    document.addEventListener('click', (event: MouseEvent) => {
-      event.preventDefault();
-
-      this.setState({ hasClock: true });
-    });
-  }
+  handleLeftClick = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: true });
+  };
 
   componentDidMount(): void {
     const nameTimerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    this.setState({
-      nameTimerId: nameTimerId,
-    });
-    this.hideClockOnRightClick();
-    this.showClockOnLeftClick();
+    this.setState({ nameTimerId });
+
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
   }
 
-  componentDidUpdate(_prevProps: unknown, prevState: Readonly<State>): void {
+  componentWillUnmount(): void {
+    window.clearInterval(this.state.nameTimerId);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+  }
+
+  componentDidUpdate(_prevProps: unknown, prevState: Readonly<AppState>): void {
     if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
       // eslint-disable-next-line no-console
       console.warn(
@@ -118,7 +115,6 @@ export class App extends React.Component<State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-
         {hasClock && <Clock hasClock={hasClock} clockName={clockName} />}
       </div>
     );
