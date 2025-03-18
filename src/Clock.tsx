@@ -17,11 +17,6 @@ export class Clock extends React.Component<Props, State> {
     today: getTime(new Date()),
   };
 
-  constructor(props: Props) {
-    super(props);
-    this.getTime = this.getTime.bind(this);
-  }
-
   timerId = 0;
 
   componentDidMount(): void {
@@ -34,9 +29,11 @@ export class Clock extends React.Component<Props, State> {
     window.clearInterval(this.timerId);
   }
 
-  componentDidUpdate(prevProps: Props): void {
-    // eslint-disable-next-line no-console
-    console.log(this.state.today);
+  componentDidUpdate(prevProps: Props, prevState: State): void {
+    if (prevState.today !== this.state.today) {
+      // eslint-disable-next-line no-console
+      console.log(this.state.today);
+    }
 
     if (prevProps.clockName !== this.props.clockName) {
       // eslint-disable-next-line no-console
@@ -44,10 +41,6 @@ export class Clock extends React.Component<Props, State> {
         `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
       );
     }
-  }
-
-  getTime(time: Date) {
-    return time.toUTCString().slice(-12, -4);
   }
 
   render() {
