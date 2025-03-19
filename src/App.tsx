@@ -16,21 +16,14 @@ type ClockState = {
 };
 
 export class Clock extends Component<ClockProps, ClockState> {
-  state = {
+  state: ClockState = {
     time: new Date().toUTCString().slice(-12, -4),
   };
 
-  timerId = 0;
+  timerId: number = 0;
 
   componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
-      const currentTime = new Date().toUTCString().slice(-12, -4);
-
-      this.setState({ time: currentTime });
-
-      // eslint-disable-next-line no-console
-      console.log(currentTime);
-    }, 1000);
+    this.startTimer();
   }
 
   componentDidUpdate(prevProps: Readonly<ClockProps>): void {
@@ -41,6 +34,23 @@ export class Clock extends Component<ClockProps, ClockState> {
   }
 
   componentWillUnmount(): void {
+    this.clearTimer();
+  }
+
+  startTimer(): void {
+    this.clearTimer();
+
+    this.timerId = window.setInterval(() => {
+      const currentTime = new Date().toUTCString().slice(-12, -4);
+
+      this.setState({ time: currentTime });
+
+      // eslint-disable-next-line no-console
+      console.log(currentTime);
+    }, 1000);
+  }
+
+  clearTimer(): void {
     if (this.timerId) {
       clearInterval(this.timerId);
       this.timerId = 0;
@@ -83,17 +93,15 @@ export class App extends Component<{}, AppState> {
     this.setState({ hasClock: true });
   };
 
-  updateClockName() {
-    const newName = getRandomName();
+  updateClockNameHandler() {
+    let newName;
 
-    this.setState(prevState => {
-      if (newName !== prevState.clockName) {
-        return {
-          clockName: newName,
-        };
-      }
+    do {
+      newName = getRandomName();
+    } while (newName === this.state.clockName);
 
-      return null;
+    this.setState({
+      clockName: newName,
     });
   }
 
@@ -104,7 +112,7 @@ export class App extends Component<{}, AppState> {
     document.addEventListener('click', this.handleLeftClick);
 
     this.newTimerId = window.setInterval(() => {
-      this.updateClockName();
+      this.updateClockNameHandler();
     }, 3300);
   }
 
