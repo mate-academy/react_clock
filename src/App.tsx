@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './conponents/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +8,46 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+type State = {
+  clockName: string;
+  hasClock: boolean;
+};
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+export class App extends React.Component<State> {
+  state: State = {
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  leftClick = (event: MouseEvent) => {
+    event.preventDefault(); // not to show the context menu
+    this.setState({ hasClock: true })
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  rightClick = (event: MouseEvent) => {
+    event.preventDefault(); // not to show the context menu
+    this.setState({ hasClock: false });
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  componentDidMount = (): void => {
+    document.addEventListener('click', this.leftClick);
+    document.addEventListener('contextmenu', this.rightClick);
 
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+    setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+  };
+  
+  componentWillUnmount() {
+    document.removeEventListener('click', this.leftClick);
+    document.removeEventListener('contextmenu', this.rightClick);
+  }
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
-    </div>
-  );
+    );
+  }
 };
