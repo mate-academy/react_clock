@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 import React from 'react';
 import './App.scss';
+import Clock from './Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +9,56 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+class App extends React.Component {
+  state = {
+    today: new Date(),
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  nameInterval: number | null = null;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  componentDidMount() {
+    document.addEventListener('click', this.showClock);
+    document.addEventListener('contextmenu', this.hideClock);
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    this.nameInterval = window.setInterval(this.updateClockName, 3300);
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  componentWillUnmount() {
+    document.removeEventListener('click', this.showClock);
+    document.removeEventListener('contextmenu', this.hideClock);
 
-        {' time is '}
+    if (this.nameInterval !== null) {
+      clearInterval(this.nameInterval);
+    }
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  updateClockName = () => {
+    const newName = getRandomName();
+
+    console.warn(`Renamed from ${this.state.clockName} to ${newName}`);
+    this.setState({ clockName: newName });
+  };
+
+  showClock = () => {
+    this.setState({ hasClock: true });
+  };
+
+  hideClock = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+export default App;
