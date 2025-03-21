@@ -23,19 +23,19 @@ export class App extends React.Component<{}, State> {
 
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({hasClock: false})
-  }
+    this.setState({ hasClock: false });
+  };
 
   handleLeftClick = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({hasClock: true})
-  }
+    this.setState({ hasClock: true });
+  };
 
   componentDidMount(): void {
     document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
     this.timerId = window.setInterval(() => {
-      this.setState({clockName: getRandomName()})
+      this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
@@ -49,7 +49,7 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1>React clock</h1>
-        {this.state.hasClock && <Clock clockName={this.state.clockName}/>}
+        {this.state.hasClock && <Clock clockName={this.state.clockName} />}
       </div>
     );
   }
