@@ -7,31 +7,72 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+interface State {
+  clockName: string;
+  today: Date;
+  hasClock: boolean;
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+export class App extends React.Component<{}, State> {
+  timerId: ReturnType<typeof setInterval> | undefined;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  nameTimerId: ReturnType<typeof setInterval> | undefined;
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  state: State = {
+    clockName: 'Clock-0',
+    today: new Date(),
+    hasClock: true,
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  handleRightClick = (ev: MouseEvent) => {
+    ev.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
-        {' time is '}
+  handleLeftClick = () => {
+    this.setState({ hasClock: true });
+  };
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  componentDidMount(): void {
+    this.timerId = setInterval(() => {
+      const currentTime = new Date();
+
+      this.setState({ today: currentTime });
+      const showTime = currentTime.toTimeString().slice(0, 8);
+
+      // eslint-disable-next-line no-console
+      console.log(showTime);
+    }, 1000);
+
+    this.nameTimerId = setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
+  }
+
+  componentWillUnmount(): void {
+    clearInterval(this.timerId);
+    clearInterval(this.nameTimerId);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.hasClock && (
+          <div className="Clock">
+            <strong className="Clock__name">{this.state.clockName}</strong>
+            {' time is '}
+            <span className="Clock__time">
+              {this.state.today.toUTCString().slice(-12, -4)}
+            </span>
+          </div>
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
