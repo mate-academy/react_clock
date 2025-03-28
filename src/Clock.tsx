@@ -11,13 +11,11 @@ type Props = {
 };
 
 type State = {
-  clockName: string;
   time: string;
 };
 
 export class Clock extends React.Component<Props, State> {
   state = {
-    clockName: 'Clock-0',
     time: getTime(),
   };
 
@@ -36,7 +34,6 @@ export class Clock extends React.Component<Props, State> {
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
-      this.setState({ clockName: this.props.name });
     }
   }
 
