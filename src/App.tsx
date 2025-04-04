@@ -11,14 +11,14 @@ export function getRandomName(): string {
 type State = {
   hasClock: boolean;
   clockName: string;
-  timerId: string;
+  timerId: number | null;
 };
 
 export class App extends React.Component<State> {
   state: State = {
     hasClock: true,
     clockName: 'Clock-0',
-    timerId: '',
+    timerId: 0,
   };
 
   handleClick = (event: MouseEvent) => {
@@ -44,7 +44,7 @@ export class App extends React.Component<State> {
     this.setState({ timerId: timerId.toString() });
   }
 
-  componentDidUpdate(_: Readonly<{}>, prevState: Readonly<State>) {
+  componentDidUpdate(_: {}, prevState: Readonly<State>) {
     if (prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
       console.log(
@@ -56,7 +56,9 @@ export class App extends React.Component<State> {
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.handleContextMenu);
     document.removeEventListener('click', this.handleClick);
-    window.clearInterval(Number(this.state.timerId));
+    if (this.state.timerId !== null) {
+      window.clearInterval(this.state.timerId);
+    }
   }
 
   render() {
