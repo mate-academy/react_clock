@@ -68,17 +68,19 @@ export class App extends Component {
   timerId: number | null = null;
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => {
-      this.setState({ clockName: getRandomName() });
-    }, 3300);
+    if (this.timerId === null) {
+      this.timerId = window.setInterval(() => {
+        this.setState({ clockName: getRandomName() });
+      }, 3300);
+    }
 
-    document.addEventListener('click', this.handleClickLeft);
-    document.addEventListener('contextmenu', this.handleClickRight);
+    document.addEventListener('click', this.enableClock);
+    document.addEventListener('contextmenu', this.disableClock);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', this.handleClickRight);
-    document.removeEventListener('click', this.handleClickLeft);
+    document.removeEventListener('contextmenu', this.disableClock);
+    document.removeEventListener('click', this.enableClock);
 
     if (this.timerId !== null) {
       window.clearInterval(this.timerId);
@@ -86,12 +88,12 @@ export class App extends Component {
     }
   }
 
-  handleClickRight = (event: MouseEvent) => {
+  disableClock = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
 
-  handleClickLeft = () => {
+  enableClock = () => {
     this.setState({ hasClock: true });
   };
 
