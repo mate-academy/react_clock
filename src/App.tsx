@@ -74,13 +74,13 @@ export class App extends Component {
       }, 3300);
     }
 
-    document.addEventListener('click', this.enableClock);
-    document.addEventListener('contextmenu', this.disableClock);
+    document.addEventListener('click', this.handleClockEnable);
+    document.addEventListener('contextmenu', this.handleClockDisable);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', this.disableClock);
-    document.removeEventListener('click', this.enableClock);
+    document.removeEventListener('contextmenu', this.handleClockDisable);
+    document.removeEventListener('click', this.handleClockEnable);
 
     if (this.timerId !== null) {
       window.clearInterval(this.timerId);
@@ -88,12 +88,12 @@ export class App extends Component {
     }
   }
 
-  disableClock = (event: MouseEvent) => {
+  handleClockDisable = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
 
-  enableClock = () => {
+  handleClockEnable = () => {
     this.setState({ hasClock: true });
   };
 
