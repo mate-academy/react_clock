@@ -15,12 +15,20 @@ export class Clock extends React.Component<Props, State> {
 
   timerClockTime: number = 0;
 
-  componentDidMount() {
-    this.timerClockTime = window.setInterval(() => {
-      this.setState({ today: new Date() });
+  isMountedFlag: boolean = false;
 
-      // eslint-disable-next-line no-console
-      console.log(new Date().toUTCString().slice(-12, -4));
+  componentDidMount() {
+    this.isMountedFlag = true;
+
+    this.timerClockTime = window.setInterval(() => {
+      if (this.isMountedFlag) {
+        const currentTime = new Date();
+
+        this.setState({ today: currentTime });
+
+        // eslint-disable-next-line no-console
+        console.log(currentTime.toUTCString().slice(-12, -4));
+      }
     }, 1000);
   }
 
@@ -32,6 +40,7 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
+    this.isMountedFlag = false;
     clearInterval(this.timerClockTime);
   }
 
