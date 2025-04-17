@@ -17,6 +17,7 @@ export class Clock extends React.Component<Props> {
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
+      // eslint-disable-next-line no-console
       console.log(new Date().toUTCString().slice(-12, -4));
       this.setState({ today: new Date() });
     }, 1000);
@@ -24,6 +25,7 @@ export class Clock extends React.Component<Props> {
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
     if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
       console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }

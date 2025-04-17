@@ -38,6 +38,11 @@ export class App extends React.Component {
     window.addEventListener('click', this.showClock);
   }
 
+  componentWillUnmount(): void {
+    window.removeEventListener('contextmenu', this.hideClock);
+    window.removeEventListener('click', this.showClock);
+  }
+
   render(): React.ReactNode {
     const { hasClock, currentClockName } = this.state;
 
