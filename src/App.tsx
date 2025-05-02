@@ -1,9 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
 import { Clock } from './components/clock';
 
 export const App: React.FC = () => {
-  const [clockName] = useState('Clock-0');
+  const [clockName, setClockName] = useState('Clock-0');
+
+  const getRandomName = () => {
+    const value = Date.now().toString().slice(-4);
+
+    return `Clock-${value}`;
+  };
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setClockName(prev => {
+        const newName = getRandomName();
+
+        // eslint-disable-next-line no-console
+        console.warn(`Renamed from ${prev} to ${newName}`);
+
+        return newName;
+      });
+    }, 3300);
+
+    return () => clearInterval(intervalId); // evita múltiplos intervalos
+  }, []);
 
   return (
     <div className="App">

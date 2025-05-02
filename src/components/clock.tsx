@@ -18,7 +18,11 @@ export class Clock extends Component<Props, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       // eslint-disable-next-line no-console
-      console.log(this.state.today.toUTCString().slice(-12, -4));
+      console.log(
+        this.state.today.toLocaleTimeString('pt-BR', {
+          timeZone: 'America/Sao_Paulo',
+        }),
+      );
 
       this.setState({ today: new Date() });
     }, 1000);
@@ -36,7 +40,9 @@ export class Clock extends Component<Props, State> {
         <strong className="Clock__name">{this.props.name}</strong>
         {' time is '}
         <span className="Clock__time">
-          {this.state.today.toUTCString().slice(-12, -4)}
+          {this.state.today.toLocaleTimeString('pt-BR', {
+            timeZone: 'America/Sao_Paulo',
+          })}
         </span>
       </div>
     );
