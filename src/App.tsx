@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import { Clock } from './components/clock';
+import { Clock } from './components/relogio';
 
 export const App: React.FC = () => {
   const [clockName, setClockName] = useState('Clock-0');
