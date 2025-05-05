@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
+import { Clock } from './Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -8,30 +9,52 @@ function getRandomName(): string {
 }
 
 export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+  const [randomName, setRandomName] = useState('Clock-0');
+  const [currentTime, setCurrentTime] = useState<string | null>(null);
+  const [currentSecond, setCurrentSecond] = useState<number>(0);
+  const [deleteHasClock, setdeleteHasClock] = useState<boolean>(true);
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  useEffect(() => {
+    const timer02 = setInterval(() => {
+      setRandomName(getRandomName);
+    }, 3300);
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+    window.addEventListener('click', () => {
+      setdeleteHasClock(false);
+    });
+
+    window.addEventListener('contextmenu', e => {
+      e.preventDefault();
+      setdeleteHasClock(true);
+    });
+
+    return () => {
+      clearInterval(timer02);
+    };
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSecond(prev => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    setCurrentTime(`${hours}:${minutes}:${seconds}`);
+  }, [currentSecond]);
 
   return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
-    </div>
+    <Clock
+      clockName={randomName}
+      currentTime={currentTime}
+      deleteHasClock={deleteHasClock}
+    />
   );
 };
