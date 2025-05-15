@@ -45,4 +45,4 @@ export class Clock extends Component<ClockProps> {
       </div>
     );
   }
-} 
+}
