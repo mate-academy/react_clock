@@ -59,7 +59,6 @@ export class App extends React.Component {
   componentWillUnmount(): void {
     window.clearInterval(this.clockNameTimer);
   }
-  // const today = new Date();
 
   render() {
     const { clockName, hasClock } = this.state;
