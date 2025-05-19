@@ -23,8 +23,6 @@ export class App extends React.Component<{}, State> {
 
   private clockNameTimerId?: number;
 
-  private timerId?: number;
-
   componentDidMount() {
     document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
@@ -46,7 +44,6 @@ export class App extends React.Component<{}, State> {
   componentWillUnmount() {
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
-    clearInterval(this.timerId);
     clearInterval(this.clockNameTimerId);
   }
 
