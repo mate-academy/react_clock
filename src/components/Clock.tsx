@@ -17,8 +17,11 @@ export class Clock extends React.Component<ClockProps, ClockState> {
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      const today = new Date();
-      const currentTime = today.toUTCString().slice(-12, -4);
+      const newTime = new Date().toUTCString().slice(-12, -4);
+
+      // eslint-disable-next-line no-console
+      console.log(newTime);
+      const currentTime = newTime;
 
       this.setState({ currentTime });
     }, 1000);

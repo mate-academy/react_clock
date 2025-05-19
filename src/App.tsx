@@ -29,23 +29,14 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
 
-    this.timerId = window.setInterval(() => {
-      const now = new Date().toUTCString().slice(-12, -4);
-
-      this.setState(() => {
-        // eslint-disable-next-line no-console
-        console.log(now);
-
-        return { currentTime: now };
-      });
-    }, 1000);
-
     this.clockNameTimerId = window.setInterval(() => {
       const newName = getRandomName();
 
       this.setState(() => {
-        // eslint-disable-next-line no-console
-        console.warn(`Renamed from ${this.state.clockName} to ${newName}`);
+        if (this.state.hasClock) {
+          // eslint-disable-next-line no-console
+          console.warn(`Renamed from ${this.state.clockName} to ${newName}`);
+        }
 
         return { clockName: newName };
       });
