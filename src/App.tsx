@@ -29,7 +29,19 @@ export class App extends React.Component<{}, State> {
     document.addEventListener('contextmenu', this.handleContextMenu);
     document.addEventListener('click', this.handleClick);
 
-    this.startIntervals(); // Таймери завжди працюють!
+    if (this.state.hasClock) {
+      this.startIntervals();
+    }
+  }
+
+  componentDidUpdate(prevProps: {}, prevState: State) {
+    if (!prevState.hasClock && this.state.hasClock) {
+      this.startIntervals();
+    }
+
+    if (prevState.hasClock && !this.state.hasClock) {
+      this.clearIntervals();
+    }
   }
 
   componentWillUnmount() {
@@ -67,16 +79,10 @@ export class App extends React.Component<{}, State> {
 
   handleClick = () => {
     if (!this.state.hasClock) {
-      this.setState(
-        {
-          hasClock: true,
-          today: new Date(),
-        },
-        () => {
-          // Примусово оновити today ще раз після показу Clock
-          this.setState({ today: new Date() });
-        },
-      );
+      this.setState({
+        hasClock: true,
+        today: new Date(),
+      });
     }
   };
 
