@@ -1,37 +1,61 @@
 import React from 'react';
-import './App.scss';
+import { Clock } from './Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+const getRandomName = () => `Clock-${Math.floor(Math.random() * 1000)}`;
 
-  return `Clock-${value}`;
-}
-
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
-
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
-
-  // this code stops the timer
-  window.clearInterval(timerId);
-
-  return (
-    <div className="App">
-      <h1>React clock</h1>
-
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
-
-        {' time is '}
-
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
-    </div>
-  );
+type State = {
+  hasClock: boolean;
+  clockName: string;
 };
+
+export class App extends React.Component<{}, State> {
+  state: State = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
+
+  renameIntervalId: number | undefined;
+
+  componentDidMount() {
+    document.addEventListener('click', this.handleShowClock);
+    document.addEventListener('contextmenu', this.handleHideClock);
+
+    this.renameIntervalId = window.setInterval(this.renameClock, 3300);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleShowClock);
+    document.removeEventListener('contextmenu', this.handleHideClock);
+
+    if (this.renameIntervalId) {
+      clearInterval(this.renameIntervalId);
+    }
+  }
+
+  componentDidUpdate(prevProps: {}, prevState: State) {
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.warn(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+    }
+  }
+
+  handleShowClock = () => {
+    this.setState({ hasClock: true });
+  };
+
+  handleHideClock = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
+
+  renameClock = () => {
+    const newName = getRandomName();
+    this.setState({ clockName: newName });
+  };
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return <div className="App">{hasClock && <Clock name={clockName} />}</div>;
+  }
+}
