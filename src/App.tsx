@@ -34,7 +34,7 @@ export const App: React.FC = () => {
 
     return () => {
       document.removeEventListener('contextmenu', handleMouseRight);
-      document.addEventListener('click', handleMouseLeft);
+      document.removeEventListener('click', handleMouseLeft);
       window.clearInterval(timerId.current);
     };
   }, []);
