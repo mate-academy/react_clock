@@ -19,7 +19,7 @@ export class App extends React.Component {
     hasClock: true,
   };
 
-  timerId = 0;
+  timerId: number = 0;
 
   handleDocumentRightClick = (event: MouseEvent) => {
     event.preventDefault();
