@@ -1,5 +1,11 @@
-import React from 'react';
+import { Component } from 'react';
 import './App.scss';
+import { Clock } from './Components/Clock/Clock';
+
+type State = {
+  clockName: string;
+  isClockVisible: boolean;
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +13,46 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends Component<{}, State> {
+  state: State = {
+    clockName: 'Clock-0',
+    isClockVisible: true,
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  timerId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  updateName = () => {
+    this.setState({ clockName: getRandomName() });
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  handleRightClick = (event: globalThis.MouseEvent) => {
+    event.preventDefault();
+    this.setState({ isClockVisible: false });
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  handleLeftClick = () => {
+    this.setState({ isClockVisible: true });
+  };
 
-        {' time is '}
+  componentDidMount() {
+    this.timerId = window.setInterval(this.updateName, 3300);
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  componentWillUnmount(): void {
+    // this code stops the timer
+    window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+  }
+
+  render(): React.ReactNode {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.isClockVisible && <Clock name={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
