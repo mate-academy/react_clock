@@ -1,29 +1,51 @@
 import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+function getRandomName() {
+  const value = Date.now().toString().slice(-4);
+
+  return `Clock-${value}`;
+}
+
 interface ClockProps {
   name: string;
 }
 
-const Clock: React.FC<ClockProps> = ({ name }) => {
-  const [time, setTime] = React.useState(new Date());
+interface ClockState {
+  date: Date;
+}
 
-  React.useEffect(() => {
-    const timer = setInterval(() => setTime(new Date()), 1000);
+class Clock extends React.Component<ClockProps, ClockState> {
+  timerID?: NodeJS.Timeout;
 
-    return () => clearInterval(timer);
-  }, []);
+  state: ClockState = { date: new Date() };
 
-  return (
-    <div>
-      <h2>{name}</h2>
-      <p>{time.toLocaleTimeString()}</p>
-    </div>
-  );
-};
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 1000);
+  }
 
-function getRandomName(): string {
-  const randomNum = Math.floor(Math.random() * 10000);
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
 
-  return `Clock-${randomNum}`;
+  tick() {
+    this.setState({
+      date: new Date(),
+    });
+    // console.log(`Clock time: ${this.state.date.toUTCString().slice(-12, -4)}`);
+  }
+
+  render() {
+    const formattedTime = this.state.date.toUTCString().slice(-12, -4);
+
+    return (
+      <div className="Clock">
+        <strong className="Clock__name">{this.props.name}</strong>
+        {' o tempo é '}
+        <span className="Clock__time">{formattedTime}</span>
+      </div>
+    );
+  }
 }
 
 interface AppState {
@@ -32,8 +54,8 @@ interface AppState {
   oldClockName: string;
 }
 
-export class App extends React.Component<{}, AppState> {
-  private nameTimerID: number = 0;
+class App extends React.Component<{}, AppState> {
+  nameTimerID?: NodeJS.Timeout;
 
   state: AppState = {
     hasClock: false,
@@ -43,7 +65,6 @@ export class App extends React.Component<{}, AppState> {
 
   constructor(props: {}) {
     super(props);
-
     this.handleContextMenu = this.handleContextMenu.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -52,7 +73,7 @@ export class App extends React.Component<{}, AppState> {
     document.addEventListener('contextmenu', this.handleContextMenu);
     document.addEventListener('click', this.handleClick);
 
-    this.nameTimerID = window.setInterval(() => {
+    this.nameTimerID = setInterval(() => {
       this.setState(prevState => ({
         oldClockName: prevState.clockName,
         clockName: getRandomName(),
@@ -64,10 +85,10 @@ export class App extends React.Component<{}, AppState> {
     document.removeEventListener('contextmenu', this.handleContextMenu);
     document.removeEventListener('click', this.handleClick);
 
-    window.clearInterval(this.nameTimerID);
+    clearInterval(this.nameTimerID);
   }
 
-  componentDidUpdate(prevProps: {}, prevState: AppState) {
+  componentDidUpdate(_prevProps: {}, prevState: AppState) {
     if (prevState.clockName !== this.state.clockName) {
       // console.warn(
       //   `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
@@ -102,3 +123,11 @@ export class App extends React.Component<{}, AppState> {
     );
   }
 }
+
+const rootElement = document.getElementById('root');
+
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(<App />);
+}
+
+export default App;

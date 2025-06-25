@@ -1,5 +1,6 @@
+/* App.css */
 .App {
-  font-family: Inter, sans-serif; /* Removidas as aspas de "Inter" */
+  font-family: Inter, sans-serif;
   text-align: center;
   padding: 20px;
   background-color: #f0f2f5;
@@ -20,7 +21,7 @@ h1 {
 }
 
 .Clock {
-  background-color: #fff; /* Alterado de #ffffff para #fff */
+  background-color: #fff;
   border: 2px solid #3498db;
   border-radius: 15px;
   padding: 25px 40px;
@@ -58,6 +59,7 @@ p {
   color: #555;
 }
 
+/* Responsividade básica para telas menores */
 @media (max-width: 768px) {
   h1 {
     font-size: 2em;
