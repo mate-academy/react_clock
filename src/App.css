@@ -1,0 +1,83 @@
+.App {
+  font-family: Inter, sans-serif; /* Removidas as aspas de "Inter" */
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.Clock {
+  background-color: #fff; /* Alterado de #ffffff para #fff */
+  border: 2px solid #3498db;
+  border-radius: 15px;
+  padding: 25px 40px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin: 30px 0;
+  font-size: 1.8em;
+  color: #2980b9;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.Clock:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.Clock__name {
+  color: #e74c3c;
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+.Clock__time {
+  background-color: #ecf0f1;
+  padding: 8px 15px;
+  border-radius: 8px;
+  color: #2c3e50;
+  font-family: 'Courier New', monospace;
+}
+
+p {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+  .Clock {
+    font-size: 1.5em;
+    padding: 20px 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8em;
+  }
+  .Clock {
+    font-size: 1.2em;
+    padding: 15px 25px;
+  }
+  .Clock__name {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
