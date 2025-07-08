@@ -13,7 +13,7 @@ Cypress.on('fail', (e) => {
 
 describe('Clock', () => {
   beforeEach(() => {
-    if (failed) Cypress.runner.stop();
+    // if (failed) Cypress.runner.stop();
 
     cy.clock(1661938351600);
 
