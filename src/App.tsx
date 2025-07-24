@@ -43,8 +43,6 @@ export class App extends React.Component<{}, AppState> {
 
   componentDidUpdate(prevProps: {}, prevState: AppState) {
     if (prevState.clockName !== this.state.clockName) {
-      // Clock visibility changed
-
       // eslint-disable-next-line no-console
       console.warn(
         `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
