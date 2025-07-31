@@ -2,13 +2,13 @@
 import React from 'react';
 
 interface State {
-  clockname: string;
+  name: string;
   today: Date;
 }
 
 export class Clock extends React.PureComponent<State> {
   state: Readonly<State> = {
-    clockname: this.props.clockname,
+    name: this.props.name,
     today: new Date(),
   };
 
@@ -29,8 +29,8 @@ export class Clock extends React.PureComponent<State> {
       console.log(this.state.today.toUTCString().slice(-12, -4));
     }
 
-    if (prevProps.clockname !== this.props.clockname) {
-      this.setState({ clockname: this.props.clockname });
+    if (prevProps.name !== this.props.name) {
+      this.setState({ clockname: this.props.name });
     }
   }
 
@@ -41,7 +41,7 @@ export class Clock extends React.PureComponent<State> {
   render(): React.ReactNode {
     return (
       <div className="Clock">
-        <strong className="Clock__name">{this.state.clockname}</strong>
+        <strong className="Clock__name">{this.props.name}</strong>
         {' time is '}
         <span className="Clock__time">
           {this.state.today.toUTCString().slice(-12, -4)}

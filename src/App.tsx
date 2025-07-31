@@ -81,7 +81,7 @@ export class App extends React.PureComponent<State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && <Clock clockname={clockName} today={today} />}
+        {hasClock && <Clock name={clockName} today={today} />}
       </div>
     );
   }
