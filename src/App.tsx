@@ -16,7 +16,6 @@ type State = {
 export class App extends React.Component<{}, State> {
   state = {
     clockName: 'Clock-0',
-    today: new Date(),
     hasClock: true,
   };
 
@@ -34,7 +33,7 @@ export class App extends React.Component<{}, State> {
     this.setState({ hasClock: true });
   };
 
-  removeClock = (event: Event) => {
+  removeClock = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
@@ -54,7 +53,7 @@ export class App extends React.Component<{}, State> {
   }
 
   render() {
-    const { clockName, today, hasClock } = this.state;
+    const { clockName, hasClock } = this.state;
 
     return (
       <div className="App">
@@ -69,7 +68,7 @@ export class App extends React.Component<{}, State> {
             {today.toUTCString().slice(-12, -4)}
           </span>
         </div> */}
-        {hasClock && <Clock name={clockName} today={today} />}
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }

@@ -1,7 +1,6 @@
 import React from 'react';
 type Props = {
   name: string;
-  today: Date;
 };
 
 type State = {
@@ -13,8 +12,10 @@ export class Clock extends React.Component<Props, State> {
     time: new Date(),
   };
 
+  timer: number = 0;
+
   componentDidMount() {
-    setInterval(() => {
+    this.timer = window.setInterval(() => {
       this.setState({ time: new Date() });
     }, 1000);
   }
@@ -27,6 +28,10 @@ export class Clock extends React.Component<Props, State> {
 
     // eslint-disable-next-line no-console
     console.log(this.state.time.toUTCString().slice(-12, -4));
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.timer);
   }
 
   render() {
