@@ -1,3 +1,5 @@
+[DEMO LINK](https://vkrasnovyd.github.io/react_clock/)
+
 # React Clock
 
 > [React + Typescript cheat sheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript)
