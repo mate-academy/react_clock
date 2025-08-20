@@ -4,7 +4,7 @@ import Clock from './components/Clock';
 
 type State = {
   clockName: string;
-  isShowing: boolean;
+  hasClock: boolean;
 };
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -15,18 +15,18 @@ function getRandomName(): string {
 export class App extends React.Component<State> {
   state: State = {
     clockName: 'Clock-0',
-    isShowing: true,
+    hasClock: true,
   };
 
   timerId = 0;
 
   hideClock = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState({ isShowing: false });
+    this.setState({ hasClock: false });
   };
 
   showClock = () => {
-    this.setState({ isShowing: true });
+    this.setState({ hasClock: true });
   };
 
   componentDidMount(): void {
@@ -48,7 +48,7 @@ export class App extends React.Component<State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.isShowing && <Clock clockName={this.state.clockName} />}
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }
