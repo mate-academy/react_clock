@@ -22,7 +22,7 @@ export class Clock extends React.Component<Props, State> {
     console.log(this.state.time);
   };
 
-  timer = window.setInterval(this.timerCallback, 1000);
+  timer: number | undefined;
 
   handleTimer = () => {
     return this.timer;
@@ -40,6 +40,7 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    this.timer = window.setInterval(this.timerCallback, 1000);
     this.mount();
   }
 

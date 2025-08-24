@@ -21,13 +21,13 @@ export class App extends React.Component<Props, State> {
     return `Clock-${value}`;
   }
 
+  timerId: undefined | number;
+
   timerIdCallback = () => {
     this.setState({
       clockName: this.getRandomName(),
     });
   };
-
-  timerId = window.setInterval(this.timerIdCallback, 3300);
 
   // This code starts a timer
   handleTimer = () => {
@@ -69,6 +69,7 @@ export class App extends React.Component<Props, State> {
   // this code stops the timer
 
   mount() {
+    this.timerId = window.setInterval(this.timerIdCallback, 3300);
     this.handleTimer();
     this.handleContextMenu();
     this.handleClick();
