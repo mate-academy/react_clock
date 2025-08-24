@@ -1,37 +1,124 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './components/Clock';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+type Props = {};
 
-  return `Clock-${value}`;
-}
+type State = {
+  time: Date | null;
+  clockName: string;
+  hasClock: boolean;
+};
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component<Props, State> {
+  state = {
+    time: null,
+    clockName: 'Clock-0',
+    hasClock: true,
+  };
 
   // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
+
+  timerIdInterval = window.setInterval(() => {
+    this.setState({
+      clockName: this.getRandomName(),
+    });
   }, 3300);
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  timerInterval = window.setInterval(() => {
+    this.setState({
+      time: new Date(),
+    });
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    // eslint-disable-next-line no-console
+    console.log(this.state.time);
+  }, 1000);
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  timerIntervalReset = () => {
+    this.timerInterval = window.setInterval(() => {
+      this.setState({
+        time: new Date(),
+      });
 
-        {' time is '}
+      // eslint-disable-next-line no-console
+      console.log(this.state.time);
+    }, 1000);
+  };
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
-      </div>
-    </div>
+  timerId = () => {
+    return this.timerIdInterval;
+  };
+
+  timer = (): number => {
+    return this.timerInterval;
+  };
+
+  getRandomName(): string {
+    const value = Date.now().toString().slice(-4);
+
+    return `Clock-${value}`;
+  }
+
+  hiddenClock = () => this.setState({ hasClock: false });
+
+  showClock = () => this.setState({ hasClock: true });
+
+  hasClockControlFunction = (event: MouseEvent) => {
+    event.preventDefault(); // not to show the context menu
+
+    this.hiddenClock();
+    window.clearInterval(this.timerInterval);
+  };
+
+  hasClockControl = () => {
+    return window.addEventListener('contextmenu', this.hasClockControlFunction);
+  };
+
+  showClockOnLeftClickAction = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.showClock();
+    this.timerIntervalReset();
+    this.timer();
+  };
+
+  showClockOnLeftClick = window.addEventListener(
+    'click',
+    this.showClockOnLeftClickAction,
   );
-};
+
+  componentDidMount() {
+    this.setState({ time: new Date() });
+    this.timerId();
+    this.timer();
+    this.hasClockControl();
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+    prevState: Readonly<State>,
+  ): void {
+    if (prevState.clockName !== this.state.clockName) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
+    }
+  }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerInterval);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {this.state.hasClock && (
+          <Clock name={this.state.clockName} time={this.state.time} />
+        )}
+      </div>
+    );
+  }
+}
