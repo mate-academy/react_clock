@@ -2,104 +2,123 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './components/Clock';
 
-type Props = {
-
-}
+type Props = {};
 
 type State = {
   time: Date | null;
   clockName: string;
   hasClock: boolean;
-}
+};
 
 export class App extends React.Component<Props, State> {
-  /*
-    const today = new Date();
-    let clockName = 'Clock-0';
-
-    // this code stops the timer
-    window.clearInterval(timerId);
-  */
-
   state = {
     time: null,
     clockName: 'Clock-0',
-    hasClock: true
-  }  
-    // This code starts a timer
-  timerId = window.setInterval(() => {
+    hasClock: true,
+  };
+
+  // This code starts a timer
+
+  timerIdInterval = window.setInterval(() => {
     this.setState({
-      clockName: this.getRandomName()
-    })
+      clockName: this.getRandomName(),
+    });
   }, 3300);
 
-  timer = window.setInterval(() => {
+  timerInterval = window.setInterval(() => {
     this.setState({
-      time: new Date()
-    })
+      time: new Date(),
+    });
+
     // eslint-disable-next-line no-console
     console.log(this.state.time);
-  }, 1000)
+  }, 1000);
+
+  timerIntervalReset = () => {
+    this.timerInterval = window.setInterval(() => {
+      this.setState({
+        time: new Date(),
+      });
+
+      // eslint-disable-next-line no-console
+      console.log(this.state.time);
+    }, 1000);
+  };
+
+  timerId = () => {
+    return this.timerIdInterval;
+  };
+
+  timer = (): number => {
+    return this.timerInterval;
+  };
 
   getRandomName(): string {
     const value = Date.now().toString().slice(-4);
-    
+
     return `Clock-${value}`;
   }
 
   hiddenClock = () => this.setState({ hasClock: false });
-  showClock = () => this.setState({hasClock: true})
 
-  hasClockControl = window.addEventListener('contextmenu', (event: MouseEvent) => {
+  showClock = () => this.setState({ hasClock: true });
+
+  hasClockControlFunction = (event: MouseEvent) => {
     event.preventDefault(); // not to show the context menu
 
     this.hiddenClock();
-    window.clearInterval(this.timer);
-  });
+    window.clearInterval(this.timerInterval);
+  };
 
-  showClockOnLeftClick = window.addEventListener('click', (event: MouseEvent) => {
+  hasClockControl = () => {
+    return window.addEventListener('contextmenu', this.hasClockControlFunction);
+  };
+
+  showClockOnLeftClickAction = (event: MouseEvent) => {
     event.preventDefault();
 
     this.showClock();
-    this.timer = window.setInterval(() => {
-      this.setState({
-        time: new Date()
-      })
-      // eslint-disable-next-line no-console
-      console.log(this.state.time);
-    }, 1000);
-    this.timer;
-  })
+    this.timerIntervalReset();
+    this.timer();
+  };
+
+  showClockOnLeftClick = window.addEventListener(
+    'click',
+    this.showClockOnLeftClickAction,
+  );
 
   componentDidMount() {
-    this.setState({time: new Date()});
-    this.timerId;
-    this.timer;
-    this.hasClockControl;
+    this.setState({ time: new Date() });
+    this.timerId();
+    this.timer();
+    this.hasClockControl();
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>): void {
-    if(prevState.clockName !== this.state.clockName) {
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+    prevState: Readonly<State>,
+  ): void {
+    if (prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
-      console.warn(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+      console.warn(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
     }
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timer);
+    window.clearInterval(this.timerInterval);
   }
 
   render() {
     return (
-        <div className="App">
+      <div className="App">
         <h1>React clock</h1>
-  
-        {
-          this.state.hasClock
-            &&
+
+        {this.state.hasClock && (
           <Clock name={this.state.clockName} time={this.state.time} />
-        }
+        )}
       </div>
     );
   }
-};
+}
