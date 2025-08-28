@@ -23,7 +23,7 @@ export class App extends React.Component<{}, State> {
   componentDidMount() {
     // This code starts a timer
     this.timerId = window.setInterval(() => {
-      this.setState((prevState) => ({
+      this.setState(prevState => ({
         ...prevState,
         clockName: getRandomName(),
       }));
@@ -31,7 +31,9 @@ export class App extends React.Component<{}, State> {
   }
 
   componentWillUnmount() {
-    if (this.timerId) window.clearInterval(this.timerId);
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
   }
 
   render() {
@@ -39,9 +41,7 @@ export class App extends React.Component<{}, State> {
       <div className="App">
         <h1>React clock</h1>
 
-          {this.state.hasClock && (
-            <Clock name={this.state.clockName} />
-          )}
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }

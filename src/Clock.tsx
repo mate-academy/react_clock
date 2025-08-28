@@ -2,7 +2,7 @@ import React from 'react';
 // import {clearInterval} from 'timers';
 
 type Props = {
-  name: string;  // Clock буде отримувати ім'я годинника від App
+  name: string; // Clock буде отримувати ім'я годинника від App
 };
 
 type State = {
@@ -13,16 +13,16 @@ export class Clock extends React.Component<Props, State> {
   private timerId?: number;
 
   state: State = {
-    time: new Date().toUTCString().slice(-12, -4),
-  }
+    time: new Date().toLocaleTimeString(),
+  };
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       // eslint-disable-next-line no-console
-      console.log('Clock tick:', new Date().toUTCString().slice(-12, -4));
+      console.log('Clock tick:', new Date().toLocaleTimeString());
 
       this.setState({
-        time: new Date().toUTCString().slice(-12, -4),
+        time: new Date().toLocaleTimeString(),
       });
     }, 1000);
   }
