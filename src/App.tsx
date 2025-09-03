@@ -46,23 +46,6 @@ export class App extends React.Component<{}, State> {
     window.clearInterval(this.timerId);
   }
 
-  componentDidUpdate(
-    _prevProps: Readonly<{}>,
-    prevState: Readonly<State>,
-  ): void {
-    if (prevState.hasClock !== this.state.hasClock) {
-      window.clearInterval(this.timerId);
-
-      if (this.state.hasClock) {
-        this.setState({ clockName: getRandomName() });
-
-        this.timerId = window.setInterval(() => {
-          this.setState({ clockName: getRandomName() });
-        }, 3300);
-      }
-    }
-  }
-
   render(): React.ReactNode {
     return (
       <div className="App">
