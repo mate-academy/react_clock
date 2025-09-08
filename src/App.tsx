@@ -44,7 +44,7 @@ export class App extends React.Component<{}, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.timerId);
-    document.removeEventListener('contextmenu', this.handleClick);
+    document.removeEventListener('click', this.handleClick);
     document.removeEventListener('contextmenu', this.handleContextMenu);
   }
   // this code stops the timer
