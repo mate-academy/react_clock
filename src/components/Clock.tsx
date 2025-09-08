@@ -15,22 +15,29 @@ export class Clock extends React.Component<Props, State> {
 
   timerId = 0;
 
-  get formattedTime() {
-    return this.state.today.toUTCString().slice(-12, -4);
+  formatTime(date: Date): string {
+    return date.toUTCString().slice(-12, -4);
   }
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      this.setState({ today: new Date() });
+      const now = new Date();
+
+      this.setState({ today: now });
+
+      // eslint-disable-next-line no-console
+      console.log(this.formatTime(now));
     }, 1000);
   }
 
-  componentDidUpdate(_prevProps: Readonly<Props>, prevState: Readonly<State>) {
-    const nameChanged = this.state.today !== prevState.today;
+  componentDidUpdate(prevProps: Readonly<Props>) {
+    const nameChanged = this.props.name !== prevProps.name;
 
     if (nameChanged) {
-      // eslint-disable-next-line no-console
-      console.log(this.formattedTime);
+      if (this.props.name) {
+        // eslint-disable-next-line no-console
+        console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      }
     }
   }
 
@@ -47,7 +54,7 @@ export class Clock extends React.Component<Props, State> {
 
         {' time is '}
 
-        <span className="Clock__time">{this.formattedTime}</span>
+        <span className="Clock__time">{this.formatTime(this.state.today)}</span>
       </div>
     );
   }

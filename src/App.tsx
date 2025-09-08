@@ -21,38 +21,31 @@ export class App extends React.Component<{}, State> {
 
   timerId = 0;
 
+  handleClick = () => {
+    this.setState({ hasClock: true });
+  };
+
+  handleContextMenu = (e: MouseEvent) => {
+    e.preventDefault(); // not to show the context menu
+
+    this.setState({ hasClock: false });
+  };
+
   componentDidMount() {
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault(); // not to show the context menu
+    document.addEventListener('contextmenu', this.handleContextMenu);
 
-      this.setState({ hasClock: false });
-    });
-
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.handleClick);
   }
   // This code starts a timer
 
-  componentDidUpdate(_prevProps: {}, prevState: Readonly<State>) {
-    const nameChanged = this.state.clockName !== prevState.clockName;
-
-    if (nameChanged) {
-      if (this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.warn(
-          `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-        );
-      }
-    }
-  }
-
   componentWillUnmount() {
     window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.handleClick);
+    document.removeEventListener('contextmenu', this.handleContextMenu);
   }
   // this code stops the timer
 
