@@ -1,8 +1,11 @@
 import React from 'react';
-import { Clock } from './components/Clock.js';
+import { Clock } from './components/Clock.js'; // se seu tsconfig NÃO for NodeNext, troque para './components/Clock'
 import './App.scss';
 
-type AppState = { hasClock: boolean; clockName: string };
+type AppState = {
+  hasClock: boolean;
+  clockName: string;
+};
 
 export class App extends React.Component<Record<string, never>, AppState> {
   private nameTimerId = 0;
@@ -37,6 +40,7 @@ export class App extends React.Component<Record<string, never>, AppState> {
   componentDidMount() {
     document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
+
     this.nameTimerId = window.setInterval(this.handleNameChange, 3300);
   }
 
