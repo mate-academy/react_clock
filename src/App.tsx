@@ -27,9 +27,7 @@ export class App extends React.Component {
     this.setState({ hasClock: false });
   };
 
-  handleClockShow = (event: MouseEvent) => {
-    event.preventDefault();
-
+  handleClockShow = () => {
     this.setState({ hasClock: true });
   };
 
