@@ -18,26 +18,18 @@ interface ClockState {
 class Clock extends React.Component<ClockProps, ClockState> {
   timerId: number | null = null;
 
-  constructor(props: ClockProps) {
-    super(props);
-
-    this.state = {
-      currentTime: new Date().toLocaleTimeString('en-GB', {
-        timeZone: 'UTC',
-        hour12: false,
-      })
-    };
-  }
+  // State initialization as class property
+  state: ClockState = {
+    currentTime: new Date().toUTCString().slice(-12, -4),
+  };
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
-      const newTime = new Date().toLocaleTimeString('en-GB', {
-        timeZone: 'UTC',
-        hour12: false,
-      });
+      const newTime = new Date().toUTCString().slice(-12, -4);
 
       this.setState({ currentTime: newTime });
 
+      // eslint-disable-next-line no-console
       console.log(newTime);
     }, 1000);
   }
@@ -45,7 +37,7 @@ class Clock extends React.Component<ClockProps, ClockState> {
   componentDidUpdate(prevProps: ClockProps) {
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
-      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`); // Додано eslint-disable коментар
     }
   }
 
@@ -77,13 +69,10 @@ interface AppState {
 export class App extends React.Component<{}, AppState> {
   nameTimerId: number | null = null;
 
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      hasClock: true,
-      clockName: 'Clock-0'
-    };
-  }
+  state: AppState = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
   componentDidMount() {
     document.addEventListener('contextmenu', this.handleContextMenu);
