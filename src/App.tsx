@@ -41,12 +41,6 @@ export class App extends React.PureComponent<Props, State> {
     }, 3300);
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>): void {
-    if (prevState.clockName !== this.state.clockName) {
-      console.warn(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
-    }
-  }
-
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
     window.removeEventListener('click', this.handleShowClock);
@@ -59,7 +53,7 @@ export class App extends React.PureComponent<Props, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && <Clock clockName={clockName} />}
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }

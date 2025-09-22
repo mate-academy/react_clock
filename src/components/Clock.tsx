@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Props {
-  clockName: string;
+  name: string;
 }
 
 interface State {
@@ -25,6 +25,16 @@ export class Clock extends React.PureComponent<Props, State> {
     }, 1000);
   }
 
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+  ): void {
+    if (prevProps.name !== this.props.name) {
+      console.warn(
+        `Renamed from ${prevProps.name} to ${this.props.name}`,
+      );
+    }
+  }
+
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
   }
@@ -34,7 +44,7 @@ export class Clock extends React.PureComponent<Props, State> {
 
     return (
       <div className="Clock">
-        <strong className="Clock__name">{this.props.clockName}</strong>
+        <strong className="Clock__name">{this.props.name}</strong>
 
         {' time is '}
 
