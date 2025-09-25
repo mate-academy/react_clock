@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Components/Clock/Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +8,60 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+type State = {
+  hasClock: boolean;
+  clockName: string;
+};
+
+export class App extends React.Component<{}, State> {
+  state: State = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
+
+  timerId = 0;
+
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault(); // not to show the context menu
+
+    this.setState({ hasClock: false });
+  };
+
+  handleLeftClick = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: true, clockName: getRandomName() });
+  };
 
   // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  componentDidMount(): void {
+    this.timerId = window.setInterval(() => {
+      if (this.state.hasClock) {
+        this.setState({ clockName: getRandomName() });
+      }
+    }, 3300);
+
+    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('click', this.handleLeftClick);
+  }
 
   // this code stops the timer
-  window.clearInterval(timerId);
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('click', this.handleLeftClick);
+  }
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  render() {
+    const { hasClock } = this.state;
 
-        {' time is '}
+    return (
+      <div className="App">
+        <h1>React clock</h1>
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+        {hasClock && <Clock clockName={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
