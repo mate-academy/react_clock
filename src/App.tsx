@@ -41,15 +41,6 @@ export class App extends React.Component<{}, AppState> {
     }, 3300);
   }
 
-  componentDidUpdate(_prevProps: {}, prevState: AppState) {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-      );
-    }
-  }
-
   componentWillUnmount() {
     document.removeEventListener('click', this.showClock);
     document.removeEventListener('contextmenu', this.hideClock);
