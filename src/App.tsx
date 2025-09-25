@@ -22,30 +22,24 @@ export class App extends React.Component<{}, State> {
   timerId = 0;
 
   handleRightClick = (event: MouseEvent) => {
-    event.preventDefault(); // not to show the context menu
+    event.preventDefault();
 
     this.setState({ hasClock: false });
   };
 
-  handleLeftClick = (event: MouseEvent) => {
-    event.preventDefault();
-
-    this.setState({ hasClock: true, clockName: getRandomName() });
+  handleLeftClick = () => {
+    this.setState({ hasClock: true });
   };
 
-  // This code starts a timer
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
-      if (this.state.hasClock) {
-        this.setState({ clockName: getRandomName() });
-      }
+      this.setState({ clockName: getRandomName() });
     }, 3300);
 
     document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
   }
 
-  // this code stops the timer
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
 
@@ -60,7 +54,7 @@ export class App extends React.Component<{}, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && <Clock clockName={this.state.clockName} />}
+        {hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }
