@@ -14,14 +14,12 @@ export class Clock extends React.Component<ClockProps, ClockState> {
 
   constructor(props: ClockProps) {
     super(props);
-    this.state = {
-      time: this.getCurrentTime(),
-    };
+    this.state = { time: this.getCurrentTime() };
   }
 
   getCurrentTime = () => new Date().toUTCString().slice(-12, -4);
 
-  componentDidMount() {
+  startTimer = () => {
     this.timerId = window.setInterval(() => {
       const currentTime = this.getCurrentTime();
 
@@ -30,11 +28,26 @@ export class Clock extends React.Component<ClockProps, ClockState> {
       // eslint-disable-next-line no-console
       console.log(currentTime);
     }, 1000);
+  };
+
+  stopTimer = () => {
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
+  };
+
+  componentDidMount() {
+    this.startTimer();
   }
 
   componentWillUnmount() {
-    if (this.timerId) {
-      clearInterval(this.timerId);
+    this.stopTimer();
+  }
+
+  componentDidUpdate(prevProps: ClockProps) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
 
