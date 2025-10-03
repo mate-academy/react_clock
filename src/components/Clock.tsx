@@ -5,7 +5,6 @@ function getFormattedTime(time: Date): string {
 }
 
 type Props = {
-  today: Date;
   name: string;
 };
 
@@ -17,25 +16,25 @@ export class Clock extends React.Component<Props, State> {
   intervalId: NodeJS.Timeout | null = null;
 
   state: State = {
-    currentTime: this.props.today,
+    currentTime: new Date(),
   };
 
   componentDidMount(): void {
     this.intervalId = setInterval(() => {
-      this.setState({ currentTime: new Date() });
+      const time = new Date();
+
+      this.setState({ currentTime: time });
 
       // eslint-disable-next-line no-console
-      console.log(getFormattedTime(this.state.currentTime));
+      console.log(getFormattedTime(time));
     }, 1000);
   }
 
-  shouldComponentUpdate(nextProps: Readonly<Props>): boolean {
-    return nextProps.name !== this.props.name;
-  }
-
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    // eslint-disable-next-line no-console
-    console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    if (this.props.name !== prevProps.name) {
+      // eslint-disable-next-line no-console
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
   }
 
   componentWillUnmount() {
