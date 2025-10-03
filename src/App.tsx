@@ -1,5 +1,11 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Clock';
+
+type State = {
+  hasClock: boolean;
+  clockName: string;
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +13,58 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.PureComponent<{}, State> {
+  state: State = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  private nameTimerId?: number;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  private handleDocClick = () => {
+    this.setState({ hasClock: true });
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  private handleDocContextMenu = (e: MouseEvent) => {
+    e.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  componentDidMount(): void {
+    document.addEventListener('click', this.handleDocClick);
+    document.addEventListener('contextmenu', this.handleDocContextMenu);
+    this.nameTimerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+  }
 
-        {' time is '}
+  componentWillUnmount(): void {
+    document.removeEventListener('click', this.handleDocClick);
+    document.removeEventListener('contextmenu', this.handleDocContextMenu);
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+    if (this.nameTimerId) {
+      window.clearInterval(this.nameTimerId);
+    }
+  }
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        <div className="box is-flex is-justify-content-space-between">
+          <button onClick={() => this.setState({ hasClock: false })}>
+            Hide
+          </button>
+          <button onClick={() => this.setState({ hasClock: true })}>
+            Show
+          </button>
+        </div>
+
+        {hasClock && <Clock name={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
