@@ -13,7 +13,7 @@ export class Clock extends React.Component<Props, State> {
     time: new Date().toUTCString().slice(-12, -4),
   };
 
-  intervalId: number | undefined;
+  intervalId: number | null = null;
 
   componentDidMount() {
     this.intervalId = window.setInterval(() => {
@@ -26,8 +26,17 @@ export class Clock extends React.Component<Props, State> {
     }, 1000);
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
   componentWillUnmount() {
-    window.clearInterval(this.intervalId);
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
   render() {

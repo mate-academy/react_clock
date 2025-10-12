@@ -21,7 +21,7 @@ export class App extends React.Component<Props, State> {
     clockName: 'Clock-0',
   };
 
-  nameTimerId: number | undefined;
+  nameTimerId: number | null = null;
 
   componentDidMount() {
     document.addEventListener('click', this.showClock);
@@ -38,15 +38,8 @@ export class App extends React.Component<Props, State> {
     document.removeEventListener('click', this.showClock);
     document.removeEventListener('contextmenu', this.hideClock);
 
-    window.clearInterval(this.nameTimerId);
-  }
-
-  componentDidUpdate(_: Props, prevState: State) {
-    if (this.state.hasClock && prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-      );
+    if (this.nameTimerId !== null) {
+      window.clearInterval(this.nameTimerId);
     }
   }
 
