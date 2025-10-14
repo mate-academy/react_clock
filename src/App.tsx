@@ -15,11 +15,16 @@ type State = {
 
 export class App extends React.Component<{}, State> {
   state: State = {
-    hasClock: false,
+    hasClock: true,
     clockName: 'Clock-0',
   };
 
   timerId = 0;
+
+  handleContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
+    this.handleRightClick();
+  };
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
@@ -30,13 +35,13 @@ export class App extends React.Component<{}, State> {
 
     document.addEventListener('click', this.handleLeftClick);
 
-    document.addEventListener('contextmenu', this.handleRightClick);
+    document.addEventListener('contextmenu', this.handleContextMenu);
   }
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
     document.removeEventListener('click', this.handleLeftClick);
-    document.removeEventListener('contextmenu', this.handleRightClick);
+    document.removeEventListener('contextmenu', this.handleContextMenu);
   }
 
   handleLeftClick = () => {
@@ -45,9 +50,7 @@ export class App extends React.Component<{}, State> {
     });
   };
 
-  handleRightClick = (event: MouseEvent) => {
-    event.preventDefault();
-
+  handleRightClick = () => {
     this.setState({
       hasClock: false,
     });
