@@ -1,7 +1,7 @@
 import React from 'react';
 
 type Props = {
-  clockName: string;
+  name: string;
 };
 
 interface State {
@@ -26,11 +26,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
-    if (prevProps.clockName !== this.props.clockName) {
+    if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
-      console.warn(
-        `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
-      );
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
 
@@ -43,7 +41,7 @@ export class Clock extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <div className="Clock">
-        <strong className="Clock__name">{this.props.clockName}</strong>
+        <strong className="Clock__name">{this.props.name}</strong>
 
         {' time is '}
 
