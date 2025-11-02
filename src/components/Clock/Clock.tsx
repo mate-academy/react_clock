@@ -39,6 +39,13 @@ export class Clock extends React.Component<ClockProps, ClockState> {
     this.setState({ timerId: timerId as unknown as number });
   }
 
+  componentDidUpdate(prevProps: ClockProps): void {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
   componentWillUnmount(): void {
     // Зупинка таймера
     if (this.state.timerId !== null) {

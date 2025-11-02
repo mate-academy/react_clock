@@ -51,18 +51,6 @@ export class App extends React.Component<{}, AppState> {
     this.setState({ nameTimerId: timerId as unknown as number });
   }
 
-  componentDidUpdate(_prevProps: {}, prevState: AppState): void {
-    // Логування зміни імені
-    if (prevState.clockName !== this.state.clockName) {
-      if (this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.warn(
-          `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-        );
-      }
-    }
-  }
-
   componentWillUnmount(): void {
     // Очищення таймера зміни назви
     this.stopNameTimer();
