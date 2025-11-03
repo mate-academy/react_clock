@@ -3,6 +3,7 @@ import './App.scss';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
+
   return `Clock-${value}`;
 }
 
@@ -11,14 +12,10 @@ type State = {
   now: Date;
 };
 
-
 export class App extends React.Component<{}, State> {
   private timerId: number | null = null;
 
-  constructor(props: {}) {
-    super(props);
-    this.state = { clockName: 'Clock-0', now: new Date() };
-  }
+  state = { clockName: 'Clock-0', now: new Date() };
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
