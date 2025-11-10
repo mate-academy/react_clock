@@ -24,14 +24,10 @@ export class App extends React.PureComponent<{}, State> {
   handleDocumentRightClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
-    //eslint-disable-next-line no-console
-    console.log(event.clientX);
   };
 
-  handleDocumentLeftClick = (event: MouseEvent) => {
+  handleDocumentLeftClick = () => {
     this.setState({ hasClock: true });
-    //eslint-disable-next-line no-console
-    console.log(event.clientY);
   };
 
   componentDidMount(): void {
