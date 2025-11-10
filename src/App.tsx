@@ -26,7 +26,8 @@ export class App extends React.PureComponent<{}, State> {
     this.setState({ hasClock: false });
   };
 
-  handleDocumentLeftClick = () => {
+  handleDocumentLeftClick = (event: MouseEvent) => {
+    event.preventDefault();
     this.setState({ hasClock: true });
   };
 
