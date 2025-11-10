@@ -41,7 +41,7 @@ export class Clock extends React.PureComponent<Props, State> {
 
         {' time is '}
 
-        <span className="Clock__time"> {this.state.time} </span>
+        <span className="Clock__time">{this.state.time}</span>
       </div>
     );
   }
