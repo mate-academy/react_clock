@@ -18,16 +18,14 @@ interface ClockState {
 class Clock extends React.Component<ClockProps, ClockState> {
   private timerId: number | null = null;
 
-  constructor(props: ClockProps) {
-    super(props);
-    this.state = {
-      time: new Date().toUTCString().slice(-12, -4),
-    };
-  }
+  state: ClockState = {
+    time: new Date().toUTCString().slice(-12, -4),
+  };
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
       const newTime = new Date().toUTCString().slice(-12, -4);
+
       this.setState({ time: newTime });
       // eslint-disable-next-line no-console
       console.log(newTime);
@@ -47,9 +45,7 @@ class Clock extends React.Component<ClockProps, ClockState> {
 
         {' time is '}
 
-        <span className="Clock__time">
-          {this.state.time}
-        </span>
+        <span className="Clock__time">{this.state.time}</span>
       </div>
     );
   }
@@ -63,21 +59,19 @@ interface AppState {
 export class App extends React.Component<{}, AppState> {
   private nameTimerId: number | null = null;
 
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      hasClock: true,
-      clockName: 'Clock-0',
-    };
-  }
+  state: AppState = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
   componentDidMount(): void {
     this.nameTimerId = window.setInterval(() => {
       const newName = getRandomName();
-      const oldName = this.state.clockName;
+      //const oldName = this.state.clockName;
+
       this.setState({ clockName: newName });
       // eslint-disable-next-line no-console
-      console.warn(`Renamed from ${oldName} to ${newName}`);
+      //console.warn(`Renamed from ${oldName} to ${newName}`);
     }, 3300);
 
     document.addEventListener('contextmenu', this.handleContextMenu);
@@ -88,6 +82,7 @@ export class App extends React.Component<{}, AppState> {
     if (this.nameTimerId !== null) {
       window.clearInterval(this.nameTimerId);
     }
+
     document.removeEventListener('contextmenu', this.handleContextMenu);
     document.removeEventListener('click', this.handleClick);
   }
@@ -95,7 +90,9 @@ export class App extends React.Component<{}, AppState> {
   componentDidUpdate(_prevProps: {}, prevState: AppState): void {
     if (prevState.clockName !== this.state.clockName) {
       // eslint-disable-next-line no-console
-      console.warn(`Renamed from ${prevState.clockName} to ${this.state.clockName}`);
+      console.warn(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
     }
   }
 
@@ -113,9 +110,7 @@ export class App extends React.Component<{}, AppState> {
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock && (
-          <Clock name={this.state.clockName} />
-        )}
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }
