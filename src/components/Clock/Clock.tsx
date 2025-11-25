@@ -36,6 +36,17 @@ export class Clock extends React.Component<ClockProps, ClockState> {
     }
   }
 
+  componentDidUpdate(prevProps: Readonly<ClockProps>): void {
+    if (prevProps.name !== this.props.name) {
+      if (prevProps.name) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `[Clock] Name changed from ${prevProps.name} to ${this.props.name}`,
+        );
+      }
+    }
+  }
+
   render() {
     return (
       <div className="Clock">

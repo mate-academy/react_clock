@@ -57,13 +57,11 @@ export class App extends React.Component<{}, State> {
   }
 
   componentDidUpdate(_prevProps: Readonly<{}>, prevState: Readonly<State>) {
-    if (prevState.clockName !== this.state.clockName) {
-      if (prevState.clockName && this.state.hasClock) {
-        // eslint-disable-next-line no-console
-        console.warn(
-          `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-        );
-      }
+    if (prevState.clockName !== this.state.clockName && prevState.clockName) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
     }
   }
 
