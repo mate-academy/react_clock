@@ -47,18 +47,6 @@ export class App extends React.Component<{}, State> {
     document.removeEventListener('click', this.handleDocumentLeftClick);
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<{}>,
-    prevState: Readonly<State>,
-  ): void {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-      );
-    }
-  }
-
   render() {
     return (
       <div className="App">

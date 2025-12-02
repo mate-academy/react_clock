@@ -13,7 +13,14 @@ export class Clock extends React.Component<Props, State> {
     currentTime: new Date().toUTCString().slice(-12, -4),
   };
 
-  timerClock = 0;
+  componentDidUpdate(prevProps: Props): void {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
+  }
+
+  timerClock: number | null = null;
 
   componentDidMount(): void {
     this.timerClock = window.setInterval(() => {
@@ -26,7 +33,9 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.timerClock);
+    if (this.timerClock != null) {
+      clearInterval(this.timerClock);
+    }
   }
 
   render() {
