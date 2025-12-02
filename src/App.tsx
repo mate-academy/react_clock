@@ -26,25 +26,25 @@ export class App extends React.Component {
     this.setState({ hasClock: visibility });
   };
 
-  contextMenuHandler = (event: MouseEvent) =>
+  handleContextMenu = (event: MouseEvent) =>
     this.toggleClockVisibility(false, event);
 
-  clickHandler = (event: MouseEvent) => this.toggleClockVisibility(true, event);
+  handleClick = (event: MouseEvent) => this.toggleClockVisibility(true, event);
 
   changeClockName = () => {
     this.setState({ clockName: getRandomName() });
   };
 
   componentDidMount(): void {
-    document.addEventListener('contextmenu', this.contextMenuHandler);
-    document.addEventListener('click', this.clickHandler);
+    document.addEventListener('contextmenu', this.handleContextMenu);
+    document.addEventListener('click', this.handleClick);
     this.timerId = window.setInterval(this.changeClockName, 3300);
   }
 
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
-    document.removeEventListener('contextmenu', this.contextMenuHandler);
-    document.removeEventListener('click', this.clickHandler);
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleClick);
   }
 
   render() {
