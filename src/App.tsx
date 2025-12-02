@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { Clock } from './Clock';
+
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
 
@@ -11,34 +12,39 @@ type State = {
   hasClock: boolean;
   clockName: string;
 };
+
 export class App extends React.Component<{}, State> {
   state: Readonly<State> = {
     hasClock: true,
     clockName: 'Clock-0',
   };
 
-  timerNameId = 0;
+  timerId = 0;
 
   handleDocumentRightClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
-    clearInterval(this.timerNameId);
-    this.timerNameId = 0;
   };
 
   handleDocumentLeftClick = () => {
-    this.setState({ hasClock: true }, () => {
-      if (this.timerNameId === 0) {
-        this.timerNameId = window.setInterval(() => {
-          this.setState({ clockName: getRandomName() });
-        }, 3300);
-      }
-    });
+    this.setState({ hasClock: true });
   };
 
   componentDidMount(): void {
     document.addEventListener('contextmenu', this.handleDocumentRightClick);
     document.addEventListener('click', this.handleDocumentLeftClick);
+
+    this.timerId = window.setInterval(() => {
+      if (this.state.hasClock) {
+        this.setState({ clockName: getRandomName() });
+      }
+    }, 3300);
+  }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.handleDocumentRightClick);
+    document.removeEventListener('click', this.handleDocumentLeftClick);
   }
 
   componentDidUpdate(
@@ -51,12 +57,6 @@ export class App extends React.Component<{}, State> {
         `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
       );
     }
-  }
-
-  componentWillUnmount(): void {
-    window.clearInterval(this.timerNameId);
-    document.removeEventListener('contextmenu', this.handleDocumentRightClick);
-    document.removeEventListener('click', this.handleDocumentLeftClick);
   }
 
   render() {
