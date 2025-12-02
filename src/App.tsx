@@ -1,5 +1,11 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Clock';
+
+type State = {
+  hasClock: boolean;
+  clockName: string;
+};
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +13,46 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+export class App extends React.Component {
+  state: State = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  timerId = 0;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  toggleClockVisibility = (visibility: boolean, event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: visibility });
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  contextMenuHandler = (event: MouseEvent) =>
+    this.toggleClockVisibility(false, event);
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  clickHandler = (event: MouseEvent) => this.toggleClockVisibility(true, event);
 
-        {' time is '}
+  changeClockName = () => {
+    this.setState({ clockName: getRandomName() });
+  };
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  componentDidMount(): void {
+    document.addEventListener('contextmenu', this.contextMenuHandler);
+    document.addEventListener('click', this.clickHandler);
+    this.timerId = window.setInterval(this.changeClockName, 3300);
+  }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.timerId);
+    document.removeEventListener('contextmenu', this.contextMenuHandler);
+    document.removeEventListener('click', this.clickHandler);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
