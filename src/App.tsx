@@ -53,17 +53,17 @@ export class App extends React.Component<Props, State> {
     document.removeEventListener('click', this.handleLeftClick);
   }
 
-  componentDidUpdate(
-    _prevProps: Readonly<{}>,
-    prevState: Readonly<State>,
-  ): void {
-    if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-      );
-    }
-  }
+  // componentDidUpdate(
+  //   _prevProps: Readonly<{}>,
+  //   prevState: Readonly<State>,
+  // ): void {
+  //   if (prevState.clockName !== this.state.clockName && this.state.hasClock) {
+  //     // eslint-disable-next-line no-console
+  //     console.warn(
+  //       `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+  //     );
+  //   }
+  // }
 
   render() {
     return (
