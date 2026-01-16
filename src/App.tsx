@@ -7,50 +7,49 @@ function getRandomName(): string {
 
   return `Clock-${value}`;
 }
-type Props = {
 
-}
+type Props = {};
 
 type State = {
-  today: Date;
   clockName: string;
-  hasClock: boolean,
-}
-
+  hasClock: boolean;
+};
 
 export class App extends React.Component<Props, State> {
   private timerId: number | null = null;
+
   state: Readonly<State> = {
-    today: new Date(),
     clockName: 'Clock-0',
     hasClock: true,
   };
 
+  hideClock = (event: MouseEvent) => {
+    event.preventDefault();
+    this.setState({ hasClock: false });
+  };
 
+  showClock = () => {
+    this.setState({ hasClock: true });
+  };
 
   componentDidMount() {
-    document.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault();
-      this.setState({
-        hasClock: false,
-      });
-    });
+    document.addEventListener('contextmenu', this.hideClock)
 
     this.timerId = window.setInterval(() => {
       this.setState({
         clockName: getRandomName(),
-      })
+      });
     }, 3300);
 
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.showClock);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', () => {
+    document.removeEventListener('contextmenu', () => { });
 
-    })
+    if (this.timerId) {
+      window.clearInterval(this.timerId);
+    }
   }
 
   render() {
@@ -63,6 +62,4 @@ export class App extends React.Component<Props, State> {
       </div>
     );
   }
-
-
-};
+}

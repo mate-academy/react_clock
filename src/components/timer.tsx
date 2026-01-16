@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type ClockProps = {
   name: string;
@@ -17,6 +17,7 @@ export class Clock extends React.Component<ClockProps, ClockState> {
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
+      // eslint-disable-next-line no-console
       console.log('Tick');
 
       this.setState({ today: new Date() });
@@ -24,17 +25,17 @@ export class Clock extends React.Component<ClockProps, ClockState> {
   }
 
   componentDidUpdate(prevProps: ClockProps) {
-  if (prevProps.name !== this.props.name) {
-    console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    }
   }
-}
 
   componentWillUnmount() {
     if (this.timerId) {
       window.clearInterval(this.timerId);
     }
   }
-
 
   render() {
     const { name } = this.props;
