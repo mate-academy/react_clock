@@ -33,7 +33,7 @@ export class App extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.hideClock)
+    document.addEventListener('contextmenu', this.hideClock);
 
     this.timerId = window.setInterval(() => {
       this.setState({
@@ -45,7 +45,7 @@ export class App extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', () => { });
+    document.removeEventListener('contextmenu', this.hideClock);
 
     if (this.timerId) {
       window.clearInterval(this.timerId);
