@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -9,44 +10,23 @@ function getRandomName(): string {
 
 type State = {
   clockName: string;
-  currentTime: Date;
   hasClock: boolean;
 };
 
 export class App extends React.Component<{}, State> {
   nameTimerId: number | null = null;
 
-  timeTimerId: number | null = null;
-
   state: State = {
     clockName: 'Clock-0',
-    currentTime: new Date(),
     hasClock: true,
   };
 
   handleLeftClick = () => {
-    this.setState({ hasClock: true, currentTime: new Date() });
-    if (!this.timeTimerId) {
-      this.timeTimerId = window.setInterval(() => {
-        const newTime = new Date();
-
-        // eslint-disable-next-line no-console
-        console.log(newTime.toUTCString().slice(-12, -4));
-
-        this.setState({
-          currentTime: newTime,
-        });
-      }, 1000);
-    }
+    this.setState({ hasClock: true });
   };
 
   handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
-    if (this.timeTimerId) {
-      clearInterval(this.timeTimerId);
-      this.timeTimerId = null;
-    }
-
     this.setState({ hasClock: false });
   };
 
@@ -58,17 +38,6 @@ export class App extends React.Component<{}, State> {
         clockName: getRandomName(),
       });
     }, 3300);
-
-    this.timeTimerId = window.setInterval(() => {
-      const newTime = new Date();
-
-      // eslint-disable-next-line no-console
-      console.log(newTime.toUTCString().slice(-12, -4));
-
-      this.setState({
-        currentTime: newTime,
-      });
-    }, 1000);
   }
 
   componentDidUpdate(
@@ -97,30 +66,16 @@ export class App extends React.Component<{}, State> {
     if (this.nameTimerId) {
       window.clearInterval(this.nameTimerId);
     }
-
-    if (this.timeTimerId) {
-      window.clearInterval(this.timeTimerId);
-    }
   }
 
   render() {
-    const { clockName, currentTime, hasClock } = this.state;
+    const { clockName, hasClock } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && (
-          <div className="Clock">
-            <strong className="Clock__name">{clockName}</strong>
-
-            {' time is '}
-
-            <span className="Clock__time">
-              {currentTime.toUTCString().slice(-12, -4)}
-            </span>
-          </div>
-        )}
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }
