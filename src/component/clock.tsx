@@ -1,33 +1,33 @@
-import React from "react";
+import React from 'react';
 
 type State = {
-  time: Date,
-}
+  time: Date;
+};
 
 type Props = {
-  name: string,
-}
+  name: string;
+};
 
 export class Clock extends React.Component<Props, State> {
-
   state = {
     time: new Date(),
-  }
+  };
 
   newTime = 0;
 
   componentDidMount(): void {
     this.newTime = window.setInterval(() => {
-      this.setState({ time: new Date()})
-    }, 1000)
-    console.log(this.newTime)
-  } // eslint-disable-next-line no-console console.log(this.state.time);
+      this.setState({ time: new Date() });
+    // eslint-disable-next-line no-console
+    console.log(this.newTime);}, 1000);
+
+  }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.newTime)
+    window.clearInterval(this.newTime);
   }
-  render() {
 
+  render() {
     return (
       <div className="Clock">
         <strong className="Clock__name">{this.props.name}</strong>
@@ -36,7 +36,6 @@ export class Clock extends React.Component<Props, State> {
           {this.state.time.toUTCString().slice(-12, -4)}
         </span>
       </div>
-      )
+    );
   }
 }
-
