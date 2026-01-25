@@ -1,37 +1,54 @@
 import React from 'react';
 import './App.scss';
+import { Clock } from './component/clock';
+import { State } from './types/type';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+export class App extends React.Component<{}, State> {
+  state = {
+    hasClock: true,
+    clockName: 'Clock-0',
+  };
 
-  return `Clock-${value}`;
-}
+  timerId = 0;
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+  handleClickRight = (event: MouseEvent) => {
+    this.setState({ hasClock: false });
+    event.preventDefault();
+  };
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+  handleClickLeft = () => {
+    this.setState({ hasClock: true });
+  };
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  getRandomName = (): string => {
+    const value = Date.now().toString().slice(-12, -4);
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+    return `Clock-${value}`;
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  componentDidMount() {
+    document.addEventListener('contextmenu', this.handleClickRight);
+    document.addEventListener('click', this.handleClickLeft);
+    this.timerId = window.setInterval(() => {
+      this.setState({ clockName: this.getRandomName() });
+    }, 3300);
+  }
 
-        {' time is '}
+  componentWillUnmount() {
+    document.removeEventListener('contextmenu', this.handleClickRight);
+    document.removeEventListener('click', this.handleClickLeft);
+    window.clearInterval(this.timerId);
+  }
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App">
+        <h1>React clock</h1>
+
+        {hasClock && <Clock name={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
