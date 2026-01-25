@@ -5,7 +5,7 @@ function getDayTime(date: Date) {
 }
 
 interface ClockProps {
-  clockName: string;
+  name: string;
 }
 
 interface ClockState {
@@ -33,11 +33,9 @@ export class Clock extends React.Component<ClockProps, ClockState> {
     prevProps: Readonly<ClockProps>,
     prevState: Readonly<ClockState>,
   ): void {
-    if (prevProps.clockName !== this.props.clockName) {
+    if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
-      console.warn(
-        `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
-      );
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
 
     if (prevState.today !== this.state.today) {
@@ -49,7 +47,7 @@ export class Clock extends React.Component<ClockProps, ClockState> {
   render(): React.ReactNode {
     return (
       <div className="Clock">
-        <strong className="Clock__name">{this.props.clockName}</strong>
+        <strong className="Clock__name">{this.props.name}</strong>
 
         {' time is '}
 
