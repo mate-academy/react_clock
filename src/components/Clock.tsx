@@ -6,7 +6,6 @@ function getDayTime(date: Date) {
 
 interface ClockProps {
   clockName: string;
-  onClockNameChange: (name: string) => void;
 }
 
 interface ClockState {
@@ -20,22 +19,9 @@ export class Clock extends React.Component<ClockProps, ClockState> {
 
   timeId = 0;
 
-  getRandomName(): string {
-    const value = Date.now().toString().slice(-4);
-
-    return `Clock-${value}`;
-  }
-
   componentDidMount(): void {
-    window.setInterval(() => {
-      this.props.onClockNameChange(this.getRandomName());
-    }, 3300);
-
     this.timeId = window.setInterval(() => {
-      this.setState({ today: new Date() }, () => {
-        // eslint-disable-next-line no-console
-        console.log(getDayTime(this.state.today));
-      });
+      this.setState({ today: new Date() });
     }, 1000);
   }
 
@@ -43,12 +29,20 @@ export class Clock extends React.Component<ClockProps, ClockState> {
     window.clearInterval(this.timeId);
   }
 
-  componentDidUpdate(prevProps: Readonly<ClockProps>): void {
+  componentDidUpdate(
+    prevProps: Readonly<ClockProps>,
+    prevState: Readonly<ClockState>,
+  ): void {
     if (prevProps.clockName !== this.props.clockName) {
       // eslint-disable-next-line no-console
       console.warn(
         `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
       );
+    }
+
+    if (prevState.today !== this.state.today) {
+      // eslint-disable-next-line no-console
+      console.log(getDayTime(this.state.today));
     }
   }
 
