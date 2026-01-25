@@ -5,22 +5,18 @@ import { State } from './types/type';
 
 export class App extends React.Component<{}, State> {
   state = {
-    hasClock: false,
+    hasClock: true,
     clockName: 'Clock-0',
   };
 
   timerId = 0;
 
-  handleClickRigth = (event: MouseEvent) => {
-    // eslint-disable-next-line no-console
-    console.log(event);
+  handleClickRight = (event: MouseEvent) => {
     this.setState({ hasClock: false });
-    event.preventDefault()
+    event.preventDefault();
   };
 
-  handleClickLeft = (event: MouseEvent) => {
-    // eslint-disable-next-line no-console
-    console.log(event);
+  handleClickLeft = () => {
     this.setState({ hasClock: true });
   };
 
@@ -31,41 +27,27 @@ export class App extends React.Component<{}, State> {
   };
 
   componentDidMount() {
-    document.addEventListener('contextmenu', this.handleClickRigth);
+    document.addEventListener('contextmenu', this.handleClickRight);
     document.addEventListener('click', this.handleClickLeft);
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: this.getRandomName() });
     }, 3300);
-    // eslint-disable-next-line no-console
-    console.log('componentDidMount');
-  }
-
-  componentDidUpdate(
-    prevProps: Readonly<{}>,
-    prevState: Readonly<State>,
-  ): void {
-    if (prevState.clockName !== this.state.clockName) {
-      // eslint-disable-next-line no-console
-      return console.warn(
-        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
-      );
-    }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('contextmenu', this.handleClickRigth);
+    document.removeEventListener('contextmenu', this.handleClickRight);
     document.removeEventListener('click', this.handleClickLeft);
     window.clearInterval(this.timerId);
   }
 
   render() {
-    const { hasClock } = this.state;
+    const { hasClock, clockName } = this.state;
 
     return (
       <div className="App">
         <h1>React clock</h1>
 
-        {hasClock && <Clock name={this.state.clockName} />}
+        {hasClock && <Clock name={clockName} />}
       </div>
     );
   }
