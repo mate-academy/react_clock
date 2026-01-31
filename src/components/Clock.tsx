@@ -2,16 +2,28 @@ import React from 'react';
 
 type Props = {
   clockName: string;
+  // today більше не приходить через пропси
+};
+
+// Додаємо власний State для годинника
+type State = {
   today: Date;
 };
 
-export class Clock extends React.Component<Props> {
+export class Clock extends React.Component<Props, State> {
   timerId: number | undefined;
+
+  state = {
+    today: new Date(),
+  };
 
   componentDidMount() {
     this.timerId = window.setInterval(() => {
+      const now = new Date();
+
+      this.setState({ today: now });
       // eslint-disable-next-line no-console
-      console.log(new Date().toUTCString().slice(-12, -4));
+      console.log(now.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
@@ -19,17 +31,18 @@ export class Clock extends React.Component<Props> {
     window.clearInterval(this.timerId);
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>) {
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.clockName !== this.props.clockName) {
       // eslint-disable-next-line no-console
-      console.log(
+      console.warn(
         `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
       );
     }
   }
 
   render() {
-    const { clockName, today } = this.props;
+    const { clockName } = this.props;
+    const { today } = this.state;
 
     return (
       <div className="Clock">
