@@ -22,7 +22,9 @@ export class App extends React.Component<Props, State> {
     return `Clock-${value}`;
   }
 
-  handleRightClickEvent = () => {
+  handleRightClickEvent = (event: MouseEvent) => {
+    event.preventDefault();
+
     this.setState({ hasClock: false });
   };
 
@@ -32,8 +34,11 @@ export class App extends React.Component<Props, State> {
 
   componentDidMount() {
     document.addEventListener('click', this.handleLeftClickEvent);
-    document.addEventListener('contextmenu', this.handleRightClickEvent);
-    window.setInterval(() => {
+    document.addEventListener('contextmenu', event => {
+      this.handleRightClickEvent(event);
+    });
+
+    this.timer = window.setInterval(() => {
       this.setState({ clockName: this.getRandomName() });
     }, 3300);
   }
