@@ -34,9 +34,7 @@ export class App extends React.Component<Props, State> {
 
   componentDidMount() {
     document.addEventListener('click', this.handleLeftClickEvent);
-    document.addEventListener('contextmenu', event => {
-      this.handleRightClickEvent(event);
-    });
+    document.addEventListener('contextmenu', this.handleRightClickEvent);
 
     this.timer = window.setInterval(() => {
       this.setState({ clockName: this.getRandomName() });
@@ -54,7 +52,7 @@ export class App extends React.Component<Props, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock && <Clock clockName={this.state.clockName} />}
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }
