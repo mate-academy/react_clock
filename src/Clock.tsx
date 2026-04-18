@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 
 type Props = {
@@ -20,6 +19,7 @@ export class Clock extends React.Component<Props, State> {
     this.timerId = window.setInterval(() => {
       const newDate = new Date().toUTCString().slice(-12, -4);
 
+      // eslint-disable-next-line no-console
       console.log(newDate);
       this.setState({ time: newDate });
     }, 1000);
@@ -33,6 +33,7 @@ export class Clock extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: Props): void {
     if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
       console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
