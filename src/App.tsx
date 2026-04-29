@@ -27,8 +27,7 @@ export class App extends React.Component<State> {
     this.setState({ hasClock: false });
   };
 
-  handleClick = (event: PointerEvent) => {
-    event.preventDefault();
+  handleClick = () => {
     this.setState({ hasClock: true });
   };
 
