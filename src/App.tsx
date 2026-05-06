@@ -9,24 +9,24 @@ function getRandomName(): string {
 }
 
 type State = {
-  hasTask: boolean;
+  hasClock: boolean;
   clockName: string;
 };
 
 export class App extends React.Component<{}, State> {
   state = {
-    hasTask: true,
+    hasClock: true,
     clockName: 'Clock-0',
   };
 
   timerId = 0;
 
   handleClick = () => {
-    this.setState({ hasTask: true });
+    this.setState({ hasClock: true });
   };
 
   handleContextMenu = () => {
-    this.setState({ hasTask: false });
+    this.setState({ hasClock: false });
   };
 
   componentDidMount(): void {
@@ -47,7 +47,7 @@ export class App extends React.Component<{}, State> {
     return (
       <div className="App" onClick={this.handleClick}>
         <h1>React clock</h1>
-        {this.state.hasTask === true ? (
+        {this.state.hasClock === true ? (
           <Clock clockName={this.state.clockName} />
         ) : null}
       </div>

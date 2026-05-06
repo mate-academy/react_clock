@@ -20,6 +20,7 @@ export class Clock extends React.Component<Props, State> {
       const time = Date.now();
 
       this.setState({ time });
+      // eslint-disable-next-line no-console
       console.log(new Date(time).toUTCString().slice(-12, -4));
     }, 1000);
   }
@@ -28,12 +29,14 @@ export class Clock extends React.Component<Props, State> {
     window.clearInterval(this.timerId);
   }
 
-  getSnapshotBeforeUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.clockName !== this.props.clockName) {
+      // eslint-disable-next-line no-console
       console.warn(
         `Renamed from ${prevProps.clockName} to ${this.props.clockName}`,
       );
     }
+
     return null;
   }
 
