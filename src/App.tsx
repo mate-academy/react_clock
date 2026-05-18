@@ -18,20 +18,16 @@ type Props = {
   hasClock?: boolean;
   clockName?: string;
 };
+
 export class Clock extends React.Component<Props> {
   state = { today: new Date() };
 
   timer: number = 0;
 
   componentDidMount() {
-    this.timer = window.setInterval(() => {
-      this.setState({ today: new Date() }, () => {
-        if (this.props.hasClock) {
-          // eslint-disable-next-line no-console
-          console.log(this.state.today.toUTCString().slice(-12, -4));
-        }
-      });
-    }, 1000);
+    if (this.props.hasClock) {
+      this.startTimer();
+    }
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -41,19 +37,24 @@ export class Clock extends React.Component<Props> {
 
     if (!prevProps.hasClock && this.props.hasClock) {
       this.setState({ today: new Date() });
-
-      this.timer = window.setInterval(() => {
-        this.setState({ today: new Date() });
-
-        // eslint-disable-next-line no-console
-        console.log(new Date().toUTCString().slice(-12, -4));
-      }, 1000);
+      this.startTimer();
     }
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timer);
   }
+
+  startTimer = () => {
+    window.clearInterval(this.timer);
+
+    this.timer = window.setInterval(() => {
+      this.setState({ today: new Date() }, () => {
+        // eslint-disable-next-line no-console
+        console.log(this.state.today.toUTCString().slice(-12, -4));
+      });
+    }, 1000);
+  };
 
   render() {
     const { hasClock, clockName } = this.props;
@@ -66,11 +67,11 @@ export class Clock extends React.Component<Props> {
     return (
       <div className="ClockContainer">
         <div className="Clock">
-          {hasClock && <strong className="Clock__name">{clockName}</strong>}
+          <strong className="Clock__name">{clockName}</strong>
           {' time is '}
 
           <span className="Clock__time">
-            {today ? today.toUTCString().slice(-12, -4) : ''}
+            {today.toUTCString().slice(-12, -4)}
           </span>
         </div>
       </div>
@@ -80,8 +81,6 @@ export class Clock extends React.Component<Props> {
 
 export class App extends React.Component<{}, State> {
   timerSec: number = 0;
-
-  timerClock: number = 0;
 
   state: State = {
     today: new Date(),
@@ -94,17 +93,12 @@ export class App extends React.Component<{}, State> {
       this.setState({ clockName: getRandomName() });
     }, 3300);
 
-    document.addEventListener('contextmenu', () => {
-      this.setState({ hasClock: false });
-    });
-
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('contextmenu', this.hideClock);
+    document.addEventListener('click', this.showClock);
   }
 
   componentDidUpdate(
-    prevProps: Readonly<State>,
+    prevProps: Readonly<{}>,
     prevState: Readonly<State>,
   ): void {
     if (
@@ -120,9 +114,21 @@ export class App extends React.Component<{}, State> {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerClock);
     window.clearInterval(this.timerSec);
+
+    document.removeEventListener('contextmenu', this.hideClock);
+    document.removeEventListener('click', this.showClock);
   }
+
+  hideClock = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: false });
+  };
+
+  showClock = () => {
+    this.setState({ hasClock: true });
+  };
 
   render(): React.ReactNode {
     const { today, clockName, hasClock } = this.state;
