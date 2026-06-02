@@ -1,5 +1,5 @@
-import React from 'react';
-import './App.scss';
+import { Component } from 'react';
+import { Clock } from './Clock';
 
 function getRandomName(): string {
   const value = Date.now().toString().slice(-4);
@@ -7,31 +7,62 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-export const App: React.FC = () => {
-  const today = new Date();
-  let clockName = 'Clock-0';
+interface AppState {
+  hasClock: boolean;
+  clockName: string;
+}
 
-  // This code starts a timer
-  const timerId = window.setInterval(() => {
-    clockName = getRandomName();
-  }, 3300);
+export class App extends Component<{}, AppState> {
+  renameTimerId: number | null = null;
 
-  // this code stops the timer
-  window.clearInterval(timerId);
+  state: AppState = {
+    hasClock: true, // Початково показуємо годинник (можеш змінити на false за потреби)
+    clockName: 'Clock-0',
+  };
 
-  return (
-    <div className="App">
-      <h1>React clock</h1>
+  // Обробник лівого кліку (показуємо)
+  handleLeftClick = () => {
+    this.setState({ hasClock: true });
+  };
 
-      <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+  // Обробник правого кліку (ховаємо)
 
-        {' time is '}
+  handleRightClick = (event: MouseEvent) => {
+    event.preventDefault(); // Блокуємо стандартне контекстне меню браузера
+    this.setState({ hasClock: false });
+  };
 
-        <span className="Clock__time">
-          {today.toUTCString().slice(-12, -4)}
-        </span>
+  componentDidMount() {
+    // Вішаємо глобальні слухачі на document
+    document.addEventListener('click', this.handleLeftClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
+
+    // Запускаємо таймер для зміни імені кожні 3300 мс
+    this.renameTimerId = window.setInterval(() => {
+      this.setState({ clockName: getRandomName() });
+    }, 3300);
+  }
+
+  componentWillUnmount() {
+    // Знімаємо слухачі, якщо App колись буде розмонтовано
+    document.removeEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+
+    if (this.renameTimerId) {
+      window.clearInterval(this.renameTimerId);
+    }
+  }
+
+  render() {
+    const { hasClock, clockName } = this.state;
+
+    return (
+      <div className="App" style={{ padding: '20px' }}>
+        <p>Left click to show, Right click to hide.</p>
+
+        {/* Рендеримо годинник тільки якщо hasClock === true */}
+        {hasClock && <Clock name={clockName} />}
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
