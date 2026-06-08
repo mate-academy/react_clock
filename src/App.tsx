@@ -27,13 +27,14 @@ export class Clock extends React.Component<Prop, ClockState> {
       const now = new Date();
 
       this.setState({ time: now });
-
+      // eslint-disable-next-line no-console
       console.log(now.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Prop) {
     if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
       console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
@@ -50,9 +51,7 @@ export class Clock extends React.Component<Prop, ClockState> {
       <div className="Clock">
         <strong className="Clock__name">{name}</strong>
         {' time is '}
-        <span className="Clock__time">
-          {time.toUTCString().slice(-12, -4)}
-        </span>
+        <span className="Clock__time">{time.toUTCString().slice(-12, -4)}</span>
       </div>
     );
   }
