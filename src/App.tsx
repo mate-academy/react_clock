@@ -19,6 +19,8 @@ export class App extends React.Component<{}, State> {
     clockName: 'Clock-0',
   };
 
+  nameTimerId = 0;
+
   componentDidMount() {
     document.addEventListener('contextmenu', this.handleRightClick);
     document.addEventListener('click', this.handleLeftClick);
