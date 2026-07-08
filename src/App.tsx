@@ -33,10 +33,7 @@ export class App extends React.Component<{}, State> {
       this.handleContextMenu as EventListener,
     );
 
-    document.addEventListener(
-      'click',
-      this.handleClick as EventListener,
-    );
+    document.addEventListener('click', this.handleClick as EventListener);
   }
 
   componentWillUnmount() {
@@ -47,10 +44,7 @@ export class App extends React.Component<{}, State> {
       this.handleContextMenu as EventListener,
     );
 
-    document.removeEventListener(
-      'click',
-      this.handleClick as EventListener,
-    );
+    document.removeEventListener('click', this.handleClick as EventListener);
   }
 
   handleContextMenu = (event: MouseEvent) => {
@@ -72,9 +66,7 @@ export class App extends React.Component<{}, State> {
       <div className="App">
         <h1>React clock</h1>
 
-        {this.state.hasClock && (
-          <Clock name={this.state.clockName} />
-        )}
+        {this.state.hasClock && <Clock name={this.state.clockName} />}
       </div>
     );
   }

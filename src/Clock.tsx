@@ -29,10 +29,8 @@ export class Clock extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     if (prevProps.name !== this.props.name) {
-      console.warn(
-        `Renamed from ${prevProps.name} to ${this.props.name}`,
-      );
-    }
+      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
+    } 
   }
 
   componentWillUnmount() {
@@ -42,9 +40,7 @@ export class Clock extends React.Component<Props, State> {
   render() {
     return (
       <div className="Clock">
-        <strong className="Clock__name">
-          {this.props.name}
-        </strong>
+        <strong className="Clock__name">{this.props.name}</strong>
 
         {' time is '}
 
