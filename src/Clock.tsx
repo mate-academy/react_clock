@@ -22,15 +22,16 @@ export class Clock extends React.Component<Props, State> {
       this.setState({
         today: now,
       });
-
+      // eslint-disable-next-line no-console
       console.log(now.toUTCString().slice(-12, -4));
     }, 1000);
   }
 
   componentDidUpdate(prevProps: Props) {
     if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
       console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
-    } 
+    }
   }
 
   componentWillUnmount() {
