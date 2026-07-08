@@ -21,28 +21,28 @@ export class App extends React.Component<{}, State> {
 
   timerId: number = 0;
 
-  handleleftClick = () => {
+  handleLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
-  handlerightClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  handleRightClick = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
   };
 
   componentDidMount() {
-    document.addEventListener('click', this.handleleftClick);
-    document.addEventListener('contextmenu', this.handlerightClick);
+    document.addEventListener('click', this.handleLeftClick);
+    document.addEventListener('contextmenu', this.handleRightClick);
 
     this.timerId = window.setInterval(() => {
       this.setState({ clockName: getRandomName() });
     }, 3300);
   }
 
-  compomentWillUnmount() {
-    document.removeEventListener('click', this.handleleftClick);
-    document.removeEventListener('contextmenu', this.handlerightClick);
-    window.clearInterval(timerId);
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleLeftClick);
+    document.removeEventListener('contextmenu', this.handleRightClick);
+    window.clearInterval(this.timerId);
   }
 
   render() {
@@ -54,6 +54,6 @@ export class App extends React.Component<{}, State> {
 
         {hasClock && <Clock name={clockName} />}
       </div>
-    )
+    );
   }
 }
