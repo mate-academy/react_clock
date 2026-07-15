@@ -10,9 +10,6 @@ type State = {
   hasClock: boolean;
 };
 
-let timerMenu: () => void;
-let timerClick: () => void;
-
 export class App extends React.Component<{}, State> {
   state: Readonly<State> = {
     today: new Date(),
@@ -20,6 +17,15 @@ export class App extends React.Component<{}, State> {
     timerIdName: 0,
     timerIdToday: 0,
     hasClock: true,
+  };
+
+  timerMenu = (event: MouseEvent) => {
+    event.preventDefault(); // not to show the context menu
+    this.setState({ hasClock: false });
+  };
+
+  timerClick = () => {
+    this.setState({ hasClock: true });
   };
 
   getRandomName(): string {
@@ -35,22 +41,16 @@ export class App extends React.Component<{}, State> {
         this.setState({ clockName: this.getRandomName() });
       }, 3300),
     });
-    timerMenu = document.addEventListener(
-      'contextmenu',
-      (event: MouseEvent) => {
-        event.preventDefault(); // not to show the context menu
-        this.setState({ hasClock: false });
-      },
-    );
-    timerClick = document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+
+    document.addEventListener('contextmenu', this.timerMenu);
+
+    document.addEventListener('click', this.timerClick);
   }
 
   componentWillUnmount(): void {
     window.clearInterval(this.state.timerIdName);
-    document.removeEventListener('contextmenu', timerMenu);
-    document.removeEventListener('click', timerClick);
+    document.removeEventListener('contextmenu', this.timerMenu);
+    document.removeEventListener('click', this.timerClick);
   }
 
   render() {
