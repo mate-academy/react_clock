@@ -5,46 +5,44 @@ import { Clock } from './Components/Clock';
 type State = {
   today: Date;
   clockName: string;
-  timerIdName: number;
-  timerIdToday: number;
+  timerId: number;
   hasClock: boolean;
 };
+
+function getRandomName(): string {
+  const value = Date.now().toString().slice(-4);
+
+  return `Clock-${value}`;
+}
 
 export class App extends React.Component<{}, State> {
   state: Readonly<State> = {
     today: new Date(),
     clockName: 'Clock-0',
-    timerIdName: 0,
-    timerIdToday: 0,
+    timerId: 0,
     hasClock: true,
   };
 
-  timerMenu = (event: MouseEvent) => {
+  handleContextMenu = (event: MouseEvent) => {
     event.preventDefault(); // not to show the context menu
     this.setState({ hasClock: false });
   };
 
-  timerClick = () => {
+  handleClick = () => {
     this.setState({ hasClock: true });
   };
-
-  getRandomName(): string {
-    const value = Date.now().toString().slice(-4);
-
-    return `Clock-${value}`;
-  }
 
   // This code starts a timer
   componentDidMount(): void {
     this.setState({
-      timerIdName: window.setInterval(() => {
-        this.setState({ clockName: this.getRandomName() });
+      timerId: window.setInterval(() => {
+        this.setState({ clockName: getRandomName() });
       }, 3300),
     });
 
-    document.addEventListener('contextmenu', this.timerMenu);
+    document.addEventListener('contextmenu', this.handleContextMenu);
 
-    document.addEventListener('click', this.timerClick);
+    document.addEventListener('click', this.handleClick);
   }
 
   componentDidUpdate(_: {}, prevState: Readonly<State>): void {
@@ -57,9 +55,9 @@ export class App extends React.Component<{}, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(this.state.timerIdName);
-    document.removeEventListener('contextmenu', this.timerMenu);
-    document.removeEventListener('click', this.timerClick);
+    window.clearInterval(this.state.timerId);
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    document.removeEventListener('click', this.handleClick);
   }
 
   render() {

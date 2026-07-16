@@ -2,7 +2,7 @@ import React from 'react';
 type Props = {
   name: string;
 };
-let timerIdToday: number = 0;
+let timerId: number = 0;
 
 type State = {
   today: Date;
@@ -13,7 +13,7 @@ export class Clock extends React.Component<Props, State> {
   };
 
   componentDidMount(): void {
-    timerIdToday = window.setInterval(() => {
+    timerId = window.setInterval(() => {
       this.setState({ today: new Date() });
       // eslint-disable-next-line no-console
       console.log(new Date().toUTCString().slice(-12, -4));
@@ -21,7 +21,7 @@ export class Clock extends React.Component<Props, State> {
   }
 
   componentWillUnmount(): void {
-    window.clearInterval(timerIdToday);
+    window.clearInterval(timerId);
   }
 
   render() {
