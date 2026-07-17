@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 type Props = {
   name: string;
 };
@@ -11,31 +10,33 @@ export class Clock extends React.Component<Props, State> {
   state: State = {
     time: new Date(),
   };
+
   intervalId: number = 0;
 
-componentDidMount() {
-  this.intervalId = window.setInterval(() => {
-    const time = new Date();
+  componentDidMount() {
+    this.intervalId = window.setInterval(() => {
+      const time = new Date();
 
-    this.setState({
-      time,
-    });
+      this.setState({
+        time,
+      });
 
-    // eslint-disable-next-line no-console
-    console.log(time.toUTCString().slice(-12, -4));
-  }, 1000);
-}
-
+      // eslint-disable-next-line no-console
+      console.log(time.toUTCString().slice(-12, -4));
+    }, 1000);
+  }
 
   componentWillUnmount() {
     window.clearInterval(this.intervalId);
   }
+
   componentDidUpdate(prevProps: Props) {
     if (prevProps.name !== this.props.name) {
       // eslint-disable-next-line no-console
       console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
     }
   }
+
   render() {
     return (
       <div className="Clock">
