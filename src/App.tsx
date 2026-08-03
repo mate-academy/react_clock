@@ -1,61 +1,59 @@
-import React from 'react';
-import { Clock } from './Clock';
+import React, { useState } from 'react';
 import './App.scss';
+import { get5First, getAll, getRedGoods } from './api/goods';
+import { GoodsList } from './GoodsList';
+import { Good } from './types/Good';
 
-function getRandomName(): string {
-  const value = Date.now().toString().slice(-4);
+type GoodsLoader = () => Promise<Good[]>;
 
-  return `Clock-${value}`;
-}
+export const App: React.FC = () => {
+  const [goods, setGoods] = useState<Good[]>([]);
+  const [error, setError] = useState('');
 
-interface State {
-  hasClock: boolean;
-  clockName: string;
-}
+  const loadGoods = async (loader: GoodsLoader): Promise<void> => {
+    try {
+      setError('');
 
-export class App extends React.Component<object, State> {
-  state: State = {
-    hasClock: true,
-    clockName: 'Clock-0',
+      const loadedGoods = await loader();
+
+      setGoods(loadedGoods);
+    } catch {
+      setGoods([]);
+      setError('Something went wrong while loading goods');
+    }
   };
 
-  private timerId = 0;
+  return (
+    <div className="App">
+      <h1>Dynamic list of Goods</h1>
 
-  componentDidMount(): void {
-    document.addEventListener('contextmenu', this.handleContextMenu);
-    document.addEventListener('click', this.handleClick);
+      <button
+        type="button"
+        data-cy="all-button"
+        onClick={() => loadGoods(getAll)}
+      >
+        Load all goods
+      </button>
 
-    this.timerId = window.setInterval(this.updateClockName, 3300);
-  }
+      <button
+        type="button"
+        data-cy="first-five-button"
+        onClick={() => loadGoods(get5First)}
+      >
+        Load 5 first goods
+      </button>
 
-  componentWillUnmount(): void {
-    document.removeEventListener('contextmenu', this.handleContextMenu);
-    document.removeEventListener('click', this.handleClick);
-    window.clearInterval(this.timerId);
-  }
+      <button
+        type="button"
+        data-cy="red-button"
+        onClick={() => loadGoods(getRedGoods)}
+      >
+        Load red goods
+      </button>
 
-  handleContextMenu = (event: MouseEvent): void => {
-    event.preventDefault();
-    this.setState({ hasClock: false });
-  };
+      {error && <p role="alert">{error}</p>}
 
-  handleClick = (): void => {
-    this.setState({ hasClock: true });
-  };
-
-  updateClockName = (): void => {
-    this.setState({ clockName: getRandomName() });
-  };
-
-  render(): React.ReactNode {
-    const { hasClock, clockName } = this.state;
-
-    return (
-      <div className="App">
-        <h1>React clock</h1>
-
-        {hasClock && <Clock name={clockName} />}
-      </div>
-    );
-  }
-}
+      <GoodsList goods={goods} />
+    </div>
+  );
+};

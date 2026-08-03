@@ -56,9 +56,7 @@ export class Clock extends React.Component<Props, State> {
 
         {' time is '}
 
-        <span className="Clock__time">
-          {getFormattedTime(currentTime)}
-        </span>
+        <span className="Clock__time">{getFormattedTime(currentTime)}</span>
       </div>
     );
   }
