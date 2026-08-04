@@ -18,12 +18,12 @@ export class App extends React.Component {
 
   clickHandler = () => {
     this.setState({ hasClock: true });
-  }
+  };
 
   contextMenuHandler = (event: MouseEvent) => {
     event.preventDefault();
     this.setState({ hasClock: false });
-  }
+  };
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 type Props = {
   name: string;
-}
+};
 
 export class Clock extends React.Component<Props> {
   state = {
@@ -13,10 +13,11 @@ export class Clock extends React.Component<Props> {
 
   updateAndLogTime = () => {
     const newTime = new Date();
+
     this.setState({ time: newTime });
     // eslint-disable-next-line no-console
     console.log(newTime.toUTCString().slice(-12, -4));
-  }
+  };
 
   componentDidMount(): void {
     this.timerId = window.setInterval(() => {
@@ -32,20 +33,22 @@ export class Clock extends React.Component<Props> {
   }
 
   componentWillUnmount(): void {
-    if (this.timerId) clearInterval(this.timerId);
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
   }
 
   render() {
     return (
-      <div className="Clock" >
+      <div className="Clock">
         <strong className="Clock__name">{this.props.name}</strong>
 
         {' time is '}
 
-        <span className="Clock__time" >
+        <span className="Clock__time">
           {this.state.time.toUTCString().slice(-12, -4)}
         </span>
-      </div >
+      </div>
     );
   }
 }
