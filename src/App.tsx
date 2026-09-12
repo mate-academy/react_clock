@@ -2,11 +2,11 @@ import React from 'react';
 import './App.scss';
 import { Clock } from './Components/Clock';
 
-// function getRandomName(): string {
-//   const value = Date.now().toString().slice(-4);
+function getRandomName(): string {
+  const value = Date.now().toString().slice(-4);
 
-//   return `Clock-${value}`;
-// }
+  return `Clock-${value}`;
+}
 
 interface State {
   hasClock: boolean;
@@ -18,6 +18,8 @@ export class App extends React.Component<{}, State> {
     hasClock: false,
     clockName: `Clock-0`,
   };
+
+  nameTimerId = 0;
 
   handleClick = () => {
     this.setState({
@@ -36,7 +38,21 @@ export class App extends React.Component<{}, State> {
   componentDidMount() {
     document.addEventListener('click', this.handleClick);
     document.addEventListener('contextmenu', this.handleContextMenu);
+
+    this.nameTimerId = window.setInterval(() => {
+      this.setState({
+        clockName: getRandomName(),
+      });
+    }, 3300);
   }
+
+  componentWillUnmount(): void {
+    document.removeEventListener('click', this.handleClick);
+    document.removeEventListener('contextmenu', this.handleContextMenu);
+    window.clearInterval(this.nameTimerId);
+  }
+
+  
 
   render() {
     return (

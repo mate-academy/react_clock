@@ -10,7 +10,6 @@ type State = {
 
 export class Clock extends React.Component<Props, State> {
   state = {
-    // time: toUTCString().slice(-12, -4);
     time: new Date(),
   };
 
@@ -21,17 +20,28 @@ export class Clock extends React.Component<Props, State> {
       this.setState({
         time: new Date(),
       });
+
+      // eslint-disable-next-line no-console
+      console.log(this.state.time);
     }, 1000);
   }
 
-  componentWillUnmount() {
+  componentDidUpdate(prevProps: Props): void {
+    if (prevProps.name !== this.props.name) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Renamed from ${prevProps.name} to ${this.props.name}`,
+      );
+    }
+  }
+
+  componentWillUnmount(): void {
     window.clearInterval(this.timerId);
   }
 
   render() {
     return (
       <div className="App">
-        <h1>React clock</h1>
         <div className="Clock">
           <strong className="Clock__name">{this.props.name}</strong>
 
