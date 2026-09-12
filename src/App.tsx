@@ -15,7 +15,7 @@ interface State {
 
 export class App extends React.Component<{}, State> {
   state = {
-    hasClock: false,
+    hasClock: true,
     clockName: `Clock-0`,
   };
 
@@ -51,8 +51,6 @@ export class App extends React.Component<{}, State> {
     document.removeEventListener('contextmenu', this.handleContextMenu);
     window.clearInterval(this.nameTimerId);
   }
-
-  
 
   render() {
     return (
