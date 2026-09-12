@@ -16,17 +16,17 @@ export class Clock extends React.Component<Props, State> {
   timerId = 0;
 
   componentDidMount(): void {
-  this.timerId = window.setInterval(() => {
-    const time = new Date();
+    this.timerId = window.setInterval(() => {
+      const time = new Date();
 
-    this.setState({
-      time,
-    });
+      this.setState({
+        time,
+      });
 
-    // eslint-disable-next-line no-console
-    console.log(time.toUTCString().slice(-12, -4));
-  }, 1000);
-}
+      // eslint-disable-next-line no-console
+      console.log(time.toUTCString().slice(-12, -4));
+    }, 1000);
+  }
 
   componentDidUpdate(prevProps: Props): void {
     if (prevProps.name !== this.props.name) {
@@ -41,16 +41,14 @@ export class Clock extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className="App">
-        <div className="Clock">
-          <strong className="Clock__name">{this.props.name}</strong>
+      <div className="Clock">
+        <strong className="Clock__name">{this.props.name}</strong>
 
-          {' time is '}
+        {' time is '}
 
-          <span className="Clock__time">
-            {this.state.time.toUTCString().slice(-12, -4)}
-          </span>
-        </div>
+        <span className="Clock__time">
+          {this.state.time.toUTCString().slice(-12, -4)}
+        </span>
       </div>
     );
   }
