@@ -16,15 +16,17 @@ export class Clock extends React.Component<Props, State> {
   timerId = 0;
 
   componentDidMount(): void {
-    this.timerId = window.setInterval(() => {
-      this.setState({
-        time: new Date(),
-      });
+  this.timerId = window.setInterval(() => {
+    const time = new Date();
 
-      // eslint-disable-next-line no-console
-      console.log(this.state.time.toUTCString().slice(-12, -4));
-    }, 1000);
-  }
+    this.setState({
+      time,
+    });
+
+    // eslint-disable-next-line no-console
+    console.log(time.toUTCString().slice(-12, -4));
+  }, 1000);
+}
 
   componentDidUpdate(prevProps: Props): void {
     if (prevProps.name !== this.props.name) {
