@@ -44,6 +44,7 @@ export class App extends React.Component {
   componentWillUnmount(): void {
     document.removeEventListener('contextmenu', this.handleRightClick);
     document.removeEventListener('click', this.handleLeftClick);
+    window.clearInterval(this.timerIdClockName);
   }
 
   render(): React.ReactNode {

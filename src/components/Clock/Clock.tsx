@@ -9,8 +9,6 @@ type State = {
 };
 
 export class Clock extends React.Component<Props, State> {
-  today = new Date();
-
   state: Readonly<State> = {
     today: new Date().toUTCString().slice(-12, -4),
   };
