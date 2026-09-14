@@ -37,6 +37,8 @@ export class Clock extends React.Component<Props, State> {
     const clockNameChanged = prevProps.name !== name;
 
     if (clockNameChanged) {
+      // there is no other clear way to avoid lint issue and we should use 
+      // console.warn according to the task requirements
       // eslint-disable-next-line no-console
       console.warn(`Renamed from ${prevProps.name} to ${name}`);
     }
