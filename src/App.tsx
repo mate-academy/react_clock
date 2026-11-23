@@ -23,7 +23,7 @@ class Clock extends React.Component<{ name: string }> {
 
   timerId?: number;
 
-  updeteTime() {
+  updateTime() {
     const now = new Date();
 
     this.setState({ date: now });
@@ -33,7 +33,7 @@ class Clock extends React.Component<{ name: string }> {
   }
 
   componentDidMount() {
-    this.timerId = window.setInterval(() => this.updeteTime(), 1000);
+    this.timerId = window.setInterval(() => this.updateTime(), 1000);
   }
 
   componentDidUpdate(prevProps: { name: string }) {
@@ -72,28 +72,35 @@ export class App extends React.Component<{}, State> {
 
   timerId?: number;
 
-  updeteName() {
+  updateName() {
     this.setState({ clockName: getRandomName() });
   }
 
+  hadleContextMenu = (event: MouseEvent) => {
+    event.preventDefault();
+
+    this.setState({ hasClock: false });
+  };
+
+  handleClick = () => {
+    this.setState({ hasClock: true });
+  };
+
   componentDidMount() {
-    this.timerId = window.setInterval(() => this.updeteName(), 3300);
+    this.timerId = window.setInterval(() => this.updateName(), 3300);
 
-    document.addEventListener('contextmenu', (event: MouseEvent) => {
-      event.preventDefault();
+    document.addEventListener('contextmenu', this.hadleContextMenu);
 
-      this.setState({ hasClock: false });
-    });
-
-    document.addEventListener('click', () => {
-      this.setState({ hasClock: true });
-    });
+    document.addEventListener('click', this.handleClick);
   }
 
   componentWillUnmount() {
     if (this.timerId) {
       window.clearInterval(this.timerId);
     }
+
+    document.removeEventListener('contextmenu', this.hadleContextMenu);
+    document.removeEventListener('click', this.handleClick);
   }
 
   render() {
