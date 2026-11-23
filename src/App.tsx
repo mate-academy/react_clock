@@ -76,7 +76,7 @@ export class App extends React.Component<{}, State> {
     this.setState({ clockName: getRandomName() });
   }
 
-  hadleContextMenu = (event: MouseEvent) => {
+  handleContextMenu = (event: MouseEvent) => {
     event.preventDefault();
 
     this.setState({ hasClock: false });
@@ -89,7 +89,7 @@ export class App extends React.Component<{}, State> {
   componentDidMount() {
     this.timerId = window.setInterval(() => this.updateName(), 3300);
 
-    document.addEventListener('contextmenu', this.hadleContextMenu);
+    document.addEventListener('contextmenu', this.handleContextMenu);
 
     document.addEventListener('click', this.handleClick);
   }
@@ -99,7 +99,7 @@ export class App extends React.Component<{}, State> {
       window.clearInterval(this.timerId);
     }
 
-    document.removeEventListener('contextmenu', this.hadleContextMenu);
+    document.removeEventListener('contextmenu', this.handleContextMenu);
     document.removeEventListener('click', this.handleClick);
   }
 
