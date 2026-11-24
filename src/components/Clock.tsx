@@ -2,7 +2,6 @@ import React from 'react';
 
 type Props = {
   name: string;
-  clockName: string;
   today: Date;
   handleState: (currentTime: Date) => void;
 };
@@ -23,23 +22,16 @@ export class Clock extends React.Component<Props> {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>): void {
-    if (prevProps.name != this.props.name) {
-      // eslint-disable-next-line no-console
-      console.warn(`Renamed from ${prevProps.name} to ${this.props.name}`);
-    }
-  }
-
   componentWillUnmount(): void {
     window.clearInterval(this.timerClock);
   }
 
   render() {
-    const { clockName, today } = this.props;
+    const { name, today } = this.props;
 
     return (
       <div className="Clock">
-        <strong className="Clock__name">{clockName}</strong>
+        <strong className="Clock__name">{name}</strong>
 
         {' time is '}
 

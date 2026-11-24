@@ -32,8 +32,7 @@ export class App extends React.Component<Props, State> {
     this.setState({ hasClock: false });
   };
 
-  handleLeftClick = (e: MouseEvent) => {
-    e.preventDefault();
+  handleLeftClick = () => {
     this.setState({ hasClock: true });
   };
 
@@ -51,6 +50,18 @@ export class App extends React.Component<Props, State> {
     document.addEventListener('click', this.handleLeftClick);
   }
 
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+    prevState: Readonly<State>,
+  ): void {
+    if (prevState.clockName != this.state.clockName && this.state.hasClock) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Renamed from ${prevState.clockName} to ${this.state.clockName}`,
+      );
+    }
+  }
+
   componentWillUnmount(): void {
     window.clearInterval(this.timerId);
     document.removeEventListener('contextmenu', this.handleRightClick);
@@ -58,7 +69,7 @@ export class App extends React.Component<Props, State> {
   }
 
   render() {
-    const { clockName, today, hasClock } = this.state;
+    const { today, hasClock } = this.state;
 
     return (
       <div className="App">
@@ -67,7 +78,6 @@ export class App extends React.Component<Props, State> {
         {hasClock && (
           <Clock
             name={this.state.clockName}
-            clockName={clockName}
             today={today}
             handleState={this.handleState}
           />
